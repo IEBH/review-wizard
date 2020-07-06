@@ -1,5 +1,5 @@
 <template>
-  <div class="p-shadow-5">
+  <div>
       <Menu :model="items" />
   </div>
 </template>
@@ -10,7 +10,7 @@ import Menu from 'primevue/menu';
 export default {
   name: 'TheSidebar',
   components: {
-    'Menu': Menu
+    Menu
   },
   data() {
     return {
@@ -19,9 +19,19 @@ export default {
           label: 'Method',
           items: [
             {
-              label: 'PICOT',
+              label: 'Picot',
               icon: 'pi pi-upload',
               to: '/method/picot'
+            },
+            {
+              label: 'Search Strategy',
+              icon: 'pi pi-upload',
+              to: '/method/searchStrategy'
+            },
+            {
+              label: 'Study Selection and Screening',
+              icon: 'pi pi-upload',
+              to: '/method/screening'
             }
           ]
         }
