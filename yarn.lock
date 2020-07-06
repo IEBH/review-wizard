@@ -6282,6 +6282,16 @@ pretty-error@^2.0.2:
     renderkid "^2.0.1"
     utila "~0.4"
 
+primeflex@^2.0.0-rc.1:
+  version "2.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/primeflex/-/primeflex-2.0.0-rc.1.tgz#12eb1b6da04968fd1cf1a3df5c2600ed3837bce8"
+  integrity sha512-NX7n6gLOo8peGhiqgW3ZbeEbN5mjzoFeHrhXL/UBMsQN4ZRHNjYCl4dlSlPmJ/wUO89PcnlT25eW3PnLcxjpcg==
+
+primevue@^2.0.0-rc.3:
+  version "2.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/primevue/-/primevue-2.0.0-rc.3.tgz#af86f168b3c5edffc22c67da9efec38255e759c2"
+  integrity sha512-pyqsSdD5c+NqjVrEPymClXmTmkTS7/gRfUcKfHPejFCok+3BD7WyG3b3RqOdH3WwU9PexgsVXL3zqZkm9Gd//Q==
+
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"

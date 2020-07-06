@@ -1,0 +1,36 @@
+<template>
+  <div class="p-shadow-5">
+      <Menu :model="items" />
+  </div>
+</template>
+
+<script>
+import Menu from 'primevue/menu';
+
+export default {
+  name: 'TheSidebar',
+  components: {
+    'Menu': Menu
+  },
+  data() {
+    return {
+      items: [
+        {
+          label: 'Method',
+          items: [
+            {
+              label: 'PICOT',
+              icon: 'pi pi-upload',
+              to: '/method/picot'
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>
