@@ -2,28 +2,26 @@
   <div>
       <p>{{question}}</p>
       <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
-      <!-- <input
+      <Textarea 
         v-bind:value="value"
         v-on:change="$emit('input', $event.target.value)"
-      > -->
-      <InputText 
-        type="text"
-        v-bind:value="value"
-        v-on:change="$emit('input', $event.target.value)"
+        :autoResize="true" 
+        rows="5" 
+        cols="30"
       />
   </div>
 </template>
 
 <script>
-import InputText from 'primevue/inputtext';
+import Textarea from 'primevue/textarea';
 export default {
-  name: 'InputTextSingleLine',
+  name: 'InputTextMultiLine',
   props: {
     question: String,
     value: String
   },
   components: {
-    InputText
+    Textarea
   }
 }
 </script>

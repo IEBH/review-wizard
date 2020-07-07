@@ -6287,6 +6287,11 @@ primeflex@^2.0.0-rc.1:
   resolved "https://registry.yarnpkg.com/primeflex/-/primeflex-2.0.0-rc.1.tgz#12eb1b6da04968fd1cf1a3df5c2600ed3837bce8"
   integrity sha512-NX7n6gLOo8peGhiqgW3ZbeEbN5mjzoFeHrhXL/UBMsQN4ZRHNjYCl4dlSlPmJ/wUO89PcnlT25eW3PnLcxjpcg==
 
+primeicons@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-4.0.0.tgz#a3594b3af213dcf8c4c3d6fc99eea05b7c92f57c"
+  integrity sha512-JQBIswGSItn8I0Pq21RchENpKJxSi1MjfBDfggMQpXtoKNKblJoHmol/7tCV3CAV2Dlb94ht8TD8qdIAW01pGg==
+
 primevue@^2.0.0-rc.3:
   version "2.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/primevue/-/primevue-2.0.0-rc.3.tgz#af86f168b3c5edffc22c67da9efec38255e759c2"

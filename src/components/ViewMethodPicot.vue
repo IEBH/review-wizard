@@ -1,7 +1,6 @@
 <template>
   <div>
       <h1>Picot</h1>
-
       <!-- P -->
       <InputTextSingleLine 
         question="What is the population, or problem (P), of your systematic review, (e.g. older people with diabetes)."
@@ -33,8 +32,14 @@
       />
 
       <!-- O -->
-      <p>Input Text Multiple Line</p>
-      <p>Input Text Multiple Line</p>
+      <InputTextMultiLine 
+        question="What are the outcomes (O) you will be looking for (e.g. reduced hospitalization, improved quality of life, mortality)"
+        v-model="method.outcomesInclude"
+      />
+      <InputTextMultiLine 
+        question="What are the outcomes (O) you will be looking for (e.g. reduced hospitalization, improved quality of life, mortality)"
+        v-model="method.outcomesInclude"
+      />
 
       <!-- T -->
       <p>Input Multi Select</p>
@@ -44,17 +49,21 @@
 
 <script>
 import InputTextSingleLine from './InputTextSingleLine.vue'
+import InputTextMultiLine from './InputTextMultiLine.vue'
 export default {
   name: 'ViewMethodPicot',
   components: {
-    InputTextSingleLine
+    InputTextSingleLine,
+    InputTextMultiLine
   },
   // TODO: Move method data into state using vuex
   data() {
     return {
       method: {
         populationInclude: "",
-        populationExclude: ""
+        populationExclude: "",
+        outcomesInclude: "",
+        outcomesExclude: ""
       }
     }
   }

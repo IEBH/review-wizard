@@ -1,16 +1,16 @@
 <template>
   <div>
-      <Menu :model="items" />
+      <PanelMenu :model="items" />
   </div>
 </template>
 
 <script>
-import Menu from 'primevue/menu';
+import PanelMenu from 'primevue/panelmenu';
 
 export default {
   name: 'TheSidebar',
   components: {
-    Menu
+    PanelMenu
   },
   data() {
     return {
@@ -20,12 +20,12 @@ export default {
           items: [
             {
               label: 'Picot',
-              icon: 'pi pi-upload',
+              icon: 'pi pi-file',
               to: '/method/picot'
             },
             {
               label: 'Search Strategy',
-              icon: 'pi pi-upload',
+              icon: 'pi pi-search',
               to: '/method/searchStrategy'
             },
             {
