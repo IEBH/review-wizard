@@ -42,19 +42,29 @@
       />
 
       <!-- T -->
-      <p>Input Multi Select</p>
-      <p>Input Multi Select</p>
+      <InputSelectMulti
+        question="What study types (T) will be included"
+        :options="method.typesOptions"
+        v-model="method.typesInclude"
+      />
+      <InputSelectMulti
+        question="What study types (T) will be included"
+        :options="method.typesOptions"
+        v-model="method.typesInclude"
+      />
   </div>
 </template>
 
 <script>
 import InputTextSingleLine from './InputTextSingleLine.vue'
 import InputTextMultiLine from './InputTextMultiLine.vue'
+import InputSelectMulti from './InputSelectMulti.vue'
 export default {
   name: 'ViewMethodPicot',
   components: {
     InputTextSingleLine,
-    InputTextMultiLine
+    InputTextMultiLine,
+    InputSelectMulti
   },
   // TODO: Move method data into state using vuex
   data() {
@@ -63,7 +73,13 @@ export default {
         populationInclude: "",
         populationExclude: "",
         outcomesInclude: "",
-        outcomesExclude: ""
+        outcomesExclude: "",
+        typesInclude: null,
+        typesExclude: null,
+        typesOptions: [
+          "Systematic Reviews",
+          "Randomized Controlled Trials"
+        ]
       }
     }
   }

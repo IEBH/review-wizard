@@ -2,28 +2,26 @@
   <div>
       <p>{{question}}</p>
       <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
-      <Textarea 
+      <Listbox 
         v-bind:value="value"
         v-on:change="$emit('input', $event.target.value)"
-        :autoResize="true" 
-        rows="5" 
-        cols="30"
+        :options="options" 
+        :multiple="true"
       />
-      <Listbox v-model="selectedCity" :options="cities" optionLabel="name" :multiple="true"/>
   </div>
 </template>
 
 <script>
-import Textarea from 'primevue/textarea';
+import Listbox from 'primevue/listbox';
 export default {
   name: 'InputSelectMulti',
   props: {
     question: String,
-    options: Object,
+    options: Array,
     value: String
   },
   components: {
-    Textarea
+    Listbox
   }
 }
 </script>
