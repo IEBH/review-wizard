@@ -6,37 +6,37 @@
         question="What is the population, or problem (P), of your systematic review, (e.g. older people with diabetes)."
         v-model="populationInclude"
       />
-      <InputTextSingleLine 
+      <InputTextSingleLineMulti 
         question="Are there any populations or problems that will be excluded, (e.g. children on ventilator support). "
         v-model="populationExclude"
       />
 
       <!-- I -->
-      <InputTextSingleLine 
+      <InputTextSingleLineMulti 
         question="What is the intervention (I) of your systematic review, (e.g. metformin)."
         v-model="interventionInclude"
       />
-      <InputTextSingleLine 
+      <InputTextSingleLineMulti 
         question="Are there any interventions that will be excluded, (e.g. exercise)."
         v-model="interventionExclude"
       />
 
       <!-- C -->
-      <InputTextSingleLine 
+      <InputTextSingleLineMulti 
         question="What is the comparator (C) that the intervention will be compared against"
         v-model="comparatorInclude"
       />
-      <InputTextSingleLine 
+      <InputTextSingleLineMulti 
         question="Will any comparators be excluded (e.g. no treatment)"
         v-model="comparatorExclude"
       />
 
       <!-- O -->
-      <InputTextMultiLine 
+      <InputTextSingleLineMulti 
         question="What are the outcomes (O) you will be looking for (e.g. reduced hospitalization, improved quality of life, mortality)"
         v-model="outcomesInclude"
       />
-      <InputTextMultiLine 
+      <InputTextSingleLineMulti 
         question="Will any outcomes be excluded (e.g. self reported feeling better, reduction in pain scores, improved fatigue levels)"
         v-model="outcomesExclude"
       />
@@ -52,33 +52,38 @@
         :options="typesOptions"
         v-model="typesExclude"
       />
+
+      <div class="p-mt-3 p-d-flex p-jc-center">
+        <Button
+          label="Generate Output"
+          @click="addNewValue()"
+        />
+      </div>
   </div>
 </template>
 
 <script>
-import InputTextSingleLine from './InputTextSingleLine.vue'
+import Button from 'primevue/button';
 import InputTextSingleLineMulti from './InputTextSingleLineMulti.vue'
-import InputTextMultiLine from './InputTextMultiLine.vue'
 import InputSelectMulti from './InputSelectMulti.vue'
 export default {
   name: 'ViewMethodPicot',
   components: {
-    InputTextSingleLine,
+    Button,
     InputTextSingleLineMulti,
-    InputTextMultiLine,
     InputSelectMulti
   },
   // TODO: Move method data into state using vuex
   data() {
     return {
       populationInclude: [""],
-      populationExclude: "",
-      interventionInclude: "",
-      interventionExclude: "",
-      comparatorInclude: "",
-      comparatorExclude: "",
-      outcomesInclude: "",
-      outcomesExclude: "",
+      populationExclude: [""],
+      interventionInclude: [""],
+      interventionExclude: [""],
+      comparatorInclude: [""],
+      comparatorExclude: [""],
+      outcomesInclude: ["", "", ""],
+      outcomesExclude: ["", "", ""],
       typesInclude: null,
       typesExclude: null,
       typesOptions: [

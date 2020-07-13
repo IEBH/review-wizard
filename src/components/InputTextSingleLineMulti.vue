@@ -6,12 +6,25 @@
         v-bind:value="value"
         v-on:change="$emit('input', $event.target.value)"
       > -->
-      <InputText 
-        type="text"
-        v-bind:value="value"
-        v-on:change="$emit('input', $event.target.value)"
+      <template v-for="(item, index) in value">
+        <InputText 
+          class="p-mr-2 p-d-inline"
+          type="text"
+          :value="item"
+          :key="index"
+          @change="update(index, $event.target.value)"
+        />
+      </template>
+      <Button 
+        icon="pi pi-minus" 
+        class="p-mr-2 p-d-inline p-button-rounded p-button-danger" 
+        @click="removeLastValue()"
       />
-      <Button icon="pi pi-search" class="p-button-rounded p-button-success" />
+      <Button 
+        icon="pi pi-plus" 
+        class="p-d-inline p-button-rounded p-button-success" 
+        @click="addNewValue()"
+      />
   </div>
 </template>
 
@@ -19,14 +32,26 @@
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 export default {
-  name: 'InputTextSingleLine',
+  name: 'InputTextSingleLineMulti',
   props: {
     question: String,
-    value: String
+    value: Array
   },
   components: {
     InputText,
     Button
+  },
+  methods: {
+    update: function(index, item) {
+      this.$set(this.value, index, item);
+      this.$emit('input', this.value);
+    },
+    removeLastValue : function() {
+      this.value.pop();
+    },
+    addNewValue: function() {
+      this.value.push("");
+    }
   }
 }
 </script>
