@@ -48,7 +48,7 @@
         v-model="typesInclude"
       />
       <InputSelectMulti
-        question="What study types (T) will be included"
+        question="Will any study types be excluded"
         :options="typesOptions"
         v-model="typesExclude"
       />
