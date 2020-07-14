@@ -10,8 +10,7 @@
       <div class="p-col-12 p-md-3 p-lg-2"><TheSidebar/></div>
       <div class="p-col-12 p-md-9 p-lg-9">
         <div class="p-shadow-10" style="padding:20px">
-          <router-view></router-view>
-          <!-- <ViewMethodPicot :method="method"/> -->
+          <ProjectEdit/>
         </div>
       </div>
     </div>
@@ -26,11 +25,13 @@ import 'primevue/resources/themes/bootstrap4-light-blue/theme.css';
 import 'primevue/resources/primevue.min.css'
 
 import TheSidebar from './components/TheSidebar.vue'
+import ProjectEdit from './components/ProjectEdit.vue'
 
 export default {
   name: 'App',
   components: {
     TheSidebar,
+    ProjectEdit
   }
 }
 </script>
