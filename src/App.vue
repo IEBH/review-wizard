@@ -3,7 +3,7 @@
 
     <div class="p-grid p-ai-center">
       <div class="p-col-12 p-md-3 p-lg-2"><img alt="Logo" src="./assets/logo.png" height="150px"></div>
-      <div class="p-col-12 p-md-9 p-lg-9"><h1 class="logo-text">ArtiWizard</h1></div>
+      <div class="p-col-12 p-md-9 p-lg-9"><h1 class="logo-text">ArticleWizard</h1></div>
     </div>
 
     <div class="p-grid">

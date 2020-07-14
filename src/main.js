@@ -7,8 +7,10 @@ import store from './store'
 Vue.config.productionTip = false
 
 import ViewMethodPicot from './components/ViewMethodPicot.vue'
+import ViewHome from './components/ViewHome.vue'
 
 const routes = [
+  { path: '', component: ViewHome },
   { path: '/method/picot', component: ViewMethodPicot }
 ]
 
