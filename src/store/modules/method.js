@@ -1,8 +1,8 @@
 const method = {
   firestorePath: 'reviews/jZT2CgpLcl7XxIWZzHtb/sections',
   firestoreRefType: 'collection', // or 'doc'
-  moduleName: 'method',
-  statePropName: 'methodData',
+  moduleName: 'sections',
+  statePropName: 'data',
   namespaced: true, // automatically added
 
   // this object is your store module (will be added as '/method')
