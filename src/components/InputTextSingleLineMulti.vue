@@ -48,9 +48,11 @@ export default {
     },
     removeLastValue : function() {
       this.value.pop();
+      this.$emit('input', this.value);
     },
     addNewValue: function() {
       this.value.push("");
+      this.$emit('input', this.value);
     }
   }
 }
