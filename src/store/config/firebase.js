@@ -12,7 +12,7 @@ var firebaseConfig = {
 };
 
 function initFirebase () {
-  Firebase.initializeApp({ firebaseConfig })
+  Firebase.initializeApp(firebaseConfig)
   return new Promise((resolve, reject) => {
     Firebase.firestore().enablePersistence()
       .then(resolve)

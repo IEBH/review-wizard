@@ -1,13 +1,30 @@
 const method = {
-  firestorePath: 'reviews/jZT2CgpLcl7XxIWZzHtb/sections',
-  firestoreRefType: 'collection', // or 'doc'
-  moduleName: 'sections',
-  statePropName: 'data',
+  firestorePath: 'reviews/jZT2CgpLcl7XxIWZzHtb/sections/method',
+  firestoreRefType: 'doc', // or 'doc'
+  moduleName: 'method',
+  statePropName: 'doc',
   namespaced: true, // automatically added
 
   // this object is your store module (will be added as '/method')
   // you can also add state/getters/mutations/actions
-  state: {},
+
+  // default state
+  state: {
+    doc: {
+      picot: {
+        populationInclude: [""],
+        populationExclude: [""],
+        interventionInclude: [""],
+        interventionExclude: [""],
+        comparatorInclude: [""],
+        comparatorExclude: [""],
+        outcomesInclude: ["", "", ""],
+        outcomesExclude: ["", "", ""],
+        typesInclude: null,
+        typesExclude: null
+      }
+    }
+  },
   getters: {},
   mutations: {},
   actions: {},

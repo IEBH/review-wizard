@@ -4,53 +4,53 @@
       <!-- P -->
       <InputTextSingleLineMulti 
         question="What is the population, or problem (P), of your systematic review, (e.g. older people with diabetes)."
-        v-model="method.picot.populationInclude"
+        v-model="picot.populationInclude"
       />
       <InputTextSingleLineMulti 
         question="Are there any populations or problems that will be excluded, (e.g. children on ventilator support). "
-        v-model="method.picot.populationExclude"
+        v-model="picot.populationExclude"
       />
 
       <!-- I -->
       <InputTextSingleLineMulti 
         question="What is the intervention (I) of your systematic review, (e.g. metformin)."
-        v-model="method.picot.interventionInclude"
+        v-model="picot.interventionInclude"
       />
       <InputTextSingleLineMulti 
         question="Are there any interventions that will be excluded, (e.g. exercise)."
-        v-model="method.picot.interventionExclude"
+        v-model="picot.interventionExclude"
       />
 
       <!-- C -->
       <InputTextSingleLineMulti 
         question="What is the comparator (C) that the intervention will be compared against"
-        v-model="method.picot.comparatorInclude"
+        v-model="picot.comparatorInclude"
       />
       <InputTextSingleLineMulti 
         question="Will any comparators be excluded (e.g. no treatment)"
-        v-model="method.picot.comparatorExclude"
+        v-model="picot.comparatorExclude"
       />
 
       <!-- O -->
       <InputTextSingleLineMulti 
         question="What are the outcomes (O) you will be looking for (e.g. reduced hospitalization, improved quality of life, mortality)"
-        v-model="method.picot.outcomesInclude"
+        v-model="picot.outcomesInclude"
       />
       <InputTextSingleLineMulti 
         question="Will any outcomes be excluded (e.g. self reported feeling better, reduction in pain scores, improved fatigue levels)"
-        v-model="method.picot.outcomesExclude"
+        v-model="picot.outcomesExclude"
       />
 
       <!-- T -->
       <InputSelectMulti
         question="What study types (T) will be included"
-        :options="method.picot.typesOptions"
-        v-model="method.picot.typesInclude"
+        :options="typesOptions"
+        v-model="picot.typesInclude"
       />
       <InputSelectMulti
         question="Will any study types be excluded"
-        :options="method.picot.typesOptions"
-        v-model="method.picot.typesExclude"
+        :options="typesOptions"
+        v-model="picot.typesExclude"
       />
 
       <div class="p-mt-3 p-d-flex p-jc-center">
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Button from 'primevue/button';
 import InputTextSingleLineMulti from './InputTextSingleLineMulti.vue'
 import InputSelectMulti from './InputSelectMulti.vue'
@@ -73,8 +74,23 @@ export default {
     InputTextSingleLineMulti,
     InputSelectMulti
   },
-  // TODO: Move method data into state using vuex
-  inject: ['method']
+  computed: mapState({
+    picot: state => state.method.doc.picot
+  }),
+  data() {
+    return{
+      typesOptions: [
+        "Systematic Reviews",
+        "Randomized Controlled Trials",
+        "Cohort Studies",
+        "Longitudinal studies",
+        "Before after studies",
+        "Surveys",
+        "Letters",
+        "Editorials"
+      ]
+    }
+  }
 }
 </script>
 
