@@ -13,6 +13,7 @@
     "primeflex": "^2.0.0-rc.1",
     "primeicons": "^4.0.0",
     "primevue": "^2.0.0-rc.3",
+    "revman-replicant-browser": "^0.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.3.4",
     "vuex": "^3.5.1",

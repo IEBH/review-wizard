@@ -66,7 +66,7 @@
       <div class="p-mt-3 p-d-flex p-jc-center">
         <Button
           label="Generate Output"
-          @click="addNewValue()"
+          @click="generateOutput()"
         />
       </div>
   </div>
@@ -74,9 +74,13 @@
 
 <script>
 import { mapState } from 'vuex'
+var revmanReplicant = require('revman-replicant-browser');
 import Button from 'primevue/button';
 import InputTextSingleLineMulti from './InputTextSingleLineMulti.vue'
 import InputSelectMulti from './InputSelectMulti.vue'
+
+var picotgrammar = "<h1>Outcomes</h1><p>Test output include: {{populationInclude}}</p>"
+
 export default {
   name: 'ViewMethodPicot',
   components: {
@@ -92,6 +96,17 @@ export default {
       console.log(value);
       this.$store.dispatch('method/set', {
         picot: { [field]: value }
+      });
+    },
+    generateOutput() {
+      console.log(this.picot);
+      revmanReplicant({
+        revman: this.picot,
+        grammar: picotgrammar,
+      }, function(err, res) {
+        // Res should now be a Abstract-suitable HTML string
+        console.log(err)
+        console.log(res);
       });
     }
   },
