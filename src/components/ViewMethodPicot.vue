@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1>Picot</h1>
+      <h1>PICOT</h1>
       <!-- P -->
       <InputTextSingleLineMulti 
         question="What is the population, or problem (P), of your systematic review, (e.g. older people with diabetes)."
@@ -66,25 +66,31 @@
       <div class="p-mt-3 p-d-flex p-jc-center">
         <Button
           label="Generate Output"
-          @click="generateOutput()"
+          @click="openModal()"
         />
       </div>
+
+      <!-- Modal to display output -->
+      <Dialog header="PICOT" :visible.sync="displayModal" :style="{width: '50vw'}" :modal="true">
+        <span v-html="modalText"></span>
+      </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 var revmanReplicant = require('revman-replicant-browser');
+import { picotGrammar } from '../assets/templates/method'
 import Button from 'primevue/button';
+import Dialog from 'primevue/dialog';
 import InputTextSingleLineMulti from './InputTextSingleLineMulti.vue'
 import InputSelectMulti from './InputSelectMulti.vue'
-
-var picotgrammar = "<h1>Outcomes</h1><p>Test output include: {{populationInclude}}</p>"
 
 export default {
   name: 'ViewMethodPicot',
   components: {
     Button,
+    Dialog,
     InputTextSingleLineMulti,
     InputSelectMulti
   },
@@ -98,22 +104,28 @@ export default {
         picot: { [field]: value }
       });
     },
-    generateOutput() {
-      console.log(this.picot);
+    openModal() {
       revmanReplicant({
         revman: this.picot,
-        grammar: picotgrammar,
-      }, function(err, res) {
-        // Res should now be a Abstract-suitable HTML string
-        console.log(err)
-        console.log(res);
+        grammar: picotGrammar,
+      }, (err, res) => {
+        // Use res html in v-html of modal
+        if (err) console.log(err);
+        this.modalText = res;
+        this.displayModal = true;
       });
+    },
+    closeModal() {
+      this.displayModal = false;
     }
   },
   data() {
     return{
+      displayModal: false,
+      modalText: "",
       typesOptions: [
         "Systematic Reviews",
+        "Observational Studies",
         "Randomized Controlled Trials",
         "Cohort Studies",
         "Longitudinal studies",

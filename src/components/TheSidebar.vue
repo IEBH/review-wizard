@@ -19,7 +19,7 @@ export default {
           label: 'Method',
           items: [
             {
-              label: 'Picot',
+              label: 'PICOT',
               icon: 'pi pi-file',
               to: '/method/picot'
             },
