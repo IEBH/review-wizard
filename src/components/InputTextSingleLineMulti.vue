@@ -12,7 +12,7 @@
           type="text"
           :value="item"
           :key="index"
-          @change="update(index, $event.target.value)"
+          @input="update(index, $event)"
         />
       </template>
       <Button 
