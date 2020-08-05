@@ -1,38 +1,38 @@
 <template>
   <div>
-      <p>{{question}}</p>
-      <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
-      <!-- <input
+    <p>{{ question }}</p>
+    <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
+    <!-- <input
         v-bind:value="value"
         v-on:change="$emit('input', $event.target.value)"
       > -->
-      <template v-for="(item, index) in value">
-        <InputText 
-          class="p-mr-2 p-d-inline"
-          type="text"
-          :value="item"
-          :key="index"
-          @input="update(index, $event)"
-        />
-      </template>
-      <Button 
-        icon="pi pi-minus" 
-        class="p-mr-2 p-d-inline p-button-rounded p-button-danger" 
-        @click="removeLastValue()"
+    <template v-for="(item, index) in value">
+      <InputText
+        class="p-mr-2 p-d-inline"
+        type="text"
+        :value="item"
+        :key="index"
+        @input="update(index, $event)"
       />
-      <Button 
-        icon="pi pi-plus" 
-        class="p-d-inline p-button-rounded p-button-success" 
-        @click="addNewValue()"
-      />
+    </template>
+    <Button
+      icon="pi pi-minus"
+      class="p-mr-2 p-d-inline p-button-rounded p-button-danger"
+      @click="removeLastValue()"
+    />
+    <Button
+      icon="pi pi-plus"
+      class="p-d-inline p-button-rounded p-button-success"
+      @click="addNewValue()"
+    />
   </div>
 </template>
 
 <script>
-import InputText from 'primevue/inputtext';
-import Button from 'primevue/button';
+import InputText from "primevue/inputtext";
+import Button from "primevue/button";
 export default {
-  name: 'InputTextSingleLineMulti',
+  name: "InputTextSingleLineMulti",
   props: {
     question: String,
     value: Array
@@ -44,20 +44,19 @@ export default {
   methods: {
     update: function(index, item) {
       this.$set(this.value, index, item);
-      this.$emit('input', this.value);
+      this.$emit("input", this.value);
     },
-    removeLastValue : function() {
+    removeLastValue: function() {
       this.value.pop();
-      this.$emit('input', this.value);
+      this.$emit("input", this.value);
     },
     addNewValue: function() {
       this.value.push("");
-      this.$emit('input', this.value);
+      this.$emit("input", this.value);
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

@@ -1,14 +1,14 @@
 <template>
   <div>
-      <PanelMenu :model="items" />
+    <PanelMenu :model="items" />
   </div>
 </template>
 
 <script>
-import PanelMenu from 'primevue/panelmenu';
+import PanelMenu from "primevue/panelmenu";
 
 export default {
-  name: 'TheSidebar',
+  name: "TheSidebar",
   components: {
     PanelMenu
   },
@@ -16,31 +16,30 @@ export default {
     return {
       items: [
         {
-          label: 'Method',
+          label: "Method",
           items: [
             {
-              label: 'PICOT',
-              icon: 'pi pi-file',
-              to: '/method/picot'
+              label: "PICOT",
+              icon: "pi pi-file",
+              to: "/method/picot"
             },
             {
-              label: 'Search Strategy',
-              icon: 'pi pi-search',
-              to: '/method/searchStrategy'
+              label: "Search Strategy",
+              icon: "pi pi-search",
+              to: "/method/searchStrategy"
             },
             {
-              label: 'Study Selection and Screening',
-              icon: 'pi pi-upload',
-              to: '/method/screening'
+              label: "Study Selection and Screening",
+              icon: "pi pi-upload",
+              to: "/method/screening"
             }
           ]
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

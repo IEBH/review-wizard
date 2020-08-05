@@ -1,7 +1,4 @@
-
-
-export const picotGrammar = 
-`<h3>Participants</h3>
+export const picotGrammar = `<h3>Participants</h3>
 <ul>
     <li>We included: {{populationInclude}}</li>
     <li>We excluded: {{populationExclude}}</li>
@@ -29,4 +26,4 @@ export const picotGrammar =
 <ul>
     <li>We included: {{typesInclude}}</li>
     <li>We excluded: {{typesExclude}}</li>
-</ul>`
+</ul>`;

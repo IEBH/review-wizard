@@ -1,23 +1,23 @@
 <template>
   <div>
-      <p>{{question}}</p>
-      <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
-      <!-- <input
+    <p>{{ question }}</p>
+    <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
+    <!-- <input
         v-bind:value="value"
         v-on:change="$emit('input', $event.target.value)"
       > -->
-      <InputText 
-        type="text"
-        v-bind:value="value"
-        v-on:change="$emit('input', $event.target.value)"
-      />
+    <InputText
+      type="text"
+      v-bind:value="value"
+      v-on:change="$emit('input', $event.target.value)"
+    />
   </div>
 </template>
 
 <script>
-import InputText from 'primevue/inputtext';
+import InputText from "primevue/inputtext";
 export default {
-  name: 'InputTextSingleLine',
+  name: "InputTextSingleLine",
   props: {
     question: String,
     value: String
@@ -25,9 +25,8 @@ export default {
   components: {
     InputText
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>
