@@ -1,5 +1,5 @@
 const method = {
-  firestorePath: 'reviews/jZT2CgpLcl7XxIWZzHtb/sections/method',
+  firestorePath: 'reviews/{articleId}/sections/method',
   firestoreRefType: 'doc', // or 'doc'
   moduleName: 'method',
   statePropName: 'doc',

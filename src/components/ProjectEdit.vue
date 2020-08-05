@@ -6,7 +6,9 @@
 export default {
   name: 'ProjectEdit',
   mounted () {
-    this.$store.dispatch('method/openDBChannel')
+    const articleId = this.$route.query.articleId
+    console.log(articleId) 
+    this.$store.dispatch('method/openDBChannel', { pathVariables: { articleId }});
   }
 }
 </script>
