@@ -1,16 +1,24 @@
 <template>
   <div>
-    <PanelMenu :model="items" />
+    <PanelMenu v-if="activeArticle" :model="items" />
+    <Button v-else label="Create New Article" @click="newArticle" />
   </div>
 </template>
 
 <script>
 import PanelMenu from "primevue/panelmenu";
+import Button from "primevue/button";
 
 export default {
   name: "TheSidebar",
   components: {
-    PanelMenu
+    PanelMenu,
+    Button
+  },
+  computed: {
+    activeArticle() {
+      return this.$store.state.activeArticle;
+    }
   },
   data() {
     return {

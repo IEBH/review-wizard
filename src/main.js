@@ -10,12 +10,17 @@ import ViewMethodPicot from "./components/ViewMethodPicot.vue";
 import ViewHome from "./components/ViewHome.vue";
 
 const routes = [
-  { path: "", component: ViewHome },
+  { path: "", name: "home", component: ViewHome },
   { path: "/method/picot", component: ViewMethodPicot }
 ];
 
 const router = new VueRouter({
   routes // short for `routes: routes`
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== "home" && !store.state.activeArticle) next({ name: "home" });
+  else next();
 });
 
 new Vue({
