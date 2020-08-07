@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PanelMenu v-if="activeArticle" :model="items" />
+    <PanelMenu v-if="articleId" :model="items" />
     <Button v-else label="Create New Article" @click="newArticle" />
   </div>
 </template>
@@ -16,35 +16,33 @@ export default {
     Button
   },
   computed: {
-    activeArticle() {
-      return this.$store.state.activeArticle;
-    }
-  },
-  data() {
-    return {
-      items: [
+    articleId() {
+      return this.$store.state.articleId;
+    },
+    items() {
+      return [
         {
           label: "Method",
           items: [
             {
               label: "PICOT",
               icon: "pi pi-file",
-              to: "/method/picot"
+              to: `/${this.$store.state.articleId}/method/picot`
             },
             {
               label: "Search Strategy",
               icon: "pi pi-search",
-              to: "/method/searchStrategy"
+              to: `/${this.$store.state.articleId}/method/searchStrategy`
             },
             {
               label: "Study Selection and Screening",
               icon: "pi pi-upload",
-              to: "/method/screening"
+              to: `/${this.$store.state.articleId}/method/screening`
             }
           ]
         }
-      ]
-    };
+      ];
+    }
   }
 };
 </script>

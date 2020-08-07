@@ -19,11 +19,11 @@ const easyFirestore = VuexEasyFirestore([method], {
 const storeData = {
   plugins: [easyFirestore],
   state: {
-    activeArticle: false
+    articleId: null
   },
   mutations: {
-    setActiveArticle(state, bool) {
-      state.activeArticle = bool;
+    setArticleId(state, id) {
+      state.articleId = id;
     }
   }
 };

@@ -3,26 +3,43 @@
 </template>
 
 <script>
+import router from "../router";
 export default {
   name: "ProjectEdit",
-  mounted() {
-    const articleId = this.$route.query.articleId;
-    if (articleId) {
-      this.$store
-        .dispatch("method/openDBChannel", { pathVariables: { articleId } })
-        .then(() => {
-          this.$store.commit("setActiveArticle", true);
-        })
-        .catch(error => {
-          console.log(
-            "Error opening firestore channel, most likely due to invalid/expired articleId"
-          );
-          console.error(error);
-          this.$store.commit("setActiveArticle", false);
-        });
-    } else {
-      console.log("No articleId specified");
-      this.$store.commit("setActiveArticle", false);
+  created() {
+    this.refresh();
+  },
+  computed: {
+    prevId() {
+      return this.$store.state.articleId;
+    }
+  },
+  watch: {
+    "$route.params.articleId"() {
+      this.refresh();
+    }
+  },
+  methods: {
+    refresh() {
+      const articleId = this.$route.params.articleId;
+      if (!articleId) {
+        console.log("No article id specified");
+      } else if (articleId !== this.prevId) {
+        // Article id has changed, update the store
+        this.$store
+          .dispatch("method/openDBChannel", { pathVariables: { articleId } })
+          .then(() => {
+            this.$store.commit("setArticleId", articleId);
+          })
+          .catch(error => {
+            console.log(
+              "Error opening firestore channel, most likely due to invalid/expired articleId"
+            );
+            console.error(error);
+            this.$store.commit("setArticleId", null);
+            router.replace("/");
+          });
+      }
     }
   }
 };
