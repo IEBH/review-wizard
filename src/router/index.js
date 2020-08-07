@@ -4,8 +4,12 @@ import ViewMethodPicot from "../components/ViewMethodPicot.vue";
 import ViewHome from "../components/ViewHome.vue";
 
 const routes = [
-  { path: "", name: "home", component: ViewHome },
-  { path: "/:articleId/method/picot", component: ViewMethodPicot },
+  { name: "home", path: "", component: ViewHome },
+  {
+    name: "picot",
+    path: "/:articleId/method/picot",
+    component: ViewMethodPicot
+  },
   { path: "/:articleId/method/searchStrategy", component: ViewMethodPicot },
   { path: "/:articleId/method/screening", component: ViewMethodPicot }
 ];

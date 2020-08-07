@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { createNewArticle } from "../api/firebase.js";
 import PanelMenu from "primevue/panelmenu";
 import Button from "primevue/button";
 
@@ -42,6 +43,17 @@ export default {
           ]
         }
       ];
+    }
+  },
+  methods: {
+    newArticle() {
+      createNewArticle()
+        .then(val => {
+          const newId = val.id;
+          console.log(val.id);
+          this.$router.replace({ name: "picot", params: { articleId: newId } });
+        })
+        .catch(err => console.log(err));
     }
   }
 };
