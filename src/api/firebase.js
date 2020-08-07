@@ -20,11 +20,16 @@ export function checkArticleExists(articleId) {
   });
 }
 
-// Reject error if store fails to sync
-export function openChannel(store, articleId) {
+// Sync store and reject error if store fails to sync
+export function openMethod(store, articleId) {
   return store.dispatch("method/openDBChannel", {
     pathVariables: { articleId }
   });
+}
+
+// Create
+export function closeMethod(store) {
+  return store.dispatch("method/closeDBChannel", { clearModule: true });
 }
 
 // Insert new article and return article ID
