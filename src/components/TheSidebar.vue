@@ -24,6 +24,7 @@ export default {
       return [
         {
           label: "Method",
+          expanded: true,
           items: [
             {
               label: "PICOT",

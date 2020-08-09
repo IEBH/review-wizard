@@ -5,6 +5,7 @@ import ViewHome from "../components/ViewHome.vue";
 
 const routes = [
   { name: "home", path: "", component: ViewHome },
+  { path: "/:articleId", component: ViewHome },
   {
     name: "picot",
     path: "/:articleId/method/picot",

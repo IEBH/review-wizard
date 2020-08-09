@@ -27,7 +27,7 @@ export function openMethod(store, articleId) {
   });
 }
 
-// Create
+// Close store sync and clear loaded module data
 export function closeMethod(store) {
   return store.dispatch("method/closeDBChannel", { clearModule: true });
 }
