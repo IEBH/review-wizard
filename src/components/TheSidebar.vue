@@ -11,7 +11,7 @@ import PanelMenu from "primevue/panelmenu";
 export default {
   name: "TheSidebar",
   components: {
-    PanelMenu,
+    PanelMenu
   },
   computed: {
     articleId() {
