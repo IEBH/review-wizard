@@ -1,11 +1,25 @@
 <template>
   <div id="app">
-    <div class="p-grid p-ai-center">
+    <!-- If articleId exists render small logo and toolbar -->
+    <div v-if="articleId" class="p-grid p-ai-center">
+      <div class="p-col-12 p-md-3 p-lg-2">
+        <img class="logo" alt="Logo" src="./assets/logo.png" height="100px" />
+      </div>
+      <div class="p-col-12 p-md-9 p-lg-9">
+        <h1 class="logo-text-small">ArticleWizard</h1>
+      </div>
+      <div class="toolbar p-col-12">
+        <TheArticleToolbar />
+      </div>
+    </div>
+
+    <!-- Else render a larger logo -->
+    <div v-else class="p-grid p-ai-center">
       <div class="p-col-12 p-md-3 p-lg-2">
         <img class="logo" alt="Logo" src="./assets/logo.png" height="150px" />
       </div>
       <div class="p-col-12 p-md-9 p-lg-9">
-        <h1 class="logo-text">ArticleWizard</h1>
+        <h1 class="logo-text-large">ArticleWizard</h1>
       </div>
     </div>
 
@@ -27,13 +41,20 @@ import "primevue/resources/themes/bootstrap4-light-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 
 import TheSidebar from "./components/TheSidebar.vue";
+import TheArticleToolbar from "./components/TheArticleToolbar.vue"
 import ProjectEdit from "./components/ProjectEdit.vue";
 
 export default {
   name: "App",
   components: {
     TheSidebar,
+    TheArticleToolbar,
     ProjectEdit
+  },
+  computed: {
+    articleId() {
+      return this.$store.state.articleId;
+    }
   }
 };
 </script>
@@ -43,9 +64,16 @@ export default {
   display: block;
   margin: auto;
 }
-.logo-text {
+.logo-text-small {
+  padding-left: 20px;
+  font-size: 3em;
+}
+.logo-text-large {
   padding-left: 20px;
   font-size: 5em;
+}
+.toolbar {
+  padding: 0px 20px 20px 20px;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

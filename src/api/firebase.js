@@ -27,8 +27,9 @@ export function openMethod(store, articleId) {
   });
 }
 
-// Close store sync and clear loaded module data
+// Close store sync, clear articleId and clear loaded module data
 export function closeMethod(store) {
+  store.commit("setArticleId", null);
   return store.dispatch("method/closeDBChannel", { clearModule: true });
 }
 
