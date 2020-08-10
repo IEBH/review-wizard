@@ -26,7 +26,7 @@ export default {
           label: "Metadata",
           items: [
             {
-              label: "TitlePage",
+              label: "Title Page",
               icon: "pi pi-file",
               to: `/${this.$store.state.articleId}/titlepage`
             }

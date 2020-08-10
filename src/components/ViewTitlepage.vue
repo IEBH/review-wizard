@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>TitlePage</h1>
+    <h1>Title Page</h1>
     <InputTextSingleLine
       question="What is the title of the study?"
       :value="titlepage.title"
