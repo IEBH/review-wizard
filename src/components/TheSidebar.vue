@@ -1,20 +1,17 @@
 <template>
   <div>
     <PanelMenu v-if="articleId" :model="items" />
-    <Button v-else label="Create New Article" @click="newArticle" />
   </div>
 </template>
 
 <script>
 import { createNewArticle } from "../api/firebase.js";
 import PanelMenu from "primevue/panelmenu";
-import Button from "primevue/button";
 
 export default {
   name: "TheSidebar",
   components: {
     PanelMenu,
-    Button
   },
   computed: {
     articleId() {

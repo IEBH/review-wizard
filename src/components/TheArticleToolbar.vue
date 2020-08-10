@@ -65,8 +65,7 @@ export default {
       this.$router.push("/");
     },
     openModal() {
-      this.shareUrl =
-        "https://articlewizard.netlify.app/#/" + this.articleId + "/titlepage";
+      this.shareUrl = "https://articlewizard.netlify.app/#/" + this.articleId;
       this.displayModal = true;
     },
     closeModal() {
