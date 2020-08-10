@@ -41,7 +41,7 @@ import "primevue/resources/themes/bootstrap4-light-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 
 import TheSidebar from "./components/TheSidebar.vue";
-import TheArticleToolbar from "./components/TheArticleToolbar.vue"
+import TheArticleToolbar from "./components/TheArticleToolbar.vue";
 import ProjectEdit from "./components/ProjectEdit.vue";
 
 export default {

@@ -1,10 +1,10 @@
 <template>
   <Toolbar>
-    <template slot="left"> 
+    <template slot="left">
       <b>Article Title</b>
     </template>
     <template slot="right">
-      <Button label="Share" class="p-mr-2"/>
+      <Button label="Share" class="p-mr-2" />
       <Button label="Close" />
     </template>
   </Toolbar>
