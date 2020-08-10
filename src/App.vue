@@ -2,7 +2,7 @@
   <div id="app">
     <div class="p-grid p-ai-center">
       <div class="p-col-12 p-md-3 p-lg-2">
-        <img alt="Logo" src="./assets/logo.png" height="150px" />
+        <img class="logo" alt="Logo" src="./assets/logo.png" height="150px" />
       </div>
       <div class="p-col-12 p-md-9 p-lg-9">
         <h1 class="logo-text">ArticleWizard</h1>
@@ -40,10 +40,11 @@ export default {
 
 <style>
 .logo {
-  margin: 20px;
-  height: 150px;
+  display: block;
+  margin: auto;
 }
 .logo-text {
+  padding-left: 20px;
   font-size: 5em;
 }
 #app {
@@ -52,6 +53,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>
