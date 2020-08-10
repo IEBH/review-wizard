@@ -7,9 +7,10 @@ Vue.use(Vuex);
 import { Firebase, initFirebase } from "./config/firebase.js";
 // import from step 3 (below)
 import method from "./modules/method.js";
+import titlepage from "./modules/titlepage.js";
 
 // do the magic 🧙🏻‍♂️
-const easyFirestore = VuexEasyFirestore([method], {
+const easyFirestore = VuexEasyFirestore([method, titlepage], {
   logging: true,
   FirebaseDependency: Firebase
 });
