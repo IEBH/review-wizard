@@ -23,6 +23,16 @@ export default {
     items() {
       return [
         {
+          label: "Metadata",
+          items: [
+            {
+              label: "TitlePage",
+              icon: "pi pi-file",
+              to: `/${this.$store.state.articleId}/titlepage`
+            }
+          ]
+        },
+        {
           label: "Method",
           expanded: true,
           items: [

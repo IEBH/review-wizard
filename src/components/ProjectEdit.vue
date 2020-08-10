@@ -5,6 +5,7 @@
 <script>
 import {
   checkArticleExists,
+  openTitlepage,
   openMethod,
   closeMethod
 } from "../api/firebase.js";
@@ -35,7 +36,10 @@ export default {
         // Check for existence of article
         if (await checkArticleExists(articleId)) {
           // Article id has changed, update the store
-          openMethod(this.$store, articleId)
+          Promise.all([
+            openTitlepage(this.$store, articleId),
+            openMethod(this.$store, articleId)
+          ])
             .then(() => {
               // Set the new article ID in the store
               this.$store.commit("setArticleId", articleId);

@@ -1,11 +1,13 @@
 import VueRouter from "vue-router";
 // import store from "../store";
 import ViewMethodPicot from "../components/ViewMethodPicot.vue";
+import ViewTitlepage from "../components/ViewTitlepage.vue";
 import ViewHome from "../components/ViewHome.vue";
 
 const routes = [
   { name: "home", path: "", component: ViewHome },
   { path: "/:articleId", component: ViewHome },
+  { path: "/:articleId/titlepage", component: ViewTitlepage },
   {
     name: "picot",
     path: "/:articleId/method/picot",

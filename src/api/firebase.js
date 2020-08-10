@@ -20,6 +20,12 @@ export function checkArticleExists(articleId) {
   });
 }
 
+export function openTitlepage(store, articleId) {
+  return store.dispatch("titlepage/openDBChannel", {
+    pathVariables: { articleId }
+  });
+}
+
 // Sync store and reject error if store fails to sync
 export function openMethod(store, articleId) {
   return store.dispatch("method/openDBChannel", {
