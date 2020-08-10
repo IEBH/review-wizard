@@ -5,9 +5,8 @@
 <script>
 import {
   checkArticleExists,
-  openTitlepage,
-  openMethod,
-  closeMethod
+  openArticle,
+  closeArticle
 } from "../api/firebase.js";
 
 export default {
@@ -32,14 +31,11 @@ export default {
         console.log("No article id specified");
       } else if (articleId !== this.prevId) {
         // If there is a previous ID, close channel and clear store data
-        if (this.prevId) closeMethod(this.$store);
+        if (this.prevId) closeArticle(this.$store);
         // Check for existence of article
         if (await checkArticleExists(articleId)) {
           // Article id has changed, update the store
-          Promise.all([
-            openTitlepage(this.$store, articleId),
-            openMethod(this.$store, articleId)
-          ])
+          openArticle(this.$store, articleId)
             .then(() => {
               // Set the new article ID in the store
               this.$store.commit("setArticleId", articleId);

@@ -20,23 +20,25 @@ export function checkArticleExists(articleId) {
   });
 }
 
-export function openTitlepage(store, articleId) {
-  return store.dispatch("titlepage/openDBChannel", {
-    pathVariables: { articleId }
-  });
-}
-
 // Sync store and reject error if store fails to sync
-export function openMethod(store, articleId) {
-  return store.dispatch("method/openDBChannel", {
-    pathVariables: { articleId }
-  });
+export function openArticle(store, articleId) {
+  return Promise.all([
+    store.dispatch(`titlepage/openDBChannel`, {
+      pathVariables: { articleId }
+    }),
+    store.dispatch(`method/openDBChannel`, {
+      pathVariables: { articleId }
+    })
+  ]);
 }
 
 // Close store sync, clear articleId and clear loaded module data
-export function closeMethod(store) {
+export function closeArticle(store) {
   store.commit("setArticleId", null);
-  return store.dispatch("method/closeDBChannel", { clearModule: true });
+  return Promise.all([
+    store.dispatch(`titlepage/closeDBChannel`, { clearModule: true }),
+    store.dispatch(`method/closeDBChannel`, { clearModule: true })
+  ]);
 }
 
 // Insert new article and return article ID
