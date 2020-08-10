@@ -62,7 +62,10 @@ export default {
         .then(val => {
           const newId = val.id;
           console.log(val.id);
-          this.$router.replace({ name: "picot", params: { articleId: newId } });
+          this.$router.replace({
+            name: "titlepage",
+            params: { articleId: newId }
+          });
         })
         .catch(err => console.log(err));
     }
