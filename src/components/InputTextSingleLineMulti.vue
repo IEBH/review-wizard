@@ -1,5 +1,5 @@
 <template>
-  <div class="p-input-filled p-fluid p-mb-6">
+  <div class="p-fluid p-mb-6">
     <p>
       <b>{{ question }}</b>
     </p>

@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <p>{{ question }}</p>
+  <div class="p-fluid">
+    <p>
+      <b>{{ question }}</b>
+    </p>
     <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
     <!-- <input
         v-bind:value="value"
