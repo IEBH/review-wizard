@@ -21,8 +21,7 @@ const method = {
         interventionExclude: [""],
         comparatorInclude: [""],
         comparatorExclude: [""],
-        outcomesInclude: ["", "", ""],
-        outcomesExclude: ["", "", ""],
+        outcomes: [],
         typesInclude: null,
         typesExclude: null
       }

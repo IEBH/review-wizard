@@ -38,15 +38,11 @@
     />
 
     <!-- O -->
-    <InputTextSingleLineMulti
+    <InputTable
       question="What are the outcomes (O) you will be looking for (e.g. reduced hospitalization, improved quality of life, mortality)"
-      :value="picot.outcomesInclude"
-      @input="updateField('outcomesInclude', $event)"
-    />
-    <InputTextSingleLineMulti
-      question="Will any outcomes be excluded (e.g. self reported feeling better, reduction in pain scores, improved fatigue levels)"
-      :value="picot.outcomesExclude"
-      @input="updateField('outcomesExclude', $event)"
+      :options="outcomeOptions"
+      :value="picot.outcomes"
+      @input="updateField('outcomes', $event)"
     />
 
     <!-- T -->
@@ -83,10 +79,13 @@
 import { mapState } from "vuex";
 var revmanReplicant = require("revman-replicant-browser");
 import { picotGrammar } from "../assets/templates/method";
+
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
+
 import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
+import InputTable from "./InputTable.vue";
 
 export default {
   name: "ViewMethodPicot",
@@ -94,7 +93,8 @@ export default {
     Button,
     Dialog,
     InputTextSingleLineMulti,
-    InputSelectMulti
+    InputSelectMulti,
+    InputTable
   },
   computed: mapState({
     picot: state => state.method.doc.picot
@@ -126,8 +126,10 @@ export default {
   },
   data() {
     return {
-      displayModal: false,
-      modalText: "",
+      outcomeOptions: [
+        { name: "Primary", key: "P" },
+        { name: "Secondary", key: "S" }
+      ],
       typesOptions: [
         "Systematic Reviews",
         "Observational Studies",
@@ -138,7 +140,9 @@ export default {
         "Surveys",
         "Letters",
         "Editorials"
-      ]
+      ],
+      displayModal: false,
+      modalText: ""
     };
   }
 };

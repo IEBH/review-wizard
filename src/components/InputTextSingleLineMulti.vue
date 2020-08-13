@@ -1,5 +1,5 @@
 <template>
-  <div class="p-input-filled p-fluid">
+  <div class="p-input-filled p-fluid p-mb-6">
     <p>
       <b>{{ question }}</b>
     </p>
@@ -63,9 +63,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.wide-text {
-  width: 500px;
-  min-width: 200px;
-}
-</style>
+<style scoped></style>
