@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ question }}</p>
+    <p><b>{{ question }}</b></p>
     <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
     <!-- <input
         v-bind:value="value"
@@ -8,7 +8,7 @@
       > -->
     <template v-for="(item, index) in value">
       <InputText
-        class="p-mr-2 p-d-inline"
+        class="p-mb-2 p-d-block"
         type="text"
         :value="item"
         :key="index"
