@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <p><b>{{ question }}</b></p>
+  <div class="p-input-filled p-fluid">
+    <p>
+      <b>{{ question }}</b>
+    </p>
     <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
     <!-- <input
         v-bind:value="value"
@@ -8,23 +10,25 @@
       > -->
     <template v-for="(item, index) in value">
       <InputText
-        class="p-mb-2 p-d-block"
+        class="p-mb-2"
         type="text"
         :value="item"
         :key="index"
         @input="update(index, $event)"
       />
     </template>
-    <Button
-      icon="pi pi-minus"
-      class="p-mr-2 p-d-inline p-button-rounded p-button-danger"
-      @click="removeLastValue()"
-    />
-    <Button
-      icon="pi pi-plus"
-      class="p-d-inline p-button-rounded p-button-success"
-      @click="addNewValue()"
-    />
+    <div class="p-ml-4">
+      <Button
+        icon="pi pi-minus"
+        class="p-mr-2 p-d-inline p-button-rounded p-button-danger"
+        @click="removeLastValue()"
+      />
+      <Button
+        icon="pi pi-plus"
+        class="p-d-inline p-button-rounded p-button-success"
+        @click="addNewValue()"
+      />
+    </div>
   </div>
 </template>
 
@@ -59,4 +63,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.wide-text {
+  width: 500px;
+  min-width: 200px;
+}
+</style>
