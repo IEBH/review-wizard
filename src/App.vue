@@ -27,7 +27,7 @@
       <div class="p-col-12 p-md-3 p-lg-2"><TheSidebar /></div>
       <div class="p-col-12 p-md-9 p-lg-9">
         <div class="p-shadow-10" style="padding:20px">
-          <ProjectEdit class="p-input-filled"/>
+          <ProjectEdit class="p-input-filled" />
         </div>
       </div>
     </div>
