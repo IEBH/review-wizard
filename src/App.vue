@@ -1,4 +1,5 @@
 <template>
+  <!-- Collapsed and onMobile control the padding of content relative to sidebar -->
   <div id="app" :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]">
     <sidebar-menu
       v-if="articleId"
@@ -12,13 +13,10 @@
 
     <!-- If articleId exists render small logo and toolbar -->
     <div v-if="articleId" class="p-grid p-ai-center">
-      <div class="p-col-12 p-md-3 p-lg-2">
-        <img class="logo" alt="Logo" src="./assets/logo.png" height="100px" />
+      <div class="p-col-12 p-md-2 p-lg-1">
+        <img class="logo" alt="Logo" src="./assets/hat.png" height="50px" />
       </div>
-      <div class="p-col-12 p-md-9 p-lg-9">
-        <h1 class="logo-text-small">ArticleWizard</h1>
-      </div>
-      <div class="toolbar p-col-12">
+      <div class="p-col-12 p-md-10 p-lg-11">
         <TheArticleToolbar />
       </div>
     </div>
@@ -26,7 +24,7 @@
     <!-- Else render a larger logo -->
     <div v-else class="p-grid p-ai-center">
       <div class="p-col-12 p-md-3 p-lg-2">
-        <img class="logo" alt="Logo" src="./assets/logo.png" height="150px" />
+        <img class="logo" alt="Logo" src="./assets/hat.png" height="150px" />
       </div>
       <div class="p-col-12 p-md-9 p-lg-9">
         <h1 class="logo-text-large">ArticleWizard</h1>
@@ -47,6 +45,9 @@ import "primevue/resources/primevue.min.css";
 
 import TheArticleToolbar from "./components/TheArticleToolbar.vue";
 import ProjectEdit from "./components/ProjectEdit.vue";
+
+import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/js/all.js";
 
 export default {
   name: "App",
