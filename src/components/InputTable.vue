@@ -7,123 +7,79 @@
       ref="dt"
       :value="value"
       dataKey="id"
-      class="p-datatable-gridlines"
+      class="p-fluid p-datatable-gridlines"
       :resizableColumns="true"
       columnResizeMode="fit"
     >
-      <template #header>
+      <!-- New row button -->
+      <template #footer>
         <Button
           label="New"
           icon="pi pi-plus"
           class="p-button-success p-mr-2"
-          @click="openNew"
+          @click="newRow"
         />
       </template>
 
-      <Column field="type" header="Type" sortable></Column>
-      <Column field="outcome" header="Outcome" sortable></Column>
-      <Column
-        field="description"
-        header="Description (Optional)"
-        sortable
-      ></Column>
-      <Column field="examples" header="Examples (Optional)" sortable></Column>
-      <Column>
+      <!-- Type column -->
+      <Column field="type" header="Type" headerStyle="width: 10rem;">
         <template #body="slotProps">
-          <Button
-            icon="pi pi-pencil"
-            class="p-button-rounded p-button-success p-mr-2"
-            @click="editProduct(slotProps.data)"
+          <div class="p-field-checkbox">
+            <Checkbox id="type" v-model="slotProps.data.type" :binary="true" />
+            <label for="type">
+              {{ slotProps.data.type ? "Primary" : "Secondary" }}
+            </label>
+          </div>
+        </template>
+      </Column>
+
+      <!-- Outcome column -->
+      <Column field="outcome" header="Outcome">
+        <template #body="slotProps">
+          <Textarea
+            v-model="slotProps.data.outcome"
+            :autoResize="true"
+            rows="2"
           />
+        </template>
+      </Column>
+
+      <!-- Description column -->
+      <Column field="description" header="Description (Optional)">
+        <template #body="slotProps">
+          <Textarea
+            v-model="slotProps.data.description"
+            :autoResize="true"
+            rows="2"
+          />
+        </template>
+      </Column>
+
+      <!-- Example column -->
+      <Column field="examples" header="Examples (Optional)">
+        <template #body="slotProps">
+          <Textarea
+            v-model="slotProps.data.examples"
+            :autoResize="true"
+            rows="2"
+          />
+        </template>
+      </Column>
+
+      <!-- Delete row column -->
+      <Column
+        headerStyle="width: 5rem; text-align: center"
+        bodyStyle="text-align: center; overflow: visible"
+      >
+        <template #body="slotProps">
           <Button
             icon="pi pi-trash"
             class="p-button-rounded p-button-warning"
-            @click="confirmDeleteProduct(slotProps.data)"
+            @click="confirmDelete(slotProps)"
           />
         </template>
       </Column>
     </DataTable>
-
-    <Dialog
-      :visible.sync="productDialog"
-      :style="{ width: '450px' }"
-      header="New Outcome"
-      :modal="true"
-      class="p-fluid"
-    >
-      <div class="p-field">
-        <label class="p-mb-3">Type</label>
-        <div class="p-formgrid p-grid">
-          <div
-            v-for="type of options"
-            :key="type.key"
-            class="p-field-radiobutton p-col-6"
-          >
-            <RadioButton
-              :id="type.key"
-              name="type"
-              :value="type.name"
-              v-model="outcome.type"
-            />
-            <label :for="type.key">{{ type.name }}</label>
-          </div>
-        </div>
-        <small class="p-invalid" v-if="submitted && !outcome.type">
-          Type must be specified.
-        </small>
-      </div>
-
-      <div class="p-field">
-        <label for="outcome">Outcome</label>
-        <InputText
-          id="outcome"
-          v-model.trim="outcome.outcome"
-          required="true"
-          autofocus
-          :class="{ 'p-invalid': submitted && !outcome.outcome }"
-        />
-        <small class="p-invalid" v-if="submitted && !outcome.outcome">
-          Outcome must be specified.
-        </small>
-      </div>
-
-      <div class="p-field">
-        <label for="description">Description</label>
-        <Textarea
-          id="description"
-          v-model="outcome.description"
-          required="true"
-          rows="3"
-          cols="20"
-        />
-      </div>
-
-      <div class="p-field">
-        <label for="examples">Examples</label>
-        <Textarea
-          id="examples"
-          v-model="outcome.examples"
-          required="true"
-          rows="3"
-          cols="20"
-        />
-      </div>
-
-      <template #footer>
-        <Button
-          label="Cancel"
-          icon="pi pi-times"
-          class="p-button-text"
-          @click="hideDialog"
-        />
-        <Button
-          label="Save"
-          icon="pi pi-check"
-          class="p-button-text"
-          @click="saveProduct"
-        />
-      </template>
-    </Dialog>
 
     <Dialog
       :visible.sync="deleteProductDialog"
@@ -160,10 +116,9 @@
 import DataTable from "primevue/datatable";
 import Dialog from "primevue/dialog";
 import Column from "primevue/column";
-import InputText from "primevue/inputtext";
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
-import RadioButton from "primevue/radiobutton";
+import Checkbox from "primevue/checkbox";
 
 export default {
   name: "InputTable",
@@ -176,10 +131,9 @@ export default {
     DataTable,
     Dialog,
     Column,
-    InputText,
     Textarea,
     Button,
-    RadioButton
+    Checkbox
   },
   data() {
     return {
@@ -192,14 +146,8 @@ export default {
     };
   },
   methods: {
-    openNew() {
-      this.outcome = {};
-      this.submitted = false;
-      this.productDialog = true;
-    },
-    hideDialog() {
-      this.productDialog = false;
-      this.submitted = false;
+    newRow() {
+      this.value.push({ id: this.createId(), type: true });
     },
     saveProduct() {
       this.submitted = true;
@@ -211,21 +159,6 @@ export default {
             this.findIndexById(this.outcome.id),
             this.outcome
           );
-          // this.$toast.add({
-          //   severity: "success",
-          //   summary: "Successful",
-          //   detail: "outcome Updated",
-          //   life: 3000
-          // });
-        } else {
-          this.outcome.id = this.createId();
-          this.value.push(this.outcome);
-          // this.$toast.add({
-          //   severity: "success",
-          //   summary: "Successful",
-          //   detail: "outcome Created",
-          //   life: 3000
-          // });
         }
 
         this.productDialog = false;
@@ -253,27 +186,15 @@ export default {
       }
       return id;
     },
-    editProduct(outcome) {
-      this.outcome = { ...outcome };
-      this.productDialog = true;
-    },
-    confirmDeleteProduct(outcome) {
+    confirmDelete(outcome) {
+      console.log(outcome);
       this.outcome = outcome;
       this.deleteProductDialog = true;
     },
     deleteProduct() {
-      this.value = this.value.filter(val => val.id !== this.outcome.id);
+      this.value.splice(this.outcome.index, 1);
       this.deleteProductDialog = false;
       this.outcome = {};
-      // this.$toast.add({
-      //   severity: "success",
-      //   summary: "Successful",
-      //   detail: "outcome Deleted",
-      //   life: 3000
-      // });
-    },
-    confirmDeleteSelected() {
-      this.deleteProductsDialog = true;
     }
   }
 };

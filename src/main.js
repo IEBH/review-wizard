@@ -1,10 +1,15 @@
 import Vue from "vue";
+import App from "./App.vue";
+
+// Setup vue router
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
-import App from "./App.vue";
 import router from "./router";
+
+// Import the store
 import store from "./store";
 
+// Setup the sidebar menu
 import VueSidebarMenu from "vue-sidebar-menu";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 Vue.use(VueSidebarMenu);

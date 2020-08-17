@@ -75,7 +75,7 @@ export default {
       return [
         {
           header: true,
-          title: "Metadata",
+          title: "Article-Wizard",
           hiddenOnCollapse: true
         },
         {
