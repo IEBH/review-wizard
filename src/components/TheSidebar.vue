@@ -1,54 +1,59 @@
 <template>
   <div>
-    <PanelMenu v-if="articleId" :model="items" />
+    <sidebar-menu
+      v-if="articleId"
+      :menu="menu"
+      :relative="true"
+      theme="white-theme"
+      width="100%"
+    />
   </div>
 </template>
 
 <script>
 import { createNewArticle } from "../api/firebase.js";
-import PanelMenu from "primevue/panelmenu";
+import { SidebarMenu } from "vue-sidebar-menu";
 
 export default {
   name: "TheSidebar",
   components: {
-    PanelMenu
+    SidebarMenu
   },
   computed: {
     articleId() {
       return this.$store.state.articleId;
     },
-    items() {
+    menu() {
       return [
         {
-          label: "Metadata",
-          items: [
-            {
-              label: "Title Page",
-              icon: "pi pi-file",
-              to: `/${this.$store.state.articleId}/titlepage`
-            }
-          ]
+          header: true,
+          title: "Metadata",
+          hiddenOnCollapse: true
         },
         {
-          label: "Method",
-          expanded: true,
-          items: [
-            {
-              label: "PICOT",
-              icon: "pi pi-file",
-              to: `/${this.$store.state.articleId}/method/picot`
-            },
-            {
-              label: "Search Strategy",
-              icon: "pi pi-search",
-              to: `/${this.$store.state.articleId}/method/searchStrategy`
-            },
-            {
-              label: "Study Selection and Screening",
-              icon: "pi pi-upload",
-              to: `/${this.$store.state.articleId}/method/screening`
-            }
-          ]
+          title: "Title Page",
+          icon: "pi pi-file",
+          href: `/${this.$store.state.articleId}/titlepage`
+        },
+        {
+          header: true,
+          title: "Method",
+          hiddenOnCollapse: true
+        },
+        {
+          title: "PICOT",
+          icon: "pi pi-file",
+          href: `/${this.$store.state.articleId}/method/picot`
+        },
+        {
+          title: "Search Strategy",
+          icon: "pi pi-search",
+          href: `/${this.$store.state.articleId}/method/searchStrategy`
+        },
+        {
+          title: "Study Selection and Screening",
+          icon: "pi pi-upload",
+          href: `/${this.$store.state.articleId}/method/screening`
         }
       ];
     }

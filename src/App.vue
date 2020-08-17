@@ -1,5 +1,15 @@
 <template>
-  <div id="app">
+  <div id="app" :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]">
+    <sidebar-menu
+      v-if="articleId"
+      :menu="menu"
+      :collapsed="collapsed"
+      theme="white-theme"
+      @toggle-collapse="onToggleCollapse"
+      width="300px"
+      class="sidebar"
+    />
+
     <!-- If articleId exists render small logo and toolbar -->
     <div v-if="articleId" class="p-grid p-ai-center">
       <div class="p-col-12 p-md-3 p-lg-2">
@@ -23,13 +33,8 @@
       </div>
     </div>
 
-    <div class="p-grid">
-      <div class="p-col-12 p-md-3 p-lg-2"><TheSidebar /></div>
-      <div class="p-col-12 p-md-9 p-lg-9">
-        <div class="p-shadow-10" style="padding:20px">
-          <ProjectEdit class="p-input-filled" />
-        </div>
-      </div>
+    <div class="p-shadow-10 p-m-2" style="padding:20px">
+      <ProjectEdit class="p-input-filled" />
     </div>
   </div>
 </template>
@@ -40,20 +45,64 @@ import "primeicons/primeicons.css";
 import "primevue/resources/themes/bootstrap4-light-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 
-import TheSidebar from "./components/TheSidebar.vue";
 import TheArticleToolbar from "./components/TheArticleToolbar.vue";
 import ProjectEdit from "./components/ProjectEdit.vue";
 
 export default {
   name: "App",
   components: {
-    TheSidebar,
     TheArticleToolbar,
     ProjectEdit
+  },
+  methods: {
+    onToggleCollapse(collapsed) {
+      console.log(collapsed);
+      this.collapsed = collapsed;
+    }
+  },
+  data() {
+    return {
+      collapsed: false,
+      isOnMobile: false
+    };
   },
   computed: {
     articleId() {
       return this.$store.state.articleId;
+    },
+    menu() {
+      return [
+        {
+          header: true,
+          title: "Metadata",
+          hiddenOnCollapse: true
+        },
+        {
+          title: "Title Page",
+          icon: "pi pi-file",
+          href: `/${this.$store.state.articleId}/titlepage`
+        },
+        {
+          header: true,
+          title: "Method",
+          hiddenOnCollapse: true
+        },
+        {
+          title: "PICOT",
+          icon: "pi pi-file",
+          href: `/${this.$store.state.articleId}/method/picot`
+        },
+        {
+          title: "Search Strategy",
+          icon: "pi pi-search",
+          href: `/${this.$store.state.articleId}/method/searchStrategy`
+        },
+        {
+          title: "Study Selection and Screening",
+          icon: "pi pi-upload",
+          href: `/${this.$store.state.articleId}/method/screening`
+        }
+      ];
     }
   }
 };
@@ -75,6 +124,9 @@ export default {
 .toolbar {
   padding: 0px 20px 20px 20px;
 }
+.v-sidebar-menu {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -82,5 +134,10 @@ export default {
   /* text-align: center; */
   color: #2c3e50;
   margin-top: 20px;
+  /* Padding left for sidebar */
+  padding-left: 300px;
+}
+#app.collapsed {
+  padding-left: 50px;
 }
 </style>
