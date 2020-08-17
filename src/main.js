@@ -14,6 +14,10 @@ import VueSidebarMenu from "vue-sidebar-menu";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 Vue.use(VueSidebarMenu);
 
+// Setup toast
+import ToastService from "primevue/toastservice";
+Vue.use(ToastService);
+
 Vue.config.productionTip = false;
 
 new Vue({

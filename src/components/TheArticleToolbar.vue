@@ -31,6 +31,9 @@
       </Toolbar>
       <input type="hidden" id="testing-code" :value="shareUrl" />
     </Dialog>
+
+    <!-- Toast for copy msg -->
+    <Toast />
   </div>
 </template>
 
@@ -41,13 +44,15 @@ import { closeArticle } from "../api/firebase.js";
 import Toolbar from "primevue/toolbar";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
+import Toast from "primevue/toast";
 
 export default {
   name: "TheArticleToolbar",
   components: {
     Toolbar,
     Button,
-    Dialog
+    Dialog,
+    Toast
   },
   computed: mapState({
     title: state => state.titlepage.doc.title,
@@ -78,8 +83,19 @@ export default {
 
       try {
         document.execCommand("copy");
+        this.$toast.add({
+          severity: "success",
+          summary: "Successfully copied to clipboard",
+          life: 3000
+        });
       } catch (err) {
         console.error(err);
+        this.$toast.add({
+          severity: "error",
+          summary: "Error copying to clipboard",
+          detail: err,
+          life: 3000
+        });
       }
 
       /* unselect the range */
