@@ -25,7 +25,12 @@
       <Column field="type" header="Type" headerStyle="width: 10rem;">
         <template #body="slotProps">
           <div class="p-field-checkbox">
-            <Checkbox id="type" v-model="slotProps.data.type" :binary="true" />
+            <Checkbox
+              id="type"
+              v-model="slotProps.data.type"
+              :binary="true"
+              @input="update(slotProps.index, slotProps.data, 'type', $event)"
+            />
             <label for="type">
               {{ slotProps.data.type ? "Primary" : "Secondary" }}
             </label>
@@ -37,9 +42,10 @@
       <Column field="outcome" header="Outcome">
         <template #body="slotProps">
           <Textarea
-            v-model="slotProps.data.outcome"
+            :value="slotProps.data.outcome"
             :autoResize="true"
             rows="2"
+            @input="update(slotProps.index, slotProps.data, 'outcome', $event)"
           />
         </template>
       </Column>
@@ -51,6 +57,9 @@
             v-model="slotProps.data.description"
             :autoResize="true"
             rows="2"
+            @input="
+              update(slotProps.index, slotProps.data, 'description', $event)
+            "
           />
         </template>
       </Column>
@@ -62,6 +71,7 @@
             v-model="slotProps.data.examples"
             :autoResize="true"
             rows="2"
+            @input="update(slotProps.index, slotProps.data, 'examples', $event)"
           />
         </template>
       </Column>
@@ -89,8 +99,8 @@
     >
       <div class="confirmation-content">
         <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-        <span v-if="outcome"
-          >Are you sure you want to delete <b>{{ outcome.outcome }}</b
+        <span v-if="outcome.data"
+          >Are you sure you want to delete <b>{{ outcome.data.outcome }}</b
           >?</span
         >
       </div>
@@ -147,44 +157,15 @@ export default {
   },
   methods: {
     newRow() {
-      this.value.push({ id: this.createId(), type: true });
+      this.value.push({ type: true });
+      this.$emit("input", this.value);
     },
-    saveProduct() {
-      this.submitted = true;
-
-      if (this.outcome.outcome && this.outcome.type) {
-        if (this.outcome.id) {
-          this.$set(
-            this.value,
-            this.findIndexById(this.outcome.id),
-            this.outcome
-          );
-        }
-
-        this.productDialog = false;
-        this.$emit("input", this.value);
-        this.outcome = {};
-      }
-    },
-    findIndexById(id) {
-      let index = -1;
-      for (let i = 0; i < this.value.length; i++) {
-        if (this.value[i].id === id) {
-          index = i;
-          break;
-        }
-      }
-
-      return index;
-    },
-    createId() {
-      let id = "";
-      var chars =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      for (var i = 0; i < 5; i++) {
-        id += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return id;
+    update(index, original, field, event) {
+      console.log(event);
+      var newObj = original;
+      newObj[field] = event;
+      this.$set(this.value, index, newObj);
+      this.$emit("input", this.value);
     },
     confirmDelete(outcome) {
       console.log(outcome);
@@ -194,6 +175,7 @@ export default {
     deleteProduct() {
       this.value.splice(this.outcome.index, 1);
       this.deleteProductDialog = false;
+      this.$emit("input", this.value);
       this.outcome = {};
     }
   }
