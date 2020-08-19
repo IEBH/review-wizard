@@ -14,29 +14,60 @@
       <!-- New row button -->
       <template #footer>
         <Button
-          label="New"
+          label="Add"
           icon="pi pi-plus"
           class="p-button-success p-mr-2"
           @click="newRow"
         />
       </template>
 
+      <!-- Inclusion column -->
+      <template v-if="inclusion">
+        <Column
+          field="inclusion"
+          header="Inclusion (Include / Exclude)"
+          headerStyle="width: 10rem;"
+        >
+          <template #body="slotProps">
+            <div class="p-field-checkbox">
+              <Checkbox
+                id="inclusion"
+                v-model="slotProps.data.inclusion"
+                :binary="true"
+                @input="
+                  update(slotProps.index, slotProps.data, 'inclusion', $event)
+                "
+              />
+              <label for="inclusion">
+                {{ slotProps.data.inclusion ? "Include" : "Exclude" }}
+              </label>
+            </div>
+          </template>
+        </Column>
+      </template>
+
       <!-- Type column -->
-      <Column field="type" header="Type" headerStyle="width: 10rem;">
-        <template #body="slotProps">
-          <div class="p-field-checkbox">
-            <Checkbox
-              id="type"
-              v-model="slotProps.data.type"
-              :binary="true"
-              @input="update(slotProps.index, slotProps.data, 'type', $event)"
-            />
-            <label for="type">
-              {{ slotProps.data.type ? toggle.true : toggle.false }}
-            </label>
-          </div>
-        </template>
-      </Column>
+      <template v-if="type">
+        <Column
+          field="type"
+          header="Type (Primary / Secondary)"
+          headerStyle="width: 10rem;"
+        >
+          <template #body="slotProps">
+            <div class="p-field-checkbox">
+              <Checkbox
+                id="type"
+                v-model="slotProps.data.type"
+                :binary="true"
+                @input="update(slotProps.index, slotProps.data, 'type', $event)"
+              />
+              <label for="type">
+                {{ slotProps.data.type ? "Primary" : "Secondary" }}
+              </label>
+            </div>
+          </template>
+        </Column>
+      </template>
 
       <!-- Outcome column -->
       <Column field="outcome" :header="columnHeader">
@@ -141,8 +172,9 @@ export default {
   props: {
     question: String,
     value: Array,
-    toggle: Object,
     columnHeader: String,
+    inclusion: Boolean,
+    type: Boolean,
     description: Boolean,
     examples: Boolean
   },
@@ -166,7 +198,7 @@ export default {
   },
   methods: {
     newRow() {
-      this.value.push({ type: true });
+      this.value.push({});
       this.$emit("input", this.value);
     },
     update(index, original, field, event) {

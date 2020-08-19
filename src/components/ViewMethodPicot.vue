@@ -2,47 +2,48 @@
   <div>
     <h1>PICOT</h1>
     <!-- P -->
-    <InputTextSingleLineMulti
-      question="What is the population, or problem (P), of your systematic review, (e.g. older people with diabetes)."
-      :value="picot.populationInclude"
-      @input="updateField('populationInclude', $event)"
-    />
-    <InputTextSingleLineMulti
-      question="Are there any populations or problems that will be excluded, (e.g. children on ventilator support). "
-      :value="picot.populationExclude"
-      @input="updateField('populationExclude', $event)"
+    <InputTable
+      question="What are the population/s, or problem/s (P), of your systematic review, (e.g. older people with diabetes)."
+      :value="picot.population"
+      columnHeader="Population"
+      :inclusion="true"
+      :type="false"
+      :description="false"
+      :examples="true"
+      @input="updateField('population', $event)"
     />
 
     <!-- I -->
-    <InputTextSingleLineMulti
-      question="What is the intervention (I) of your systematic review, (e.g. metformin)."
-      :value="picot.interventionInclude"
-      @input="updateField('interventionInclude', $event)"
-    />
-    <InputTextSingleLineMulti
-      question="Are there any interventions that will be excluded, (e.g. exercise)."
-      :value="picot.interventionExclude"
-      @input="updateField('interventionExclude', $event)"
+    <InputTable
+      question="What are the intervention/s (I) of your systematic review, (e.g. metformin)."
+      :value="picot.intervention"
+      columnHeader="Intervention"
+      :inclusion="true"
+      :type="false"
+      :description="false"
+      :examples="true"
+      @input="updateField('intervention', $event)"
     />
 
     <!-- C -->
-    <InputTextSingleLineMulti
-      question="What is the comparator (C) that the intervention will be compared against"
-      :value="picot.comparatorInclude"
-      @input="updateField('comparatorInclude', $event)"
-    />
-    <InputTextSingleLineMulti
-      question="Will any comparators be excluded (e.g. no treatment)"
-      :value="picot.comparatorExclude"
-      @input="updateField('comparatorExclude', $event)"
+    <InputTable
+      question="What are the comparators (C) that the intervention will be compared against (e.g. no treatment)"
+      :value="picot.comparator"
+      columnHeader="Comparator"
+      :inclusion="true"
+      :type="false"
+      :description="false"
+      :examples="true"
+      @input="updateField('comparator', $event)"
     />
 
     <!-- O -->
     <InputTable
       question="What are the outcomes (O) you will be looking for (e.g. reduced hospitalization, improved quality of life, mortality)"
       :value="picot.outcomes"
-      :toggle="{ true: 'Primary', false: 'Secondary' }"
       columnHeader="Outcome"
+      :inclusion="false"
+      :type="true"
       :description="true"
       :examples="true"
       @input="updateField('outcomes', $event)"
@@ -52,14 +53,8 @@
     <InputSelectMulti
       question="What study types (T) will be included"
       :options="typesOptions"
-      :value="picot.typesInclude"
+      :value="picot.types"
       @input="updateField('typesInclude', $event)"
-    />
-    <InputSelectMulti
-      question="Will any study types be excluded"
-      :options="typesOptions"
-      :value="picot.typesExclude"
-      @input="updateField('typesExclude', $event)"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -86,7 +81,6 @@ import { picotGrammar } from "../assets/templates/method";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
-import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
 import InputTable from "./InputTable.vue";
 
@@ -95,7 +89,6 @@ export default {
   components: {
     Button,
     Dialog,
-    InputTextSingleLineMulti,
     InputSelectMulti,
     InputTable
   },
