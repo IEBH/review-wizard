@@ -40,8 +40,11 @@
     <!-- O -->
     <InputTable
       question="What are the outcomes (O) you will be looking for (e.g. reduced hospitalization, improved quality of life, mortality)"
-      :options="outcomeOptions"
       :value="picot.outcomes"
+      :toggle="{ true: 'Primary', false: 'Secondary' }"
+      columnHeader="Outcome"
+      :description="true"
+      :examples="true"
       @input="updateField('outcomes', $event)"
     />
 
@@ -126,10 +129,6 @@ export default {
   },
   data() {
     return {
-      outcomeOptions: [
-        { name: "Primary", key: "P" },
-        { name: "Secondary", key: "S" }
-      ],
       typesOptions: [
         "Systematic Reviews",
         "Observational Studies",

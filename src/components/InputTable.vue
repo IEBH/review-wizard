@@ -32,14 +32,14 @@
               @input="update(slotProps.index, slotProps.data, 'type', $event)"
             />
             <label for="type">
-              {{ slotProps.data.type ? "Primary" : "Secondary" }}
+              {{ slotProps.data.type ? toggle.true : toggle.false }}
             </label>
           </div>
         </template>
       </Column>
 
       <!-- Outcome column -->
-      <Column field="outcome" header="Outcome">
+      <Column field="outcome" :header="columnHeader">
         <template #body="slotProps">
           <Textarea
             :value="slotProps.data.outcome"
@@ -51,30 +51,36 @@
       </Column>
 
       <!-- Description column -->
-      <Column field="description" header="Description (Optional)">
-        <template #body="slotProps">
-          <Textarea
-            v-model="slotProps.data.description"
-            :autoResize="true"
-            rows="2"
-            @input="
-              update(slotProps.index, slotProps.data, 'description', $event)
-            "
-          />
-        </template>
-      </Column>
+      <template v-if="description">
+        <Column field="description" header="Description (Optional)">
+          <template #body="slotProps">
+            <Textarea
+              v-model="slotProps.data.description"
+              :autoResize="true"
+              rows="2"
+              @input="
+                update(slotProps.index, slotProps.data, 'description', $event)
+              "
+            />
+          </template>
+        </Column>
+      </template>
 
       <!-- Example column -->
-      <Column field="examples" header="Examples (Optional)">
-        <template #body="slotProps">
-          <Textarea
-            v-model="slotProps.data.examples"
-            :autoResize="true"
-            rows="2"
-            @input="update(slotProps.index, slotProps.data, 'examples', $event)"
-          />
-        </template>
-      </Column>
+      <template v-if="examples">
+        <Column field="examples" header="Examples (Optional)">
+          <template #body="slotProps">
+            <Textarea
+              v-model="slotProps.data.examples"
+              :autoResize="true"
+              rows="2"
+              @input="
+                update(slotProps.index, slotProps.data, 'examples', $event)
+              "
+            />
+          </template>
+        </Column>
+      </template>
 
       <!-- Delete row column -->
       <Column
@@ -134,8 +140,11 @@ export default {
   name: "InputTable",
   props: {
     question: String,
-    options: Array,
-    value: Array
+    value: Array,
+    toggle: Object,
+    columnHeader: String,
+    description: Boolean,
+    examples: Boolean
   },
   components: {
     DataTable,

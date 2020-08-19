@@ -21,7 +21,11 @@ const method = {
         interventionExclude: [""],
         comparatorInclude: [""],
         comparatorExclude: [""],
+        population: [],
+        intervention: [],
+        comparator: [],
         outcomes: [],
+        types: [],
         typesInclude: null,
         typesExclude: null
       }
