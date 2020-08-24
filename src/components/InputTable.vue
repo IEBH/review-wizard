@@ -78,7 +78,7 @@
             <Button
               icon="pi pi-trash"
               class="p-button-rounded p-button-warning"
-              @click="confirmDelete(row)"
+              @click="confirmDelete(row, index)"
             />
           </td>
         </tr>
@@ -101,8 +101,8 @@
     >
       <div class="confirmation-content">
         <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-        <span v-if="outcome.data"
-          >Are you sure you want to delete <b>{{ outcome.data.outcome }}</b
+        <span v-if="selectedRow"
+          >Are you sure you want to delete <b>{{ selectedRow.outcome }}</b
           >?</span
         >
       </div>
@@ -152,7 +152,7 @@ export default {
       productDialog: false,
       deleteProductDialog: false,
       deleteProductsDialog: false,
-      outcome: {},
+      selectedRow: {},
       filters: {},
       submitted: false
     };
@@ -175,16 +175,16 @@ export default {
       this.$set(this.value, index, newObj);
       this.$emit("input", this.value);
     },
-    confirmDelete(outcome) {
-      console.log(outcome);
-      this.outcome = outcome;
+    confirmDelete(row, index) {
+      this.selectedRow = row;
+      this.selectedRow.index = index;
       this.deleteProductDialog = true;
     },
     deleteProduct() {
-      this.value.splice(this.outcome.index, 1);
+      this.value.splice(this.selectedRow.index, 1);
       this.deleteProductDialog = false;
       this.$emit("input", this.value);
-      this.outcome = {};
+      this.selectedRow = {};
     }
   }
 };
