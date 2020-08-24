@@ -3,34 +3,94 @@
     <p>
       <b>{{ question }}</b>
     </p>
-    <table>
-      <tr>
-        <th>Inclusion</th>
-        <th>Outcome</th>
-      </tr>
-      <tr v-for="(row, index) in value" :key="index">
-        <td>
-          <div class="p-field-checkbox">
-            <Checkbox
-              id="inclusion"
-              v-model="row.inclusion"
-              :binary="true"
-              @input="update(index, row, 'inclusion', $event)"
+    <table class="p-fluid" style="width: 100%;">
+      <thead>
+        <tr>
+          <th v-if="inclusion" style="width: 9rem;">
+            Inclusion (Include / Exclude)
+          </th>
+          <th v-if="type" style="width: 9rem;">Type (Primary / Secondary)</th>
+          <th>{{ columnHeader }}</th>
+          <th v-if="description">Description (Optional)</th>
+          <th v-if="examples">Examples (Optional)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="(row, index) in value" :key="index">
+          <!-- Inclusion -->
+          <td v-if="inclusion">
+            <div class="p-field-checkbox">
+              <Checkbox
+                id="inclusion"
+                v-model="row.inclusion"
+                :binary="true"
+                @input="update(index, row, 'inclusion', $event)"
+              />
+              <label for="inclusion">
+                {{ row.inclusion ? "Include" : "Exclude" }}
+              </label>
+            </div>
+          </td>
+          <!-- Type -->
+          <td v-if="type">
+            <div class="p-field-checkbox">
+              <Checkbox
+                id="type"
+                v-model="row.type"
+                :binary="true"
+                @input="update(index, row, 'type', $event)"
+              />
+              <label for="type">
+                {{ row.type ? "Primary" : "Secondary" }}
+              </label>
+            </div>
+          </td>
+          <!-- Outcome -->
+          <td>
+            <Textarea
+              :value="row.outcome"
+              :autoResize="true"
+              rows="2"
+              @input="update(index, row, 'outcome', $event)"
             />
-            <label for="inclusion">
-              {{ row.inclusion ? "Include" : "Exclude" }}
-            </label>
-          </div>
-        </td>
-        <td>
-          <Textarea
-            :value="row.outcome"
-            :autoResize="true"
-            rows="2"
-            @input="update(index, row, 'outcome', $event)"
-          />
-        </td>
-      </tr>
+          </td>
+          <!-- Description -->
+          <td v-if="description">
+            <Textarea
+              :value="row.description"
+              :autoResize="true"
+              rows="2"
+              @input="update(index, row, 'description', $event)"
+            />
+          </td>
+          <!-- Examples -->
+          <td v-if="examples">
+            <Textarea
+              :value="row.examples"
+              :autoResize="true"
+              rows="2"
+              @input="update(index, row, 'examples', $event)"
+            />
+          </td>
+          <!-- Delete -->
+          <td style="width: 4rem; text-align: center;">
+            <Button
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-warning"
+              @click="confirmDelete(row)"
+            />
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <Button
+          label="Add"
+          icon="pi pi-plus"
+          class="p-button-success p-mr-2"
+          @click="newRow"
+        />
+      </tfoot>
     </table>
 
     <Dialog
@@ -99,7 +159,13 @@ export default {
   },
   methods: {
     newRow() {
-      this.value.push({});
+      if (this.inclusion) {
+        this.value.push({ inclusion: true });
+      } else if (this.type) {
+        this.value.push({ type: true });
+      } else {
+        this.value.push({});
+      }
       this.$emit("input", this.value);
     },
     update(index, original, field, event) {
@@ -123,3 +189,15 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+table {
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+</style>
