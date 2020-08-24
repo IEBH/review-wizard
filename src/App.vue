@@ -10,6 +10,11 @@
       width="300px"
       class="sidebar"
     />
+    <div
+      v-if="isOnMobile && !collapsed"
+      class="sidebar-overlay"
+      @click="collapsed = true"
+    />
 
     <!-- If articleId exists render small logo and toolbar -->
     <div v-if="articleId" class="p-grid p-ai-center">
@@ -55,10 +60,23 @@ export default {
     TheArticleToolbar,
     ProjectEdit
   },
+  mounted() {
+    this.onResize();
+    window.addEventListener("resize", this.onResize);
+  },
   methods: {
     onToggleCollapse(collapsed) {
       console.log(collapsed);
       this.collapsed = collapsed;
+    },
+    onResize() {
+      if (window.innerWidth <= 767) {
+        this.isOnMobile = true;
+        this.collapsed = true;
+      } else {
+        this.isOnMobile = false;
+        this.collapsed = false;
+      }
     }
   },
   data() {
@@ -125,8 +143,9 @@ export default {
 .toolbar {
   padding: 0px 20px 20px 20px;
 }
+
 .v-sidebar-menu {
-  background-color: rgba(0, 0, 0, 0.03) !important;
+  background-color: #ffffff !important;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -137,8 +156,22 @@ export default {
   margin-top: 20px;
   /* Padding left for sidebar */
   padding-left: 300px;
+  transition: 0.3s ease;
 }
 #app.collapsed {
   padding-left: 50px;
+}
+#app.onmobile {
+  padding-left: 50px;
+}
+.sidebar-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 900;
 }
 </style>
