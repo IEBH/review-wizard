@@ -3,130 +3,35 @@
     <p>
       <b>{{ question }}</b>
     </p>
-    <DataTable
-      ref="dt"
-      :value="value"
-      dataKey="id"
-      class="p-fluid p-datatable-gridlines"
-      :resizableColumns="true"
-      columnResizeMode="fit"
-    >
-      <!-- New row button -->
-      <template #footer>
-        <Button
-          label="Add"
-          icon="pi pi-plus"
-          class="p-button-success p-mr-2"
-          @click="newRow"
-        />
-      </template>
-
-      <!-- Inclusion column -->
-      <template v-if="inclusion">
-        <Column
-          field="inclusion"
-          header="Inclusion (Include / Exclude)"
-          headerStyle="width: 10rem;"
-        >
-          <template #body="slotProps">
-            <div class="p-field-checkbox">
-              <Checkbox
-                id="inclusion"
-                v-model="slotProps.data.inclusion"
-                :binary="true"
-                @input="
-                  update(slotProps.index, slotProps.data, 'inclusion', $event)
-                "
-              />
-              <label for="inclusion">
-                {{ slotProps.data.inclusion ? "Include" : "Exclude" }}
-              </label>
-            </div>
-          </template>
-        </Column>
-      </template>
-
-      <!-- Type column -->
-      <template v-if="type">
-        <Column
-          field="type"
-          header="Type (Primary / Secondary)"
-          headerStyle="width: 10rem;"
-        >
-          <template #body="slotProps">
-            <div class="p-field-checkbox">
-              <Checkbox
-                id="type"
-                v-model="slotProps.data.type"
-                :binary="true"
-                @input="update(slotProps.index, slotProps.data, 'type', $event)"
-              />
-              <label for="type">
-                {{ slotProps.data.type ? "Primary" : "Secondary" }}
-              </label>
-            </div>
-          </template>
-        </Column>
-      </template>
-
-      <!-- Outcome column -->
-      <Column field="outcome" :header="columnHeader">
-        <template #body="slotProps">
+    <table>
+      <tr>
+        <th>Inclusion</th>
+        <th>Outcome</th>
+      </tr>
+      <tr v-for="(row, index) in value" :key="index">
+        <td>
+          <div class="p-field-checkbox">
+            <Checkbox
+              id="inclusion"
+              v-model="row.inclusion"
+              :binary="true"
+              @input="update(index, row, 'inclusion', $event)"
+            />
+            <label for="inclusion">
+              {{ row.inclusion ? "Include" : "Exclude" }}
+            </label>
+          </div>
+        </td>
+        <td>
           <Textarea
-            :value="slotProps.data.outcome"
+            :value="row.outcome"
             :autoResize="true"
             rows="2"
-            @input="update(slotProps.index, slotProps.data, 'outcome', $event)"
+            @input="update(index, row, 'outcome', $event)"
           />
-        </template>
-      </Column>
-
-      <!-- Description column -->
-      <template v-if="description">
-        <Column field="description" header="Description (Optional)">
-          <template #body="slotProps">
-            <Textarea
-              v-model="slotProps.data.description"
-              :autoResize="true"
-              rows="2"
-              @input="
-                update(slotProps.index, slotProps.data, 'description', $event)
-              "
-            />
-          </template>
-        </Column>
-      </template>
-
-      <!-- Example column -->
-      <template v-if="examples">
-        <Column field="examples" header="Examples (Optional)">
-          <template #body="slotProps">
-            <Textarea
-              v-model="slotProps.data.examples"
-              :autoResize="true"
-              rows="2"
-              @input="
-                update(slotProps.index, slotProps.data, 'examples', $event)
-              "
-            />
-          </template>
-        </Column>
-      </template>
-
-      <!-- Delete row column -->
-      <Column
-        headerStyle="width: 5rem; text-align: center"
-        bodyStyle="text-align: center; overflow: visible"
-      >
-        <template #body="slotProps">
-          <Button
-            icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
-            @click="confirmDelete(slotProps)"
-          />
-        </template>
-      </Column>
-    </DataTable>
+        </td>
+      </tr>
+    </table>
 
     <Dialog
       :visible.sync="deleteProductDialog"
@@ -160,9 +65,7 @@
 </template>
 
 <script>
-import DataTable from "primevue/datatable";
 import Dialog from "primevue/dialog";
-import Column from "primevue/column";
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
 import Checkbox from "primevue/checkbox";
@@ -179,9 +82,7 @@ export default {
     examples: Boolean
   },
   components: {
-    DataTable,
     Dialog,
-    Column,
     Textarea,
     Button,
     Checkbox
