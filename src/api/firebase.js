@@ -24,10 +24,12 @@ export function checkArticleExists(articleId) {
 export function openArticle(store, articleId) {
   return Promise.all([
     store.dispatch(`titlepage/openDBChannel`, {
-      pathVariables: { articleId }
+      pathVariables: { articleId },
+      includeMetadataChanges: false
     }),
     store.dispatch(`method/openDBChannel`, {
-      pathVariables: { articleId }
+      pathVariables: { articleId },
+      includeMetadataChanges: false
     })
   ]);
 }
