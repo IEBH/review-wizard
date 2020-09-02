@@ -15,19 +15,11 @@ const method = {
   state: {
     doc: {
       picot: {
-        populationInclude: [""],
-        populationExclude: [""],
-        interventionInclude: [""],
-        interventionExclude: [""],
-        comparatorInclude: [""],
-        comparatorExclude: [""],
-        population: [{}],
-        intervention: [{}],
-        comparator: [{}],
-        outcomes: [{}],
-        types: [],
-        typesInclude: null,
-        typesExclude: null
+        population: [{ inclusion: true }],
+        intervention: [{ inclusion: true }],
+        comparator: [{ inclusion: true }],
+        outcomes: [{ inclusion: true, type: true }],
+        types: []
       }
     }
   },

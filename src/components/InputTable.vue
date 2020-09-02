@@ -46,13 +46,13 @@
               </label>
             </div>
           </td>
-          <!-- Outcome -->
+          <!-- Main -->
           <td>
             <Textarea
-              :value="row.outcome"
+              :value="row.main"
               :autoResize="true"
               rows="2"
-              @input="update(index, row, 'outcome', $event)"
+              @input="update(index, row, 'main', $event)"
             />
           </td>
           <!-- Description -->
@@ -102,7 +102,7 @@
       <div class="confirmation-content">
         <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
         <span v-if="selectedRow"
-          >Are you sure you want to delete <b>{{ selectedRow.outcome }}</b
+          >Are you sure you want to delete <b>{{ selectedRow.main }}</b
           >?</span
         >
       </div>
@@ -159,7 +159,9 @@ export default {
   },
   methods: {
     newRow() {
-      if (this.inclusion) {
+      if (this.inclusion && this.type) {
+        this.value.push({ inclusion: true, type: true });
+      } else if (this.inclusion) {
         this.value.push({ inclusion: true });
       } else if (this.type) {
         this.value.push({ type: true });

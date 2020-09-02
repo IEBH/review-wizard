@@ -42,7 +42,7 @@
       question="What are the outcomes (O) you will be looking for (e.g. reduced hospitalization, improved quality of life, mortality)"
       :value="picot.outcomes"
       columnHeader="Outcome"
-      :inclusion="false"
+      :inclusion="true"
       :type="true"
       :description="true"
       :examples="true"
@@ -54,7 +54,7 @@
       question="What study types (T) will be included"
       :options="typesOptions"
       :value="picot.types"
-      @input="updateField('typesInclude', $event)"
+      @input="updateField('types', $event)"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
