@@ -15,7 +15,7 @@ function initFirebase() {
   Firebase.initializeApp(firebaseConfig);
   return new Promise((resolve, reject) => {
     Firebase.firestore()
-      .enablePersistence()
+      // .enablePersistence()
       .then(resolve)
       .catch(err => {
         if (err.code === "failed-precondition") {
