@@ -43,7 +43,6 @@ export default {
       createNewArticle()
         .then(val => {
           const newId = val.id;
-          console.log(val.id);
           this.$router.replace({
             name: "titlepage",
             params: { articleId: newId }

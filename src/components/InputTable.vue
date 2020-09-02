@@ -171,7 +171,6 @@ export default {
       this.$emit("input", this.value);
     },
     update(index, original, field, event) {
-      console.log(event);
       var newObj = original;
       newObj[field] = event;
       this.$set(this.value, index, newObj);

@@ -66,7 +66,6 @@ export default {
   },
   methods: {
     onToggleCollapse(collapsed) {
-      console.log(collapsed);
       this.collapsed = collapsed;
     },
     onResize() {
