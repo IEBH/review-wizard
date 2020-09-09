@@ -20,6 +20,13 @@ const method = {
         comparator: [{ inclusion: true }],
         outcomes: [{ inclusion: true, type: true }],
         types: []
+      },
+      search: {
+        components: [],
+        specialist: [],
+        helper: [],
+        databases: [],
+        date: null
       }
     }
   },

@@ -113,7 +113,13 @@ export default {
         {
           title: "Search Strategy",
           icon: "pi pi-search",
-          href: `/${this.$store.state.articleId}/method/searchStrategy`
+          href: `/${this.$store.state.articleId}/method/search`,
+          child: [
+            {
+              href: `/${this.$store.state.articleId}/method/search/bibliographic`,
+              title: "Search Strings for BD"
+            }
+          ]
         },
         {
           title: "Study Selection and Screening",
