@@ -1,5 +1,5 @@
 <template>
-  <div class="p-mb-6">
+  <div class="input-select-multi p-mb-6">
     <p>
       <b>
         {{ question }}
@@ -11,7 +11,13 @@
       v-on:change="$emit('input', $event.value)"
       :options="options"
       :multiple="true"
-    />
+    >
+      <template #option="slotProps">
+        <div>
+          <span class="p-ml-3">{{ slotProps.option }}</span>
+        </div>
+      </template>
+    </Listbox>
   </div>
 </template>
 
@@ -31,4 +37,13 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style>
+.p-listbox-item::before {
+  content: "\e90b";
+  font-family: "primeicons";
+  float: left;
+}
+.p-listbox-item.p-highlight::before {
+  content: "\e909";
+}
+</style>
