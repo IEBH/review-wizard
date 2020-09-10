@@ -9,6 +9,7 @@
       @toggle-collapse="onToggleCollapse"
       width="300px"
       class="sidebar"
+      :showOneChild="true"
     />
     <div
       v-if="isOnMobile && !collapsed"
