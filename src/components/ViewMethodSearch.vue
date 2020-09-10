@@ -86,15 +86,15 @@ export default {
   data() {
     return {
       componentsOptions: [
-        "MeSH or other subject terms",
-        "Synonyms",
-        "Search filter"
+        { label: "MeSH or other subject terms" },
+        { label: "Synonyms" },
+        { label: "Search filter" }
       ],
       specialistOptions: [
-        "Librarian",
-        "Health Librarian",
-        "Information Specialist",
-        "Cochrane Information Specialist"
+        { label: "Librarian" },
+        { label: "Health Librarian" },
+        { label: "Information Specialist" },
+        { label: "Cochrane Information Specialist" }
       ],
       displayModal: false,
       modalText: ""

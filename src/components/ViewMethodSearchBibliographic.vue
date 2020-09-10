@@ -15,6 +15,10 @@
       @input="updateField('date', $event)"
     />
 
+    <template v-for="(database, index) of search.databases">
+      <p :key="index">{{ database }}</p>
+    </template>
+
     <div class="p-mt-3 p-d-flex p-jc-center">
       <Button label="Generate Output" @click="openModal()" />
     </div>
@@ -80,19 +84,20 @@ export default {
   data() {
     return {
       databaseOptions: [
-        "PubMed",
-        "MEDLINE via Ovid",
-        "MEDLINE via Ebsco",
-        "The Cochrane Library for Cochrane Reviews",
-        "The Cochrane Library for clinical trials in CENTRAL",
-        "Embase via Elsevier",
-        "Embase via Ovid",
-        "CINAHL via Ebsco",
-        "PsycINFO via Ovid",
-        "PsycINFO via APA",
-        "Web of Science",
-        "Scopus",
-        "LILACs"
+        { label: "PubMed", string: "" },
+        { label: "MEDLINE via Ovid", string: "" },
+        { label: "MEDLINE via Ebsco", string: "" },
+        { label: "The Cochrane Library for Cochrane Reviews", string: "" },
+        // eslint-disable-next-line prettier/prettier
+        { label: "The Cochrane Library for clinical trials in CENTRAL", string: "" },
+        { label: "Embase via Elsevier", string: "" },
+        { label: "Embase via Ovid", string: "" },
+        { label: "CINAHL via Ebsco", string: "" },
+        { label: "PsycINFO via Ovid", string: "" },
+        { label: "PsycINFO via APA", string: "" },
+        { label: "Web of Science", string: "" },
+        { label: "Scopus", string: "" },
+        { label: "LILACs", string: "" }
       ],
       displayModal: false,
       modalText: ""

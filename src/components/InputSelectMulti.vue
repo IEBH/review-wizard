@@ -14,7 +14,7 @@
     >
       <template #option="slotProps">
         <div>
-          <span class="p-ml-3">{{ slotProps.option }}</span>
+          <span class="p-ml-3">{{ slotProps.option.label }}</span>
         </div>
       </template>
     </Listbox>

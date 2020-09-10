@@ -122,15 +122,15 @@ export default {
   data() {
     return {
       typesOptions: [
-        "Systematic Reviews",
-        "Observational Studies",
-        "Randomized Controlled Trials",
-        "Cohort Studies",
-        "Longitudinal studies",
-        "Before after studies",
-        "Surveys",
-        "Letters",
-        "Editorials"
+        { label: "Systematic Reviews" },
+        { label: "Observational Studies" },
+        { label: "Randomized Controlled Trials" },
+        { label: "Cohort Studies" },
+        { label: "Longitudinal studies" },
+        { label: "Before after studies" },
+        { label: "Surveys" },
+        { label: "Letters" },
+        { label: "Editorials" }
       ],
       displayModal: false,
       modalText: ""
