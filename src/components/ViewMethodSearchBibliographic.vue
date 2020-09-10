@@ -16,7 +16,12 @@
     />
 
     <template v-for="(database, index) of search.databases">
-      <p :key="index">{{ database }}</p>
+      <InputTextMultiSyntax
+        :key="index"
+        question="copy and paste your full search string."
+        :value="database.string"
+        @input="updateDatabaseString(index, $event)"
+      />
     </template>
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -45,6 +50,7 @@ import Dialog from "primevue/dialog";
 
 import InputSelectMulti from "./InputSelectMulti.vue";
 import InputDate from "./InputDate.vue";
+import InputTextMultiSyntax from "./InputTextMultiSyntax";
 
 export default {
   name: "ViewMethodSearchBibliographic",
@@ -52,16 +58,23 @@ export default {
     Button,
     Dialog,
     InputSelectMulti,
-    InputDate
+    InputDate,
+    InputTextMultiSyntax
   },
   computed: mapState({
     search: state => state.method.doc.search
   }),
   methods: {
     updateField(field, value) {
+      console.log(value);
       this.$store.dispatch("method/set", {
         search: { [field]: value }
       });
+    },
+    updateDatabaseString(index, value) {
+      var newDatabase = this.search.databases;
+      newDatabase[index].string = value;
+      this.updateField("databases", newDatabase);
     },
     openModal() {
       revmanReplicant(
