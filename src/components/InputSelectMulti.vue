@@ -11,6 +11,7 @@
       v-on:change="$emit('input', $event.value)"
       :options="options"
       optionLabel="label"
+      dataKey="label"
       :multiple="true"
     >
       <template #option="slotProps">
