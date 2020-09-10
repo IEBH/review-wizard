@@ -10,6 +10,7 @@
       v-bind:value="value"
       v-on:change="$emit('input', $event.value)"
       :options="options"
+      optionLabel="label"
       :multiple="true"
     >
       <template #option="slotProps">
