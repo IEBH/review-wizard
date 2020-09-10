@@ -18,7 +18,11 @@
     <template v-for="(database, index) of search.databases">
       <InputTextMultiSyntax
         :key="index"
-        question="copy and paste your full search string."
+        :question="
+          `Database ${index + 1} (e.g. ${
+            database.label
+          }) copy and paste your full search string.`
+        "
         :value="database.string"
         @input="updateDatabaseString(index, $event)"
       />
