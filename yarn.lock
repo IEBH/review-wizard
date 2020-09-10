@@ -7253,9 +7253,9 @@ retry@^0.12.0:
   integrity sha1-G0KmJmoh8HQh0bC1S33BZ7AcATs=
 
 revman-replicant-browser@^0.2.1:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/revman-replicant-browser/-/revman-replicant-browser-0.2.3.tgz#66ae25ed18784cc9d1bb666cbd6f2d889c843ff7"
-  integrity sha512-g8QfXcdU434+6pvCvm0j+v6hfxyuC9czOEBnkVbqYh5Byx6JbyDPuZJ5FhSrz4o657VGFPUNPMr7bHxT2Hkq4Q==
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/revman-replicant-browser/-/revman-replicant-browser-0.2.5.tgz#897c67c40888bdabd19cdce79434d2abfeecb565"
+  integrity sha512-2RahxgUpPUGPn9Zq76OadDggOm35SHa0JYDuwB2CaRFzk30NdXZYab70brYYCMmodz7PRK60Zhyt/3ZmhwRv9A==
   dependencies:
     async-chainable "^2.6.1"
     handlebars "^4.7.6"
@@ -8203,9 +8203,9 @@ uglify-js@3.4.x:
     source-map "~0.6.1"
 
 uglify-js@^3.1.4:
-  version "3.10.3"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.10.3.tgz#f0d2f99736c14de46d2d24649ba328be3e71c3bf"
-  integrity sha512-Lh00i69Uf6G74mvYpHCI9KVVXLcHW/xu79YTvH7Mkc9zyKUeSPz0owW0dguj0Scavns3ZOh3wY63J0Zb97Za2g==
+  version "3.10.4"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.10.4.tgz#dd680f5687bc0d7a93b14a3482d16db6eba2bfbb"
+  integrity sha512-kBFT3U4Dcj4/pJ52vfjCSfyLyvG9VYYuGYPmrPvAxRw/i7xHiT4VvCev+uiEMcEEiu6UNB6KgWmGtSUYIWScbw==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
