@@ -11,8 +11,14 @@
 
     <InputDate
       question="What date did you run your search on?"
-      :value="search.date"
-      @input="updateField('date', $event)"
+      :value="search.searchDate"
+      @input="updateField('searchDate', $event)"
+    />
+
+    <InputDate
+      question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
+      :value="search.firstDate"
+      @input="updateField('firstDate', $event)"
     />
 
     <template v-for="(database, index) of search.databases">

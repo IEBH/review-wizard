@@ -26,7 +26,8 @@ const method = {
         specialist: [],
         helper: [],
         databases: [],
-        date: null
+        searchDate: null,
+        firstDate: null
       }
     }
   },
