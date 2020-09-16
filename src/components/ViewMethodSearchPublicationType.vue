@@ -2,7 +2,7 @@
   <div>
     <h1>Restrictions on Publication Type</h1>
 
-    <InputYesNo
+    <InputSelectYesNo
       question="Were the search results restricted by publication type?"
       :value="search.isRestrictedByPublicationType"
       @input="updateField('isRestrictedByPublicationType', $event)"
@@ -16,7 +16,7 @@
       @input="updateField('excludedPublicationTypes', $event)"
     />
 
-    <InputYesNo
+    <InputSelectYesNo
       question="Were the search results restricted by language?"
       :value="search.isRestrictedByLanguage"
       @input="updateField('isRestrictedByLanguage', $event)"
@@ -54,7 +54,7 @@ import { picotGrammar } from "../assets/templates/method";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
-import InputYesNo from "./InputYesNo.vue";
+import InputSelectYesNo from "./InputSelectYesNo.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
 
 export default {
@@ -62,7 +62,7 @@ export default {
   components: {
     Button,
     Dialog,
-    InputYesNo,
+    InputSelectYesNo,
     InputSelectMulti
   },
   computed: mapState({
