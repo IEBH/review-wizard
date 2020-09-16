@@ -4,6 +4,7 @@ import ViewMethodPicot from "../components/ViewMethodPicot.vue";
 import ViewMethodSearch from "../components/ViewMethodSearch.vue";
 import ViewMethodSearchDatabses from "../components/ViewMethodSearchDatabases.vue";
 import ViewMethodSearchRegistries from "../components/ViewMethodSearchRegistries.vue";
+import ViewMethodSearchPublicationType from "../components/ViewMethodSearchPublicationType.vue";
 import ViewTitlepage from "../components/ViewTitlepage.vue";
 import ViewHome from "../components/ViewHome.vue";
 
@@ -28,6 +29,10 @@ const routes = [
   {
     path: "/:articleId/method/search/trial-registries",
     component: ViewMethodSearchRegistries
+  },
+  {
+    path: "/:articleId/method/search/publication-type",
+    component: ViewMethodSearchPublicationType
   },
   { path: "/:articleId/method/screening", component: ViewMethodPicot }
 ];

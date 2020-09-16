@@ -22,13 +22,19 @@ const method = {
         types: []
       },
       search: {
+        // Search Strategy
         components: [],
         specialist: [],
         helper: [],
+        // Search Strings for Bibliographic Databases
         databases: [],
         dateOfSearch: null,
         dateSearchedUntil: null,
-        registries: []
+        // Search Strings for Trial Registries
+        registries: [],
+        // Restrictions on Publication Type
+        isRestrictedByPublicationType: false,
+        isRestrictedByLanguage: false
       }
     }
   },

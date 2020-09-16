@@ -118,11 +118,15 @@ export default {
           child: [
             {
               href: `/${this.$store.state.articleId}/method/search/bibliographic-databases`,
-              title: "Search Strings for BD"
+              title: "Search Strings for B Databases"
             },
             {
               href: `/${this.$store.state.articleId}/method/search/trial-registries`,
               title: "Search Strings for Trial Registries"
+            },
+            {
+              href: `/${this.$store.state.articleId}/method/search/publication-type`,
+              title: "Restrictions on Publication Type"
             }
           ]
         },
