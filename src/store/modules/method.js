@@ -36,7 +36,9 @@ const method = {
         isRestrictedByPublicationType: false,
         excludedPublicationTypes: [],
         isRestrictedByLanguage: false,
-        includedLanguages: []
+        includedLanguages: [],
+        // Supplementory Methods
+        supplementoryMethods: []
       }
     }
   },

@@ -2,32 +2,11 @@
   <div>
     <h1>Supplementory Methods</h1>
 
-    <InputYesNo
-      question="Were the search results restricted by publication type?"
-      :value="search.isRestrictedByPublicationType"
-      @input="updateField('isRestrictedByPublicationType', $event)"
-    />
-
     <InputSelectMulti
-      v-if="search.isRestrictedByPublicationType"
-      question="What publication types did you exclude?"
-      :options="publicationTypesOptions"
-      :value="search.excludedPublicationTypes"
-      @input="updateField('excludedPublicationTypes', $event)"
-    />
-
-    <InputYesNo
-      question="Were the search results restricted by language?"
-      :value="search.isRestrictedByLanguage"
-      @input="updateField('isRestrictedByLanguage', $event)"
-    />
-
-    <InputSelectMulti
-      v-if="search.isRestrictedByLanguage"
-      question="What languages did you include?"
-      :options="languageOptions"
-      :value="search.includedLanguages"
-      @input="updateField('includedLanguages', $event)"
+      question="Did you conduct any of the following methods to supplement your search results?"
+      :options="supplementoryMethodsOptions"
+      :value="search.supplementoryMethods"
+      @input="updateField('supplementoryMethods', $event)"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -54,7 +33,6 @@ import { picotGrammar } from "../assets/templates/method";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
-import InputYesNo from "./InputYesNo.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
 
 export default {
@@ -62,7 +40,6 @@ export default {
   components: {
     Button,
     Dialog,
-    InputYesNo,
     InputSelectMulti
   },
   computed: mapState({
@@ -95,18 +72,12 @@ export default {
   },
   data() {
     return {
-      publicationTypesOptions: [
-        { label: "Conference abstracts" },
-        { label: "Theses" },
-        { label: "Articles in press" },
-        { label: "Books or book chapters" }
-      ],
-      languageOptions: [
-        { label: "English" },
-        { label: "German" },
-        { label: "Spanish" },
-        { label: "Chinese" },
-        { label: "French" }
+      supplementoryMethodsOptions: [
+        // eslint-disable-next-line prettier/prettier
+        { label: "Manually checked the reference lists of the included studies" },
+        { label: "Performed a backwards citation analysis" },
+        { label: "Contacted experts" },
+        { label: "Used the similar articles feature of a database" }
       ],
       displayModal: false,
       modalText: ""
