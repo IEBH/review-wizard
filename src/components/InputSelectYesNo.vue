@@ -20,7 +20,7 @@
 import SelectButton from "primevue/selectbutton";
 
 export default {
-  name: "InputYesNo",
+  name: "InputSelectYesNo",
   props: {
     question: String,
     value: Boolean
