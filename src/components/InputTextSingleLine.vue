@@ -10,8 +10,8 @@
       > -->
     <InputText
       type="text"
-      v-bind:value="value"
-      v-on:change="$emit('input', $event.target.value)"
+      :value="value"
+      @change="$emit('input', $event.target.value)"
     />
   </div>
 </template>
