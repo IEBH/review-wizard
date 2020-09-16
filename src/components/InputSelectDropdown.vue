@@ -17,7 +17,7 @@
 <script>
 import Dropdown from "primevue/dropdown";
 export default {
-  name: "InputSelect",
+  name: "InputSelectDropdown",
   props: {
     question: String,
     options: Array,
