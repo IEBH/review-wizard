@@ -42,8 +42,7 @@ export default {
   },
   methods: {
     clear() {
-      this.value = null;
-      this.$emit("input", this.value);
+      this.$emit("input", null);
     }
   }
 };
