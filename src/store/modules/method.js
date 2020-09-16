@@ -34,7 +34,9 @@ const method = {
         registries: [],
         // Restrictions on Publication Type
         isRestrictedByPublicationType: false,
-        isRestrictedByLanguage: false
+        excludedPublicationTypes: [],
+        isRestrictedByLanguage: false,
+        includedLanguages: []
       }
     }
   },

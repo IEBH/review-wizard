@@ -8,10 +8,26 @@
       @input="updateField('isRestrictedByPublicationType', $event)"
     />
 
+    <InputSelectMulti
+      v-if="search.isRestrictedByPublicationType"
+      question="What publication types did you exclude?"
+      :options="publicationTypesOptions"
+      :value="search.excludedPublicationTypes"
+      @input="updateField('excludedPublicationTypes', $event)"
+    />
+
     <InputYesNo
       question="Were the search results restricted by language?"
       :value="search.isRestrictedByLanguage"
       @input="updateField('isRestrictedByLanguage', $event)"
+    />
+
+    <InputSelectMulti
+      v-if="search.isRestrictedByLanguage"
+      question="What languages did you include?"
+      :options="languageOptions"
+      :value="search.includedLanguages"
+      @input="updateField('includedLanguages', $event)"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -39,13 +55,15 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
 import InputYesNo from "./InputYesNo.vue";
+import InputSelectMulti from "./InputSelectMulti.vue";
 
 export default {
   name: "ViewMethodSearchDatabases",
   components: {
     Button,
     Dialog,
-    InputYesNo
+    InputYesNo,
+    InputSelectMulti
   },
   computed: mapState({
     search: state => state.method.doc.search
@@ -77,6 +95,19 @@ export default {
   },
   data() {
     return {
+      publicationTypesOptions: [
+        { label: "Conference abstracts" },
+        { label: "Theses" },
+        { label: "Articles in press" },
+        { label: "Books or book chapters" }
+      ],
+      languageOptions: [
+        { label: "English" },
+        { label: "German" },
+        { label: "Spanish" },
+        { label: "Chinese" },
+        { label: "French" }
+      ],
       displayModal: false,
       modalText: ""
     };
