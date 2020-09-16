@@ -39,6 +39,14 @@ const method = {
         includedLanguages: [],
         // Supplementory Methods
         supplementoryMethods: []
+      },
+      screening: {
+        numberOfTitleAbstractScreeners: null,
+        fullTextRetrivalAuthor: null,
+        numberOfFullTextScreeners: null,
+        disputeResolution: null,
+        isPrismaFlowDiagram: false,
+        isExcludedFullTextInAppendix: false
       }
     }
   },

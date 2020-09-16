@@ -6,6 +6,7 @@ import ViewMethodSearchDatabses from "../components/ViewMethodSearchDatabases.vu
 import ViewMethodSearchRegistries from "../components/ViewMethodSearchRegistries.vue";
 import ViewMethodSearchPublicationType from "../components/ViewMethodSearchPublicationType.vue";
 import ViewMethodSearchSupplementoryMethods from "../components/ViewMethodSearchSupplementoryMethods.vue";
+import ViewMethodScreening from "../components/ViewMethodScreening.vue";
 import ViewTitlepage from "../components/ViewTitlepage.vue";
 import ViewHome from "../components/ViewHome.vue";
 
@@ -39,7 +40,7 @@ const routes = [
     path: "/:articleId/method/search/supplementory-methods",
     component: ViewMethodSearchSupplementoryMethods
   },
-  { path: "/:articleId/method/screening", component: ViewMethodPicot }
+  { path: "/:articleId/method/screening", component: ViewMethodScreening }
 ];
 
 const router = new VueRouter({
