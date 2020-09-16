@@ -127,6 +127,10 @@ export default {
             {
               href: `/${this.$store.state.articleId}/method/search/publication-type`,
               title: "Restrictions on Publication Type"
+            },
+            {
+              href: `/${this.$store.state.articleId}/method/search/supplementory-methods`,
+              title: "Supplementory Methods"
             }
           ]
         },

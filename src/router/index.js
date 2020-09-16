@@ -5,6 +5,7 @@ import ViewMethodSearch from "../components/ViewMethodSearch.vue";
 import ViewMethodSearchDatabses from "../components/ViewMethodSearchDatabases.vue";
 import ViewMethodSearchRegistries from "../components/ViewMethodSearchRegistries.vue";
 import ViewMethodSearchPublicationType from "../components/ViewMethodSearchPublicationType.vue";
+import ViewMethodSearchSupplementoryMethods from "../components/ViewMethodSearchSupplementoryMethods.vue";
 import ViewTitlepage from "../components/ViewTitlepage.vue";
 import ViewHome from "../components/ViewHome.vue";
 
@@ -33,6 +34,10 @@ const routes = [
   {
     path: "/:articleId/method/search/publication-type",
     component: ViewMethodSearchPublicationType
+  },
+  {
+    path: "/:articleId/method/search/supplementory-methods",
+    component: ViewMethodSearchSupplementoryMethods
   },
   { path: "/:articleId/method/screening", component: ViewMethodPicot }
 ];
