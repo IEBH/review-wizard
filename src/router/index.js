@@ -2,7 +2,8 @@ import VueRouter from "vue-router";
 // import store from "../store";
 import ViewMethodPicot from "../components/ViewMethodPicot.vue";
 import ViewMethodSearch from "../components/ViewMethodSearch.vue";
-import ViewMethodSearchBibliographic from "../components/ViewMethodSearchBibliographic.vue";
+import ViewMethodSearchDatabses from "../components/ViewMethodSearchDatabases.vue";
+import ViewMethodSearchRegistries from "../components/ViewMethodSearchRegistries.vue";
 import ViewTitlepage from "../components/ViewTitlepage.vue";
 import ViewHome from "../components/ViewHome.vue";
 
@@ -21,8 +22,12 @@ const routes = [
   },
   { path: "/:articleId/method/search", component: ViewMethodSearch },
   {
-    path: "/:articleId/method/search/bibliographic",
-    component: ViewMethodSearchBibliographic
+    path: "/:articleId/method/search/bibliographic-databases",
+    component: ViewMethodSearchDatabses
+  },
+  {
+    path: "/:articleId/method/search/trial-registries",
+    component: ViewMethodSearchRegistries
   },
   { path: "/:articleId/method/screening", component: ViewMethodPicot }
 ];

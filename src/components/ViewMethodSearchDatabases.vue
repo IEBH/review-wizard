@@ -3,7 +3,7 @@
     <h1>Search Strings for Bibliographic Databases</h1>
 
     <InputSelectMulti
-      question="Which databases will you search for your systematic review?"
+      question="Which databases did you search for your systematic review?"
       :options="databaseOptions"
       :value="search.databases"
       @input="updateField('databases', $event)"
@@ -11,14 +11,14 @@
 
     <InputDate
       question="What date did you run your search on?"
-      :value="search.searchDate"
-      @input="updateField('searchDate', $event)"
+      :value="search.dateOfSearch"
+      @input="updateField('dateOfSearch', $event)"
     />
 
     <InputDate
       question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
-      :value="search.firstDate"
-      @input="updateField('firstDate', $event)"
+      :value="search.dateSearchedUntil"
+      @input="updateField('dateSearchedUntil', $event)"
     />
 
     <template v-for="(database, index) of search.databases">
@@ -63,7 +63,7 @@ import InputDate from "./InputDate.vue";
 import InputTextMultiSyntax from "./InputTextMultiSyntax";
 
 export default {
-  name: "ViewMethodSearchBibliographic",
+  name: "ViewMethodSearchDatabases",
   components: {
     Button,
     Dialog,
