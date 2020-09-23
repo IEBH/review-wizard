@@ -32,6 +32,8 @@ const method = {
         dateSearchedUntil: null,
         // Search Strings for Trial Registries
         registries: [],
+        registryDateOfSearch: null,
+        registryDateSearchedUntil: null,
         // Restrictions on Publication Type
         isRestrictedByPublicationType: false,
         excludedPublicationTypes: [],

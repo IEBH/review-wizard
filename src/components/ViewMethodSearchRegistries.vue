@@ -9,6 +9,18 @@
       @input="updateField('registries', $event)"
     />
 
+    <InputDate
+      question="What date did you run your search on?"
+      :value="search.registryDateOfSearch"
+      @input="updateField('dateOfSearch', $event)"
+    />
+
+    <InputDate
+      question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
+      :value="search.registryDateSearchedUntil"
+      @input="updateField('dateSearchedUntil', $event)"
+    />
+
     <template v-for="(registry, index) of search.registries">
       <InputTextMultiSyntax
         :key="index"
