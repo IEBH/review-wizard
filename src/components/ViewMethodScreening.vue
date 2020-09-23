@@ -10,7 +10,7 @@
     />
 
     <InputSelectDropdown
-      question="Which author retrived full-texts"
+      question="Which author retrieved full-texts"
       :value="screening.fullTextRetrivalAuthor"
       @input="updateField('fullTextRetrivalAuthor', $event)"
       :options="titlepage.authors"
