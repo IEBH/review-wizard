@@ -12,13 +12,13 @@
     <InputDate
       question="What date did you run your search on?"
       :value="search.registryDateOfSearch"
-      @input="updateField('dateOfSearch', $event)"
+      @input="updateField('registryDateOfSearch', $event)"
     />
 
     <InputDate
       question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
       :value="search.registryDateSearchedUntil"
-      @input="updateField('dateSearchedUntil', $event)"
+      @input="updateField('registryDateOfSearch', $event)"
     />
 
     <template v-for="(registry, index) of search.registries">
@@ -59,6 +59,7 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
 import InputSelectMulti from "./InputSelectMulti.vue";
+import InputDate from "./InputDate.vue";
 import InputTextMultiSyntax from "./InputTextMultiSyntax";
 
 export default {
@@ -67,6 +68,7 @@ export default {
     Button,
     Dialog,
     InputSelectMulti,
+    InputDate,
     InputTextMultiSyntax
   },
   computed: mapState({
