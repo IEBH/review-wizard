@@ -1,33 +1,19 @@
 <template>
   <div>
-    <h1>Study Selection and Screening</h1>
+    <h1>Data Extraction</h1>
 
     <InputSelectDropdown
-      question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
-      :value="screening.numberOfTitleAbstractScreeners"
-      @input="updateField('numberOfTitleAbstractScreeners', $event)"
+      question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
+      :value="extraction.numberOfStudies"
+      @input="updateField('numberOfStudies', $event)"
       :options="numberOptions"
     />
 
     <InputSelectDropdown
-      question="Which author retrieved full-texts"
-      :value="screening.fullTextRetrivalAuthor"
-      @input="updateField('fullTextRetrivalAuthor', $event)"
-      :options="titlepage.authors"
-    />
-
-    <InputSelectDropdown
-      question="How many review authors independently screened the full-texts for inclusion?"
-      :value="screening.numberOfFullTextScreeners"
-      @input="updateField('numberOfFullTextScreeners', $event)"
+      question="How many study authors extracted the following data from included studies?"
+      :value="extraction.numberOfExtractors"
+      @input="updateField('numberOfExtractors', $event)"
       :options="numberOptions"
-    />
-
-    <InputSelectMulti
-      question="Any disagreements were resolved by:"
-      :value="screening.disputeResolution"
-      @input="updateField('disputeResolution', $event)"
-      :options="disputeResolutionOptions"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -55,24 +41,21 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
-import InputSelectMulti from "./InputSelectMulti.vue";
 
 export default {
-  name: "ViewMethodScreening",
+  name: "ViewMethodDataExtraction",
   components: {
     Button,
     Dialog,
-    InputSelectDropdown,
-    InputSelectMulti
+    InputSelectDropdown
   },
   computed: mapState({
-    screening: state => state.method.doc.screening,
-    titlepage: state => state.titlepage.doc
+    extraction: state => state.method.doc.extraction
   }),
   methods: {
     updateField(field, value) {
       this.$store.dispatch("method/set", {
-        screening: { [field]: value }
+        extraction: { [field]: value }
       });
     },
     openModal() {
@@ -95,11 +78,7 @@ export default {
   },
   data() {
     return {
-      numberOptions: ["2", "3", "4", "5", "6"],
-      disputeResolutionOptions: [
-        { label: "By consensus" },
-        { label: "By referring to a third author" }
-      ],
+      numberOptions: ["1", "2", "3", "4", "5", "6"],
       displayModal: false,
       modalText: ""
     };

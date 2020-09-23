@@ -136,8 +136,13 @@ export default {
         },
         {
           title: "Study Selection and Screening",
-          icon: "pi pi-upload",
+          icon: "pi pi-users",
           href: `/${this.$store.state.articleId}/method/screening`
+        },
+        {
+          title: "Data Extraction",
+          icon: "pi pi-upload",
+          href: `/${this.$store.state.articleId}/method/data-extraction`
         }
       ];
     }

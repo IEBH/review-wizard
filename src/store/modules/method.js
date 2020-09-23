@@ -49,6 +49,10 @@ const method = {
         disputeResolution: null,
         isPrismaFlowDiagram: false,
         isExcludedFullTextInAppendix: false
+      },
+      extraction: {
+        numberOfStudies: null,
+        numberOfExtractors: null
       }
     }
   },
