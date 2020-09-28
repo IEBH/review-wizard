@@ -2,18 +2,31 @@
   <div>
     <h1>Data Extraction</h1>
 
+    <InputTextSingleLine
+      question="What tool was used to calculate the treatment effect?"
+      :value="measurementOfEffect.toolUsed"
+      @input="updateField('toolUsed', $event)"
+    />
+
+    <InputSelectMulti
+      question="What was used for dichotomous outcomes?"
+      :value="measurementOfEffect.dichotomousOutcomes"
+      @input="updateField('dichotomousOutcomes', $event)"
+      :options="dichotomousOutcomesOptions"
+    />
+
     <InputSelectDropdown
-      question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-      :value="extraction.numberOfStudies"
-      @input="updateField('numberOfStudies', $event)"
+      question="How many studies reporting the same outcome triggered a meta-analysis"
+      :value="measurementOfEffect.metaAnalysisThreshold"
+      @input="updateField('metaAnalysisThreshold', $event)"
       :options="numberOptions"
     />
 
     <InputSelectDropdown
-      question="How many study authors extracted the following data from included studies?"
-      :value="extraction.numberOfExtractors"
-      @input="updateField('numberOfExtractors', $event)"
-      :options="numberOptions"
+      question="What model was used in meta-analysis?"
+      :value="measurementOfEffect.metaAnalysisModelUsed"
+      @input="updateField('metaAnalysisModelUsed', $event)"
+      :options="metaAnalysisModelOptions"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -41,21 +54,25 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
+import InputSelectMulti from "./InputSelectMulti.vue";
+import InputTextSingleLine from "./InputTextSingleLine.vue";
 
 export default {
-  name: "ViewMethodDataExtraction",
+  name: "ViewMethodMeasuementOfEffect",
   components: {
     Button,
     Dialog,
-    InputSelectDropdown
+    InputSelectDropdown,
+    InputSelectMulti,
+    InputTextSingleLine
   },
   computed: mapState({
-    extraction: state => state.method.doc.extraction
+    measurementOfEffect: state => state.method.doc.measurementOfEffect
   }),
   methods: {
     updateField(field, value) {
       this.$store.dispatch("method/set", {
-        extraction: { [field]: value }
+        measurementOfEffect: { [field]: value }
       });
     },
     openModal() {
@@ -79,6 +96,12 @@ export default {
   data() {
     return {
       numberOptions: ["1", "2", "3", "4", "5", "6"],
+      dichotomousOutcomesOptions: [
+        { label: "Odds ratios" },
+        { label: "Risk ratios" },
+        { label: "Rate ratios" }
+      ],
+      metaAnalysisModelOptions: ["Random effects", "Fixed effects"],
       displayModal: false,
       modalText: ""
     };

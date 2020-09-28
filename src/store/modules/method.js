@@ -63,7 +63,7 @@ const method = {
         toolUsed: null,
         dichotomousOutcomes: [],
         metaAnalysisThreshold: null,
-        modelUsed: null
+        metaAnalysisModelUsed: null
       },
       unitOfAnalysis: {
         type: null,

@@ -136,7 +136,7 @@ export default {
         },
         {
           title: "Study Selection and Screening",
-          icon: "pi pi-users",
+          icon: "pi pi-check",
           href: `/${this.$store.state.articleId}/method/screening`
         },
         {
@@ -151,27 +151,27 @@ export default {
         },
         {
           title: "Measurement of Effect",
-          icon: "pi pi-upload",
+          icon: "pi pi-sliders-v",
           href: `/${this.$store.state.articleId}/method/measurement-of-effect`
         },
         {
           title: "Unit of Analysis",
-          icon: "pi pi-upload",
+          icon: "pi pi-chart-bar",
           href: `/${this.$store.state.articleId}/method/unit-of-analysis`
         },
         {
           title: "Dealing with Missing Data",
-          icon: "pi pi-upload",
+          icon: "pi pi-question",
           href: `/${this.$store.state.articleId}/method/missing-data`
         },
         {
           title: "Heterogeneity/Publication Bias",
-          icon: "pi pi-upload",
+          icon: "pi pi-users",
           href: `/${this.$store.state.articleId}/method/heterogeneity-publication-biases`
         },
         {
           title: "Subgroup and Sensitivity Analysis",
-          icon: "pi pi-upload",
+          icon: "pi pi-chart-line",
           href: `/${this.$store.state.articleId}/method/subgroup-sensitivity-analysis`
         }
       ];
