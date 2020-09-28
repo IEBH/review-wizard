@@ -2,18 +2,18 @@
   <div>
     <h1>Assessment of Heterogeneity and Publication Biases</h1>
 
-    <InputSelectDropdown
-      question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-      :value="extraction.numberOfStudies"
-      @input="updateField('numberOfStudies', $event)"
-      :options="numberOptions"
+    <InputSelectYesNo
+      question="Was publication bias measured?"
+      :value="heterogeneityPublicationBiases.isMeasuredPublicationBias"
+      @input="updateField('isMeasuredPublicationBias', $event)"
     />
 
     <InputSelectDropdown
-      question="How many study authors extracted the following data from included studies?"
-      :value="extraction.numberOfExtractors"
-      @input="updateField('numberOfExtractors', $event)"
-      :options="numberOptions"
+      v-if="heterogeneityPublicationBiases.isMeasuredPublicationBias"
+      question="We measured publication bias using..."
+      :value="heterogeneityPublicationBiases.biasMeasurement"
+      @input="updateField('biasMeasurement', $event)"
+      :options="publicationBiasOptions"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -41,21 +41,24 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
+import InputSelectYesNo from "./InputSelectYesNo.vue";
 
 export default {
   name: "ViewMethodHeterogeneityPublicationBias",
   components: {
     Button,
     Dialog,
-    InputSelectDropdown
+    InputSelectDropdown,
+    InputSelectYesNo
   },
   computed: mapState({
-    extraction: state => state.method.doc.extraction
+    heterogeneityPublicationBiases: state =>
+      state.method.doc.heterogeneityPublicationBiases
   }),
   methods: {
     updateField(field, value) {
       this.$store.dispatch("method/set", {
-        extraction: { [field]: value }
+        heterogeneityPublicationBiases: { [field]: value }
       });
     },
     openModal() {
@@ -78,7 +81,7 @@ export default {
   },
   data() {
     return {
-      numberOptions: ["1", "2", "3", "4", "5", "6"],
+      publicationBiasOptions: ["Funnel plot", "Egger's test", "Other"],
       displayModal: false,
       modalText: ""
     };
