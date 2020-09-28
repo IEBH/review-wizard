@@ -67,6 +67,7 @@ const method = {
       },
       unitOfAnalysis: {
         type: null,
+        otherType: null,
         example: null
       },
       missingData: {

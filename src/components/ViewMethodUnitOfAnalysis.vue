@@ -1,19 +1,19 @@
 <template>
   <div>
-    <h1>Data Extraction</h1>
+    <h1>Unit of Analysis</h1>
 
     <InputSelectDropdown
-      question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-      :value="extraction.numberOfStudies"
-      @input="updateField('numberOfStudies', $event)"
-      :options="numberOptions"
+      question="What was the unit of analysis?"
+      :value="unitOfAnalysis.type"
+      @input="updateField('type', $event)"
+      :options="unitOfAnalysisOptions"
     />
 
-    <InputSelectDropdown
-      question="How many study authors extracted the following data from included studies?"
-      :value="extraction.numberOfExtractors"
-      @input="updateField('numberOfExtractors', $event)"
-      :options="numberOptions"
+    <InputTextSingleLine
+      v-if="unitOfAnalysis.type === 'Individual'"
+      question="Where data on the number of individuals with primary and secondary outcomes of interest was not available, we extracted the information as it was presented (e.g..."
+      :value="unitOfAnalysis.example"
+      @input="updateField('example', $event)"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -41,21 +41,23 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
+import InputTextSingleLine from "./InputTextSingleLine.vue";
 
 export default {
-  name: "ViewMethodDataExtraction",
+  name: "ViewMethodUnitOfAnalysis",
   components: {
     Button,
     Dialog,
+    InputTextSingleLine,
     InputSelectDropdown
   },
   computed: mapState({
-    extraction: state => state.method.doc.extraction
+    unitOfAnalysis: state => state.method.doc.unitOfAnalysis
   }),
   methods: {
     updateField(field, value) {
       this.$store.dispatch("method/set", {
-        extraction: { [field]: value }
+        unitOfAnalysis: { [field]: value }
       });
     },
     openModal() {
@@ -78,7 +80,7 @@ export default {
   },
   data() {
     return {
-      numberOptions: ["1", "2", "3", "4", "5", "6"],
+      unitOfAnalysisOptions: ["Individual", "Other"],
       displayModal: false,
       modalText: ""
     };
