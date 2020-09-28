@@ -1,18 +1,11 @@
 <template>
   <div>
-    <h1>Data Extraction</h1>
+    <h1>Dealing with Missing Data</h1>
 
-    <InputSelectDropdown
-      question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-      :value="extraction.numberOfStudies"
-      @input="updateField('numberOfStudies', $event)"
-      :options="numberOptions"
-    />
-
-    <InputSelectDropdown
-      question="How many study authors extracted the following data from included studies?"
-      :value="extraction.numberOfExtractors"
-      @input="updateField('numberOfExtractors', $event)"
+    <InputSelectYesNo
+      question="We contacted investigators or study sponsors to provide missing data"
+      :value="missingData.isContactedInvestigators"
+      @input="updateField('isContactedInvestigators', $event)"
       :options="numberOptions"
     />
 
@@ -40,17 +33,17 @@ import { picotGrammar } from "../assets/templates/method";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
-import InputSelectDropdown from "./InputSelectDropdown.vue";
+import InputSelectYesNo from "./InputSelectYesNo.vue";
 
 export default {
-  name: "ViewMethodDataExtraction",
+  name: "ViewMethodDealingWithMissingData",
   components: {
     Button,
     Dialog,
-    InputSelectDropdown
+    InputSelectYesNo
   },
   computed: mapState({
-    extraction: state => state.method.doc.extraction
+    missingData: state => state.method.doc.missingData
   }),
   methods: {
     updateField(field, value) {
