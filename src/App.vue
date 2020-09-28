@@ -143,6 +143,36 @@ export default {
           title: "Data Extraction",
           icon: "pi pi-upload",
           href: `/${this.$store.state.articleId}/method/data-extraction`
+        },
+        {
+          title: "Assessment of the RoB",
+          icon: "pi pi-upload",
+          href: `/${this.$store.state.articleId}/method/risk-of-bias`
+        },
+        {
+          title: "Measurement of Effect",
+          icon: "pi pi-upload",
+          href: `/${this.$store.state.articleId}/method/measurement-of-effect`
+        },
+        {
+          title: "Unit of Analysis",
+          icon: "pi pi-upload",
+          href: `/${this.$store.state.articleId}/method/unit-of-analysis`
+        },
+        {
+          title: "Dealing with Missing Data",
+          icon: "pi pi-upload",
+          href: `/${this.$store.state.articleId}/method/missing-data`
+        },
+        {
+          title: "Heterogeneity/Publication Bias",
+          icon: "pi pi-upload",
+          href: `/${this.$store.state.articleId}/method/heterogeneity-publication-biases`
+        },
+        {
+          title: "Subgroup and Sensitivity Analysis",
+          icon: "pi pi-upload",
+          href: `/${this.$store.state.articleId}/method/subgroup-sensitivity-analysis`
         }
       ];
     }

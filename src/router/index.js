@@ -8,6 +8,12 @@ import ViewMethodSearchPublicationType from "../components/ViewMethodSearchPubli
 import ViewMethodSearchSupplementoryMethods from "../components/ViewMethodSearchSupplementoryMethods.vue";
 import ViewMethodScreening from "../components/ViewMethodScreening.vue";
 import ViewMethodDataExtraction from "../components/ViewMethodDataExtraction.vue";
+import ViewMethodAssessmentOfTheRiskOfBias from "../components/ViewMethodAssessmentOfTheRiskOfBias.vue";
+import ViewMethodMeasurementOfEffect from "../components/ViewMethodMeasurementOfEffect.vue";
+import ViewMethodUnitOfAnalysis from "../components/ViewMethodUnitOfAnalysis.vue";
+import ViewMethodDealingWithMissingData from "../components/ViewMethodDealingWithMissingData.vue";
+import ViewMethodHeterogeneityPublicationBias from "../components/ViewMethodHeterogeneityPublicationBias.vue";
+import ViewMethodSubgroupAndSensitivityAnalysis from "../components/ViewMethodSubgroupAndSensitivityAnalysis.vue";
 import ViewTitlepage from "../components/ViewTitlepage.vue";
 import ViewHome from "../components/ViewHome.vue";
 
@@ -45,6 +51,30 @@ const routes = [
   {
     path: "/:articleId/method/data-extraction",
     component: ViewMethodDataExtraction
+  },
+  {
+    path: "/:articleId/method/risk-of-bias",
+    component: ViewMethodAssessmentOfTheRiskOfBias
+  },
+  {
+    path: "/:articleId/method/measurement-of-effect",
+    component: ViewMethodMeasurementOfEffect
+  },
+  {
+    path: "/:articleId/method/unit-of-analysis",
+    component: ViewMethodUnitOfAnalysis
+  },
+  {
+    path: "/:articleId/method/missing-data",
+    component: ViewMethodDealingWithMissingData
+  },
+  {
+    path: "/:articleId/method/heterogeneity-publication-biases",
+    component: ViewMethodHeterogeneityPublicationBias
+  },
+  {
+    path: "/:articleId/method/subgroup-sensitivity-analysis",
+    component: ViewMethodSubgroupAndSensitivityAnalysis
   }
 ];
 
