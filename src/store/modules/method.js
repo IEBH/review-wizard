@@ -53,6 +53,37 @@ const method = {
       extraction: {
         numberOfStudies: null,
         numberOfExtractors: null
+      },
+      riskOfBias: {
+        numberOfAuthors: null,
+        isIndependent: true,
+        toolUsed: null
+      },
+      measurementOfEffect: {
+        toolUsed: null,
+        dichotomousOutcomes: [],
+        metaAnalysisThreshold: null,
+        modelUsed: null
+      },
+      unitOfAnalysis: {
+        type: null,
+        example: null
+      },
+      missingData: {
+        isContactedInvestigators: false
+      },
+      heterogeneityPublicationBiases: {
+        isMeasuredPublicationBias: true,
+        biasMeasurement: null,
+        didNotMeasure: "because fewer than 10 studies were included"
+      },
+      subgroupAndSensitivityAnalysis: {
+        isSubgroupAnalysis: false,
+        subgroupAnalysis: [""],
+        whyNotSubgroupAnalysis: [""],
+        isSensitivityAnalysis: false,
+        sensitivityAnalysis: [""],
+        whyNotSensitivityAnalysis: [""]
       }
     }
   },

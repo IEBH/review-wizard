@@ -1,19 +1,24 @@
 <template>
   <div>
-    <h1>Data Extraction</h1>
+    <h1>Assessment of the Risk of Bias</h1>
 
     <InputSelectDropdown
-      question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-      :value="extraction.numberOfStudies"
-      @input="updateField('numberOfStudies', $event)"
+      question="How many review authors reviewed the risk of bias?"
+      :value="riskOfBias.numberOfAuthors"
+      @input="updateField('numberOfAuthors', $event)"
       :options="numberOptions"
     />
 
-    <InputSelectDropdown
-      question="How many study authors extracted the following data from included studies?"
-      :value="extraction.numberOfExtractors"
-      @input="updateField('numberOfExtractors', $event)"
-      :options="numberOptions"
+    <InputSelectYesNo
+      question="Did each author independently review the risk of bias?"
+      :value="riskOfBias.isIndependent"
+      @input="updateField('isIndependent', $event)"
+    />
+
+    <InputTextSingleLine
+      question="Risk of bias was determined using the..."
+      :value="riskOfBias.toolUsed"
+      @input="updateField('toolUsed', $event)"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -41,21 +46,25 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
+import InputSelectYesNo from "./InputSelectYesNo.vue";
+import InputTextSingleLine from "./InputTextSingleLine.vue";
 
 export default {
-  name: "ViewMethodDataExtraction",
+  name: "ViewMethodAssessmentOfTheRiskOfBias",
   components: {
     Button,
     Dialog,
-    InputSelectDropdown
+    InputSelectDropdown,
+    InputSelectYesNo,
+    InputTextSingleLine
   },
   computed: mapState({
-    extraction: state => state.method.doc.extraction
+    riskOfBias: state => state.method.doc.riskOfBias
   }),
   methods: {
     updateField(field, value) {
       this.$store.dispatch("method/set", {
-        extraction: { [field]: value }
+        riskOfBias: { [field]: value }
       });
     },
     openModal() {

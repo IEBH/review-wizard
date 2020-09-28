@@ -146,7 +146,7 @@ export default {
         },
         {
           title: "Assessment of the RoB",
-          icon: "pi pi-upload",
+          icon: "pi pi-exclamation-circle",
           href: `/${this.$store.state.articleId}/method/risk-of-bias`
         },
         {
