@@ -16,6 +16,13 @@
       :options="publicationBiasOptions"
     />
 
+    <InputTextMultiLine
+      v-else
+      question="We did not measure publication bias..."
+      :value="heterogeneityPublicationBiases.didNotMeasure"
+      @input="updateField('didNotMeasure', $event)"
+    />
+
     <div class="p-mt-3 p-d-flex p-jc-center">
       <Button label="Generate Output" @click="openModal()" />
     </div>
@@ -42,6 +49,7 @@ import Dialog from "primevue/dialog";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputSelectYesNo from "./InputSelectYesNo.vue";
+import InputTextMultiLine from "./InputTextMultiLine.vue";
 
 export default {
   name: "ViewMethodHeterogeneityPublicationBias",
@@ -49,7 +57,8 @@ export default {
     Button,
     Dialog,
     InputSelectDropdown,
-    InputSelectYesNo
+    InputSelectYesNo,
+    InputTextMultiLine
   },
   computed: mapState({
     heterogeneityPublicationBiases: state =>
