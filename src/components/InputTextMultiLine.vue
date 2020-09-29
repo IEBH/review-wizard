@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <p>{{ question }}</p>
+  <div class="p-mb-6">
+    <p>
+      <b>{{ question }}</b>
+    </p>
     <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
     <Textarea
       v-bind:value="value"

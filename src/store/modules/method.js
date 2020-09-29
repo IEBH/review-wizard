@@ -81,10 +81,10 @@ const method = {
       subgroupAndSensitivityAnalysis: {
         isSubgroupAnalysis: false,
         subgroupAnalysis: [""],
-        whyNotSubgroupAnalysis: [""],
+        whyNotSubgroupAnalysis: null,
         isSensitivityAnalysis: false,
         sensitivityAnalysis: [""],
-        whyNotSensitivityAnalysis: [""]
+        whyNotSensitivityAnalysis: null
       }
     }
   },

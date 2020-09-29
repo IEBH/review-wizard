@@ -1,19 +1,45 @@
 <template>
   <div>
-    <h1>Data Extraction</h1>
+    <h1>Subgroup and Sensitivitiy Analysis</h1>
 
-    <InputSelectDropdown
-      question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-      :value="extraction.numberOfStudies"
-      @input="updateField('numberOfStudies', $event)"
-      :options="numberOptions"
+    <InputSelectYesNo
+      question="Were subgroup analyses performed?"
+      :value="subgroupAndSensitivityAnalysis.isSubgroupAnalysis"
+      @input="updateField('isSubgroupAnalysis', $event)"
     />
 
-    <InputSelectDropdown
-      question="How many study authors extracted the following data from included studies?"
-      :value="extraction.numberOfExtractors"
-      @input="updateField('numberOfExtractors', $event)"
-      :options="numberOptions"
+    <InputTextSingleLineMulti
+      v-if="subgroupAndSensitivityAnalysis.isSubgroupAnalysis"
+      question="Which subgroup analyses were performed?"
+      :value="subgroupAndSensitivityAnalysis.subgroupAnalysis"
+      @input="updateField('subgroupAnalysis', $event)"
+    />
+
+    <InputTextMultiLine
+      v-else
+      question="Why was subgroup analysis not performed?"
+      :value="subgroupAndSensitivityAnalysis.whyNotSubgroupAnalysis"
+      @input="updateField('whyNotSubgroupAnalysis', $event)"
+    />
+
+    <InputSelectYesNo
+      question="Were sensitivity analyses performed?"
+      :value="subgroupAndSensitivityAnalysis.isSensitivityAnalysis"
+      @input="updateField('isSensitivityAnalysis', $event)"
+    />
+
+    <InputTextSingleLineMulti
+      v-if="subgroupAndSensitivityAnalysis.isSensitivityAnalysis"
+      question="Which sensitivity analyses were performed?"
+      :value="subgroupAndSensitivityAnalysis.sensitivityAnalysis"
+      @input="updateField('sensitivityAnalysis', $event)"
+    />
+
+    <InputTextMultiLine
+      v-else
+      question="Why was sensitivity analysis not performed?"
+      :value="subgroupAndSensitivityAnalysis.whyNotSubgroupAnalysis"
+      @input="updateField('whyNotSubgroupAnalysis', $event)"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -40,22 +66,27 @@ import { picotGrammar } from "../assets/templates/method";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
-import InputSelectDropdown from "./InputSelectDropdown.vue";
+import InputSelectYesNo from "./InputSelectYesNo.vue";
+import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
+import InputTextMultiLine from "./InputTextMultiLine";
 
 export default {
-  name: "ViewMethodDataExtraction",
+  name: "ViewMethodSubgroupAndSensitivityAnalysis",
   components: {
     Button,
     Dialog,
-    InputSelectDropdown
+    InputSelectYesNo,
+    InputTextSingleLineMulti,
+    InputTextMultiLine
   },
   computed: mapState({
-    extraction: state => state.method.doc.extraction
+    subgroupAndSensitivityAnalysis: state =>
+      state.method.doc.subgroupAndSensitivityAnalysis
   }),
   methods: {
     updateField(field, value) {
       this.$store.dispatch("method/set", {
-        extraction: { [field]: value }
+        subgroupAndSensitivityAnalysis: { [field]: value }
       });
     },
     openModal() {
