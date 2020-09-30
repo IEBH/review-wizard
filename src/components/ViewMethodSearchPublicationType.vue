@@ -106,7 +106,15 @@ export default {
         { label: "German" },
         { label: "Spanish" },
         { label: "Chinese" },
-        { label: "French" }
+        { label: "French" },
+        { label: "Arabic" },
+        { label: "Portugese" },
+        { label: "Hindi" },
+        { label: "Dutch" },
+        { label: "Swiss" },
+        { label: "Italian" },
+        { label: "Japanese" },
+        { label: "Egyptian" }
       ],
       displayModal: false,
       modalText: ""
