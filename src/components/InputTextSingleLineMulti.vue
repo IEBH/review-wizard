@@ -14,6 +14,7 @@
         type="text"
         :value="item"
         :key="index"
+        :ref="index"
         @input="update(index, $event)"
       />
     </template>
@@ -57,6 +58,11 @@ export default {
     addNewValue: function() {
       this.value.push("");
       this.$emit("input", this.value);
+      const lastIndex = this.value.length - 1;
+      // Wait until next tick so component is rendered
+      this.$nextTick(() => {
+        this.$refs[lastIndex][0].$el.focus();
+      });
     }
   }
 };
