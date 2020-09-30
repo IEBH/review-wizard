@@ -77,7 +77,9 @@ export default {
   computed: {
     // Find the union of value and options to account for other options which are user defined
     selectOptions: function() {
-      return this.arrayUnion(this.value, this.options, this.areLabelsSame);
+      if (this.value)
+        return this.arrayUnion(this.value, this.options, this.areLabelsSame);
+      else return this.options;
     }
   },
   methods: {

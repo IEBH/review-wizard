@@ -46,7 +46,7 @@ const method = {
         numberOfTitleAbstractScreeners: null,
         fullTextRetrivalAuthor: null,
         numberOfFullTextScreeners: null,
-        disputeResolution: null,
+        disputeResolution: [],
         isPrismaFlowDiagram: false,
         isExcludedFullTextInAppendix: false
       },
