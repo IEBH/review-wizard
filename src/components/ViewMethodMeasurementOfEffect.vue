@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Data Extraction</h1>
+    <h1>Measurement of Effect</h1>
 
     <InputTextSingleLine
       question="What tool was used to calculate the treatment effect?"
@@ -15,11 +15,10 @@
       :options="dichotomousOutcomesOptions"
     />
 
-    <InputSelectDropdown
+    <InputTextNumber
       question="How many studies reporting the same outcome triggered a meta-analysis"
       :value="measurementOfEffect.metaAnalysisThreshold"
       @input="updateField('metaAnalysisThreshold', $event)"
-      :options="numberOptions"
     />
 
     <InputSelectDropdown
@@ -56,6 +55,7 @@ import Dialog from "primevue/dialog";
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
 import InputTextSingleLine from "./InputTextSingleLine.vue";
+import InputTextNumber from "./InputTextNumber.vue";
 
 export default {
   name: "ViewMethodMeasuementOfEffect",
@@ -64,13 +64,15 @@ export default {
     Dialog,
     InputSelectDropdown,
     InputSelectMulti,
-    InputTextSingleLine
+    InputTextSingleLine,
+    InputTextNumber
   },
   computed: mapState({
     measurementOfEffect: state => state.method.doc.measurementOfEffect
   }),
   methods: {
     updateField(field, value) {
+      console.log(value);
       this.$store.dispatch("method/set", {
         measurementOfEffect: { [field]: value }
       });
