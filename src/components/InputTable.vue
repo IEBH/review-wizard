@@ -51,6 +51,7 @@
             <Textarea
               :value="row.main"
               :autoResize="true"
+              :ref="index"
               rows="2"
               @input="update(index, row, 'main', $event)"
             />
@@ -169,6 +170,11 @@ export default {
         this.value.push({});
       }
       this.$emit("input", this.value);
+      const lastIndex = this.value.length - 1;
+      // Wait until next tick so component is rendered
+      this.$nextTick(() => {
+        this.$refs[lastIndex][0].$el.focus();
+      });
     },
     update(index, original, field, event) {
       var newObj = original;
