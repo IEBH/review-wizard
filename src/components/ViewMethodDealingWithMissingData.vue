@@ -48,7 +48,7 @@ export default {
   methods: {
     updateField(field, value) {
       this.$store.dispatch("method/set", {
-        extraction: { [field]: value }
+        missingData: { [field]: value }
       });
     },
     openModal() {
