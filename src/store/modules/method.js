@@ -56,7 +56,7 @@ const method = {
       },
       riskOfBias: {
         numberOfAuthors: null,
-        isIndependent: true,
+        isIndependent: false,
         toolUsed: null
       },
       measurementOfEffect: {
@@ -74,7 +74,7 @@ const method = {
         isContactedInvestigators: false
       },
       heterogeneityPublicationBiases: {
-        isMeasuredPublicationBias: true,
+        isMeasuredPublicationBias: false,
         biasMeasurement: null,
         didNotMeasure: "because fewer than 20 studies were included"
       },
