@@ -8,8 +8,8 @@
     <!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
     <Calendar :value="date" @input="$emit('input', $event)" />
     <Button
+      label="Clear"
       v-if="value"
-      icon="pi pi-times"
       class="p-button-rounded p-button-danger p-ml-3"
       @click="clear"
     />
