@@ -8,11 +8,11 @@
       We used {{ formatSelectMulti(data.dichotomousOutcomes) }} for dichotomous
       outcomes.
     </p>
-    <p>
+    <p v-if="data.metaAnalysisThreshold">
       We undertook meta-analyses when {{ data.metaAnalysisThreshold }} studies
       or comparisons reported the same outcome.
     </p>
-    <p>
+    <p v-if="data.metaAnalysisModelUsed">
       We used a {{ data.metaAnalysisModelUsed.toLowerCase() }} effects model.
     </p>
   </div>
