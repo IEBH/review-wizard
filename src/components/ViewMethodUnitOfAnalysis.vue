@@ -10,6 +10,13 @@
     />
 
     <InputTextSingleLine
+      v-if="unitOfAnalysis.type === 'Other'"
+      question="The unit of analysis was..."
+      :value="unitOfAnalysis.otherType"
+      @input="updateField('otherType', $event)"
+    />
+
+    <InputTextSingleLine
       v-if="unitOfAnalysis.type === 'Individual'"
       question="Where data on the number of individuals with primary and secondary outcomes of interest was not available, we extracted the information as it was presented (e.g..."
       :value="unitOfAnalysis.example"
@@ -22,20 +29,19 @@
 
     <!-- Modal to display output -->
     <Dialog
-      header="PICOT"
+      header="Unit of Analysis"
       :visible.sync="displayModal"
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <span v-html="modalText"></span>
+      <OutputUnitOfAnalysis :data="unitOfAnalysis" />
     </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-var revmanReplicant = require("revman-replicant-browser");
-import { picotGrammar } from "../assets/templates/method";
+import OutputUnitOfAnalysis from "./OutputUnitOfAnalysis.vue";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -49,7 +55,8 @@ export default {
     Button,
     Dialog,
     InputTextSingleLine,
-    InputSelectDropdown
+    InputSelectDropdown,
+    OutputUnitOfAnalysis
   },
   computed: mapState({
     unitOfAnalysis: state => state.method.doc.unitOfAnalysis
@@ -61,18 +68,7 @@ export default {
       });
     },
     openModal() {
-      revmanReplicant(
-        {
-          revman: this.picot,
-          grammar: picotGrammar
-        },
-        (err, res) => {
-          // Use res html in v-html of modal
-          if (err) console.log(err);
-          this.modalText = res;
-          this.displayModal = true;
-        }
-      );
+      this.displayModal = true;
     },
     closeModal() {
       this.displayModal = false;
