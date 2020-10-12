@@ -15,20 +15,19 @@
 
     <!-- Modal to display output -->
     <Dialog
-      header="PICOT"
+      header="Dealing with Missing Data"
       :visible.sync="displayModal"
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <span v-html="modalText"></span>
+      <OutputDealingWithMissingData :data="missingData" />
     </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-var revmanReplicant = require("revman-replicant-browser");
-import { picotGrammar } from "../assets/templates/method";
+import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -40,7 +39,8 @@ export default {
   components: {
     Button,
     Dialog,
-    InputSelectYesNo
+    InputSelectYesNo,
+    OutputDealingWithMissingData
   },
   computed: mapState({
     missingData: state => state.method.doc.missingData
@@ -52,18 +52,7 @@ export default {
       });
     },
     openModal() {
-      revmanReplicant(
-        {
-          revman: this.picot,
-          grammar: picotGrammar
-        },
-        (err, res) => {
-          // Use res html in v-html of modal
-          if (err) console.log(err);
-          this.modalText = res;
-          this.displayModal = true;
-        }
-      );
+      this.displayModal = true;
     },
     closeModal() {
       this.displayModal = false;
