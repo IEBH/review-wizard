@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "InputTextSingleLine",
+  name: "OutputDataExtraction",
   props: {
     data: Object
   }
