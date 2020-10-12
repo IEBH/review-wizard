@@ -2,11 +2,13 @@
   <div>
     <p>
       We used a data extraction form for study characteristics and outcome data,
-      which was piloted on {{ data.numberOfStudies }} studies in the review.
+      which was piloted on
+      {{ data.numberOfStudies ? data.numberOfStudies : "BLANK" }} studies in the
+      review.
     </p>
     <p>
-      {{ data.numberOfExtractors }} study authors extracted the following data
-      from included studies:
+      {{ data.numberOfExtractors ? data.numberOfExtractors : "BLANK" }} study
+      authors extracted the following data from included studies:
     </p>
   </div>
 </template>

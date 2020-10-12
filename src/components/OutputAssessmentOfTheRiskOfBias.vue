@@ -1,9 +1,10 @@
 <template>
   <div>
     <p>
-      {{ data.numberOfAuthors }} review authors
-      {{ data.isIndependent ? "independently" : "" }} assessed the risk of bias
-      for each study using the {{ data.toolUsed }}.
+      {{ data.numberOfAuthors ? data.numberOfAuthors : "BLANK " }} review
+      authors {{ data.isIndependent ? "independently" : "" }} assessed the risk
+      of bias for each study using the
+      {{ data.toolUsed ? data.toolUsed : "BLANK" }}.
     </p>
   </div>
 </template>

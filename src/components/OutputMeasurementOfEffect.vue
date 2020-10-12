@@ -1,19 +1,31 @@
 <template>
   <div>
-    <p v-if="data.toolUsed">
-      {{ capitalize(data.toolUsed) }} was used to calculate the treatment
-      effect.
+    <p>
+      {{ capitalize(data.toolUsed) ? capitalize(data.toolUsed) : "BLANK" }} was
+      used to calculate the treatment effect.
     </p>
-    <p v-if="data.dichotomousOutcomes">
-      We used {{ formatSelectMulti(data.dichotomousOutcomes) }} for dichotomous
-      outcomes.
+    <p>
+      We used
+      {{
+        formatSelectMulti(data.dichotomousOutcomes)
+          ? formatSelectMulti(data.dichotomousOutcomes)
+          : "BLANK"
+      }}
+      for dichotomous outcomes.
     </p>
-    <p v-if="data.metaAnalysisThreshold">
-      We undertook meta-analyses when {{ data.metaAnalysisThreshold }} studies
-      or comparisons reported the same outcome.
+    <p>
+      We undertook meta-analyses when
+      {{ data.metaAnalysisThreshold ? data.metaAnalysisThreshold : "BLANK" }}
+      studies or comparisons reported the same outcome.
     </p>
-    <p v-if="data.metaAnalysisModelUsed">
-      We used a {{ data.metaAnalysisModelUsed.toLowerCase() }} effects model.
+    <p>
+      We used a
+      {{
+        data.metaAnalysisModelUsed.toLowerCase()
+          ? data.metaAnalysisModelUsed.toLowerCase()
+          : "BLANK"
+      }}
+      effects model.
     </p>
   </div>
 </template>
