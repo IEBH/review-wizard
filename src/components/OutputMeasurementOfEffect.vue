@@ -7,8 +7,10 @@
     <p>
       We used
       {{
-        formatSelectMulti(data.dichotomousOutcomes)
-          ? formatSelectMulti(data.dichotomousOutcomes)
+        data.dichotomousOutcomes
+          ? joinArrayWithAnd(
+              formatSelectMulti(data.dichotomousOutcomes)
+            ).toLowerCase()
           : "BLANK"
       }}
       for dichotomous outcomes.

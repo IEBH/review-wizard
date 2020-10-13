@@ -7,11 +7,13 @@ export default {
     joinArrayWithAnd(arr) {
       return arr.slice(0, -1).join(", ") + " and " + arr.slice(-1);
     },
+    joinArrayWithOr(arr) {
+      return arr.slice(0, -1).join(", ") + " or " + arr.slice(-1);
+    },
     formatSelectMulti(arr) {
       // Get only the labels the array of objects
       arr = arr.map(ele => ele.label);
-      // Seperate by and and convert to lowercase
-      return this.joinArrayWithAnd(arr).toLowerCase();
+      return arr;
     }
   }
 };
