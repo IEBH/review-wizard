@@ -34,13 +34,14 @@
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <span v-html="modalText"></span>
+      <OutputSearch :data="search" />
     </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import OutputSearch from "./OutputSearch.vue";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -52,7 +53,8 @@ export default {
   components: {
     Button,
     Dialog,
-    InputSelectMulti
+    InputSelectMulti,
+    OutputSearch
   },
   computed: mapState({
     search: state => state.method.doc.search
@@ -75,7 +77,7 @@ export default {
       componentsOptions: [
         { label: "MeSH or other subject terms" },
         { label: "Synonyms" },
-        { label: "Search filter" }
+        { label: "Search filters" }
       ],
       specialistOptions: [
         { label: "Librarian" },
