@@ -30,32 +30,44 @@
       :options="disputeResolutionOptions"
     />
 
+    <InputSelectYesNo
+      question="The study selection process was recorded in sufficient detail to complete a PRISMA flow diagramme"
+      :value="screening.isPrismaFlowDiagram"
+      @input="updateField('isPrismaFlowDiagram', $event)"
+    />
+
+    <InputSelectYesNo
+      v-if="screening.isPrismaFlowDiagram"
+      question="The list of studies excluded at full-text is provided in Appendix"
+      :value="screening.isExcludedFullTextInAppendix"
+      @input="updateField('isExcludedFullTextInAppendix', $event)"
+    />
+
     <div class="p-mt-3 p-d-flex p-jc-center">
       <Button label="Generate Output" @click="openModal()" />
     </div>
 
     <!-- Modal to display output -->
     <Dialog
-      header="PICOT"
+      header="Study Selection and Screening"
       :visible.sync="displayModal"
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <span v-html="modalText"></span>
+      <OutputScreening :data="screening" />
     </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-var revmanReplicant = require("revman-replicant-browser");
-import { picotGrammar } from "../assets/templates/method";
-
+import OutputScreening from "./OutputScreening.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
+import InputSelectYesNo from "./InputSelectYesNo.vue";
 
 export default {
   name: "ViewMethodScreening",
@@ -63,7 +75,9 @@ export default {
     Button,
     Dialog,
     InputSelectDropdown,
-    InputSelectMulti
+    InputSelectMulti,
+    InputSelectYesNo,
+    OutputScreening
   },
   computed: mapState({
     screening: state => state.method.doc.screening,
@@ -76,18 +90,7 @@ export default {
       });
     },
     openModal() {
-      revmanReplicant(
-        {
-          revman: this.picot,
-          grammar: picotGrammar
-        },
-        (err, res) => {
-          // Use res html in v-html of modal
-          if (err) console.log(err);
-          this.modalText = res;
-          this.displayModal = true;
-        }
-      );
+      this.displayModal = true;
     },
     closeModal() {
       this.displayModal = false;
