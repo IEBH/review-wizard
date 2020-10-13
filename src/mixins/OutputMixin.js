@@ -42,6 +42,13 @@ export default {
         default:
           return string;
       }
+    },
+    nameToInitials(name) {
+      var initials = name.match(/\b\w/g) || [];
+      initials = (
+        (initials.shift() || "") + (initials.pop() || "")
+      ).toUpperCase();
+      return initials;
     }
   }
 };
