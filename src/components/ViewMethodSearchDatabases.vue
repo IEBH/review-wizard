@@ -45,13 +45,14 @@
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <span v-html="modalText"></span>
+      <OutputSearchDatabases :data="search" />
     </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import OutputSearchDatabases from "./OutputSearchDatabases.vue";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -67,7 +68,8 @@ export default {
     Dialog,
     InputSelectMulti,
     InputDate,
-    InputTextMultiSyntax
+    InputTextMultiSyntax,
+    OutputSearchDatabases
   },
   computed: mapState({
     search: state => state.method.doc.search
