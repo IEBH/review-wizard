@@ -2,7 +2,12 @@
   <div>
     <p>
       We searched {{ joinArrayWithAnd(formatSelectMulti(data.databases)) }} from
-      {{ data.dateSearchedUntil ? data.dateSearchedUntil : "inception" }} to
+      {{
+        data.dateSearchedUntil
+          ? formatDateFull(data.dateSearchedUntil)
+          : "inception"
+      }}
+      to
       {{ data.dateOfSearch ? formatDateFull(data.dateOfSearch) : "BLANK" }}
       (see Appendix X).
     </p>
