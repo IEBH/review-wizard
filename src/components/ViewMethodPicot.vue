@@ -69,14 +69,14 @@
       :modal="true"
     >
       <span v-html="modalText"></span>
+      <OutputPicot :data="picot" />
     </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-var revmanReplicant = require("revman-replicant-browser");
-import { picotGrammar } from "../assets/templates/method";
+import OutputPicot from "./OutputPicot.vue";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -90,7 +90,8 @@ export default {
     Button,
     Dialog,
     InputSelectMulti,
-    InputTable
+    InputTable,
+    OutputPicot
   },
   computed: mapState({
     picot: state => state.method.doc.picot
@@ -102,18 +103,7 @@ export default {
       });
     },
     openModal() {
-      revmanReplicant(
-        {
-          revman: this.picot,
-          grammar: picotGrammar
-        },
-        (err, res) => {
-          // Use res html in v-html of modal
-          if (err) console.log(err);
-          this.modalText = res;
-          this.displayModal = true;
-        }
-      );
+      this.displayModal = true;
     },
     closeModal() {
       this.displayModal = false;
