@@ -16,8 +16,6 @@
 
 <script>
 import { mapState } from "vuex";
-// var revmanReplicant = require("revman-replicant-browser");
-// import { picotGrammar } from "../assets/templates/method";
 import InputTextSingleLine from "./InputTextSingleLine.vue";
 import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
 
