@@ -38,8 +38,8 @@
     <InputTextMultiLine
       v-else
       question="Why was sensitivity analysis not performed?"
-      :value="subgroupAndSensitivityAnalysis.whyNotSubgroupAnalysis"
-      @input="updateField('whyNotSubgroupAnalysis', $event)"
+      :value="subgroupAndSensitivityAnalysis.whyNotSensitivityAnalysis"
+      @input="updateField('whyNotSensitivityAnalysis', $event)"
     />
 
     <div class="p-mt-3 p-d-flex p-jc-center">
@@ -48,20 +48,21 @@
 
     <!-- Modal to display output -->
     <Dialog
-      header="PICOT"
+      header="Subgroup and Sensitivity Analysis"
       :visible.sync="displayModal"
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <span v-html="modalText"></span>
+      <OutputSubgroupAndSensitivityAnalysis
+        :data="subgroupAndSensitivityAnalysis"
+      />
     </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-var revmanReplicant = require("revman-replicant-browser");
-import { picotGrammar } from "../assets/templates/method";
+import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -77,7 +78,8 @@ export default {
     Dialog,
     InputSelectYesNo,
     InputTextSingleLineMulti,
-    InputTextMultiLine
+    InputTextMultiLine,
+    OutputSubgroupAndSensitivityAnalysis
   },
   computed: mapState({
     subgroupAndSensitivityAnalysis: state =>
@@ -90,18 +92,7 @@ export default {
       });
     },
     openModal() {
-      revmanReplicant(
-        {
-          revman: this.picot,
-          grammar: picotGrammar
-        },
-        (err, res) => {
-          // Use res html in v-html of modal
-          if (err) console.log(err);
-          this.modalText = res;
-          this.displayModal = true;
-        }
-      );
+      this.displayModal = true;
     },
     closeModal() {
       this.displayModal = false;
