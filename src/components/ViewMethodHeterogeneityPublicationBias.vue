@@ -29,20 +29,21 @@
 
     <!-- Modal to display output -->
     <Dialog
-      header="PICOT"
+      header="Assessment of Heterogeneity and Publication Biases"
       :visible.sync="displayModal"
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <span v-html="modalText"></span>
+      <OutputHeterogeneityPublicationBias
+        :data="heterogeneityPublicationBiases"
+      />
     </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-var revmanReplicant = require("revman-replicant-browser");
-import { picotGrammar } from "../assets/templates/method";
+import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -58,7 +59,8 @@ export default {
     Dialog,
     InputSelectDropdown,
     InputSelectYesNo,
-    InputTextMultiLine
+    InputTextMultiLine,
+    OutputHeterogeneityPublicationBias
   },
   computed: mapState({
     heterogeneityPublicationBiases: state =>
@@ -71,18 +73,7 @@ export default {
       });
     },
     openModal() {
-      revmanReplicant(
-        {
-          revman: this.picot,
-          grammar: picotGrammar
-        },
-        (err, res) => {
-          // Use res html in v-html of modal
-          if (err) console.log(err);
-          this.modalText = res;
-          this.displayModal = true;
-        }
-      );
+      this.displayModal = true;
     },
     closeModal() {
       this.displayModal = false;
