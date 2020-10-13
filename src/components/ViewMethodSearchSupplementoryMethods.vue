@@ -20,13 +20,14 @@
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <span v-html="modalText"></span>
+      <OutputSearchSupplementoryMethods :data="search" />
     </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import OutputSearchSupplementoryMethods from "./OutputSearchSupplementoryMethods.vue";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -38,7 +39,8 @@ export default {
   components: {
     Button,
     Dialog,
-    InputSelectMulti
+    InputSelectMulti,
+    OutputSearchSupplementoryMethods
   },
   computed: mapState({
     search: state => state.method.doc.search
