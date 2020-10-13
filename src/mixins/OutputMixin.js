@@ -20,7 +20,12 @@ export default {
       return arr;
     },
     formatDate(timestamp) {
-      var d = timestamp.toDate();
+      var d;
+      try {
+        d = timestamp.toDate();
+      } catch {
+        d = timestamp;
+      }
       return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
     },
     formatDateFull(timestamp) {
@@ -51,7 +56,12 @@ export default {
             return "th";
         }
       };
-      var d = timestamp.toDate();
+      var d;
+      try {
+        d = timestamp.toDate();
+      } catch {
+        d = timestamp;
+      }
       return (
         d.getDate() +
         nth(d.getDate()) +
