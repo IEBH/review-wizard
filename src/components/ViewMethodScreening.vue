@@ -9,6 +9,17 @@
       :options="numberOptions"
     />
 
+    <InputSelectMulti
+      question="Which authors screened title/abstract?"
+      :value="screening.titleAbstractScreeners"
+      @input="updateField('titleAbstractScreeners', $event)"
+      :options="
+        titlepage.authors.map(el => {
+          return { label: el };
+        })
+      "
+    />
+
     <InputSelectDropdown
       question="Which author retrieved full-texts"
       :value="screening.fullTextRetrivalAuthor"
@@ -21,6 +32,17 @@
       :value="screening.numberOfFullTextScreeners"
       @input="updateField('numberOfFullTextScreeners', $event)"
       :options="numberOptions"
+    />
+
+    <InputSelectMulti
+      question="Which authors screened full-texts?"
+      :value="screening.fullTextScreeners"
+      @input="updateField('fullTextScreeners', $event)"
+      :options="
+        titlepage.authors.map(el => {
+          return { label: el };
+        })
+      "
     />
 
     <InputSelectMulti

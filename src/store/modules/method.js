@@ -44,8 +44,10 @@ const method = {
       },
       screening: {
         numberOfTitleAbstractScreeners: null,
+        titleAbstractScreeners: null,
         fullTextRetrivalAuthor: null,
         numberOfFullTextScreeners: null,
+        fullTextScreeners: null,
         disputeResolution: [],
         isPrismaFlowDiagram: false,
         isExcludedFullTextInAppendix: false

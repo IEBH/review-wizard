@@ -3,12 +3,19 @@
     <p>
       <!-- Screeners -->
       {{ capitalize(numberToWord(data.numberOfTitleAbstractScreeners)) }} review
-      authors (MB & NK, AMS & JC) independently screened the titles and
-      abstracts against the inclusion criteria. One review author ({{
+      authors ({{
+        formatSelectMulti(data.titleAbstractScreeners)
+          .map(el => nameToInitials(el))
+          .join(", ")
+      }}) independently screened the titles and abstracts against the inclusion
+      criteria. One review author ({{
         nameToInitials(data.fullTextRetrivalAuthor)
       }}) retrieved full-text, and
-      {{ numberToWord(data.numberOfTitleAbstractScreeners) }} authors (MB & NK,
-      AMS & JC) screened the full-texts for inclusion.
+      {{ numberToWord(data.numberOfFullTextScreeners) }} authors ({{
+        formatSelectMulti(data.fullTextScreeners)
+          .map(el => nameToInitials(el))
+          .join(", ")
+      }}) screened the full-texts for inclusion.
       <!-- Discrepancies -->
       Discrepancies were resolved
       {{
