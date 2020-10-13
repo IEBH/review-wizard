@@ -19,6 +19,48 @@ export default {
       arr = arr.map(ele => ele.label);
       return arr;
     },
+    formatDate(timestamp) {
+      var d = timestamp.toDate();
+      return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+    },
+    formatDateFull(timestamp) {
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ];
+      const nth = function(d) {
+        if (d > 3 && d < 21) return "th";
+        switch (d % 10) {
+          case 1:
+            return "st";
+          case 2:
+            return "nd";
+          case 3:
+            return "rd";
+          default:
+            return "th";
+        }
+      };
+      var d = timestamp.toDate();
+      return (
+        d.getDate() +
+        nth(d.getDate()) +
+        " " +
+        monthNames[d.getMonth()] +
+        " " +
+        d.getFullYear()
+      );
+    },
     numberToWord(string) {
       switch (string) {
         case "1":
