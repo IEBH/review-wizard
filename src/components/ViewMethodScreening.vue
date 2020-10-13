@@ -31,7 +31,7 @@
     />
 
     <InputSelectYesNo
-      question="The study selection process was recorded in sufficient detail to complete a PRISMA flow diagramme"
+      question="This systematic review is reported following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) statement."
       :value="screening.isPrismaFlowDiagram"
       @input="updateField('isPrismaFlowDiagram', $event)"
     />
