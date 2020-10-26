@@ -21,9 +21,8 @@
         No publication type restrictions were applied.
       </span>
       <span v-if="data.isRestrictedByLanguage">
-        Restrictions were applied to languages.
-        {{ joinArrayWithAnd(formatSelectMulti(data.includedLanguages)) }}
-        were the only included languages.
+        We included studies in the following languages:
+        {{ joinArrayWithAnd(formatSelectMulti(data.includedLanguages)) }}.
       </span>
       <span v-else>
         No restrictions on language were applied.
