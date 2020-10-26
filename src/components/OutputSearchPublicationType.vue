@@ -34,7 +34,7 @@
 <script>
 import OutputMixin from "../mixins/OutputMixin.js";
 export default {
-  name: "OutputPublicationType",
+  name: "OutputSearchPublicationType",
   mixins: [OutputMixin],
   props: {
     data: Object

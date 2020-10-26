@@ -34,7 +34,7 @@
       <OutputSearch :data="search" />
       <OutputSearchDatabases :data="search" />
       <OutputSearchRegistries :data="search" />
-      <OutputPublicationType :data="search" />
+      <OutputSearchPublicationType :data="search" />
       <OutputSearchSupplementoryMethods :data="search" />
       <OutputScreening :data="screening" />
       <OutputDataExtraction :data="extraction" />
@@ -59,7 +59,7 @@ import OutputPicot from "./OutputPicot.vue";
 import OutputSearch from "./OutputSearch.vue";
 import OutputSearchDatabases from "./OutputSearchDatabases.vue";
 import OutputSearchRegistries from "./OutputSearchRegistries.vue";
-import OutputPublicationType from "./OutputPublicationType.vue";
+import OutputSearchPublicationType from "./OutputSearchPublicationType.vue";
 import OutputSearchSupplementoryMethods from "./OutputSearchSupplementoryMethods.vue";
 import OutputScreening from "./OutputScreening.vue";
 import OutputDataExtraction from "./OutputDataExtraction.vue";
@@ -84,7 +84,7 @@ export default {
     OutputSearch,
     OutputSearchDatabases,
     OutputSearchRegistries,
-    OutputPublicationType,
+    OutputSearchPublicationType,
     OutputSearchSupplementoryMethods,
     OutputScreening,
     OutputDataExtraction,

@@ -41,14 +41,14 @@
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <OutputPublicationType :data="search" />
+      <OutputSearchPublicationType :data="search" />
     </Dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import OutputPublicationType from "./OutputPublicationType.vue";
+import OutputSearchPublicationType from "./OutputSearchPublicationType.vue";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -63,7 +63,7 @@ export default {
     Dialog,
     InputSelectYesNo,
     InputSelectMulti,
-    OutputPublicationType
+    OutputSearchPublicationType
   },
   computed: mapState({
     search: state => state.method.doc.search
