@@ -16,6 +16,7 @@ import ViewMethodHeterogeneityPublicationBias from "../components/ViewMethodHete
 import ViewMethodSubgroupAndSensitivityAnalysis from "../components/ViewMethodSubgroupAndSensitivityAnalysis.vue";
 import ViewTitlepage from "../components/ViewTitlepage.vue";
 import ViewHome from "../components/ViewHome.vue";
+import ViewOutput from "../components/ViewOutput.vue";
 
 const routes = [
   { name: "home", path: "", component: ViewHome },
@@ -75,6 +76,10 @@ const routes = [
   {
     path: "/:articleId/method/subgroup-sensitivity-analysis",
     component: ViewMethodSubgroupAndSensitivityAnalysis
+  },
+  {
+    path: "/:articleId/output",
+    component: ViewOutput
   }
 ];
 

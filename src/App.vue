@@ -173,6 +173,11 @@ export default {
           title: "Subgroup and Sensitivity Analysis",
           icon: "pi pi-chart-line",
           href: `/${this.$store.state.articleId}/method/subgroup-sensitivity-analysis`
+        },
+        {
+          title: "Output",
+          icon: "pi pi-download",
+          href: `/${this.$store.state.articleId}/output`
         }
       ];
     }
