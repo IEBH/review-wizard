@@ -175,6 +175,11 @@ export default {
           href: `/${this.$store.state.articleId}/method/subgroup-sensitivity-analysis`
         },
         {
+          header: true,
+          title: "Output",
+          hiddenOnCollapse: true
+        },
+        {
           title: "Output",
           icon: "pi pi-download",
           href: `/${this.$store.state.articleId}/output`
