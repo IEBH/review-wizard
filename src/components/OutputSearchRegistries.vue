@@ -14,13 +14,7 @@
           ? formatDateFull(data.registryDateOfSearch)
           : "BLANK"
       }}
-      (see Appendix X).
-    </p>
-    <h3>Appendix X - Search Strategies</h3>
-    <p v-for="(database, index) of data.registries" :key="index">
-      {{ database.label }} - run {{ formatDate(data.registryDateOfSearch) }}
-      <br />
-      <span style="white-space: pre-wrap;">{{ database.string }}</span>
+      (see Appendix Y).
     </p>
   </div>
 </template>

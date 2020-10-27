@@ -1,15 +1,9 @@
 <template>
   <div>
-    <p>
-      We searched {{ joinArrayWithAnd(formatSelectMulti(data.databases)) }} from
-      {{
-        data.dateSearchedUntil
-          ? formatDateFull(data.dateSearchedUntil)
-          : "inception"
-      }}
-      to
-      {{ data.dateOfSearch ? formatDateFull(data.dateOfSearch) : "BLANK" }}
-      (see Appendix X).
+    <h3>Appendix X - Search Strategies</h3>
+    <p v-for="(database, index) of data.databases" :key="index">
+      {{ database.label }} - run {{ formatDate(data.dateOfSearch) }} <br />
+      <span style="white-space: pre-wrap;">{{ database.string }}</span>
     </p>
   </div>
 </template>

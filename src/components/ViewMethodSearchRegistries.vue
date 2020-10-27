@@ -46,6 +46,7 @@
       :modal="true"
     >
       <OutputSearchRegistries :data="search" />
+      <OutputSearchRegistriesAppendix :data="search" />
     </Dialog>
   </div>
 </template>
@@ -53,6 +54,7 @@
 <script>
 import { mapState } from "vuex";
 import OutputSearchRegistries from "./OutputSearchRegistries.vue";
+import OutputSearchRegistriesAppendix from "./OutputSearchRegistriesAppendix.vue";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -69,7 +71,8 @@ export default {
     InputSelectMulti,
     InputDate,
     InputTextMultiSyntax,
-    OutputSearchRegistries
+    OutputSearchRegistries,
+    OutputSearchRegistriesAppendix
   },
   computed: mapState({
     search: state => state.method.doc.search

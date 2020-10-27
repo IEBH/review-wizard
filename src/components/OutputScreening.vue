@@ -31,7 +31,7 @@
         PRISMA flow diagram (see Figure X)
         <span v-if="data.isExcludedFullTextInAppendix">
           and a list of excluded (full-text) studies with reasons for exclusions
-          (see Appendix X)
+          (see Appendix A)
         </span>
         .
       </span>

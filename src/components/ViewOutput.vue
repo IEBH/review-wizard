@@ -30,23 +30,56 @@
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <OutputPicot :data="picot" />
-      <OutputSearch :data="search" />
-      <OutputSearchDatabases :data="search" />
-      <OutputSearchRegistries :data="search" />
-      <OutputSearchPublicationType :data="search" />
-      <OutputSearchSupplementoryMethods :data="search" />
-      <OutputScreening :data="screening" />
-      <OutputDataExtraction :data="extraction" />
-      <OutputAssessmentOfTheRiskOfBias :data="riskOfBias" />
-      <OutputMeasurementOfEffect :data="measurementOfEffect" />
-      <OutputUnitOfAnalysis :data="unitOfAnalysis" />
-      <OutputDealingWithMissingData :data="missingData" />
+      <OutputPicot v-if="outputOptions[0].include" :data="picot" />
+      <h1>Method</h1>
+      <OutputSearch v-if="outputOptions[1].include" :data="search" />
+      <OutputSearchDatabases v-if="outputOptions[2].include" :data="search" />
+      <OutputSearchRegistries v-if="outputOptions[3].include" :data="search" />
+      <OutputSearchPublicationType
+        v-if="outputOptions[4].include"
+        :data="search"
+      />
+      <OutputSearchSupplementoryMethods
+        v-if="outputOptions[5].include"
+        :data="search"
+      />
+      <OutputScreening v-if="outputOptions[6].include" :data="screening" />
+      <OutputDataExtraction
+        v-if="outputOptions[7].include"
+        :data="extraction"
+      />
+      <OutputAssessmentOfTheRiskOfBias
+        v-if="outputOptions[8].include"
+        :data="riskOfBias"
+      />
+      <OutputMeasurementOfEffect
+        v-if="outputOptions[9].include"
+        :data="measurementOfEffect"
+      />
+      <OutputUnitOfAnalysis
+        v-if="outputOptions[10].include"
+        :data="unitOfAnalysis"
+      />
+      <OutputDealingWithMissingData
+        v-if="outputOptions[11].include"
+        :data="missingData"
+      />
       <OutputHeterogeneityPublicationBias
+        v-if="outputOptions[12].include"
         :data="heterogeneityPublicationBiases"
       />
       <OutputSubgroupAndSensitivityAnalysis
+        v-if="outputOptions[13].include"
         :data="subgroupAndSensitivityAnalysis"
+      />
+      <h1>Appendix</h1>
+      <OutputSearchDatabasesAppendix
+        v-if="outputOptions[2].include"
+        :data="search"
+      />
+      <OutputSearchRegistriesAppendix
+        v-if="outputOptions[3].include"
+        :data="search"
       />
     </Dialog>
   </div>
@@ -58,7 +91,9 @@ import { mapState } from "vuex";
 import OutputPicot from "./OutputPicot.vue";
 import OutputSearch from "./OutputSearch.vue";
 import OutputSearchDatabases from "./OutputSearchDatabases.vue";
+import OutputSearchDatabasesAppendix from "./OutputSearchDatabasesAppendix.vue";
 import OutputSearchRegistries from "./OutputSearchRegistries.vue";
+import OutputSearchRegistriesAppendix from "./OutputSearchRegistriesAppendix.vue";
 import OutputSearchPublicationType from "./OutputSearchPublicationType.vue";
 import OutputSearchSupplementoryMethods from "./OutputSearchSupplementoryMethods.vue";
 import OutputScreening from "./OutputScreening.vue";
@@ -83,7 +118,9 @@ export default {
     OutputPicot,
     OutputSearch,
     OutputSearchDatabases,
+    OutputSearchDatabasesAppendix,
     OutputSearchRegistries,
+    OutputSearchRegistriesAppendix,
     OutputSearchPublicationType,
     OutputSearchSupplementoryMethods,
     OutputScreening,
