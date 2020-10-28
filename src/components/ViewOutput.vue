@@ -5,17 +5,14 @@
     <p>
       <b>Select sections to include in output</b>
     </p>
+    <Button label="Select All" @click="selectAll()" class="p-mr-2 p-mb-2" />
+    <Button label="Deselect All" @click="deselectAll()" class="p-mr-2 p-mb-2" />
     <div
       v-for="(option, index) of outputOptions"
       :key="index"
       class="p-field-checkbox"
     >
-      <Checkbox
-        :id="index"
-        name="option"
-        :value="option"
-        v-model="option.include"
-      />
+      <Checkbox :id="index" :binary="true" v-model="option.include" />
       <label :for="index">{{ option.label }}</label>
     </div>
 
@@ -27,7 +24,7 @@
     <Dialog
       header="Search Strategy"
       :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
+      :style="{ width: '80vw' }"
       :modal="true"
     >
       <OutputPicot v-if="outputOptions[0].include" :data="picot" />
@@ -157,6 +154,14 @@ export default {
     },
     closeModal() {
       this.displayModal = false;
+    },
+    selectAll() {
+      console.log(this.outputOptions);
+      this.outputOptions.forEach(option => (option.include = true));
+    },
+    deselectAll() {
+      console.log(this.outputOptions);
+      this.outputOptions.forEach(option => (option.include = false));
     }
   },
   data() {
