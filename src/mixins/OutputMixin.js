@@ -4,6 +4,9 @@ export default {
       if (typeof s !== "string") return "";
       return s.charAt(0).toUpperCase() + s.slice(1);
     },
+    selectRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    },
     joinArrayWithAnd(arr) {
       if (arr.length > 1)
         return arr.slice(0, -1).join(", ") + " and " + arr.slice(-1);

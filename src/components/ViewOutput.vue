@@ -27,8 +27,8 @@
       :style="{ width: '80vw' }"
       :modal="true"
     >
-      <OutputPicot v-if="outputOptions[0].include" :data="picot" />
       <h1>Method</h1>
+      <OutputPicot v-if="outputOptions[0].include" :data="picot" />
       <OutputSearch v-if="outputOptions[1].include" :data="search" />
       <OutputSearchDatabases v-if="outputOptions[2].include" :data="search" />
       <OutputSearchRegistries v-if="outputOptions[3].include" :data="search" />
