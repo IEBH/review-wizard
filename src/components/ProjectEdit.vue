@@ -26,10 +26,21 @@ export default {
   },
   methods: {
     async refresh() {
-      const articleId = this.$route.params.articleId;
+      let articleId = this.$route.params.articleId;
+      // Check article ID
       if (!articleId) {
-        console.log("No article id specified");
-      } else if (articleId !== this.prevId) {
+        console.log("No article ID specified in URL, checking local storage");
+        if (localStorage.articleId) {
+          console.log("Article ID found in local storage");
+          articleId = localStorage.articleId;
+        } else {
+          console.log("No article ID found in local storage");
+          return;
+        }
+      }
+      // Check if article ID is different to the current ID
+      if (articleId !== this.prevId) {
+        console.log("Fetching article from Firebase");
         // If there is a previous ID, close channel and clear store data
         if (this.prevId) closeArticle(this.$store);
         // Check for existence of article
@@ -41,15 +52,15 @@ export default {
               this.$store.commit("setArticleId", articleId);
             })
             .catch(error => {
-              console.log(
+              console.error(
                 "Error opening firestore channel, this error should not be hit"
               );
-              console.error(error);
               this.$store.commit("setArticleId", null);
               this.$router.replace("/");
+              throw error;
             });
         } else {
-          console.log("Article ID does not exist");
+          console.error("Article ID does not exist");
           this.$store.commit("setArticleId", null);
           this.$router.replace("/");
         }

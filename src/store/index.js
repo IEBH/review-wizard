@@ -24,6 +24,7 @@ const storeData = {
   },
   mutations: {
     setArticleId(state, id) {
+      localStorage.articleId = id;
       state.articleId = id;
     }
   }
