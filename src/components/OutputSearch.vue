@@ -1,16 +1,17 @@
 <template>
   <div>
     <p>
-      <span v-if="data.components">
+      <span v-if="data.components.length">
         The following components were included in the search string:
         {{ joinArrayWithAnd(formatSelectMulti(data.components)).toLowerCase() }}
       </span>
-      <span v-if="data.specialist">
+      <span v-if="data.specialist.length">
         This search string was constructed by [a/an]
-        {{ joinArrayWithAnd(formatSelectMulti(data.specialist)).toLowerCase() }}
-        .
+        {{
+          joinArrayWithAnd(formatSelectMulti(data.specialist)).toLowerCase()
+        }}.
       </span>
-      <span v-if="data.helper">
+      <span v-if="data.helper.length">
         [A/An]
         {{ joinArrayWithAnd(formatSelectMulti(data.helper)).toLowerCase() }}
         helped in the design of the search.

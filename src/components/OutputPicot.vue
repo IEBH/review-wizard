@@ -125,6 +125,7 @@
         }}
       </li>
     </ul>
+    <h2>Inclusion criteria</h2>
     <p>
       We included
       {{ joinArrayWithOr(formatSelectMulti(data.types)).toLowerCase() }}

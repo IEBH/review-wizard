@@ -28,7 +28,9 @@
       :modal="true"
     >
       <h1>Method</h1>
+      <h2>PICOT</h2>
       <OutputPicot v-if="outputOptions[0].include" :data="picot" />
+      <h2>Search strategy</h2>
       <OutputSearch v-if="outputOptions[1].include" :data="search" />
       <OutputSearchDatabases v-if="outputOptions[2].include" :data="search" />
       <OutputSearchRegistries v-if="outputOptions[3].include" :data="search" />
@@ -40,31 +42,40 @@
         v-if="outputOptions[5].include"
         :data="search"
       />
+      <h2>Study selection and screening</h2>
+      <h3>Screening</h3>
       <OutputScreening v-if="outputOptions[6].include" :data="screening" />
+      <h3>Data extraction</h3>
       <OutputDataExtraction
         v-if="outputOptions[7].include"
         :data="extraction"
       />
+      <h2>Assesment of the RoB</h2>
       <OutputAssessmentOfTheRiskOfBias
         v-if="outputOptions[8].include"
         :data="riskOfBias"
       />
+      <h2>Measurement of effect</h2>
       <OutputMeasurementOfEffect
         v-if="outputOptions[9].include"
         :data="measurementOfEffect"
       />
+      <h2>Unit of analysis</h2>
       <OutputUnitOfAnalysis
         v-if="outputOptions[10].include"
         :data="unitOfAnalysis"
       />
+      <h2>Dealing with missing data</h2>
       <OutputDealingWithMissingData
         v-if="outputOptions[11].include"
         :data="missingData"
       />
+      <h2>Assessment of heterogeneity and publication biases</h2>
       <OutputHeterogeneityPublicationBias
         v-if="outputOptions[12].include"
         :data="heterogeneityPublicationBiases"
       />
+      <h2>Subgroup and sensitivity analysis</h2>
       <OutputSubgroupAndSensitivityAnalysis
         v-if="outputOptions[13].include"
         :data="subgroupAndSensitivityAnalysis"

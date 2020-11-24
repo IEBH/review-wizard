@@ -2,7 +2,9 @@
   <div>
     <h3>Appendix X - Search Strategies</h3>
     <p v-for="(database, index) of data.databases" :key="index">
-      {{ database.label }} - run {{ formatDate(data.dateOfSearch) }} <br />
+      <b> {{ database.label }} - run {{ formatDate(data.dateOfSearch) }} </b>
+      <br />
+      <br />
       <span style="white-space: pre-wrap;">{{ database.string }}</span>
     </p>
   </div>
