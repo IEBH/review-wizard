@@ -72,7 +72,6 @@ export default {
   }),
   methods: {
     updateField(field, value) {
-      console.log(value);
       this.$store.dispatch("method/set", {
         measurementOfEffect: { [field]: value }
       });
