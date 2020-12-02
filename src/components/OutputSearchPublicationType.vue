@@ -3,7 +3,13 @@
     <p
       v-if="!data.isRestrictedByPublicationType && !data.isRestrictedByLanguage"
     >
-      No publication type or language restrictions were applied.
+      {{
+        selectRandom([
+          "No publication type or language restrictions were applied.",
+          "We did not apply restrictions to publication type or language.",
+          "All publication types and languages were included in the search."
+        ])
+      }}
     </p>
     <p v-else>
       <span v-if="data.isRestrictedByPublicationType">
