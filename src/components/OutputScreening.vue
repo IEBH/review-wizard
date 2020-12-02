@@ -2,15 +2,21 @@
   <div>
     <p>
       <!-- Screeners -->
-      {{ capitalize(numberToWord(data.numberOfTitleAbstractScreeners)) }} review
-      authors ({{
-        formatSelectMulti(data.titleAbstractScreeners)
-          .map(el => nameToInitials(el))
-          .join(", ")
-      }}) independently screened the titles and abstracts against the inclusion
-      criteria. One review author ({{
-        nameToInitials(data.fullTextRetrivalAuthor)
-      }}) retrieved full-text, and
+      {{
+        selectRandom([
+          capitalize(numberToWord(data.numberOfTitleAbstractScreeners)) +
+            " review authors (" +
+            formatSelectMulti(data.titleAbstractScreeners)
+              .map(el => nameToInitials(el))
+              .join(", ") +
+            ") independently screened the titles and abstracts against the inclusion criteria.",
+          "Screening by title and abstract was conducted by " +
+            numberToWord(data.numberOfTitleAbstractScreeners) +
+            " authors independently."
+        ])
+      }}
+      One review author ({{ nameToInitials(data.fullTextRetrivalAuthor) }})
+      retrieved full-text, and
       {{ numberToWord(data.numberOfFullTextScreeners) }} authors ({{
         formatSelectMulti(data.fullTextScreeners)
           .map(el => nameToInitials(el))
