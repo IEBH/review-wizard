@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      We also
+      {{ selectRandom(["We also ", "Additionaly, we"]) }}
       {{
         joinArrayWithAnd(
           formatSelectMulti(data.supplementoryMethods)
