@@ -1,13 +1,23 @@
 <template>
   <div>
     <p>
-      We searched {{ joinArrayWithAnd(formatSelectMulti(data.databases)) }} from
+      {{
+        selectRandom(["We searched ", "Databases used for the search were "])
+      }}
+      {{ joinArrayWithAnd(formatSelectMulti(data.databases)) }}
+      {{
+        selectRandom([
+          "from ",
+          ". Searchers were run from ",
+          "Databases were searched from "
+        ])
+      }}
       {{
         data.dateSearchedUntil
           ? formatDateFull(data.dateSearchedUntil)
           : "inception"
       }}
-      to
+      {{ selectRandom(["to ", "until "]) }}
       {{ data.dateOfSearch ? formatDateFull(data.dateOfSearch) : "BLANK" }}
       (see Appendix X).
     </p>
