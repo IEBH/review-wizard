@@ -1,14 +1,23 @@
 <template>
   <div>
     <p>
-      We searched
-      {{ joinArrayWithAnd(formatSelectMulti(data.registries)) }} from
+      {{
+        selectRandom(["We searched ", "Databases used for the search were "])
+      }}
+      {{ joinArrayWithAnd(formatSelectMulti(data.registries)) }}
+      {{
+        selectRandom([
+          "from ",
+          ". Searchers were run from ",
+          "Databases were searched from "
+        ])
+      }}
       {{
         data.registryDateSearchedUntil
           ? formatDateFull(data.registryDateSearchedUntil)
           : "inception"
       }}
-      to
+      {{ selectRandom(["to ", "until "]) }}
       {{
         data.registryDateOfSearch
           ? formatDateFull(data.registryDateOfSearch)
