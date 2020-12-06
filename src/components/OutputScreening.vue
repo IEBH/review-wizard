@@ -12,6 +12,19 @@
             ") independently screened the titles and abstracts against the inclusion criteria.",
           "Screening by title and abstract was conducted by " +
             numberToWord(data.numberOfTitleAbstractScreeners) +
+            " authors independently.",
+          "Screening by title and abstract was conducted by " +
+            joinArrayWithAnd(
+              formatSelectMulti(data.titleAbstractScreeners).map(el =>
+                nameToInitials(el)
+              )
+            ) +
+            " independently.",
+          "Articles were screened by title and abstract, by " +
+            numberToWord(data.numberOfTitleAbstractScreeners) +
+            " authors independently.",
+          "Search results were screened for eligibility by " +
+            numberToWord(data.numberOfTitleAbstractScreeners) +
             " authors independently."
         ])
       }}
