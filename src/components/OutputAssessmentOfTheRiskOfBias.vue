@@ -1,17 +1,33 @@
 <template>
   <div>
     <p>
-      {{ data.numberOfAuthors ? data.numberOfAuthors : "BLANK " }} review
-      authors {{ data.isIndependent ? "independently" : "" }} assessed the risk
-      of bias for each study using the
-      {{ data.toolUsed ? data.toolUsed : "BLANK" }}.
+      {{
+        selectRandom([
+          ""
+            .concat(data.numberOfAuthors ? data.numberOfAuthors : "BLANK ")
+            .concat(" review authors")
+            .concat(data.isIndependent ? " independently " : " ")
+            .concat("assessed the risk of bias for each study using the ")
+            .concat(data.toolUsed ? data.toolUsed : "BLANK")
+            .concat("."),
+          "Risk of bias was assessed using the "
+            .concat(data.toolUsed ? data.toolUsed : "BLANK")
+            .concat(". ")
+            .concat(data.numberOfAuthors ? data.numberOfAuthors : "BLANK ")
+            .concat(" authors")
+            .concat(data.isIndependent ? " independently " : " ")
+            .concat("assessed risk of bias for each study.")
+        ])
+      }}
     </p>
   </div>
 </template>
 
 <script>
+import OutputMixin from "../mixins/OutputMixin.js";
 export default {
   name: "OutputAssessmentOfTheRiskOfBias",
+  mixins: [OutputMixin],
   props: {
     data: Object
   }
