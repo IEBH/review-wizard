@@ -33,29 +33,67 @@
       }}
     </p>
     <p>
-      We used
       {{
-        data.dichotomousOutcomes
-          ? joinArrayWithAnd(
-              formatSelectMulti(data.dichotomousOutcomes)
-            ).toLowerCase()
-          : "BLANK"
+        selectRandom([
+          "We used "
+            .concat(
+              data.dichotomousOutcomes
+                ? joinArrayWithAnd(
+                    formatSelectMulti(data.dichotomousOutcomes)
+                  ).toLowerCase()
+                : "BLANK"
+            )
+            .concat(" for dichotomous outcomes."),
+          "For dichotomous outcomes, treatment/intervention effect was calculated using "
+            .concat(
+              data.dichotomousOutcomes
+                ? joinArrayWithAnd(
+                    formatSelectMulti(data.dichotomousOutcomes)
+                  ).toLowerCase()
+                : "BLANK"
+            )
+            .concat("."),
+          "Effect of the intervention on dichotomous outcomes was expressed as "
+            .concat(
+              data.dichotomousOutcomes
+                ? joinArrayWithAnd(
+                    formatSelectMulti(data.dichotomousOutcomes)
+                  ).toLowerCase()
+                : "BLANK"
+            )
+            .concat(".")
+        ])
       }}
-      for dichotomous outcomes.
     </p>
     <p>
-      We undertook meta-analyses when
-      {{ data.metaAnalysisThreshold ? data.metaAnalysisThreshold : "BLANK" }}
-      studies or comparisons reported the same outcome.
-    </p>
-    <p>
-      We used a
       {{
-        data.metaAnalysisModelUsed.toLowerCase()
-          ? data.metaAnalysisModelUsed.toLowerCase()
-          : "BLANK"
+        selectRandom([
+          "We undertook meta-analyses when "
+            .concat(
+              data.metaAnalysisThreshold ? data.metaAnalysisThreshold : "BLANK"
+            )
+            .concat(
+              " studies or comparisons reported the same outome. We used a "
+            )
+            .concat(
+              data.metaAnalysisModelUsed.toLowerCase()
+                ? data.metaAnalysisModelUsed.toLowerCase()
+                : "BLANK"
+            )
+            .concat(" model."),
+          "We planned to do meta-analysis using a "
+            .concat(
+              data.metaAnalysisModelUsed.toLowerCase()
+                ? data.metaAnalysisModelUsed.toLowerCase()
+                : "BLANK"
+            )
+            .concat(" model if there were ")
+            .concat(
+              data.metaAnalysisThreshold ? data.metaAnalysisThreshold : "BLANK"
+            )
+            .concat(" or more studies with the same outcome.")
+        ])
       }}
-      effects model.
     </p>
   </div>
 </template>
