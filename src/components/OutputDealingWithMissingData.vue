@@ -16,8 +16,10 @@
 </template>
 
 <script>
+import OutputMixin from "../mixins/OutputMixin.js";
 export default {
   name: "OutputDealingWithMissingData",
+  mixins: [OutputMixin],
   props: {
     data: Object
   }
