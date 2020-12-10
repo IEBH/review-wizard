@@ -2,7 +2,13 @@
   <div>
     <p>
       <span v-if="data.isSubgroupAnalysis">
-        We conducted the following subgroup analyses:
+        {{
+          selectRandom([
+            "We conducted the following subgroup analyses:",
+            "The following subgroup analyses were planned:",
+            "Planned subgroup analyses were:"
+          ])
+        }}
         {{
           joinArrayWithAnd(data.subgroupAnalysis)
             ? joinArrayWithAnd(data.subgroupAnalysis).toLowerCase()
@@ -11,7 +17,13 @@
       </span>
       <span v-else> {{ data.whyNotSubgroupAnalysis }}. </span>
       <span v-if="data.isSensitivityAnalysis">
-        We conducted the following sensitivity analyses:
+        {{
+          selectRandom([
+            "We conducted the following sensitivity analyses:",
+            "The following sensitivity analysis were planned:",
+            "Planned sensitivity analyses were:"
+          ])
+        }}
         {{
           joinArrayWithAnd(data.sensitivityAnalysis)
             ? joinArrayWithAnd(data.sensitivityAnalysis).toLowerCase()
