@@ -1,7 +1,12 @@
 <template>
   <div>
     <p v-if="data.isContactedInvestigators">
-      We contacted investigators or study sponsors to provide missing data.
+      {{
+        selectRandom([
+          "We contacted investigators or study sponsors to provide missing data.",
+          "Where data were missing, study investigators or sponsors were contacted."
+        ])
+      }}
     </p>
     <p v-else>
       We did not contact investigators or study sponsors to provide missing
