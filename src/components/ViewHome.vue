@@ -12,7 +12,7 @@
       </p>
       <p>
         Any changes made are automatically synced, just make sure to save the
-        URL to continue accessing the method section.
+        URL to continue accessing the methods section.
       </p>
       <br />
       <Button
