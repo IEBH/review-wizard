@@ -2,7 +2,7 @@
   <div>
     <Toolbar>
       <template slot="left">
-        <b>{{ title ? title : "Untitled Article" }}</b>
+        <b>{{ title ? title : "Untitled Methods Section" }}</b>
       </template>
       <template slot="right">
         <Button

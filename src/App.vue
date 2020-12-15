@@ -93,7 +93,7 @@ export default {
       return [
         {
           header: true,
-          title: "Article-Wizard",
+          title: "Methods-Wizard",
           hiddenOnCollapse: true
         },
         {

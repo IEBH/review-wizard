@@ -1,21 +1,22 @@
 <template>
   <div>
-    <h1>Welcome to the Article Wizard!</h1>
+    <h1>Welcome to the Methods Wizard!</h1>
     <p v-if="articleId">
       To start making changes, simply select a section from the left hand side
       and begin filling it in
     </p>
     <div v-else>
       <p>
-        To create a new article, please use the "Create New Article" button.
+        To create a new methods section, please use the "Create New Method"
+        button.
       </p>
       <p>
         Any changes made are automatically synced, just make sure to save the
-        URL to continue accessing the article.
+        URL to continue accessing the method section.
       </p>
       <br />
       <Button
-        label="Create New Article"
+        label="Create New Method"
         @click="newArticle"
         class="create-button"
       />
