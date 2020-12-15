@@ -33,7 +33,7 @@
         <img class="logo" alt="Logo" src="./assets/hat.png" height="150px" />
       </div>
       <div class="p-col-12 p-md-9 p-lg-9">
-        <h1 class="logo-text-large">ArticleWizard</h1>
+        <h1 class="logo-text-large">MethodsWizard</h1>
       </div>
     </div>
 

@@ -1,4 +1,4 @@
-# article-wizard
+# methods-wizard
 
 ## Project setup
 ```
