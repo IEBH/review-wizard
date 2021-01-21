@@ -11,11 +11,11 @@
           icon="pi pi-share-alt"
           class="p-mr-2"
         />
-        <Button label="Close" @click="closeArticle" class="p-button-danger" />
+        <Button label="Close" @click="close" class="p-button-danger" />
       </template>
     </Toolbar>
 
-    <!-- Modal to display output -->
+    <!-- Modal to display sharing link -->
     <Dialog
       header="Share"
       :visible.sync="displayModal"
@@ -23,6 +23,24 @@
       :modal="true"
     >
       <p>Copy the link below to send to others:</p>
+      <Toolbar>
+        <template slot="left">{{ shareUrl }}</template>
+        <template slot="right">
+          <Button icon="pi pi-copy" @click="copyLink" />
+        </template>
+      </Toolbar>
+      <input type="hidden" id="testing-code" :value="shareUrl" />
+    </Dialog>
+
+    <!-- Modal to display warning -->
+    <Dialog
+      header="Warning"
+      :visible.sync="displayWarn"
+      :style="{ width: '50vw' }"
+      :modal="true"
+      @hide="closeArticle"
+    >
+      <p>Warning: save the below link to ensure progress is not lost</p>
       <Toolbar>
         <template slot="left">{{ shareUrl }}</template>
         <template slot="right">
@@ -61,10 +79,15 @@ export default {
   data() {
     return {
       displayModal: false,
+      displayWarn: false,
       shareUrl: ""
     };
   },
   methods: {
+    close() {
+      this.shareUrl = "https://methodswizard.netlify.app/#/" + this.articleId;
+      this.displayWarn = true;
+    },
     closeArticle() {
       closeArticle(this.$store);
       this.$router.push("/");
@@ -72,9 +95,6 @@ export default {
     openModal() {
       this.shareUrl = "https://methodswizard.netlify.app/#/" + this.articleId;
       this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     },
     copyLink() {
       let linkToCopy = document.querySelector("#testing-code");
