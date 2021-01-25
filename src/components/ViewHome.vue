@@ -17,9 +17,30 @@
       <br />
       <Button
         label="Create New Methods Section"
-        @click="newArticle"
+        @click="newArticleDialog"
         class="create-button"
       />
+
+      <!-- Modal to display warning -->
+      <Dialog
+        header="Alert"
+        :visible.sync="displayWarn"
+        :style="{ width: '50vw' }"
+        :modal="true"
+        @hide="newArticle"
+      >
+        <p>Save the below link to ensure progress is not lost</p>
+        <Toolbar>
+          <template slot="left">{{ shareUrl }}</template>
+          <template slot="right">
+            <Button icon="pi pi-copy" @click="copyLink" />
+          </template>
+        </Toolbar>
+        <input type="hidden" id="testing-code" :value="shareUrl" />
+      </Dialog>
+
+      <!-- Toast for copy msg -->
+      <Toast />
     </div>
   </div>
 </template>
@@ -27,12 +48,24 @@
 <script>
 import { createNewArticle } from "../api/firebase.js";
 
+import Toolbar from "primevue/toolbar";
 import Button from "primevue/button";
+import Dialog from "primevue/dialog";
+import Toast from "primevue/toast";
 
 export default {
   name: "ViewHome",
   components: {
-    Button
+    Toolbar,
+    Button,
+    Dialog,
+    Toast
+  },
+  data() {
+    return {
+      shareUrl: "",
+      displayWarn: false
+    };
   },
   computed: {
     articleId() {
@@ -40,6 +73,10 @@ export default {
     }
   },
   methods: {
+    newArticleDialog() {
+      this.shareUrl = "https://methodswizard.netlify.app/#/" + this.articleId;
+      this.displayWarn = true;
+    },
     newArticle() {
       createNewArticle()
         .then(val => {
@@ -50,6 +87,32 @@ export default {
           });
         })
         .catch(err => console.log(err));
+    },
+    copyLink() {
+      let linkToCopy = document.querySelector("#testing-code");
+      linkToCopy.setAttribute("type", "text");
+      linkToCopy.select();
+
+      try {
+        document.execCommand("copy");
+        this.$toast.add({
+          severity: "success",
+          summary: "Successfully copied to clipboard",
+          life: 3000
+        });
+      } catch (err) {
+        console.error(err);
+        this.$toast.add({
+          severity: "error",
+          summary: "Error copying to clipboard",
+          detail: err,
+          life: 3000
+        });
+      }
+
+      /* unselect the range */
+      linkToCopy.setAttribute("type", "hidden");
+      window.getSelection().removeAllRanges();
     }
   }
 };
