@@ -17,7 +17,7 @@
       <br />
       <Button
         label="Create New Methods Section"
-        @click="newArticleDialog"
+        @click="newArticle"
         class="create-button"
       />
 
@@ -27,7 +27,7 @@
         :visible.sync="displayWarn"
         :style="{ width: '50vw' }"
         :modal="true"
-        @hide="newArticle"
+        @hide="navigateToTitlepage"
       >
         <p>Save the below link to ensure progress is not lost</p>
         <Toolbar>
@@ -63,6 +63,7 @@ export default {
   },
   data() {
     return {
+      newId: "",
       shareUrl: "",
       displayWarn: false
     };
@@ -73,20 +74,20 @@ export default {
     }
   },
   methods: {
-    newArticleDialog() {
-      this.shareUrl = "https://methodswizard.netlify.app/#/" + this.articleId;
-      this.displayWarn = true;
-    },
     newArticle() {
       createNewArticle()
         .then(val => {
-          const newId = val.id;
-          this.$router.replace({
-            name: "titlepage",
-            params: { articleId: newId }
-          });
+          this.newId = val.id;
+          this.shareUrl = "https://methodswizard.netlify.app/#/" + this.newId;
+          this.displayWarn = true;
         })
         .catch(err => console.log(err));
+    },
+    navigateToTitlepage() {
+      this.$router.replace({
+        name: "titlepage",
+        params: { articleId: this.newId }
+      });
     },
     copyLink() {
       let linkToCopy = document.querySelector("#testing-code");
