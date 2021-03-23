@@ -51,19 +51,11 @@ export default {
       this.$store.dispatch("method/set", {
         unitOfAnalysis: { [field]: value }
       });
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
     return {
       unitOfAnalysisOptions: ["Individual", "Other"],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputUnitOfAnalysis
     };
   }

@@ -85,12 +85,6 @@ export default {
       this.$store.dispatch("method/set", {
         picot: { [field]: value }
       });
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
@@ -106,8 +100,6 @@ export default {
         { label: "Letters" },
         { label: "Editorials" }
       ],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputPicot
     };
   }

@@ -35,19 +35,11 @@ export default {
       this.$store.dispatch("method/set", {
         missingData: { [field]: value }
       });
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
     return {
       numberOptions: ["1", "2", "3", "4", "5", "6"],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputDealingWithMissingData
     };
   }

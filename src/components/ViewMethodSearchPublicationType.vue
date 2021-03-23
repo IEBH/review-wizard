@@ -58,12 +58,6 @@ export default {
       this.$store.dispatch("method/set", {
         search: { [field]: value }
       });
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
@@ -89,8 +83,6 @@ export default {
         { label: "Japanese" },
         { label: "Egyptian" }
       ],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputSearchPublicationType
     };
   }

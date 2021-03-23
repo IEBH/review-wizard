@@ -35,12 +35,6 @@ export default {
       this.$store.dispatch("method/set", {
         search: { [field]: value }
       });
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
@@ -52,8 +46,6 @@ export default {
         { label: "Contacted experts" },
         { label: "Used the similar articles feature of a database" }
       ],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputSearchSupplementoryMethods
     };
   }

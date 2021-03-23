@@ -96,12 +96,6 @@ export default {
       this.$store.dispatch("method/set", {
         screening: { [field]: value }
       });
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
@@ -111,8 +105,6 @@ export default {
         { label: "By consensus" },
         { label: "By referring to a third author" }
       ],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputScreening
     };
   }

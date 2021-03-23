@@ -57,19 +57,11 @@ export default {
       this.$store.dispatch("method/set", {
         heterogeneityPublicationBiases: { [field]: value }
       });
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
     return {
       publicationBiasOptions: ["Funnel plot", "Egger's test", "Other"],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputHeterogeneityPublicationBias
     };
   }

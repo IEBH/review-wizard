@@ -71,12 +71,6 @@ export default {
       var newregistry = this.search.registries;
       newregistry[index].string = value;
       this.updateField("registries", newregistry);
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
@@ -97,8 +91,6 @@ export default {
         { label: "Clinical Trials Registry – India", string: "" },
         { label: "Cochrane CENTRAL", string: "" }
       ],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputSearchRegistries,
       outputComponentAppendix: OutputSearchRegistriesAppendix
     };

@@ -49,12 +49,6 @@ export default {
       this.$store.dispatch("method/set", {
         search: { [field]: value }
       });
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
@@ -70,8 +64,6 @@ export default {
         { label: "Information Specialist" },
         { label: "Cochrane Information Specialist" }
       ],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputSearch
     };
   }

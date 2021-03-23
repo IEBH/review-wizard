@@ -71,12 +71,6 @@ export default {
       var newDatabase = this.search.databases;
       newDatabase[index].string = value;
       this.updateField("databases", newDatabase);
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
@@ -97,8 +91,6 @@ export default {
         { label: "Scopus", string: "" },
         { label: "LILACs", string: "" }
       ],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputSearchDatabases,
       outputComponentAppendix: OutputSearchDatabasesAppendix
     };

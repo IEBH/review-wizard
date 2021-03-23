@@ -60,12 +60,6 @@ export default {
       this.$store.dispatch("method/set", {
         measurementOfEffect: { [field]: value }
       });
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
     }
   },
   data() {
@@ -77,8 +71,6 @@ export default {
         { label: "Rate ratios" }
       ],
       metaAnalysisModelOptions: ["Random effects", "Fixed effects"],
-      displayModal: false,
-      modalText: "",
       outputComponent: OutputMeasurementOfEffect
     };
   }
