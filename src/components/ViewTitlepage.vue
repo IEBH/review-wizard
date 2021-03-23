@@ -11,11 +11,17 @@
       :value="titlepage.authors"
       @input="updateField('authors', $event)"
     />
+    <InputTextNumber
+      question="What year will study be published?"
+      :value="titlepage.year"
+      @input="updateField('year', $event)"
+    />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import InputTextNumber from "./InputTextNumber.vue";
 import InputTextSingleLine from "./InputTextSingleLine.vue";
 import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
 
@@ -23,7 +29,8 @@ export default {
   name: "ViewMethodPicot",
   components: {
     InputTextSingleLine,
-    InputTextSingleLineMulti
+    InputTextSingleLineMulti,
+    InputTextNumber
   },
   computed: mapState({
     titlepage: state => state.titlepage.doc

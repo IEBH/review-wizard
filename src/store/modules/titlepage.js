@@ -15,7 +15,8 @@ const method = {
   state: {
     doc: {
       title: "",
-      authors: [""]
+      authors: [""],
+      year: ""
     }
   },
   getters: {},

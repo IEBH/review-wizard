@@ -8,7 +8,11 @@
         v-bind:value="value"
         v-on:change="$emit('input', $event.target.value)"
       > -->
-    <InputNumber :value="value" @input="$emit('input', $event)" />
+    <InputNumber
+      :value="value"
+      @input="$emit('input', $event)"
+      :useGrouping="false"
+    />
   </div>
 </template>
 
