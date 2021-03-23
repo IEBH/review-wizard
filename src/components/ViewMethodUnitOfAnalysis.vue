@@ -23,19 +23,7 @@
       @input="updateField('example', $event)"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Unit of Analysis"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputUnitOfAnalysis :data="unitOfAnalysis" />
-    </Dialog>
+    <PreviewOutput :component="outputComponent" :data="unitOfAnalysis" />
   </div>
 </template>
 
@@ -43,8 +31,7 @@
 import { mapState } from "vuex";
 import OutputUnitOfAnalysis from "./OutputUnitOfAnalysis.vue";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputTextSingleLine from "./InputTextSingleLine.vue";
@@ -52,11 +39,9 @@ import InputTextSingleLine from "./InputTextSingleLine.vue";
 export default {
   name: "ViewMethodUnitOfAnalysis",
   components: {
-    Button,
-    Dialog,
     InputTextSingleLine,
     InputSelectDropdown,
-    OutputUnitOfAnalysis
+    PreviewOutput
   },
   computed: mapState({
     unitOfAnalysis: state => state.method.doc.unitOfAnalysis
@@ -78,7 +63,8 @@ export default {
     return {
       unitOfAnalysisOptions: ["Individual", "Other"],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputUnitOfAnalysis
     };
   }
 };

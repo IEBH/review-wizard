@@ -42,21 +42,10 @@
       @input="updateField('whyNotSensitivityAnalysis', $event)"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Subgroup and Sensitivity Analysis"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputSubgroupAndSensitivityAnalysis
-        :data="subgroupAndSensitivityAnalysis"
-      />
-    </Dialog>
+    <PreviewOutput
+      :component="outputComponent"
+      :data="subgroupAndSensitivityAnalysis"
+    />
   </div>
 </template>
 
@@ -64,8 +53,7 @@
 import { mapState } from "vuex";
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectYesNo from "./InputSelectYesNo.vue";
 import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
@@ -74,12 +62,10 @@ import InputTextMultiLine from "./InputTextMultiLine";
 export default {
   name: "ViewMethodSubgroupAndSensitivityAnalysis",
   components: {
-    Button,
-    Dialog,
     InputSelectYesNo,
     InputTextSingleLineMulti,
     InputTextMultiLine,
-    OutputSubgroupAndSensitivityAnalysis
+    PreviewOutput
   },
   computed: mapState({
     subgroupAndSensitivityAnalysis: state =>
@@ -102,7 +88,8 @@ export default {
     return {
       numberOptions: ["1", "2", "3", "4", "5", "6"],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputSubgroupAndSensitivityAnalysis
     };
   }
 };

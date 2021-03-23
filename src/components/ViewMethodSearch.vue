@@ -23,19 +23,7 @@
       @input="updateField('helper', $event)"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Search Strategy"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputSearch :data="search" />
-    </Dialog>
+    <PreviewOutput :component="outputComponent" :data="search" />
   </div>
 </template>
 
@@ -43,18 +31,15 @@
 import { mapState } from "vuex";
 import OutputSearch from "./OutputSearch.vue";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectMulti from "./InputSelectMulti.vue";
 
 export default {
   name: "ViewMethodSearch",
   components: {
-    Button,
-    Dialog,
     InputSelectMulti,
-    OutputSearch
+    PreviewOutput
   },
   computed: mapState({
     search: state => state.method.doc.search
@@ -86,7 +71,8 @@ export default {
         { label: "Cochrane Information Specialist" }
       ],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputSearch
     };
   }
 };

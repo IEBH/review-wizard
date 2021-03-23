@@ -34,20 +34,8 @@
       />
     </template>
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Search Strategy"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputSearchRegistries :data="search" />
-      <OutputSearchRegistriesAppendix :data="search" />
-    </Dialog>
+    <PreviewOutput :component="outputComponent" :data="search" />
+    <PreviewOutput :component="outputComponentAppendix" :data="search" />
   </div>
 </template>
 
@@ -56,8 +44,7 @@ import { mapState } from "vuex";
 import OutputSearchRegistries from "./OutputSearchRegistries.vue";
 import OutputSearchRegistriesAppendix from "./OutputSearchRegistriesAppendix.vue";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectMulti from "./InputSelectMulti.vue";
 import InputDate from "./InputDate.vue";
@@ -66,13 +53,10 @@ import InputTextMultiSyntax from "./InputTextMultiSyntax";
 export default {
   name: "ViewMethodSearchRegistries",
   components: {
-    Button,
-    Dialog,
     InputSelectMulti,
     InputDate,
     InputTextMultiSyntax,
-    OutputSearchRegistries,
-    OutputSearchRegistriesAppendix
+    PreviewOutput
   },
   computed: mapState({
     search: state => state.method.doc.search
@@ -114,7 +98,9 @@ export default {
         { label: "Cochrane CENTRAL", string: "" }
       ],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputSearchRegistries,
+      outputComponentAppendix: OutputSearchRegistriesAppendix
     };
   }
 };

@@ -30,19 +30,7 @@
       @input="updateField('includedLanguages', $event)"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Search Strategy"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputSearchPublicationType :data="search" />
-    </Dialog>
+    <PreviewOutput :component="outputComponent" :data="search" />
   </div>
 </template>
 
@@ -50,8 +38,7 @@
 import { mapState } from "vuex";
 import OutputSearchPublicationType from "./OutputSearchPublicationType.vue";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectYesNo from "./InputSelectYesNo.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
@@ -59,11 +46,9 @@ import InputSelectMulti from "./InputSelectMulti.vue";
 export default {
   name: "ViewMethodSearchDatabases",
   components: {
-    Button,
-    Dialog,
     InputSelectYesNo,
     InputSelectMulti,
-    OutputSearchPublicationType
+    PreviewOutput
   },
   computed: mapState({
     search: state => state.method.doc.search
@@ -105,7 +90,8 @@ export default {
         { label: "Egyptian" }
       ],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputSearchPublicationType
     };
   }
 };

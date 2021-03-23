@@ -65,27 +65,15 @@
       @input="updateField('isExcludedFullTextInAppendix', $event)"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Study Selection and Screening"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputScreening :data="screening" />
-    </Dialog>
+    <PreviewOutput :component="outputComponent" :data="screening" />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import OutputScreening from "./OutputScreening.vue";
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
@@ -94,12 +82,10 @@ import InputSelectYesNo from "./InputSelectYesNo.vue";
 export default {
   name: "ViewMethodScreening",
   components: {
-    Button,
-    Dialog,
     InputSelectDropdown,
     InputSelectMulti,
     InputSelectYesNo,
-    OutputScreening
+    PreviewOutput
   },
   computed: mapState({
     screening: state => state.method.doc.screening,
@@ -126,7 +112,8 @@ export default {
         { label: "By referring to a third author" }
       ],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputScreening
     };
   }
 };

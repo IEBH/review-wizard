@@ -9,19 +9,7 @@
       :options="numberOptions"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Dealing with Missing Data"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputDealingWithMissingData :data="missingData" />
-    </Dialog>
+    <PreviewOutput :component="outputComponent" :data="missingData" />
   </div>
 </template>
 
@@ -29,18 +17,15 @@
 import { mapState } from "vuex";
 import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectYesNo from "./InputSelectYesNo.vue";
 
 export default {
   name: "ViewMethodDealingWithMissingData",
   components: {
-    Button,
-    Dialog,
     InputSelectYesNo,
-    OutputDealingWithMissingData
+    PreviewOutput
   },
   computed: mapState({
     missingData: state => state.method.doc.missingData
@@ -62,7 +47,8 @@ export default {
     return {
       numberOptions: ["1", "2", "3", "4", "5", "6"],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputDealingWithMissingData
     };
   }
 };

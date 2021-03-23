@@ -28,19 +28,7 @@
       :options="metaAnalysisModelOptions"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Measurement of Effect"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputMeasurementOfEffect :data="measurementOfEffect" />
-    </Dialog>
+    <PreviewOutput :component="outputComponent" :data="measurementOfEffect" />
   </div>
 </template>
 
@@ -48,8 +36,7 @@
 import { mapState } from "vuex";
 import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
@@ -59,13 +46,11 @@ import InputTextNumber from "./InputTextNumber.vue";
 export default {
   name: "ViewMethodMeasuementOfEffect",
   components: {
-    Button,
-    Dialog,
     InputSelectDropdown,
     InputSelectMulti,
     InputTextSingleLine,
     InputTextNumber,
-    OutputMeasurementOfEffect
+    PreviewOutput
   },
   computed: mapState({
     measurementOfEffect: state => state.method.doc.measurementOfEffect
@@ -93,7 +78,8 @@ export default {
       ],
       metaAnalysisModelOptions: ["Random effects", "Fixed effects"],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputMeasurementOfEffect
     };
   }
 };

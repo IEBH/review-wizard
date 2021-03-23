@@ -23,21 +23,10 @@
       @input="updateField('didNotMeasure', $event)"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Assessment of Heterogeneity and Publication Biases"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputHeterogeneityPublicationBias
-        :data="heterogeneityPublicationBiases"
-      />
-    </Dialog>
+    <PreviewOutput
+      :component="outputComponent"
+      :data="heterogeneityPublicationBiases"
+    />
   </div>
 </template>
 
@@ -45,8 +34,7 @@
 import { mapState } from "vuex";
 import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputSelectYesNo from "./InputSelectYesNo.vue";
@@ -55,12 +43,10 @@ import InputTextMultiLine from "./InputTextMultiLine.vue";
 export default {
   name: "ViewMethodHeterogeneityPublicationBias",
   components: {
-    Button,
-    Dialog,
     InputSelectDropdown,
     InputSelectYesNo,
     InputTextMultiLine,
-    OutputHeterogeneityPublicationBias
+    PreviewOutput
   },
   computed: mapState({
     heterogeneityPublicationBiases: state =>
@@ -83,7 +69,8 @@ export default {
     return {
       publicationBiasOptions: ["Funnel plot", "Egger's test", "Other"],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputHeterogeneityPublicationBias
     };
   }
 };

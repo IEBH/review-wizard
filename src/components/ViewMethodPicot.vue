@@ -57,20 +57,7 @@
       @input="updateField('types', $event)"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="PICOT"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <span v-html="modalText"></span>
-      <OutputPicot :data="picot" />
-    </Dialog>
+    <PreviewOutput :component="outputComponent" :data="picot" />
   </div>
 </template>
 
@@ -78,8 +65,7 @@
 import { mapState } from "vuex";
 import OutputPicot from "./OutputPicot.vue";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectMulti from "./InputSelectMulti.vue";
 import InputTable from "./InputTable.vue";
@@ -87,11 +73,9 @@ import InputTable from "./InputTable.vue";
 export default {
   name: "ViewMethodPicot",
   components: {
-    Button,
-    Dialog,
     InputSelectMulti,
     InputTable,
-    OutputPicot
+    PreviewOutput
   },
   computed: mapState({
     picot: state => state.method.doc.picot
@@ -123,7 +107,8 @@ export default {
         { label: "Editorials" }
       ],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputPicot
     };
   }
 };
