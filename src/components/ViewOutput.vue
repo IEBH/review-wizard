@@ -121,7 +121,7 @@
         :key="monitorChange + 15"
       />
       <template #footer>
-        <Button label="Load New Output" @click="reload" />
+        <Button label="Rewrite Methods" @click="reload" />
       </template>
     </Dialog>
   </div>
