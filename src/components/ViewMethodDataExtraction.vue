@@ -16,19 +16,7 @@
       :options="numberOptions"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Data Extraction"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputDataExtraction :data="extraction" />
-    </Dialog>
+    <PreviewOutput :component="outputComponent" :data="extraction" />
   </div>
 </template>
 
@@ -36,18 +24,15 @@
 import { mapState } from "vuex";
 import OutputDataExtraction from "./OutputDataExtraction.vue";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 
 export default {
   name: "ViewMethodDataExtraction",
   components: {
-    Button,
-    Dialog,
     InputSelectDropdown,
-    OutputDataExtraction
+    PreviewOutput
   },
   computed: mapState({
     extraction: state => state.method.doc.extraction
@@ -69,7 +54,8 @@ export default {
     return {
       numberOptions: ["1", "2", "3", "4", "5", "6"],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputDataExtraction
     };
   }
 };

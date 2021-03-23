@@ -21,19 +21,7 @@
       @input="updateField('toolUsed', $event)"
     />
 
-    <div class="p-mt-3 p-d-flex p-jc-center">
-      <Button label="Generate Output" @click="openModal()" />
-    </div>
-
-    <!-- Modal to display output -->
-    <Dialog
-      header="Risk of Bias"
-      :visible.sync="displayModal"
-      :style="{ width: '50vw' }"
-      :modal="true"
-    >
-      <OutputAssesmentOfTheRiskOfBias :data="riskOfBias" />
-    </Dialog>
+    <PreviewOutput :component="outputComponent" :data="riskOfBias" />
   </div>
 </template>
 
@@ -41,8 +29,7 @@
 import { mapState } from "vuex";
 import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
 
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
+import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputSelectYesNo from "./InputSelectYesNo.vue";
@@ -51,12 +38,10 @@ import InputTextSingleLine from "./InputTextSingleLine.vue";
 export default {
   name: "ViewMethodAssessmentOfTheRiskOfBias",
   components: {
-    Button,
-    Dialog,
     InputSelectDropdown,
     InputSelectYesNo,
     InputTextSingleLine,
-    OutputAssesmentOfTheRiskOfBias
+    PreviewOutput
   },
   computed: mapState({
     riskOfBias: state => state.method.doc.riskOfBias
@@ -78,7 +63,8 @@ export default {
     return {
       numberOptions: ["1", "2", "3", "4", "5", "6"],
       displayModal: false,
-      modalText: ""
+      modalText: "",
+      outputComponent: OutputAssesmentOfTheRiskOfBias
     };
   }
 };
