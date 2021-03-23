@@ -3,7 +3,7 @@
     {{
       `(${formatAuthors(authors)
         .filter(author => author)
-        .join(", ")}. ${title}. ${year};.)`
+        .join(" ")} ${year}. ${title}.)`
     }}
   </span>
 </template>
@@ -19,7 +19,7 @@ export default {
     formatAuthors(arr) {
       return arr.map(author => {
         author = author.split(" ");
-        if (author[1]) return `${author[1]} ${author[0].charAt(0)}`;
+        if (author[1]) return `${author[1]} ${author[0].charAt(0)}.,`;
         else if (author[0]) return author[0];
       });
     }
