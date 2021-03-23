@@ -16,7 +16,7 @@ const method = {
     doc: {
       title: "",
       authors: [""],
-      year: ""
+      year: 0
     }
   },
   getters: {},

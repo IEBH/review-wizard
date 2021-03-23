@@ -3,6 +3,7 @@
     <Toolbar>
       <template slot="left">
         <b>{{ title ? title : "Untitled Methods Section" }}</b>
+        <TheArticleCitation :title="title" :authors="authors" :year="year" />
       </template>
       <template slot="right">
         <Button
@@ -64,16 +65,21 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
 
+import TheArticleCitation from "./TheArticleCitation.vue";
+
 export default {
   name: "TheArticleToolbar",
   components: {
     Toolbar,
     Button,
     Dialog,
-    Toast
+    Toast,
+    TheArticleCitation
   },
   computed: mapState({
     title: state => state.titlepage.doc.title,
+    authors: state => state.titlepage.doc.authors,
+    year: state => state.titlepage.doc.year,
     articleId: state => state.articleId
   }),
   data() {
