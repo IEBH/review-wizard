@@ -76,14 +76,14 @@
               " studies or comparisons reported the same outome. We used a "
             )
             .concat(
-              data.metaAnalysisModelUsed.toLowerCase()
+              data.metaAnalysisModelUsed
                 ? data.metaAnalysisModelUsed.toLowerCase()
                 : "BLANK"
             )
             .concat(" model."),
           "We planned to do meta-analysis using a "
             .concat(
-              data.metaAnalysisModelUsed.toLowerCase()
+              data.metaAnalysisModelUsed
                 ? data.metaAnalysisModelUsed.toLowerCase()
                 : "BLANK"
             )
