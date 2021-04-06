@@ -31,6 +31,7 @@
         "
         :value="registry.string"
         @input="updateRegisteryString(index, $event)"
+        :placeholder="placeholder"
       />
     </template>
 
@@ -92,7 +93,8 @@ export default {
         { label: "Cochrane CENTRAL", string: "" }
       ],
       outputComponent: OutputSearchRegistries,
-      outputComponentAppendix: OutputSearchRegistriesAppendix
+      outputComponentAppendix: OutputSearchRegistriesAppendix,
+      placeholder: "e.g. Acne AND Phototherapy OR Acne AND Light"
     };
   }
 };
