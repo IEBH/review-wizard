@@ -11,6 +11,7 @@
     <InputText
       type="text"
       :value="value"
+      :placeholder="placeholder"
       @change="$emit('input', $event.target.value)"
     />
   </div>
@@ -22,7 +23,8 @@ export default {
   name: "InputTextSingleLine",
   props: {
     question: String,
-    value: String
+    value: String,
+    placeholder: String
   },
   components: {
     InputText

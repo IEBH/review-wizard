@@ -16,6 +16,7 @@
         :key="index"
         :ref="index"
         @input="update(index, $event)"
+        :placeholder="placeholder"
       />
     </template>
     <div class="p-ml-4">
@@ -40,7 +41,8 @@ export default {
   name: "InputTextSingleLineMulti",
   props: {
     question: String,
-    value: Array
+    value: Array,
+    placeholder: String
   },
   components: {
     InputText,
