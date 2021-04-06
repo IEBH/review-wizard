@@ -13,6 +13,7 @@
       question="Which subgroup analyses were performed?"
       :value="subgroupAndSensitivityAnalysis.subgroupAnalysis"
       @input="updateField('subgroupAnalysis', $event)"
+      placeholder="e.g. children 5 years and under"
     />
 
     <InputTextMultiLine
