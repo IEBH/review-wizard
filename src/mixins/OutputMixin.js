@@ -35,7 +35,11 @@ export default {
       } catch {
         d = timestamp;
       }
-      return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+      if (d) {
+        return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+      } else {
+        return "No date specified";
+      }
     },
     formatDateFull(timestamp) {
       const monthNames = [
