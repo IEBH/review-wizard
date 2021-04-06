@@ -112,10 +112,13 @@ export default {
           href: `/${this.$store.state.articleId}/method/picot`
         },
         {
-          title: "Search Strategy",
+          title: "Search",
           icon: "pi pi-search",
-          href: `/${this.$store.state.articleId}/method/search`,
           child: [
+            {
+              href: `/${this.$store.state.articleId}/method/search`,
+              title: "Search Strategy"
+            },
             {
               href: `/${this.$store.state.articleId}/method/search/bibliographic-databases`,
               title: "Search Strings for Databases"
