@@ -14,12 +14,14 @@ export default {
     joinArrayWithAnd(arr) {
       if (arr.length > 1)
         return arr.slice(0, -1).join(", ") + " and " + arr.slice(-1);
-      else return arr[0];
+      else if (arr.length === 1) return arr[0];
+      else return "undefined";
     },
     joinArrayWithOr(arr) {
       if (arr.length > 1)
         return arr.slice(0, -1).join(", ") + " or " + arr.slice(-1);
-      else return arr[0];
+      else if (arr.length === 1) return arr[0];
+      else return "undefined";
     },
     formatSelectMulti(arr) {
       // Get only the labels the array of objects
