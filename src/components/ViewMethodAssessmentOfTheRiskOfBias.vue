@@ -19,6 +19,7 @@
       question="Risk of bias was determined using the..."
       :value="riskOfBias.toolUsed"
       @input="updateField('toolUsed', $event)"
+      placeholder="e.g. Cochrane Risk of Bias tool 1"
     />
 
     <PreviewOutput :component="outputComponent" :data="riskOfBias" />
