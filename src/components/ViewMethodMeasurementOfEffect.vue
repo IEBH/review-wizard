@@ -6,6 +6,7 @@
       question="What tool was used to calculate the treatment effect?"
       :value="measurementOfEffect.toolUsed"
       @input="updateField('toolUsed', $event)"
+      placeholder="e.g. mean difference"
     />
 
     <InputSelectMulti
