@@ -14,6 +14,7 @@
       question="The unit of analysis was..."
       :value="unitOfAnalysis.otherType"
       @input="updateField('otherType', $event)"
+      placeholder="e.g. randomised individuals"
     />
 
     <InputTextSingleLine
@@ -21,6 +22,7 @@
       question="Where data on the number of individuals with primary and secondary outcomes of interest was not available, we extracted the information as it was presented (e.g..."
       :value="unitOfAnalysis.example"
       @input="updateField('example', $event)"
+      placeholder="e.g. mean difference between groups"
     />
 
     <PreviewOutput :component="outputComponent" :data="unitOfAnalysis" />
