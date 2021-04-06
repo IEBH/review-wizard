@@ -7,9 +7,9 @@
       <thead>
         <tr>
           <th v-if="inclusion" style="width: 9rem;">
-            Inclusion (Include / Exclude)
+            Inclusion
           </th>
-          <th v-if="type" style="width: 9rem;">Type (Primary / Secondary)</th>
+          <th v-if="type" style="width: 9rem;">Type</th>
           <th>{{ columnHeader }}</th>
           <th v-if="description">Description (Optional)</th>
           <th v-if="examples">Examples (Optional)</th>
@@ -20,30 +20,26 @@
         <tr v-for="(row, index) in value" :key="index">
           <!-- Inclusion -->
           <td v-if="inclusion">
-            <div class="p-field-checkbox">
-              <Checkbox
-                id="inclusion"
+            <div style="margin: 10px;">
+              <SelectButton
+                optionLabel="name"
+                optionValue="value"
+                :options="includeOptions"
                 v-model="row.inclusion"
-                :binary="true"
                 @input="update(index, row, 'inclusion', $event)"
               />
-              <label for="inclusion">
-                {{ row.inclusion ? "Include" : "Exclude" }}
-              </label>
             </div>
           </td>
           <!-- Type -->
           <td v-if="type">
-            <div class="p-field-checkbox">
-              <Checkbox
-                id="type"
+            <div style="margin: 10px;">
+              <SelectButton
+                optionLabel="name"
+                optionValue="value"
+                :options="typeOptions"
                 v-model="row.type"
-                :binary="true"
                 @input="update(index, row, 'type', $event)"
               />
-              <label for="type">
-                {{ row.type ? "Primary" : "Secondary" }}
-              </label>
             </div>
           </td>
           <!-- Main -->
@@ -132,7 +128,7 @@
 import Dialog from "primevue/dialog";
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
-import Checkbox from "primevue/checkbox";
+import SelectButton from "primevue/selectbutton";
 
 export default {
   name: "InputTable",
@@ -152,7 +148,7 @@ export default {
     Dialog,
     Textarea,
     Button,
-    Checkbox
+    SelectButton
   },
   data() {
     return {
@@ -161,7 +157,15 @@ export default {
       deleteProductsDialog: false,
       selectedRow: {},
       filters: {},
-      submitted: false
+      submitted: false,
+      includeOptions: [
+        { name: "Include", value: true },
+        { name: "Exclude", value: false }
+      ],
+      typeOptions: [
+        { name: "Primary", value: true },
+        { name: "Secondary", value: false }
+      ]
     };
   },
   methods: {
