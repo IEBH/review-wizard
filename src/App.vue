@@ -118,7 +118,7 @@ export default {
           child: [
             {
               href: `/${this.$store.state.articleId}/method/search/bibliographic-databases`,
-              title: "Search Strings for B Databases"
+              title: "Search Strings for Databases"
             },
             {
               href: `/${this.$store.state.articleId}/method/search/trial-registries`,

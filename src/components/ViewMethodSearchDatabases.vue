@@ -31,6 +31,7 @@
         "
         :value="database.string"
         @input="updateDatabaseString(index, $event)"
+        :placeholder="placeholder"
       />
     </template>
 
@@ -92,7 +93,8 @@ export default {
         { label: "LILACs", string: "" }
       ],
       outputComponent: OutputSearchDatabases,
-      outputComponentAppendix: OutputSearchDatabasesAppendix
+      outputComponentAppendix: OutputSearchDatabasesAppendix,
+      placeholder: `e.g.("Acne Vulgaris"[Mesh] OR Acne[tiab] OR Blackheads[tiab] OR Whiteheads[tiab] OR Pimples[tiab]) AND ("Phototherapy"[Mesh] OR "Blue light"[tiab] OR Phototherapy[tiab] OR Phototherapies[tiab] OR "Photoradiation therapy"[tiab] OR "Photoradiation Therapies"[tiab] OR "Light Therapy"[tiab] OR "Light Therapies"[tiab]) AND (Randomized controlled trial[pt] OR controlled clinical trial[pt] OR randomized[tiab] OR randomised[tiab] OR placebo[tiab] OR "drug therapy"[sh] OR randomly[tiab] OR trial[tiab] OR groups[tiab]) NOT (Animals[Mesh] not (Animals[Mesh] and Humans[Mesh]))`
     };
   }
 };

@@ -7,7 +7,7 @@
       mode="text"
       theme="chrome"
       v-bind:value="value"
-      v-on:input="$emit('input', $event)"
+      v-on:input="update($event)"
       v-on:init="editorInit"
       width="100%"
       height="250"
@@ -24,7 +24,8 @@ export default {
   name: "InputTextMultiSyntax",
   props: {
     question: String,
-    value: String
+    value: String,
+    placeholder: String
   },
   data() {
     return {
@@ -45,12 +46,37 @@ export default {
       require("brace/mode/javascript"); //language
       require("brace/theme/chrome");
       editor.setFontSize("16px");
+    },
+    update(e) {
+      if (e) {
+        this.$emit("input", e);
+      }
+      var shouldShow = !this.$refs.queryEditor.editor.session.getValue().length;
+      var node = this.$refs.queryEditor.editor.renderer.emptyMessageNode;
+      if (!shouldShow && node) {
+        this.$refs.queryEditor.editor.renderer.scroller.removeChild(
+          this.$refs.queryEditor.editor.renderer.emptyMessageNode
+        );
+        this.$refs.queryEditor.editor.renderer.emptyMessageNode = null;
+      } else if (shouldShow && !node) {
+        node = this.$refs.queryEditor.editor.renderer.emptyMessageNode = document.createElement(
+          "div"
+        );
+        node.textContent = this.placeholder;
+        node.className = "ace_emptyMessage";
+        node.style.padding = "0 9px";
+        node.style.position = "absolute";
+        node.style.zIndex = 9;
+        node.style.opacity = 0.5;
+        this.$refs.queryEditor.editor.renderer.scroller.appendChild(node);
+      }
     }
   },
   mounted() {
     // Set the polyglot syntax
     const customMode = new PolyglotMode();
     this.$refs.queryEditor.editor.getSession().setMode(customMode);
+    setTimeout(this.update(), 100);
   }
 };
 </script>

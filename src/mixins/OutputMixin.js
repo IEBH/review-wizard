@@ -38,7 +38,7 @@ export default {
       if (d) {
         return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
       } else {
-        return "No date specified";
+        return "[no date specified]";
       }
     },
     formatDateFull(timestamp) {
