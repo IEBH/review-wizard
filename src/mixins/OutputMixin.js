@@ -25,8 +25,10 @@ export default {
     },
     formatSelectMulti(arr) {
       // Get only the labels the array of objects
-      arr = arr.map(ele => ele.label);
-      return arr;
+      if (arr) {
+        arr = arr.map(ele => ele.label);
+        return arr;
+      } else return [];
     },
     formatDate(timestamp) {
       var d;
@@ -109,11 +111,15 @@ export default {
       }
     },
     nameToInitials(name) {
-      var initials = name.match(/\b\w/g) || [];
-      initials = (
-        (initials.shift() || "") + (initials.pop() || "")
-      ).toUpperCase();
-      return initials;
+      if (name) {
+        var initials = name.match(/\b\w/g) || [];
+        initials = (
+          (initials.shift() || "") + (initials.pop() || "")
+        ).toUpperCase();
+        return initials;
+      } else {
+        return "N/A";
+      }
     }
   }
 };
