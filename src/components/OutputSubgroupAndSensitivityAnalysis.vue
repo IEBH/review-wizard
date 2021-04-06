@@ -20,7 +20,7 @@
         {{
           selectRandom([
             "We conducted the following sensitivity analyses:",
-            "The following sensitivity analysis were planned:",
+            "The following sensitivity analyses were planned:",
             "Planned sensitivity analyses were:"
           ])
         }}
