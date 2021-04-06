@@ -20,6 +20,7 @@
       question="How many studies reporting the same outcome triggered a meta-analysis"
       :value="measurementOfEffect.metaAnalysisThreshold"
       @input="updateField('metaAnalysisThreshold', $event)"
+      placeholder="e.g. 6"
     />
 
     <InputSelectDropdown

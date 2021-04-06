@@ -12,6 +12,7 @@
       :value="value"
       @input="$emit('input', $event)"
       :useGrouping="false"
+      :placeholder="placeholder"
     />
   </div>
 </template>
@@ -22,7 +23,8 @@ export default {
   name: "InputTextNumber",
   props: {
     question: String,
-    value: Number
+    value: Number,
+    placeholder: String
   },
   components: {
     InputNumber
