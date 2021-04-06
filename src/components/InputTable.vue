@@ -49,6 +49,7 @@
           <!-- Main -->
           <td>
             <Textarea
+              :placeholder="mainPlaceholder"
               :value="row.main"
               :autoResize="true"
               :ref="index"
@@ -59,6 +60,7 @@
           <!-- Description -->
           <td v-if="description">
             <Textarea
+              :placeholder="descrtiptionPlaceholder"
               :value="row.description"
               :autoResize="true"
               rows="2"
@@ -68,6 +70,7 @@
           <!-- Examples -->
           <td v-if="examples">
             <Textarea
+              :placeholder="examplePlaceholder"
               :value="row.examples"
               :autoResize="true"
               rows="2"
@@ -140,7 +143,10 @@ export default {
     inclusion: Boolean,
     type: Boolean,
     description: Boolean,
-    examples: Boolean
+    examples: Boolean,
+    mainPlaceholder: String,
+    examplePlaceholder: String,
+    descrtiptionPlaceholder: String
   },
   components: {
     Dialog,

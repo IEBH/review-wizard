@@ -11,6 +11,7 @@
       :description="false"
       :examples="true"
       @input="updateField('population', $event)"
+      mainPlaceholder="e.g. participants of any age, sex, and severity of acne"
     />
 
     <!-- I -->
@@ -23,6 +24,7 @@
       :description="false"
       :examples="true"
       @input="updateField('intervention', $event)"
+      mainPlaceholder="e.g. light treatment of restricted wavelength, in which blue light was a major component"
     />
 
     <!-- C -->
@@ -35,6 +37,8 @@
       :description="false"
       :examples="true"
       @input="updateField('comparator', $event)"
+      mainPlaceholder="e.g any intervention other than light"
+      examplePlaceholder="e.g. placebo; topical agents such as retinoids, benzoyl peroxide, or antibiotics; or oral antibiotics or isotretinoin"
     />
 
     <!-- O -->
@@ -47,6 +51,7 @@
       :description="true"
       :examples="true"
       @input="updateField('outcomes', $event)"
+      mainPlaceholder="e.g. investigator-assessed change in acne severity"
     />
 
     <!-- T -->
