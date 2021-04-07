@@ -55,23 +55,23 @@
           @input="updateField('outcomes', $event)"
           mainPlaceholder="e.g. investigator-assessed change in acne severity"
         />
-        <!-- <Message
+        <Message
           v-if="!arrayEquals(picot.outcomes, extraction.outcomes)"
           severity="warn"
           :closable="false"
           >Not the same as PICOT outcomes</Message
-        > -->
+        >
         <InputSelectMulti
           question="Types:"
           :options="options.types"
           :value="extraction.types"
           @input="updateField('types', $event)"
         />
-        <!-- <Message
+        <Message
           v-if="!arrayEquals(picot.types, extraction.types)"
           severity="warn"
           :closable="false"
-          >Not the same as PICOT types</Message -->
+          >Not the same as PICOT types</Message
         >
       </AccordionTab>
     </Accordion>
@@ -81,11 +81,14 @@
 </template>
 
 <script>
+import isEqual from "lodash/isEqual";
+import sortBy from "lodash/sortBy";
+
 import { mapState } from "vuex";
 
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
-// import Message from "primevue/message";
+import Message from "primevue/message";
 
 import PreviewOutput from "./PreviewOutput.vue";
 import OutputDataExtraction from "./OutputDataExtraction.vue";
@@ -99,7 +102,7 @@ export default {
   components: {
     Accordion,
     AccordionTab,
-    // Message,
+    Message,
     InputSelectDropdown,
     InputSelectMulti,
     InputTable,
@@ -114,12 +117,44 @@ export default {
       this.$store.dispatch("method/set", {
         extraction: { [field]: value }
       });
+    },
+    compareLabel(a, b) {
+      if (a.label < b.label) {
+        return -1;
+      } else if (a.label > b.label) {
+        return 1;
+      } else {
+        return 0;
+      }
+    },
+    compareMain(a, b) {
+      if (a.main < b.main) {
+        return -1;
+      } else if (a.main > b.main) {
+        return 1;
+      } else {
+        return 0;
+      }
+    },
+    arrayEquals(arr1, arr2) {
+      let sorted1;
+      let sorted2;
+      if (arr1 && arr2) {
+        if (arr1[0]?.label && arr2[0]?.label) {
+          sorted1 = sortBy(arr1, "label");
+          sorted2 = sortBy(arr2, "label");
+        } else if (arr1[0]?.main && arr2[0]?.main) {
+          sorted1 = sortBy(arr1, "main");
+          sorted2 = sortBy(arr2, "main");
+        } else {
+          sorted1 = arr1;
+          sorted2 = arr2;
+        }
+      } else {
+        return false;
+      }
+      return isEqual(sorted1, sorted2);
     }
-    // arrayEquals(arr1, arr2) {
-    //   console.log(JSON.stringify(arr1));
-    //   console.log(JSON.stringify(arr2));
-    //   return JSON.stringify(arr1) === JSON.stringify(arr2);
-    // }
   },
   mounted() {
     if (!this.extraction.outcomes) {
