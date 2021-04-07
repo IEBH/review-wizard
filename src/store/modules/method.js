@@ -54,7 +54,14 @@ const method = {
       },
       extraction: {
         numberOfStudies: null,
-        numberOfExtractors: null
+        numberOfExtractors: null,
+        //New
+        methods: [],
+        participants: [],
+        interventions: [],
+        comparators: [],
+        outcomes: null,
+        types: []
       },
       riskOfBias: {
         numberOfAuthors: null,
