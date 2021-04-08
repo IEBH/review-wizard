@@ -8,7 +8,7 @@
             .concat(" studies in the review."),
           "A standardised form (initially piloted on "
             .concat(data.numberOfStudies ? data.numberOfStudies : "BLANK")
-            .concat(" incluced studies) was used for data extraction."),
+            .concat(" included studies) was used for data extraction."),
           "Study characteristics and outcomes data from each study were recorded in a data extraction form, which was initially piloted on "
             .concat(data.numberOfStudies ? data.numberOfStudies : "BLANK")
             .concat(" studies.")
