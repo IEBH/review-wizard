@@ -9,7 +9,7 @@
         selectRandom([
           "from ",
           ". Searchers were run from ",
-          "Databases were searched from "
+          ". Databases were searched from "
         ])
       }}
       {{
