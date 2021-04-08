@@ -13,14 +13,14 @@
       <span v-if="data.isMeasuredPublicationBias">
         {{
           selectRandom([
-            "We measured the publication bias using",
-            "Publication bias was assessed using:"
+            "We assessed publication bias / small studies effect using",
+            "Publication bias / small studies effect was assessed using:"
           ])
         }}
         {{ data.biasMeasurement ? data.biasMeasurement : "BLANK" }}.
       </span>
       <span v-else>
-        We did not measure publication bias
+        We did not assess publication bias / small studies effect because
         {{ data.didNotMeasure ? data.didNotMeasure : "BLANK" }}.
       </span>
     </p>
