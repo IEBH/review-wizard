@@ -8,10 +8,10 @@
             .concat(" review authors")
             .concat(data.isIndependent ? " independently " : " ")
             .concat("assessed the risk of bias for each study using the ")
-            .concat(data.toolUsed ? data.toolUsed : "BLANK")
+            .concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
             .concat("."),
           "Risk of bias was assessed using the "
-            .concat(data.toolUsed ? data.toolUsed : "BLANK")
+            .concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
             .concat(". ")
             .concat(data.numberOfAuthors ? data.numberOfAuthors : "BLANK ")
             .concat(" authors")

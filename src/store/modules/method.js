@@ -67,7 +67,7 @@ const method = {
       riskOfBias: {
         numberOfAuthors: null,
         isIndependent: false,
-        toolUsed: null
+        toolUsed: []
       },
       measurementOfEffect: {
         toolUsed: null,

@@ -15,11 +15,11 @@
       @input="updateField('isIndependent', $event)"
     />
 
-    <InputTextSingleLine
-      question="Risk of bias was determined using the..."
+    <InputSelectMulti
+      question="Risk of bias was determined using the:"
       :value="riskOfBias.toolUsed"
+      :options="options.tools"
       @input="updateField('toolUsed', $event)"
-      placeholder="e.g. Cochrane Risk of Bias tool 1"
     />
 
     <PreviewOutput :component="outputComponent" :data="riskOfBias" />
@@ -34,14 +34,14 @@ import PreviewOutput from "./PreviewOutput.vue";
 
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputSelectYesNo from "./InputSelectYesNo.vue";
-import InputTextSingleLine from "./InputTextSingleLine.vue";
+import InputSelectMulti from "./InputSelectMulti.vue";
 
 export default {
   name: "ViewMethodAssessmentOfTheRiskOfBias",
   components: {
     InputSelectDropdown,
     InputSelectYesNo,
-    InputTextSingleLine,
+    InputSelectMulti,
     PreviewOutput
   },
   computed: mapState({
@@ -57,7 +57,22 @@ export default {
   data() {
     return {
       numberOptions: ["1", "2", "3", "4", "5", "6"],
-      outputComponent: OutputAssesmentOfTheRiskOfBias
+      outputComponent: OutputAssesmentOfTheRiskOfBias,
+      options: {
+        tools: [
+          { label: "Cochrane Risk of Bias tool" },
+          { label: "Cochrane Risk of Bias 2 tool" },
+          { label: "Jadad Scale" },
+          { label: "Newcastle-Ottawa Scale" },
+          { label: "MASTER scale" },
+          { label: "QUADAS-1" },
+          { label: "QUADAS-2" },
+          { label: "ROBINS-I" },
+          { label: "ROBINS-II" },
+          { label: "AMSTAR 1" },
+          { label: "AMSTAR 2" }
+        ]
+      }
     };
   }
 };
