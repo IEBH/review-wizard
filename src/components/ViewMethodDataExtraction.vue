@@ -16,8 +16,17 @@
       :options="numberOptions"
     />
 
+    <InputSelectYesNo
+      question="Do you wish to specify what data will be extracted (optional)"
+      :value="extraction.optionalDetail"
+      @input="updateField('optionalDetail', $event)"
+    />
+
     <!-- New -->
-    <Accordion style="margin-top: 50px; border: 1px solid black;">
+    <Accordion
+      v-if="extraction.optionalDetail"
+      style="margin-top: 50px; border: 1px solid black;"
+    >
       <AccordionTab header="Optional Details" :active="false">
         <h3>What data will be extracted:</h3>
         <InputSelectMulti
@@ -96,6 +105,7 @@ import OutputDataExtraction from "./OutputDataExtraction.vue";
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
 import InputTable from "./InputTable.vue";
+import InputSelectYesNo from "./InputSelectYesNo.vue";
 
 export default {
   name: "ViewMethodDataExtraction",
@@ -106,7 +116,8 @@ export default {
     InputSelectDropdown,
     InputSelectMulti,
     InputTable,
-    PreviewOutput
+    PreviewOutput,
+    InputSelectYesNo
   },
   computed: mapState({
     extraction: state => state.method.doc.extraction,
