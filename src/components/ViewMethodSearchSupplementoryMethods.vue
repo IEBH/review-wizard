@@ -43,6 +43,7 @@ export default {
         // eslint-disable-next-line prettier/prettier
         { label: "Manually checked the reference lists of the included studies" },
         { label: "Performed a backwards citation analysis" },
+        { label: "Performed a forwards citation analysis" },
         { label: "Contacted experts" },
         { label: "Used the similar articles feature of a database" }
       ],
