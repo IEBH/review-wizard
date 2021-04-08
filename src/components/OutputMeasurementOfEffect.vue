@@ -68,6 +68,39 @@
     <p>
       {{
         selectRandom([
+          "We used "
+            .concat(
+              data.continuousOutcomes
+                ? joinArrayWithAnd(
+                    formatSelectMulti(data.continuousOutcomes)
+                  ).toLowerCase()
+                : "BLANK"
+            )
+            .concat(" for dichotomous outcomes."),
+          "For dichotomous outcomes, treatment/intervention effect was calculated using "
+            .concat(
+              data.continuousOutcomes
+                ? joinArrayWithAnd(
+                    formatSelectMulti(data.continuousOutcomes)
+                  ).toLowerCase()
+                : "BLANK"
+            )
+            .concat("."),
+          "Effect of the intervention on dichotomous outcomes was expressed as "
+            .concat(
+              data.continuousOutcomes
+                ? joinArrayWithAnd(
+                    formatSelectMulti(data.continuousOutcomes)
+                  ).toLowerCase()
+                : "BLANK"
+            )
+            .concat(".")
+        ])
+      }}
+    </p>
+    <p>
+      {{
+        selectRandom([
           "We undertook meta-analyses when "
             .concat(
               data.metaAnalysisThreshold ? data.metaAnalysisThreshold : "BLANK"

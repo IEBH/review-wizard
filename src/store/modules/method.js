@@ -72,6 +72,8 @@ const method = {
       measurementOfEffect: {
         toolUsed: null,
         dichotomousOutcomes: [],
+        continuousOutcomes: [],
+        otherOutcomes: [],
         metaAnalysisThreshold: null,
         metaAnalysisModelUsed: null
       },
