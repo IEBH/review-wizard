@@ -1,13 +1,32 @@
 <template>
   <div>
-    <p v-if="data.type === 'Individual'">
-      The unit of analysis was
-      {{ data.type ? data.type.toLowerCase() : "BLANK" }}. Where data on the
-      number of individuals with primary and secondary outcomes of interest was
-      not available, we extracted the information as it was presented (e.g.
-      {{ data.example ? data.example : "BLANK" }}).
+    <p
+      v-if="data.type === 'Individual' || data.type === 'Individual and other'"
+    >
+      {{
+        selectRandom([
+          "We used "
+            .concat(data.type ? data.type.toLowerCase() : "BLANK")
+            .concat(" participants as the unit of analysis."),
+          "The unit of analysis was "
+            .concat(data.type ? data.type.toLowerCase() : "BLANK")
+            .concat(" patients.")
+        ])
+      }}
     </p>
-    <p v-else>
+    <p v-if="data.type === 'Individual and other'">
+      {{
+        selectRandom([
+          "Where data on the number of individuals with primary and secondary outcomes of interest was not available, we extracted the information as it presented (e.g. "
+            .concat(data.example ? data.example : "BLANK")
+            .concat(")."),
+          "Where the unit of analysis was not at individuals we "
+            .concat(data.example ? data.example : "BLANK")
+            .concat(".")
+        ])
+      }}
+    </p>
+    <p v-if="data.type === 'Other'">
       The unit of analysis was
       {{ data.otherType ? data.otherType.toLowerCase() : "BLANK" }}.
     </p>

@@ -14,15 +14,15 @@
       question="The unit of analysis was..."
       :value="unitOfAnalysis.otherType"
       @input="updateField('otherType', $event)"
-      placeholder="e.g. randomised individuals"
+      placeholder="e.g. compared individuals after adjusting for clustering"
     />
 
     <InputTextSingleLine
-      v-if="unitOfAnalysis.type === 'Individual'"
+      v-if="unitOfAnalysis.type === 'Individual and other'"
       question="Where data on the number of individuals with primary and secondary outcomes of interest was not available, we extracted the information as it was presented (e.g..."
       :value="unitOfAnalysis.example"
       @input="updateField('example', $event)"
-      placeholder="e.g. mean difference between groups"
+      placeholder="e.g. repeated measures within individuals"
     />
 
     <PreviewOutput :component="outputComponent" :data="unitOfAnalysis" />
@@ -57,7 +57,7 @@ export default {
   },
   data() {
     return {
-      unitOfAnalysisOptions: ["Individual", "Other"],
+      unitOfAnalysisOptions: ["Individual", "Individual and other", "Other"],
       outputComponent: OutputUnitOfAnalysis
     };
   }
