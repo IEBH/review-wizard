@@ -26,6 +26,7 @@ const method = {
         components: [],
         specialist: [],
         helper: [],
+        peerReviewer: [],
         // Search Strings for Bibliographic Databases
         databases: [],
         dateOfSearch: null,

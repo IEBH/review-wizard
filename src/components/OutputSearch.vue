@@ -16,6 +16,13 @@
         {{ joinArrayWithAnd(formatSelectMulti(data.helper)).toLowerCase() }}
         helped in the design of the search.
       </span>
+      <span v-if="data.peerReviewer.length">
+        The search strategy was peer-reviewed by [a/an]
+        {{
+          joinArrayWithAnd(formatSelectMulti(data.peerReviewer)).toLowerCase()
+        }}
+        according to PRESS guidelines.
+      </span>
     </p>
   </div>
 </template>

@@ -23,6 +23,13 @@
       @input="updateField('helper', $event)"
     />
 
+    <InputSelectMulti
+      question="Was the search strategy peer-reviewed (according to PRESS guidelines), if so who peer-reviewed"
+      :options="specialistOptions"
+      :value="search.peerReviewer"
+      @input="updateField('peerReviewer', $event)"
+    />
+
     <PreviewOutput :component="outputComponent" :data="search" />
   </div>
 </template>
