@@ -59,7 +59,11 @@
         "Studies included "
           .concat(joinArrayWithAnd(formatSelectMulti(data.participants)).toLowerCase())
           .concat(" and reported on ")
-          .concat(data.outcomes.filter(el => el.inclusion && el.type).map(el => el.main))
+          .concat(
+            data.outcomes
+              ? data.outcomes.filter(el => el.inclusion && el.type).map(el => el.main)
+              : "NO OUTCOMES SPECIFIED"
+          )
           .concat(".")
       }}
     </p>
