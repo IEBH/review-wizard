@@ -99,6 +99,26 @@
       </li>
     </ul>
 
+    <h3>Setting</h3>
+    <ul>
+      <li>
+        {{
+          selectRandom([
+            "We included studies conducted in: ",
+            "Studies conducted in the following settings were included: "
+          ]) + settingInclude
+        }}
+      </li>
+      <li v-if="settingExclude">
+        {{
+          selectRandom([
+            "We excluded studies conducted in: ",
+            "Studies conducted in the following settings were included: "
+          ]) + settingExclude
+        }}
+      </li>
+    </ul>
+
     <h3>Study design</h3>
     <ul>
       <li>
@@ -201,6 +221,12 @@ export default {
     },
     outcomesExclude: function() {
       return this.listMainWithExample(this.data.outcomes, false);
+    },
+    settingInclude: function() {
+      return this.listMainWithExample(this.data.setting, true);
+    },
+    settingExclude: function() {
+      return this.listMainWithExample(this.data.setting, false);
     }
   },
   methods: {

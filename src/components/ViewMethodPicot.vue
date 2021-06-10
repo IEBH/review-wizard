@@ -54,6 +54,19 @@
       mainPlaceholder="e.g. investigator-assessed change in acne severity"
     />
 
+    <!-- S -->
+    <InputTable
+      question="What is the setting (S) you require the research to be conducted in (optional)"
+      :value="picot.setting"
+      columnHeader="Setting"
+      :inclusion="true"
+      :type="false"
+      :description="false"
+      :examples="true"
+      @input="updateField('setting', $event)"
+      mainPlaceholder="e.g. the emergency department"
+    />
+
     <!-- T -->
     <InputSelectMulti
       question="What study types (T) will be included"

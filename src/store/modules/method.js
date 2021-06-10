@@ -19,6 +19,7 @@ const method = {
         intervention: [{ inclusion: true }],
         comparator: [{ inclusion: true }],
         outcomes: [{ inclusion: true, type: true }],
+        setting: [{ inclusion: true }],
         types: []
       },
       search: {
