@@ -78,11 +78,15 @@
       <li>
         {{
           selectRandom([
-            "We included: ",
-            "Studies with the following outcomes were included: ",
-            "Included outcomes were: "
-          ]) + outcomesInclude
+            "We included the following primary outcome: ",
+            "Studies with the following primary outcomes were included: ",
+            "Included primary outcomes were: ",
+            "The primary outcome/s was/were: "
+          ]) + primaryOutcomesInclude
         }}
+      </li>
+      <li v-if="secondaryOutcomesInclude">
+        {{ "Included secondary outcomes were: " + secondaryOutcomesInclude }}
       </li>
       <li v-if="outcomesExclude">
         {{
@@ -183,8 +187,17 @@ export default {
     comparatorExclude: function() {
       return this.listMainWithExample(this.data.comparator, false);
     },
-    outcomesInclude: function() {
-      return this.listMainWithExample(this.data.outcomes, true);
+    primaryOutcomesInclude: function() {
+      return this.listMainWithExample(
+        this.data.outcomes.filter(el => el.type),
+        true
+      );
+    },
+    secondaryOutcomesInclude: function() {
+      return this.listMainWithExample(
+        this.data.outcomes.filter(el => !el.type),
+        true
+      );
     },
     outcomesExclude: function() {
       return this.listMainWithExample(this.data.outcomes, false);
@@ -200,7 +213,11 @@ export default {
         if (filteredArray.some(el => el.main)) {
           const mappedArray = filteredArray.map(el => {
             if (el.main) {
-              return el.main + (el.examples ? ` (e.g. ${el.examples})` : "");
+              return (
+                el.main +
+                (el.description ? `; ${el.description}` : "") +
+                (el.examples ? ` (e.g. ${el.examples})` : "")
+              );
             }
           });
           return this.joinArrayWithOr(mappedArray);
