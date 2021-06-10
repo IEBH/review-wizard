@@ -81,7 +81,8 @@ const method = {
       unitOfAnalysis: {
         type: null,
         otherType: null,
-        example: null
+        example: null,
+        example2: null
       },
       missingData: {
         isContactedInvestigators: false
