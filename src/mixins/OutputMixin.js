@@ -12,16 +12,52 @@ export default {
       return arr[Math.floor(Math.random() * arr.length)];
     },
     joinArrayWithAnd(arr) {
-      if (arr.length > 1)
-        return arr.slice(0, -1).join(", ") + " and " + arr.slice(-1);
-      else if (arr.length === 1) return arr[0];
-      else return "undefined";
+      let elExists = false;
+      let returnString = "";
+      for (let i in arr) {
+        // Last element
+        if (i === arr.length - 1 && arr[i]) {
+          returnString += elExists ? " and " : "";
+          returnString += arr[i];
+          elExists = true;
+        }
+        // First element
+        else if (i === 0 && arr[i]) {
+          returnString += arr[i];
+          elExists = true;
+        }
+        // Middle elements
+        else if (arr[i]) {
+          returnString += elExists ? ", " : "";
+          returnString += arr[i];
+          elExists = true;
+        }
+      }
+      return elExists ? returnString : "BLANK";
     },
     joinArrayWithOr(arr) {
-      if (arr.length > 1)
-        return arr.slice(0, -1).join(", ") + " or " + arr.slice(-1);
-      else if (arr.length === 1) return arr[0];
-      else return "undefined";
+      let elExists = false;
+      let returnString = "";
+      for (let i in arr) {
+        // Last element
+        if (i === arr.length - 1 && arr[i]) {
+          returnString += elExists ? " or " : "";
+          returnString += arr[i];
+          elExists = true;
+        }
+        // First element
+        else if (i === 0 && arr[i]) {
+          returnString += arr[i];
+          elExists = true;
+        }
+        // Middle elements
+        else if (arr[i]) {
+          returnString += elExists ? ", " : "";
+          returnString += arr[i];
+          elExists = true;
+        }
+      }
+      return elExists ? returnString : "BLANK";
     },
     formatSelectMulti(arr) {
       // Get only the labels the array of objects
