@@ -107,7 +107,7 @@ export default {
           hiddenOnCollapse: true
         },
         {
-          title: "Inclusion Criteria (PICOST)",
+          title: "Eligibility Criteria (PICOST)",
           icon: "pi pi-file",
           href: `/${this.$store.state.articleId}/method/picot`
         },

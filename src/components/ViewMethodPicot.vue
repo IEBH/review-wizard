@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Inclusion Criteria (PICOST)</h1>
+    <h1>Eligibility Criteria (PICOST)</h1>
     <!-- P -->
     <InputTable
       question="What are the population/s, or problem/s (P), of your systematic review, (e.g. older people with diabetes)."
