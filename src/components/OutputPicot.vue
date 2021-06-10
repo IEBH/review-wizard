@@ -5,24 +5,23 @@
       <li>
         {{
           selectRandom([
-            "We included: ",
-            "Included participants were: ",
-            "The following participants were included: "
-          ]) +
-            joinArrayWithOr(
-              data.population.filter(el => el.inclusion).map(el => el.main)
-            )
+            selectRandom([
+              "We included: ",
+              "Included participants were: ",
+              "The following participants were included: "
+            ]) + populationInclude,
+            "Studies of " +
+              populationInclude +
+              " were eligible for this review."
+          ])
         }}
       </li>
-      <li>
+      <li v-if="populationExclude">
         {{
           selectRandom([
             "We excluded: ",
             "Participants were excluded if they were: "
-          ]) +
-            joinArrayWithAnd(
-              data.population.filter(el => !el.inclusion).map(el => el.main)
-            )
+          ]) + populationExclude
         }}
       </li>
     </ul>
@@ -35,14 +34,12 @@
             "We included: ",
             "Included interventions were: ",
             "Eligible interventions were: ",
-            "The following interventions were included: "
-          ]) +
-            joinArrayWithOr(
-              data.intervention.filter(el => el.inclusion).map(el => el.main)
-            )
+            "The following interventions were included: ",
+            "Studies were eligible if they evaluated: "
+          ]) + interventionInclude
         }}
       </li>
-      <li>
+      <li v-if="interventionExclude">
         {{
           selectRandom([
             "We excluded: ",
@@ -50,10 +47,7 @@
             "Interventions were excluded if they involved: ",
             "Interventions were excluded if they had:",
             "Interventions were excluded if they had any of: "
-          ]) +
-            joinArrayWithAnd(
-              data.intervention.filter(el => !el.inclusion).map(el => el.main)
-            )
+          ]) + interventionExclude
         }}
       </li>
     </ul>
@@ -65,22 +59,16 @@
           selectRandom([
             "We included: ",
             "Studies with the following comparator groups were eligible: "
-          ]) +
-            joinArrayWithOr(
-              data.comparator.filter(el => el.inclusion).map(el => el.main)
-            )
+          ]) + comparatorInclude
         }}
       </li>
-      <li>
+      <li v-if="comparatorExclude">
         {{
           selectRandom([
             "We excluded: ",
             "Studies were excluded if the comparator group had any of the following: ",
             "Studies were excluded if the comparator group had any of: "
-          ]) +
-            joinArrayWithAnd(
-              data.intervention.filter(el => !el.inclusion).map(el => el.main)
-            )
+          ]) + comparatorExclude
         }}
       </li>
     </ul>
@@ -93,22 +81,16 @@
             "We included: ",
             "Studies with the following outcomes were included: ",
             "Included outcomes were: "
-          ]) +
-            joinArrayWithOr(
-              data.outcomes.filter(el => el.inclusion).map(el => el.main)
-            )
+          ]) + outcomesInclude
         }}
       </li>
-      <li>
+      <li v-if="outcomesExclude">
         {{
           selectRandom([
             "We excluded: ",
             "Excluded outcomes were: ",
             "Studies with the following outcomes were excluded: "
-          ]) +
-            joinArrayWithAnd(
-              data.outcomes.filter(el => !el.inclusion).map(el => el.main)
-            )
+          ]) + outcomesExclude
         }}
       </li>
     </ul>
@@ -125,7 +107,7 @@
         }}
       </li>
     </ul>
-    <h2>Inclusion criteria</h2>
+    <h2>Eligibility criteria</h2>
     <p>
       We included
       {{ joinArrayWithOr(formatSelectMulti(data.types)).toLowerCase() }}
@@ -181,6 +163,64 @@ export default {
   mixins: [OutputMixin],
   props: {
     data: Object
+  },
+  computed: {
+    populationInclude: function() {
+      return this.listMainWithExample(this.data.population, true);
+    },
+    populationExclude: function() {
+      return this.listMainWithExample(this.data.population, false);
+    },
+    interventionInclude: function() {
+      return this.listMainWithExample(this.data.intervention, true);
+    },
+    interventionExclude: function() {
+      return this.listMainWithExample(this.data.intervention, false);
+    },
+    comparatorInclude: function() {
+      return this.listMainWithExample(this.data.comparator, true);
+    },
+    comparatorExclude: function() {
+      return this.listMainWithExample(this.data.comparator, false);
+    },
+    outcomesInclude: function() {
+      return this.listMainWithExample(this.data.outcomes, true);
+    },
+    outcomesExclude: function() {
+      return this.listMainWithExample(this.data.outcomes, false);
+    }
+  },
+  methods: {
+    listMainWithExample(data, include = true) {
+      if (data) {
+        const filteredArray = include
+          ? data.filter(el => el.inclusion)
+          : data.filter(el => !el.inclusion);
+        // If there is at least one main input specified
+        if (filteredArray.some(el => el.main)) {
+          const mappedArray = filteredArray.map(el => {
+            if (el.main) {
+              return el.main + (el.examples ? ` (e.g. ${el.examples})` : "");
+            }
+          });
+          return this.joinArrayWithOr(mappedArray);
+        } else {
+          return "";
+        }
+      } else {
+        return "";
+      }
+    }
+    // getExamples(data, include = true) {
+    //   const examples = include
+    //     ? data.filter(el => el.inclusion).map(el => el.examples)
+    //     : data.filter(el => !el.inclusion).map(el => el.examples);
+    //   if (examples.some(eg => eg)) {
+    //     return ` (e.g. ${this.joinArrayWithOr(examples)})`;
+    //   } else {
+    //     return "";
+    //   }
+    // }
   }
 };
 </script>
