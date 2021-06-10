@@ -16,17 +16,12 @@ export default {
       let returnString = "";
       for (let i in arr) {
         // Last element
-        if (i === arr.length - 1 && arr[i]) {
+        if (i == arr.length - 1 && arr[i]) {
           returnString += elExists ? " and " : "";
           returnString += arr[i];
           elExists = true;
         }
-        // First element
-        else if (i === 0 && arr[i]) {
-          returnString += arr[i];
-          elExists = true;
-        }
-        // Middle elements
+        // First and middle elements
         else if (arr[i]) {
           returnString += elExists ? ", " : "";
           returnString += arr[i];
@@ -40,17 +35,12 @@ export default {
       let returnString = "";
       for (let i in arr) {
         // Last element
-        if (i === arr.length - 1 && arr[i]) {
+        if (i == arr.length - 1 && arr[i]) {
           returnString += elExists ? " or " : "";
           returnString += arr[i];
           elExists = true;
         }
-        // First element
-        else if (i === 0 && arr[i]) {
-          returnString += arr[i];
-          elExists = true;
-        }
-        // Middle elements
+        // First and middle elements
         else if (arr[i]) {
           returnString += elExists ? ", " : "";
           returnString += arr[i];
