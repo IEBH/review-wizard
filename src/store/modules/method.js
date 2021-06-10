@@ -89,7 +89,10 @@ const method = {
       },
       heterogeneityPublicationBiases: {
         isMeasuredPublicationBias: false,
+        heterogeneityMeasurement: null,
+        heterogeneityMeasurementOther: null,
         biasMeasurement: null,
+        biasMeasurementOther: null,
         didNotMeasure: "because fewer than 10 studies were included"
       },
       subgroupAndSensitivityAnalysis: {

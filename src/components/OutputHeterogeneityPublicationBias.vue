@@ -4,8 +4,12 @@
       <span
         v-html="
           selectRandom([
-            'We used the I<sup>2</sup> statistic to measure heterogeneity among the included trials.',
-            'Heterogeneity was assessed using the I<sup>2</sup> statistic.'
+            'We used the '
+              .concat(getHeterogeneityMeasurement())
+              .concat(' to measure heterogeneity among the included trials.'),
+            'Heterogeneity was assessed using the '
+              .concat(getHeterogeneityMeasurement())
+              .concat('.')
           ])
         "
       >
@@ -17,7 +21,13 @@
             "Publication bias / small studies effect was assessed using:"
           ])
         }}
-        {{ data.biasMeasurement ? data.biasMeasurement : "BLANK" }}.
+        {{
+          data.biasMeasurement == "Other"
+            ? data.biasMeasurementOther
+            : data.biasMeasurement
+            ? data.biasMeasurement
+            : "BLANK"
+        }}.
       </span>
       <span v-else>
         We did not assess publication bias / small studies effect because
@@ -34,6 +44,31 @@ export default {
   mixins: [OutputMixin],
   props: {
     data: Object
+  },
+  methods: {
+    getHeterogeneityMeasurement() {
+      if (this.data.heterogeneityMeasurement == "Other") {
+        return this.data.heterogeneityMeasurementOther
+          ? this.data.heterogeneityMeasurementOther
+          : "BLANK";
+      } else if (this.data.heterogeneityMeasurement == "I squared statistic") {
+        return "I<sup>2</sup> statistic";
+      } else if (this.data.heterogeneityMeasurement == "H squared statistic") {
+        return "H<sup>2</sup> statistic";
+      } else if (this.data.heterogeneityMeasurement == "R squared statistic") {
+        return "R<sup>2</sup> statistic";
+      } else if (
+        this.data.heterogeneityMeasurement == "Tau squared statistic"
+      ) {
+        return "&tau;<sup>2</sup> statistic";
+      } else if (this.data.heterogeneityMeasurement == "HM2 statistic") {
+        return "HM<sub>2</sub> statistic";
+      } else if (this.data.heterogeneityMeasurement) {
+        return this.data.heterogeneityMeasurement;
+      } else {
+        return "BLANK";
+      }
+    }
   }
 };
 </script>
