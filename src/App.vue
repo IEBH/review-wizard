@@ -107,7 +107,7 @@ export default {
           hiddenOnCollapse: true
         },
         {
-          title: "PICOT",
+          title: "Inclusion Criteria (PICOST)",
           icon: "pi pi-file",
           href: `/${this.$store.state.articleId}/method/picot`
         },

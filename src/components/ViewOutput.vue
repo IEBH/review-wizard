@@ -29,7 +29,7 @@
     >
       <div id="output">
         <h1>Method</h1>
-        <h2>PICOT</h2>
+        <h2>Inclusion Criteria</h2>
         <OutputPicot
           v-if="outputOptions[0].include"
           :data="picot"
