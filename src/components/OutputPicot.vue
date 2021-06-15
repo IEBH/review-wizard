@@ -1,5 +1,29 @@
 <template>
   <div>
+    <p>
+      {{
+        selectRandom([
+          "We included " +
+            typesInclude +
+            " of " +
+            populationInclude +
+            ". We included interventions involving " +
+            interventionInclude +
+            ". We excluded studies if the controls used " +
+            interventionExclude +
+            ". The primary outcome was " +
+            primaryOutcomesInclude +
+            ", and secondary outcomes were " +
+            secondaryOutcomesInclude +
+            ". We included studies conducted in " +
+            settingInclude +
+            " and excluded studies conducted in " +
+            settingExclude +
+            "."
+        ])
+      }}
+    </p>
+    <!-- Bullet points -->
     <h3>Participants</h3>
     <ul>
       <li>
@@ -113,7 +137,7 @@
         {{
           selectRandom([
             "We excluded studies conducted in: ",
-            "Studies conducted in the following settings were included: "
+            "Studies conducted in the following settings were excluded: "
           ]) + settingExclude
         }}
       </li>
@@ -127,56 +151,10 @@
             "We included: ",
             "Included study designs were: ",
             "The following study designs were included: "
-          ]) + joinArrayWithOr(formatSelectMulti(data.types)).toLowerCase()
+          ]) + typesInclude
         }}
       </li>
     </ul>
-    <h2>Eligibility criteria</h2>
-    <p>
-      We included
-      {{ joinArrayWithOr(formatSelectMulti(data.types)).toLowerCase() }}
-      of
-      {{
-        joinArrayWithOr(
-          data.population
-            .filter(el => el.inclusion)
-            .map(el => `${el.main} (${el.examples})`)
-        )
-      }}. We included
-      {{ joinArrayWithOr(formatSelectMulti(data.types)).toLowerCase() }}
-      of interventions involving
-      {{
-        joinArrayWithOr(
-          data.intervention.filter(el => el.inclusion).map(el => el.main)
-        )
-      }}, for example
-      {{
-        joinArrayWithOr(
-          data.intervention.filter(el => el.inclusion).map(el => el.examples)
-        )
-      }}. We excluded
-      {{ joinArrayWithOr(formatSelectMulti(data.types)).toLowerCase() }}
-      if the controls used
-      {{
-        joinArrayWithAnd(
-          data.intervention
-            .filter(el => !el.inclusion)
-            .map(el => `${el.main} (${el.examples})`)
-        )
-      }}. The primary outcome was
-      {{
-        joinArrayWithOr(
-          data.outcomes.filter(el => el.inclusion && el.type).map(el => el.main)
-        )
-      }}, and secondary outcomes were
-      {{
-        joinArrayWithOr(
-          data.outcomes
-            .filter(el => el.inclusion && !el.type)
-            .map(el => `${el.main} (${el.examples})`)
-        )
-      }}.
-    </p>
   </div>
 </template>
 
@@ -227,6 +205,11 @@ export default {
     },
     settingExclude: function() {
       return this.listMainWithExample(this.data.setting, false);
+    },
+    typesInclude: function() {
+      return this.joinArrayWithOr(
+        this.formatSelectMulti(this.data.types)
+      ).toLowerCase();
     }
   },
   methods: {

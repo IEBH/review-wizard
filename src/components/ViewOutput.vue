@@ -28,7 +28,7 @@
       :modal="true"
     >
       <div id="output">
-        <h1>Method</h1>
+        <h1>Methods</h1>
         <h2>Eligibility Criteria</h2>
         <OutputPicot
           v-if="outputOptions[0].include"
