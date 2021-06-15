@@ -102,7 +102,7 @@
           ])
         }}
       </li>
-      <li v-if="populationExclude">
+      <li v-if="populationExclude != 'BLANK'">
         {{
           selectRandom([
             "We excluded: ",
@@ -125,7 +125,7 @@
           ]) + interventionInclude
         }}
       </li>
-      <li v-if="interventionExclude">
+      <li v-if="interventionExclude != 'BLANK'">
         {{
           selectRandom([
             "We excluded: ",
@@ -148,7 +148,7 @@
           ]) + comparatorInclude
         }}
       </li>
-      <li v-if="comparatorExclude">
+      <li v-if="comparatorExclude != 'BLANK'">
         {{
           selectRandom([
             "We excluded: ",
@@ -171,10 +171,10 @@
           ]) + primaryOutcomesInclude
         }}
       </li>
-      <li v-if="secondaryOutcomesInclude">
+      <li v-if="secondaryOutcomesInclude != 'BLANK'">
         {{ "Included secondary outcomes were: " + secondaryOutcomesInclude }}
       </li>
-      <li v-if="outcomesExclude">
+      <li v-if="outcomesExclude != 'BLANK'">
         {{
           selectRandom([
             "We excluded: ",
@@ -195,7 +195,7 @@
           ]) + settingInclude
         }}
       </li>
-      <li v-if="settingExclude">
+      <li v-if="settingExclude != 'BLANK'">
         {{
           selectRandom([
             "We excluded studies conducted in: ",
@@ -285,18 +285,18 @@ export default {
           const mappedArray = filteredArray.map(el => {
             if (el.main) {
               return (
-                el.main +
-                (el.description ? `; ${el.description}` : "") +
-                (el.examples ? ` (e.g. ${el.examples})` : "")
+                el.main.trim() +
+                (el.description ? `; ${el.description.trim()}` : "") +
+                (el.examples ? ` (e.g. ${el.examples.trim()})` : "")
               );
             }
           });
           return this.joinArrayWithOr(mappedArray);
         } else {
-          return "";
+          return "BLANK";
         }
       } else {
-        return "";
+        return "BLANK";
       }
     }
     // getExamples(data, include = true) {
