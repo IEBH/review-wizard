@@ -19,7 +19,69 @@
             settingInclude +
             " and excluded studies conducted in " +
             settingExclude +
-            "."
+            ".",
+          "All relevant " +
+            typesInclude +
+            " containing " +
+            populationInclude +
+            " were included" +
+            ". As long as they contained the following interventions " +
+            interventionInclude +
+            ". We excluded studies if the controls used " +
+            interventionExclude +
+            ". Our primary outcome of interest was " +
+            primaryOutcomesInclude +
+            ". The secondary outcomes of interest were " +
+            secondaryOutcomesInclude +
+            ". If studies were conducted in " +
+            settingInclude +
+            " we included them" +
+            ". Any studies conducted in " +
+            settingExclude +
+            " were excluded.",
+          "We aimed to find, assess and synthesize all " +
+            typesInclude +
+            " containing " +
+            populationInclude +
+            ". If they used the following interventions " +
+            interventionInclude +
+            ". We excluded studies if " +
+            interventionExclude +
+            " was/were used as the control" +
+            ". If " +
+            primaryOutcomesInclude +
+            " was reported we included it as the primary outcome, while if " +
+            secondaryOutcomesInclude +
+            " were reported we included them as the secondary outcome/s" +
+            ". Studies conducted in " +
+            settingInclude +
+            " were included" +
+            ". Studies conducted in " +
+            settingExclude +
+            " were excluded.",
+          "This review aimed to find, assess and synthesize all " +
+            typesInclude +
+            "  that compared " +
+            interventionInclude +
+            " to " +
+            comparatorInclude +
+            ". Although, studies of " +
+            interventionExclude +
+            " or where the control was " +
+            comparatorExclude +
+            " were excluded" +
+            ". Only Studies on" +
+            populationInclude +
+            " were included in the review" +
+            ". The primary outcome of the review was/were" +
+            primaryOutcomesInclude +
+            ", while the secondary outcome/s were " +
+            secondaryOutcomesInclude +
+            ". For a study to be included, it needed to be set in " +
+            settingInclude +
+            ". If the study was conductd in " +
+            settingExclude +
+            " it was excluded."
         ])
       }}
     </p>
