@@ -50,30 +50,20 @@
     </p>
     <!-- Optional Details -->
     <p v-if="data.optionalDetail">
-      <ul>
+      <ul v-if="randomNumber < 0.5">
+        <li>types: {{types}}</li>
         <li>methods: {{methods}}</li>
         <li>participants: {{participants}}</li>
         <li>interventions and comparators: {{interventions}}, type of comparator, {{comparators}}</li>
         <li>outcomes: {{primaryOutcomes}}, {{secondaryOutcomes}}</li>
       </ul>
-      {{
-        "We analysed "
-          .concat(joinArrayWithOr(formatSelectMulti(data.types)).toLowerCase())
-          .concat(" comparing ")
-          .concat(joinArrayWithAnd(formatSelectMulti(data.comparators)).toLowerCase())
-          .concat(".")
-      }}
-      {{
-        "Studies included "
-          .concat(joinArrayWithAnd(formatSelectMulti(data.participants)).toLowerCase())
-          .concat(" and reported on ")
-          .concat(
-            data.outcomes
-              ? data.outcomes.filter(el => el.inclusion && el.type).map(el => el.main)
-              : "NO OUTCOMES SPECIFIED"
-          )
-          .concat(".")
-      }}
+      <ul v-else>
+        <li>Types of studies: {{types}}</li>
+        <li>Methods that the study used: {{methods}}</li>
+        <li>The intervention/s of interest: {{interventions}} and the comparator/s used: {{comparators}}</li>
+        <li>Characteristics of the participants studies included: {{participants}}</li>
+        <li>Any reported outcomes of interest, such as: {{primaryOutcomes}}, {{secondaryOutcomes}}</li>
+      </ul>
     </p>
   </div>
 </template>
@@ -87,6 +77,9 @@ export default {
     data: Object
   },
   computed: {
+    randomNumber: function() {
+      return Math.random();
+    },
     extractionAuthorInitials: function() {
       return this.formatSelectMulti(this.data.extractionAuthors)
         .map(el => this.nameToInitials(el))
@@ -123,7 +116,12 @@ export default {
         this.data.outcomes,
         false
       );
-    }
+    },
+    types: function() {
+      return this.formatSelectMulti(this.data.types)
+        .join(", ")
+        .toLowerCase();
+    },
   },
   methods: {
     listOutcomesWithExample(data, primary = true) {
