@@ -50,6 +50,12 @@
     </p>
     <!-- Optional Details -->
     <p v-if="data.optionalDetail">
+      <ul>
+        <li>methods: {{methods}}</li>
+        <li>participants: {{participants}}</li>
+        <li>interventions and comparators: {{interventions}}, type of comparator, {{comparators}}</li>
+        <li>outcomes: {{primaryOutcomes}}, {{secondaryOutcomes}}</li>
+      </ul>
       {{
         "We analysed "
           .concat(joinArrayWithOr(formatSelectMulti(data.types)).toLowerCase())
@@ -85,6 +91,65 @@ export default {
       return this.formatSelectMulti(this.data.extractionAuthors)
         .map(el => this.nameToInitials(el))
         .join(", ");
+    },
+    methods: function() {
+      return this.formatSelectMulti(this.data.methods)
+        .join(", ")
+        .toLowerCase();
+    },
+    participants: function() {
+      return this.formatSelectMulti(this.data.participants)
+        .join(", ")
+        .toLowerCase();
+    },
+    interventions: function() {
+      return this.formatSelectMulti(this.data.interventions)
+        .join(", ")
+        .toLowerCase();
+    },
+    comparators: function() {
+      return this.formatSelectMulti(this.data.comparators)
+        .join(", ")
+        .toLowerCase();
+    },
+    primaryOutcomes: function() {
+      return this.listOutcomesWithExample(
+        this.data.outcomes,
+        true
+      );
+    },
+    secondaryOutcomes: function() {
+      return this.listOutcomesWithExample(
+        this.data.outcomes,
+        false
+      );
+    }
+  },
+  methods: {
+    listOutcomesWithExample(data, primary = true) {
+      if (data) {
+        const filteredArray = primary
+          ? data.filter(el => el.type)
+          : data.filter(el => !el.type);
+        // If there is at least one main input specified
+        if (filteredArray.some(el => el.main)) {
+          const mappedArray = filteredArray.map(el => {
+            if (el.main) {
+              return (
+                el.main.trim() +
+                (el.description ? `; ${el.description.trim()}` : "") +
+                (el.examples ? ` (e.g. ${el.examples.trim()})` : "") +
+                (primary ? " (primary outcome)" : " (secondary outcome)")
+              );
+            }
+          });
+          return this.joinArrayWithOr(mappedArray);
+        } else {
+          return "BLANK";
+        }
+      } else {
+        return "BLANK";
+      }
     }
   }
 };

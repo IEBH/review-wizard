@@ -248,16 +248,24 @@ export default {
       return this.listMainWithExample(this.data.comparator, false);
     },
     primaryOutcomesInclude: function() {
-      return this.listMainWithExample(
-        this.data.outcomes.filter(el => el.type),
-        true
-      );
+      if (this.data.outcomes) {
+        return this.listMainWithExample(
+          this.data.outcomes.filter(el => el.type),
+          true
+        );
+      } else {
+        return "BLANK";
+      }
     },
     secondaryOutcomesInclude: function() {
-      return this.listMainWithExample(
-        this.data.outcomes.filter(el => !el.type),
-        true
-      );
+      if (this.data.outcomes) {
+        return this.listMainWithExample(
+          this.data.outcomes.filter(el => !el.type),
+          true
+        );
+      } else {
+        return "BLANK";
+      }
     },
     outcomesExclude: function() {
       return this.listMainWithExample(this.data.outcomes, false);

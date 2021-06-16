@@ -64,7 +64,7 @@ const method = {
         participants: [],
         interventions: [],
         comparators: [],
-        outcomes: null,
+        outcomes: [{ inclusion: true, type: true }],
         types: []
       },
       riskOfBias: {

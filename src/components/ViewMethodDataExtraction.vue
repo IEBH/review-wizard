@@ -180,7 +180,11 @@ export default {
     }
   },
   mounted() {
-    if (!this.extraction.outcomes) {
+    if (
+      !this.extraction.outcomes ||
+      JSON.stringify(this.extraction.outcomes) ==
+        '[{"inclusion":true,"type":true}]'
+    ) {
       // Deep copy
       this.extraction.outcomes = JSON.parse(
         JSON.stringify(this.picot.outcomes)
