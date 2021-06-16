@@ -57,6 +57,7 @@ const method = {
       extraction: {
         numberOfStudies: null,
         numberOfExtractors: null,
+        extractionAuthors: null,
         //New
         optionalDetail: false,
         methods: [],

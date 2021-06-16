@@ -16,6 +16,17 @@
       :options="numberOptions"
     />
 
+    <InputSelectMulti
+      question="Which authors performed data extraction?"
+      :value="extraction.extractionAuthors"
+      @input="updateField('extractionAuthors', $event)"
+      :options="
+        titlepage.authors.map(el => {
+          return { label: el };
+        })
+      "
+    />
+
     <InputSelectYesNo
       question="Do you wish to specify what data will be extracted (optional)"
       :value="extraction.optionalDetail"
@@ -121,6 +132,7 @@ export default {
   },
   computed: mapState({
     extraction: state => state.method.doc.extraction,
+    titlepage: state => state.titlepage.doc,
     picot: state => state.method.doc.picot
   }),
   methods: {
