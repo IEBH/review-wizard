@@ -17,7 +17,7 @@
     />
 
     <InputSelectMulti
-      question="Which authors performed data extraction?"
+      question="Which author/s performed data extraction?"
       :value="extraction.extractionAuthors"
       @input="updateField('extractionAuthors', $event)"
       :options="
