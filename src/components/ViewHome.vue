@@ -78,7 +78,8 @@ export default {
       createNewArticle()
         .then(val => {
           this.newId = val.id;
-          this.shareUrl = "https://methodswizard.netlify.app/#/" + this.newId;
+          this.shareUrl =
+            "https://sr-accelerator.com/#/methods-wizard?id=" + this.newId;
           this.displayWarn = true;
         })
         .catch(err => console.log(err));

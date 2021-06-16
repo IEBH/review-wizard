@@ -91,7 +91,8 @@ export default {
   },
   methods: {
     close() {
-      this.shareUrl = "https://methodswizard.netlify.app/#/" + this.articleId;
+      this.shareUrl =
+        "https://sr-accelerator.com/#/methods-wizard?id=" + this.articleId;
       this.displayWarn = true;
     },
     closeArticle() {
@@ -99,7 +100,8 @@ export default {
       this.$router.push("/");
     },
     openModal() {
-      this.shareUrl = "https://methodswizard.netlify.app/#/" + this.articleId;
+      this.shareUrl =
+        "https://sr-accelerator.com/#/methods-wizard?id=" + this.articleId;
       this.displayModal = true;
     },
     copyLink() {
