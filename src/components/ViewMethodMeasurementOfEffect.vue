@@ -6,7 +6,7 @@
       question="What software was used to conduct the meta-analysis?"
       :value="measurementOfEffect.toolUsed"
       @input="updateField('toolUsed', $event)"
-      placeholder="e.g. mean difference"
+      placeholder="e.g. RevMan 5"
     />
 
     <InputSelectMulti
