@@ -133,7 +133,7 @@ export default {
             },
             {
               href: `/${this.$store.state.articleId}/method/search/supplementory-methods`,
-              title: "Supplementory Methods"
+              title: "Supplementary Methods"
             }
           ]
         },

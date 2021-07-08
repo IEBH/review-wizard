@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Supplementory Methods</h1>
+    <h1>Supplementary Methods</h1>
 
     <InputSelectMulti
       question="Did you conduct any of the following methods to supplement your search results?"

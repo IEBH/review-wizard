@@ -200,7 +200,7 @@ export default {
         { label: "Search Strings for Bibliographic Databases", include: false },
         { label: "Search Strings for Trial Registries", include: false },
         { label: "Restrictions on Publication Type", include: false },
-        { label: "Supplementory Methods", include: false },
+        { label: "Supplementary Methods", include: false },
         { label: "Study Selection and Screening", include: false },
         { label: "Data Extraction", include: false },
         { label: "Assessment of the Risk of Bias", include: false },
