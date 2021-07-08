@@ -2,6 +2,20 @@
   <div>
     <h1>Assessment of Heterogeneity and Publication Biases</h1>
 
+    <InputSelectDropdown
+      question="What was used to measure heterogeneity?"
+      :value="heterogeneityPublicationBiases.heterogeneityMeasurement"
+      @input="updateField('heterogeneityMeasurement', $event)"
+      :options="heterogeneityMeasurementOptions"
+    />
+
+    <InputTextSingleLine
+      v-if="heterogeneityPublicationBiases.heterogeneityMeasurement == 'Other'"
+      question="Type heterogeneity measurement below..."
+      :value="heterogeneityPublicationBiases.heterogeneityMeasurementOther"
+      @input="updateField('heterogeneityMeasurementOther', $event)"
+    />
+
     <InputSelectYesNo
       question="Was publication bias measured?"
       :value="heterogeneityPublicationBiases.isMeasuredPublicationBias"
@@ -9,22 +23,6 @@
     />
 
     <div v-if="heterogeneityPublicationBiases.isMeasuredPublicationBias">
-      <InputSelectDropdown
-        question="What was used to measure heterogeneity?"
-        :value="heterogeneityPublicationBiases.heterogeneityMeasurement"
-        @input="updateField('heterogeneityMeasurement', $event)"
-        :options="heterogeneityMeasurementOptions"
-      />
-
-      <InputTextSingleLine
-        v-if="
-          heterogeneityPublicationBiases.heterogeneityMeasurement == 'Other'
-        "
-        question="Type heterogeneity measurement below..."
-        :value="heterogeneityPublicationBiases.heterogeneityMeasurementOther"
-        @input="updateField('heterogeneityMeasurementOther', $event)"
-      />
-
       <InputSelectDropdown
         question="We measured publication bias / small studies effect using"
         :value="heterogeneityPublicationBiases.biasMeasurement"
