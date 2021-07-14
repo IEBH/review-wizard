@@ -76,8 +76,8 @@
                   ).toLowerCase()
                 : "BLANK"
             )
-            .concat(" for dichotomous outcomes."),
-          "For dichotomous outcomes, treatment/intervention effect was calculated using "
+            .concat(" for continuous outcomes."),
+          "For continuous outcomes, treatment/intervention effect was calculated using "
             .concat(
               data.continuousOutcomes
                 ? joinArrayWithAnd(
@@ -86,7 +86,7 @@
                 : "BLANK"
             )
             .concat("."),
-          "Effect of the intervention on dichotomous outcomes was expressed as "
+          "Effect of the intervention on continuous outcomes was expressed as "
             .concat(
               data.continuousOutcomes
                 ? joinArrayWithAnd(
