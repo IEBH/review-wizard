@@ -194,6 +194,9 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #ffffff;
+}
 .logo {
   display: block;
   margin: auto;
@@ -219,7 +222,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
-  margin-top: 20px;
   /* Padding left for sidebar */
   padding-left: 300px;
   transition: 0.3s ease;
