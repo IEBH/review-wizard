@@ -150,12 +150,15 @@ import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
 import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
 
+import CopyMixin from "../mixins/CopyMixin.js";
+
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Checkbox from "primevue/checkbox";
 
 export default {
   name: "ViewMethodSearch",
+  mixins: [CopyMixin],
   components: {
     Button,
     Dialog,
@@ -234,20 +237,6 @@ export default {
     },
     reload() {
       this.monitorChange = this.monitorChange + 1;
-    },
-    copy() {
-      if (document.selection) {
-        let range = document.body.createTextRange();
-        range.moveToElementText(document.getElementById("output"));
-        range.select().createTextRange();
-        document.execCommand("copy");
-      } else if (window.getSelection) {
-        let range = document.createRange();
-        range.selectNode(document.getElementById("output"));
-        window.getSelection().addRange(range);
-        document.execCommand("copy");
-        alert("Methods has been copied, now paste in document");
-      }
     }
   }
 };
