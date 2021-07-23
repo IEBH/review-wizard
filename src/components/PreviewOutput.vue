@@ -1,8 +1,14 @@
 <template>
   <Accordion style="margin-top: 50px; border: 1px solid black;">
     <AccordionTab header="Output" :active="true">
-      <component :is="component" :data="data" :key="monitorChange" />
+      <component
+        id="output"
+        :is="component"
+        :data="data"
+        :key="monitorChange"
+      />
       <Button label="Rewrite" @click="reload" />
+      <Button class="p-ml-2" label="Copy" @click="copy" />
     </AccordionTab>
   </Accordion>
 </template>
@@ -13,11 +19,14 @@ import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
 import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
 
+import CopyMixin from "../mixins/CopyMixin.js";
+
 export default {
   props: {
     component: Object,
     data: Object
   },
+  mixins: [CopyMixin],
   components: {
     Accordion,
     AccordionTab,
