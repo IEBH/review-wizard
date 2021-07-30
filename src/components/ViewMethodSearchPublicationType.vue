@@ -71,17 +71,19 @@ export default {
       languageOptions: [
         { label: "English" },
         { label: "German" },
-        { label: "Spanish" },
-        { label: "Chinese" },
         { label: "French" },
-        { label: "Arabic" },
+        { label: "Italian" },
+        { label: "Spanish" },
         { label: "Portuguese" },
+        { label: "Chinese" },
+        { label: "Japanese" },
+        { label: "Arabic" },
+        { label: "Swahili" },
         { label: "Hindi" },
         { label: "Dutch" },
         { label: "Swiss" },
-        { label: "Italian" },
-        { label: "Japanese" },
-        { label: "Swahili" }
+        { label: "Norwegian" },
+        { label: "Swedish" }
       ],
       outputComponent: OutputSearchPublicationType
     };
