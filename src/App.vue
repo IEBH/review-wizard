@@ -1,6 +1,13 @@
 <template>
   <!-- Collapsed and onMobile control the padding of content relative to sidebar -->
-  <div id="app" :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]">
+  <div
+    id="app"
+    :class="[
+      { 'pad-sidebar': articleId },
+      { collapsed: collapsed },
+      { onmobile: isOnMobile }
+    ]"
+  >
     <sidebar-menu
       v-if="articleId"
       :menu="menu"
@@ -216,14 +223,16 @@ body {
 .v-sidebar-menu {
   background-color: #ffffff !important;
 }
+.pad-sidebar {
+  /* Padding left for sidebar */
+  padding-left: 300px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
-  /* Padding left for sidebar */
-  padding-left: 300px;
   transition: 0.3s ease;
 }
 #app.collapsed {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-m-5">
     <h1>Welcome to the Methods Wizard!</h1>
     <p v-if="articleId">
       To start making changes, simply select a section from the left hand side
