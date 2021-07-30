@@ -75,13 +75,13 @@ export default {
         { label: "Chinese" },
         { label: "French" },
         { label: "Arabic" },
-        { label: "Portugese" },
+        { label: "Portuguese" },
         { label: "Hindi" },
         { label: "Dutch" },
         { label: "Swiss" },
         { label: "Italian" },
         { label: "Japanese" },
-        { label: "Egyptian" }
+        { label: "Swahili" }
       ],
       outputComponent: OutputSearchPublicationType
     };
