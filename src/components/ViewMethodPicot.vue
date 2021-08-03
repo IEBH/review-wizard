@@ -101,15 +101,27 @@ export default {
 	},
 	watch: {
 		methodsRecord() {
-			console.log("Resubscribing");
-			this.$store.state.methodsRecord.subscribe("picot", picot => {
+			this.methodsRecord.subscribe("picot", picot => {
 				this.picot = picot;
 			});
 		}
 	},
-	// mounted() {
-	// 	this.methodsRecord.subscribe("picot", picot => (this.picot = picot));
-	// },
+	mounted() {
+		if (this.methodsRecord) {
+			var existing = this.methodsRecord.get("picot");
+			if (existing) {
+				this.picot = existing;
+			}
+			this.methodsRecord.subscribe("picot", picot => {
+				this.picot = picot;
+			});
+		}
+	},
+	destroyed() {
+		if (this.methodsRecord) {
+			this.methodsRecord.unsubscribe("picot");
+		}
+	},
 	methods: {
 		updateField(field, value) {
 			this.$set(this.picot, field, value);
