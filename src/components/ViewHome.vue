@@ -46,8 +46,6 @@
 </template>
 
 <script>
-import { createNewArticle } from "../api/firebase.js";
-
 import Toolbar from "primevue/toolbar";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -75,14 +73,7 @@ export default {
 	},
 	methods: {
 		newArticle() {
-			createNewArticle()
-				.then(val => {
-					this.newId = val.id;
-					this.shareUrl =
-						"https://sr-accelerator.com/#/methods-wizard?id=" + this.newId;
-					this.displayWarn = true;
-				})
-				.catch(err => console.log(err));
+			// TODO: Maybe not needed but new article logic
 		},
 		navigateToTitlepage() {
 			this.$router.replace({

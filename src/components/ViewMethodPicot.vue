@@ -80,7 +80,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import OutputPicot from "./OutputPicot.vue";
 
 import PreviewOutput from "./PreviewOutput.vue";
@@ -95,18 +94,30 @@ export default {
 		InputTable,
 		PreviewOutput
 	},
-	computed: mapState({
-		picot: state => state.method.doc.picot
-	}),
+	computed: {
+		methodsRecord() {
+			return this.$store.state.methodsRecord;
+		}
+	},
+	mounted() {
+		this.methodsRecord.subscribe("picot", picot => (this.picot = picot));
+	},
 	methods: {
 		updateField(field, value) {
-			this.$store.dispatch("method/set", {
-				picot: { [field]: value }
-			});
+			this.$set(this.picot, field, value);
+			this.methodsRecord.set("picot", this.picot);
 		}
 	},
 	data() {
 		return {
+			picot: {
+				population: [{ inclusion: true }],
+				intervention: [{ inclusion: true }],
+				comparator: [{ inclusion: true }],
+				outcomes: [{ inclusion: true, type: true }],
+				setting: [{ inclusion: true }],
+				types: []
+			},
 			typesOptions: [
 				{ label: "Systematic Reviews" },
 				{ label: "Observational Studies" },

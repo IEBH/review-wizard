@@ -3,67 +3,41 @@
 </template>
 
 <script>
-import {
-	checkArticleExists,
-	openArticle,
-	closeArticle
-} from "../api/firebase.js";
+import { DeepstreamClient } from "@deepstream/client";
 
 export default {
 	name: "ProjectEdit",
 	created() {
-		this.refresh();
-	},
-	computed: {
-		prevId() {
-			return this.$store.state.articleId;
-		}
-	},
-	watch: {
-		"$route.params.articleId"() {
-			this.refresh();
-		}
+		this.initialize();
 	},
 	methods: {
-		async refresh() {
-			let articleId = this.$route.params.articleId;
-			// Check article ID
-			if (!articleId) {
-				console.log("No article ID specified in URL, checking local storage");
-				if (localStorage.articleId) {
-					console.log("Article ID found in local storage");
-					articleId = localStorage.articleId;
+		async initialize() {
+			var projectId = this.$route.query["project-id"];
+			console.log("Loading Project:", `project/${projectId}`);
+			if (projectId) {
+				var client = new DeepstreamClient("localhost:6020");
+				// Login
+				client.login();
+				// Add project record
+				var projectRecord = client.record.getRecord(`project/${projectId}`);
+				// Subscribe to project metadata
+				var projectMetadata = await new Promise(resolve => {
+					projectRecord.subscribe("metadata", metadata => {
+						resolve(metadata);
+					});
+				});
+				if (projectMetadata) {
+					// Add methods record
+					var methodsRecord = client.record.getRecord(
+						`methods/${projectMetadata.methods}`
+					);
+					// Set methods record to store
+					this.$store.commit("setMethodsRecord", methodsRecord);
 				} else {
-					console.log("No article ID found in local storage");
-					return;
+					console.error("Invalid project-id");
 				}
-			}
-			// Check if article ID is different to the current ID
-			if (articleId !== this.prevId) {
-				console.log("Fetching article from Firebase");
-				// If there is a previous ID, close channel and clear store data
-				if (this.prevId) closeArticle(this.$store);
-				// Check for existence of article
-				if (await checkArticleExists(articleId)) {
-					// Article id has changed, update the store
-					openArticle(this.$store, articleId)
-						.then(() => {
-							// Set the new article ID in the store
-							this.$store.commit("setArticleId", articleId);
-						})
-						.catch(error => {
-							console.error(
-								"Error opening firestore channel, this error should not be hit"
-							);
-							this.$store.commit("setArticleId", null);
-							this.$router.replace("/");
-							throw error;
-						});
-				} else {
-					console.error("Article ID does not exist");
-					this.$store.commit("setArticleId", null);
-					this.$router.replace("/");
-				}
+			} else {
+				console.error("No project id specified");
 			}
 		}
 	}

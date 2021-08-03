@@ -3,13 +3,13 @@
 	<div
 		id="app"
 		:class="[
-			{ 'pad-sidebar': articleId },
+			{ 'pad-sidebar': methodsRecord },
 			{ collapsed: collapsed },
 			{ onmobile: isOnMobile }
 		]"
 	>
 		<sidebar-menu
-			v-if="articleId"
+			v-if="methodsRecord"
 			:menu="menu"
 			:collapsed="collapsed"
 			theme="white-theme"
@@ -25,7 +25,7 @@
 		/>
 
 		<!-- If articleId exists render small logo and toolbar -->
-		<div v-if="articleId" class="p-grid p-ai-center">
+		<div v-if="methodsRecord" class="p-grid p-ai-center">
 			<div class="p-col-12 p-md-2 p-lg-1">
 				<img class="logo" alt="Logo" src="./assets/hat.png" height="50px" />
 			</div>
@@ -93,8 +93,8 @@ export default {
 		};
 	},
 	computed: {
-		articleId() {
-			return this.$store.state.articleId;
+		methodsRecord() {
+			return this.$store.state.methodsRecord;
 		},
 		menu() {
 			return [

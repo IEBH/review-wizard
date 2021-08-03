@@ -58,7 +58,6 @@
 
 <script>
 import { mapState } from "vuex";
-import { closeArticle } from "../api/firebase.js";
 
 import Toolbar from "primevue/toolbar";
 import Button from "primevue/button";
@@ -96,7 +95,7 @@ export default {
 			this.displayWarn = true;
 		},
 		closeArticle() {
-			closeArticle(this.$store);
+			// Todo: Close article logic
 			this.$router.push("/");
 		},
 		openModal() {
