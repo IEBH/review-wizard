@@ -19,72 +19,72 @@ import ViewHome from "../components/ViewHome.vue";
 import ViewOutput from "../components/ViewOutput.vue";
 
 const routes = [
-  { name: "home", path: "", component: ViewHome },
-  { path: "/:articleId", component: ViewHome },
-  {
-    name: "titlepage",
-    path: "/:articleId/titlepage",
-    component: ViewTitlepage
-  },
-  {
-    name: "picot",
-    path: "/:articleId/method/picot",
-    component: ViewMethodPicot
-  },
-  { path: "/:articleId/method/search", component: ViewMethodSearch },
-  {
-    path: "/:articleId/method/search/bibliographic-databases",
-    component: ViewMethodSearchDatabses
-  },
-  {
-    path: "/:articleId/method/search/trial-registries",
-    component: ViewMethodSearchRegistries
-  },
-  {
-    path: "/:articleId/method/search/publication-type",
-    component: ViewMethodSearchPublicationType
-  },
-  {
-    path: "/:articleId/method/search/supplementory-methods",
-    component: ViewMethodSearchSupplementoryMethods
-  },
-  { path: "/:articleId/method/screening", component: ViewMethodScreening },
-  {
-    path: "/:articleId/method/data-extraction",
-    component: ViewMethodDataExtraction
-  },
-  {
-    path: "/:articleId/method/risk-of-bias",
-    component: ViewMethodAssessmentOfTheRiskOfBias
-  },
-  {
-    path: "/:articleId/method/measurement-of-effect",
-    component: ViewMethodMeasurementOfEffect
-  },
-  {
-    path: "/:articleId/method/unit-of-analysis",
-    component: ViewMethodUnitOfAnalysis
-  },
-  {
-    path: "/:articleId/method/missing-data",
-    component: ViewMethodDealingWithMissingData
-  },
-  {
-    path: "/:articleId/method/heterogeneity-publication-biases",
-    component: ViewMethodHeterogeneityPublicationBias
-  },
-  {
-    path: "/:articleId/method/subgroup-sensitivity-analysis",
-    component: ViewMethodSubgroupAndSensitivityAnalysis
-  },
-  {
-    path: "/:articleId/output",
-    component: ViewOutput
-  }
+	{ name: "home", path: "", component: ViewHome },
+	{ path: "/:articleId", component: ViewHome },
+	{
+		name: "titlepage",
+		path: "/:articleId/titlepage",
+		component: ViewTitlepage
+	},
+	{
+		name: "picot",
+		path: "/:articleId/method/picot",
+		component: ViewMethodPicot
+	},
+	{ path: "/:articleId/method/search", component: ViewMethodSearch },
+	{
+		path: "/:articleId/method/search/bibliographic-databases",
+		component: ViewMethodSearchDatabses
+	},
+	{
+		path: "/:articleId/method/search/trial-registries",
+		component: ViewMethodSearchRegistries
+	},
+	{
+		path: "/:articleId/method/search/publication-type",
+		component: ViewMethodSearchPublicationType
+	},
+	{
+		path: "/:articleId/method/search/supplementory-methods",
+		component: ViewMethodSearchSupplementoryMethods
+	},
+	{ path: "/:articleId/method/screening", component: ViewMethodScreening },
+	{
+		path: "/:articleId/method/data-extraction",
+		component: ViewMethodDataExtraction
+	},
+	{
+		path: "/:articleId/method/risk-of-bias",
+		component: ViewMethodAssessmentOfTheRiskOfBias
+	},
+	{
+		path: "/:articleId/method/measurement-of-effect",
+		component: ViewMethodMeasurementOfEffect
+	},
+	{
+		path: "/:articleId/method/unit-of-analysis",
+		component: ViewMethodUnitOfAnalysis
+	},
+	{
+		path: "/:articleId/method/missing-data",
+		component: ViewMethodDealingWithMissingData
+	},
+	{
+		path: "/:articleId/method/heterogeneity-publication-biases",
+		component: ViewMethodHeterogeneityPublicationBias
+	},
+	{
+		path: "/:articleId/method/subgroup-sensitivity-analysis",
+		component: ViewMethodSubgroupAndSensitivityAnalysis
+	},
+	{
+		path: "/:articleId/output",
+		component: ViewOutput
+	}
 ];
 
 const router = new VueRouter({
-  routes // short for `routes: routes`
+	routes // short for `routes: routes`
 });
 
 export default router;

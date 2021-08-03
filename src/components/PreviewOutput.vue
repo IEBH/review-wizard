@@ -1,16 +1,16 @@
 <template>
-  <Accordion style="margin-top: 50px; border: 1px solid black;">
-    <AccordionTab header="Output" :active="true">
-      <component
-        id="output"
-        :is="component"
-        :data="data"
-        :key="monitorChange"
-      />
-      <Button label="Rewrite" @click="reload" />
-      <Button class="p-ml-2" label="Copy" @click="copy" />
-    </AccordionTab>
-  </Accordion>
+	<Accordion style="margin-top: 50px; border: 1px solid black;">
+		<AccordionTab header="Output" :active="true">
+			<component
+				id="output"
+				:is="component"
+				:data="data"
+				:key="monitorChange"
+			/>
+			<Button label="Rewrite" @click="reload" />
+			<Button class="p-ml-2" label="Copy" @click="copy" />
+		</AccordionTab>
+	</Accordion>
 </template>
 
 <script>
@@ -22,26 +22,26 @@ import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
 import CopyMixin from "../mixins/CopyMixin.js";
 
 export default {
-  props: {
-    component: Object,
-    data: Object
-  },
-  mixins: [CopyMixin],
-  components: {
-    Accordion,
-    AccordionTab,
-    Button,
-    OutputAssesmentOfTheRiskOfBias
-  },
-  data() {
-    return {
-      monitorChange: 0
-    };
-  },
-  methods: {
-    reload() {
-      this.monitorChange += 1;
-    }
-  }
+	props: {
+		component: Object,
+		data: Object
+	},
+	mixins: [CopyMixin],
+	components: {
+		Accordion,
+		AccordionTab,
+		Button,
+		OutputAssesmentOfTheRiskOfBias
+	},
+	data() {
+		return {
+			monitorChange: 0
+		};
+	},
+	methods: {
+		reload() {
+			this.monitorChange += 1;
+		}
+	}
 };
 </script>
