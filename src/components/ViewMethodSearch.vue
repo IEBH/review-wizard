@@ -1,37 +1,37 @@
 <template>
-  <div>
-    <h1>Search Strategy</h1>
+	<div>
+		<h1>Search Strategy</h1>
 
-    <InputSelectMulti
-      question="Which of the following components went into your search string"
-      :options="componentsOptions"
-      :value="search.components"
-      @input="updateField('components', $event)"
-    />
+		<InputSelectMulti
+			question="Which of the following components went into your search string"
+			:options="componentsOptions"
+			:value="search.components"
+			@input="updateField('components', $event)"
+		/>
 
-    <InputSelectMulti
-      question="Was the search designed by a search specialist, if so select which type"
-      :options="specialistOptions"
-      :value="search.specialist"
-      @input="updateField('specialist', $event)"
-    />
+		<InputSelectMulti
+			question="Was the search designed by a search specialist, if so select which type"
+			:options="specialistOptions"
+			:value="search.specialist"
+			@input="updateField('specialist', $event)"
+		/>
 
-    <InputSelectMulti
-      question="Was help received during the designing of the search, if so who provided the help"
-      :options="specialistOptions"
-      :value="search.helper"
-      @input="updateField('helper', $event)"
-    />
+		<InputSelectMulti
+			question="Was help received during the designing of the search, if so who provided the help"
+			:options="specialistOptions"
+			:value="search.helper"
+			@input="updateField('helper', $event)"
+		/>
 
-    <InputSelectMulti
-      question="Was the search strategy peer-reviewed (according to PRESS guidelines), if so who peer-reviewed"
-      :options="specialistOptions"
-      :value="search.peerReviewer"
-      @input="updateField('peerReviewer', $event)"
-    />
+		<InputSelectMulti
+			question="Was the search strategy peer-reviewed (according to PRESS guidelines), if so who peer-reviewed"
+			:options="specialistOptions"
+			:value="search.peerReviewer"
+			@input="updateField('peerReviewer', $event)"
+		/>
 
-    <PreviewOutput :component="outputComponent" :data="search" />
-  </div>
+		<PreviewOutput :component="outputComponent" :data="search" />
+	</div>
 </template>
 
 <script>
@@ -43,37 +43,37 @@ import PreviewOutput from "./PreviewOutput.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
 
 export default {
-  name: "ViewMethodSearch",
-  components: {
-    InputSelectMulti,
-    PreviewOutput
-  },
-  computed: mapState({
-    search: state => state.method.doc.search
-  }),
-  methods: {
-    updateField(field, value) {
-      this.$store.dispatch("method/set", {
-        search: { [field]: value }
-      });
-    }
-  },
-  data() {
-    return {
-      componentsOptions: [
-        { label: "MeSH or other subject terms" },
-        { label: "Synonyms" },
-        { label: "Search filters" }
-      ],
-      specialistOptions: [
-        { label: "Librarian" },
-        { label: "Health Librarian" },
-        { label: "Information Specialist" },
-        { label: "Cochrane Information Specialist" }
-      ],
-      outputComponent: OutputSearch
-    };
-  }
+	name: "ViewMethodSearch",
+	components: {
+		InputSelectMulti,
+		PreviewOutput
+	},
+	computed: mapState({
+		search: state => state.method.doc.search
+	}),
+	methods: {
+		updateField(field, value) {
+			this.$store.dispatch("method/set", {
+				search: { [field]: value }
+			});
+		}
+	},
+	data() {
+		return {
+			componentsOptions: [
+				{ label: "MeSH or other subject terms" },
+				{ label: "Synonyms" },
+				{ label: "Search filters" }
+			],
+			specialistOptions: [
+				{ label: "Librarian" },
+				{ label: "Health Librarian" },
+				{ label: "Information Specialist" },
+				{ label: "Cochrane Information Specialist" }
+			],
+			outputComponent: OutputSearch
+		};
+	}
 };
 </script>
 

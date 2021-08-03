@@ -1,24 +1,24 @@
 <template>
-  <div>
-    <p>
-      {{ selectRandom(["We also ", "Additionaly, we"]) }}
-      {{
-        joinArrayWithAnd(
-          formatSelectMulti(data.supplementoryMethods)
-        ).toLowerCase()
-      }}
-    </p>
-  </div>
+	<div>
+		<p>
+			{{ selectRandom(["We also ", "Additionaly, we"]) }}
+			{{
+				joinArrayWithAnd(
+					formatSelectMulti(data.supplementoryMethods)
+				).toLowerCase()
+			}}
+		</p>
+	</div>
 </template>
 
 <script>
 import OutputMixin from "../mixins/OutputMixin.js";
 export default {
-  name: "OutputSearchSupplementoryMethods",
-  mixins: [OutputMixin],
-  props: {
-    data: Object
-  }
+	name: "OutputSearchSupplementoryMethods",
+	mixins: [OutputMixin],
+	props: {
+		data: Object
+	}
 };
 </script>
 

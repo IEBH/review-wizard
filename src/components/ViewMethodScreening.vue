@@ -1,72 +1,72 @@
 <template>
-  <div>
-    <h1>Study Selection and Screening</h1>
+	<div>
+		<h1>Study Selection and Screening</h1>
 
-    <InputSelectDropdown
-      question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
-      :value="screening.numberOfTitleAbstractScreeners"
-      @input="updateField('numberOfTitleAbstractScreeners', $event)"
-      :options="numberOptions"
-    />
+		<InputSelectDropdown
+			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
+			:value="screening.numberOfTitleAbstractScreeners"
+			@input="updateField('numberOfTitleAbstractScreeners', $event)"
+			:options="numberOptions"
+		/>
 
-    <InputSelectMulti
-      question="Which authors screened title/abstract?"
-      :value="screening.titleAbstractScreeners"
-      @input="updateField('titleAbstractScreeners', $event)"
-      :options="
-        titlepage.authors.map(el => {
-          return { label: el };
-        })
-      "
-    />
+		<InputSelectMulti
+			question="Which authors screened title/abstract?"
+			:value="screening.titleAbstractScreeners"
+			@input="updateField('titleAbstractScreeners', $event)"
+			:options="
+				titlepage.authors.map(el => {
+					return { label: el };
+				})
+			"
+		/>
 
-    <InputSelectDropdown
-      question="Which author retrieved full-texts"
-      :value="screening.fullTextRetrivalAuthor"
-      @input="updateField('fullTextRetrivalAuthor', $event)"
-      :options="titlepage.authors"
-    />
+		<InputSelectDropdown
+			question="Which author retrieved full-texts"
+			:value="screening.fullTextRetrivalAuthor"
+			@input="updateField('fullTextRetrivalAuthor', $event)"
+			:options="titlepage.authors"
+		/>
 
-    <InputSelectDropdown
-      question="How many review authors independently screened the full-texts for inclusion?"
-      :value="screening.numberOfFullTextScreeners"
-      @input="updateField('numberOfFullTextScreeners', $event)"
-      :options="numberOptions"
-    />
+		<InputSelectDropdown
+			question="How many review authors independently screened the full-texts for inclusion?"
+			:value="screening.numberOfFullTextScreeners"
+			@input="updateField('numberOfFullTextScreeners', $event)"
+			:options="numberOptions"
+		/>
 
-    <InputSelectMulti
-      question="Which authors screened full-texts?"
-      :value="screening.fullTextScreeners"
-      @input="updateField('fullTextScreeners', $event)"
-      :options="
-        titlepage.authors.map(el => {
-          return { label: el };
-        })
-      "
-    />
+		<InputSelectMulti
+			question="Which authors screened full-texts?"
+			:value="screening.fullTextScreeners"
+			@input="updateField('fullTextScreeners', $event)"
+			:options="
+				titlepage.authors.map(el => {
+					return { label: el };
+				})
+			"
+		/>
 
-    <InputSelectMulti
-      question="Any disagreements were resolved by:"
-      :value="screening.disputeResolution"
-      @input="updateField('disputeResolution', $event)"
-      :options="disputeResolutionOptions"
-    />
+		<InputSelectMulti
+			question="Any disagreements were resolved by:"
+			:value="screening.disputeResolution"
+			@input="updateField('disputeResolution', $event)"
+			:options="disputeResolutionOptions"
+		/>
 
-    <InputSelectYesNo
-      question="This systematic review is reported following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) statement."
-      :value="screening.isPrismaFlowDiagram"
-      @input="updateField('isPrismaFlowDiagram', $event)"
-    />
+		<InputSelectYesNo
+			question="This systematic review is reported following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) statement."
+			:value="screening.isPrismaFlowDiagram"
+			@input="updateField('isPrismaFlowDiagram', $event)"
+		/>
 
-    <InputSelectYesNo
-      v-if="screening.isPrismaFlowDiagram"
-      question="The list of studies excluded at full-text is provided in Appendix"
-      :value="screening.isExcludedFullTextInAppendix"
-      @input="updateField('isExcludedFullTextInAppendix', $event)"
-    />
+		<InputSelectYesNo
+			v-if="screening.isPrismaFlowDiagram"
+			question="The list of studies excluded at full-text is provided in Appendix"
+			:value="screening.isExcludedFullTextInAppendix"
+			@input="updateField('isExcludedFullTextInAppendix', $event)"
+		/>
 
-    <PreviewOutput :component="outputComponent" :data="screening" />
-  </div>
+		<PreviewOutput :component="outputComponent" :data="screening" />
+	</div>
 </template>
 
 <script>
@@ -80,34 +80,34 @@ import InputSelectMulti from "./InputSelectMulti.vue";
 import InputSelectYesNo from "./InputSelectYesNo.vue";
 
 export default {
-  name: "ViewMethodScreening",
-  components: {
-    InputSelectDropdown,
-    InputSelectMulti,
-    InputSelectYesNo,
-    PreviewOutput
-  },
-  computed: mapState({
-    screening: state => state.method.doc.screening,
-    titlepage: state => state.titlepage.doc
-  }),
-  methods: {
-    updateField(field, value) {
-      this.$store.dispatch("method/set", {
-        screening: { [field]: value }
-      });
-    }
-  },
-  data() {
-    return {
-      numberOptions: ["2", "3", "4", "5", "6"],
-      disputeResolutionOptions: [
-        { label: "By consensus" },
-        { label: "By referring to a third author" }
-      ],
-      outputComponent: OutputScreening
-    };
-  }
+	name: "ViewMethodScreening",
+	components: {
+		InputSelectDropdown,
+		InputSelectMulti,
+		InputSelectYesNo,
+		PreviewOutput
+	},
+	computed: mapState({
+		screening: state => state.method.doc.screening,
+		titlepage: state => state.titlepage.doc
+	}),
+	methods: {
+		updateField(field, value) {
+			this.$store.dispatch("method/set", {
+				screening: { [field]: value }
+			});
+		}
+	},
+	data() {
+		return {
+			numberOptions: ["2", "3", "4", "5", "6"],
+			disputeResolutionOptions: [
+				{ label: "By consensus" },
+				{ label: "By referring to a third author" }
+			],
+			outputComponent: OutputScreening
+		};
+	}
 };
 </script>
 

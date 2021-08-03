@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <h1>Dealing with Missing Data</h1>
+	<div>
+		<h1>Dealing with Missing Data</h1>
 
-    <InputSelectYesNo
-      question="We contacted investigators or study sponsors to provide missing data"
-      :value="missingData.isContactedInvestigators"
-      @input="updateField('isContactedInvestigators', $event)"
-      :options="numberOptions"
-    />
+		<InputSelectYesNo
+			question="We contacted investigators or study sponsors to provide missing data"
+			:value="missingData.isContactedInvestigators"
+			@input="updateField('isContactedInvestigators', $event)"
+			:options="numberOptions"
+		/>
 
-    <PreviewOutput :component="outputComponent" :data="missingData" />
-  </div>
+		<PreviewOutput :component="outputComponent" :data="missingData" />
+	</div>
 </template>
 
 <script>
@@ -22,27 +22,27 @@ import PreviewOutput from "./PreviewOutput.vue";
 import InputSelectYesNo from "./InputSelectYesNo.vue";
 
 export default {
-  name: "ViewMethodDealingWithMissingData",
-  components: {
-    InputSelectYesNo,
-    PreviewOutput
-  },
-  computed: mapState({
-    missingData: state => state.method.doc.missingData
-  }),
-  methods: {
-    updateField(field, value) {
-      this.$store.dispatch("method/set", {
-        missingData: { [field]: value }
-      });
-    }
-  },
-  data() {
-    return {
-      numberOptions: ["1", "2", "3", "4", "5", "6"],
-      outputComponent: OutputDealingWithMissingData
-    };
-  }
+	name: "ViewMethodDealingWithMissingData",
+	components: {
+		InputSelectYesNo,
+		PreviewOutput
+	},
+	computed: mapState({
+		missingData: state => state.method.doc.missingData
+	}),
+	methods: {
+		updateField(field, value) {
+			this.$store.dispatch("method/set", {
+				missingData: { [field]: value }
+			});
+		}
+	},
+	data() {
+		return {
+			numberOptions: ["1", "2", "3", "4", "5", "6"],
+			outputComponent: OutputDealingWithMissingData
+		};
+	}
 };
 </script>
 
