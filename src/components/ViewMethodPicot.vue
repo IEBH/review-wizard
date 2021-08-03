@@ -99,9 +99,17 @@ export default {
 			return this.$store.state.methodsRecord;
 		}
 	},
-	mounted() {
-		this.methodsRecord.subscribe("picot", picot => (this.picot = picot));
+	watch: {
+		methodsRecord() {
+			console.log("Resubscribing");
+			this.$store.state.methodsRecord.subscribe("picot", picot => {
+				this.picot = picot;
+			});
+		}
 	},
+	// mounted() {
+	// 	this.methodsRecord.subscribe("picot", picot => (this.picot = picot));
+	// },
 	methods: {
 		updateField(field, value) {
 			this.$set(this.picot, field, value);

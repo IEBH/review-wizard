@@ -79,7 +79,7 @@ export default {
 		title: state => state.titlepage.doc.title,
 		authors: state => state.titlepage.doc.authors,
 		year: state => state.titlepage.doc.year,
-		articleId: state => state.articleId
+		projectId: state => state.projectId
 	}),
 	data() {
 		return {
@@ -91,7 +91,7 @@ export default {
 	methods: {
 		close() {
 			this.shareUrl =
-				"https://sr-accelerator.com/#/methods-wizard?id=" + this.articleId;
+				"https://sr-accelerator.com/#/methods-wizard?id=" + this.projectId;
 			this.displayWarn = true;
 		},
 		closeArticle() {
@@ -100,7 +100,7 @@ export default {
 		},
 		openModal() {
 			this.shareUrl =
-				"https://sr-accelerator.com/#/methods-wizard?id=" + this.articleId;
+				"https://sr-accelerator.com/#/methods-wizard?id=" + this.projectId;
 			this.displayModal = true;
 		},
 		copyLink() {

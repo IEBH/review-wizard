@@ -20,65 +20,65 @@ import ViewOutput from "../components/ViewOutput.vue";
 
 const routes = [
 	{ name: "home", path: "", component: ViewHome },
-	{ path: "/:articleId", component: ViewHome },
+	{ path: "/:projectId", component: ViewHome },
 	{
 		name: "titlepage",
-		path: "/:articleId/titlepage",
+		path: "/:projectId/titlepage",
 		component: ViewTitlepage
 	},
 	{
 		name: "picot",
-		path: "/:articleId/method/picot",
+		path: "/:projectId/method/picot",
 		component: ViewMethodPicot
 	},
-	{ path: "/:articleId/method/search", component: ViewMethodSearch },
+	{ path: "/:projectId/method/search", component: ViewMethodSearch },
 	{
-		path: "/:articleId/method/search/bibliographic-databases",
+		path: "/:projectId/method/search/bibliographic-databases",
 		component: ViewMethodSearchDatabses
 	},
 	{
-		path: "/:articleId/method/search/trial-registries",
+		path: "/:projectId/method/search/trial-registries",
 		component: ViewMethodSearchRegistries
 	},
 	{
-		path: "/:articleId/method/search/publication-type",
+		path: "/:projectId/method/search/publication-type",
 		component: ViewMethodSearchPublicationType
 	},
 	{
-		path: "/:articleId/method/search/supplementory-methods",
+		path: "/:projectId/method/search/supplementory-methods",
 		component: ViewMethodSearchSupplementoryMethods
 	},
-	{ path: "/:articleId/method/screening", component: ViewMethodScreening },
+	{ path: "/:projectId/method/screening", component: ViewMethodScreening },
 	{
-		path: "/:articleId/method/data-extraction",
+		path: "/:projectId/method/data-extraction",
 		component: ViewMethodDataExtraction
 	},
 	{
-		path: "/:articleId/method/risk-of-bias",
+		path: "/:projectId/method/risk-of-bias",
 		component: ViewMethodAssessmentOfTheRiskOfBias
 	},
 	{
-		path: "/:articleId/method/measurement-of-effect",
+		path: "/:projectId/method/measurement-of-effect",
 		component: ViewMethodMeasurementOfEffect
 	},
 	{
-		path: "/:articleId/method/unit-of-analysis",
+		path: "/:projectId/method/unit-of-analysis",
 		component: ViewMethodUnitOfAnalysis
 	},
 	{
-		path: "/:articleId/method/missing-data",
+		path: "/:projectId/method/missing-data",
 		component: ViewMethodDealingWithMissingData
 	},
 	{
-		path: "/:articleId/method/heterogeneity-publication-biases",
+		path: "/:projectId/method/heterogeneity-publication-biases",
 		component: ViewMethodHeterogeneityPublicationBias
 	},
 	{
-		path: "/:articleId/method/subgroup-sensitivity-analysis",
+		path: "/:projectId/method/subgroup-sensitivity-analysis",
 		component: ViewMethodSubgroupAndSensitivityAnalysis
 	},
 	{
-		path: "/:articleId/output",
+		path: "/:projectId/output",
 		component: ViewOutput
 	}
 ];

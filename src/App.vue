@@ -24,7 +24,7 @@
 			@click="collapsed = true"
 		/>
 
-		<!-- If articleId exists render small logo and toolbar -->
+		<!-- If methodsRecord exists render small logo and toolbar -->
 		<div v-if="methodsRecord" class="p-grid p-ai-center">
 			<div class="p-col-12 p-md-2 p-lg-1">
 				<img class="logo" alt="Logo" src="./assets/hat.png" height="50px" />
@@ -106,7 +106,7 @@ export default {
 				{
 					title: "Title Page",
 					icon: "pi pi-file",
-					href: `/${this.$store.state.articleId}/titlepage`
+					href: `/${this.$store.state.projectId}/titlepage`
 				},
 				{
 					header: true,
@@ -116,30 +116,30 @@ export default {
 				{
 					title: "Eligibility Criteria (PICOST)",
 					icon: "pi pi-file",
-					href: `/${this.$store.state.articleId}/method/picot`
+					href: `/${this.$store.state.projectId}/method/picot`
 				},
 				{
 					title: "Search",
 					icon: "pi pi-search",
 					child: [
 						{
-							href: `/${this.$store.state.articleId}/method/search`,
+							href: `/${this.$store.state.projectId}/method/search`,
 							title: "Search Strategy"
 						},
 						{
-							href: `/${this.$store.state.articleId}/method/search/bibliographic-databases`,
+							href: `/${this.$store.state.projectId}/method/search/bibliographic-databases`,
 							title: "Search Strings for Databases"
 						},
 						{
-							href: `/${this.$store.state.articleId}/method/search/trial-registries`,
+							href: `/${this.$store.state.projectId}/method/search/trial-registries`,
 							title: "Search Strings for Trial Registries"
 						},
 						{
-							href: `/${this.$store.state.articleId}/method/search/publication-type`,
+							href: `/${this.$store.state.projectId}/method/search/publication-type`,
 							title: "Restrictions on Publication Type"
 						},
 						{
-							href: `/${this.$store.state.articleId}/method/search/supplementory-methods`,
+							href: `/${this.$store.state.projectId}/method/search/supplementory-methods`,
 							title: "Supplementary Methods"
 						}
 					]
@@ -147,42 +147,42 @@ export default {
 				{
 					title: "Study Selection and Screening",
 					icon: "pi pi-check",
-					href: `/${this.$store.state.articleId}/method/screening`
+					href: `/${this.$store.state.projectId}/method/screening`
 				},
 				{
 					title: "Data Extraction",
 					icon: "pi pi-upload",
-					href: `/${this.$store.state.articleId}/method/data-extraction`
+					href: `/${this.$store.state.projectId}/method/data-extraction`
 				},
 				{
 					title: "Assessment of the RoB",
 					icon: "pi pi-exclamation-circle",
-					href: `/${this.$store.state.articleId}/method/risk-of-bias`
+					href: `/${this.$store.state.projectId}/method/risk-of-bias`
 				},
 				{
 					title: "Measurement of Effect",
 					icon: "pi pi-sliders-v",
-					href: `/${this.$store.state.articleId}/method/measurement-of-effect`
+					href: `/${this.$store.state.projectId}/method/measurement-of-effect`
 				},
 				{
 					title: "Unit of Analysis",
 					icon: "pi pi-chart-bar",
-					href: `/${this.$store.state.articleId}/method/unit-of-analysis`
+					href: `/${this.$store.state.projectId}/method/unit-of-analysis`
 				},
 				{
 					title: "Dealing with Missing Data",
 					icon: "pi pi-question",
-					href: `/${this.$store.state.articleId}/method/missing-data`
+					href: `/${this.$store.state.projectId}/method/missing-data`
 				},
 				{
 					title: "Heterogeneity/Publication Bias",
 					icon: "pi pi-users",
-					href: `/${this.$store.state.articleId}/method/heterogeneity-publication-biases`
+					href: `/${this.$store.state.projectId}/method/heterogeneity-publication-biases`
 				},
 				{
 					title: "Subgroup and Sensitivity Analysis",
 					icon: "pi pi-chart-line",
-					href: `/${this.$store.state.articleId}/method/subgroup-sensitivity-analysis`
+					href: `/${this.$store.state.projectId}/method/subgroup-sensitivity-analysis`
 				},
 				{
 					header: true,
@@ -192,7 +192,7 @@ export default {
 				{
 					title: "Output",
 					icon: "pi pi-download",
-					href: `/${this.$store.state.articleId}/output`
+					href: `/${this.$store.state.projectId}/output`
 				}
 			];
 		}

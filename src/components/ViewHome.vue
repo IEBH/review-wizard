@@ -1,7 +1,7 @@
 <template>
 	<div class="p-m-5">
 		<h1>Welcome to the Methods Wizard!</h1>
-		<p v-if="articleId">
+		<p v-if="projectId">
 			To start making changes, simply select a section from the left hand side
 			and begin filling it in
 		</p>
@@ -67,8 +67,8 @@ export default {
 		};
 	},
 	computed: {
-		articleId() {
-			return this.$store.state.articleId;
+		projectId() {
+			return this.$store.state.projectId;
 		}
 	},
 	methods: {
@@ -78,7 +78,7 @@ export default {
 		navigateToTitlepage() {
 			this.$router.replace({
 				name: "titlepage",
-				params: { articleId: this.newId }
+				params: { projectId: this.newId }
 			});
 		},
 		copyLink() {
