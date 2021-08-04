@@ -11,13 +11,15 @@
 
 		<InputDate
 			question="What date did you run your search on?"
-			:value="search.dateOfSearch"
+			:value="search.dateOfSearch ? new Date(search.dateOfSearch) : null"
 			@input="updateField('dateOfSearch', $event)"
 		/>
 
 		<InputDate
 			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
-			:value="search.dateSearchedUntil"
+			:value="
+				search.dateSearchedUntil ? new Date(search.dateSearchedUntil) : null
+			"
 			@input="updateField('dateSearchedUntil', $event)"
 		/>
 
@@ -41,33 +43,25 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import OutputSearchDatabases from "./OutputSearchDatabases.vue";
 import OutputSearchDatabasesAppendix from "./OutputSearchDatabasesAppendix.vue";
-
 import PreviewOutput from "./PreviewOutput.vue";
-
 import InputSelectMulti from "./InputSelectMulti.vue";
 import InputDate from "./InputDate.vue";
 import InputTextMultiSyntax from "./InputTextMultiSyntax";
 
+import deepstreamMixin from "../mixins/DeepstreamMixin";
+
 export default {
 	name: "ViewMethodSearchDatabases",
+	mixins: [deepstreamMixin("search")],
 	components: {
 		InputSelectMulti,
 		InputDate,
 		InputTextMultiSyntax,
 		PreviewOutput
 	},
-	computed: mapState({
-		search: state => state.method.doc.search
-	}),
 	methods: {
-		updateField(field, value) {
-			this.$store.dispatch("method/set", {
-				search: { [field]: value }
-			});
-		},
 		updateDatabaseString(index, value) {
 			var newDatabase = this.search.databases;
 			newDatabase[index].string = value;

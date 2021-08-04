@@ -11,14 +11,22 @@
 
 		<InputDate
 			question="What date did you run your search on?"
-			:value="search.registryDateOfSearch"
+			:value="
+				search.registryDateOfSearch
+					? new Date(search.registryDateOfSearch)
+					: null
+			"
 			@input="updateField('registryDateOfSearch', $event)"
 		/>
 
 		<InputDate
 			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
-			:value="search.registryDateSearchedUntil"
-			@input="updateField('registryDateOfSearch', $event)"
+			:value="
+				search.registryDateSearchedUntil
+					? new Date(search.registryDateSearchedUntil)
+					: null
+			"
+			@input="updateField('registryDateSearchedUntil', $event)"
 		/>
 
 		<template v-for="(registry, index) of search.registries">
@@ -41,33 +49,25 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import OutputSearchRegistries from "./OutputSearchRegistries.vue";
 import OutputSearchRegistriesAppendix from "./OutputSearchRegistriesAppendix.vue";
-
 import PreviewOutput from "./PreviewOutput.vue";
-
 import InputSelectMulti from "./InputSelectMulti.vue";
 import InputDate from "./InputDate.vue";
 import InputTextMultiSyntax from "./InputTextMultiSyntax";
 
+import deepstreamMixin from "../mixins/DeepstreamMixin";
+
 export default {
 	name: "ViewMethodSearchRegistries",
+	mixins: [deepstreamMixin("search")],
 	components: {
 		InputSelectMulti,
 		InputDate,
 		InputTextMultiSyntax,
 		PreviewOutput
 	},
-	computed: mapState({
-		search: state => state.method.doc.search
-	}),
 	methods: {
-		updateField(field, value) {
-			this.$store.dispatch("method/set", {
-				search: { [field]: value }
-			});
-		},
 		updateRegisteryString(index, value) {
 			var newregistry = this.search.registries;
 			newregistry[index].string = value;

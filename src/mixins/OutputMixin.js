@@ -57,6 +57,7 @@ export default {
 			} else return [];
 		},
 		formatDate(timestamp) {
+			timestamp = new Date(timestamp);
 			var d;
 			try {
 				d = timestamp.toDate();
@@ -70,6 +71,7 @@ export default {
 			}
 		},
 		formatDateFull(timestamp) {
+			timestamp = new Date(timestamp);
 			const monthNames = [
 				"January",
 				"February",

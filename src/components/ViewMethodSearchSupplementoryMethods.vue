@@ -14,28 +14,18 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import OutputSearchSupplementoryMethods from "./OutputSearchSupplementoryMethods.vue";
-
 import PreviewOutput from "./PreviewOutput.vue";
-
 import InputSelectMulti from "./InputSelectMulti.vue";
+
+import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchDatabases",
+	mixins: [deepstreamMixin("search")],
 	components: {
 		InputSelectMulti,
 		PreviewOutput
-	},
-	computed: mapState({
-		search: state => state.method.doc.search
-	}),
-	methods: {
-		updateField(field, value) {
-			this.$store.dispatch("method/set", {
-				search: { [field]: value }
-			});
-		}
 	},
 	data() {
 		return {
