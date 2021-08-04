@@ -55,10 +55,10 @@ const storeData = {
 						state.client.record.getRecord(`methods/${projectMetadata.methods}`)
 					);
 				} else {
-					console.error("Invalid project-id");
+					throw new Error("Invalid project-id");
 				}
 			} else {
-				console.error("No project id specified");
+				throw new Error("No project id specified");
 			}
 		}
 	}

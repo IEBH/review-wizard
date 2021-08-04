@@ -92,9 +92,15 @@ router.beforeEach((to, from, next) => {
 	var projectId = to.query["project-id"] || to.params.projectId;
 	if (projectId != store.state.projectId) {
 		console.log("Initializing project ID:", projectId);
-		store.dispatch("initialize", projectId).then(() => {
-			next();
-		});
+		store
+			.dispatch("initialize", projectId)
+			.then(() => {
+				next();
+			})
+			.catch(err => {
+				alert(err);
+				console.error(err);
+			});
 	} else {
 		next();
 	}
