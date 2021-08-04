@@ -52,33 +52,22 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
-
 import PreviewOutput from "./PreviewOutput.vue";
-
 import InputSelectYesNo from "./InputSelectYesNo.vue";
 import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
 import InputTextMultiLine from "./InputTextMultiLine";
 
+import deepstreamMixin from "../mixins/DeepstreamMixin";
+
 export default {
 	name: "ViewMethodSubgroupAndSensitivityAnalysis",
+	mixins: [deepstreamMixin("subgroupAndSensitivityAnalysis")],
 	components: {
 		InputSelectYesNo,
 		InputTextSingleLineMulti,
 		InputTextMultiLine,
 		PreviewOutput
-	},
-	computed: mapState({
-		subgroupAndSensitivityAnalysis: state =>
-			state.method.doc.subgroupAndSensitivityAnalysis
-	}),
-	methods: {
-		updateField(field, value) {
-			this.$store.dispatch("method/set", {
-				subgroupAndSensitivityAnalysis: { [field]: value }
-			});
-		}
 	},
 	data() {
 		return {
