@@ -4,14 +4,19 @@ Vue.use(Vuex);
 
 import { DeepstreamClient } from "@deepstream/client";
 
+const getDefaultState = () => ({
+	projectId: null,
+	client: new DeepstreamClient("localhost:6020"),
+	projectRecord: null,
+	methodsRecord: null
+});
+
 const storeData = {
-	state: {
-		projectId: null,
-		client: new DeepstreamClient("localhost:6020"),
-		projectRecord: null,
-		methodsRecord: null
-	},
+	state: getDefaultState(),
 	mutations: {
+		reset(state) {
+			Object.assign(state, getDefaultState());
+		},
 		setProjectId(state, id) {
 			state.projectId = id;
 		},
@@ -27,30 +32,28 @@ const storeData = {
 	},
 	actions: {
 		initialize: async function({ commit, state }, projectId) {
-			console.log("Loading Project:", `project/${projectId}`);
 			if (projectId) {
+				console.log("Loading Project:", `project/${projectId}`);
+				// Reset store
+				commit("reset");
 				// Update store with project ID
 				commit("setProjectId", projectId);
 				// Login to deepstream
-				state.client.login();
+				await state.client.login();
 				// Set project record
 				commit(
 					"setProjectRecord",
 					state.client.record.getRecord(`project/${projectId}`)
 				);
-				// Subscribe to project metadata
-				var projectMetadata = await new Promise(resolve => {
-					state.projectRecord.subscribe("metadata", metadata => {
-						resolve(metadata);
-					});
-				});
+				// Get the project metadata
+				await state.projectRecord.whenReady();
+				var projectMetadata = state.projectRecord.get("metadata");
 				if (projectMetadata) {
 					// Set methods record
 					commit(
 						"setMethodsRecord",
 						state.client.record.getRecord(`methods/${projectMetadata.methods}`)
 					);
-					return true;
 				} else {
 					console.error("Invalid project-id");
 				}
