@@ -80,57 +80,23 @@
 </template>
 
 <script>
-import OutputPicot from "./OutputPicot.vue";
-
-import PreviewOutput from "./PreviewOutput.vue";
-
 import InputSelectMulti from "./InputSelectMulti.vue";
 import InputTable from "./InputTable.vue";
+import OutputPicot from "./OutputPicot.vue";
+import PreviewOutput from "./PreviewOutput.vue";
+
+import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodPicot",
+	mixins: [deepstreamMixin("picot")],
 	components: {
 		InputSelectMulti,
 		InputTable,
 		PreviewOutput
 	},
-	computed: {
-		methodsRecord() {
-			return this.$store.state.methodsRecord;
-		}
-	},
-	mounted() {
-		if (this.methodsRecord) {
-			var existing = this.methodsRecord.get("picot");
-			if (existing) {
-				this.picot = existing;
-			}
-			this.methodsRecord.subscribe("picot", picot => {
-				this.picot = picot;
-			});
-		}
-	},
-	destroyed() {
-		if (this.methodsRecord) {
-			this.methodsRecord.unsubscribe("picot");
-		}
-	},
-	methods: {
-		updateField(field, value) {
-			this.$set(this.picot, field, value);
-			this.methodsRecord.set("picot", this.picot);
-		}
-	},
 	data() {
 		return {
-			picot: {
-				population: [{ inclusion: true }],
-				intervention: [{ inclusion: true }],
-				comparator: [{ inclusion: true }],
-				outcomes: [{ inclusion: true, type: true }],
-				setting: [{ inclusion: true }],
-				types: []
-			},
 			typesOptions: [
 				{ label: "Systematic Reviews" },
 				{ label: "Observational Studies" },
