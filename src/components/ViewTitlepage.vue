@@ -22,27 +22,19 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import InputTextNumber from "./InputTextNumber.vue";
 import InputTextSingleLine from "./InputTextSingleLine.vue";
 import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
 
+import deepstreamMixin from "../mixins/DeepstreamMixin";
+
 export default {
 	name: "ViewMethodPicot",
+	mixins: [deepstreamMixin("titlepage")],
 	components: {
 		InputTextSingleLine,
 		InputTextSingleLineMulti,
 		InputTextNumber
-	},
-	computed: mapState({
-		titlepage: state => state.titlepage.doc
-	}),
-	methods: {
-		updateField(field, value) {
-			this.$store.dispatch("titlepage/set", {
-				[field]: value
-			});
-		}
 	}
 };
 </script>
