@@ -14,28 +14,18 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
-
 import PreviewOutput from "./PreviewOutput.vue";
-
 import InputSelectYesNo from "./InputSelectYesNo.vue";
+
+import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodDealingWithMissingData",
+	mixins: [deepstreamMixin("missingData")],
 	components: {
 		InputSelectYesNo,
 		PreviewOutput
-	},
-	computed: mapState({
-		missingData: state => state.method.doc.missingData
-	}),
-	methods: {
-		updateField(field, value) {
-			this.$store.dispatch("method/set", {
-				missingData: { [field]: value }
-			});
-		}
 	},
 	data() {
 		return {
