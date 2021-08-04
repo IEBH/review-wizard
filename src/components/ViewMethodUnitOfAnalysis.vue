@@ -39,30 +39,20 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import OutputUnitOfAnalysis from "./OutputUnitOfAnalysis.vue";
-
 import PreviewOutput from "./PreviewOutput.vue";
-
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputTextSingleLine from "./InputTextSingleLine.vue";
 
+import deepstreamMixin from "../mixins/DeepstreamMixin";
+
 export default {
 	name: "ViewMethodUnitOfAnalysis",
+	mixins: [deepstreamMixin("unitOfAnalysis")],
 	components: {
 		InputTextSingleLine,
 		InputSelectDropdown,
 		PreviewOutput
-	},
-	computed: mapState({
-		unitOfAnalysis: state => state.method.doc.unitOfAnalysis
-	}),
-	methods: {
-		updateField(field, value) {
-			this.$store.dispatch("method/set", {
-				unitOfAnalysis: { [field]: value }
-			});
-		}
 	},
 	data() {
 		return {
