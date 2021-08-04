@@ -131,8 +131,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 import OutputPicot from "./OutputPicot.vue";
 import OutputSearch from "./OutputSearch.vue";
 import OutputSearchDatabases from "./OutputSearchDatabases.vue";
@@ -156,9 +154,23 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Checkbox from "primevue/checkbox";
 
+import deepstreamMixin from "../mixins/DeepstreamMixin";
+
 export default {
 	name: "ViewMethodSearch",
-	mixins: [CopyMixin],
+	mixins: [
+		CopyMixin,
+		deepstreamMixin("picot"),
+		deepstreamMixin("search"),
+		deepstreamMixin("screening"),
+		deepstreamMixin("extraction"),
+		deepstreamMixin("riskOfBias"),
+		deepstreamMixin("measurementOfEffect"),
+		deepstreamMixin("unitOfAnalysis"),
+		deepstreamMixin("missingData"),
+		deepstreamMixin("heterogeneityPublicationBiases"),
+		deepstreamMixin("subgroupAndSensitivityAnalysis")
+	],
 	components: {
 		Button,
 		Dialog,
@@ -180,20 +192,6 @@ export default {
 		OutputHeterogeneityPublicationBias,
 		OutputSubgroupAndSensitivityAnalysis
 	},
-	computed: mapState({
-		picot: state => state.method.doc.picot,
-		search: state => state.method.doc.search,
-		screening: state => state.method.doc.screening,
-		extraction: state => state.method.doc.extraction,
-		riskOfBias: state => state.method.doc.riskOfBias,
-		measurementOfEffect: state => state.method.doc.measurementOfEffect,
-		unitOfAnalysis: state => state.method.doc.unitOfAnalysis,
-		missingData: state => state.method.doc.missingData,
-		heterogeneityPublicationBiases: state =>
-			state.method.doc.heterogeneityPublicationBiases,
-		subgroupAndSensitivityAnalysis: state =>
-			state.method.doc.subgroupAndSensitivityAnalysis
-	}),
 	data() {
 		return {
 			monitorChange: 0,
@@ -218,11 +216,6 @@ export default {
 		};
 	},
 	methods: {
-		updateField(field, value) {
-			this.$store.dispatch("method/set", {
-				search: { [field]: value }
-			});
-		},
 		openModal() {
 			this.displayModal = true;
 		},
