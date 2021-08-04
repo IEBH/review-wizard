@@ -48,7 +48,7 @@ const storeData = {
 				// Get the project metadata
 				await state.projectRecord.whenReady();
 				var projectMetadata = state.projectRecord.get("metadata");
-				if (projectMetadata) {
+				if (projectMetadata && projectMetadata.methods) {
 					// Set methods record
 					commit(
 						"setMethodsRecord",
