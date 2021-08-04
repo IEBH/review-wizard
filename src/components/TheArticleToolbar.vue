@@ -2,8 +2,14 @@
 	<div>
 		<Toolbar>
 			<template slot="left">
-				<b>{{ title ? title : "Untitled Methods Section" }}</b>
-				<TheArticleCitation :title="title" :authors="authors" :year="year" />
+				<b>
+					{{ titlepage.title ? titlepage.title : "Untitled Methods Section" }}
+				</b>
+				<TheArticleCitation
+					:title="titlepage.title"
+					:authors="titlepage.authors"
+					:year="titlepage.year"
+				/>
 			</template>
 			<template slot="right">
 				<Button
@@ -57,6 +63,8 @@
 </template>
 
 <script>
+import deepstreamMixin from "../mixins/DeepstreamMixin";
+
 import { mapState } from "vuex";
 
 import Toolbar from "primevue/toolbar";
@@ -68,6 +76,7 @@ import TheArticleCitation from "./TheArticleCitation.vue";
 
 export default {
 	name: "TheArticleToolbar",
+	mixins: [deepstreamMixin("titlepage")],
 	components: {
 		Toolbar,
 		Button,
@@ -76,9 +85,6 @@ export default {
 		TheArticleCitation
 	},
 	computed: mapState({
-		title: state => state.titlepage.doc.title,
-		authors: state => state.titlepage.doc.authors,
-		year: state => state.titlepage.doc.year,
 		projectId: state => state.projectId
 	}),
 	data() {
