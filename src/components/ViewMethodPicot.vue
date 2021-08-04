@@ -99,14 +99,6 @@ export default {
 			return this.$store.state.methodsRecord;
 		}
 	},
-	// TODO: Remove by waiting for deepstream to be initialized before running mounted
-	watch: {
-		methodsRecord() {
-			this.methodsRecord.subscribe("picot", picot => {
-				this.picot = picot;
-			});
-		}
-	},
 	mounted() {
 		if (this.methodsRecord) {
 			var existing = this.methodsRecord.get("picot");

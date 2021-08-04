@@ -1,5 +1,5 @@
 import VueRouter from "vue-router";
-// import store from "../store";
+import store from "../store";
 import ViewMethodPicot from "../components/ViewMethodPicot.vue";
 import ViewMethodSearch from "../components/ViewMethodSearch.vue";
 import ViewMethodSearchDatabses from "../components/ViewMethodSearchDatabases.vue";
@@ -85,6 +85,19 @@ const routes = [
 
 const router = new VueRouter({
 	routes // short for `routes: routes`
+});
+
+// Initialize store before navigation
+router.beforeEach((to, from, next) => {
+	var projectId = to.query["project-id"] || to.params.projectId;
+	if (projectId != store.state.projectId) {
+		console.log("Initializing project ID:", projectId);
+		store.dispatch("initialize", projectId).then(() => {
+			next();
+		});
+	} else {
+		next();
+	}
 });
 
 export default router;

@@ -50,6 +50,7 @@ const storeData = {
 						"setMethodsRecord",
 						state.client.record.getRecord(`methods/${projectMetadata.methods}`)
 					);
+					return true;
 				} else {
 					console.error("Invalid project-id");
 				}

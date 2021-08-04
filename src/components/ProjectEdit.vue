@@ -4,31 +4,7 @@
 
 <script>
 export default {
-	name: "ProjectEdit",
-	created() {
-		this.refresh();
-	},
-	computed: {
-		prevId() {
-			return this.$store.state.projectId;
-		}
-	},
-	watch: {
-		"$route.params.projectId"() {
-			this.refresh();
-		}
-	},
-	methods: {
-		async refresh() {
-			var projectId =
-				this.$route.query["project-id"] || this.$route.params.projectId;
-			if (this.prevId != projectId) {
-				console.log("Initializing deepstream");
-				// Initialize deepstream
-				this.$store.dispatch("initialize", projectId);
-			}
-		}
-	}
+	name: "ProjectEdit"
 };
 </script>
 
