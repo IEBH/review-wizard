@@ -104,22 +104,26 @@
 import isEqual from "lodash/isEqual";
 import sortBy from "lodash/sortBy";
 
-import { mapState } from "vuex";
-
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
 import Message from "primevue/message";
 
 import PreviewOutput from "./PreviewOutput.vue";
 import OutputDataExtraction from "./OutputDataExtraction.vue";
-
 import InputSelectDropdown from "./InputSelectDropdown.vue";
 import InputSelectMulti from "./InputSelectMulti.vue";
 import InputTable from "./InputTable.vue";
 import InputSelectYesNo from "./InputSelectYesNo.vue";
 
+import deepstreamMixin from "../mixins/DeepstreamMixin";
+
 export default {
 	name: "ViewMethodDataExtraction",
+	mixins: [
+		deepstreamMixin("titlepage"),
+		deepstreamMixin("picot"),
+		deepstreamMixin("extraction")
+	],
 	components: {
 		Accordion,
 		AccordionTab,
@@ -130,17 +134,7 @@ export default {
 		PreviewOutput,
 		InputSelectYesNo
 	},
-	computed: mapState({
-		extraction: state => state.method.doc.extraction,
-		titlepage: state => state.titlepage.doc,
-		picot: state => state.method.doc.picot
-	}),
 	methods: {
-		updateField(field, value) {
-			this.$store.dispatch("method/set", {
-				extraction: { [field]: value }
-			});
-		},
 		compareLabel(a, b) {
 			if (a.label < b.label) {
 				return -1;
