@@ -6,7 +6,7 @@ import { DeepstreamClient } from "@deepstream/client";
 
 const getDefaultState = () => ({
 	projectId: null,
-	client: new DeepstreamClient("data.sr-accelerator.com:6020"),
+	client: new DeepstreamClient("wss://data.sr-accelerator.com:9090"),
 	projectRecord: null,
 	methodsRecord: null
 });
