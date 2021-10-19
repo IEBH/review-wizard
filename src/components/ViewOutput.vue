@@ -74,7 +74,7 @@
 					:data="extraction"
 					:key="monitorChange + 7"
 				/>
-				<h2>Assesment of the RoB</h2>
+				<h2>Assessment of the RoB</h2>
 				<OutputAssessmentOfTheRiskOfBias
 					v-if="outputOptions[8].include"
 					:data="riskOfBias"
