@@ -79,8 +79,16 @@
 					v-if="!arrayEquals(picot.outcomes, extraction.outcomes)"
 					severity="warn"
 					:closable="false"
-					>Not the same as PICOT outcomes</Message
 				>
+					<div class="message-inside-text">
+						Not the same as PICOST outcomes
+					</div>
+					<Button
+						label="Copy from PICOST section"
+						class="p-button-sm"
+						@click="updateField('outcomes', picot.outcomes)"
+					/>
+				</Message>
 				<InputSelectMulti
 					question="Types:"
 					:options="options.types"
@@ -91,8 +99,16 @@
 					v-if="!arrayEquals(picot.types, extraction.types)"
 					severity="warn"
 					:closable="false"
-					>Not the same as PICOT types</Message
 				>
+					<div class="message-inside-text">
+						Not the same as PICOST types
+					</div>
+					<Button
+						label="Copy from PICOST section"
+						class="p-button-sm"
+						@click="updateField('types', picot.types)"
+					/>
+				</Message>
 			</AccordionTab>
 		</Accordion>
 
@@ -107,6 +123,7 @@ import sortBy from "lodash/sortBy";
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
 import Message from "primevue/message";
+import Button from "primevue/button";
 
 import PreviewOutput from "./PreviewOutput.vue";
 import OutputDataExtraction from "./OutputDataExtraction.vue";
@@ -128,6 +145,7 @@ export default {
 		Accordion,
 		AccordionTab,
 		Message,
+		Button,
 		InputSelectDropdown,
 		InputSelectMulti,
 		InputTable,
@@ -248,4 +266,13 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style>
+.p-message-text {
+	display: inline-flex;
+	width: 100%;
+}
+.message-inside-text {
+	/* Align text horizontal center with right float button */
+	margin: auto auto auto 0px;
+}
+</style>

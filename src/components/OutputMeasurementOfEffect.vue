@@ -106,7 +106,7 @@
 							data.metaAnalysisThreshold ? data.metaAnalysisThreshold : "BLANK"
 						)
 						.concat(
-							" studies or comparisons reported the same outome. We used a "
+							" studies or comparisons reported the same outcome. We used a "
 						)
 						.concat(
 							data.metaAnalysisModelUsed

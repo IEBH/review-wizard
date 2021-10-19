@@ -39,7 +39,7 @@
 							.map(el => nameToInitials(el))
 							.join(", ") +
 						") screened the full-texts for inclusion.",
-					"For articles eligible after screening, full texts were retreived by " +
+					"For articles eligible after screening, full texts were retrieved by " +
 						nameToInitials(data.fullTextRetrivalAuthor) +
 						", which were reviewed by " +
 						joinArrayWithAnd(
