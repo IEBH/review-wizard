@@ -7,8 +7,8 @@
 		</p>
 		<div v-else>
 			<p>
-				To create a new methods section, please use the "Create New Methods
-				Section" button.
+				To create a new methods section, please use the "Create New Project"
+				button.
 			</p>
 			<p>
 				Any changes made are automatically synced, just make sure to save the
@@ -16,7 +16,7 @@
 			</p>
 			<br />
 			<Button
-				label="Create New Methods Section"
+				label="Create New Project"
 				@click="newArticle"
 				class="create-button"
 			/>
