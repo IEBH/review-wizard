@@ -101,7 +101,7 @@ export default {
 			this.displayWarn = true;
 		},
 		closeArticle() {
-			// Todo: Close article logic
+			this.$store.commit("reset");
 			this.$router.push("/");
 		},
 		openModal() {

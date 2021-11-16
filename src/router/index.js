@@ -90,7 +90,7 @@ const router = new VueRouter({
 // Initialize store before navigation
 router.beforeEach((to, from, next) => {
 	var projectId = to.query["project-id"] || to.params.projectId;
-	if (projectId != store.state.projectId) {
+	if (projectId && projectId != store.state.projectId) {
 		console.log("Initializing project ID:", projectId);
 		store
 			.dispatch("initializeFromProjectId", projectId)
