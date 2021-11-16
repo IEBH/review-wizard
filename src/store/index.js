@@ -6,6 +6,7 @@ import { DeepstreamClient } from "@deepstream/client";
 
 const getDefaultState = () => ({
 	projectId: null,
+	methodId: null,
 	client: new DeepstreamClient("wss://data.sr-accelerator.com:6020"),
 	projectRecord: null,
 	methodsRecord: null
@@ -31,7 +32,48 @@ const storeData = {
 		}
 	},
 	actions: {
-		initialize: async function({ commit, state }, projectId) {
+		createProject: async function(
+			{ commit, state },
+			{ name, owner, dateCreated }
+		) {
+			console.log("Adding project:", name);
+			// Reset store
+			commit("reset");
+			// Login to deepstream
+			await state.client.login();
+			// ID for new project
+			const id = state.client.getUid();
+			// Update store with project ID
+			commit("setProjectId", id);
+			// ID for methods section (in metadata)
+			const methods = state.client.getUid();
+			// Local metadata
+			var projectMetadata = {
+				name,
+				owner,
+				dateCreated,
+				dateModified: dateCreated,
+				methods
+			};
+			// Add new project to records and set metadata remotely
+			commit(
+				"setProjectRecord",
+				state.client.record.getRecord(`project/${id}`)
+			);
+			await state.projectRecord.whenReady();
+			state.projectRecord.set("metadata", projectMetadata);
+			// Initialize the methods section
+			if (projectMetadata && projectMetadata.methods) {
+				// Set methods record
+				commit(
+					"setMethodsRecord",
+					state.client.record.getRecord(`methods/${projectMetadata.methods}`)
+				);
+			} else {
+				throw new Error("Invalid project-id");
+			}
+		},
+		initializeFromProjectId: async function({ commit, state }, projectId) {
 			if (projectId) {
 				console.log("Loading Project:", `project/${projectId}`);
 				// Reset store

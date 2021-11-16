@@ -73,7 +73,22 @@ export default {
 	},
 	methods: {
 		newArticle() {
-			// TODO: Maybe not needed but new article logic
+			console.log("Creating new project");
+			this.$store
+				.dispatch("createProject", {
+					name: "Untitled project",
+					owner: undefined,
+					dateCreated: Date.now()
+				})
+				.then(newId => {
+					this.shareUrl =
+						"https://sr-accelerator.com/#/methods-wizard?id=" + newId;
+					this.displayWarn = true;
+				})
+				.catch(err => {
+					alert(err);
+					console.error(err);
+				});
 		},
 		navigateToTitlepage() {
 			this.$router.replace({
