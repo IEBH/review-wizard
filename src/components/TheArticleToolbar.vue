@@ -97,6 +97,7 @@ export default {
 	},
 	async mounted() {
 		// If title does not exist, use the one from the store
+		await this.methodsRecord.whenReady();
 		if (!this.titlepage.title) {
 			await this.projectRecord.whenReady();
 			this.updateField("title", this.projectRecord.get("metadata.name"));
