@@ -72,10 +72,9 @@ export default {
 		this.onResize();
 		window.addEventListener("resize", this.onResize);
 		// Initialize localStorage
-		const projectId = localStorage.getItem("projectId");
-		console.log("Retrieving", projectId);
-		if (projectId) {
-			this.$store.dispatch("initializeFromProjectId", projectId);
+		const storageProjectId = localStorage.getItem("projectId");
+		if (storageProjectId && !this.projectId) {
+			this.$store.dispatch("initializeFromProjectId", storageProjectId);
 		}
 	},
 	methods: {
@@ -99,6 +98,9 @@ export default {
 		};
 	},
 	computed: {
+		projectId() {
+			return this.$store.state.projectId;
+		},
 		methodsRecord() {
 			return this.$store.state.methodsRecord;
 		},
