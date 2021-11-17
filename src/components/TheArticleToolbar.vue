@@ -85,7 +85,8 @@ export default {
 		TheArticleCitation
 	},
 	computed: mapState({
-		projectId: state => state.projectId
+		projectId: state => state.projectId,
+		projectRecord: state => state.projectRecord
 	}),
 	data() {
 		return {
@@ -93,6 +94,13 @@ export default {
 			displayWarn: false,
 			shareUrl: ""
 		};
+	},
+	async mounted() {
+		// If title does not exist, use the one from the store
+		if (!this.titlepage.title) {
+			await this.projectRecord.whenReady();
+			this.updateField("title", this.projectRecord.get("metadata.name"));
+		}
 	},
 	methods: {
 		close() {
