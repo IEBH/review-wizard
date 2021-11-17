@@ -20,6 +20,8 @@ const storeData = {
 		},
 		setProjectId(state, id) {
 			state.projectId = id;
+			// Set local storage
+			localStorage.setItem("projectId", id);
 		},
 		setClient(state, client) {
 			state.client = client;

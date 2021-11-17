@@ -71,6 +71,12 @@ export default {
 	mounted() {
 		this.onResize();
 		window.addEventListener("resize", this.onResize);
+		// Initialize localStorage
+		const projectId = localStorage.getItem("projectId");
+		console.log("Retrieving", projectId);
+		if (projectId) {
+			this.$store.dispatch("initializeFromProjectId", projectId);
+		}
 	},
 	methods: {
 		onToggleCollapse(collapsed) {
