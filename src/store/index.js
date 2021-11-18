@@ -17,6 +17,7 @@ const storeData = {
 	mutations: {
 		reset(state) {
 			Object.assign(state, getDefaultState());
+			localStorage.clear();
 		},
 		setProjectId(state, id) {
 			state.projectId = id;
@@ -45,8 +46,6 @@ const storeData = {
 			await state.client.login();
 			// ID for new project
 			const id = state.client.getUid();
-			// Update store with project ID
-			commit("setProjectId", id);
 			// ID for methods section (in metadata)
 			const methods = state.client.getUid();
 			// Local metadata
@@ -66,6 +65,8 @@ const storeData = {
 			state.projectRecord.set("metadata", projectMetadata);
 			// Initialize the methods section
 			if (projectMetadata && projectMetadata.methods) {
+				// Update store with project ID
+				commit("setProjectId", id);
 				// Set methods record
 				commit(
 					"setMethodsRecord",
@@ -80,8 +81,6 @@ const storeData = {
 				console.log("Loading Project:", `project/${projectId}`);
 				// Reset store
 				commit("reset");
-				// Update store with project ID
-				commit("setProjectId", projectId);
 				// Login to deepstream
 				await state.client.login();
 				// Set project record
@@ -93,6 +92,8 @@ const storeData = {
 				await state.projectRecord.whenReady();
 				var projectMetadata = state.projectRecord.get("metadata");
 				if (projectMetadata && projectMetadata.methods) {
+					// Update store with project ID
+					commit("setProjectId", projectId);
 					// Set methods record
 					commit(
 						"setMethodsRecord",

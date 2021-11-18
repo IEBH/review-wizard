@@ -1,6 +1,23 @@
 <template>
 	<div class="p-m-5">
 		<h1>Welcome to the Methods Wizard!</h1>
+		<Message :closable="false"
+			>We have switched to a new database for MethodsWizard, if you have lost
+			any work using the Beta version, it is still accessible at the legacy
+			version.
+			<a
+				style="display: contents"
+				href="https://methodswizard-old.netlify.app/#/"
+			>
+				Click here to access the legacy version</a
+			>. If you still need help recovering data, feel free to
+			<a
+				style="display: contents"
+				target="_blank"
+				href="https://sr-accelerator.com/#/contact"
+				>Contact Us</a
+			>.
+		</Message>
 		<p v-if="projectId">
 			To start making changes, simply select a section from the left hand side
 			and begin filling it in
@@ -50,6 +67,7 @@ import Toolbar from "primevue/toolbar";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
+import Message from "primevue/message";
 
 export default {
 	name: "ViewHome",
@@ -57,7 +75,8 @@ export default {
 		Toolbar,
 		Button,
 		Dialog,
-		Toast
+		Toast,
+		Message
 	},
 	data() {
 		return {
