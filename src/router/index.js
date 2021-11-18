@@ -98,6 +98,7 @@ router.beforeEach((to, from, next) => {
 				next();
 			})
 			.catch(err => {
+				router.replace("/");
 				alert(err);
 				console.error(err);
 			});
