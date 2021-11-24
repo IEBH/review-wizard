@@ -12,7 +12,7 @@
 				version.
 				<a
 					style="display: contents"
-					href="https://methodswizard-old.netlify.app/#/"
+					href="https://legacy-methodswizard.netlify.app/#/"
 				>
 					Click here to access the legacy version</a
 				>. If you still need help recovering data, feel free to
