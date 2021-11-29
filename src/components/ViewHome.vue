@@ -23,6 +23,7 @@
 					>Contact Us</a
 				>.
 			</Message>
+			<img src="@/assets/url-info.png" />
 			<p>
 				To create a new methods section, please use the "Create New Project"
 				button.
