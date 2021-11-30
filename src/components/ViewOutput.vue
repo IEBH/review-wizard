@@ -22,7 +22,7 @@
 
 		<!-- Modal to display output -->
 		<Dialog
-			header="Search Strategy"
+			header="Methods Section"
 			:visible.sync="displayModal"
 			:style="{ width: '80vw' }"
 			:modal="true"
