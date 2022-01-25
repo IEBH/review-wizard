@@ -17,7 +17,6 @@
 import Button from "primevue/button";
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
-import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
 
 import CopyMixin from "../mixins/CopyMixin.js";
 
@@ -30,8 +29,7 @@ export default {
 	components: {
 		Accordion,
 		AccordionTab,
-		Button,
-		OutputAssesmentOfTheRiskOfBias
+		Button
 	},
 	data() {
 		return {
