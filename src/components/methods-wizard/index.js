@@ -182,7 +182,7 @@ const data = {
 	}
 };
 
-const menu = store => [
+const getMenu = projectId => [
 	{
 		header: true,
 		title: "Methods-Wizard",
@@ -191,7 +191,7 @@ const menu = store => [
 	{
 		title: "Title Page",
 		icon: "pi pi-file",
-		href: `/${store}/titlepage`
+		href: `/${projectId}/titlepage`
 	},
 	{
 		header: true,
@@ -201,30 +201,30 @@ const menu = store => [
 	{
 		title: "Eligibility Criteria (PICOST)",
 		icon: "pi pi-file",
-		href: `/${store}/method/picot`
+		href: `/${projectId}/method/picot`
 	},
 	{
 		title: "Search",
 		icon: "pi pi-search",
 		child: [
 			{
-				href: `/${store}/method/search`,
+				href: `/${projectId}/method/search`,
 				title: "Search Strategy"
 			},
 			{
-				href: `/${store}/method/search/bibliographic-databases`,
+				href: `/${projectId}/method/search/bibliographic-databases`,
 				title: "Search Strings for Databases"
 			},
 			{
-				href: `/${store}/method/search/trial-registries`,
+				href: `/${projectId}/method/search/trial-registries`,
 				title: "Search Strings for Trial Registries"
 			},
 			{
-				href: `/${store}/method/search/publication-type`,
+				href: `/${projectId}/method/search/publication-type`,
 				title: "Restrictions on Publication Type"
 			},
 			{
-				href: `/${store}/method/search/supplementory-methods`,
+				href: `/${projectId}/method/search/supplementory-methods`,
 				title: "Supplementary Methods"
 			}
 		]
@@ -232,42 +232,42 @@ const menu = store => [
 	{
 		title: "Study Selection and Screening",
 		icon: "pi pi-check",
-		href: `/${store}/method/screening`
+		href: `/${projectId}/method/screening`
 	},
 	{
 		title: "Data Extraction",
 		icon: "pi pi-upload",
-		href: `/${store}/method/data-extraction`
+		href: `/${projectId}/method/data-extraction`
 	},
 	{
 		title: "Assessment of the RoB",
 		icon: "pi pi-exclamation-circle",
-		href: `/${store}/method/risk-of-bias`
+		href: `/${projectId}/method/risk-of-bias`
 	},
 	{
 		title: "Measurement of Effect",
 		icon: "pi pi-sliders-v",
-		href: `/${store}/method/measurement-of-effect`
+		href: `/${projectId}/method/measurement-of-effect`
 	},
 	{
 		title: "Unit of Analysis",
 		icon: "pi pi-chart-bar",
-		href: `/${store}/method/unit-of-analysis`
+		href: `/${projectId}/method/unit-of-analysis`
 	},
 	{
 		title: "Dealing with Missing Data",
 		icon: "pi pi-question",
-		href: `/${store}/method/missing-data`
+		href: `/${projectId}/method/missing-data`
 	},
 	{
 		title: "Heterogeneity/Publication Bias",
 		icon: "pi pi-users",
-		href: `/${store}/method/heterogeneity-publication-biases`
+		href: `/${projectId}/method/heterogeneity-publication-biases`
 	},
 	{
 		title: "Subgroup and Sensitivity Analysis",
 		icon: "pi pi-chart-line",
-		href: `/${store}/method/subgroup-sensitivity-analysis`
+		href: `/${projectId}/method/subgroup-sensitivity-analysis`
 	},
 	{
 		header: true,
@@ -277,8 +277,8 @@ const menu = store => [
 	{
 		title: "Output",
 		icon: "pi pi-download",
-		href: `/${store}/output`
+		href: `/${projectId}/output`
 	}
 ];
 
-export { deepstreamPath, routes, data, menu };
+export { deepstreamPath, routes, data, getMenu };
