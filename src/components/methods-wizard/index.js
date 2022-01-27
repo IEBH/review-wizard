@@ -16,8 +16,10 @@ import ViewTitlepage from "./ViewTitlepage.vue";
 import ViewHome from "./ViewHome.vue";
 import ViewOutput from "./ViewOutput.vue";
 
+// The path for deepstream, where the bulk of the information is kept (e.g. `methods/${projectId}`)
 const deepstreamPath = "methods";
 
+// The routes array for the router
 const routes = [
 	{ name: "home", path: "", component: ViewHome },
 	{ path: "/:projectId", component: ViewHome },
@@ -83,6 +85,7 @@ const routes = [
 	}
 ];
 
+// The data required for the project
 const data = {
 	titlepage: {
 		title: "",
@@ -182,6 +185,7 @@ const data = {
 	}
 };
 
+// The menu array which is used for the sidebar
 const getMenu = projectId => [
 	{
 		header: true,
