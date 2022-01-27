@@ -21,9 +21,11 @@
 			:value="extraction.extractionAuthors"
 			@input="updateField('extractionAuthors', $event)"
 			:options="
-				titlepage.authors.map(el => {
-					return { label: el };
-				})
+				titlepage.authors
+					? titlepage.authors.map(el => {
+							return { label: el };
+					  })
+					: []
 			"
 		/>
 
@@ -191,7 +193,8 @@ export default {
 			return isEqual(sorted1, sorted2);
 		}
 	},
-	mounted() {
+	async mounted() {
+		await this.dataReady;
 		if (
 			!this.extraction.outcomes ||
 			JSON.stringify(this.extraction.outcomes) ==

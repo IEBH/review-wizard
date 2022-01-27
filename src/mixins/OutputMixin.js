@@ -116,6 +116,8 @@ export default {
 		},
 		numberToWord(string) {
 			switch (string) {
+				case null:
+					return "BLANK";
 				case "1":
 					return "one";
 				case "2":

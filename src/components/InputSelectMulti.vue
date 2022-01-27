@@ -7,6 +7,7 @@
 		</p>
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
 		<Listbox
+			v-if="selectOptions.length > 0"
 			v-bind:value="value"
 			v-on:change="$emit('input', $event.value)"
 			:options="selectOptions"
@@ -75,11 +76,13 @@ export default {
 		};
 	},
 	computed: {
-		// Find the union of value and options to account for other options which are user defined
 		selectOptions: function() {
-			if (this.value)
-				return this.arrayUnion(this.value, this.options, this.areLabelsSame);
-			else return this.options;
+			// Find filter out any options that are blank
+			const options = this.options ? this.options.filter(el => el.label) : [];
+			// Find the union of value and options to account for other options which are user defined
+			if (this.value) {
+				return this.arrayUnion(this.value, options, this.areLabelsSame);
+			} else return options;
 		}
 	},
 	methods: {

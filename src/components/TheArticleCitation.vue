@@ -19,14 +19,18 @@ export default {
 	},
 	methods: {
 		formatAuthors(arr) {
-			return arr.map(author => {
-				author = author.split(" ");
-				if (author[1] && author[0])
-					return `${author[1]} ${author[0].charAt(0)}.,`;
-				else if (author[1]) return `${author[1]},`;
-				else if (author[0]) return `${author[0]},`;
-				else return "No author specified.,";
-			});
+			if (arr) {
+				return arr.map(author => {
+					author = author.split(" ");
+					if (author[1] && author[0])
+						return `${author[1]} ${author[0].charAt(0)}.,`;
+					else if (author[1]) return `${author[1]},`;
+					else if (author[0]) return `${author[0]},`;
+					else return "No author specified.,";
+				});
+			} else {
+				return [];
+			}
 		}
 	}
 };

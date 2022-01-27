@@ -14,9 +14,11 @@
 			:value="screening.titleAbstractScreeners"
 			@input="updateField('titleAbstractScreeners', $event)"
 			:options="
-				titlepage.authors.map(el => {
-					return { label: el };
-				})
+				titlepage.authors
+					? titlepage.authors.map(el => {
+							return { label: el };
+					  })
+					: []
 			"
 		/>
 
@@ -39,9 +41,11 @@
 			:value="screening.fullTextScreeners"
 			@input="updateField('fullTextScreeners', $event)"
 			:options="
-				titlepage.authors.map(el => {
-					return { label: el };
-				})
+				titlepage.authors
+					? titlepage.authors.map(el => {
+							return { label: el };
+					  })
+					: []
 			"
 		/>
 
