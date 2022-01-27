@@ -12,6 +12,13 @@ const getDefaultState = () => ({
 	methodsRecord: null
 });
 
+const getDeepstreamPath = async () => {
+	const { deepstreamPath } = await import(
+		"../components/" + process.env.VUE_APP_PROJECT + "/index.js"
+	);
+	return deepstreamPath;
+};
+
 const storeData = {
 	state: getDefaultState(),
 	mutations: {
@@ -47,14 +54,16 @@ const storeData = {
 			// ID for new project
 			const id = state.client.getUid();
 			// ID for methods section (in metadata)
-			const methods = state.client.getUid();
+			const methodsId = state.client.getUid();
+			// Deepstream path (varies based on project)
+			const deepstreamPath = await getDeepstreamPath();
 			// Local metadata
 			var projectMetadata = {
 				name,
 				owner,
 				dateCreated,
 				dateModified: dateCreated,
-				methods
+				[deepstreamPath]: methodsId
 			};
 			// Add new project to records and set metadata remotely
 			commit(
@@ -64,13 +73,15 @@ const storeData = {
 			await state.projectRecord.whenReady();
 			state.projectRecord.set("metadata", projectMetadata);
 			// Initialize the methods section
-			if (projectMetadata && projectMetadata.methods) {
+			if (projectMetadata && projectMetadata[deepstreamPath]) {
 				// Update store with project ID
 				commit("setProjectId", id);
 				// Set methods record
 				commit(
 					"setMethodsRecord",
-					state.client.record.getRecord(`methods/${projectMetadata.methods}`)
+					state.client.record.getRecord(
+						`${deepstreamPath}/${projectMetadata[deepstreamPath]}`
+					)
 				);
 			} else {
 				throw new Error("Invalid project-id");
@@ -91,13 +102,18 @@ const storeData = {
 				// Get the project metadata
 				await state.projectRecord.whenReady();
 				var projectMetadata = state.projectRecord.get("metadata");
-				if (projectMetadata && projectMetadata.methods) {
+				// Deepstream path (varies based on project)
+				const deepstreamPath = await getDeepstreamPath();
+				// Fetch methods project based on id
+				if (projectMetadata && projectMetadata[deepstreamPath]) {
 					// Update store with project ID
 					commit("setProjectId", projectId);
 					// Set methods record
 					commit(
 						"setMethodsRecord",
-						state.client.record.getRecord(`methods/${projectMetadata.methods}`)
+						state.client.record.getRecord(
+							`${deepstreamPath}/${projectMetadata[deepstreamPath]}`
+						)
 					);
 				} else {
 					throw new Error("Invalid project-id");
