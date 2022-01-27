@@ -4,7 +4,7 @@ import App from "./App.vue";
 // Setup vue router
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
-import router from "./router";
+import initializeRouter from "./router";
 
 // Import the store
 import store from "./store";
@@ -20,8 +20,11 @@ Vue.use(ToastService);
 
 Vue.config.productionTip = false;
 
-new Vue({
-	router,
-	store,
-	render: h => h(App)
-}).$mount("#app");
+(async () => {
+	const router = await initializeRouter();
+	new Vue({
+		router,
+		store,
+		render: h => h(App)
+	}).$mount("#app");
+})();
