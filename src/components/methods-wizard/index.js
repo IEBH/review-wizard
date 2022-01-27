@@ -121,10 +121,10 @@ const data = {
 	},
 	screening: {
 		numberOfTitleAbstractScreeners: null,
-		titleAbstractScreeners: null,
+		titleAbstractScreeners: [],
 		fullTextRetrivalAuthor: null,
 		numberOfFullTextScreeners: null,
-		fullTextScreeners: null,
+		fullTextScreeners: [],
 		disputeResolution: [],
 		isPrismaFlowDiagram: false,
 		isExcludedFullTextInAppendix: false
@@ -132,7 +132,7 @@ const data = {
 	extraction: {
 		numberOfStudies: null,
 		numberOfExtractors: null,
-		extractionAuthors: null,
+		extractionAuthors: [],
 		//New
 		optionalDetail: false,
 		methods: [],
