@@ -80,8 +80,6 @@
 </template>
 
 <script>
-import InputSelectMulti from "../InputSelectMulti.vue";
-import InputTable from "../InputTable.vue";
 import OutputPicot from "./OutputPicot.vue";
 import PreviewOutput from "../PreviewOutput.vue";
 
@@ -91,8 +89,6 @@ export default {
 	name: "ViewMethodPicot",
 	mixins: [deepstreamMixin("picot")],
 	components: {
-		InputSelectMulti,
-		InputTable,
 		PreviewOutput
 	},
 	data() {

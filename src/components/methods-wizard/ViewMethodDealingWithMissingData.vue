@@ -16,7 +16,6 @@
 <script>
 import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
 import PreviewOutput from "../PreviewOutput.vue";
-import InputSelectYesNo from "../InputSelectYesNo.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
@@ -24,7 +23,6 @@ export default {
 	name: "ViewMethodDealingWithMissingData",
 	mixins: [deepstreamMixin("missingData")],
 	components: {
-		InputSelectYesNo,
 		PreviewOutput
 	},
 	data() {

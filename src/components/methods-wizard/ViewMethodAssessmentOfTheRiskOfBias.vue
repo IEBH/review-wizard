@@ -29,9 +29,6 @@
 <script>
 import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
 import PreviewOutput from "../PreviewOutput.vue";
-import InputSelectDropdown from "../InputSelectDropdown.vue";
-import InputSelectYesNo from "../InputSelectYesNo.vue";
-import InputSelectMulti from "../InputSelectMulti.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
@@ -39,9 +36,6 @@ export default {
 	name: "ViewMethodAssessmentOfTheRiskOfBias",
 	mixins: [deepstreamMixin("riskOfBias")],
 	components: {
-		InputSelectDropdown,
-		InputSelectYesNo,
-		InputSelectMulti,
 		PreviewOutput
 	},
 	data() {

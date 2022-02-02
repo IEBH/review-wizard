@@ -46,8 +46,6 @@
 import OutputSearchDatabases from "./OutputSearchDatabases.vue";
 import OutputSearchDatabasesAppendix from "./OutputSearchDatabasesAppendix.vue";
 import PreviewOutput from "../PreviewOutput.vue";
-import InputSelectMulti from "../InputSelectMulti.vue";
-import InputDate from "../InputDate.vue";
 import InputTextMultiSyntax from "../InputTextMultiSyntax";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
@@ -56,8 +54,6 @@ export default {
 	name: "ViewMethodSearchDatabases",
 	mixins: [deepstreamMixin("search")],
 	components: {
-		InputSelectMulti,
-		InputDate,
 		InputTextMultiSyntax,
 		PreviewOutput
 	},

@@ -76,9 +76,6 @@
 <script>
 import OutputScreening from "./OutputScreening.vue";
 import PreviewOutput from "../PreviewOutput.vue";
-import InputSelectDropdown from "../InputSelectDropdown.vue";
-import InputSelectMulti from "../InputSelectMulti.vue";
-import InputSelectYesNo from "../InputSelectYesNo.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
@@ -86,9 +83,6 @@ export default {
 	name: "ViewMethodScreening",
 	mixins: [deepstreamMixin("titlepage"), deepstreamMixin("screening")],
 	components: {
-		InputSelectDropdown,
-		InputSelectMulti,
-		InputSelectYesNo,
 		PreviewOutput
 	},
 	data() {

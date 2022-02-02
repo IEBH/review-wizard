@@ -55,10 +55,6 @@
 <script>
 import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
 import PreviewOutput from "../PreviewOutput.vue";
-import InputSelectDropdown from "../InputSelectDropdown.vue";
-import InputSelectYesNo from "../InputSelectYesNo.vue";
-import InputTextMultiLine from "../InputTextMultiLine.vue";
-import InputTextSingleLine from "../InputTextSingleLine.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
@@ -66,11 +62,7 @@ export default {
 	name: "ViewMethodHeterogeneityPublicationBias",
 	mixins: [deepstreamMixin("heterogeneityPublicationBiases")],
 	components: {
-		InputSelectDropdown,
-		InputSelectYesNo,
-		InputTextMultiLine,
-		PreviewOutput,
-		InputTextSingleLine
+		PreviewOutput
 	},
 	data() {
 		return {

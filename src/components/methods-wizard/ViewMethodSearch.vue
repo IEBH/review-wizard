@@ -37,7 +37,6 @@
 <script>
 import OutputSearch from "./OutputSearch.vue";
 import PreviewOutput from "../PreviewOutput.vue";
-import InputSelectMulti from "../InputSelectMulti.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
@@ -45,7 +44,6 @@ export default {
 	name: "ViewMethodSearch",
 	mixins: [deepstreamMixin("search")],
 	components: {
-		InputSelectMulti,
 		PreviewOutput
 	},
 	data() {

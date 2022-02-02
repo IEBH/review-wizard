@@ -129,10 +129,6 @@ import Button from "primevue/button";
 
 import PreviewOutput from "../PreviewOutput.vue";
 import OutputDataExtraction from "./OutputDataExtraction.vue";
-import InputSelectDropdown from "../InputSelectDropdown.vue";
-import InputSelectMulti from "../InputSelectMulti.vue";
-import InputTable from "../InputTable.vue";
-import InputSelectYesNo from "../InputSelectYesNo.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
@@ -148,11 +144,7 @@ export default {
 		AccordionTab,
 		Message,
 		Button,
-		InputSelectDropdown,
-		InputSelectMulti,
-		InputTable,
-		PreviewOutput,
-		InputSelectYesNo
+		PreviewOutput
 	},
 	methods: {
 		compareLabel(a, b) {

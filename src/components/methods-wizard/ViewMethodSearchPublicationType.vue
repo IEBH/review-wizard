@@ -37,8 +37,6 @@
 <script>
 import OutputSearchPublicationType from "./OutputSearchPublicationType.vue";
 import PreviewOutput from "../PreviewOutput.vue";
-import InputSelectYesNo from "../InputSelectYesNo.vue";
-import InputSelectMulti from "../InputSelectMulti.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
@@ -46,8 +44,6 @@ export default {
 	name: "ViewMethodSearchDatabases",
 	mixins: [deepstreamMixin("search")],
 	components: {
-		InputSelectYesNo,
-		InputSelectMulti,
 		PreviewOutput
 	},
 	data() {

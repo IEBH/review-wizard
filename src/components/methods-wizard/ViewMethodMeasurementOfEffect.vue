@@ -51,10 +51,6 @@
 <script>
 import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect";
 import PreviewOutput from "../PreviewOutput.vue";
-import InputSelectDropdown from "../InputSelectDropdown.vue";
-import InputSelectMulti from "../InputSelectMulti.vue";
-import InputTextSingleLine from "../InputTextSingleLine.vue";
-import InputTextNumber from "../InputTextNumber.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
@@ -62,10 +58,6 @@ export default {
 	name: "ViewMethodMeasuementOfEffect",
 	mixins: [deepstreamMixin("measurementOfEffect")],
 	components: {
-		InputSelectDropdown,
-		InputSelectMulti,
-		InputTextSingleLine,
-		InputTextNumber,
 		PreviewOutput
 	},
 	data() {

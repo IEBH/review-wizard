@@ -54,8 +54,6 @@
 <script>
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
 import PreviewOutput from "../PreviewOutput.vue";
-import InputSelectYesNo from "../InputSelectYesNo.vue";
-import InputTextSingleLineMulti from "../InputTextSingleLineMulti.vue";
 import InputTextMultiLine from "../InputTextMultiLine";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
@@ -64,8 +62,6 @@ export default {
 	name: "ViewMethodSubgroupAndSensitivityAnalysis",
 	mixins: [deepstreamMixin("subgroupAndSensitivityAnalysis")],
 	components: {
-		InputSelectYesNo,
-		InputTextSingleLineMulti,
 		InputTextMultiLine,
 		PreviewOutput
 	},
