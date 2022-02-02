@@ -69,22 +69,18 @@
 			@input="updateField('isExcludedFullTextInAppendix', $event)"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="screening" />
+		<BasePreviewOutput :component="outputComponent" :data="screening" />
 	</div>
 </template>
 
 <script>
 import OutputScreening from "./OutputScreening.vue";
-import PreviewOutput from "../PreviewOutput.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodScreening",
 	mixins: [deepstreamMixin("titlepage"), deepstreamMixin("screening")],
-	components: {
-		PreviewOutput
-	},
 	data() {
 		return {
 			numberOptions: ["2", "3", "4", "5", "6"],

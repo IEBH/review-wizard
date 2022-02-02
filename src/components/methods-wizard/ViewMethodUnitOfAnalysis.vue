@@ -34,22 +34,18 @@
 			placeholder="e.g. repeated measures within individuals"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="unitOfAnalysis" />
+		<BasePreviewOutput :component="outputComponent" :data="unitOfAnalysis" />
 	</div>
 </template>
 
 <script>
 import OutputUnitOfAnalysis from "./OutputUnitOfAnalysis.vue";
-import PreviewOutput from "../PreviewOutput.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodUnitOfAnalysis",
 	mixins: [deepstreamMixin("unitOfAnalysis")],
-	components: {
-		PreviewOutput
-	},
 	data() {
 		return {
 			unitOfAnalysisOptions: ["Individual", "Individual and other", "Other"],

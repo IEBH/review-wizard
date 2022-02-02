@@ -45,7 +45,7 @@
 			@input="updateField('didNotMeasure', $event)"
 		/>
 
-		<PreviewOutput
+		<BasePreviewOutput
 			:component="outputComponent"
 			:data="heterogeneityPublicationBiases"
 		/>
@@ -54,16 +54,12 @@
 
 <script>
 import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
-import PreviewOutput from "../PreviewOutput.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodHeterogeneityPublicationBias",
 	mixins: [deepstreamMixin("heterogeneityPublicationBiases")],
-	components: {
-		PreviewOutput
-	},
 	data() {
 		return {
 			heterogeneityMeasurementOptions: [

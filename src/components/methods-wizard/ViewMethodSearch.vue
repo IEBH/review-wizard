@@ -30,22 +30,18 @@
 			@input="updateField('peerReviewer', $event)"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="search" />
+		<BasePreviewOutput :component="outputComponent" :data="search" />
 	</div>
 </template>
 
 <script>
 import OutputSearch from "./OutputSearch.vue";
-import PreviewOutput from "../PreviewOutput.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearch",
 	mixins: [deepstreamMixin("search")],
-	components: {
-		PreviewOutput
-	},
 	data() {
 		return {
 			componentsOptions: [

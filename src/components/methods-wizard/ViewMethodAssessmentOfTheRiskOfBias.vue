@@ -22,22 +22,18 @@
 			@input="updateField('toolUsed', $event)"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="riskOfBias" />
+		<BasePreviewOutput :component="outputComponent" :data="riskOfBias" />
 	</div>
 </template>
 
 <script>
 import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
-import PreviewOutput from "../PreviewOutput.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodAssessmentOfTheRiskOfBias",
 	mixins: [deepstreamMixin("riskOfBias")],
-	components: {
-		PreviewOutput
-	},
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],

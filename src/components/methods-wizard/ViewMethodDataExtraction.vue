@@ -114,7 +114,7 @@
 			</AccordionTab>
 		</Accordion>
 
-		<PreviewOutput :component="outputComponent" :data="extraction" />
+		<BasePreviewOutput :component="outputComponent" :data="extraction" />
 	</div>
 </template>
 
@@ -127,7 +127,6 @@ import AccordionTab from "primevue/accordiontab";
 import Message from "primevue/message";
 import Button from "primevue/button";
 
-import PreviewOutput from "../PreviewOutput.vue";
 import OutputDataExtraction from "./OutputDataExtraction.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
@@ -143,8 +142,7 @@ export default {
 		Accordion,
 		AccordionTab,
 		Message,
-		Button,
-		PreviewOutput
+		Button
 	},
 	methods: {
 		compareLabel(a, b) {

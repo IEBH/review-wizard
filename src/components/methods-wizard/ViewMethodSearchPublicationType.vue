@@ -30,22 +30,17 @@
 			@input="updateField('includedLanguages', $event)"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="search" />
+		<BasePreviewOutput :component="outputComponent" :data="search" />
 	</div>
 </template>
 
 <script>
 import OutputSearchPublicationType from "./OutputSearchPublicationType.vue";
-import PreviewOutput from "../PreviewOutput.vue";
-
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchDatabases",
 	mixins: [deepstreamMixin("search")],
-	components: {
-		PreviewOutput
-	},
 	data() {
 		return {
 			publicationTypesOptions: [

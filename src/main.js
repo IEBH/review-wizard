@@ -20,7 +20,7 @@ Vue.use(ToastService);
 
 Vue.config.productionTip = false;
 
-// Register all Input Components Globally {{{
+// Register all Input/Base Components Globally {{{
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
 
@@ -30,7 +30,7 @@ const requireComponent = require.context(
 	// Whether or not to look in subfolders
 	false,
 	// The regular expression used to match base component filenames
-	/Input[A-Z]\w+\.(vue|js)$/
+	/(Input|Base)[A-Z]\w+\.(vue|js)$/
 );
 
 requireComponent.keys().forEach(fileName => {

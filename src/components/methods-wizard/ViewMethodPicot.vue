@@ -75,22 +75,18 @@
 			@input="updateField('types', $event)"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="picot" />
+		<BasePreviewOutput :component="outputComponent" :data="picot" />
 	</div>
 </template>
 
 <script>
 import OutputPicot from "./OutputPicot.vue";
-import PreviewOutput from "../PreviewOutput.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodPicot",
 	mixins: [deepstreamMixin("picot")],
-	components: {
-		PreviewOutput
-	},
 	data() {
 		return {
 			typesOptions: [

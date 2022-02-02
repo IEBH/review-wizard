@@ -44,7 +44,7 @@
 			@input="updateField('whyNotSensitivityAnalysis', $event)"
 		/>
 
-		<PreviewOutput
+		<BasePreviewOutput
 			:component="outputComponent"
 			:data="subgroupAndSensitivityAnalysis"
 		/>
@@ -53,18 +53,11 @@
 
 <script>
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
-import PreviewOutput from "../PreviewOutput.vue";
-import InputTextMultiLine from "../InputTextMultiLine";
-
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSubgroupAndSensitivityAnalysis",
 	mixins: [deepstreamMixin("subgroupAndSensitivityAnalysis")],
-	components: {
-		InputTextMultiLine,
-		PreviewOutput
-	},
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],

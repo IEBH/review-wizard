@@ -9,22 +9,18 @@
 			:options="numberOptions"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="missingData" />
+		<BasePreviewOutput :component="outputComponent" :data="missingData" />
 	</div>
 </template>
 
 <script>
 import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
-import PreviewOutput from "../PreviewOutput.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodDealingWithMissingData",
 	mixins: [deepstreamMixin("missingData")],
-	components: {
-		PreviewOutput
-	},
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],

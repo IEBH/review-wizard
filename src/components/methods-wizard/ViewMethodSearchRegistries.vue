@@ -43,26 +43,19 @@
 			/>
 		</template>
 
-		<PreviewOutput :component="outputComponent" :data="search" />
-		<PreviewOutput :component="outputComponentAppendix" :data="search" />
+		<BasePreviewOutput :component="outputComponent" :data="search" />
+		<BasePreviewOutput :component="outputComponentAppendix" :data="search" />
 	</div>
 </template>
 
 <script>
 import OutputSearchRegistries from "./OutputSearchRegistries.vue";
 import OutputSearchRegistriesAppendix from "./OutputSearchRegistriesAppendix.vue";
-import PreviewOutput from "../PreviewOutput.vue";
-import InputTextMultiSyntax from "../InputTextMultiSyntax";
-
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchRegistries",
 	mixins: [deepstreamMixin("search")],
-	components: {
-		InputTextMultiSyntax,
-		PreviewOutput
-	},
 	methods: {
 		updateRegisteryString(index, value) {
 			var newregistry = this.search.registries;

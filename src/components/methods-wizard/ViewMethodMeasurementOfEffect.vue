@@ -44,22 +44,21 @@
 			:options="metaAnalysisModelOptions"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="measurementOfEffect" />
+		<BasePreviewOutput
+			:component="outputComponent"
+			:data="measurementOfEffect"
+		/>
 	</div>
 </template>
 
 <script>
 import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect";
-import PreviewOutput from "../PreviewOutput.vue";
 
 import deepstreamMixin from "../../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodMeasuementOfEffect",
 	mixins: [deepstreamMixin("measurementOfEffect")],
-	components: {
-		PreviewOutput
-	},
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],
