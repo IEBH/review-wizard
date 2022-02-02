@@ -148,13 +148,13 @@ import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
 import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
 
-import CopyMixin from "../../mixins/CopyMixin.js";
+import CopyMixin from "@/mixins/CopyMixin.js";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Checkbox from "primevue/checkbox";
 
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearch",

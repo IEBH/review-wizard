@@ -55,7 +55,7 @@
 <script>
 import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
 
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodHeterogeneityPublicationBias",

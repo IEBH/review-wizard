@@ -221,7 +221,7 @@
 </template>
 
 <script>
-import OutputMixin from "../../mixins/OutputMixin.js";
+import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputPicot",
 	mixins: [OutputMixin],

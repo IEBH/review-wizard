@@ -82,7 +82,7 @@
 <script>
 import OutputPicot from "./OutputPicot.vue";
 
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodPicot",

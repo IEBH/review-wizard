@@ -51,7 +51,7 @@
 <script>
 import OutputSearchRegistries from "./OutputSearchRegistries.vue";
 import OutputSearchRegistriesAppendix from "./OutputSearchRegistriesAppendix.vue";
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchRegistries",

@@ -16,7 +16,7 @@
 <script>
 import OutputSearchSupplementoryMethods from "./OutputSearchSupplementoryMethods.vue";
 
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchDatabases",

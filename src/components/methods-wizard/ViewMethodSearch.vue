@@ -37,7 +37,7 @@
 <script>
 import OutputSearch from "./OutputSearch.vue";
 
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearch",

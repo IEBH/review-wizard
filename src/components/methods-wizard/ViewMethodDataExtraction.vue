@@ -129,7 +129,7 @@ import Button from "primevue/button";
 
 import OutputDataExtraction from "./OutputDataExtraction.vue";
 
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodDataExtraction",

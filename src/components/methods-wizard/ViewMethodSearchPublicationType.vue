@@ -36,7 +36,7 @@
 
 <script>
 import OutputSearchPublicationType from "./OutputSearchPublicationType.vue";
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchDatabases",

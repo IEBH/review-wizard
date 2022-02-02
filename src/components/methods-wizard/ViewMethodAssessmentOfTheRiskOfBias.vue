@@ -29,7 +29,7 @@
 <script>
 import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
 
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodAssessmentOfTheRiskOfBias",

@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import deepstreamMixin from "../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 import { mapState } from "vuex";
 

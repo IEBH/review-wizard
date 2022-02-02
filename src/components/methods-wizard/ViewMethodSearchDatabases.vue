@@ -46,7 +46,7 @@
 import OutputSearchDatabases from "./OutputSearchDatabases.vue";
 import OutputSearchDatabasesAppendix from "./OutputSearchDatabasesAppendix.vue";
 
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchDatabases",

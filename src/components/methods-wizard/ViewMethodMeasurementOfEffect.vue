@@ -54,7 +54,7 @@
 <script>
 import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect";
 
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodMeasuementOfEffect",

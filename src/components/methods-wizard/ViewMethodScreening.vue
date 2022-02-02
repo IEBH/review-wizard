@@ -76,7 +76,7 @@
 <script>
 import OutputScreening from "./OutputScreening.vue";
 
-import deepstreamMixin from "../../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodScreening",
