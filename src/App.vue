@@ -106,8 +106,7 @@ export default {
 			return upperFirst(camelCase(process.env.VUE_APP_PROJECT));
 		},
 		getLogoPath() {
-			var images = require.context("./assets/", false, /\.png$/);
-			return images("./" + process.env.VUE_APP_PROJECT + ".png");
+			return require("./assets/" + process.env.VUE_APP_PROJECT + ".png");
 		}
 	},
 	data() {
