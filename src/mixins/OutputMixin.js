@@ -49,6 +49,14 @@ export default {
 			}
 			return elExists ? returnString : "BLANK";
 		},
+		// Perform the array.map operation safely
+		mapArray(arr, field) {
+			if (arr && Array.isArray(arr)) {
+				return arr.map(el => el[field]);
+			} else {
+				return [];
+			}
+		},
 		formatSelectMulti(arr) {
 			// Get only the labels the array of objects
 			if (arr) {

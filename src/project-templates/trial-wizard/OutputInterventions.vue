@@ -1,8 +1,14 @@
 <template>
 	<div>
 		<p>
-			There are {{ data.interventions.length }} intervention arms: the
-			{{ joinArrayWithAnd(data.interventions.map(el => el.name + " group")) }}
+			There are
+			{{ data.interventions ? data.interventions.length : "BLANK" }}
+			intervention arms: the
+			{{
+				data.interventions
+					? joinArrayWithAnd(data.interventions.map(el => el.name + " group"))
+					: "BLANK"
+			}}
 		</p>
 		<p v-for="(intervention, index) of data.interventions" :key="index">
 			Participants in the {{ intervention.name }} group recieved
