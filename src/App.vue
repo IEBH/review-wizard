@@ -58,6 +58,7 @@ import "primevue/resources/primevue.min.css";
 
 import TheArticleToolbar from "./components/TheArticleToolbar.vue";
 import ProjectEdit from "./components/ProjectEdit.vue";
+import projectTemplateImport from "@/helpers/projectTemplateImport.js";
 
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
@@ -93,9 +94,7 @@ export default {
 			}
 		},
 		async updateMenu() {
-			const { getMenu } = await import(
-				"./components/" + process.env.VUE_APP_PROJECT + "/index.js"
-			);
+			const { getMenu } = await projectTemplateImport();
 			this.menu = getMenu(this.$store.state.projectId);
 		}
 	},

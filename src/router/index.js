@@ -1,10 +1,9 @@
 import VueRouter from "vue-router";
+import projectTemplateImport from "../helpers/projectTemplateImport";
 import store from "../store";
 
 const initializeRouter = async () => {
-	const { routes } = await import(
-		"../components/" + process.env.VUE_APP_PROJECT + "/index.js"
-	);
+	const { routes } = await projectTemplateImport();
 
 	const router = new VueRouter({
 		routes // short for `routes: routes`

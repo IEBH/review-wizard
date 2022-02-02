@@ -3,6 +3,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 import { DeepstreamClient } from "@deepstream/client";
+import projectTemplateImport from "@/helpers/projectTemplateImport.js";
 
 const getDefaultState = () => ({
 	projectId: null,
@@ -13,9 +14,7 @@ const getDefaultState = () => ({
 });
 
 const getDeepstreamPath = async () => {
-	const { deepstreamPath } = await import(
-		"../components/" + process.env.VUE_APP_PROJECT + "/index.js"
-	);
+	const { deepstreamPath } = await projectTemplateImport();
 	return deepstreamPath;
 };
 

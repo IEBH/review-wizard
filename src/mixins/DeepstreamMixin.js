@@ -1,7 +1,7 @@
+import projectTemplateImport from "@/helpers/projectTemplateImport.js";
+
 const getDefaultData = async key => {
-	const { data } = await import(
-		"../components/" + process.env.VUE_APP_PROJECT + "/index.js"
-	);
+	const { data } = await projectTemplateImport();
 	return data[key];
 };
 let dataIsReady;
