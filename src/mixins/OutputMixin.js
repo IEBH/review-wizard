@@ -1,16 +1,20 @@
 export default {
 	methods: {
+		// Capitalize the first letter of a sentence/word
 		capitalize(s) {
 			if (typeof s !== "string") return "";
 			return s.charAt(0).toUpperCase() + s.slice(1);
 		},
+		// Uncapitalize the first letter of a sentence/word
 		uncapitalize(s) {
 			if (typeof s !== "string") return "";
 			return s.charAt(0).toLowerCase() + s.slice(1);
 		},
+		// Select a random sentence
 		selectRandom(arr) {
 			return arr[Math.floor(Math.random() * arr.length)];
 		},
+		// Join array of words with commas and "and" for the last word
 		joinArrayWithAnd(arr) {
 			let elExists = false;
 			let returnString = "";
@@ -30,6 +34,7 @@ export default {
 			}
 			return elExists ? returnString : "BLANK";
 		},
+		// Join array of words with commas and "or" for the last word
 		joinArrayWithOr(arr) {
 			let elExists = false;
 			let returnString = "";
@@ -57,6 +62,7 @@ export default {
 				return [];
 			}
 		},
+		// Format the array when user can select from multiple options
 		formatSelectMulti(arr) {
 			// Get only the labels the array of objects
 			if (arr) {
@@ -64,6 +70,7 @@ export default {
 				return arr;
 			} else return [];
 		},
+		// Format the date to day/month/year
 		formatDate(timestamp) {
 			timestamp = new Date(timestamp);
 			var d;
@@ -78,6 +85,7 @@ export default {
 				return "[no date specified]";
 			}
 		},
+		// Format date as 30th of January 2021
 		formatDateFull(timestamp) {
 			timestamp = new Date(timestamp);
 			const monthNames = [
@@ -122,6 +130,7 @@ export default {
 				d.getFullYear()
 			);
 		},
+		// Convert a number to word e.g `1 -> one`
 		numberToWord(string) {
 			switch (string) {
 				case null:
@@ -148,6 +157,7 @@ export default {
 					return string;
 			}
 		},
+		// Convert a name to initials e.g. `Connor Forbes -> CF`
 		nameToInitials(name) {
 			if (name) {
 				var initials = name.match(/\b\w/g) || [];
