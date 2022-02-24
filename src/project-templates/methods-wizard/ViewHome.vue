@@ -6,6 +6,21 @@
 			and begin filling it in
 		</p>
 		<div v-else>
+			<p>
+				To create a new methods section, please use the "Create New Project"
+				button.
+			</p>
+			<p>
+				Any changes made are automatically synced, just make sure to save the
+				URL to continue accessing the methods section.
+			</p>
+			<Button
+				label="Create New Project"
+				@click="newArticle"
+				class="create-button"
+			/>
+			<br /><br />
+			<!-- New database warning message -->
 			<Message :closable="false"
 				>We have switched to a new database for MethodsWizard, if you have lost
 				any work using the Beta version, it is still accessible at the legacy
@@ -13,6 +28,7 @@
 				<a
 					style="display: contents"
 					href="https://legacy-methodswizard.netlify.app/#/"
+					target="_blank"
 				>
 					Click here to access the legacy version</a
 				>. If you still need help recovering data, feel free to
@@ -24,20 +40,18 @@
 				>.
 			</Message>
 			<img src="@/assets/url-info.png" />
-			<p>
-				To create a new methods section, please use the "Create New Project"
-				button.
-			</p>
-			<p>
-				Any changes made are automatically synced, just make sure to save the
-				URL to continue accessing the methods section.
-			</p>
-			<br />
-			<Button
-				label="Create New Project"
-				@click="newArticle"
-				class="create-button"
-			/>
+			<Message :closable="false">
+				<b>
+					To recover your data, simply copy the ID from the old URL saved, and
+					paste it at the end of the legacy versions URL.<a
+						style="display: contents"
+						href="https://legacy-methodswizard.netlify.app/#/"
+						target="_blank"
+					>
+						Click here to access the legacy version</a
+					>
+				</b>
+			</Message>
 
 			<!-- Modal to display warning -->
 			<Dialog
