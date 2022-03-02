@@ -81,7 +81,30 @@
 						settingInclude +
 						". If the study was conductd in " +
 						settingExclude +
-						" it was excluded."
+						" it was excluded.",
+					"To conduct this review we identified and included studies about " +
+						typesInclude +
+						"  which compared " +
+						interventionInclude +
+						" to " +
+						comparatorInclude +
+						". Studies which were about " +
+						interventionExclude +
+						" or that were compared to " +
+						comparatorExclude +
+						" were not included" +
+						". Studies which were on" +
+						populationInclude +
+						" were assessed as relevant to this review" +
+						". The primary outcome of interest was/were" +
+						primaryOutcomesInclude +
+						", while the secondary outcome/s of interest were " +
+						secondaryOutcomesInclude +
+						". We were only interested in studies conducted in " +
+						settingInclude +
+						". If the setting of the study was " +
+						settingExclude +
+						" it was assessed as an excluded study."
 				])
 			}}
 		</p>
