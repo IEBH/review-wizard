@@ -93,10 +93,10 @@
 						" or that were compared to " +
 						comparatorExclude +
 						" were not included" +
-						". Studies which were on" +
+						". Studies which were on " +
 						populationInclude +
 						" were assessed as relevant to this review" +
-						". The primary outcome of interest was/were" +
+						". The primary outcome of interest was/were " +
 						primaryOutcomesInclude +
 						", while the secondary outcome/s of interest were " +
 						secondaryOutcomesInclude +

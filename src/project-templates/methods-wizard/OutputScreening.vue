@@ -27,7 +27,11 @@
 						numberToWord(data.numberOfTitleAbstractScreeners) +
 						" authors independently.",
 					"References were screened independently against the eligibility criteria by " +
-						numberToWord(data.numberOfTitleAbstractScreeners) +
+						joinArrayWithAnd(
+							formatSelectMulti(data.titleAbstractScreeners).map(el =>
+								nameToInitials(el)
+							)
+						) +
 						". "
 				])
 			}}
@@ -58,13 +62,13 @@
 							.map(el => nameToInitials(el))
 							.join(", ") +
 						") reviewed the full texts against the inclusion criteria.",
-					"Once the initial title/abstrct screening was completed, the full texts of the included studies from that stage were reviewed " +
-						capitalize(numberToWord(data.numberOfFullTextScreeners)) +
+					"Once the initial title/abstract screening was completed, the full texts of the included studies from that stage were reviewed by " +
+						numberToWord(data.numberOfFullTextScreeners) +
 						" authors (" +
 						formatSelectMulti(data.fullTextScreeners)
 							.map(el => nameToInitials(el))
 							.join(", ") +
-						") used the full texts of the studies to determine if they should be included."
+						") to determine if they should be included."
 				])
 			}}
 			<!-- Discrepancies -->
