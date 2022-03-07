@@ -40,7 +40,7 @@
 			v-if="extraction.optionalDetail"
 			style="margin-top: 50px; border: 1px solid black;"
 		>
-			<AccordionTab header="Optional Details" :active="false">
+			<AccordionTab header="Optional Details" :active="true">
 				<h3>What data will be extracted:</h3>
 				<InputSelectMulti
 					question="Methods:"

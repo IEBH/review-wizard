@@ -137,7 +137,7 @@ const data = {
 		numberOfExtractors: null,
 		extractionAuthors: [],
 		//New
-		optionalDetail: false,
+		optionalDetail: true,
 		methods: [],
 		participants: [],
 		interventions: [],
