@@ -23,23 +23,36 @@
 				}}.
 			</span>
 			<span v-if="data.helper ? data.helper.length : data.helper">
-				[A/An]
+				{{
+					selectRandom([
+						"The search was designed with the help of [a/an] ",
+						"Help to design the search was obtained from [a/an] "
+					])
+				}}
 				{{ joinArrayWithAnd(formatSelectMulti(data.helper)).toLowerCase() }}
-				helped in the design of the search.
 			</span>
 			<span
 				v-if="data.peerReviewer ? data.peerReviewer.length : data.peerReviewer"
 			>
-				The search strategy was peer-reviewed by [a/an]
+				{{
+					selectRandom([
+						"The search was peer-reviewed by [a/an] ",
+						"A peer-review of the search was conducted by [a/an] "
+					])
+				}}
 				{{
 					joinArrayWithAnd(formatSelectMulti(data.peerReviewer)).toLowerCase()
 				}}
-				according to PRESS guidelines.
 			</span>
 			<span
 				v-if="data.searchAutomationTools ? data.searchAutomationTools.length : data.searchAutomationTools"
 			>
-				The following automation tools were used to design the search.
+				{{
+					selectRandom([
+						"The following automation tools were used in the design of the search ",
+						"The search was designed with the aid of the following tools "
+					])
+				}}
 				{{
 					joinArrayWithAnd(data.searchAutomationTools.map(tool => `${tool.label} (${tool.url})`)).toLowerCase()
 				}}

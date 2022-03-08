@@ -130,6 +130,7 @@ const data = {
 		numberOfFullTextScreeners: null,
 		fullTextScreeners: [],
 		disputeResolution: [],
+		screenAutomationTools: [],
 		isPrismaFlowDiagram: false,
 		isExcludedFullTextInAppendix: false
 	},

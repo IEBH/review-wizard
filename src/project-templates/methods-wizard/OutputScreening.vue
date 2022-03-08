@@ -80,6 +80,20 @@
 					  ).toLowerCase()
 					: "BLANK"
 			}}.
+			<!-- Automation -->
+			<span
+				v-if="data.screenAutomationTools ? data.screenAutomationTools.length : data.screenAutomationTools"
+			>
+				{{
+					selectRandom([
+						"The following automation tools were used to screen articles ",
+						"We used these automation tools to hep with the screening of articles "
+					])
+				}}
+				{{
+					joinArrayWithAnd(data.screenAutomationTools.map(tool => `${tool.label} (${tool.url})`)).toLowerCase()
+				}}
+			</span>
 			<!-- PRISMA -->
 			{{
 				data.isPrismaFlowDiagram
