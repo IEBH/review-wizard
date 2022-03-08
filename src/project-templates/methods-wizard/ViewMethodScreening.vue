@@ -57,7 +57,7 @@
 		/>
 
 		<InputSelectMulti
-			question="Did you use any automation tools during the screening process"
+			question="Were any automation tools used during the screening process"
 			:options="screenAutomationOptions"
 			:value="screening.screenAutomationTools"
 			@input="updateField('screenAutomationTools', $event)"
@@ -96,6 +96,10 @@ export default {
 				{ label: "By referring to a third author" }
 			],
 			screenAutomationOptions: [
+				{ 	
+					label: "RobotSearch", 
+					url: "https://pubmed.ncbi.nlm.nih.gov/29314757/" 
+				},		
 				{
 					label: "Screenatron/Disputatron",
 					url: "https://pubmed.ncbi.nlm.nih.gov/32004673/"
@@ -104,7 +108,10 @@ export default {
 					label: "Covidence",
 					url: "https://support.covidence.org/help/how-can-i-cite-covidence/"
 				},
-				{ label: "Rayyan", url: "https://pubmed.ncbi.nlm.nih.gov/27919275/" }
+				{ 	
+					label: "Rayyan", 
+					url: "https://pubmed.ncbi.nlm.nih.gov/27919275/" 
+				}
 			],
 			outputComponent: OutputScreening
 		};

@@ -70,7 +70,7 @@
 						" or where the control was " +
 						comparatorExclude +
 						" were excluded" +
-						". Only Studies on" +
+						". Only Studies on " +
 						populationInclude +
 						" were included in the review" +
 						". The primary outcome of the review was/were" +

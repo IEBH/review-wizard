@@ -74,6 +74,14 @@ export default {
 				{
 					label: "SearchRefinery",
 					url: "https://dl.acm.org/doi/abs/10.1145/3269206.3269215/"
+				},
+				{
+					label: "The Deduplicator",
+					url: "https://pubmed.ncbi.nlm.nih.gov/32004673/"
+				},
+				{
+					label: "The Systematic Review Accelerator",
+					url: "https://pubmed.ncbi.nlm.nih.gov/32004673/"
 				}
 			],
 			outputComponent: OutputSearch

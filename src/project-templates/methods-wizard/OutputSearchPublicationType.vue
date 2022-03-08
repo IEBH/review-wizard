@@ -13,24 +13,55 @@
 		</p>
 		<p v-else>
 			<span v-if="data.isRestrictedByPublicationType">
-				Restrictions were applied to the publication types.
-				{{
+			{{
+				selectRandom([
+					"Restrictions were applied to the publication types.",
+					"We only included studies of specific publication types.",
+					"We restricted our search to exclude certain publication types."
+				])
+			}}				
+			{{
 					capitalize(
 						joinArrayWithAnd(
 							formatSelectMulti(data.excludedPublicationTypes)
 						).toLowerCase()
 					)
-				}}
-				were excluded from the search.
+			}}
+			{{
+				selectRandom([
+					" were excluded from the search.",
+					" were purposefully removed from the serch results.",
+					" did not appear in our search results."
+				])
+			}}				
 			</span>
 			<span v-else>
-				No publication type restrictions were applied.
+			{{
+				selectRandom([
+					"No publication type restrictions were applied.",
+					"We did not apply restrictions to publication type.",
+					"All publication types were included in the search."
+				])
+			}}				
 			</span>
 			<span v-if="data.isRestrictedByLanguage">
-				We included studies in the following languages:
+			{{
+				selectRandom([
+					"Only the following languages were included: ",
+					"We only included studies of in the following languages: ",
+					"We restricted our search to only include the following languages: "
+				])
+			}}	
 				{{ joinArrayWithAnd(formatSelectMulti(data.includedLanguages)) }}.
 			</span>
 			<span v-else>
+			{{
+				selectRandom([
+					"No language restrictions were applied.",
+					"We did not apply restrictions to the language studies were published in.",
+					"All languages were included in the search."
+				])
+			}}
 				No restrictions on language were applied.
 			</span>
 		</p>

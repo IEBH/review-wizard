@@ -1,7 +1,15 @@
 <template>
 	<div>
 		<p>
-			{{ selectRandom(["We also ", "Additionaly, we"]) }}
+			{{ selectRandom([
+			"We also ", 
+			"Additionally, we ",
+			"To supplement the database search we ",
+			"As well as searching dtabases we also ",
+			"To maximise our chances of identifying all relevant studies, as well as searching dtabases we also ",
+
+				]) 
+			}}
 			{{
 				joinArrayWithAnd(
 					formatSelectMulti(data.supplementoryMethods)

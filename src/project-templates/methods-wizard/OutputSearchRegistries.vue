@@ -4,7 +4,9 @@
 			{{
 				selectRandom([
 					"We searched ",
-					"Trial registries used for the search were "
+					"Trial registries used for the search were ",
+					"The following trial registries were searched ",
+					"To identify ongoing studies, we searched "
 				])
 			}}
 			{{ joinArrayWithAnd(formatSelectMulti(data.registries)) }}
