@@ -82,7 +82,11 @@
 			}}.
 			<!-- Automation -->
 			<span
-				v-if="data.screenAutomationTools ? data.screenAutomationTools.length : data.screenAutomationTools"
+				v-if="
+					data.screenAutomationTools
+						? data.screenAutomationTools.length
+						: data.screenAutomationTools
+				"
 			>
 				{{
 					selectRandom([
@@ -91,8 +95,12 @@
 					])
 				}}
 				{{
-					joinArrayWithAnd(data.screenAutomationTools.map(tool => `${tool.label} (${tool.url})`)).toLowerCase()
-				}}
+					joinArrayWithAnd(
+						data.screenAutomationTools.map(
+							tool => `${tool.label} (${tool.url})`
+						)
+					)
+				}}.
 			</span>
 			<!-- PRISMA -->
 			{{

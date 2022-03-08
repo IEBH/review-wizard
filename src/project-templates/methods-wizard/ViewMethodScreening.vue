@@ -56,7 +56,7 @@
 			:options="disputeResolutionOptions"
 		/>
 
-			<InputSelectMulti
+		<InputSelectMulti
 			question="Did you use any automation tools during the screening process"
 			:options="screenAutomationOptions"
 			:value="screening.screenAutomationTools"
@@ -96,8 +96,14 @@ export default {
 				{ label: "By referring to a third author" }
 			],
 			screenAutomationOptions: [
-				{ label: "Screenatron/Disputatron", url: "https://pubmed.ncbi.nlm.nih.gov/32004673/" },
-				{ label: "Covidence", url: "https://support.covidence.org/help/how-can-i-cite-covidence/" },
+				{
+					label: "Screenatron/Disputatron",
+					url: "https://pubmed.ncbi.nlm.nih.gov/32004673/"
+				},
+				{
+					label: "Covidence",
+					url: "https://support.covidence.org/help/how-can-i-cite-covidence/"
+				},
 				{ label: "Rayyan", url: "https://pubmed.ncbi.nlm.nih.gov/27919275/" }
 			],
 			outputComponent: OutputScreening

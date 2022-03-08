@@ -8,7 +8,7 @@
 						"We included the following in the search string "
 					])
 				}}
-				
+
 				{{ joinArrayWithAnd(formatSelectMulti(data.components)).toLowerCase() }}
 			</span>
 			<span v-if="data.specialist ? data.specialist.length : data.specialist">
@@ -45,7 +45,11 @@
 				}}
 			</span>
 			<span
-				v-if="data.searchAutomationTools ? data.searchAutomationTools.length : data.searchAutomationTools"
+				v-if="
+					data.searchAutomationTools
+						? data.searchAutomationTools.length
+						: data.searchAutomationTools
+				"
 			>
 				{{
 					selectRandom([
@@ -54,8 +58,12 @@
 					])
 				}}
 				{{
-					joinArrayWithAnd(data.searchAutomationTools.map(tool => `${tool.label} (${tool.url})`)).toLowerCase()
-				}}
+					joinArrayWithAnd(
+						data.searchAutomationTools.map(
+							tool => `${tool.label} (${tool.url})`
+						)
+					)
+				}}.
 			</span>
 		</p>
 	</div>

@@ -63,9 +63,18 @@ export default {
 				{ label: "Cochrane Information Specialist" }
 			],
 			searchAutomationOptions: [
-				{ label: "Word Frequency Analyser", url: "https://pubmed.ncbi.nlm.nih.gov/32004673/" },
-				{ label: "Polyglot Search Translator", url: "https://pubmed.ncbi.nlm.nih.gov/32256231/" },
-				{ label: "SearchRefinery", url: "https://dl.acm.org/doi/abs/10.1145/3269206.3269215/" }
+				{
+					label: "Word Frequency Analyser",
+					url: "https://pubmed.ncbi.nlm.nih.gov/32004673/"
+				},
+				{
+					label: "Polyglot Search Translator",
+					url: "https://pubmed.ncbi.nlm.nih.gov/32256231/"
+				},
+				{
+					label: "SearchRefinery",
+					url: "https://dl.acm.org/doi/abs/10.1145/3269206.3269215/"
+				}
 			],
 			outputComponent: OutputSearch
 		};
