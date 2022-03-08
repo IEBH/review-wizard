@@ -106,6 +106,7 @@ const data = {
 		specialist: [],
 		helper: [],
 		peerReviewer: [],
+		searchAutomationTools: [],
 		// Search Strings for Bibliographic Databases
 		databases: [],
 		dateOfSearch: null,

@@ -2,11 +2,22 @@
 	<div>
 		<p>
 			<span v-if="data.components ? data.components.length : data.components">
-				The following components were included in the search string:
+				{{
+					selectRandom([
+						"The following components were included in the search string ",
+						"We included the following in the search string "
+					])
+				}}
+				
 				{{ joinArrayWithAnd(formatSelectMulti(data.components)).toLowerCase() }}
 			</span>
 			<span v-if="data.specialist ? data.specialist.length : data.specialist">
-				This search string was constructed by [a/an]
+				{{
+					selectRandom([
+						"This search string was constructed by [a/an] ",
+						"The search was designed by [a/an] "
+					])
+				}}
 				{{
 					joinArrayWithAnd(formatSelectMulti(data.specialist)).toLowerCase()
 				}}.
@@ -24,6 +35,14 @@
 					joinArrayWithAnd(formatSelectMulti(data.peerReviewer)).toLowerCase()
 				}}
 				according to PRESS guidelines.
+			</span>
+			<span
+				v-if="data.searchAutomationTools ? data.searchAutomationTools.length : data.searchAutomationTools"
+			>
+				The following automation tools were used to design the search.
+				{{
+					joinArrayWithAnd(data.searchAutomationTools.map(tool => `${tool.label} (${tool.url})`)).toLowerCase()
+				}}
 			</span>
 		</p>
 	</div>

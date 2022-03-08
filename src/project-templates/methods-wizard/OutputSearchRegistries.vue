@@ -2,14 +2,14 @@
 	<div>
 		<p>
 			{{
-				selectRandom(["We searched ", "Databases used for the search were "])
+				selectRandom(["We searched ", "Trial registries used for the search were "])
 			}}
 			{{ joinArrayWithAnd(formatSelectMulti(data.registries)) }}
 			{{
 				selectRandom([
 					"from ",
 					". Searches were run from ",
-					"Databases were searched from "
+					". They were searched from "
 				])
 			}}
 			{{
