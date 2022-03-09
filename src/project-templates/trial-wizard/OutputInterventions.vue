@@ -71,15 +71,26 @@
 			{{ joinArrayWithAnd(formatSelectMulti(data.adherenceMonitored)) }}.
 		</p>
 		<p>
-						{{
+			{{
 					selectRandom([
-						"Adherence was monitored by ",
-						"Compliance with intervention protocols was checked by "
+						"Both groups received ",
+						"All groups in the trial were given "
 					])
 			}}
-			Both groups received {{ data.allInstructions }}. Interventions such as:
-			{{ data.prohibitedInterventions }} were not allowed for the duration of
-			the study.
+			{{ data.allInstructions }}. 
+			{{
+					selectRandom([
+						"Interventions such as: ",
+						"Interventions which involved "
+					])
+			}}
+			{{ data.prohibitedInterventions }}
+			{{
+					selectRandom([
+						" were not allowed for the duration of the study.",
+						" could not be given during the trial."
+					])
+			}}
 		</p>
 	</div>
 </template>
