@@ -1,8 +1,22 @@
 <template>
 	<div>
 		<p>
-			Participants were recruited from
-			{{ joinArrayWithOr(formatSelectMulti(data.settings)).toLowerCase() }} in
+			{{
+					selectRandom([
+						"Participants were recruited from ",
+						"The recruitment for the study was undertaken in "
+					])
+			}}	
+			{{ joinArrayWithOr(formatSelectMulti(data.settings)).toLowerCase() }} 
+			{{
+					selectRandom([
+						"in ",
+						"within ",
+						"from ",
+						"located in ",
+						"based in "
+					])
+			}}	
 			{{ joinArrayWithOr(formatSelectMulti(data.regions)) }}.
 		</p>
 	</div>

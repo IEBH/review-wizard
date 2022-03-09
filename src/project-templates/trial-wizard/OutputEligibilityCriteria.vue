@@ -1,7 +1,12 @@
 <template>
 	<div>
 		<p>
-			Eligible participants were
+			{{
+					selectRandom([
+						"Eligible participants were ",
+						"The participant characteristics are "
+					])
+			}}	
 			{{ joinArrayWithOr(formatSelectMulti(data.conditions)).toLowerCase() }}
 			{{ joinArrayWithOr(formatSelectMulti(data.sexes)).toLowerCase() }}
 			{{ joinArrayWithOr(formatSelectMulti(data.ages)).toLowerCase()
@@ -12,7 +17,12 @@
 			}}.
 		</p>
 		<p>
-			At baseline, for all participants we measured
+			{{
+					selectRandom([
+						"At baseline, for all participants we measured ",
+						"We measured the following baseline characteristics "
+					])
+			}}	
 			{{
 				joinArrayWithAnd(
 					formatSelectMulti(data.baselineMeasurements)

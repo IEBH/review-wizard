@@ -32,6 +32,7 @@ export default {
 				{ label: "China" },
 				{ label: "Japan" },
 				{ label: "Norway" },
+				{ label: "Ukraine" },
 				{ label: "United Kingdom" },
 				{ label: "United States" }
 			],
@@ -39,6 +40,7 @@ export default {
 			settingOptions: [
 				{ label: "Hospitals" },
 				{ label: "Outpatient clinics" },
+				{ label: "General practices" },
 				{ label: "The community" }
 			]
 		};
