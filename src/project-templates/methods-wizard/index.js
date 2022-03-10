@@ -210,7 +210,7 @@ const getMenu = projectId => [
 		href: `/${projectId}/method/picot`
 	},
 	{
-		title: "Search",
+		title: "Search Strategy",
 		icon: "pi pi-search",
 		child: [
 			{
@@ -236,7 +236,7 @@ const getMenu = projectId => [
 		]
 	},
 	{
-		title: "Study Selection and Screening",
+		title: "Study Screening and Selection",
 		icon: "pi pi-check",
 		href: `/${projectId}/method/screening`
 	},

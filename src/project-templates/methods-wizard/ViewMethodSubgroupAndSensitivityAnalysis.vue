@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Subgroup and Sensitivitiy Analysis</h1>
+		<h1>Subgroup and Sensitivity Analysis</h1>
 
 		<InputSelectYesNo
 			question="Were subgroup analyses performed?"

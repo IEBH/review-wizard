@@ -61,7 +61,7 @@
 					:data="search"
 					:key="monitorChange + 5"
 				/>
-				<h2>Study selection and screening</h2>
+				<h2>Study screening and selection</h2>
 				<h3>Screening</h3>
 				<OutputScreening
 					v-if="outputOptions[6].include"
@@ -74,37 +74,37 @@
 					:data="extraction"
 					:key="monitorChange + 7"
 				/>
-				<h2>Assessment of the RoB</h2>
+				<h2>Risk of Bias Assessment</h2>
 				<OutputAssessmentOfTheRiskOfBias
 					v-if="outputOptions[8].include"
 					:data="riskOfBias"
 					:key="monitorChange + 8"
 				/>
-				<h2>Measurement of effect</h2>
+				<h2>Data analysis</h2>
 				<OutputMeasurementOfEffect
 					v-if="outputOptions[9].include"
 					:data="measurementOfEffect"
 					:key="monitorChange + 9"
 				/>
-				<h2>Unit of analysis</h2>
+			
 				<OutputUnitOfAnalysis
 					v-if="outputOptions[10].include"
 					:data="unitOfAnalysis"
 					:key="monitorChange + 10"
 				/>
-				<h2>Dealing with missing data</h2>
+			
 				<OutputDealingWithMissingData
 					v-if="outputOptions[11].include"
 					:data="missingData"
 					:key="monitorChange + 11"
 				/>
-				<h2>Assessment of heterogeneity and publication biases</h2>
+			
 				<OutputHeterogeneityPublicationBias
 					v-if="outputOptions[12].include"
 					:data="heterogeneityPublicationBiases"
 					:key="monitorChange + 12"
 				/>
-				<h2>Subgroup and sensitivity analysis</h2>
+	
 				<OutputSubgroupAndSensitivityAnalysis
 					v-if="outputOptions[13].include"
 					:data="subgroupAndSensitivityAnalysis"
@@ -202,7 +202,7 @@ export default {
 				{ label: "Search Strings for Trial Registries", include: true },
 				{ label: "Restrictions on Publication Type", include: true },
 				{ label: "Supplementary Methods", include: true },
-				{ label: "Study Selection and Screening", include: true },
+				{ label: "Study Screening and Selection", include: true },
 				{ label: "Data Extraction", include: true },
 				{ label: "Assessment of the Risk of Bias", include: true },
 				{ label: "Measurment of Effect", include: true },

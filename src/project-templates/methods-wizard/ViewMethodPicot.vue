@@ -90,15 +90,15 @@ export default {
 	data() {
 		return {
 			typesOptions: [
-				{ label: "Systematic Reviews" },
-				{ label: "Observational Studies" },
 				{ label: "Randomized Controlled Trials" },
+				{ label: "Observational Studies (all types)" },
+				{ label: "Cohort (longitudinal) Studies" },
 				{ label: "Cohort Studies" },
-				{ label: "Longitudinal studies" },
-				{ label: "Before after studies" },
+				{ label: "Case-Control Studies" },
+				{ label: "Before After Studies" },
+				{ label: "Cross Sectional Studies" },
 				{ label: "Surveys" },
-				{ label: "Letters" },
-				{ label: "Editorials" }
+				{ label: "Systematic Reviews (for scoping or umbrella reviews)" }
 			],
 			outputComponent: OutputPicot
 		};

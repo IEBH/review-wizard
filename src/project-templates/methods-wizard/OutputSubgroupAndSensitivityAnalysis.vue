@@ -6,7 +6,8 @@
 					selectRandom([
 						"We conducted the following subgroup analyses:",
 						"The following subgroup analyses were planned:",
-						"Planned subgroup analyses were:"
+						"Planned subgroup analyses were:",
+						"We conducted subgroup analyses on the following:"
 					])
 				}}
 				{{

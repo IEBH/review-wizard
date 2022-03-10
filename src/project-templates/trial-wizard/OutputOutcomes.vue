@@ -1,39 +1,93 @@
 <template>
 	<div>
 		<p>
-			The primary
+			
+			{{
+					selectRandom([
+						"The primary ",
+						"The study primary "
+					])
+			}}
 			{{
 				data.primary && data.primary.length > 1
 					? "outcomes were"
 					: "outcome was"
 			}}
-			{{ joinArrayWithOr(mapArray(data.primary, "name")) }} assessed by
-			{{ joinArrayWithOr(mapArray(data.primary, "assessed")) }} at the following
-			time-points: {{ joinArrayWithAnd(mapArray(data.primary, "time")) }}.
+			{{ joinArrayWithOr(mapArray(data.primary, "name")) }} 
+			{{
+					selectRandom([
+						" assessed by ",
+						" analysed by "
+					])
+			}}
+			{{ joinArrayWithOr(mapArray(data.primary, "assessed")) }} 
+				{{
+					selectRandom([
+						"at the following time points: ",
+						"at the following periods in the trial: "
+					])
+			}}
+			{{ joinArrayWithAnd(mapArray(data.primary, "time")) }}.
 		</p>
 		<p>
-			The secondary
+			{{
+					selectRandom([
+						"The secondary ",
+						"The study secondary "
+					])
+			}}	
 			{{
 				data.secondary && data.secondary.length > 1
 					? "outcomes were"
 					: "outcome was"
 			}}
 			{{ joinArrayWithOr(mapArray(data.secondary, "name")) }}
-			assessed by
-			{{ joinArrayWithOr(mapArray(data.secondary, "assessed")) }} at the
-			following time-points:
+			{{
+					selectRandom([
+						" assessed by ",
+						" analysed by "
+					])
+			}}
+			{{ joinArrayWithOr(mapArray(data.secondary, "assessed")) }} 
+			{{
+					selectRandom([
+						"at the following time points: ",
+						"at the following periods in the trial: "
+					])
+			}}
 			{{ joinArrayWithAnd(mapArray(data.secondary, "time")) }}.
 		</p>
 		<p>
-			Adverse events of particular interest were
+			{{
+					selectRandom([
+						"Adverse events of particular interest were ",
+						"The following Adverse events were recorded "
+					])
+			}}
 			{{ joinArrayWithOr(mapArray(data.adverse, "name")) }}
-			. Adverse events were assessed by
-			{{ joinArrayWithOr(mapArray(data.adverse, "assessed")) }} at the following
-			time-points: {{ joinArrayWithAnd(mapArray(data.adverse, "time")) }}.
+			{{
+					selectRandom([
+						". Adverse events were assessed by ",
+						". The assessment of adverse events was done by "
+					])
+			}}
+			{{ joinArrayWithOr(mapArray(data.adverse, "assessed")) }} 
+			{{
+					selectRandom([
+						"at the following time points: ",
+						"at the following periods in the trial: "
+					])
+			}}
+			{{ joinArrayWithAnd(mapArray(data.adverse, "time")) }}.
 		</p>
 		<p>
-			The clinical relevance of the chosen efficacy and harm outcomes is
-			supported by {{ data.clinicalRelevance }}.
+			{{
+					selectRandom([
+						"The clinical relevance of the chosen efficacy and harm outcomes is supported by ",
+						"The importance, efficacy and associated harms of the outcomes is supported by "
+					])
+			}}	
+			{{ data.clinicalRelevance }}.
 		</p>
 	</div>
 </template>

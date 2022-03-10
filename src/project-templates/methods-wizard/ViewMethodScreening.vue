@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Study Selection and Screening</h1>
+		<h1>Study Screening and Selection</h1>
 
 		<InputSelectDropdown
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
