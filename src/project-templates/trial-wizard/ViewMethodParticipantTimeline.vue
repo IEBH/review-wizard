@@ -1,7 +1,17 @@
 <template>
 	<div>
 		<h1>Participant Timeline</h1>
-		Under construction
+		
+		<i>Time schedule of enrolment, interventions (including any run-ins and washouts), assessments, and visits for participants. A schematic diagram is highly recommended</i>
+
+		<InputTextSingleLine
+			question="The time schedule of enrolment, interventions, assessments, and visits for participants is provided in the following schematic diagram"
+			placeholder="Participant enrolment schematic"
+			:value="participantTimeline.schematic"
+			@input="updateField('schematic', $event)"
+		/>
+		
+		
 		<BasePreviewOutput
 			:component="outputComponent"
 			:data="participantTimeline"

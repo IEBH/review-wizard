@@ -1,6 +1,16 @@
 <template>
 	<div>
-		<p></p>
+		<p>
+					
+			{{
+					selectRandom([
+						"The following diagram shows the flow of particpants through the trial. ",
+						"The flow of particpants through the trial will follow the diagram shown below. "
+					])
+			}}	
+			{{ data.participantTimeline }}.
+		
+		</p>
 	</div>
 </template>
 
