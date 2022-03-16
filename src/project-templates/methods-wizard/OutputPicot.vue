@@ -79,7 +79,7 @@
 						secondaryOutcomesInclude +
 						". For a study to be included, it needed to be set in " +
 						settingInclude +
-						". If the study was conductd in " +
+						". If the study was conducted in " +
 						settingExclude +
 						" it was excluded.",
 					"To conduct this review we identified and included studies about " +

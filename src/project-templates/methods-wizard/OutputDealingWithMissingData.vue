@@ -4,7 +4,10 @@
 			{{
 				selectRandom([
 					"We contacted investigators or study sponsors to provide missing data.",
-					"Where data were missing, study investigators or sponsors were contacted."
+					"Where data were missing, study investigators or sponsors were contacted.",
+					"We contacted the study authors for missing data.",
+					"We contacted the study authors for missing or additional data.",
+					"The investigators and/or study sponsors were contacted to supply missing data."
 				])
 			}}
 		</p>
