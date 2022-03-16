@@ -86,25 +86,25 @@
 					:data="measurementOfEffect"
 					:key="monitorChange + 9"
 				/>
-			
+
 				<OutputUnitOfAnalysis
 					v-if="outputOptions[10].include"
 					:data="unitOfAnalysis"
 					:key="monitorChange + 10"
 				/>
-			
+
 				<OutputDealingWithMissingData
 					v-if="outputOptions[11].include"
 					:data="missingData"
 					:key="monitorChange + 11"
 				/>
-			
+
 				<OutputHeterogeneityPublicationBias
 					v-if="outputOptions[12].include"
 					:data="heterogeneityPublicationBiases"
 					:key="monitorChange + 12"
 				/>
-	
+
 				<OutputSubgroupAndSensitivityAnalysis
 					v-if="outputOptions[13].include"
 					:data="subgroupAndSensitivityAnalysis"
