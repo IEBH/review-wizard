@@ -110,136 +110,146 @@
 		</p>
 		<!-- Bullet points -->
 		<h3>Participants</h3>
-		<ul>
-			<li>
-				{{
+		<span>
+			{{
+				selectRandom([
 					selectRandom([
-						selectRandom([
-							"We included: ",
-							"Included participants were: ",
-							"The following participants were included: "
-						]) + populationInclude,
-						"Studies of " +
-							populationInclude +
-							" were eligible for this review."
-					])
-				}}
-			</li>
-			<li v-if="populationExclude != 'BLANK'">
-				{{
-					selectRandom([
-						"We excluded: ",
-						"Participants were excluded if they were: "
-					]) + populationExclude
-				}}
-			</li>
-		</ul>
+						"We included: ",
+						"Included participants were: ",
+						"The following participants were included: "
+					]) +
+						populationInclude +
+						". ",
+					"Studies of " + populationInclude + " were eligible for this review."
+				])
+			}}
+		</span>
+		<span v-if="populationExclude != 'BLANK'">
+			{{
+				selectRandom([
+					"We excluded: ",
+					"Participants were excluded if they were: "
+				]) +
+					populationExclude +
+					"."
+			}}
+		</span>
 
 		<h3>Interventions</h3>
-		<ul>
-			<li>
-				{{
-					selectRandom([
-						"We included: ",
-						"Included interventions were: ",
-						"Eligible interventions were: ",
-						"The following interventions were included: ",
-						"Studies were eligible if they evaluated: "
-					]) + interventionInclude
-				}}
-			</li>
-			<li v-if="interventionExclude != 'BLANK'">
-				{{
-					selectRandom([
-						"We excluded: ",
-						"Interventions were excluded if they involved the following: ",
-						"Interventions were excluded if they involved: ",
-						"Interventions were excluded if they had:",
-						"Interventions were excluded if they had any of: "
-					]) + interventionExclude
-				}}
-			</li>
-		</ul>
+		<span>
+			{{
+				selectRandom([
+					"We included: ",
+					"Included interventions were: ",
+					"Eligible interventions were: ",
+					"The following interventions were included: ",
+					"Studies were eligible if they evaluated: "
+				]) +
+					interventionInclude +
+					". "
+			}}
+		</span>
+		<span v-if="interventionExclude != 'BLANK'">
+			{{
+				selectRandom([
+					"We excluded: ",
+					"Interventions were excluded if they involved the following: ",
+					"Interventions were excluded if they involved: ",
+					"Interventions were excluded if they had:",
+					"Interventions were excluded if they had any of: "
+				]) +
+					interventionExclude +
+					"."
+			}}
+		</span>
 
 		<h3>Comparators</h3>
-		<ul>
-			<li>
-				{{
-					selectRandom([
-						"We included: ",
-						"Studies with the following comparator groups were eligible: "
-					]) + comparatorInclude
-				}}
-			</li>
-			<li v-if="comparatorExclude != 'BLANK'">
-				{{
-					selectRandom([
-						"We excluded: ",
-						"Studies were excluded if the comparator group had any of the following: ",
-						"Studies were excluded if the comparator group had any of: "
-					]) + comparatorExclude
-				}}
-			</li>
-		</ul>
+		<span>
+			{{
+				selectRandom([
+					"We included: ",
+					"Studies with the following comparator groups were eligible: "
+				]) +
+					comparatorInclude +
+					". "
+			}}
+		</span>
+		<span v-if="comparatorExclude != 'BLANK'">
+			{{
+				selectRandom([
+					"We excluded: ",
+					"Studies were excluded if the comparator group had any of the following: ",
+					"Studies were excluded if the comparator group had any of: "
+				]) +
+					comparatorExclude +
+					"."
+			}}
+		</span>
 
 		<h3>Outcomes</h3>
-		<ul>
-			<li>
-				{{
-					selectRandom([
-						"We included the following primary outcome: ",
-						"Studies with the following primary outcomes were included: ",
-						"Included primary outcomes were: ",
-						"The primary outcome/s was/were: "
-					]) + primaryOutcomesInclude
-				}}
-			</li>
-			<li v-if="secondaryOutcomesInclude != 'BLANK'">
-				{{ "Included secondary outcomes were: " + secondaryOutcomesInclude }}
-			</li>
-			<li v-if="outcomesExclude != 'BLANK'">
-				{{
-					selectRandom([
-						"We excluded: ",
-						"Excluded outcomes were: ",
-						"Studies with the following outcomes were excluded: "
-					]) + outcomesExclude
-				}}
-			</li>
-		</ul>
+		<span>
+			{{
+				selectRandom([
+					"We included the following primary outcome: ",
+					"Studies with the following primary outcomes were included: ",
+					"Included primary outcomes were: ",
+					"The primary outcome/s was/were: "
+				]) +
+					primaryOutcomesInclude +
+					". "
+			}}
+		</span>
+		<span v-if="secondaryOutcomesInclude != 'BLANK'">
+			{{
+				"Included secondary outcomes were: " + secondaryOutcomesInclude + ". "
+			}}
+		</span>
+		<span v-if="outcomesExclude != 'BLANK'">
+			{{
+				selectRandom([
+					"We excluded: ",
+					"Excluded outcomes were: ",
+					"Studies with the following outcomes were excluded: "
+				]) +
+					outcomesExclude +
+					"."
+			}}
+		</span>
 
 		<h3>Setting</h3>
-		<ul>
-			<li>
-				{{
-					selectRandom([
-						"We included studies conducted in: ",
-						"Studies conducted in the following settings were included: "
-					]) + settingInclude
-				}}
-			</li>
-			<li v-if="settingExclude != 'BLANK'">
-				{{
-					selectRandom([
-						"We excluded studies conducted in: ",
-						"Studies conducted in the following settings were excluded: "
-					]) + settingExclude
-				}}
-			</li>
-		</ul>
+		<span>
+			{{
+				selectRandom([
+					"We included studies conducted in: ",
+					"Studies conducted in the following settings were included: "
+				]) +
+					settingInclude +
+					". "
+			}}
+		</span>
+		<span v-if="settingExclude != 'BLANK'">
+			{{
+				selectRandom([
+					"We excluded studies conducted in: ",
+					"Studies conducted in the following settings were excluded: "
+				]) +
+					settingExclude +
+					"."
+			}}
+		</span>
 
 		<h3>Study design</h3>
-		<ul>
-			<li>
-				{{
-					selectRandom([
-						"We included: ",
-						"Included study designs were: ",
-						"The following study designs were included: "
-					]) + typesInclude
-				}}
-			</li>
-		</ul>
+		<span>
+			{{
+				selectRandom([
+					"We included: ",
+					"Included study designs were: ",
+					"The following study designs were included: "
+				]) +
+					typesInclude +
+					"."
+			}}
+		</span>
 	</div>
 </template>
 

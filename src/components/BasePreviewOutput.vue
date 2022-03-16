@@ -7,8 +7,10 @@
 				:data="data"
 				:key="monitorChange"
 			/>
-			<Button label="Rewrite" @click="reload" />
-			<Button class="p-ml-2" label="Copy" @click="copy" />
+			<div class="p-mt-2">
+				<Button label="Rewrite" @click="reload" />
+				<Button class="p-ml-2" label="Copy" @click="copy" />
+			</div>
 		</AccordionTab>
 	</Accordion>
 </template>
