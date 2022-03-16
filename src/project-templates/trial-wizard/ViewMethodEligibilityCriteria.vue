@@ -1,6 +1,9 @@
 <template>
 	<div>
 		<h1>Eligibility Criteria</h1>
+
+		<i>Inclusion and exclusion criteria for participants. If applicable, eligibility criteria for study centres and individuals who will perform the interventions (eg, surgeons, psychotherapists).</i>
+	
 		<InputSelectMulti
 			question="What age brackets are eligible participants in?"
 			:options="ageOptions"
