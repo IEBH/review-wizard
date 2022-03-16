@@ -4,30 +4,16 @@
 			{{
 				selectRandom([
 					""
-						.concat(
-							capitalize(data.toolUsed) ? capitalize(data.toolUsed) : "BLANK"
-						)
+						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
 						.concat(" was used to calculate the treatment effect."),
 					"Overall intervention effect was calculated using "
-						.concat(
-							uncapitalize(data.toolUsed)
-								? uncapitalize(data.toolUsed)
-								: "BLANK"
-						)
+						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
 						.concat("."),
 					"Treatment/intervention effect was measured by "
-						.concat(
-							uncapitalize(data.toolUsed)
-								? uncapitalize(data.toolUsed)
-								: "BLANK"
-						)
+						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
 						.concat("."),
 					"Treatment/intervention effect was measured in "
-						.concat(
-							uncapitalize(data.toolUsed)
-								? uncapitalize(data.toolUsed)
-								: "BLANK"
-						)
+						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
 						.concat(".")
 				])
 			}}
