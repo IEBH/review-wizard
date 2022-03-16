@@ -153,6 +153,7 @@ const data = {
 		toolUsed: []
 	},
 	measurementOfEffect: {
+		isMetaAnalysis: true,
 		toolUsed: null,
 		dichotomousOutcomes: [],
 		continuousOutcomes: [],

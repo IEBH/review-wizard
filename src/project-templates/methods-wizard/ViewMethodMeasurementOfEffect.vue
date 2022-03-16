@@ -2,14 +2,22 @@
 	<div>
 		<h1>Measurement of Effect</h1>
 
-		<InputTextSingleLine
-			question="What software was used to conduct the meta-analysis?"
-			:value="measurementOfEffect.toolUsed"
-			@input="updateField('toolUsed', $event)"
-			placeholder="e.g. RevMan 5"
+		<InputSelectYesNo
+			question="Were any meta-analysis performed?"
+			:value="measurementOfEffect.isMetaAnalysis"
+			@input="updateField('isMetaAnalysis', $event)"
 		/>
 
 		<InputSelectMulti
+			v-if="measurementOfEffect.isMetaAnalysis"
+			question="What software was used to conduct the meta-analysis?"
+			:value="measurementOfEffect.toolUsed"
+			@input="updateField('toolUsed', $event)"
+			:options="toolUsedOptions"
+		/>
+
+		<InputSelectMulti
+			v-if="measurementOfEffect.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for dichotomous outcomes?"
 			:value="measurementOfEffect.dichotomousOutcomes"
 			@input="updateField('dichotomousOutcomes', $event)"
@@ -17,6 +25,7 @@
 		/>
 
 		<InputSelectMulti
+			v-if="measurementOfEffect.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for continuous outcomes?"
 			:value="measurementOfEffect.continuousOutcomes"
 			@input="updateField('continuousOutcomes', $event)"
@@ -24,6 +33,7 @@
 		/>
 
 		<InputSelectMulti
+			v-if="measurementOfEffect.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for other outcomes?"
 			:value="measurementOfEffect.otherOutcomes"
 			@input="updateField('otherOutcomes', $event)"
@@ -31,6 +41,7 @@
 		/>
 
 		<InputTextNumber
+			v-if="measurementOfEffect.isMetaAnalysis"
 			question="How many studies reporting the same outcome triggered a meta-analysis"
 			:value="measurementOfEffect.metaAnalysisThreshold"
 			@input="updateField('metaAnalysisThreshold', $event)"
@@ -38,6 +49,7 @@
 		/>
 
 		<InputSelectDropdown
+			v-if="measurementOfEffect.isMetaAnalysis"
 			question="What model was used in meta-analysis?"
 			:value="measurementOfEffect.metaAnalysisModelUsed"
 			@input="updateField('metaAnalysisModelUsed', $event)"
@@ -62,6 +74,16 @@ export default {
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],
+			toolUsedOptions: [
+				{ label: "RevMan 5" },
+				{ label: "Metan (Sata add-on)" },
+				{ label: "Meta (R package)" },
+				{ label: "Metafor (R package)" },
+				{ label: "MetaXL (Excel add-on)" },
+				{ label: "CMA (Comprehensive Meta-Analysis)" },
+				{ label: "JBI SUMARI" },
+				{ label: "SPSS" }
+			],
 			dichotomousOutcomesOptions: [
 				{ label: "Odds ratios" },
 				{ label: "Risk ratios" }
