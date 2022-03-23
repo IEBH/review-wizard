@@ -247,34 +247,35 @@ const getMenu = projectId => [
 		href: `/${projectId}/method/data-extraction`
 	},
 	{
-		title: "Assessment of the RoB",
+		title: "Risk of Bias Assessment",
 		icon: "pi pi-exclamation-circle",
 		href: `/${projectId}/method/risk-of-bias`
 	},
 	{
-		title: "Measurement of Effect",
-		icon: "pi pi-sliders-v",
-		href: `/${projectId}/method/measurement-of-effect`
-	},
-	{
-		title: "Unit of Analysis",
+		title: "Data Analysis",
 		icon: "pi pi-chart-bar",
-		href: `/${projectId}/method/unit-of-analysis`
-	},
-	{
-		title: "Dealing with Missing Data",
-		icon: "pi pi-question",
-		href: `/${projectId}/method/missing-data`
-	},
-	{
-		title: "Heterogeneity/Publication Bias",
-		icon: "pi pi-users",
-		href: `/${projectId}/method/heterogeneity-publication-biases`
-	},
-	{
-		title: "Subgroup and Sensitivity Analysis",
-		icon: "pi pi-chart-line",
-		href: `/${projectId}/method/subgroup-sensitivity-analysis`
+		child: [
+			{
+				href: `/${projectId}/method/measurement-of-effect`,
+				title: "Measurement of Effect"
+			},
+			{
+				href: `/${projectId}/method/unit-of-analysis`,
+				title: "Unit of Analysis"
+			},
+			{
+				href: `/${projectId}/method/missing-data`,
+				title: "Dealing with Missing Data"
+			},
+			{
+				href: `/${projectId}/method/heterogeneity-publication-biases`,
+				title: "Heterogeneity/Publication Bias"
+			},
+			{
+				href: `/${projectId}/method/subgroup-sensitivity-analysis`,
+				title: "Subgroup and Sensitivity Analysis"
+			}
+		]
 	},
 	{
 		header: true,
