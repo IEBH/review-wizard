@@ -4,8 +4,10 @@
 					
 			{{
 					selectRandom([
-						"The following diagram shows the flow of particpants through the trial. ",
-						"The flow of particpants through the trial will follow the diagram shown below. "
+						"The following diagram shows the flow of participants through the trial",
+						"The participants will take part in the trial according to the following diagram",
+						"The participants will make their way through the trial following the diagram shown",
+						"The flow of participants through the trial will follow the diagram shown below"
 					])
 			}}	
 			{{ data.participantTimeline }}.

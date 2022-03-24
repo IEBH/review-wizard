@@ -91,7 +91,7 @@
 				{{
 					selectRandom([
 						"The following automation tools were used to screen articles ",
-						"We used these automation tools to hep with the screening of articles "
+						"We used these automation tools to help with the screening of articles "
 					])
 				}}
 				{{
