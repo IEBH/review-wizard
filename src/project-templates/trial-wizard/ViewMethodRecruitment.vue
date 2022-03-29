@@ -1,7 +1,16 @@
 <template>
 	<div>
 		<h1>Recruitment</h1>
-		Under construction
+
+		<i>Strategies for achieving adequate participant enrolment to reach target sample size</i>
+
+		<InputTextSingleLine
+			question="Strategies implemented to achieve adequate participant enrolment were "
+			placeholder="Text describing recruitment strategies"
+			:value="recruitment"
+			@input="updateField('recruitment', $event)"
+		/>
+
 		<BasePreviewOutput :component="outputComponent" :data="recruitment" />
 	</div>
 </template>
