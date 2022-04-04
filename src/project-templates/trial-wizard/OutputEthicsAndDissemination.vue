@@ -1,6 +1,26 @@
 <template>
 	<div>
-		<p></p>
+		<p>
+
+			{{
+					selectRandom([
+						"We obtained research ethics approval by ",
+						"Research ethics approval was obtained by "
+
+					])
+			}}	
+			{{ ethicsAndDissemination.approval }}.
+
+			{{
+					selectRandom([
+						"If the protocol changed we ",
+						"If changes were made to the study protocol we "
+
+					])
+			}}	
+			{{ ethicsAndDissemination.protocol }}.
+
+		</p>
 	</div>
 </template>
 
