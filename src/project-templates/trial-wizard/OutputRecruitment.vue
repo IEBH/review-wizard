@@ -1,16 +1,13 @@
 <template>
 	<div>
 		<p>
-
 			{{
-					selectRandom([
-						"We recruited participants by ",
-						"Participants were recruited by "
-
-					])
-			}}	
+				selectRandom([
+					"We recruited participants by ",
+					"Participants were recruited by "
+				])
+			}}
 			{{ data.recruitment }}.
-
 		</p>
 	</div>
 </template>

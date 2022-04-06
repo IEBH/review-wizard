@@ -126,6 +126,9 @@ const data = {
 		calculation: "",
 		nonInf: ""
 	},
+	recruitment: {
+		recruitment: ""
+	},
 	}
 };
 
