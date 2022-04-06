@@ -122,6 +122,10 @@ const data = {
 	participantTimeline: {
 		schematic: ""
 	},
+	sampleSize: {
+		calculation: "",
+		nonInf: ""
+	},
 	}
 };
 

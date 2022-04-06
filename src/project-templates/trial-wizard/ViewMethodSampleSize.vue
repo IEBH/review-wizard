@@ -2,7 +2,11 @@
 	<div>
 		<h1>Sample Size</h1>
 
-		<i>Estimated number of participants needed to achieve study objectives and how it was determined, including clinical and statistical assumptions supporting any sample size calculations</i>
+		<i>
+			Estimated number of participants needed to achieve study objectives and
+			how it was determined, including clinical and statistical assumptions
+			supporting any sample size calculations
+		</i>
 
 		<InputTextSingleLine
 			question="To calculate the sample size we suggest using Power and Sample Size (PS) from Vanderbilt University and copying the text it provides: https://vbiostatps.app.vumc.org/ps/"

@@ -1,31 +1,24 @@
 <template>
 	<div>
 		<p>
-
 			{{
-					selectRandom([
-						"We used Power and Sample Size (PS) to conduct the calculations ",
-						"We did the calculations using used Power and Sample Size (PS) from Vanderbilt University "
-
-					])
-			}}	
+				selectRandom([
+					"We used Power and Sample Size (PS) to conduct the calculations ",
+					"We did the calculations using used Power and Sample Size (PS) from Vanderbilt University "
+				])
+			}}
 			{{ data.calculation }}.
-
 		</p>
 
-				<p>
-
+		<p>
 			{{
-					selectRandom([
-						"We used Sealed envelope to conduct the calculations ",
-						"We did the calculations using Sealed Envelope used Power and Sample Size (PS) from Vanderbilt University "
-
-					])
-			}}	
+				selectRandom([
+					"We used Sealed envelope to conduct the calculations ",
+					"We did the calculations using Sealed Envelope used Power and Sample Size (PS) from Vanderbilt University "
+				])
+			}}
 			{{ data.nonInf }}.
-
 		</p>
-
 	</div>
 </template>
 
