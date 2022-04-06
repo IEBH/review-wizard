@@ -118,6 +118,10 @@ const data = {
 		secondary: [{ name: "", assessed: "", time: "" }],
 		adverse: [{ name: "", assessed: "", time: "" }],
 		clinicalRelevance: ""
+	},
+	participantTimeline: {
+		schematic: ""
+	},
 	}
 };
 
