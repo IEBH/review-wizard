@@ -8,7 +8,7 @@
 			:value="ethicsAndDissemination.approval"
 			@input="updateField('approval', $event)"
 		/>
-
+			<br>
 		
 		<InputTextSingleLine
 			question="What plans will be used if amendments are made to the study protocol "
@@ -16,8 +16,7 @@
 			:value="ethicsAndDissemination.protocol"
 			@input="updateField('protocol', $event)"
 		/>
-
-			Consent or assent
+			<br>
 	
 		<InputTextSingleLine
 			question="How will consent and/or assent be obtained "
@@ -25,7 +24,7 @@
 			:value="ethicsAndDissemination.consent"
 			@input="updateField('consent', $event)"
 		/>
-
+			<br>
 		
 		<InputTextSingleLine
 			question="How will confidentiality be be maintained "
@@ -33,7 +32,7 @@
 			:value="ethicsAndDissemination.confidentiality"
 			@input="updateField('confidentiality', $event)"
 		/>	
-
+			<br>
 
 		<InputTextSingleLine
 			question="Are any declarations of interests needed "
@@ -41,7 +40,7 @@
 			:value="ethicsAndDissemination.consent"
 			@input="updateField('consent', $event)"
 		/>	
-
+			<br>
 	
 		<InputTextSingleLine
 			question="How will access to study data be controlled "
@@ -49,7 +48,7 @@
 			:value="ethicsAndDissemination.access"
 			@input="updateField('access', $event)"
 		/>	
-
+			<br>
 	
 		<InputTextSingleLine
 			question="How will ancillary and post-trial care be arranged "
@@ -57,7 +56,7 @@
 			:value="ethicsAndDissemination.care"
 			@input="updateField('care', $event)"
 		/>	
-
+			<br>
 	
 		<InputTextSingleLine
 			question="What is the dissemination policy for the trial "
@@ -65,7 +64,7 @@
 			:value="ethicsAndDissemination.dissemination"
 			@input="updateField('dissemination', $event)"
 		/>	
-
+		
 
 		<BasePreviewOutput
 			:component="outputComponent"

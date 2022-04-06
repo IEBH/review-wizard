@@ -9,7 +9,7 @@
 
 					])
 			}}	
-			{{ ethicsAndDissemination.approval }}.
+			{{ data.ethicsAndDissemination.approval }}.
 
 			{{
 					selectRandom([
@@ -18,7 +18,7 @@
 
 					])
 			}}	
-			{{ ethicsAndDissemination.protocol }}.
+			{{ data.ethicsAndDissemination.protocol }}.
 
 		</p>
 	</div>
@@ -27,7 +27,7 @@
 <script>
 import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
-	name: "OutputInterventions",
+	name: "ethicsAndDissemination",
 	mixins: [OutputMixin],
 	props: {
 		data: Object
