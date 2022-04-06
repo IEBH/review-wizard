@@ -9,7 +9,7 @@
 
 					])
 			}}	
-			{{ data.ethicsAndDissemination.approval }}.
+			{{ data.approval }}.
 
 			{{
 					selectRandom([
@@ -18,7 +18,7 @@
 
 					])
 			}}	
-			{{ data.ethicsAndDissemination.protocol }}.
+			{{ data.protocol }}.
 
 		</p>
 	</div>
