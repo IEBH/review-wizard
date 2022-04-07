@@ -135,7 +135,10 @@ const data = {
 	recruitment: {
 		recruitment: []
 	},
-	assignmentOfInterventions: {},
+	assignmentOfInterventions: {
+		ratioRandomization: "",
+		sequenceGen: []
+	},
 	dataCollection: {},
 	monitoring: {},
 	ethicsAndDissemination: {}
