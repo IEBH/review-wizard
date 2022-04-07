@@ -15,6 +15,30 @@
 			@input="updateField('trialType', $event)"
 		/>
 
+		<i v-if="sampleSize.trialType != 'non-inferiority'">
+			To calculate the sample size we suggest using Power and copying the text
+			it provides.
+			<a href="https://vbiostatps.app.vumc.org/ps/" target="_blank"
+				>https://vbiostatps.app.vumc.org/ps/</a
+			>
+		</i>
+
+		<i v-if="sampleSize.trialType == 'non-inferiority'">
+			For non-inferiority trials, we recommend using:
+			<a href="https://www.sealedenvelope.com/" target="_blank"
+				>Sealed Envelope | Randomisation (randomization) and online databases
+				for clinical trials</a
+			>
+		</i>
+
+		<InputTextSingleLine
+			v-if="sampleSize.trialType == 'other'"
+			question="What is the trial type?"
+			placeholder=""
+			:value="sampleSize.trialTypeOther"
+			@input="updateField('trialTypeOther', $event)"
+		/>
+
 		<InputSelectDropdown
 			question="What is the study power of the trial?"
 			:options="studyPowerOptions"
@@ -22,11 +46,27 @@
 			@input="updateField('studyPower', $event)"
 		/>
 
+		<InputTextSingleLine
+			v-if="sampleSize.studyPower == 'other'"
+			question="What is the study power?"
+			placeholder=""
+			:value="sampleSize.studyPowerOther"
+			@input="updateField('studyPowerOther', $event)"
+		/>
+
 		<InputSelectDropdown
 			question="What is the level of significance?"
 			:options="levelOfSignificanceOptions"
 			:value="sampleSize.levelOfSignificance"
 			@input="updateField('levelOfSignificance', $event)"
+		/>
+
+		<InputTextSingleLine
+			v-if="sampleSize.levelOfSignificance == 'other'"
+			question="What is the level of significance?"
+			placeholder=""
+			:value="sampleSize.levelOfSignificanceOther"
+			@input="updateField('levelOfSignificanceOther', $event)"
 		/>
 
 		<InputTextSingleLine

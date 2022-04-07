@@ -124,8 +124,11 @@ const data = {
 	},
 	sampleSize: {
 		trialType: "",
+		trialTypeOther: "",
 		studyPower: "",
+		studyPowerOther: "",
 		levelOfSignificance: "",
+		levelOfSignificanceOther: "",
 		effectSize: "",
 		participantDropOuts: ""
 	},

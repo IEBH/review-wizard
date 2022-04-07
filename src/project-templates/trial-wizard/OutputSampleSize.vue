@@ -2,11 +2,24 @@
 	<div>
 		<p>
 			{{ selectRandom(["We performed a"]) }}
-			{{ checkString(data.trialType) }} trial.
+			{{
+				data.trialType == "other"
+					? checkString(data.trialTypeOther)
+					: checkString(data.trialType)
+			}}
+			trial.
 			{{ selectRandom(["The study power of the trial was"]) }}
-			{{ checkString(data.studyPower) }}
+			{{
+				data.studyPower == "other"
+					? checkString(data.studyPowerOther)
+					: checkString(data.studyPower)
+			}}
 			{{ selectRandom(["and the level of significance was"]) }}
-			{{ checkString(data.levelOfSignificance) }}.
+			{{
+				data.levelOfSignificance == "other"
+					? checkString(data.levelOfSignificanceOther)
+					: checkString(data.levelOfSignificance)
+			}}.
 			{{ selectRandom(["The study was powered for"]) }}
 			{{ checkString(data.effectSize) }}.
 			{{
