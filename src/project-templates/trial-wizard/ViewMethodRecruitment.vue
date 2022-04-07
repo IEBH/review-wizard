@@ -7,9 +7,9 @@
 			sample size
 		</i>
 
-		<InputTextSingleLine
-			question="Strategies implemented to achieve adequate participant enrolment were"
-			placeholder="Text describing recruitment strategies"
+		<InputSelectMulti
+			question="Strategies implemented to achieve adequate participant enrolment were:"
+			:options="recruitmentOptions"
 			:value="recruitment.recruitment"
 			@input="updateField('recruitment', $event)"
 		/>
@@ -26,7 +26,15 @@ export default {
 	mixins: [deepstreamMixin("recruitment")],
 	data() {
 		return {
-			outputComponent: OutputRecruitment
+			outputComponent: OutputRecruitment,
+			recruitmentOptions: [
+				{ label: "conducted an open trial" },
+				{
+					label:
+						"gave telephone reminders to people who do not respond to a postal invitation"
+				},
+				{ label: "offered rewards for participation" }
+			]
 		};
 	}
 };

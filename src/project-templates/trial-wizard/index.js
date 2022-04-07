@@ -133,7 +133,7 @@ const data = {
 		participantDropOuts: ""
 	},
 	recruitment: {
-		recruitment: ""
+		recruitment: []
 	},
 	assignmentOfInterventions: {},
 	dataCollection: {},

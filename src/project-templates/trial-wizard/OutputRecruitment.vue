@@ -1,13 +1,8 @@
 <template>
 	<div>
 		<p>
-			{{
-				selectRandom([
-					"We recruited participants by ",
-					"Participants were recruited by "
-				])
-			}}
-			{{ data.recruitment }}.
+			{{ selectRandom(["To increase participant enrolment we"]) }}
+			{{ joinArrayWithAnd(formatSelectMulti(data.recruitment)) }}.
 		</p>
 	</div>
 </template>
