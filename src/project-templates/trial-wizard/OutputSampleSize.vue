@@ -1,23 +1,20 @@
 <template>
 	<div>
 		<p>
+			{{ selectRandom(["We performed a"]) }}
+			{{ checkString(data.trialType) }} trial.
+			{{ selectRandom(["The study power of the trial was"]) }}
+			{{ checkString(data.studyPower) }}
+			{{ selectRandom(["and the level of significance was"]) }}
+			{{ checkString(data.levelOfSignificance) }}.
+			{{ selectRandom(["The study was powered for"]) }}
+			{{ checkString(data.effectSize) }}.
 			{{
 				selectRandom([
-					"We used Power and Sample Size (PS) to conduct the calculations ",
-					"We did the calculations using used Power and Sample Size (PS) from Vanderbilt University "
+					"The expected proportion of participant drop-outs in the trial was"
 				])
 			}}
-			{{ data.calculation }}.
-		</p>
-
-		<p>
-			{{
-				selectRandom([
-					"We used Sealed envelope to conduct the calculations ",
-					"We did the calculations using Sealed Envelope used Power and Sample Size (PS) from Vanderbilt University "
-				])
-			}}
-			{{ data.nonInf }}.
+			{{ checkString(data.participantDropOuts) }}.
 		</p>
 	</div>
 </template>

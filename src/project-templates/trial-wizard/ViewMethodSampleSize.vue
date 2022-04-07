@@ -8,18 +8,39 @@
 			supporting any sample size calculations
 		</i>
 
-		<InputTextSingleLine
-			question="To calculate the sample size we suggest using Power and Sample Size (PS) from Vanderbilt University and copying the text it provides: https://vbiostatps.app.vumc.org/ps/"
-			placeholder="Sample size calculation"
-			:value="sampleSize.calculation"
-			@input="updateField('calculation', $event)"
+		<InputSelectDropdown
+			question="What trial type did you perform?"
+			:options="trialTypeOptions"
+			:value="sampleSize.trialType"
+			@input="updateField('trialType', $event)"
+		/>
+
+		<InputSelectDropdown
+			question="What is the study power of the trial?"
+			:options="studyPowerOptions"
+			:value="sampleSize.studyPower"
+			@input="updateField('studyPower', $event)"
+		/>
+
+		<InputSelectDropdown
+			question="What is the level of significance?"
+			:options="levelOfSignificanceOptions"
+			:value="sampleSize.levelOfSignificance"
+			@input="updateField('levelOfSignificance', $event)"
 		/>
 
 		<InputTextSingleLine
-			question="For non-inferiority trials use Sealed Envelope: https://www.sealedenvelope.com/"
-			placeholder="Sample size calculation"
-			:value="sampleSize.nonInf"
-			@input="updateField('nonInf', $event)"
+			question="What effect size is the study powered for?"
+			placeholder="medium effect size"
+			:value="sampleSize.effectSize"
+			@input="updateField('effectSize', $event)"
+		/>
+
+		<InputTextSingleLine
+			question="What proportion of participant drop-outs are you expecting?"
+			placeholder="10%"
+			:value="sampleSize.participantDropOuts"
+			@input="updateField('participantDropOuts', $event)"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" :data="sampleSize" />
@@ -34,7 +55,10 @@ export default {
 	mixins: [deepstreamMixin("sampleSize")],
 	data() {
 		return {
-			outputComponent: OutputSampleSize
+			outputComponent: OutputSampleSize,
+			trialTypeOptions: ["non-inferiority", "superiority", "other"],
+			studyPowerOptions: ["80%", "90%", "other"],
+			levelOfSignificanceOptions: ["5%", "1%", "other"]
 		};
 	}
 };

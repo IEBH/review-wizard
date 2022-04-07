@@ -1,5 +1,12 @@
 export default {
 	methods: {
+		// Check string to see if its empty, output "BLANK"
+		checkString(s) {
+			if (!s || s.length < 1) {
+				return "*BLANK*";
+			}
+			return s;
+		},
 		// Capitalize the first letter of a sentence/word
 		capitalize(s) {
 			if (typeof s !== "string") return "";

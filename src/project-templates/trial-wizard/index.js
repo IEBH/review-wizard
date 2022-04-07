@@ -123,8 +123,11 @@ const data = {
 		schematic: true
 	},
 	sampleSize: {
-		calculation: "",
-		nonInf: ""
+		trialType: "",
+		studyPower: "",
+		levelOfSignificance: "",
+		effectSize: "",
+		participantDropOuts: ""
 	},
 	recruitment: {
 		recruitment: ""
