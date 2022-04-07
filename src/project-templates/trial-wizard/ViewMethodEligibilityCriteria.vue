@@ -2,8 +2,12 @@
 	<div>
 		<h1>Eligibility Criteria</h1>
 
-		<i>Inclusion and exclusion criteria for participants. If applicable, eligibility criteria for study centres and individuals who will perform the interventions (eg, surgeons, psychotherapists).</i>
-	
+		<i
+			>Inclusion and exclusion criteria for participants. If applicable,
+			eligibility criteria for study centres and individuals who will perform
+			the interventions (eg, surgeons, psychotherapists).</i
+		>
+
 		<InputSelectMulti
 			question="What age brackets are eligible participants in?"
 			:options="ageOptions"
@@ -12,14 +16,14 @@
 		/>
 
 		<InputSelectMulti
-			question="What sexes are eligble for inclusion?"
+			question="What sexes are eligible for inclusion?"
 			:options="sexOptions"
 			:value="eligibilityCriteria.sexes"
 			@input="updateField('sexes', $event)"
 		/>
 
 		<InputSelectMulti
-			question="What conditions are eligble for study?"
+			question="What conditions are eligible for study?"
 			:options="conditionOptions"
 			:value="eligibilityCriteria.conditions"
 			@input="updateField('conditions', $event)"
@@ -33,7 +37,7 @@
 		/>
 
 		<InputSelectMulti
-			question="What measurments were performed on participants at baseline (start of study)?"
+			question="What measurements were performed on participants at baseline (start of study)?"
 			:options="measurementOptions"
 			:value="eligibilityCriteria.baselineMeasurements"
 			@input="updateField('baselineMeasurements', $event)"

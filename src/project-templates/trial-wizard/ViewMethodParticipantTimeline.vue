@@ -8,9 +8,8 @@
 			is highly recommended</i
 		>
 
-		<InputTextSingleLine
-			question="The time schedule of enrolment, interventions, assessments, and visits for participants is provided in the following schematic diagram"
-			placeholder="Participant enrolment schematic"
+		<InputSelectYesNo
+			question="Did you fill out a schematic diagram?"
 			:value="participantTimeline.schematic"
 			@input="updateField('schematic', $event)"
 		/>

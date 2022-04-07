@@ -120,7 +120,7 @@ const data = {
 		clinicalRelevance: ""
 	},
 	participantTimeline: {
-		schematic: ""
+		schematic: true
 	},
 	sampleSize: {
 		calculation: "",
@@ -129,7 +129,10 @@ const data = {
 	recruitment: {
 		recruitment: ""
 	},
-	}
+	assignmentOfInterventions: {},
+	dataCollection: {},
+	monitoring: {},
+	ethicsAndDissemination: {}
 };
 
 // The menu array which is used for the sidebar
