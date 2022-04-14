@@ -32,7 +32,7 @@
 		>
 		<InputTextSingleLine
 			question="How was the allocation of participants concealed?"
-			placeholder="centralized randomisation via a telephone by an independent consultant"
+			placeholder="centralised randomisation via a telephone by an independent consultant"
 			:value="assignmentOfInterventions.concealment"
 			@input="updateField('concealment', $event)"
 		/>
