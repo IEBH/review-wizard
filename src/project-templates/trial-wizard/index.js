@@ -107,6 +107,7 @@ const data = {
 	},
 	interventions: {
 		interventions: [{ name: "", materials: "", instructions: "" }],
+		control: [{ name: "", materials: "", instructions: "" }],
 		discontinued: [],
 		adherenceMaintained: "",
 		adherenceMonitored: [],

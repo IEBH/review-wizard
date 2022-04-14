@@ -1,16 +1,25 @@
 <template>
 	<div>
 		<p>
-			{{ selectRandom(["There are ", "This trial has "]) }}
+			<!-- Intervention -->
+			{{
+				selectRandom([
+					`There ${data.interventions.length > 1 ? "are" : "is"}`,
+					"This trial has "
+				])
+			}}
 			{{ data.interventions ? data.interventions.length : "BLANK" }}
 			{{
-				selectRandom(["intervention arms: the ", "arms for the intervention "])
+				selectRandom([
+					`intervention ${armOrArms}: the `,
+					`${armOrArms} for the intervention: the`
+				])
 			}}
 			{{
 				data.interventions
 					? joinArrayWithAnd(data.interventions.map(el => el.name + " group"))
 					: "BLANK"
-			}}
+			}}.
 		</p>
 		<p v-for="(intervention, index) of data.interventions" :key="index">
 			{{
@@ -26,6 +35,44 @@
 				>They were instructed to {{ intervention.instructions }}.</span
 			>
 		</p>
+
+		<!-- Control -->
+		<p>
+			{{
+				selectRandom([
+					`There ${data.control.length > 1 ? "are" : "is"}`,
+					"This trial has "
+				])
+			}}
+			{{ data.control ? data.control.length : "BLANK" }}
+			{{
+				selectRandom([
+					`control ${armOrArms}: the `,
+					`${armOrArms} for the control: the`
+				])
+			}}
+			{{
+				data.control
+					? joinArrayWithAnd(data.control.map(el => el.name + " group"))
+					: "BLANK"
+			}}.
+		</p>
+		<p v-for="(intervention, index) of data.control" :key="index">
+			{{
+				selectRandom([
+					"Participants in the ",
+					"The participants assigned to the "
+				])
+			}}
+			{{ intervention.name }}
+			{{ selectRandom(["group received ", "group, were given "]) }}
+			{{ intervention.materials }}.
+			<span v-if="intervention.instructions"
+				>They were instructed to {{ intervention.instructions }}.</span
+			>
+		</p>
+
+		<!-- Other -->
 		<p>
 			{{
 				selectRandom([
@@ -82,6 +129,11 @@ import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputInterventions",
 	mixins: [OutputMixin],
+	computed: {
+		armOrArms() {
+			return this.data.interventions.length > 1 ? "arms" : "arm";
+		}
+	},
 	props: {
 		data: Object
 	}

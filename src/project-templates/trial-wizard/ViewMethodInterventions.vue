@@ -28,6 +28,13 @@
 			@input="updateField('interventions', $event)"
 		/>
 
+		<InputTableCustom
+			question="What are the control arms?"
+			:columns="controlColumns"
+			:value="interventions.control"
+			@input="updateField('control', $event)"
+		/>
+
 		<InputSelectMulti
 			question="Under what conditions will treatment be discontinued?"
 			:options="discontinuedOptions"
@@ -80,7 +87,7 @@ export default {
 				{
 					name: "name",
 					label: "What word/phrase describes this group?",
-					placeholder: "e.g. Antibiotic"
+					placeholder: "e.g. antibiotic"
 				},
 				{
 					name: "materials",
@@ -90,7 +97,24 @@ export default {
 				{
 					name: "instructions",
 					label: "What instructions will be given to this group?",
-					placeholder: "e.g. Wear a mask when outside of home"
+					placeholder: "e.g. wear a mask when outside of home"
+				}
+			],
+			controlColumns: [
+				{
+					name: "name",
+					label: "What word/phrase describes this group?",
+					placeholder: "e.g. placebo"
+				},
+				{
+					name: "materials",
+					label: "What materials will be given to this group?",
+					placeholder: "e.g. a pill of identical size and shape to intervention"
+				},
+				{
+					name: "instructions",
+					label: "What instructions will be given to this group?",
+					placeholder: "e.g. wear a mask when outside of home"
 				}
 			],
 			discontinuedOptions: [
