@@ -2,10 +2,24 @@
 	<div>
 		<h1>Interventions</h1>
 
-		<i>Interventions for each group with sufficient detail to allow replication, including how and when they will be administered.</i>
-		<i>Criteria for discontinuing or modifying allocated interventions for a given trial participant (eg, drug dose change in response to harms, participant request, or improving/worsening disease)</i>
-		<i>Strategies to improve adherence to intervention protocols, and any procedures for monitoring adherence (eg, drug tablet return, laboratory tests).</i>
-		<i>Relevant concomitant care and interventions that are permitted or prohibited during the trial.</i>
+		<i
+			>Interventions for each group with sufficient detail to allow replication,
+			including how and when they will be administered.</i
+		>
+		<i
+			>Criteria for discontinuing or modifying allocated interventions for a
+			given trial participant (eg, drug dose change in response to harms,
+			participant request, or improving/worsening disease)</i
+		>
+		<i
+			>Strategies to improve adherence to intervention protocols, and any
+			procedures for monitoring adherence (eg, drug tablet return, laboratory
+			tests).</i
+		>
+		<i
+			>Relevant concomitant care and interventions that are permitted or
+			prohibited during the trial.</i
+		>
 
 		<InputTableCustom
 			question="What are the intervention arms?"
