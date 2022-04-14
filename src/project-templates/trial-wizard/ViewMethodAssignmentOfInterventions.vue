@@ -17,7 +17,6 @@
 			document that is unavailable to those who enrol participants or assign
 			interventions</i
 		>
-
 		<InputSelectMulti
 			question="How was the sequence of participant allocation generated?"
 			:options="sequenceGenOptions"
@@ -31,19 +30,20 @@
 			sealed envelopes), describing any steps to conceal the sequence until
 			interventions are assigned</i
 		>
-
-		<InputSelectMulti
+		<InputTextSingleLine
 			question="How was the allocation of participants concealed?"
-			:options="discontinuedOptions"
-			:value="assignmentOfInterventions.discontinued"
-			@input="updateField('discontinued', $event)"
+			placeholder="centralized randomisation via a telephone by an independent consultant"
+			:value="assignmentOfInterventions.concealment"
+			@input="updateField('concealment', $event)"
 		/>
 
-		<i
-			>Implementation: Who will generate the allocation sequence, who will enrol
-			participants, and who will assign participants to interventions</i
+		<!-- <i
+			>Blinding: Who will be blinded after assignment to interventions (eg,
+			trial participants, care providers, outcome assessors, data analysts), and
+			how. If blinded, circumstances under which unblinding is permissible, and
+			procedure for revealing a participant's allocated intervention during the
+			trial</i
 		>
-
 		<InputTextSingleLine
 			question="Who generated the allocation sequence?"
 			placeholder="e.g. Daily check-ups"
@@ -63,35 +63,37 @@
 			placeholder="e.g. Daily check-ups"
 			:value="assignmentOfInterventions.adherenceMaintained"
 			@input="updateField('adherenceMaintained', $event)"
-		/>
+		/> -->
 
-		<i
-			>Blinding: Who will be blinded after assignment to interventions (eg,
-			trial participants, care providers, outcome assessors, data analysts), and
-			how. If blinded, circumstances under which unblinding is permissible, and
-			procedure for revealing a participant's allocated intervention during the
-			trial</i
-		>
+		<div class="p-mt-6">
+			<i
+				>Blinding: Who will be blinded after assignment to interventions (eg,
+				trial participants, care providers, outcome assessors, data analysts),
+				and how. If blinded, circumstances under which unblinding is
+				permissible, and procedure for revealing a participant's allocated
+				intervention during the trial</i
+			>
+		</div>
 
 		<InputSelectMulti
 			question="The following people were blinded after assignment to interventions"
-			:options="adherenceMonitoredOptions"
-			:value="assignmentOfInterventions.adherenceMonitored"
-			@input="updateField('adherenceMonitored', $event)"
+			:options="blindedPeopleOptions"
+			:value="assignmentOfInterventions.blindedPeople"
+			@input="updateField('blindedPeople', $event)"
 		/>
 
-		<InputSelectMulti
+		<InputTextSingleLine
 			question="People were blinded using the following method"
-			:options="adherenceMonitoredOptions"
-			:value="assignmentOfInterventions.adherenceMonitored"
-			@input="updateField('adherenceMonitored', $event)"
+			placeholder="the placebo being identical in shape and color to the intervention pill"
+			:value="assignmentOfInterventions.blindedMethod"
+			@input="updateField('blindedMethod', $event)"
 		/>
 
 		<InputSelectMulti
-			question="Unblinding was permissable under the following circumstances"
-			:options="adherenceMonitoredOptions"
-			:value="assignmentOfInterventions.adherenceMonitored"
-			@input="updateField('adherenceMonitored', $event)"
+			question="Unblinding was permissible under the following circumstances"
+			:options="unblindingOptions"
+			:value="assignmentOfInterventions.unblinding"
+			@input="updateField('unblinding', $event)"
 		/>
 
 		<BasePreviewOutput
@@ -114,8 +116,17 @@ export default {
 			sequenceGenOptions: [
 				{ label: "blocking" },
 				{ label: "minimization" },
-				{ label: "stratification" },
-				{ label: "other" }
+				{ label: "stratification" }
+			],
+			blindedPeopleOptions: [
+				{ label: "trial participants" },
+				{ label: "care providers" },
+				{ label: "data analysts" },
+				{ label: "outcome assessors" }
+			],
+			unblindingOptions: [
+				{ label: "serious adverse event" },
+				{ label: "physician request" }
 			]
 		};
 	}

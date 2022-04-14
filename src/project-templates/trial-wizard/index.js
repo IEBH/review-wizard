@@ -137,7 +137,11 @@ const data = {
 	},
 	assignmentOfInterventions: {
 		ratioRandomization: "",
-		sequenceGen: []
+		sequenceGen: [],
+		concealment: "",
+		blindedPeople: [],
+		blindedMethod: "",
+		unblinding: []
 	},
 	dataCollection: {},
 	monitoring: {},
