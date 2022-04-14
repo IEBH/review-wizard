@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p>
+		<p v-if="data.interventions">
 			<!-- Intervention -->
 			{{
 				selectRandom([
@@ -8,11 +8,11 @@
 					"This trial has "
 				])
 			}}
-			{{ data.interventions ? data.interventions.length : "BLANK" }}
+			{{ data.interventions.length }}
 			{{
 				selectRandom([
-					`intervention ${armOrArms}: the `,
-					`${armOrArms} for the intervention: the`
+					`intervention ${interventionArmOrArms}: the `,
+					`${interventionArmOrArms} for the intervention: the`
 				])
 			}}
 			{{
@@ -21,7 +21,10 @@
 					: "BLANK"
 			}}.
 		</p>
-		<p v-for="(intervention, index) of data.interventions" :key="index">
+		<p
+			v-for="(intervention, index) of data.interventions"
+			:key="`intervention-${index}`"
+		>
 			{{
 				selectRandom([
 					"Participants in the ",
@@ -37,18 +40,18 @@
 		</p>
 
 		<!-- Control -->
-		<p>
+		<p v-if="data.control">
 			{{
 				selectRandom([
 					`There ${data.control.length > 1 ? "are" : "is"}`,
 					"This trial has "
 				])
 			}}
-			{{ data.control ? data.control.length : "BLANK" }}
+			{{ data.control.length }}
 			{{
 				selectRandom([
-					`control ${armOrArms}: the `,
-					`${armOrArms} for the control: the`
+					`control ${controlArmOrArms}: the `,
+					`${controlArmOrArms} for the control: the`
 				])
 			}}
 			{{
@@ -57,7 +60,7 @@
 					: "BLANK"
 			}}.
 		</p>
-		<p v-for="(intervention, index) of data.control" :key="index">
+		<p v-for="(intervention, index) of data.control" :key="`control-${index}`">
 			{{
 				selectRandom([
 					"Participants in the ",
@@ -81,7 +84,7 @@
 				])
 			}}
 			{{ joinArrayWithOr(formatSelectMulti(data.discontinued)) }}
-			{{ selectRandom(["occured.", "happened."]) }}
+			{{ selectRandom(["occurred.", "happened."]) }}
 		</p>
 		<p>
 			{{
@@ -130,8 +133,11 @@ export default {
 	name: "OutputInterventions",
 	mixins: [OutputMixin],
 	computed: {
-		armOrArms() {
+		interventionArmOrArms() {
 			return this.data.interventions.length > 1 ? "arms" : "arm";
+		},
+		controlArmOrArms() {
+			return this.data.control.length > 1 ? "arms" : "arm";
 		}
 	},
 	props: {
