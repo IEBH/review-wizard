@@ -144,7 +144,16 @@ const data = {
 		blindedMethod: "",
 		unblinding: []
 	},
-	dataCollection: {},
+	dataCollection: {
+		dataManagement: "",
+		dataQuality: "",
+		furtherDetails: [],
+		primaryMeasure: "",
+		secondaryMeasure: "",
+		adverseEventMeasure: "",
+		subgroupAnalysis: "",
+		subgroupComparison: ""
+	},
 	monitoring: {},
 	ethicsAndDissemination: {}
 };
