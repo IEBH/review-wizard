@@ -1,33 +1,27 @@
 <template>
 	<div>
 		<p>
-			
-		
+			{{ selectRandom(["We collected data by ", "Data was collected by "]) }}
 			{{
-					selectRandom([
-						"We collected data by ",
-						"Data was collected by "
-					])
-			}}	
-			{{ data.dataCollection ? data.assignmentOfInterventions.sequenceGen : "BLANK" }}
+				data.dataCollection
+					? data.assignmentOfInterventions.sequenceGen
+					: "BLANK"
+			}}
 
+			{{ selectRandom(["We managed the data by ", "Data was managed by "]) }}
 			{{
-					selectRandom([
-						"We managed the data by ",
-						"Data was managed by "
-					])
-			}}	
-			{{ data.dataCollection ? data.assignmentOfInterventions.sequenceGen : "BLANK" }}
+				data.dataCollection
+					? data.assignmentOfInterventions.sequenceGen
+					: "BLANK"
+			}}
 
+			{{ selectRandom(["We analysed the data by ", "Data was analysed by "]) }}
 			{{
-					selectRandom([
-						"We analysed the data by ",
-						"Data was analysed by "
-					])
-			}}	
-			{{ data.dataCollection ? data.assignmentOfInterventions.sequenceGen : "BLANK" }}
-
-</p>
+				data.dataCollection
+					? data.assignmentOfInterventions.sequenceGen
+					: "BLANK"
+			}}
+		</p>
 	</div>
 </template>
 
