@@ -73,7 +73,6 @@
 			@input="updateField('interimAnalysis', $event)"
 		/>
 
-		/>
 		<InputTextSingleLine
 			question="How were adverse effects monitored?"
 			placeholder="Provide plans for collecting, assessing, reporting, and managing solicited and spontaneously reported adverse events and other unintended effects of trial interventions or trial conduct."
@@ -81,7 +80,6 @@
 			@input="updateField('adverseEffects', $event)"
 		/>
 
-		/>
 		<InputTextSingleLine
 			question="Was a trial audit planned?"
 			placeholder="Provide frequency and procedures for auditing trial conduct, if any, and whether the process will be independent from investigators and the sponsor."
