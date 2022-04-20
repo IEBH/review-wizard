@@ -161,7 +161,20 @@ const data = {
 		missingDataWhy: "",
 		sensitivityAnalyses: ""
 	},
-	monitoring: {},
+	monitoring: {
+		isCommittee: true,
+		committeeDetails: "",
+		committeeComposition: "",
+		committeeLink: "",
+		committeeNotSetUpReason: "",
+		isInterimAnalysis: true,
+		interimAnalysisTimePoints: "",
+		earlyStop: "",
+		finalDecisionOnTermination: [],
+		interimNotConductedReasons: "",
+		adverseEventsMonitored: "",
+		trialAuditing: ""
+	},
 	ethicsAndDissemination: {}
 };
 
