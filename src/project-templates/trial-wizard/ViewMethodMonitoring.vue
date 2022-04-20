@@ -2,16 +2,30 @@
 	<div>
 		<h1>Monitoring</h1>
 
-			<i>Data monitoring: Composition of data monitoring committee (DMC); summary of its role and reporting structure; statement of whether it is independent from the sponsor and competing interests; and reference to where further details about its charter can be found, if not in the protocol. Alternatively, an explanation of why a DMC is not needed. Description of any interim analyses and stopping guidelines, including who will have access to these interim results and make the final decision to terminate the trial</i>
+		<i
+			>Data monitoring: Composition of data monitoring committee (DMC); summary
+			of its role and reporting structure; statement of whether it is
+			independent from the sponsor and competing interests; and reference to
+			where further details about its charter can be found, if not in the
+			protocol. Alternatively, an explanation of why a DMC is not needed.
+			Description of any interim analyses and stopping guidelines, including who
+			will have access to these interim results and make the final decision to
+			terminate the trial</i
+		>
 
+		<i
+			>Harms: Plans for collecting, assessing, reporting, and managing solicited
+			and spontaneously reported adverse events and other unintended effects of
+			trial interventions or trial conduct</i
+		>
 
-			<i>Harms: Plans for collecting, assessing, reporting, and managing solicited and spontaneously reported adverse events and other unintended effects of trial interventions or trial conduct</i>
+		<i
+			>Auditing: Frequency and procedures for auditing trial conduct, if any,
+			and whether the process will be independent from investigators and the
+			sponsor</i
+		>
 
-			
-			<i>Auditing: Frequency and procedures for auditing trial conduct, if any, and whether the process will be independent from investigators and the sponsor</i>
-
-
-Will a data monitoring committee be set up?
+		Will a data monitoring committee be set up?
 
 		<InputSelectYesNo
 			question="Will a data monitoring committee be set up?"
@@ -44,37 +58,35 @@ Will a data monitoring committee be set up?
 					:value="monitoring.committeeComposition"
 					@input="updateField('committeeComposition', $event)"
 				/>
-		
 			</AccordionTab>
 		</Accordion>
 
-				<InputTextSingleLine
-					question="List the reasons why a committee was not set up for this study"
-					placeholder="No committee was set up for this trial as the participant numbers were so small"
-					:value="monitoring.noCommittee"
-					@input="updateField('noCommittee', $event)"
-
+		<InputTextSingleLine
+			question="List the reasons why a committee was not set up for this study"
+			placeholder="No committee was set up for this trial as the participant numbers were so small"
+			:value="monitoring.noCommittee"
+			@input="updateField('noCommittee', $event)"
 		/>
 		<InputSelectYesNo
 			question="Will an interim analysis be conducted?"
 			:value="monitoring.interimAnalysis"
 			@input="updateField('interimAnalysis', $event)"
 		/>
-	
+
 		/>
-			<InputTextSingleLine
-				question="How were adverse effects monitored?"
-				placeholder="Provide plans for collecting, assessing, reporting, and managing solicited and spontaneously reported adverse events and other unintended effects of trial interventions or trial conduct."
-				:value="monitoring.adverseEffects"
-				@input="updateField('adverseEffects', $event)"
+		<InputTextSingleLine
+			question="How were adverse effects monitored?"
+			placeholder="Provide plans for collecting, assessing, reporting, and managing solicited and spontaneously reported adverse events and other unintended effects of trial interventions or trial conduct."
+			:value="monitoring.adverseEffects"
+			@input="updateField('adverseEffects', $event)"
 		/>
 
 		/>
-			<InputTextSingleLine
-				question="Was a trial audit planned?"
-				placeholder="Provide frequency and procedures for auditing trial conduct, if any, and whether the process will be independent from investigators and the sponsor."
-				:value="monitoring.auditPlan"
-				@input="updateField('auditPlan', $event)"
+		<InputTextSingleLine
+			question="Was a trial audit planned?"
+			placeholder="Provide frequency and procedures for auditing trial conduct, if any, and whether the process will be independent from investigators and the sponsor."
+			:value="monitoring.auditPlan"
+			@input="updateField('auditPlan', $event)"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" :data="monitoring" />
