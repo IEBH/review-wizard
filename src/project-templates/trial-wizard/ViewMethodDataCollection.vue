@@ -53,7 +53,7 @@
 
 		<InputTextSingleLine
 			question="How will subgroup analyses be performed"
-			placeholder="using interaction terms in regression models"
+			placeholder="interaction terms in regression models"
 			:value="dataCollection.subgroupComparison"
 			@input="updateField('subgroupComparison', $event)"
 		/>
