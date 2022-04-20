@@ -152,7 +152,14 @@ const data = {
 		secondaryMeasure: "",
 		adverseEventMeasure: "",
 		subgroupAnalysis: "",
-		subgroupComparison: ""
+		subgroupComparison: "",
+		subgroupMethod: "",
+		efficacyComparisons: [],
+		efficacyPopulation: "",
+		safetyPopulation: "",
+		missingData: [],
+		missingDataWhy: "",
+		sensitivityAnalyses: ""
 	},
 	monitoring: {},
 	ethicsAndDissemination: {}
