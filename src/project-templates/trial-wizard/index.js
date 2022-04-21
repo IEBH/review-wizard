@@ -177,7 +177,15 @@ const data = {
 		adverseEventsMonitored: "",
 		trialAuditing: ""
 	},
-	ethicsAndDissemination: {}
+	ethicsAndDissemination: {
+		approval: "",
+		protocol: "",
+		consent: "",
+		confidentiality: "",
+		declaration: "",
+		care: "",
+		dissemination: ""
+	}
 };
 
 // The menu array which is used for the sidebar
