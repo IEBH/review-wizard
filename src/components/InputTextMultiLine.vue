@@ -7,9 +7,10 @@
 		<Textarea
 			v-bind:value="value"
 			v-on:change="$emit('input', $event.target.value)"
+			:placeholder="placeholder"
 			:autoResize="true"
-			rows="5"
-			cols="30"
+			rows="7"
+			cols="60"
 		/>
 	</div>
 </template>
@@ -20,6 +21,7 @@ export default {
 	name: "InputTextMultiLine",
 	props: {
 		question: String,
+		placeholder: String,
 		value: String
 	},
 	components: {
