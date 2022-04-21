@@ -183,6 +183,7 @@ const data = {
 		consent: "",
 		confidentiality: "",
 		declaration: "",
+		access: "",
 		care: "",
 		dissemination: ""
 	}

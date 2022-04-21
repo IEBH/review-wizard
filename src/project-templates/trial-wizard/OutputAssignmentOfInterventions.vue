@@ -4,9 +4,8 @@
 			{{ selectRandom(["Eligible participants were randomly assigned"]) }}
 			{{ data.ratioRandomization ? data.ratioRandomization : "BLANK" }}
 			{{ selectRandom(["to the"]) }}
-			<!-- TODO: Use intervention/control data -->
-			<!-- {{ data.ratioRandomization ? data.ratioRandomization : "BLANK" }} -->
-			{{ selectRandom(["group using"]) }}
+			{{ interventionAndControl }},
+			{{ selectRandom(["using"]) }}
 			{{ joinArrayWithAnd(formatSelectMulti(data.sequenceGen)) }}.
 			{{ selectRandom(["Allocation of concealment was achieved by"]) }}
 			{{ data.concealment ? data.concealment : "BLANK" }}.
@@ -27,9 +26,34 @@
 
 <script>
 import OutputMixin from "@/mixins/OutputMixin.js";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
+
 export default {
 	name: "OutputInterventions",
-	mixins: [OutputMixin],
+	mixins: [OutputMixin, deepstreamMixin("interventions")],
+	computed: {
+		interventionAndControl() {
+			if (
+				(!this.interventions.interventions ||
+					this.interventions.interventions.length < 1) &&
+				(!this.interventions.control || this.interventions.control.length < 1)
+			) {
+				return "BLANK";
+			}
+			let array = this.mapGroupNames(this.interventions.interventions).concat(
+				this.mapGroupNames(this.interventions.control)
+			);
+			return this.joinArrayWithAnd(array);
+		}
+	},
+	methods: {
+		mapGroupNames(groups) {
+			if (!groups || groups.length < 1) {
+				return [];
+			}
+			return groups.map(group => `${group.name} group`);
+		}
+	},
 	props: {
 		data: Object
 	}
