@@ -1,21 +1,28 @@
 <template>
 	<div>
-		<p>
-			{{
-				selectRandom([
-					"We obtained research ethics approval by ",
-					"Research ethics approval was obtained by "
-				])
-			}}
-			{{ data.approval }}.
-
-			{{
-				selectRandom([
-					"If the protocol changed we ",
-					"If changes were made to the study protocol we "
-				])
-			}}
-			{{ data.protocol }}.
+		<p v-if="data.approval">
+			{{ data.approval }}
+		</p>
+		<p v-if="data.protocol">
+			{{ data.protocol }}
+		</p>
+		<p v-if="data.consent">
+			{{ data.consent }}
+		</p>
+		<p v-if="data.confidentiality">
+			{{ data.confidentiality }}
+		</p>
+		<p v-if="data.declaration">
+			{{ data.declaration }}
+		</p>
+		<p v-if="data.access">
+			{{ data.access }}
+		</p>
+		<p v-if="data.care">
+			{{ data.care }}
+		</p>
+		<p v-if="data.dissemination">
+			{{ data.dissemination }}
 		</p>
 	</div>
 </template>
