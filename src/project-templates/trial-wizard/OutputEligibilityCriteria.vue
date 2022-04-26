@@ -12,7 +12,7 @@
 			{{ joinArrayWithOr(formatSelectMulti(data.ages)).toLowerCase()
 			}}{{
 				data.others && data.others.length
-					? " who where ".concat(formatSelectMulti(data.others)).toLowerCase()
+					? " who were ".concat(formatSelectMulti(data.others)).toLowerCase()
 					: ""
 			}}.
 		</p>
