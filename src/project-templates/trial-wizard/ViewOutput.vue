@@ -107,16 +107,14 @@ export default {
 				{ label: "Sample Size", include: false, disabled: true },
 				{
 					label: "Assignment of Interventions",
-					include: false,
-					disabled: true
+					include: true
 				},
 				{
 					label: "Data Collection, Management and Analysis",
-					include: false,
-					disabled: true
+					include: true
 				},
-				{ label: "Monitoring", include: false, disabled: true },
-				{ label: "Ethics and Dissemination", include: false, disabled: true }
+				{ label: "Monitoring", include: true },
+				{ label: "Ethics and Dissemination", include: true }
 			],
 			selectedOptions: [],
 			displayModal: false
