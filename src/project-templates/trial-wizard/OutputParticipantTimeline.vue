@@ -17,7 +17,7 @@
 <script>
 import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
-	name: "OutputInterventions",
+	name: "OutputParticipantTimeline",
 	mixins: [OutputMixin],
 	props: {
 		data: Object

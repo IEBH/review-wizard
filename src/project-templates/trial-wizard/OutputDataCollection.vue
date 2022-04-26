@@ -67,7 +67,7 @@
 <script>
 import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
-	name: "OutputInterventions",
+	name: "OutputDataCollection",
 	mixins: [OutputMixin],
 	props: {
 		data: Object

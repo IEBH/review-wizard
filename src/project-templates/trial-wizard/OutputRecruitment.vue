@@ -10,7 +10,7 @@
 <script>
 import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
-	name: "OutputInterventions",
+	name: "OutputRecruitment",
 	mixins: [OutputMixin],
 	props: {
 		data: Object

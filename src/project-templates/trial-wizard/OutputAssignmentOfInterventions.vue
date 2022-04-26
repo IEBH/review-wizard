@@ -29,7 +29,7 @@ import OutputMixin from "@/mixins/OutputMixin.js";
 import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
-	name: "OutputInterventions",
+	name: "OutputAssignmentOfInterventions",
 	mixins: [OutputMixin, deepstreamMixin("interventions")],
 	computed: {
 		interventionAndControl() {

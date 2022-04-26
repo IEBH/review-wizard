@@ -33,7 +33,14 @@
 			:modal="true"
 		>
 			<div id="output">
-				<h3>Study Setting</h3>
+				<div v-for="output in selectedOutputs" :key="output.data">
+					<h3>{{ output.label }}</h3>
+					<component
+						:is="output.outputComponent.name"
+						:data="getData(output.data)"
+					/>
+				</div>
+				<!-- <h3>Study Setting</h3>
 				<OutputStudySetting :data="studySetting" />
 				<h3>Eligibility Criteria</h3>
 				<OutputEligibilityCriteria :data="eligibilityCriteria" />
@@ -42,7 +49,7 @@
 				<h3>Outcomes</h3>
 				<OutputOutcomes :data="outcomes" />
 				<h3>Participant Timeline</h3>
-				<OutputOutcomes :data="participantTimeline" />
+				<OutputParticipantTimeline :data="participantTimeline" />
 				<h3>Sample Size</h3>
 				<OutputOutcomes :data="sampleSize" />
 				<h3>Recruitment</h3>
@@ -54,7 +61,7 @@
 				<h3>Monitoring</h3>
 				<OutputOutcomes :data="monitoring" />
 				<h3>Ethics and Dissemination</h3>
-				<OutputOutcomes :data="ethicsAndDissemination" />
+				<OutputOutcomes :data="ethicsAndDissemination" /> -->
 			</div>
 			<template #footer>
 				<Button label="Copy Methods to Clipboard" @click="copy" />
@@ -76,15 +83,29 @@ import OutputStudySetting from "./OutputStudySetting.vue";
 import OutputEligibilityCriteria from "./OutputEligibilityCriteria.vue";
 import OutputInterventions from "./OutputInterventions.vue";
 import OutputOutcomes from "./OutputOutcomes.vue";
+import OutputParticipantTimeline from "./OutputParticipantTimeline.vue";
+import OutputSampleSize from "./OutputSampleSize.vue";
+import OutputRecruitment from "./OutputRecruitment.vue";
+import OutputAssignmentOfInterventions from "./OutputAssignmentOfInterventions.vue";
+import OutputDataCollection from "./OutputDataCollection.vue";
+import OutputMonitoring from "./OutputMonitoring.vue";
+import OutputEthicsAndDissemination from "./OutputEthicsAndDissemination.vue";
 
 export default {
-	name: "ViewMethodSearch",
+	name: "ViewOutput",
 	mixins: [
 		CopyMixin,
 		deepstreamMixin("studySetting"),
 		deepstreamMixin("eligibilityCriteria"),
 		deepstreamMixin("interventions"),
-		deepstreamMixin("outcomes")
+		deepstreamMixin("outcomes"),
+		deepstreamMixin("participantTimeline"),
+		deepstreamMixin("sampleSize"),
+		deepstreamMixin("recruitment"),
+		deepstreamMixin("assignmentOfInterventions"),
+		deepstreamMixin("dataCollection"),
+		deepstreamMixin("monitoring"),
+		deepstreamMixin("ethicsAndDissemination")
 	],
 	components: {
 		Button,
@@ -93,28 +114,90 @@ export default {
 		OutputStudySetting,
 		OutputEligibilityCriteria,
 		OutputInterventions,
-		OutputOutcomes
+		OutputOutcomes,
+		OutputParticipantTimeline,
+		OutputSampleSize,
+		OutputRecruitment,
+		OutputAssignmentOfInterventions,
+		OutputDataCollection,
+		OutputMonitoring,
+		OutputEthicsAndDissemination
+	},
+	computed: {
+		selectedOutputs() {
+			return this.outputOptions.filter(option => option.include);
+		}
 	},
 	data() {
 		return {
 			monitorChange: 0,
 			outputOptions: [
-				{ label: "Study Setting", include: true },
-				{ label: "Eligibility Criteria", include: true },
-				{ label: "Interventions", include: true },
-				{ label: "Outcomes", include: true },
-				{ label: "Participant Timeline", include: true },
-				{ label: "Sample Size", include: true },
+				{
+					label: "Study Setting",
+					outputComponent: OutputStudySetting,
+					data: "studySetting",
+					include: true
+				},
+				{
+					label: "Eligibility Criteria",
+					outputComponent: OutputEligibilityCriteria,
+					data: "eligibilityCriteria",
+					include: true
+				},
+				{
+					label: "Interventions",
+					outputComponent: OutputInterventions,
+					data: "interventions",
+					include: true
+				},
+				{
+					label: "Outcomes",
+					outputComponent: OutputOutcomes,
+					data: "outcomes",
+					include: true
+				},
+				{
+					label: "Participant Timeline",
+					outputComponent: OutputParticipantTimeline,
+					data: "participantTimeline",
+					include: true
+				},
+				{
+					label: "Sample Size",
+					outputComponent: OutputSampleSize,
+					data: "sampleSize",
+					include: true
+				},
+				{
+					label: "Recruitment",
+					outputComponent: OutputRecruitment,
+					data: "recruitment",
+					include: true
+				},
 				{
 					label: "Assignment of Interventions",
+					outputComponent: OutputAssignmentOfInterventions,
+					data: "assignmentOfInterventions",
 					include: true
 				},
 				{
 					label: "Data Collection, Management and Analysis",
+					outputComponent: OutputDataCollection,
+					data: "dataCollection",
 					include: true
 				},
-				{ label: "Monitoring", include: true },
-				{ label: "Ethics and Dissemination", include: true }
+				{
+					label: "Monitoring",
+					outputComponent: OutputMonitoring,
+					data: "monitoring",
+					include: true
+				},
+				{
+					label: "Ethics and Dissemination",
+					outputComponent: OutputEthicsAndDissemination,
+					data: "ethicsAndDissemination",
+					include: true
+				}
 			],
 			selectedOptions: [],
 			displayModal: false
@@ -126,6 +209,9 @@ export default {
 		},
 		closeModal() {
 			this.displayModal = false;
+		},
+		getData(dataName) {
+			return this[dataName];
 		},
 		selectAll() {
 			this.outputOptions.forEach(option => (option.include = true));
