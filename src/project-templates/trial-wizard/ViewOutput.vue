@@ -103,8 +103,8 @@ export default {
 				{ label: "Eligibility Criteria", include: true },
 				{ label: "Interventions", include: true },
 				{ label: "Outcomes", include: true },
-				{ label: "Participant Timeline", include: false, disabled: true },
-				{ label: "Sample Size", include: false, disabled: true },
+				{ label: "Participant Timeline", include: true },
+				{ label: "Sample Size", include: true },
 				{
 					label: "Assignment of Interventions",
 					include: true
