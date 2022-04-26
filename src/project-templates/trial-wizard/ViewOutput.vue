@@ -35,12 +35,26 @@
 			<div id="output">
 				<h3>Study Setting</h3>
 				<OutputStudySetting :data="studySetting" />
-				<h3>Elegibility Criteria</h3>
+				<h3>Eligibility Criteria</h3>
 				<OutputEligibilityCriteria :data="eligibilityCriteria" />
 				<h3>Interventions</h3>
 				<OutputInterventions :data="interventions" />
 				<h3>Outcomes</h3>
 				<OutputOutcomes :data="outcomes" />
+				<h3>Participant Timeline</h3>
+				<OutputOutcomes :data="participantTimeline" />
+				<h3>Sample Size</h3>
+				<OutputOutcomes :data="sampleSize" />
+				<h3>Recruitment</h3>
+				<OutputOutcomes :data="recruitment" />
+				<h3>Assignment of Interventions</h3>
+				<OutputOutcomes :data="assignmentOfInterventions" />
+				<h3>Data Collection, Management, and Analysis</h3>
+				<OutputOutcomes :data="dataCollection" />
+				<h3>Monitoring</h3>
+				<OutputOutcomes :data="monitoring" />
+				<h3>Ethics and Dissemination</h3>
+				<OutputOutcomes :data="ethicsAndDissemination" />
 			</div>
 			<template #footer>
 				<Button label="Copy Methods to Clipboard" @click="copy" />
