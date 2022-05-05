@@ -91,8 +91,7 @@ const routes = [
 const data = {
 	titlepage: {
 		title: "",
-		authors: [""],
-		year: 0
+		authors: [""]
 	},
 	studySetting: {
 		settings: [],

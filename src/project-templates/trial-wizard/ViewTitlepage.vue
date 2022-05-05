@@ -13,11 +13,6 @@
 			@input="updateField('authors', $event)"
 			placeholder="e.g. Justin Clark"
 		/>
-		<InputTextNumber
-			question="What year will study be published?"
-			:value="titlepage.year"
-			@input="updateField('year', $event)"
-		/>
 	</div>
 </template>
 
