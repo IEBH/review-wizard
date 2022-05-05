@@ -25,6 +25,15 @@
 					? " who were ".concat(formatSelectMulti(data.others)).toLowerCase()
 					: ""
 			}}.
+			{{ selectRandom(["If participants were"]) }}
+			{{
+				data.othersExcluded && data.othersExcluded.length
+					? joinArrayWithOr(
+							formatSelectMulti(data.othersExcluded)
+					  ).toLowerCase()
+					: "BLANK"
+			}}
+			{{ selectRandom(["they were excluded from the study"]) }}.
 		</p>
 		<p>
 			{{

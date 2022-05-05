@@ -51,6 +51,13 @@
 		/>
 
 		<InputSelectMulti
+			question="What other factors are excluded from the study?"
+			:options="otherOptions"
+			:value="eligibilityCriteria.othersExcluded"
+			@input="updateField('othersExcluded', $event)"
+		/>
+
+		<InputSelectMulti
 			question="What measurements were performed on participants at baseline (start of study)?"
 			:options="measurementOptions"
 			:value="eligibilityCriteria.baselineMeasurements"
