@@ -9,8 +9,11 @@
 			}}
 			{{ joinArrayWithOr(formatSelectMulti(data.conditions)).toLowerCase() }}
 			{{ joinArrayWithOr(formatSelectMulti(data.sexes)).toLowerCase() }}
-			{{ joinArrayWithOr(formatSelectMulti(data.ages)).toLowerCase()
-			}}{{
+			{{ joinArrayWithOr(formatSelectMulti(data.ages)).toLowerCase() }}
+			{{
+				data.ageBracket && data.ageBracket != "" ? `(${data.ageBracket})` : ""
+			}}
+			{{
 				data.others && data.others.length
 					? " who were ".concat(formatSelectMulti(data.others)).toLowerCase()
 					: ""

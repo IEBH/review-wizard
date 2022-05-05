@@ -15,6 +15,13 @@
 			@input="updateField('ages', $event)"
 		/>
 
+		<InputTextSingleLine
+			question="What age bracket are eligible participants in?"
+			placeholder="18-25 years"
+			:value="eligibilityCriteria.ageBracket"
+			@input="updateField('ageBracket', $event)"
+		/>
+
 		<InputSelectMulti
 			question="What sexes are eligible for inclusion?"
 			:options="sexOptions"

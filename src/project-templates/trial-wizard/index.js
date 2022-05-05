@@ -100,6 +100,7 @@ const data = {
 	},
 	eligibilityCriteria: {
 		ages: [],
+		ageBracket: "",
 		sexes: [],
 		conditions: [],
 		others: [],
