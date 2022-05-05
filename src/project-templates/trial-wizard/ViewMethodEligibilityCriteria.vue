@@ -9,7 +9,7 @@
 		>
 
 		<InputSelectMulti
-			question="What age brackets are eligible participants in?"
+			question="What age groups are eligible participants in?"
 			:options="ageOptions"
 			:value="eligibilityCriteria.ages"
 			@input="updateField('ages', $event)"
@@ -61,6 +61,7 @@ export default {
 			ageOptions: [
 				{ label: "Infants" },
 				{ label: "Children" },
+				{ label: "Adolescents" },
 				{ label: "Adults" },
 				{ label: "Elderly" }
 			],
