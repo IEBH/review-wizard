@@ -8,6 +8,13 @@
 				])
 			}}
 			{{ joinArrayWithOr(formatSelectMulti(data.conditions)).toLowerCase() }}
+			{{
+				data.severity && data.severity.length > 0
+					? `(${joinArrayWithOr(
+							formatSelectMulti(data.severity)
+					  ).toLowerCase()})`
+					: ""
+			}}
 			{{ joinArrayWithOr(formatSelectMulti(data.sexes)).toLowerCase() }}
 			{{ joinArrayWithOr(formatSelectMulti(data.ages)).toLowerCase() }}
 			{{

@@ -103,6 +103,7 @@ const data = {
 		ageBracket: "",
 		sexes: [],
 		conditions: [],
+		severity: [],
 		others: [],
 		baselineMeasurments: []
 	},

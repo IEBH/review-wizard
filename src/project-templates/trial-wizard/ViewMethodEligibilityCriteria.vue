@@ -37,6 +37,13 @@
 		/>
 
 		<InputSelectMulti
+			question="What severity of condition is eligible? (optional)"
+			:options="severityOptions"
+			:value="eligibilityCriteria.severity"
+			@input="updateField('severity', $event)"
+		/>
+
+		<InputSelectMulti
 			question="What other factors are eligible for inclusion?"
 			:options="otherOptions"
 			:value="eligibilityCriteria.others"
@@ -77,6 +84,11 @@ export default {
 				{ label: "Diabetic" },
 				{ label: "Demented" },
 				{ label: "Immunocompromised" }
+			],
+			severityOptions: [
+				{ label: "Mild" },
+				{ label: "Moderate" },
+				{ label: "Severe" }
 			],
 			measurementOptions: [
 				{ label: "Blood glucose level" },
