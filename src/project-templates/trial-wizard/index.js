@@ -133,6 +133,7 @@ const data = {
 		studyPowerOther: "",
 		levelOfSignificance: "",
 		levelOfSignificanceOther: "",
+		sampleSize: "",
 		effectSize: "",
 		participantDropOuts: ""
 	},

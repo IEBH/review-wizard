@@ -20,6 +20,8 @@
 					? checkString(data.levelOfSignificanceOther)
 					: checkString(data.levelOfSignificance)
 			}}.
+			{{ selectRandom(["We used a sample size of"]) }}
+			{{ checkString(data.sampleSize) }}.
 			{{ selectRandom(["The study was powered for"]) }}
 			{{ checkString(data.effectSize) }}.
 			{{

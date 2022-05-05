@@ -70,6 +70,13 @@
 		/>
 
 		<InputTextSingleLine
+			question="What was the sample size?"
+			placeholder="1000"
+			:value="sampleSize.sampleSize"
+			@input="updateField('sampleSize', $event)"
+		/>
+
+		<InputTextSingleLine
 			question="What effect size is the study powered for?"
 			placeholder="medium effect size"
 			:value="sampleSize.effectSize"
