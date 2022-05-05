@@ -42,9 +42,9 @@
 			@input="updateField('discontinued', $event)"
 		/>
 
-		<InputTextSingleLine
+		<InputSelectMulti
 			question="Adherence to intervention protocols were maintained by..."
-			placeholder="e.g. Daily check-ups"
+			:options="adherenceMaintainedOptions"
 			:value="interventions.adherenceMaintained"
 			@input="updateField('adherenceMaintained', $event)"
 		/>
@@ -122,6 +122,12 @@ export default {
 				{ label: "participant request" },
 				{ label: "improving disease" },
 				{ label: "worsening disease" }
+			],
+			adherenceMaintainedOptions: [
+				{ label: "nurses" },
+				{ label: "research assistants" },
+				{ label: "researchers" },
+				{ label: "physicians" }
 			],
 			adherenceMonitoredOptions: [
 				{ label: "counting drug tablets not used" },

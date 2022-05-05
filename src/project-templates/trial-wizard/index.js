@@ -105,13 +105,14 @@ const data = {
 		conditions: [],
 		severity: [],
 		others: [],
+		othersExcluded: [],
 		baselineMeasurments: []
 	},
 	interventions: {
 		interventions: [{ name: "", materials: "", instructions: "" }],
 		control: [{ name: "", materials: "", instructions: "" }],
 		discontinued: [],
-		adherenceMaintained: "",
+		adherenceMaintained: [],
 		adherenceMonitored: [],
 		allInstructions: "",
 		prohibitedInterventions: ""

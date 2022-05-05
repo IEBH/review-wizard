@@ -93,7 +93,7 @@
 					"Ensuring intervention protocols were followed was done by "
 				])
 			}}
-			{{ data.adherenceMaintained }}.
+			{{ joinArrayWithAnd(formatSelectMulti(data.adherenceMaintained)) }}.
 			{{
 				selectRandom([
 					"Adherence was monitored by ",
