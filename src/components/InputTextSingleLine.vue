@@ -8,17 +8,32 @@
         v-bind:value="value"
         v-on:change="$emit('input', $event.target.value)"
       > -->
-		<InputText
-			type="text"
-			:value="value"
-			:placeholder="placeholder"
-			@change="$emit('input', $event.target.value)"
-		/>
+		<div class="p-inputgroup">
+			<InputText
+				type="text"
+				:value="value"
+				:placeholder="placeholder"
+				@change="$emit('input', $event.target.value)"
+			/>
+			<Button
+				v-if="value == '' && placeholder"
+				label="Fill with Placeholder"
+				@click="fillWithPlaceholder()"
+			/>
+			<Button
+				v-if="value != ''"
+				label="Clear"
+				class="p-button-danger"
+				@click="clearInput()"
+			/>
+		</div>
 	</div>
 </template>
 
 <script>
 import InputText from "primevue/inputtext";
+import Button from "primevue/button";
+
 export default {
 	name: "InputTextSingleLine",
 	props: {
@@ -27,7 +42,16 @@ export default {
 		placeholder: String
 	},
 	components: {
-		InputText
+		InputText,
+		Button
+	},
+	methods: {
+		fillWithPlaceholder() {
+			this.$emit("input", this.placeholder);
+		},
+		clearInput() {
+			this.$emit("input", "");
+		}
 	}
 };
 </script>
