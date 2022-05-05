@@ -17,7 +17,7 @@
 			/>
 			<Button
 				v-if="value == '' && placeholder"
-				label="Fill with Placeholder"
+				label="Keep Example"
 				@click="fillWithPlaceholder()"
 			/>
 			<Button
