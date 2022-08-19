@@ -8,7 +8,7 @@ import projectTemplateImport from "@/helpers/projectTemplateImport.js";
 const getDefaultState = () => ({
 	projectId: null,
 	methodId: null,
-	client: new DeepstreamClient("wss://data.sr-accelerator.com:6020"),
+	client: new DeepstreamClient("data.sr-accelerator.com:6020"),
 	projectRecord: null,
 	methodsRecord: null
 });
