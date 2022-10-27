@@ -7,6 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "author": "Matt Carter <m@ttcarter.com>",
+  "license": "MIT",
   "dependencies": {
     "@deepstream/client": "^5.2.4",
     "@fortawesome/fontawesome-free": "^5.14.0",
