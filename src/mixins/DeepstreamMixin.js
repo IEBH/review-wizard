@@ -5,6 +5,9 @@ const getDefaultData = key => {
 			authors: [""],
 			year: 0
 		},
+		introduction: {
+			intro: ""
+		},
 		picot: {
 			population: [{ inclusion: true }],
 			intervention: [{ inclusion: true }],

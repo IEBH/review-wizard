@@ -122,6 +122,11 @@ export default {
 					hiddenOnCollapse: true
 				},
 				{
+					title: "Introduction",
+					icon: "pi pi-file",
+					href: `/${this.$store.state.projectId}/method/introduction`
+				},
+				{
 					title: "Eligibility Criteria (PICOST)",
 					icon: "pi pi-file",
 					href: `/${this.$store.state.projectId}/method/picot`
