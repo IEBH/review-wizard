@@ -7,7 +7,11 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "author": "Matt Carter <m@ttcarter.com>",
+  "author": [
+    "Connor Forbes <cforbes.software@gmail.com> (https://github.com/connorf25)",
+    "Justin Cark <jclark@bond.edu.au> (https://github.com/Justin-Clarc)",
+    "Matt Carter <m@ttcarter.com> (https://github.com/hash-bang)"
+  ],
   "license": "MIT",
   "dependencies": {
     "@deepstream/client": "^5.2.4",
