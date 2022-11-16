@@ -123,8 +123,13 @@ export default {
 				},
 				{
 					title: "Introduction",
-					icon: "pi pi-file",
+					icon: "pi pi-pencil",
 					href: `/${this.$store.state.projectId}/method/introduction`
+				},
+				{
+					title: "Research Plan",
+					icon: "pi pi-list",
+					href: `/${this.$store.state.projectId}/method/rs-plan`
 				},
 				{
 					title: "Eligibility Criteria (PICOST)",

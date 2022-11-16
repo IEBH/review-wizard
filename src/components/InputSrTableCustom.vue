@@ -1,0 +1,245 @@
+<template>
+	<div class="p-mb-6">
+		<p>
+			<b
+				>{{ question }}
+				<Button
+					icon="pi pi-user-edit"
+					@click="ifEdit = true"
+					class="p-button-rounded p-button-text"
+					style="height:10px;"
+				/>
+				<Button
+					label="Save"
+					icon="pi pi-check"
+					@click="update"
+					class="p-button-rounded p-button-text"
+					style="height:10px;color: green;"
+				/>
+			</b>
+		</p>
+		<table class="p-fluid" style="width:100%;">
+			<thead>
+				<tr>
+					<th v-for="(thead, index) in value.headers" :key="index">
+						<div class="header">
+							<div class="name">
+								{{ thead.label }}
+							</div>
+							<div class="menu">
+								<InputSrMenubar
+									v-if="ifEdit"
+									:colIndex="index"
+									@addCol="addCol"
+									@deleteCol="deleCol"
+								/>
+							</div>
+						</div>
+					</th>
+					<th v-if="ifEdit">
+						<div style="width: 160px"></div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(row, index) in value.rows" :key="index">
+					<td v-for="thead of value.headers" :key="thead.name">
+						<template v-if="thead.name == 'toolLink'">
+							<a :href="methodsUrl + row.toolLink" target="_blank">{{
+								row.toolLink
+							}}</a>
+						</template>
+						<el-autocomplete
+							v-if="thead.name == 'peopleInvolved'"
+							class="inline-input"
+							v-model="row[thead.name]"
+							:fetch-suggestions="search"
+						/>
+						<Textarea
+							v-if="thead.name != 'peopleInvolved' && thead.name != 'toolLink'"
+							type="text"
+							v-model="row[thead.name]"
+							:ref="index"
+							:autoResize="true"
+							style="height:80px; background-color:white;border-style: none"
+						/>
+					</td>
+					<td class="btnArea" v-if="ifEdit">
+						<tr>
+							<td style="border-style: none;">
+								<Button
+									v-if="ifEdit"
+									class="p-button-raised p-button-text"
+									icon="pi pi-ellipsis-h"
+									@click="show = !show"
+								/>
+							</td>
+							<td style="border-style: none;">
+								<span class="p-buttonset" v-if="show && ifEdit">
+									<Button
+										class="p-button-raised p-button-text"
+										icon="pi pi-arrow-up"
+										@click="addRow(index, 0)"
+									/>
+									<Button
+										class="p-button-raised p-button-text"
+										icon="pi pi-trash"
+										@click="deleRow(index)"
+									/>
+									<Button
+										class="p-button-raised p-button-text"
+										icon="pi pi-arrow-down"
+										@click="addRow(index, 1)"
+									/>
+								</span>
+							</td>
+						</tr>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</template>
+<script>
+import Textarea from "primevue/textarea";
+import Button from "primevue/button";
+//import AutoComplete from "primevue/autocomplete";
+import InputSrMenubar from "../components/InputSrMenubar.vue";
+export default {
+	name: "InputSrTable",
+	components: {
+		Textarea,
+		Button,
+		InputSrMenubar
+	},
+	props: {
+		question: String,
+		titlePageAuthors: Array,
+		value: {}
+	},
+	data() {
+		return {
+			/*filteredPeople: null,*/
+			ifEdit: false,
+			show: false,
+			methodsUrl: "",
+			newRow: {}
+		};
+	},
+	methods: {
+		addRow(index, optionNum) {
+			this.value.headers.forEach(theader => {
+				this.$set(this.newRow, theader.index, theader.name);
+				this.newRow[theader.name] = "";
+			});
+			if (optionNum == 0) {
+				this.value.rows.splice(index, 0, this.newRow);
+			} else {
+				this.value.rows.splice(index + 1, 0, this.newRow);
+			}
+			this.$emit("input", this.value);
+		},
+		deleRow(index) {
+			this.value.rows.splice(index, 1);
+			this.$emit("input", this.value);
+		},
+		deleCol(index) {
+			this.value.headers.splice(index, 1);
+			this.$delete(this.value.rows, this.value.headers[index].name);
+			this.$emit("input", this.value);
+		},
+		addCol(newC) {
+			let colName = newC.ColLabel.trim();
+			colName = colName.replace(/\s+/g, "");
+			let thead = {
+				name: colName,
+				label: newC.ColLabel
+			};
+			if (newC.LorR == 0) {
+				this.value.headers.splice(newC.Index, 0, thead);
+			} else {
+				this.value.headers.splice(newC.Index + 1, 0, thead);
+			}
+			/*this.rsValue.forEach(i => {
+				this.$set(this.value.rows[i], colName, "");
+			});*/
+			this.$emit("input", this.value);
+		},
+		update() {
+			this.ifEdit = false;
+			this.$emit("input", this.value);
+		},
+		/*searchAuthors(event) {
+			setTimeout(() => {
+				if (!event.query.trim().length) {
+					this.filteredPeople = [...this.titlePageAuthors];
+				} else {
+					this.filteredPeople = this.titlePageAuthors.filter(people => {
+						return people.name
+							.toLowerCase()
+							.startsWith(event.query.toLowerCase());
+					});
+				}
+			}, 250);
+		}*/
+		search(query, cb) {
+			let results = query
+				? (results = this.titlePageAuthors.filter(people => {
+						return people.value.toLowerCase().startsWith(query.toLowerCase());
+				  }))
+				: (results = [...this.titlePageAuthors]);
+			cb(results);
+		}
+	},
+	mounted() {
+		this.methodsUrl = "/#/" + this.$store.state.projectId;
+	}
+};
+</script>
+<style scoped>
+table {
+	border-collapse: collapse;
+	display: block;
+	overflow: auto;
+	overflow-x: auto;
+}
+
+.p-fluid thead {
+	position: sticky;
+	top: 0px;
+	background-color: white;
+	border: 1px solid black;
+	z-index: 3;
+}
+.header {
+	/*display: inline-block;*/
+	display: flex;
+	height: 30px;
+	width: 200px;
+}
+.name {
+	/*float: left;*/
+	flex: 4;
+	font-size: 18px;
+}
+.menu {
+	/*float: right;*/
+	flex: 2;
+	height: 10px;
+	width: 10px;
+}
+.btnArea {
+	position: sticky;
+	right: 0px;
+	top: 30px;
+	background-color: transparent;
+}
+.inline-input {
+	height: 40px;
+}
+
+th,
+td {
+	border: 1px solid black;
+}
+</style>

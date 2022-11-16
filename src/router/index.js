@@ -1,6 +1,7 @@
 import VueRouter from "vue-router";
 import store from "../store";
 import ViewMethodIntroduction from "../components/ViewMethodIntroduction.vue";
+import ViewMethodResearchPlan from "../components/ViewMethodResearchPlan.vue";
 import ViewMethodPicot from "../components/ViewMethodPicot.vue";
 import ViewMethodSearch from "../components/ViewMethodSearch.vue";
 import ViewMethodSearchDatabses from "../components/ViewMethodSearchDatabases.vue";
@@ -31,6 +32,11 @@ const routes = [
 		name: "introduction",
 		path: "/:projectId/method/introduction",
 		component: ViewMethodIntroduction
+	},
+	{
+		name: "rs-plan",
+		path: "/:projectId/method/rs-plan",
+		component: ViewMethodResearchPlan
 	},
 	{
 		name: "picot",
