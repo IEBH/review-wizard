@@ -24,7 +24,7 @@ export default {
 	},
 	mounted() {
 		this.Authors = this.titlepage.authors.map(el => {
-			return { value: el };
+			return { label: el };
 		});
 	}
 };

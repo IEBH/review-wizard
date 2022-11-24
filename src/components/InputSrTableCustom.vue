@@ -16,10 +16,16 @@
 					class="p-button-rounded p-button-text"
 					style="height:10px;color: green;"
 				/>
+				<Button
+					icon="pi pi-cloud-download"
+					@click="isShowDialog = true"
+					class="p-button-rounded p-button-text"
+					style="height:10px; color:darkgray;"
+				/>
 			</b>
 		</p>
 		<table class="p-fluid" style="width:100%;">
-			<thead>
+			<thead class="p-fluid-thead">
 				<tr>
 					<th v-for="(thead, index) in value.headers" :key="index">
 						<div class="header">
@@ -45,23 +51,26 @@
 				<tr v-for="(row, index) in value.rows" :key="index">
 					<td v-for="thead of value.headers" :key="thead.name">
 						<template v-if="thead.name == 'toolLink'">
-							<a :href="methodsUrl + row.toolLink" target="_blank">{{
-								row.toolLink
-							}}</a>
+							<a :href="methodsUrl + row.toolLink" target="_blank"
+								>Https://Methods-wizard{{ row.toolLink }}</a
+							>
 						</template>
-						<el-autocomplete
+						<AutoComplete
 							v-if="thead.name == 'peopleInvolved'"
-							class="inline-input"
+							:multiple="true"
 							v-model="row[thead.name]"
-							:fetch-suggestions="search"
+							:suggestions="filteredPeople"
+							field="label"
+							@complete="searchAuthors($event)"
+							style="height: 80px"
 						/>
 						<Textarea
 							v-if="thead.name != 'peopleInvolved' && thead.name != 'toolLink'"
+							class="t-content"
 							type="text"
 							v-model="row[thead.name]"
 							:ref="index"
 							:autoResize="true"
-							style="height:80px; background-color:white;border-style: none"
 						/>
 					</td>
 					<td class="btnArea" v-if="ifEdit">
@@ -72,6 +81,7 @@
 									class="p-button-raised p-button-text"
 									icon="pi pi-ellipsis-h"
 									@click="show = !show"
+									style="background-color:white"
 								/>
 							</td>
 							<td style="border-style: none;">
@@ -80,16 +90,19 @@
 										class="p-button-raised p-button-text"
 										icon="pi pi-arrow-up"
 										@click="addRow(index, 0)"
+										style="background-color:white"
 									/>
 									<Button
 										class="p-button-raised p-button-text"
 										icon="pi pi-trash"
 										@click="deleRow(index)"
+										style="background-color:white"
 									/>
 									<Button
 										class="p-button-raised p-button-text"
 										icon="pi pi-arrow-down"
 										@click="addRow(index, 1)"
+										style="background-color:white"
 									/>
 								</span>
 							</td>
@@ -103,13 +116,14 @@
 <script>
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
-//import AutoComplete from "primevue/autocomplete";
+import AutoComplete from "primevue/autocomplete";
 import InputSrMenubar from "../components/InputSrMenubar.vue";
 export default {
 	name: "InputSrTable",
 	components: {
 		Textarea,
 		Button,
+		AutoComplete,
 		InputSrMenubar
 	},
 	props: {
@@ -119,9 +133,11 @@ export default {
 	},
 	data() {
 		return {
-			/*filteredPeople: null,*/
+			filteredPeople: null,
 			ifEdit: false,
 			show: false,
+			isShowDialog: false,
+			fileName: "",
 			methodsUrl: "",
 			newRow: {}
 		};
@@ -169,27 +185,27 @@ export default {
 			this.ifEdit = false;
 			this.$emit("input", this.value);
 		},
-		/*searchAuthors(event) {
+		searchAuthors(event) {
 			setTimeout(() => {
 				if (!event.query.trim().length) {
 					this.filteredPeople = [...this.titlePageAuthors];
 				} else {
 					this.filteredPeople = this.titlePageAuthors.filter(people => {
-						return people.name
+						return people.label
 							.toLowerCase()
 							.startsWith(event.query.toLowerCase());
 					});
 				}
 			}, 250);
-		}*/
-		search(query, cb) {
+		}
+		/*search(query, cb) {
 			let results = query
 				? (results = this.titlePageAuthors.filter(people => {
 						return people.value.toLowerCase().startsWith(query.toLowerCase());
 				  }))
 				: (results = [...this.titlePageAuthors]);
 			cb(results);
-		}
+		}*/
 	},
 	mounted() {
 		this.methodsUrl = "/#/" + this.$store.state.projectId;
@@ -202,15 +218,17 @@ table {
 	display: block;
 	overflow: auto;
 	overflow-x: auto;
+	background-color: rgba(240, 240, 240, 0.73);
 }
 
-.p-fluid thead {
+.p-fluid-thead {
 	position: sticky;
 	top: 0px;
 	background-color: white;
 	border: 1px solid black;
-	z-index: 3;
+	z-index: 10;
 }
+
 .header {
 	/*display: inline-block;*/
 	display: flex;
@@ -233,6 +251,12 @@ table {
 	right: 0px;
 	top: 30px;
 	background-color: transparent;
+}
+
+.t-content {
+	height: 80px;
+	background-color: rgba(240, 240, 240, 0.73);
+	border-style: none;
 }
 .inline-input {
 	height: 40px;

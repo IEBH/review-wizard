@@ -21,9 +21,10 @@
 			:value="extraction.extractionAuthors"
 			@input="updateField('extractionAuthors', $event)"
 			:options="
-				titlepage.authors.map(el => {
+				/*titlepage.authors.map(el => {
 					return { label: el };
-				})
+				})*/
+				this.pfDataExtractAuthors
 			"
 		/>
 
@@ -137,6 +138,7 @@ import deepstreamMixin from "../mixins/DeepstreamMixin";
 export default {
 	name: "ViewMethodDataExtraction",
 	mixins: [
+		deepstreamMixin("researchplan"),
 		deepstreamMixin("titlepage"),
 		deepstreamMixin("picot"),
 		deepstreamMixin("extraction")
@@ -206,9 +208,16 @@ export default {
 			// Shallow copy
 			this.extraction.types = [...this.picot.types];
 		}
+		this.pfDataExtractAuthors = this.titlepage.authors;
+		this.researchplan.planTable.rows.forEach(el => {
+			if (el.tasks == "Extract data" && el.peopleInvolved != "") {
+				this.pfDataExtractAuthors = el.peopleInvolved;
+			}
+		});
 	},
 	data() {
 		return {
+			pfDataExtractAuthors: [], //--perform data extraction authors
 			numberOptions: ["1", "2", "3", "4", "5", "6"],
 			outputComponent: OutputDataExtraction,
 			options: {

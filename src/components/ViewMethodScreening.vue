@@ -14,9 +14,10 @@
 			:value="screening.titleAbstractScreeners"
 			@input="updateField('titleAbstractScreeners', $event)"
 			:options="
-				titlepage.authors.map(el => {
+				/*titlepage.authors.map(el => {
 					return { label: el };
-				})
+				})*/
+				this.scabstractAuthors
 			"
 		/>
 
@@ -24,7 +25,11 @@
 			question="Which author retrieved full-texts"
 			:value="screening.fullTextRetrivalAuthor"
 			@input="updateField('fullTextRetrivalAuthor', $event)"
-			:options="titlepage.authors"
+			:options="
+				/*titlepage.authors*/
+
+				this.retrfulltextAuthors
+			"
 		/>
 
 		<InputSelectDropdown
@@ -39,9 +44,10 @@
 			:value="screening.fullTextScreeners"
 			@input="updateField('fullTextScreeners', $event)"
 			:options="
-				titlepage.authors.map(el => {
+				/*titlepage.authors.map(el => {
 					return { label: el };
-				})
+				})*/
+				this.scfulltextAuthors
 			"
 		/>
 
@@ -80,7 +86,11 @@ import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodScreening",
-	mixins: [deepstreamMixin("titlepage"), deepstreamMixin("screening")],
+	mixins: [
+		deepstreamMixin("researchplan"),
+		deepstreamMixin("titlepage"),
+		deepstreamMixin("screening")
+	],
 	components: {
 		InputSelectDropdown,
 		InputSelectMulti,
@@ -89,6 +99,9 @@ export default {
 	},
 	data() {
 		return {
+			scabstractAuthors: [], //--screen abstract authors
+			retrfulltextAuthors: [], //--retrieved full-text authors
+			scfulltextAuthors: [], //--screen full-text authors
 			numberOptions: ["2", "3", "4", "5", "6"],
 			disputeResolutionOptions: [
 				{ label: "By consensus" },
@@ -96,6 +109,28 @@ export default {
 			],
 			outputComponent: OutputScreening
 		};
+	},
+	mounted() {
+		this.scabstractAuthors = this.scfulltextAuthors = this.titlepage.authors.map(
+			el => {
+				return { label: el };
+			}
+		);
+		this.retrfulltextAuthors = this.titlepage.authors;
+		this.researchplan.planTable.rows.forEach(el => {
+			if (el.tasks == "Screen abstracts" && el.peopleInvolved != "") {
+				this.scabstractAuthors = el.peopleInvolved;
+			}
+			if (el.tasks == "Obtain full text" && el.peopleInvolved != "") {
+				this.retrfulltextAuthors = [];
+				el.peopleInvolved.forEach(v => {
+					this.retrfulltextAuthors.splice(0, 0, v.label);
+				});
+			}
+			if (el.tasks == "Screen full text" && el.peopleInvolved != "") {
+				this.scfulltextAuthors = el.peopleInvolved;
+			}
+		});
 	}
 };
 </script>
