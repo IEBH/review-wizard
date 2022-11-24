@@ -111,12 +111,41 @@
 				</tr>
 			</tbody>
 		</table>
+		<Dialog
+			header="Export to Excel"
+			:visible.sync="isShowDialog"
+			:modal="true"
+			:style="{ width: '450px' }"
+		>
+			<div class="p-inputgroup">
+				<span class="p-inputgroup-addon">NewFile-Name:</span>
+				<InputText placeholder="e.g.ResearchPlan.xlsx" v-model="fileName" />
+			</div>
+
+			<template #footer>
+				<Button
+					label="Cancel"
+					icon="pi pi-times"
+					class="p-button-text"
+					@click="isShowDialog = false"
+				/>
+				<Button
+					label="Comfirm"
+					icon="pi pi-check"
+					class="p-button-text"
+					@click="exportExcel(value.rows, fileName)"
+				/>
+			</template>
+		</Dialog>
 	</div>
 </template>
 <script>
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
 import AutoComplete from "primevue/autocomplete";
+import Dialog from "primevue/dialog";
+import InputText from "primevue/inputtext";
+import * as XLSX from "xlsx";
 import InputSrMenubar from "../components/InputSrMenubar.vue";
 export default {
 	name: "InputSrTable",
@@ -124,6 +153,8 @@ export default {
 		Textarea,
 		Button,
 		AutoComplete,
+		Dialog,
+		InputText,
 		InputSrMenubar
 	},
 	props: {
@@ -197,6 +228,17 @@ export default {
 					});
 				}
 			}, 250);
+		},
+		exportExcel(rows, fileName) {
+			let workbook = XLSX.utils.book_new();
+			let sheet1 = XLSX.utils.json_to_sheet(rows);
+			XLSX.utils.book_append_sheet(workbook, sheet1, "ResearchPlan1");
+			if (fileName != "") {
+				XLSX.writeFile(workbook, fileName + ".xlsx");
+			} else {
+				XLSX.writeFile(workbook, "ResearchPlan.xlsx");
+			}
+			this.isShowDialog = false;
 		}
 		/*search(query, cb) {
 			let results = query
