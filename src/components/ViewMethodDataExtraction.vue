@@ -208,9 +208,11 @@ export default {
 			// Shallow copy
 			this.extraction.types = [...this.picot.types];
 		}
-		this.pfDataExtractAuthors = this.titlepage.authors;
+		this.pfDataExtractAuthors = this.titlepage.authors.map(el => {
+			return { label: el };
+		});
 		this.researchplan.planTable.rows.forEach(el => {
-			if (el.tasks == "Extract data" && el.peopleInvolved != "") {
+			if (el.tasks == "15. Extract data" && el.peopleInvolved != "") {
 				this.pfDataExtractAuthors = el.peopleInvolved;
 			}
 		});

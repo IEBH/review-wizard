@@ -114,7 +114,16 @@ export default {
 				{
 					title: "Title Page",
 					icon: "pi pi-file",
-					href: `/${this.$store.state.projectId}/titlepage`
+					child: [
+						{
+							href: `/${this.$store.state.projectId}/titlepage`,
+							title: "Title page"
+						},
+						{
+							href: `/${this.$store.state.projectId}/titlepage/people`,
+							title: "People"
+						}
+					]
 				},
 				{
 					header: true,

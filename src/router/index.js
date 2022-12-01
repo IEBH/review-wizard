@@ -17,6 +17,7 @@ import ViewMethodDealingWithMissingData from "../components/ViewMethodDealingWit
 import ViewMethodHeterogeneityPublicationBias from "../components/ViewMethodHeterogeneityPublicationBias.vue";
 import ViewMethodSubgroupAndSensitivityAnalysis from "../components/ViewMethodSubgroupAndSensitivityAnalysis.vue";
 import ViewTitlepage from "../components/ViewTitlepage.vue";
+import ViewTitlePagePeople from "../components/ViewTitlePagePeople";
 import ViewHome from "../components/ViewHome.vue";
 import ViewOutput from "../components/ViewOutput.vue";
 
@@ -27,6 +28,11 @@ const routes = [
 		name: "titlepage",
 		path: "/:projectId/titlepage",
 		component: ViewTitlepage
+	},
+	{
+		name: "people",
+		path: "/:projectId/titlepage/people",
+		component: ViewTitlePagePeople
 	},
 	{
 		name: "introduction",

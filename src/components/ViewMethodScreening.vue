@@ -2,6 +2,19 @@
 	<div>
 		<h1>Study Selection and Screening</h1>
 
+		<InputSelectYesNo
+			question="Did you search trial registries?"
+			:value="screening.isTrialRegistries"
+			@input="updateField('isTrialRegistries', $event)"
+		/>
+
+		<InputSelectMulti
+			question="Who screened trial registries?"
+			:value="screening.screenTrialRegisPeople"
+			@input="updateField('screenTrialRegisPeople', $event)"
+			:options="this.scTrialRegisPeople"
+		/>
+
 		<InputSelectDropdown
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
 			:value="screening.numberOfTitleAbstractScreeners"
@@ -21,15 +34,11 @@
 			"
 		/>
 
-		<InputSelectDropdown
-			question="Which author retrieved full-texts"
+		<InputSelectMulti
+			question="Which author retrieved full-texts?"
 			:value="screening.fullTextRetrivalAuthor"
 			@input="updateField('fullTextRetrivalAuthor', $event)"
-			:options="
-				/*titlepage.authors*/
-
-				this.retrfulltextAuthors
-			"
+			:options="this.retrfulltextAuthors"
 		/>
 
 		<InputSelectDropdown
@@ -102,6 +111,7 @@ export default {
 			scabstractAuthors: [], //--screen abstract authors
 			retrfulltextAuthors: [], //--retrieved full-text authors
 			scfulltextAuthors: [], //--screen full-text authors
+			scTrialRegisPeople: [], //--screen trial registries
 			numberOptions: ["2", "3", "4", "5", "6"],
 			disputeResolutionOptions: [
 				{ label: "By consensus" },
@@ -111,23 +121,26 @@ export default {
 		};
 	},
 	mounted() {
-		this.scabstractAuthors = this.scfulltextAuthors = this.titlepage.authors.map(
+		this.scTrialRegisPeople = this.scabstractAuthors = this.scfulltextAuthors = this.retrfulltextAuthors = this.titlepage.authors.map(
 			el => {
 				return { label: el };
 			}
 		);
-		this.retrfulltextAuthors = this.titlepage.authors;
+		//this.retrfulltextAuthors = this.titlepage.authors;
 		this.researchplan.planTable.rows.forEach(el => {
-			if (el.tasks == "Screen abstracts" && el.peopleInvolved != "") {
+			if (
+				el.tasks == "12. Screen trial registries" &&
+				el.peopleInvolved != ""
+			) {
+				this.scTrialRegisPeople = el.peopleInvolved;
+			}
+			if (el.tasks == "9. Screen abstracts" && el.peopleInvolved != "") {
 				this.scabstractAuthors = el.peopleInvolved;
 			}
-			if (el.tasks == "Obtain full text" && el.peopleInvolved != "") {
-				this.retrfulltextAuthors = [];
-				el.peopleInvolved.forEach(v => {
-					this.retrfulltextAuthors.splice(0, 0, v.label);
-				});
+			if (el.tasks == "10. Obtain full text" && el.peopleInvolved != "") {
+				this.retrfulltextAuthors = el.peopleInvolved;
 			}
-			if (el.tasks == "Screen full text" && el.peopleInvolved != "") {
+			if (el.tasks == "11. Screen full-text" && el.peopleInvolved != "") {
 				this.scfulltextAuthors = el.peopleInvolved;
 			}
 		});

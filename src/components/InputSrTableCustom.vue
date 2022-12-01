@@ -51,9 +51,14 @@
 				<tr v-for="(row, index) in value.rows" :key="index">
 					<td v-for="thead of value.headers" :key="thead.name">
 						<template v-if="thead.name == 'toolLink'">
-							<a :href="methodsUrl + row.toolLink" target="_blank"
-								>Https://Methods-wizard{{ row.toolLink }}</a
-							>
+							<div v-for="tl in row.toolLink" :key="tl.name">
+								<a
+									v-if="tl.name != ''"
+									:href="methodsUrl + tl.link"
+									target="_blank"
+									>{{ tl.name }}</a
+								>
+							</div>
 						</template>
 						<AutoComplete
 							v-if="thead.name == 'peopleInvolved'"

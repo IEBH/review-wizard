@@ -19,11 +19,26 @@ export default {
 	},
 	data() {
 		return {
-			Authors: null
+			Authors: null,
+			authorsArr: null
 		};
 	},
 	mounted() {
-		this.Authors = this.titlepage.authors.map(el => {
+		//--all people(authors and acknowledgements) involved
+		this.authorsArr = this.titlepage.authors;
+		this.titlepage.authors.forEach(el => {
+			for (var i = 0; i < this.titlepage.acknowledgements.length; i++) {
+				if (
+					el != this.titlepage.acknowledgements[i] &&
+					!this.authorsArr.includes(this.titlepage.acknowledgements[i])
+				) {
+					//alert(this.titlepage.acknowledgements[i]);
+					this.authorsArr.push(this.titlepage.acknowledgements[i]);
+				}
+			}
+		});
+		//--convert arrylist to object list
+		this.Authors = this.authorsArr.map(el => {
 			return { label: el };
 		});
 	}

@@ -1,9 +1,12 @@
 const getDefaultData = key => {
 	const data = {
 		titlepage: {
+			//title page
 			title: "",
+			year: 0,
+			//people
 			authors: [""],
-			year: 0
+			acknowledgements: [""]
 		},
 		introduction: {
 			intro: ""
@@ -11,7 +14,6 @@ const getDefaultData = key => {
 		researchplan: {
 			planTable: {
 				headers: [
-					{ name: "srTaskNo", label: "SR TaskNo." },
 					{ name: "tasks", label: "Task" },
 					{
 						name: "toolDescription",
@@ -29,303 +31,291 @@ const getDefaultData = key => {
 				],
 				rows: [
 					{
-						srTaskNo: "a1",
-						tasks: "Lead in time",
+						tasks: "a1. Lead in time",
 						toolDescription:
 							"Time spent completing other work to allow SR authors to focus on the 2 week SR",
-						toolLink: "/titlepage",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "a2",
-						tasks: "SR design meetings",
+						tasks: "a2. SR design meetings",
 						toolDescription:
 							"Time spent refining the idea, determining feasibility, assembling the team, planning timelines, deciding on roles (who's responsible for oversight, coordination and documentation) and provide information on SRA tools",
-						toolLink: "",
+						toolLink: [{ name: "Methods Wizard", link: "/titlepage" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "0",
-						tasks: "Daily administrative meetings",
+						tasks: "0. Daily administrative meetings",
 						toolDescription:
 							"Short daily meetings to review progress, discuss issues and document decisions",
-						toolLink: "",
+						toolLink: [{ name: "Research Plan", link: "/method/rs-plan" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "1",
-						tasks: "Formulate SR question",
+						tasks: "1. Formulate SR question",
 						toolDescription: "Final decision on the research question (PICO)",
-						toolLink: "/method/picot",
+						toolLink: [{ name: "PICOST", link: "/method/picot" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "2",
-						tasks: "Find and review existing or upcoming SRs",
+						tasks: "2. Find and review existing or upcoming SRs",
 						toolDescription:
 							"Search for and review existing SRs that answers the same or a similar question.",
-						toolLink: "/method/search",
+						toolLink: [
+							{ name: "PubMed,Prospero", link: "" },
+							{ name: "Prospero", link: "" }
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "3",
-						tasks: "Write the SR protocol",
+						tasks: "3. Write the SR protocol",
 						toolDescription:
 							"Provide an objective, reproducible, sound methodology for the SR, then register the protocol",
-						toolLink: "/method/search/bibliographic-databases",
+						toolLink: [{ name: "Methods Wizard", link: "/titlepage" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "4",
-						tasks: "Obtain set of relevant studies",
+						tasks: "4. Obtain set of relevant studies",
 						toolDescription:
 							"Identify a small sample of studies relevant to the review, to aid with designing the search and data extraction form.",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "5",
-						tasks: "Design data extraction form",
+						tasks: "5. Design data extraction form",
 						toolDescription:
 							"Design forms for extracting study characteristics and test their usefulness/applicability",
-						toolLink: "",
+						toolLink: [
+							{ name: "Data Extraction", link: "/method/data-extraction" }
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "6",
-						tasks: "Design systematic search strategy",
+						tasks: "6. Design systematic search strategy",
 						toolDescription:
 							"Design search strategy to find all relevant information (choose databases; develop search string)",
-						toolLink: "",
+						toolLink: [
+							{ name: "Word Freq Analyzer", link: "" },
+							{ name: "Search Refinery", link: "" }
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "7",
-						tasks: "Run systematic search strings",
+						tasks: "7. Run systematic search strings",
 						toolDescription:
 							"Run search strings in databases, trial registries, collate results in reference management system (e.g. EndNote)",
-						toolLink: "",
+						toolLink: [{ name: "Polyglot", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "8",
-						tasks: "Deduplicate results",
+						tasks: "8. Deduplicate results",
 						toolDescription: "Remove duplicate citations",
-						toolLink: "",
+						toolLink: [{ name: "Dedupe", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "9",
-						tasks: "Screen abstracts",
+						tasks: "9. Screen abstracts",
 						toolDescription:
 							"Screen titles and abstracts, exclude irrelevant citations, resolve disputes",
-						toolLink: "",
+						toolLink: [
+							{ name: "Screenatron", link: "" },
+							{ name: "Disputatron", link: "" }
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "10",
-						tasks: "Obtain full text",
+						tasks: "10. Obtain full text",
 						toolDescription:
 							"Download full text studies, request copies from authors, interlibrary loan",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "11",
-						tasks: "Screen full text",
+						tasks: "11. Screen full-text",
 						toolDescription:
 							"Screen full text of articles, exclude irrelevant citations, resolve disputes",
-						toolLink: "",
+						toolLink: [
+							{ name: "Screenatron", link: "" },
+							{ name: "Disputatron", link: "" }
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "12",
-						tasks: "Screen trial registries",
+						tasks: "12. Screen trial registries",
 						toolDescription:
 							"Based on title and text in the trial registry entry: exclude irrelevant citations, resolve disputes",
-						toolLink: "",
+						toolLink: [
+							{ name: "Screenatron", link: "" },
+							{ name: "Disputatron", link: "" }
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "13",
-						tasks: "Citation analysis",
+						tasks: "13. Citation analysis",
 						toolDescription:
 							"Follow citations, cited and citing, from included studies to find additional relevant studies",
-						toolLink: "",
+						toolLink: [{ name: "SpiderCite", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "14",
-						tasks: "Screen citation analysis",
+						tasks: "14. Screen citation analysis",
 						toolDescription:
 							"Screen titles and abstracts, and full texts exclude irrelevant citations, resolve disputes",
-						toolLink: "",
+						toolLink: [
+							{ name: "Screenatron", link: "" },
+							{ name: "Disputatron", link: "" }
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "15",
-						tasks: "Extract data",
+						tasks: "15. Extract data",
 						toolDescription:
 							"Extract study characteristics and relevant outcomes plan data presentation? - how will things be presented in the paper? Loai and I spent a while discussing and trying to work that out",
-						toolLink: "",
+						toolLink: [
+							{ name: "Data Extraction", link: "/method/data-extractio" }
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "16",
-						tasks: "Risk of Bias assessment",
+						tasks: "16. Risk of Bias assessment",
 						toolDescription: "Assess the potential biases in included studies",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "17",
-						tasks: "Synthesise data",
+						tasks: "17. Synthesise data",
 						toolDescription:
 							"Convert extracted outcome data to common representation (usually mean and SD)",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "18",
-						tasks: "Meta-analysis",
+						tasks: "18. Meta-analysis",
 						toolDescription:
 							"Statistically combine the results using meta-analysis or other statistical synthesis",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "19",
-						tasks: "GRADE evidence",
+						tasks: "19. GRADE evidence",
 						toolDescription:
 							"Optional: rate the certainty of evidence for a treatment efficacy from high to very low",
-						toolLink: "",
+						toolLink: [{ name: "Grade Pro", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "20",
-						tasks: "Summary of findings",
+						tasks: "20. Summary of findings",
 						toolDescription:
 							"Optional: summarise the main findings of the SR in a table",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "21",
-						tasks: "Update systematic search strategy",
+						tasks: "21. Update systematic search strategy",
 						toolDescription:
 							"Optional: repeat the search to find new studies published since the initial search, especially if search more than a year old",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "22",
-						tasks: "Write introduction",
+						tasks: "22. Write introduction",
 						toolDescription:
 							"Revise the introduction section from the SR protocol",
-						toolLink: "",
+						toolLink: [{ name: "Introduction", link: "/method/introduction" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "23",
-						tasks: "Write methods",
+						tasks: "23. Write methods",
 						toolDescription: "Revise the methods section from the SR protocol",
-						toolLink: "",
+						toolLink: [{ name: "Methods Wizard", link: "/titlepage" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "24",
-						tasks: "Write results",
+						tasks: "24. Write results",
 						toolDescription: "Write the results section of the SR",
-						toolLink: "",
+						toolLink: [{ name: "Refman Replicant", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "25",
-						tasks: "Write discussion",
+						tasks: "25. Write discussion",
 						toolDescription:
 							"Write the discussion and conclusion sections of the SR",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "26",
-						tasks: "Obtain external feedback",
+						tasks: "26. Obtain external feedback",
 						toolDescription:
 							"Circulate to colleagues for external feedback, also take a break from the SR to allow thinking time about the manuscript",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "27",
-						tasks: "Submit manuscript",
+						tasks: "27. Submit manuscript",
 						toolDescription:
 							"Format manuscript to meet journal requirements, complete online forms and submit manuscript",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "28",
-						tasks: "Reformat and resubmit manuscript",
+						tasks: "28. Reformat and resubmit manuscript",
 						toolDescription:
 							"If rejected, reformat manuscript to meet new journal requirements and standards, and submit (if accepted skip this task)",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "29",
-						tasks: "Manuscript revisions",
+						tasks: "29. Manuscript revisions",
 						toolDescription:
 							"Revise manuscript due to comments from peer reviewers, and resubmit it",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "30",
-						tasks: "Manuscript accepted",
+						tasks: "30. Manuscript accepted",
 						toolDescription:
 							"Review manuscript, and copy edit any errors or issues",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						srTaskNo: "31",
-						tasks: "Manuscript published",
+						tasks: "31. Manuscript published",
 						toolDescription:
 							"Send the details around to everyone you know, and enjoy the kudos",
-						toolLink: "",
+						toolLink: [{ name: "", link: "" }],
 						peopleInvolved: "",
 						notes: ""
 					}
@@ -363,6 +353,8 @@ const getDefaultData = key => {
 			supplementoryMethods: []
 		},
 		screening: {
+			isTrialRegistries: false,
+			screenTrialRegisPeople: null,
 			numberOfTitleAbstractScreeners: null,
 			titleAbstractScreeners: null,
 			fullTextRetrivalAuthor: null,
