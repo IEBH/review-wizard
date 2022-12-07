@@ -3,6 +3,20 @@
 		<h1>Search Strategy</h1>
 
 		<InputSelectMulti
+			question="Who designed and ran the search strategy?"
+			:value="search.designSearchStrategyAuthors"
+			@input="updateField('designSearchStrategyAuthors', $event)"
+			:options="this.dsSearchStrategyAuthors"
+		/>
+
+		<InputSelectMulti
+			question="Who deduplicated the results?"
+			:value="search.deduplicateResultsAuthors"
+			@input="updateField('deduplicateResultsAuthors', $event)"
+			:options="this.dsSearchStrategyAuthors"
+		/>
+
+		<InputSelectMulti
 			question="Which of the following components went into your search string"
 			:options="componentsOptions"
 			:value="search.components"
@@ -43,13 +57,18 @@ import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearch",
-	mixins: [deepstreamMixin("search")],
+	mixins: [
+		deepstreamMixin("researchplan"),
+		deepstreamMixin("titlepage"),
+		deepstreamMixin("search")
+	],
 	components: {
 		InputSelectMulti,
 		PreviewOutput
 	},
 	data() {
 		return {
+			dsSearchStrategyAuthors: [],
 			componentsOptions: [
 				{ label: "MeSH or other subject terms" },
 				{ label: "Synonyms" },
@@ -63,6 +82,20 @@ export default {
 			],
 			outputComponent: OutputSearch
 		};
+	},
+	mounted() {
+		this.dsSearchStrategyAuthors = this.titlepage.authors.map(el => {
+			return { label: el };
+		});
+		//--6,7,8 rows in rs-plan table share the same people involved
+		this.researchplan.planTable.rows.forEach(el => {
+			if (
+				el.tasks == "6. Design systematic search strategy" &&
+				el.peopleInvolved != ""
+			) {
+				this.dsSearchStrategyAuthors = el.peopleInvolved;
+			}
+		});
 	}
 };
 </script>

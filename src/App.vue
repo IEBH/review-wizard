@@ -167,7 +167,7 @@ export default {
 						},
 						{
 							href: `/${this.$store.state.projectId}/method/search/supplementory-methods`,
-							title: "Supplementary Methods"
+							title: "Supplementary Searches"
 						}
 					]
 				},

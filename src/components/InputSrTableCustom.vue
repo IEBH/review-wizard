@@ -53,8 +53,14 @@
 						<template v-if="thead.name == 'toolLink'">
 							<div v-for="tl in row.toolLink" :key="tl.name">
 								<a
-									v-if="tl.name != ''"
+									v-if="tl.name != '' && tl.link.includes('https://') == false"
 									:href="methodsUrl + tl.link"
+									target="_blank"
+									>{{ tl.name }}</a
+								>
+								<a
+									v-if="tl.name != '' && tl.link.includes('https://') == true"
+									:href="tl.link"
 									target="_blank"
 									>{{ tl.name }}</a
 								>
@@ -67,6 +73,8 @@
 							:suggestions="filteredPeople"
 							field="label"
 							@complete="searchAuthors($event)"
+							@item-select="checkChanges(row, value.rows)"
+							@item-unselect="checkChanges(row, value.rows)"
 							style="height: 80px"
 						/>
 						<Textarea
@@ -244,6 +252,27 @@ export default {
 				XLSX.writeFile(workbook, "ResearchPlan.xlsx");
 			}
 			this.isShowDialog = false;
+		},
+		checkChanges(row, rows) {
+			//alert("start");
+			if (
+				row.tasks.includes("6. Design systematic search strategy") ||
+				row.tasks.includes("7. Run systematic search strings") ||
+				row.tasks.includes("8. Deduplicate results")
+			) {
+				//alert(row.tasks);
+				rows.forEach(el => {
+					if (
+						(el.tasks.includes("6. Design systematic search strategy") ||
+							el.tasks.includes("7. Run systematic search strings") ||
+							el.tasks.includes("8. Deduplicate results")) &&
+						el.tasks != row.tasks
+					) {
+						el.peopleInvolved = row.peopleInvolved;
+						//alert(el.tasks + ": " + el.peopleInvolved);
+					}
+				});
+			}
 		}
 		/*search(query, cb) {
 			let results = query

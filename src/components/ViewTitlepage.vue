@@ -7,12 +7,7 @@
 			@input="updateField('title', $event)"
 			placeholder="e.g. Blue-light therapy for acne vulgaris: a systematic review and meta-analysis"
 		/>
-		<InputTextSingleLineMulti
-			question="Who are the authors in the study?"
-			:value="titlepage.authors"
-			@input="updateField('authors', $event)"
-			placeholder="e.g. Justin Clark"
-		/>
+
 		<InputTextNumber
 			question="What year will study be published?"
 			:value="titlepage.year"
@@ -24,7 +19,7 @@
 <script>
 import InputTextNumber from "./InputTextNumber.vue";
 import InputTextSingleLine from "./InputTextSingleLine.vue";
-import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
+//import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
 
 import deepstreamMixin from "../mixins/DeepstreamMixin";
 
@@ -33,7 +28,6 @@ export default {
 	mixins: [deepstreamMixin("titlepage")],
 	components: {
 		InputTextSingleLine,
-		InputTextSingleLineMulti,
 		InputTextNumber
 	}
 };

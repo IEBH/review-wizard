@@ -9,6 +9,20 @@
 		/>
 
 		<InputSelectMulti
+			question="Who conducted the supplementary searches?"
+			:value="screening.conductSSearchPeople"
+			@input="updateField('conductSSearchPeople', $event)"
+			:options="this.csSearchPeople"
+		/>
+
+		<InputSelectMulti
+			question="Who screened the citation search?"
+			:value="screening.screenCitationSearchPeople"
+			@input="updateField('screenCitationSearchPeople', $event)"
+			:options="this.scCitSearchPeople"
+		/>
+
+		<InputSelectMulti
 			question="Who screened trial registries?"
 			:value="screening.screenTrialRegisPeople"
 			@input="updateField('screenTrialRegisPeople', $event)"
@@ -112,6 +126,8 @@ export default {
 			retrfulltextAuthors: [], //--retrieved full-text authors
 			scfulltextAuthors: [], //--screen full-text authors
 			scTrialRegisPeople: [], //--screen trial registries
+			scCitSearchPeople: [], //-- screen citation search
+			csSearchPeople: [], //-- screec supplenmentry search
 			numberOptions: ["2", "3", "4", "5", "6"],
 			disputeResolutionOptions: [
 				{ label: "By consensus" },
@@ -121,7 +137,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.scTrialRegisPeople = this.scabstractAuthors = this.scfulltextAuthors = this.retrfulltextAuthors = this.titlepage.authors.map(
+		this.scTrialRegisPeople = this.csSearchPeople = this.scCitSearchPeople = this.scabstractAuthors = this.scfulltextAuthors = this.retrfulltextAuthors = this.titlepage.authors.map(
 			el => {
 				return { label: el };
 			}
@@ -142,6 +158,15 @@ export default {
 			}
 			if (el.tasks == "11. Screen full-text" && el.peopleInvolved != "") {
 				this.scfulltextAuthors = el.peopleInvolved;
+			}
+			if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
+				this.csSearchPeople = el.peopleInvolved;
+			}
+			if (
+				el.tasks == "14. Screen citation analysis" &&
+				el.peopleInvolved != ""
+			) {
+				this.scCitSearchPeople = el.peopleInvolved;
 			}
 		});
 	}

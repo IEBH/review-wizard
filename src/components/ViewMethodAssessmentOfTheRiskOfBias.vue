@@ -9,6 +9,13 @@
 			:options="numberOptions"
 		/>
 
+		<InputSelectMulti
+			question="Which authors assessed the risk of bias?"
+			:value="riskOfBias.assessedRobAuthors"
+			@input="updateField('assessedRobAuthors', $event)"
+			:options="this.asRobAuthors"
+		/>
+
 		<InputSelectYesNo
 			question="Did each author independently review the risk of bias?"
 			:value="riskOfBias.isIndependent"
@@ -37,7 +44,11 @@ import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodAssessmentOfTheRiskOfBias",
-	mixins: [deepstreamMixin("riskOfBias")],
+	mixins: [
+		deepstreamMixin("researchplan"),
+		deepstreamMixin("titlepage"),
+		deepstreamMixin("riskOfBias")
+	],
 	components: {
 		InputSelectDropdown,
 		InputSelectYesNo,
@@ -47,6 +58,7 @@ export default {
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],
+			asRobAuthors: [], //--assessed the RoB
 			outputComponent: OutputAssesmentOfTheRiskOfBias,
 			options: {
 				tools: [
@@ -64,6 +76,19 @@ export default {
 				]
 			}
 		};
+	},
+	mounted() {
+		this.asRobAuthors = this.titlepage.authors.map(el => {
+			return { label: el };
+		});
+		this.researchplan.planTable.rows.forEach(el => {
+			if (
+				el.tasks == "16. Risk of Bias assessment" &&
+				el.peopleInvolved != ""
+			) {
+				this.asRobAuthors = el.peopleInvolved;
+			}
+		});
 	}
 };
 </script>

@@ -66,8 +66,8 @@ const getDefaultData = key => {
 						toolDescription:
 							"Search for and review existing SRs that answers the same or a similar question.",
 						toolLink: [
-							{ name: "PubMed,Prospero", link: "" },
-							{ name: "Prospero", link: "" }
+							{ name: "PubMed", link: "https://pubmed.ncbi.nlm.nih.gov/" },
+							{ name: "Prospero", link: "https://www.crd.york.ac.uk/PROSPERO/" }
 						],
 						peopleInvolved: "",
 						notes: ""
@@ -103,8 +103,14 @@ const getDefaultData = key => {
 						toolDescription:
 							"Design search strategy to find all relevant information (choose databases; develop search string)",
 						toolLink: [
-							{ name: "Word Freq Analyzer", link: "" },
-							{ name: "Search Refinery", link: "" }
+							{
+								name: "Word Freq Analyzer",
+								link: "https://sr-accelerator.com/#/wordfreq"
+							},
+							{
+								name: "Search Refinery",
+								link: "https://sr-accelerator.com/#/searchrefinery"
+							}
 						],
 						peopleInvolved: "",
 						notes: ""
@@ -113,14 +119,24 @@ const getDefaultData = key => {
 						tasks: "7. Run systematic search strings",
 						toolDescription:
 							"Run search strings in databases, trial registries, collate results in reference management system (e.g. EndNote)",
-						toolLink: [{ name: "Polyglot", link: "" }],
+						toolLink: [
+							{
+								name: "Polyglot",
+								link: "https://sr-accelerator.com/#/polyglot"
+							}
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
 						tasks: "8. Deduplicate results",
 						toolDescription: "Remove duplicate citations",
-						toolLink: [{ name: "Dedupe", link: "" }],
+						toolLink: [
+							{
+								name: "Dedupe",
+								link: "https://sr-accelerator.com/#/deduplicator"
+							}
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
@@ -129,8 +145,14 @@ const getDefaultData = key => {
 						toolDescription:
 							"Screen titles and abstracts, exclude irrelevant citations, resolve disputes",
 						toolLink: [
-							{ name: "Screenatron", link: "" },
-							{ name: "Disputatron", link: "" }
+							{
+								name: "Screenatron",
+								link: "https://sr-accelerator.com/#/screenatron"
+							},
+							{
+								name: "Disputatron",
+								link: "https://sr-accelerator.com/#/disputatron"
+							}
 						],
 						peopleInvolved: "",
 						notes: ""
@@ -148,8 +170,14 @@ const getDefaultData = key => {
 						toolDescription:
 							"Screen full text of articles, exclude irrelevant citations, resolve disputes",
 						toolLink: [
-							{ name: "Screenatron", link: "" },
-							{ name: "Disputatron", link: "" }
+							{
+								name: "Screenatron",
+								link: "https://sr-accelerator.com/#/screenatron"
+							},
+							{
+								name: "Disputatron",
+								link: "https://sr-accelerator.com/#/disputatron"
+							}
 						],
 						peopleInvolved: "",
 						notes: ""
@@ -159,17 +187,28 @@ const getDefaultData = key => {
 						toolDescription:
 							"Based on title and text in the trial registry entry: exclude irrelevant citations, resolve disputes",
 						toolLink: [
-							{ name: "Screenatron", link: "" },
-							{ name: "Disputatron", link: "" }
+							{
+								name: "Screenatron",
+								link: "https://sr-accelerator.com/#/screenatron"
+							},
+							{
+								name: "Disputatron",
+								link: "https://sr-accelerator.com/#/disputatron"
+							}
 						],
 						peopleInvolved: "",
 						notes: ""
 					},
 					{
-						tasks: "13. Citation analysis",
+						tasks: "13. Citation search",
 						toolDescription:
 							"Follow citations, cited and citing, from included studies to find additional relevant studies",
-						toolLink: [{ name: "SpiderCite", link: "" }],
+						toolLink: [
+							{
+								name: "SpiderCite",
+								link: "https://sr-accelerator.com/#/spidercite"
+							}
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
@@ -178,8 +217,14 @@ const getDefaultData = key => {
 						toolDescription:
 							"Screen titles and abstracts, and full texts exclude irrelevant citations, resolve disputes",
 						toolLink: [
-							{ name: "Screenatron", link: "" },
-							{ name: "Disputatron", link: "" }
+							{
+								name: "Screenatron",
+								link: "https://sr-accelerator.com/#/screenatron"
+							},
+							{
+								name: "Disputatron",
+								link: "https://sr-accelerator.com/#/disputatron"
+							}
 						],
 						peopleInvolved: "",
 						notes: ""
@@ -189,7 +234,7 @@ const getDefaultData = key => {
 						toolDescription:
 							"Extract study characteristics and relevant outcomes plan data presentation? - how will things be presented in the paper? Loai and I spent a while discussing and trying to work that out",
 						toolLink: [
-							{ name: "Data Extraction", link: "/method/data-extractio" }
+							{ name: "Data Extraction", link: "/method/data-extraction" }
 						],
 						peopleInvolved: "",
 						notes: ""
@@ -221,7 +266,9 @@ const getDefaultData = key => {
 						tasks: "19. GRADE evidence",
 						toolDescription:
 							"Optional: rate the certainty of evidence for a treatment efficacy from high to very low",
-						toolLink: [{ name: "Grade Pro", link: "" }],
+						toolLink: [
+							{ name: "Grade Pro", link: "https://www.gradepro.org/" }
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
@@ -259,7 +306,12 @@ const getDefaultData = key => {
 					{
 						tasks: "24. Write results",
 						toolDescription: "Write the results section of the SR",
-						toolLink: [{ name: "Refman Replicant", link: "" }],
+						toolLink: [
+							{
+								name: "Refman Replicant",
+								link: "https://sr-accelerator.com/#/replicant"
+							}
+						],
 						peopleInvolved: "",
 						notes: ""
 					},
@@ -336,6 +388,8 @@ const getDefaultData = key => {
 			specialist: [],
 			helper: [],
 			peerReviewer: [],
+			designSearchStrategyAuthors: [],
+			deduplicateResultsAuthors: [],
 			// Search Strings for Bibliographic Databases
 			databases: [],
 			dateOfSearch: null,
@@ -350,11 +404,14 @@ const getDefaultData = key => {
 			isRestrictedByLanguage: false,
 			includedLanguages: [],
 			// Supplementory Methods
+			conductSSearchAuthors: [],
 			supplementoryMethods: []
 		},
 		screening: {
 			isTrialRegistries: false,
 			screenTrialRegisPeople: null,
+			conductSSearchPeople: null,
+			screenCitationSearchPeople: null,
 			numberOfTitleAbstractScreeners: null,
 			titleAbstractScreeners: null,
 			fullTextRetrivalAuthor: null,
@@ -379,6 +436,7 @@ const getDefaultData = key => {
 		},
 		riskOfBias: {
 			numberOfAuthors: null,
+			assessedRobAuthors: null,
 			isIndependent: false,
 			toolUsed: []
 		},
