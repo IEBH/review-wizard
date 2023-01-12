@@ -66,19 +66,29 @@
 								>
 							</div>
 						</template>
-						<AutoComplete
+						<div class="field-checkbox" v-if="thead.name == 'progress'">
+							<Checkbox
+								v-model="row.progress.isComplete"
+								id="binary"
+								:binary="true"
+								@change="valuesChange(row)"
+							/>
+							<label for="binary">{{ row.progress.state }}</label>
+						</div>
+						<InputAutoComplete
 							v-if="thead.name == 'peopleInvolved'"
-							:multiple="true"
-							v-model="row[thead.name]"
-							:suggestions="filteredPeople"
-							field="label"
-							@complete="searchAuthors($event)"
-							@item-select="checkChanges(row, value.rows)"
-							@item-unselect="checkChanges(row, value.rows)"
-							style="height: 80px"
+							:tableValue="value"
+							:row="row"
+							:tableHeader="thead"
+							:titlePageAuthors="titlePageAuthors"
+							:people="people"
 						/>
 						<Textarea
-							v-if="thead.name != 'peopleInvolved' && thead.name != 'toolLink'"
+							v-if="
+								thead.name != 'peopleInvolved' &&
+									thead.name != 'toolLink' &&
+									thead.name != 'progress'
+							"
 							class="t-content"
 							type="text"
 							v-model="row[thead.name]"
@@ -155,19 +165,23 @@
 <script>
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
-import AutoComplete from "primevue/autocomplete";
+import Checkbox from "primevue/checkbox";
+//import AutoComplete from "primevue/autocomplete";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
+
 import * as XLSX from "xlsx";
+import InputAutoComplete from "./InputAutoComplete.vue";
 import InputSrMenubar from "../components/InputSrMenubar.vue";
 export default {
 	name: "InputSrTable",
 	components: {
 		Textarea,
 		Button,
-		AutoComplete,
+		Checkbox,
 		Dialog,
 		InputText,
+		InputAutoComplete,
 		InputSrMenubar
 	},
 	props: {
@@ -177,13 +191,16 @@ export default {
 	},
 	data() {
 		return {
-			filteredPeople: null,
+			//filteredPeople: null,
 			ifEdit: false,
 			show: false,
 			isShowDialog: false,
 			fileName: "",
 			methodsUrl: "",
-			newRow: {}
+			newRow: {},
+
+			toolLinkName: "",
+			people: []
 		};
 	},
 	methods: {
@@ -229,19 +246,6 @@ export default {
 			this.ifEdit = false;
 			this.$emit("input", this.value);
 		},
-		searchAuthors(event) {
-			setTimeout(() => {
-				if (!event.query.trim().length) {
-					this.filteredPeople = [...this.titlePageAuthors];
-				} else {
-					this.filteredPeople = this.titlePageAuthors.filter(people => {
-						return people.label
-							.toLowerCase()
-							.startsWith(event.query.toLowerCase());
-					});
-				}
-			}, 250);
-		},
 		exportExcel(rows, fileName) {
 			let workbook = XLSX.utils.book_new();
 			let sheet1 = XLSX.utils.json_to_sheet(rows);
@@ -253,25 +257,13 @@ export default {
 			}
 			this.isShowDialog = false;
 		},
-		checkChanges(row, rows) {
-			//alert("start");
-			if (
-				row.tasks.includes("6. Design systematic search strategy") ||
-				row.tasks.includes("7. Run systematic search strings") ||
-				row.tasks.includes("8. Deduplicate results")
-			) {
-				//alert(row.tasks);
-				rows.forEach(el => {
-					if (
-						(el.tasks.includes("6. Design systematic search strategy") ||
-							el.tasks.includes("7. Run systematic search strings") ||
-							el.tasks.includes("8. Deduplicate results")) &&
-						el.tasks != row.tasks
-					) {
-						el.peopleInvolved = row.peopleInvolved;
-						//alert(el.tasks + ": " + el.peopleInvolved);
-					}
-				});
+		valuesChange(row) {
+			if (row.progress.isComplete == true) {
+				row.progress.state = "Completed";
+				this.$emit("input", this.value);
+			} else {
+				row.progress.state = "Incomplete";
+				this.$emit("input", this.value);
 			}
 		}
 		/*search(query, cb) {

@@ -14,6 +14,7 @@ const getDefaultData = key => {
 		researchplan: {
 			planTable: {
 				headers: [
+					{ name: "progress", label: "" },
 					{ name: "tasks", label: "Task" },
 					{
 						name: "toolDescription",
@@ -31,6 +32,7 @@ const getDefaultData = key => {
 				],
 				rows: [
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "a1. Lead in time",
 						toolDescription:
 							"Time spent completing other work to allow SR authors to focus on the 2 week SR",
@@ -39,6 +41,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "a2. SR design meetings",
 						toolDescription:
 							"Time spent refining the idea, determining feasibility, assembling the team, planning timelines, deciding on roles (who's responsible for oversight, coordination and documentation) and provide information on SRA tools",
@@ -47,6 +50,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "0. Daily administrative meetings",
 						toolDescription:
 							"Short daily meetings to review progress, discuss issues and document decisions",
@@ -55,6 +59,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "1. Formulate SR question",
 						toolDescription: "Final decision on the research question (PICO)",
 						toolLink: [{ name: "PICOST", link: "/method/picot" }],
@@ -62,6 +67,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "2. Find and review existing or upcoming SRs",
 						toolDescription:
 							"Search for and review existing SRs that answers the same or a similar question.",
@@ -73,6 +79,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "3. Write the SR protocol",
 						toolDescription:
 							"Provide an objective, reproducible, sound methodology for the SR, then register the protocol",
@@ -81,6 +88,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "4. Obtain set of relevant studies",
 						toolDescription:
 							"Identify a small sample of studies relevant to the review, to aid with designing the search and data extraction form.",
@@ -89,6 +97,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "5. Design data extraction form",
 						toolDescription:
 							"Design forms for extracting study characteristics and test their usefulness/applicability",
@@ -99,6 +108,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "6. Design systematic search strategy",
 						toolDescription:
 							"Design search strategy to find all relevant information (choose databases; develop search string)",
@@ -116,6 +126,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "7. Run systematic search strings",
 						toolDescription:
 							"Run search strings in databases, trial registries, collate results in reference management system (e.g. EndNote)",
@@ -129,6 +140,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "8. Deduplicate results",
 						toolDescription: "Remove duplicate citations",
 						toolLink: [
@@ -141,6 +153,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "9. Screen abstracts",
 						toolDescription:
 							"Screen titles and abstracts, exclude irrelevant citations, resolve disputes",
@@ -158,6 +171,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "10. Obtain full text",
 						toolDescription:
 							"Download full text studies, request copies from authors, interlibrary loan",
@@ -166,7 +180,8 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
-						tasks: "11. Screen full-text",
+						progress: { isComplete: "false", state: "Incomplete" },
+						tasks: "11. Screen full text",
 						toolDescription:
 							"Screen full text of articles, exclude irrelevant citations, resolve disputes",
 						toolLink: [
@@ -183,6 +198,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "12. Screen trial registries",
 						toolDescription:
 							"Based on title and text in the trial registry entry: exclude irrelevant citations, resolve disputes",
@@ -200,6 +216,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "13. Citation search",
 						toolDescription:
 							"Follow citations, cited and citing, from included studies to find additional relevant studies",
@@ -213,6 +230,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "14. Screen citation analysis",
 						toolDescription:
 							"Screen titles and abstracts, and full texts exclude irrelevant citations, resolve disputes",
@@ -230,6 +248,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "15. Extract data",
 						toolDescription:
 							"Extract study characteristics and relevant outcomes plan data presentation? - how will things be presented in the paper? Loai and I spent a while discussing and trying to work that out",
@@ -240,6 +259,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "16. Risk of Bias assessment",
 						toolDescription: "Assess the potential biases in included studies",
 						toolLink: [{ name: "", link: "" }],
@@ -247,6 +267,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "17. Synthesise data",
 						toolDescription:
 							"Convert extracted outcome data to common representation (usually mean and SD)",
@@ -255,6 +276,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "18. Meta-analysis",
 						toolDescription:
 							"Statistically combine the results using meta-analysis or other statistical synthesis",
@@ -263,6 +285,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "19. GRADE evidence",
 						toolDescription:
 							"Optional: rate the certainty of evidence for a treatment efficacy from high to very low",
@@ -273,6 +296,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "20. Summary of findings",
 						toolDescription:
 							"Optional: summarise the main findings of the SR in a table",
@@ -281,6 +305,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "21. Update systematic search strategy",
 						toolDescription:
 							"Optional: repeat the search to find new studies published since the initial search, especially if search more than a year old",
@@ -289,6 +314,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "22. Write introduction",
 						toolDescription:
 							"Revise the introduction section from the SR protocol",
@@ -297,6 +323,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "23. Write methods",
 						toolDescription: "Revise the methods section from the SR protocol",
 						toolLink: [{ name: "Methods Wizard", link: "/titlepage" }],
@@ -304,6 +331,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "24. Write results",
 						toolDescription: "Write the results section of the SR",
 						toolLink: [
@@ -316,6 +344,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "25. Write discussion",
 						toolDescription:
 							"Write the discussion and conclusion sections of the SR",
@@ -324,6 +353,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "26. Obtain external feedback",
 						toolDescription:
 							"Circulate to colleagues for external feedback, also take a break from the SR to allow thinking time about the manuscript",
@@ -332,6 +362,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "27. Submit manuscript",
 						toolDescription:
 							"Format manuscript to meet journal requirements, complete online forms and submit manuscript",
@@ -340,6 +371,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "28. Reformat and resubmit manuscript",
 						toolDescription:
 							"If rejected, reformat manuscript to meet new journal requirements and standards, and submit (if accepted skip this task)",
@@ -348,6 +380,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "29. Manuscript revisions",
 						toolDescription:
 							"Revise manuscript due to comments from peer reviewers, and resubmit it",
@@ -356,6 +389,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "30. Manuscript accepted",
 						toolDescription:
 							"Review manuscript, and copy edit any errors or issues",
@@ -364,6 +398,7 @@ const getDefaultData = key => {
 						notes: ""
 					},
 					{
+						progress: { isComplete: "false", state: "Incomplete" },
 						tasks: "31. Manuscript published",
 						toolDescription:
 							"Send the details around to everyone you know, and enjoy the kudos",
@@ -409,14 +444,14 @@ const getDefaultData = key => {
 		},
 		screening: {
 			isTrialRegistries: false,
-			screenTrialRegisPeople: null,
-			conductSSearchPeople: null,
-			screenCitationSearchPeople: null,
+			screenTrialRegisPeople: [],
+			conductSSearchPeople: [],
+			screenCitationSearchPeople: [],
 			numberOfTitleAbstractScreeners: null,
-			titleAbstractScreeners: null,
-			fullTextRetrivalAuthor: null,
+			titleAbstractScreeners: [],
+			fullTextRetrivalAuthor: [],
 			numberOfFullTextScreeners: null,
-			fullTextScreeners: null,
+			fullTextScreeners: [],
 			disputeResolution: [],
 			isPrismaFlowDiagram: false,
 			isExcludedFullTextInAppendix: false
@@ -424,7 +459,7 @@ const getDefaultData = key => {
 		extraction: {
 			numberOfStudies: null,
 			numberOfExtractors: null,
-			extractionAuthors: null,
+			extractionAuthors: [],
 			//New
 			optionalDetail: false,
 			methods: [],
@@ -436,7 +471,7 @@ const getDefaultData = key => {
 		},
 		riskOfBias: {
 			numberOfAuthors: null,
-			assessedRobAuthors: null,
+			assessedRobAuthors: [],
 			isIndependent: false,
 			toolUsed: []
 		},

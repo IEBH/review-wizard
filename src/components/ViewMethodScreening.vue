@@ -156,7 +156,7 @@ export default {
 			if (el.tasks == "10. Obtain full text" && el.peopleInvolved != "") {
 				this.retrfulltextAuthors = el.peopleInvolved;
 			}
-			if (el.tasks == "11. Screen full-text" && el.peopleInvolved != "") {
+			if (el.tasks == "11. Screen full text" && el.peopleInvolved != "") {
 				this.scfulltextAuthors = el.peopleInvolved;
 			}
 			if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
