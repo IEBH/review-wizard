@@ -15,6 +15,9 @@ import ViewMethodSubgroupAndSensitivityAnalysis from "./ViewMethodSubgroupAndSen
 import ViewTitlepage from "./ViewTitlepage.vue";
 import ViewHome from "./ViewHome.vue";
 import ViewOutput from "./ViewOutput.vue";
+import ViewMethodIntroduction from "./ViewMethodIntroduction.vue";
+import ViewMethodResearchPlan from "./ViewMethodResearchPlan.vue";
+import ViewTitlePagePeople from "./ViewTitlePagePeople";
 
 // The path for deepstream, where the bulk of the information is kept (e.g. `methods/${projectId}`)
 const deepstreamPath = "methods";
@@ -27,6 +30,21 @@ const routes = [
 		name: "titlepage",
 		path: "/:projectId/titlepage",
 		component: ViewTitlepage
+	},
+	{
+		name: "people",
+		path: "/:projectId/titlepage/people",
+		component: ViewTitlePagePeople
+	},
+	{
+		name: "introduction",
+		path: "/:projectId/method/introduction",
+		component: ViewMethodIntroduction
+	},
+	{
+		name: "rs-plan",
+		path: "/:projectId/method/rs-plan",
+		component: ViewMethodResearchPlan
 	},
 	{
 		name: "picot",
@@ -198,7 +216,16 @@ const getMenu = projectId => [
 	{
 		title: "Title Page",
 		icon: "pi pi-file",
-		href: `/${projectId}/titlepage`
+		child: [
+			{
+				href: `/${projectId}/titlepage`,
+				title: "Title page"
+			},
+			{
+				href: `/${projectId}/titlepage/people`,
+				title: "People"
+			}
+		]
 	},
 	{
 		header: true,
@@ -206,12 +233,22 @@ const getMenu = projectId => [
 		hiddenOnCollapse: true
 	},
 	{
+		title: "Introduction",
+		icon: "pi pi-pencil",
+		href: `/${projectId}/method/introduction`
+	},
+	{
+		title: "Research Plan",
+		icon: "pi pi-list",
+		href: `/${projectId}/method/rs-plan`
+	},
+	{
 		title: "Eligibility Criteria (PICOST)",
 		icon: "pi pi-file",
 		href: `/${projectId}/method/picot`
 	},
 	{
-		title: "Search Strategy",
+		title: "Search",
 		icon: "pi pi-search",
 		child: [
 			{
@@ -232,12 +269,12 @@ const getMenu = projectId => [
 			},
 			{
 				href: `/${projectId}/method/search/supplementory-methods`,
-				title: "Supplementary Methods"
+				title: "Supplementary Searches"
 			}
 		]
 	},
 	{
-		title: "Study Screening and Selection",
+		title: "Study Selection and Screening",
 		icon: "pi pi-check",
 		href: `/${projectId}/method/screening`
 	},
@@ -247,35 +284,34 @@ const getMenu = projectId => [
 		href: `/${projectId}/method/data-extraction`
 	},
 	{
-		title: "Risk of Bias Assessment",
+		title: "Assessment of the RoB",
 		icon: "pi pi-exclamation-circle",
 		href: `/${projectId}/method/risk-of-bias`
 	},
 	{
-		title: "Data Analysis",
+		title: "Measurement of Effect",
+		icon: "pi pi-sliders-v",
+		href: `/${projectId}/method/measurement-of-effect`
+	},
+	{
+		title: "Unit of Analysis",
 		icon: "pi pi-chart-bar",
-		child: [
-			{
-				href: `/${projectId}/method/measurement-of-effect`,
-				title: "Measurement of Effect"
-			},
-			{
-				href: `/${projectId}/method/unit-of-analysis`,
-				title: "Unit of Analysis"
-			},
-			{
-				href: `/${projectId}/method/missing-data`,
-				title: "Dealing with Missing Data"
-			},
-			{
-				href: `/${projectId}/method/heterogeneity-publication-biases`,
-				title: "Heterogeneity/Publication Bias"
-			},
-			{
-				href: `/${projectId}/method/subgroup-sensitivity-analysis`,
-				title: "Subgroup and Sensitivity Analysis"
-			}
-		]
+		href: `/${projectId}/method/unit-of-analysis`
+	},
+	{
+		title: "Dealing with Missing Data",
+		icon: "pi pi-question",
+		href: `/${projectId}/method/missing-data`
+	},
+	{
+		title: "Heterogeneity/Publication Bias",
+		icon: "pi pi-users",
+		href: `/${projectId}/method/heterogeneity-publication-biases`
+	},
+	{
+		title: "Subgroup and Sensitivity Analysis",
+		icon: "pi pi-chart-line",
+		href: `/${projectId}/method/subgroup-sensitivity-analysis`
 	},
 	{
 		header: true,

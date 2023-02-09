@@ -10,7 +10,7 @@
 	</div>
 </template>
 <script>
-import InputSrTableCustom from "../components/InputSrTableCustom.vue";
+import InputSrTableCustom from "@/components/InputSrTableCustom.vue";
 import deepstreamMixin from "@/mixins/DeepstreamMixin";
 export default {
 	mixins: [
