@@ -1,6 +1,13 @@
 <template>
 	<div>
-		<h1>Supplementary Methods</h1>
+		<h1>Supplementary Searches</h1>
+
+		<InputSelectMulti
+			question="Who conducted the supplementary searches?"
+			:value="search.conductSSearchAuthors"
+			@input="updateField('conductSSearchAuthors', $event)"
+			:options="this.csAuthors"
+		/>
 
 		<InputSelectMulti
 			question="Did you conduct any of the following methods to supplement your search results?"
@@ -9,20 +16,31 @@
 			@input="updateField('supplementoryMethods', $event)"
 		/>
 
-		<BasePreviewOutput :component="outputComponent" :data="search" />
+		<PreviewOutput :component="outputComponent" :data="search" />
 	</div>
 </template>
 
 <script>
 import OutputSearchSupplementoryMethods from "./OutputSearchSupplementoryMethods.vue";
+import PreviewOutput from "./PreviewOutput.vue";
+import InputSelectMulti from "./InputSelectMulti.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchDatabases",
-	mixins: [deepstreamMixin("search")],
+	mixins: [
+		deepstreamMixin("researchplan"),
+		deepstreamMixin("titlepage"),
+		deepstreamMixin("search")
+	],
+	components: {
+		InputSelectMulti,
+		PreviewOutput
+	},
 	data() {
 		return {
+			csAuthors: [], //--conduct supplementary searches
 			supplementoryMethodsOptions: [
 				// eslint-disable-next-line prettier/prettier
 				{
@@ -35,6 +53,16 @@ export default {
 			],
 			outputComponent: OutputSearchSupplementoryMethods
 		};
+	},
+	mounted() {
+		this.csAuthors = this.titlepage.authors.map(el => {
+			return { label: el };
+		});
+		this.researchplan.planTable.rows.forEach(el => {
+			if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
+				this.csAuthors = el.peopleInvolved;
+			}
+		});
 	}
 };
 </script>

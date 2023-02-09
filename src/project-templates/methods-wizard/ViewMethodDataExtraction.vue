@@ -21,11 +21,10 @@
 			:value="extraction.extractionAuthors"
 			@input="updateField('extractionAuthors', $event)"
 			:options="
-				titlepage.authors
-					? titlepage.authors.map(el => {
-							return { label: el };
-					  })
-					: []
+				/*titlepage.authors.map(el => {
+					return { label: el };
+				})*/
+				this.pfDataExtractAuthors
 			"
 		/>
 
@@ -40,7 +39,7 @@
 			v-if="extraction.optionalDetail"
 			style="margin-top: 50px; border: 1px solid black;"
 		>
-			<AccordionTab header="Optional Details" :active="true">
+			<AccordionTab header="Optional Details" :active="false">
 				<h3>What data will be extracted:</h3>
 				<InputSelectMulti
 					question="Methods:"
@@ -114,7 +113,7 @@
 			</AccordionTab>
 		</Accordion>
 
-		<BasePreviewOutput :component="outputComponent" :data="extraction" />
+		<PreviewOutput :component="outputComponent" :data="extraction" />
 	</div>
 </template>
 
@@ -127,13 +126,19 @@ import AccordionTab from "primevue/accordiontab";
 import Message from "primevue/message";
 import Button from "primevue/button";
 
+import PreviewOutput from "./PreviewOutput.vue";
 import OutputDataExtraction from "./OutputDataExtraction.vue";
+import InputSelectDropdown from "./InputSelectDropdown.vue";
+import InputSelectMulti from "./InputSelectMulti.vue";
+import InputTable from "./InputTable.vue";
+import InputSelectYesNo from "./InputSelectYesNo.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodDataExtraction",
 	mixins: [
+		deepstreamMixin("researchplan"),
 		deepstreamMixin("titlepage"),
 		deepstreamMixin("picot"),
 		deepstreamMixin("extraction")
@@ -142,7 +147,12 @@ export default {
 		Accordion,
 		AccordionTab,
 		Message,
-		Button
+		Button,
+		InputSelectDropdown,
+		InputSelectMulti,
+		InputTable,
+		PreviewOutput,
+		InputSelectYesNo
 	},
 	methods: {
 		compareLabel(a, b) {
@@ -183,8 +193,7 @@ export default {
 			return isEqual(sorted1, sorted2);
 		}
 	},
-	async mounted() {
-		await this.dataReady;
+	mounted() {
 		if (
 			!this.extraction.outcomes ||
 			JSON.stringify(this.extraction.outcomes) ==
@@ -199,9 +208,18 @@ export default {
 			// Shallow copy
 			this.extraction.types = [...this.picot.types];
 		}
+		this.pfDataExtractAuthors = this.titlepage.authors.map(el => {
+			return { label: el };
+		});
+		this.researchplan.planTable.rows.forEach(el => {
+			if (el.tasks == "15. Extract data" && el.peopleInvolved != "") {
+				this.pfDataExtractAuthors = el.peopleInvolved;
+			}
+		});
 	},
 	data() {
 		return {
+			pfDataExtractAuthors: [], //--perform data extraction authors
 			numberOptions: ["1", "2", "3", "4", "5", "6"],
 			outputComponent: OutputDataExtraction,
 			options: {

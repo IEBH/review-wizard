@@ -1,6 +1,33 @@
 <template>
 	<div>
-		<h1>Study Screening and Selection</h1>
+		<h1>Study Selection and Screening</h1>
+
+		<InputSelectYesNo
+			question="Did you search trial registries?"
+			:value="screening.isTrialRegistries"
+			@input="updateField('isTrialRegistries', $event)"
+		/>
+
+		<InputSelectMulti
+			question="Who conducted the supplementary searches?"
+			:value="screening.conductSSearchPeople"
+			@input="updateField('conductSSearchPeople', $event)"
+			:options="this.csSearchPeople"
+		/>
+
+		<InputSelectMulti
+			question="Who screened the citation search?"
+			:value="screening.screenCitationSearchPeople"
+			@input="updateField('screenCitationSearchPeople', $event)"
+			:options="this.scCitSearchPeople"
+		/>
+
+		<InputSelectMulti
+			question="Who screened trial registries?"
+			:value="screening.screenTrialRegisPeople"
+			@input="updateField('screenTrialRegisPeople', $event)"
+			:options="this.scTrialRegisPeople"
+		/>
 
 		<InputSelectDropdown
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
@@ -14,19 +41,18 @@
 			:value="screening.titleAbstractScreeners"
 			@input="updateField('titleAbstractScreeners', $event)"
 			:options="
-				titlepage.authors
-					? titlepage.authors.map(el => {
-							return { label: el };
-					  })
-					: []
+				/*titlepage.authors.map(el => {
+					return { label: el };
+				})*/
+				this.scabstractAuthors
 			"
 		/>
 
-		<InputSelectDropdown
-			question="Which author retrieved full-texts"
+		<InputSelectMulti
+			question="Which author retrieved full-texts?"
 			:value="screening.fullTextRetrivalAuthor"
 			@input="updateField('fullTextRetrivalAuthor', $event)"
-			:options="titlepage.authors"
+			:options="this.retrfulltextAuthors"
 		/>
 
 		<InputSelectDropdown
@@ -41,11 +67,10 @@
 			:value="screening.fullTextScreeners"
 			@input="updateField('fullTextScreeners', $event)"
 			:options="
-				titlepage.authors
-					? titlepage.authors.map(el => {
-							return { label: el };
-					  })
-					: []
+				/*titlepage.authors.map(el => {
+					return { label: el };
+				})*/
+				this.scfulltextAuthors
 			"
 		/>
 
@@ -54,13 +79,6 @@
 			:value="screening.disputeResolution"
 			@input="updateField('disputeResolution', $event)"
 			:options="disputeResolutionOptions"
-		/>
-
-		<InputSelectMulti
-			question="Were any automation tools used during the screening process"
-			:options="screenAutomationOptions"
-			:value="screening.screenAutomationTools"
-			@input="updateField('screenAutomationTools', $event)"
 		/>
 
 		<InputSelectYesNo
@@ -76,45 +94,81 @@
 			@input="updateField('isExcludedFullTextInAppendix', $event)"
 		/>
 
-		<BasePreviewOutput :component="outputComponent" :data="screening" />
+		<PreviewOutput :component="outputComponent" :data="screening" />
 	</div>
 </template>
 
 <script>
 import OutputScreening from "./OutputScreening.vue";
+import PreviewOutput from "./PreviewOutput.vue";
+import InputSelectDropdown from "./InputSelectDropdown.vue";
+import InputSelectMulti from "./InputSelectMulti.vue";
+import InputSelectYesNo from "./InputSelectYesNo.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodScreening",
-	mixins: [deepstreamMixin("titlepage"), deepstreamMixin("screening")],
+	mixins: [
+		deepstreamMixin("researchplan"),
+		deepstreamMixin("titlepage"),
+		deepstreamMixin("screening")
+	],
+	components: {
+		InputSelectDropdown,
+		InputSelectMulti,
+		InputSelectYesNo,
+		PreviewOutput
+	},
 	data() {
 		return {
+			scabstractAuthors: [], //--screen abstract authors
+			retrfulltextAuthors: [], //--retrieved full-text authors
+			scfulltextAuthors: [], //--screen full-text authors
+			scTrialRegisPeople: [], //--screen trial registries
+			scCitSearchPeople: [], //-- screen citation search
+			csSearchPeople: [], //-- screec supplenmentry search
 			numberOptions: ["2", "3", "4", "5", "6"],
 			disputeResolutionOptions: [
 				{ label: "By consensus" },
 				{ label: "By referring to a third author" }
 			],
-			screenAutomationOptions: [
-				{ 	
-					label: "RobotSearch", 
-					url: "https://pubmed.ncbi.nlm.nih.gov/29314757/" 
-				},		
-				{
-					label: "Screenatron/Disputatron",
-					url: "https://pubmed.ncbi.nlm.nih.gov/32004673/"
-				},
-				{
-					label: "Covidence",
-					url: "https://support.covidence.org/help/how-can-i-cite-covidence/"
-				},
-				{ 	
-					label: "Rayyan", 
-					url: "https://pubmed.ncbi.nlm.nih.gov/27919275/" 
-				}
-			],
 			outputComponent: OutputScreening
 		};
+	},
+	mounted() {
+		this.scTrialRegisPeople = this.csSearchPeople = this.scCitSearchPeople = this.scabstractAuthors = this.scfulltextAuthors = this.retrfulltextAuthors = this.titlepage.authors.map(
+			el => {
+				return { label: el };
+			}
+		);
+		//this.retrfulltextAuthors = this.titlepage.authors;
+		this.researchplan.planTable.rows.forEach(el => {
+			if (
+				el.tasks == "12. Screen trial registries" &&
+				el.peopleInvolved != ""
+			) {
+				this.scTrialRegisPeople = el.peopleInvolved;
+			}
+			if (el.tasks == "9. Screen abstracts" && el.peopleInvolved != "") {
+				this.scabstractAuthors = el.peopleInvolved;
+			}
+			if (el.tasks == "10. Obtain full text" && el.peopleInvolved != "") {
+				this.retrfulltextAuthors = el.peopleInvolved;
+			}
+			if (el.tasks == "11. Screen full text" && el.peopleInvolved != "") {
+				this.scfulltextAuthors = el.peopleInvolved;
+			}
+			if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
+				this.csSearchPeople = el.peopleInvolved;
+			}
+			if (
+				el.tasks == "14. Screen citation analysis" &&
+				el.peopleInvolved != ""
+			) {
+				this.scCitSearchPeople = el.peopleInvolved;
+			}
+		});
 	}
 };
 </script>

@@ -29,97 +29,103 @@
 		>
 			<div id="output">
 				<h1>Methods</h1>
+				<h2>Introduction</h2>
+				<OutputIntroduction
+					v-if="outputOptions[0].include"
+					:data="introduction"
+					:key="monitorChange"
+				/>
 				<h2>Eligibility Criteria</h2>
 				<OutputPicot
-					v-if="outputOptions[0].include"
+					v-if="outputOptions[1].include"
 					:data="picot"
-					:key="monitorChange"
+					:key="monitorChange + 1"
 				/>
 				<h2>Search strategy</h2>
 				<OutputSearch
-					v-if="outputOptions[1].include"
-					:data="search"
-					:key="monitorChange + 1"
-				/>
-				<OutputSearchDatabases
 					v-if="outputOptions[2].include"
 					:data="search"
 					:key="monitorChange + 2"
 				/>
-				<OutputSearchRegistries
+				<OutputSearchDatabases
 					v-if="outputOptions[3].include"
 					:data="search"
 					:key="monitorChange + 3"
 				/>
-				<OutputSearchPublicationType
+				<OutputSearchRegistries
 					v-if="outputOptions[4].include"
 					:data="search"
 					:key="monitorChange + 4"
 				/>
-				<OutputSearchSupplementoryMethods
+				<OutputSearchPublicationType
 					v-if="outputOptions[5].include"
 					:data="search"
 					:key="monitorChange + 5"
 				/>
-				<h2>Study screening and selection</h2>
+				<OutputSearchSupplementoryMethods
+					v-if="outputOptions[6].include"
+					:data="search"
+					:key="monitorChange + 6"
+				/>
+				<h2>Study selection and screening</h2>
 				<h3>Screening</h3>
 				<OutputScreening
-					v-if="outputOptions[6].include"
+					v-if="outputOptions[7].include"
 					:data="screening"
-					:key="monitorChange + 6"
+					:key="monitorChange + 7"
 				/>
 				<h3>Data extraction</h3>
 				<OutputDataExtraction
-					v-if="outputOptions[7].include"
-					:data="extraction"
-					:key="monitorChange + 7"
-				/>
-				<h2>Risk of Bias Assessment</h2>
-				<OutputAssessmentOfTheRiskOfBias
 					v-if="outputOptions[8].include"
-					:data="riskOfBias"
+					:data="extraction"
 					:key="monitorChange + 8"
 				/>
-				<h2>Data analysis</h2>
-				<OutputMeasurementOfEffect
+				<h2>Assessment of the RoB</h2>
+				<OutputAssessmentOfTheRiskOfBias
 					v-if="outputOptions[9].include"
-					:data="measurementOfEffect"
+					:data="riskOfBias"
 					:key="monitorChange + 9"
 				/>
-
-				<OutputUnitOfAnalysis
+				<h2>Measurement of effect</h2>
+				<OutputMeasurementOfEffect
 					v-if="outputOptions[10].include"
-					:data="unitOfAnalysis"
+					:data="measurementOfEffect"
 					:key="monitorChange + 10"
 				/>
-
-				<OutputDealingWithMissingData
+				<h2>Unit of analysis</h2>
+				<OutputUnitOfAnalysis
 					v-if="outputOptions[11].include"
-					:data="missingData"
+					:data="unitOfAnalysis"
 					:key="monitorChange + 11"
 				/>
-
-				<OutputHeterogeneityPublicationBias
+				<h2>Dealing with missing data</h2>
+				<OutputDealingWithMissingData
 					v-if="outputOptions[12].include"
-					:data="heterogeneityPublicationBiases"
+					:data="missingData"
 					:key="monitorChange + 12"
 				/>
-
-				<OutputSubgroupAndSensitivityAnalysis
+				<h2>Assessment of heterogeneity and publication biases</h2>
+				<OutputHeterogeneityPublicationBias
 					v-if="outputOptions[13].include"
-					:data="subgroupAndSensitivityAnalysis"
+					:data="heterogeneityPublicationBiases"
 					:key="monitorChange + 13"
+				/>
+				<h2>Subgroup and sensitivity analysis</h2>
+				<OutputSubgroupAndSensitivityAnalysis
+					v-if="outputOptions[14].include"
+					:data="subgroupAndSensitivityAnalysis"
+					:key="monitorChange + 14"
 				/>
 				<h1>Appendix</h1>
 				<OutputSearchDatabasesAppendix
-					v-if="outputOptions[2].include"
-					:data="search"
-					:key="monitorChange + 14"
-				/>
-				<OutputSearchRegistriesAppendix
 					v-if="outputOptions[3].include"
 					:data="search"
 					:key="monitorChange + 15"
+				/>
+				<OutputSearchRegistriesAppendix
+					v-if="outputOptions[4].include"
+					:data="search"
+					:key="monitorChange + 16"
 				/>
 			</div>
 			<template #footer>
@@ -147,19 +153,21 @@ import OutputUnitOfAnalysis from "./OutputUnitOfAnalysis.vue";
 import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
 import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
+import OutputIntroduction from "./OutputIntroduction.vue";
 
-import CopyMixin from "@/mixins/CopyMixin.js";
+import CopyMixin from "../mixins/CopyMixin.js";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Checkbox from "primevue/checkbox";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearch",
 	mixins: [
 		CopyMixin,
+		deepstreamMixin("introduction"),
 		deepstreamMixin("picot"),
 		deepstreamMixin("search"),
 		deepstreamMixin("screening"),
@@ -176,6 +184,7 @@ export default {
 		Dialog,
 		Checkbox,
 		OutputPicot,
+		OutputIntroduction,
 		OutputSearch,
 		OutputSearchDatabases,
 		OutputSearchDatabasesAppendix,
@@ -196,13 +205,14 @@ export default {
 		return {
 			monitorChange: 0,
 			outputOptions: [
+				{ label: "Introduction", include: true },
 				{ label: "PICOT", include: true },
 				{ label: "Search Strategy", include: true },
 				{ label: "Search Strings for Bibliographic Databases", include: true },
 				{ label: "Search Strings for Trial Registries", include: true },
 				{ label: "Restrictions on Publication Type", include: true },
 				{ label: "Supplementary Methods", include: true },
-				{ label: "Study Screening and Selection", include: true },
+				{ label: "Study Selection and Screening", include: true },
 				{ label: "Data Extraction", include: true },
 				{ label: "Assessment of the Risk of Bias", include: true },
 				{ label: "Measurment of Effect", include: true },

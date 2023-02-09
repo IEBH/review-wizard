@@ -3,6 +3,20 @@
 		<h1>Search Strategy</h1>
 
 		<InputSelectMulti
+			question="Who designed and ran the search strategy?"
+			:value="search.designSearchStrategyAuthors"
+			@input="updateField('designSearchStrategyAuthors', $event)"
+			:options="this.dsSearchStrategyAuthors"
+		/>
+
+		<InputSelectMulti
+			question="Who deduplicated the results?"
+			:value="search.deduplicateResultsAuthors"
+			@input="updateField('deduplicateResultsAuthors', $event)"
+			:options="this.dsSearchStrategyAuthors"
+		/>
+
+		<InputSelectMulti
 			question="Which of the following components went into your search string"
 			:options="componentsOptions"
 			:value="search.components"
@@ -30,27 +44,31 @@
 			@input="updateField('peerReviewer', $event)"
 		/>
 
-		<InputSelectMulti
-			question="Did you use any automation tools during the search process"
-			:options="searchAutomationOptions"
-			:value="search.searchAutomationTools"
-			@input="updateField('searchAutomationTools', $event)"
-		/>
-
-		<BasePreviewOutput :component="outputComponent" :data="search" />
+		<PreviewOutput :component="outputComponent" :data="search" />
 	</div>
 </template>
 
 <script>
 import OutputSearch from "./OutputSearch.vue";
+import PreviewOutput from "./PreviewOutput.vue";
+import InputSelectMulti from "./InputSelectMulti.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+import deepstreamMixin from "../mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearch",
-	mixins: [deepstreamMixin("search")],
+	mixins: [
+		deepstreamMixin("researchplan"),
+		deepstreamMixin("titlepage"),
+		deepstreamMixin("search")
+	],
+	components: {
+		InputSelectMulti,
+		PreviewOutput
+	},
 	data() {
 		return {
+			dsSearchStrategyAuthors: [],
 			componentsOptions: [
 				{ label: "MeSH or other subject terms" },
 				{ label: "Synonyms" },
@@ -62,30 +80,22 @@ export default {
 				{ label: "Information Specialist" },
 				{ label: "Cochrane Information Specialist" }
 			],
-			searchAutomationOptions: [
-				{
-					label: "Word Frequency Analyser",
-					url: "https://pubmed.ncbi.nlm.nih.gov/32004673/"
-				},
-				{
-					label: "Polyglot Search Translator",
-					url: "https://pubmed.ncbi.nlm.nih.gov/32256231/"
-				},
-				{
-					label: "SearchRefinery",
-					url: "https://dl.acm.org/doi/abs/10.1145/3269206.3269215/"
-				},
-				{
-					label: "The Deduplicator",
-					url: "https://pubmed.ncbi.nlm.nih.gov/32004673/"
-				},
-				{
-					label: "The Systematic Review Accelerator",
-					url: "https://pubmed.ncbi.nlm.nih.gov/32004673/"
-				}
-			],
 			outputComponent: OutputSearch
 		};
+	},
+	mounted() {
+		this.dsSearchStrategyAuthors = this.titlepage.authors.map(el => {
+			return { label: el };
+		});
+		//--6,7,8 rows in rs-plan table share the same people involved
+		this.researchplan.planTable.rows.forEach(el => {
+			if (
+				el.tasks == "6. Design systematic search strategy" &&
+				el.peopleInvolved != ""
+			) {
+				this.dsSearchStrategyAuthors = el.peopleInvolved;
+			}
+		});
 	}
 };
 </script>
