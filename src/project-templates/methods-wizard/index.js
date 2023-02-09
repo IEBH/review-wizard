@@ -394,9 +394,7 @@ const data = {
 					tasks: "19. GRADE evidence",
 					toolDescription:
 						"Optional: rate the certainty of evidence for a treatment efficacy from high to very low",
-					toolLink: [
-						{ name: "Grade Pro", link: "https://www.gradepro.org/" }
-					],
+					toolLink: [{ name: "Grade Pro", link: "https://www.gradepro.org/" }],
 					peopleInvolved: "",
 					notes: ""
 				},
