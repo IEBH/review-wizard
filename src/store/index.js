@@ -8,7 +8,11 @@ import projectTemplateImport from "@/helpers/projectTemplateImport.js";
 const getDefaultState = () => ({
 	projectId: null,
 	methodId: null,
-	client: new DeepstreamClient("data.sr-accelerator.com:6020"),
+	client: new DeepstreamClient(
+		process.env.NODE_ENV === "development"
+			? "wss://data.sr-accelerator.com:6020"
+			: "data.sr-accelerator.com:6020"
+	),
 	projectRecord: null,
 	methodsRecord: null
 });
