@@ -16,16 +16,16 @@
 			@input="updateField('supplementoryMethods', $event)"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="search" />
+		<BasePreviewOutput :component="outputComponent" :data="search" />
 	</div>
 </template>
 
 <script>
 import OutputSearchSupplementoryMethods from "./OutputSearchSupplementoryMethods.vue";
-import PreviewOutput from "./PreviewOutput.vue";
-import InputSelectMulti from "./InputSelectMulti.vue";
+import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
+import InputSelectMulti from "@/components/InputSelectMulti.vue";
 
-import deepstreamMixin from "../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchDatabases",
@@ -36,7 +36,7 @@ export default {
 	],
 	components: {
 		InputSelectMulti,
-		PreviewOutput
+		BasePreviewOutput
 	},
 	data() {
 		return {

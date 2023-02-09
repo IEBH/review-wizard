@@ -94,18 +94,18 @@
 			@input="updateField('isExcludedFullTextInAppendix', $event)"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="screening" />
+		<BasePreviewOutput :component="outputComponent" :data="screening" />
 	</div>
 </template>
 
 <script>
 import OutputScreening from "./OutputScreening.vue";
-import PreviewOutput from "./PreviewOutput.vue";
-import InputSelectDropdown from "./InputSelectDropdown.vue";
-import InputSelectMulti from "./InputSelectMulti.vue";
-import InputSelectYesNo from "./InputSelectYesNo.vue";
+import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
+import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
+import InputSelectMulti from "@/components/InputSelectMulti.vue";
+import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
-import deepstreamMixin from "../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodScreening",
@@ -118,7 +118,7 @@ export default {
 		InputSelectDropdown,
 		InputSelectMulti,
 		InputSelectYesNo,
-		PreviewOutput
+		BasePreviewOutput
 	},
 	data() {
 		return {

@@ -171,7 +171,7 @@ import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
 
 import * as XLSX from "xlsx";
-import InputAutoComplete from "./InputAutoComplete.vue";
+import InputAutoComplete from "@/components/InputAutoComplete.vue";
 import InputSrMenubar from "../components/InputSrMenubar.vue";
 export default {
 	name: "InputSrTable",

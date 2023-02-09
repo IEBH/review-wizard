@@ -18,9 +18,9 @@
 	</div>
 </template>
 <script>
-import InputTextSingleLineMulti from "./InputTextSingleLineMulti.vue";
+import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
 
-import deepstreamMixin from "../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 export default {
 	name: "ViewTitlePagePeople",
 	mixins: [deepstreamMixin("titlepage")],

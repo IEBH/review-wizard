@@ -11,7 +11,7 @@
 <script>
 import deepstreamMixin from "@/mixins/DeepstreamMixin";
 import OutputIntroduction from "./OutputIntroduction.vue";
-import InputEditorMultiline from "./InputEditorMultiline.vue";
+import InputEditorMultiline from "@/components/InputEditorMultiline.vue";
 
 export default {
 	mixins: [deepstreamMixin("introduction")],

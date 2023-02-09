@@ -29,18 +29,18 @@
 			@input="updateField('toolUsed', $event)"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="riskOfBias" />
+		<BasePreviewOutput :component="outputComponent" :data="riskOfBias" />
 	</div>
 </template>
 
 <script>
 import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
-import PreviewOutput from "./PreviewOutput.vue";
-import InputSelectDropdown from "./InputSelectDropdown.vue";
-import InputSelectYesNo from "./InputSelectYesNo.vue";
-import InputSelectMulti from "./InputSelectMulti.vue";
+import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
+import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
+import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
+import InputSelectMulti from "@/components/InputSelectMulti.vue";
 
-import deepstreamMixin from "../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodAssessmentOfTheRiskOfBias",
@@ -53,7 +53,7 @@ export default {
 		InputSelectDropdown,
 		InputSelectYesNo,
 		InputSelectMulti,
-		PreviewOutput
+		BasePreviewOutput
 	},
 	data() {
 		return {

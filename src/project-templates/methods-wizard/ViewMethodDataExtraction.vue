@@ -113,7 +113,7 @@
 			</AccordionTab>
 		</Accordion>
 
-		<PreviewOutput :component="outputComponent" :data="extraction" />
+		<BasePreviewOutput :component="outputComponent" :data="extraction" />
 	</div>
 </template>
 
@@ -126,14 +126,14 @@ import AccordionTab from "primevue/accordiontab";
 import Message from "primevue/message";
 import Button from "primevue/button";
 
-import PreviewOutput from "./PreviewOutput.vue";
+import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import OutputDataExtraction from "./OutputDataExtraction.vue";
-import InputSelectDropdown from "./InputSelectDropdown.vue";
-import InputSelectMulti from "./InputSelectMulti.vue";
-import InputTable from "./InputTable.vue";
-import InputSelectYesNo from "./InputSelectYesNo.vue";
+import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
+import InputSelectMulti from "@/components/InputSelectMulti.vue";
+import InputTable from "@/components/InputTable.vue";
+import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
-import deepstreamMixin from "../mixins/DeepstreamMixin";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodDataExtraction",
@@ -151,7 +151,7 @@ export default {
 		InputSelectDropdown,
 		InputSelectMulti,
 		InputTable,
-		PreviewOutput,
+		BasePreviewOutput,
 		InputSelectYesNo
 	},
 	methods: {
