@@ -1,16 +1,16 @@
+//import ViewMethodSearch from "./ViewMethodSearch.vue";
+//import ViewMethodSearchDatabses from "./ViewMethodSearchDatabases.vue";
+//import ViewMethodSearchRegistries from "./ViewMethodSearchRegistries.vue";
+//import ViewMethodSearchPublicationType from "./ViewMethodSearchPublicationType.vue";
+//import ViewMethodSearchSupplementoryMethods from "./ViewMethodSearchSupplementoryMethods.vue";
+//import ViewMethodHeterogeneityPublicationBias from "./ViewMethodHeterogeneityPublicationBias.vue";
 import ViewMethodPicot from "./ViewMethodPicot.vue";
-import ViewMethodSearch from "./ViewMethodSearch.vue";
-import ViewMethodSearchDatabses from "./ViewMethodSearchDatabases.vue";
-import ViewMethodSearchRegistries from "./ViewMethodSearchRegistries.vue";
-import ViewMethodSearchPublicationType from "./ViewMethodSearchPublicationType.vue";
-import ViewMethodSearchSupplementoryMethods from "./ViewMethodSearchSupplementoryMethods.vue";
 import ViewMethodScreening from "./ViewMethodScreening.vue";
 import ViewMethodDataExtraction from "./ViewMethodDataExtraction.vue";
 import ViewMethodAssessmentOfTheRiskOfBias from "./ViewMethodAssessmentOfTheRiskOfBias.vue";
 import ViewMethodMeasurementOfEffect from "./ViewMethodMeasurementOfEffect.vue";
 import ViewMethodUnitOfAnalysis from "./ViewMethodUnitOfAnalysis.vue";
 import ViewMethodDealingWithMissingData from "./ViewMethodDealingWithMissingData.vue";
-import ViewMethodHeterogeneityPublicationBias from "./ViewMethodHeterogeneityPublicationBias.vue";
 import ViewMethodSubgroupAndSensitivityAnalysis from "./ViewMethodSubgroupAndSensitivityAnalysis.vue";
 import ViewTitlepage from "./ViewTitlepage.vue";
 import ViewHome from "./ViewHome.vue";
@@ -18,6 +18,11 @@ import ViewOutput from "./ViewOutput.vue";
 import ViewMethodIntroduction from "./ViewMethodIntroduction.vue";
 import ViewMethodResearchPlan from "./ViewMethodResearchPlan.vue";
 import ViewTitlePagePeople from "./ViewTitlePagePeople";
+//new add
+import ViewMethodSearchStrategy from "./ViewMethodSearchStrategy.vue";
+import ViewMethodSearchStrings from "./ViewMethodSearchStrings.vue";
+import ViewMethodHeterogeneity from "./ViewMethodHeterogeneity.vue";
+import ViewMethodPublicationBiases from "./ViewMethodPublicationBiases.vue";
 
 // The path for deepstream, where the bulk of the information is kept (e.g. `methods/${projectId}`)
 const deepstreamPath = "methods";
@@ -28,45 +33,40 @@ const routes = [
 	{ path: "/:projectId", component: ViewHome },
 	{
 		name: "titlepage",
-		path: "/:projectId/titlepage",
+		path: "/:projectId/planning/titlepage",
 		component: ViewTitlepage
 	},
 	{
 		name: "people",
-		path: "/:projectId/titlepage/people",
+		path: "/:projectId/planning/people",
 		component: ViewTitlePagePeople
 	},
 	{
-		name: "introduction",
-		path: "/:projectId/method/introduction",
-		component: ViewMethodIntroduction
+		name: "rs-plan",
+		path: "/:projectId/planning/rs-plan",
+		component: ViewMethodResearchPlan
 	},
 	{
-		name: "rs-plan",
-		path: "/:projectId/method/rs-plan",
-		component: ViewMethodResearchPlan
+		name: "introduction",
+		path: "/:projectId/introduction",
+		component: ViewMethodIntroduction
 	},
 	{
 		name: "picot",
 		path: "/:projectId/method/picot",
 		component: ViewMethodPicot
 	},
-	{ path: "/:projectId/method/search", component: ViewMethodSearch },
+	//Integrate page: Search Strategy - Search Strategy + Restrictions... + Supplementary...
 	{
-		path: "/:projectId/method/search/bibliographic-databases",
-		component: ViewMethodSearchDatabses
+		name: "search-strategy",
+		path: "/:projectId/method/search-strategy",
+		component: ViewMethodSearchStrategy
 	},
+	//Integrate page: Search Strings - Search Strings + Search Databases
 	{
-		path: "/:projectId/method/search/trial-registries",
-		component: ViewMethodSearchRegistries
-	},
-	{
-		path: "/:projectId/method/search/publication-type",
-		component: ViewMethodSearchPublicationType
-	},
-	{
-		path: "/:projectId/method/search/supplementory-methods",
-		component: ViewMethodSearchSupplementoryMethods
+		name: "search-str",
+		path: "/:projectId/method/search-str",
+		component: ViewMethodSearchStrings
 	},
 	{ path: "/:projectId/method/screening", component: ViewMethodScreening },
 	{
@@ -89,18 +89,35 @@ const routes = [
 		path: "/:projectId/method/missing-data",
 		component: ViewMethodDealingWithMissingData
 	},
+	//Split from Heterogeneity + Publication Bias
 	{
-		path: "/:projectId/method/heterogeneity-publication-biases",
-		component: ViewMethodHeterogeneityPublicationBias
+		name: "Heterogeneity",
+		path: "/:projectId/method/heterogeneity",
+		component: ViewMethodHeterogeneity
+	},
+	{
+		name: "Publication Bias",
+		path: "/:projectId/method/publication-biases",
+		component: ViewMethodPublicationBiases
 	},
 	{
 		path: "/:projectId/method/subgroup-sensitivity-analysis",
 		component: ViewMethodSubgroupAndSensitivityAnalysis
 	},
 	{
-		path: "/:projectId/output",
+		name: "rs-plan",
+		path: "/:projectId/reports/rs-plan",
+		component: ViewMethodResearchPlan
+	},
+	{
+		name: "output",
+		path: "/:projectId/reports/output",
 		component: ViewOutput
 	}
+	/*{
+		path: "/:projectId/output",
+		component: ViewOutput
+	}*/
 ];
 
 // The data required for the project
@@ -620,37 +637,38 @@ const data = {
 const getMenu = projectId => [
 	{
 		header: true,
-		title: "Methods-Wizard",
+		title: "PLANNING",
 		hiddenOnCollapse: true
 	},
 	{
 		title: "Title Page",
 		icon: "pi pi-file",
-		child: [
-			{
-				href: `/${projectId}/titlepage`,
-				title: "Title page"
-			},
-			{
-				href: `/${projectId}/titlepage/people`,
-				title: "People"
-			}
-		]
+		href: `/${projectId}/planning/titlepage`
+	},
+	{
+		title: "People",
+		icon: "pi pi-file",
+		href: `/${projectId}/planning/people`
+	},
+	{
+		title: "Research Plan",
+		icon: "pi pi-list",
+		href: `/${projectId}/planning/rs-plan`
 	},
 	{
 		header: true,
-		title: "Method",
+		title: "INTRODUCTION",
 		hiddenOnCollapse: true
 	},
 	{
 		title: "Introduction",
 		icon: "pi pi-pencil",
-		href: `/${projectId}/method/introduction`
+		href: `/${projectId}/introduction`
 	},
 	{
-		title: "Research Plan",
-		icon: "pi pi-list",
-		href: `/${projectId}/method/rs-plan`
+		header: true,
+		title: "METHODS",
+		hiddenOnCollapse: true
 	},
 	{
 		title: "Eligibility Criteria (PICOST)",
@@ -658,33 +676,17 @@ const getMenu = projectId => [
 		href: `/${projectId}/method/picot`
 	},
 	{
-		title: "Search",
+		title: "Search Strategy",
 		icon: "pi pi-search",
-		child: [
-			{
-				href: `/${projectId}/method/search`,
-				title: "Search Strategy"
-			},
-			{
-				href: `/${projectId}/method/search/bibliographic-databases`,
-				title: "Search Strings for Databases"
-			},
-			{
-				href: `/${projectId}/method/search/trial-registries`,
-				title: "Search Strings for Trial Registries"
-			},
-			{
-				href: `/${projectId}/method/search/publication-type`,
-				title: "Restrictions on Publication Type"
-			},
-			{
-				href: `/${projectId}/method/search/supplementory-methods`,
-				title: "Supplementary Searches"
-			}
-		]
+		href: `/${projectId}/method/search-strategy`
 	},
 	{
-		title: "Study Selection and Screening",
+		title: "Search Strings",
+		icon: "pi pi-search",
+		href: `/${projectId}/method/search-str`
+	},
+	{
+		title: "Study Screening",
 		icon: "pi pi-check",
 		href: `/${projectId}/method/screening`
 	},
@@ -709,29 +711,39 @@ const getMenu = projectId => [
 		href: `/${projectId}/method/unit-of-analysis`
 	},
 	{
-		title: "Dealing with Missing Data",
+		title: "Missing Data Strategy",
 		icon: "pi pi-question",
 		href: `/${projectId}/method/missing-data`
 	},
 	{
-		title: "Heterogeneity/Publication Bias",
+		title: "Heterogeneity",
 		icon: "pi pi-users",
-		href: `/${projectId}/method/heterogeneity-publication-biases`
+		href: `/${projectId}/method/heterogeneity`
 	},
 	{
-		title: "Subgroup and Sensitivity Analysis",
+		title: "Publication Bias",
+		icon: "pi pi-users",
+		href: `/${projectId}/method/publication-biases`
+	},
+	{
+		title: "Subgroup Analysis",
 		icon: "pi pi-chart-line",
 		href: `/${projectId}/method/subgroup-sensitivity-analysis`
 	},
 	{
 		header: true,
-		title: "Output",
+		title: "REPORTS",
 		hiddenOnCollapse: true
 	},
 	{
-		title: "Output",
+		title: "Research Plan",
+		icon: "pi pi-list",
+		href: `/${projectId}/reports/rs-plan`
+	},
+	{
+		title: "Methods Section",
 		icon: "pi pi-download",
-		href: `/${projectId}/output`
+		href: `/${projectId}/reports/output`
 	}
 ];
 
