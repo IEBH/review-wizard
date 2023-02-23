@@ -174,7 +174,8 @@ export default {
 			outputComponent: OutputSearchStrategy
 		};
 	},
-	mounted() {
+	async mounted() {
+		await this.dataReady;
 		//Search Strategy
 		this.dsSearchStrategyAuthors = this.titlepage.authors.map(el => {
 			return { label: el };

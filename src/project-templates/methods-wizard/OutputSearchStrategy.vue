@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p>
+		<p v-if="data.components">
 			<span v-if="data.components.length">
 				The following components were included in the search string:
 				{{ joinArrayWithAnd(formatSelectMulti(data.components)).toLowerCase() }}
