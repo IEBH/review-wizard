@@ -51,7 +51,8 @@ export default {
 			}
 		}
 	},
-	mounted() {
+	async mounted() {
+		await this.dataReady;
 		//--all people(authors and acknowledgements) involved
 		this.authorsArr = this.titlepage.authors;
 		this.titlepage.authors.forEach(el => {

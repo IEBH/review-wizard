@@ -24,7 +24,7 @@
 				/>
 			</b>
 		</p>
-		<table class="p-fluid" style="width:100%;">
+		<table class="p-fluid" style="width:100%;" v-if="value">
 			<thead class="p-fluid-thead">
 				<tr>
 					<th v-for="(thead, index) in value.headers" :key="index">
