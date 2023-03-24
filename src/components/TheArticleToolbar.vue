@@ -31,8 +31,8 @@
 		>
 			<p>Copy the link below to send to others:</p>
 			<Toolbar>
-				<template slot="left">{{ shareUrl }}</template>
-				<template slot="right">
+				<template #start>{{ shareUrl }}</template>
+				<template #end>
 					<Button icon="pi pi-copy" @click="copyLink" />
 				</template>
 			</Toolbar>
@@ -49,8 +49,8 @@
 		>
 			<p>Warning: save the below link to ensure progress is not lost</p>
 			<Toolbar>
-				<template slot="left">{{ shareUrl }}</template>
-				<template slot="right">
+				<template #start>{{ shareUrl }}</template>
+				<template #end>
 					<Button icon="pi pi-copy" @click="copyLink" />
 				</template>
 			</Toolbar>
