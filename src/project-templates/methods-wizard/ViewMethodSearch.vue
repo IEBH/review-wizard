@@ -83,7 +83,8 @@ export default {
 			outputComponent: OutputSearch
 		};
 	},
-	mounted() {
+	async mounted() {
+		await this.dataReady;
 		this.dsSearchStrategyAuthors = this.titlepage.authors.map(el => {
 			return { label: el };
 		});
