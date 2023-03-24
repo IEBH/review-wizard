@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Toolbar>
-			<template slot="left">
+			<template #start>
 				<b>
 					{{ titlepage.title ? titlepage.title : "Untitled Methods Section" }}
 				</b>
@@ -11,7 +11,7 @@
 					:year="titlepage.year"
 				/>
 			</template>
-			<template slot="right">
+			<template #end>
 				<Button
 					label="Share"
 					@click="openModal()"
