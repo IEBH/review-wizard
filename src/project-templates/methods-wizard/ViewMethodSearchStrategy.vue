@@ -119,10 +119,16 @@ export default {
 		InputSelectYesNo
 		//Supplementary Searches
 	},
+	computed: {
+		dsSearchStrategyAuthors() {
+			return this.titlepage.authors?.map(el => {
+				return { label: el };
+			});
+		}
+	},
 	data() {
 		return {
 			//Search Strategy
-			dsSearchStrategyAuthors: [],
 			componentsOptions: [
 				{ label: "MeSH or other subject terms" },
 				{ label: "Synonyms" },
@@ -177,10 +183,6 @@ export default {
 	async mounted() {
 		await this.dataReady;
 		//Search Strategy
-		this.dsSearchStrategyAuthors = this.titlepage.authors.map(el => {
-			return { label: el };
-		});
-		//--6,7,8 rows in rs-plan
 		this.researchplan.planTable.rows.forEach(el => {
 			if (
 				el.tasks == "6. Design systematic search strategy" &&
