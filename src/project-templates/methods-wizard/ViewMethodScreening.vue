@@ -120,14 +120,88 @@ export default {
 		InputSelectYesNo,
 		BasePreviewOutput
 	},
+	computed: {
+		scTrialRegisPeople() {
+			let da = this.titlepage.authors?.map(el => {
+				return { label: el };
+			});
+			this.researchplan.planTable?.rows.forEach(el => {
+				if (
+					el.tasks == "12. Screen trial registries" &&
+					el.peopleInvolved != ""
+				) {
+					da = el.peopleInvolved;
+				}
+			});
+			return da;
+		},
+		csSearchPeople() {
+			let da = this.titlepage.authors?.map(el => {
+				return { label: el };
+			});
+			this.researchplan.planTable?.rows.forEach(el => {
+				if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
+					da = el.peopleInvolved;
+				}
+			});
+			return da;
+		},
+		scCitSearchPeople() {
+			let da = this.titlepage.authors?.map(el => {
+				return { label: el };
+			});
+			this.researchplan.planTable?.rows.forEach(el => {
+				if (
+					el.tasks == "14. Screen citation analysis" &&
+					el.peopleInvolved != ""
+				) {
+					da = el.peopleInvolved;
+				}
+			});
+			return da;
+		},
+		scabstractAuthors() {
+			let da = this.titlepage.authors?.map(el => {
+				return { label: el };
+			});
+			this.researchplan.planTable?.rows.forEach(el => {
+				if (el.tasks == "9. Screen abstracts" && el.peopleInvolved != "") {
+					da = el.peopleInvolved;
+				}
+			});
+			return da;
+		},
+		scfulltextAuthors() {
+			let da = this.titlepage.authors?.map(el => {
+				return { label: el };
+			});
+			this.researchplan.planTable?.rows.forEach(el => {
+				if (el.tasks == "11. Screen full text" && el.peopleInvolved != "") {
+					da = el.peopleInvolved;
+				}
+			});
+			return da;
+		},
+		retrfulltextAuthors() {
+			let da = this.titlepage.authors?.map(el => {
+				return { label: el };
+			});
+			this.researchplan.planTable?.rows.forEach(el => {
+				if (el.tasks == "10. Obtain full text" && el.peopleInvolved != "") {
+					da = el.peopleInvolved;
+				}
+			});
+			return da;
+		}
+	},
 	data() {
 		return {
-			scabstractAuthors: [], //--screen abstract authors
-			retrfulltextAuthors: [], //--retrieved full-text authors
-			scfulltextAuthors: [], //--screen full-text authors
-			scTrialRegisPeople: [], //--screen trial registries
-			scCitSearchPeople: [], //-- screen citation search
-			csSearchPeople: [], //-- screec supplenmentry search
+			//scabstractAuthors: [], //--screen abstract authors
+			//retrfulltextAuthors: [], //--retrieved full-text authors
+			//scfulltextAuthors: [], //--screen full-text authors
+			//scTrialRegisPeople: [], //--screen trial registries
+			//scCitSearchPeople: [], //-- screen citation search
+			//csSearchPeople: [], //-- screec supplenmentry search
 			numberOptions: ["2", "3", "4", "5", "6"],
 			disputeResolutionOptions: [
 				{ label: "By consensus" },
@@ -135,40 +209,6 @@ export default {
 			],
 			outputComponent: OutputScreening
 		};
-	},
-	mounted() {
-		this.scTrialRegisPeople = this.csSearchPeople = this.scCitSearchPeople = this.scabstractAuthors = this.scfulltextAuthors = this.retrfulltextAuthors = this.titlepage.authors.map(
-			el => {
-				return { label: el };
-			}
-		);
-		//this.retrfulltextAuthors = this.titlepage.authors;
-		this.researchplan.planTable.rows.forEach(el => {
-			if (
-				el.tasks == "12. Screen trial registries" &&
-				el.peopleInvolved != ""
-			) {
-				this.scTrialRegisPeople = el.peopleInvolved;
-			}
-			if (el.tasks == "9. Screen abstracts" && el.peopleInvolved != "") {
-				this.scabstractAuthors = el.peopleInvolved;
-			}
-			if (el.tasks == "10. Obtain full text" && el.peopleInvolved != "") {
-				this.retrfulltextAuthors = el.peopleInvolved;
-			}
-			if (el.tasks == "11. Screen full text" && el.peopleInvolved != "") {
-				this.scfulltextAuthors = el.peopleInvolved;
-			}
-			if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
-				this.csSearchPeople = el.peopleInvolved;
-			}
-			if (
-				el.tasks == "14. Screen citation analysis" &&
-				el.peopleInvolved != ""
-			) {
-				this.scCitSearchPeople = el.peopleInvolved;
-			}
-		});
 	}
 };
 </script>

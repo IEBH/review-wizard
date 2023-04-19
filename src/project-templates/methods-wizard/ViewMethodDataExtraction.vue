@@ -154,6 +154,19 @@ export default {
 		BasePreviewOutput,
 		InputSelectYesNo
 	},
+	computed: {
+		pfDataExtractAuthors() {
+			let da = this.titlepage.authors?.map(el => {
+				return { label: el };
+			});
+			this.researchplan.planTable?.rows.forEach(el => {
+				if (el.tasks == "15. Extract data" && el.peopleInvolved != "") {
+					da = el.peopleInvolved;
+				}
+			});
+			return da;
+		}
+	},
 	methods: {
 		compareLabel(a, b) {
 			if (a.label < b.label) {
@@ -208,18 +221,10 @@ export default {
 			// Shallow copy
 			this.extraction.types = [...this.picot.types];
 		}
-		this.pfDataExtractAuthors = this.titlepage.authors.map(el => {
-			return { label: el };
-		});
-		this.researchplan.planTable.rows.forEach(el => {
-			if (el.tasks == "15. Extract data" && el.peopleInvolved != "") {
-				this.pfDataExtractAuthors = el.peopleInvolved;
-			}
-		});
 	},
 	data() {
 		return {
-			pfDataExtractAuthors: [], //--perform data extraction authors
+			//pfDataExtractAuthors: [], //--perform data extraction authors
 			numberOptions: ["1", "2", "3", "4", "5", "6"],
 			outputComponent: OutputDataExtraction,
 			options: {

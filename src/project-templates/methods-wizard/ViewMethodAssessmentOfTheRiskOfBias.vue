@@ -55,10 +55,26 @@ export default {
 		InputSelectMulti,
 		BasePreviewOutput
 	},
+	computed: {
+		asRobAuthors() {
+			let da = this.titlepage.authors?.map(el => {
+				return { label: el };
+			});
+			this.researchplan.planTable?.rows.forEach(el => {
+				if (
+					el.tasks == "16. Risk of Bias assessment" &&
+					el.peopleInvolved != ""
+				) {
+					da = el.peopleInvolved;
+				}
+			});
+			return da;
+		}
+	},
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],
-			asRobAuthors: [], //--assessed the RoB
+			//asRobAuthors: [], //--assessed the RoB
 			outputComponent: OutputAssesmentOfTheRiskOfBias,
 			options: {
 				tools: [
@@ -76,19 +92,6 @@ export default {
 				]
 			}
 		};
-	},
-	mounted() {
-		this.asRobAuthors = this.titlepage.authors.map(el => {
-			return { label: el };
-		});
-		this.researchplan.planTable.rows.forEach(el => {
-			if (
-				el.tasks == "16. Risk of Bias assessment" &&
-				el.peopleInvolved != ""
-			) {
-				this.asRobAuthors = el.peopleInvolved;
-			}
-		});
 	}
 };
 </script>

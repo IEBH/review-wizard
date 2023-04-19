@@ -121,9 +121,29 @@ export default {
 	},
 	computed: {
 		dsSearchStrategyAuthors() {
-			return this.titlepage.authors?.map(el => {
+			let da = this.titlepage.authors?.map(el => {
 				return { label: el };
 			});
+			this.researchplan.planTable?.rows.forEach(el => {
+				if (
+					el.tasks == "6. Design systematic search strategy" &&
+					el.peopleInvolved != ""
+				) {
+					da = el.peopleInvolved;
+				}
+			});
+			return da;
+		},
+		csAuthors() {
+			let da = this.titlepage.authors?.map(el => {
+				return { label: el };
+			});
+			this.researchplan.planTable?.rows.forEach(el => {
+				if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
+					da = el.peopleInvolved;
+				}
+			});
+			return da;
 		}
 	},
 	data() {
@@ -165,7 +185,7 @@ export default {
 				{ label: "Swedish" }
 			],
 			//Supplementary Searches
-			csAuthors: [], //--conduct supplementary searches
+			//csAuthors: [], //--conduct supplementary searches
 			supplementoryMethodsOptions: [
 				// eslint-disable-next-line prettier/prettier
 				{
@@ -179,8 +199,8 @@ export default {
 
 			outputComponent: OutputSearchStrategy
 		};
-	},
-	async mounted() {
+	}
+	/*async mounted() {
 		await this.dataReady;
 		//Search Strategy
 		this.researchplan.planTable.rows.forEach(el => {
@@ -200,7 +220,7 @@ export default {
 				this.csAuthors = el.peopleInvolved;
 			}
 		});
-	}
+	}*/
 };
 </script>
 
