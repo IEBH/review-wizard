@@ -79,7 +79,6 @@
 		</template>
 
 		<PreviewOutput :component="outputComponent" :data="search" />
-		<PreviewOutput :component="outputComponentAppendix" :data="search" />
 	</div>
 </template>
 
@@ -92,7 +91,7 @@ import InputTextMultiSyntax from "@/components/InputTextMultiSyntax";
 //Search Strings for Trial Registries
 
 import OutputSearchStrings from "./OutputSearchStrings.vue";
-import OutputSearchStringsAppendix from "./OutputSearchStringsAppendix.vue";
+//import OutputSearchStringsAppendix from "./OutputSearchStringsAppendix.vue";
 //import OutputSearchRegistries from "./OutputSearchRegistries.vue";
 //import OutputSearchRegistriesAppendix from "./OutputSearchRegistriesAppendix.vue";
 //import OutputSearchDatabases from "./OutputSearchDatabases.vue";
@@ -170,7 +169,7 @@ export default {
 				{ label: "Cochrane CENTRAL", string: "" }
 			],
 			outputComponent: OutputSearchStrings,
-			outputComponentAppendix: OutputSearchStringsAppendix,
+			//outputComponentAppendix: OutputSearchStringsAppendix,
 			placeholder1: "e.g. Acne AND Phototherapy OR Acne AND Light",
 			placeholder2: `e.g.("Acne Vulgaris"[Mesh] OR Acne[tiab] OR Blackheads[tiab] OR Whiteheads[tiab] OR Pimples[tiab]) AND ("Phototherapy"[Mesh] OR "Blue light"[tiab] OR Phototherapy[tiab] OR Phototherapies[tiab] OR "Photoradiation therapy"[tiab] OR "Photoradiation Therapies"[tiab] OR "Light Therapy"[tiab] OR "Light Therapies"[tiab]) AND (Randomized controlled trial[pt] OR controlled clinical trial[pt] OR randomized[tiab] OR randomised[tiab] OR placebo[tiab] OR "drug therapy"[sh] OR randomly[tiab] OR trial[tiab] OR groups[tiab]) NOT (Animals[Mesh] not (Animals[Mesh] and Humans[Mesh]))`
 		};

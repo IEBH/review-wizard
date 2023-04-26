@@ -25,6 +25,11 @@
 			</span>
 		</p>
 
+		<p>
+			{{ ` Authors (${designSearchStrategyAuthorsInitials}) ` }}
+			designed and ran the statergy.
+		</p>
+
 		<p
 			v-if="!data.isRestrictedByPublicationType && !data.isRestrictedByLanguage"
 		>
@@ -61,12 +66,22 @@
 		</p>
 
 		<p>
+			{{ ` Authors (${deduplicateResultsAuthorsInitials}) ` }}
+			deduplicated the results.
+		</p>
+
+		<p>
 			{{ selectRandom(["We also ", "Additionaly, we"]) }}
 			{{
 				joinArrayWithAnd(
 					formatSelectMulti(data.supplementoryMethods)
 				).toLowerCase()
 			}}
+		</p>
+
+		<p>
+			{{ ` Authors (${conductSSearchAuthorsInitials}) ` }}
+			conducted the supplementary searches.
 		</p>
 	</div>
 </template>
@@ -78,6 +93,23 @@ export default {
 	mixins: [OutputMixin],
 	props: {
 		data: Object
+	},
+	computed: {
+		designSearchStrategyAuthorsInitials: function() {
+			return this.formatSelectMulti(this.data.designSearchStrategyAuthors)
+				.map(el => this.nameToInitials(el))
+				.join(", ");
+		},
+		deduplicateResultsAuthorsInitials: function() {
+			return this.formatSelectMulti(this.data.deduplicateResultsAuthors)
+				.map(el => this.nameToInitials(el))
+				.join(", ");
+		},
+		conductSSearchAuthorsInitials: function() {
+			return this.formatSelectMulti(this.data.conductSSearchAuthors)
+				.map(el => this.nameToInitials(el))
+				.join(", ");
+		}
 	}
 };
 </script>

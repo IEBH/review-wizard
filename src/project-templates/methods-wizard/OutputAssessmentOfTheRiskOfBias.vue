@@ -4,8 +4,9 @@
 			{{
 				selectRandom([
 					""
-						.concat(data.numberOfAuthors ? data.numberOfAuthors : "BLANK ")
+						.concat(`${numberOfAuthors}`)
 						.concat(" review authors")
+						.concat(` (${assessedRobAuthorsInitials}) `)
 						.concat(data.isIndependent ? " independently " : " ")
 						.concat("assessed the risk of bias for each study using the ")
 						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
@@ -13,8 +14,9 @@
 					"Risk of bias was assessed using the "
 						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
 						.concat(". ")
-						.concat(data.numberOfAuthors ? data.numberOfAuthors : "BLANK ")
+						.concat(`${numberOfAuthors}`)
 						.concat(" authors")
+						.concat(` (${assessedRobAuthorsInitials}) `)
 						.concat(data.isIndependent ? " independently " : " ")
 						.concat("assessed risk of bias for each study.")
 				])
@@ -30,6 +32,16 @@ export default {
 	mixins: [OutputMixin],
 	props: {
 		data: Object
+	},
+	computed: {
+		assessedRobAuthorsInitials: function() {
+			return this.formatSelectMulti(this.data.assessedRobAuthors)
+				.map(el => this.nameToInitials(el))
+				.join(", ");
+		},
+		numberOfAuthors() {
+			return this.data.assessedRobAuthors?.length;
+		}
 	}
 };
 </script>

@@ -564,9 +564,9 @@ const data = {
 		supplementoryMethods: []
 	},
 	screening: {
-		isTrialRegistries: false,
+		//isTrialRegistries: false,
 		screenTrialRegisPeople: [],
-		conductSSearchPeople: [],
+		//conductSSearchPeople: [],
 		screenCitationSearchPeople: [],
 		numberOfTitleAbstractScreeners: null,
 		titleAbstractScreeners: [],
@@ -592,7 +592,7 @@ const data = {
 		types: []
 	},
 	riskOfBias: {
-		numberOfAuthors: null,
+		//numberOfAuthors: null,
 		assessedRobAuthors: [],
 		isIndependent: false,
 		toolUsed: []

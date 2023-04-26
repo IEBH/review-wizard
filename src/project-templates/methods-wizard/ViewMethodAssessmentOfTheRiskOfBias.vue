@@ -2,11 +2,9 @@
 	<div>
 		<h1>Assessment of the Risk of Bias</h1>
 
-		<InputSelectDropdown
-			question="How many review authors reviewed the risk of bias?"
-			:value="riskOfBias.numberOfAuthors"
-			@input="updateField('numberOfAuthors', $event)"
-			:options="numberOptions"
+		<InputTextNumber
+			question="The number of authors reviewed the risk of bias?"
+			:value="numberOfRiskOfBiasAuthors"
 		/>
 
 		<InputSelectMulti
@@ -36,7 +34,6 @@
 <script>
 import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
 import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
-import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 
@@ -50,7 +47,6 @@ export default {
 		deepstreamMixin("riskOfBias")
 	],
 	components: {
-		InputSelectDropdown,
 		InputSelectYesNo,
 		InputSelectMulti,
 		BasePreviewOutput
@@ -69,6 +65,9 @@ export default {
 				}
 			});
 			return da;
+		},
+		numberOfRiskOfBiasAuthors() {
+			return this.riskOfBias.assessedRobAuthors?.length;
 		}
 	},
 	data() {

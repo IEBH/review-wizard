@@ -2,33 +2,6 @@
 	<div>
 		<h1>Study Selection and Screening</h1>
 
-		<InputSelectYesNo
-			question="Did you search trial registries?"
-			:value="screening.isTrialRegistries"
-			@input="updateField('isTrialRegistries', $event)"
-		/>
-
-		<InputSelectMulti
-			question="Who conducted the supplementary searches?"
-			:value="screening.conductSSearchPeople"
-			@input="updateField('conductSSearchPeople', $event)"
-			:options="this.csSearchPeople"
-		/>
-
-		<InputSelectMulti
-			question="Who screened the citation search?"
-			:value="screening.screenCitationSearchPeople"
-			@input="updateField('screenCitationSearchPeople', $event)"
-			:options="this.scCitSearchPeople"
-		/>
-
-		<InputSelectMulti
-			question="Who screened trial registries?"
-			:value="screening.screenTrialRegisPeople"
-			@input="updateField('screenTrialRegisPeople', $event)"
-			:options="this.scTrialRegisPeople"
-		/>
-
 		<InputSelectDropdown
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
 			:value="screening.numberOfTitleAbstractScreeners"
@@ -72,6 +45,20 @@
 				})*/
 				this.scfulltextAuthors
 			"
+		/>
+
+		<InputSelectMulti
+			question="Who screened the citation search?"
+			:value="screening.screenCitationSearchPeople"
+			@input="updateField('screenCitationSearchPeople', $event)"
+			:options="this.scCitSearchPeople"
+		/>
+
+		<InputSelectMulti
+			question="Who screened trial registries?"
+			:value="screening.screenTrialRegisPeople"
+			@input="updateField('screenTrialRegisPeople', $event)"
+			:options="this.scTrialRegisPeople"
 		/>
 
 		<InputSelectMulti
@@ -130,17 +117,6 @@ export default {
 					el.tasks == "12. Screen trial registries" &&
 					el.peopleInvolved != ""
 				) {
-					da = el.peopleInvolved;
-				}
-			});
-			return da;
-		},
-		csSearchPeople() {
-			let da = this.titlepage.authors?.map(el => {
-				return { label: el };
-			});
-			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});
