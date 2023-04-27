@@ -85,6 +85,17 @@
 			}}
 		</p>
 		<p>
+			We used
+			{{
+				data.otherOutcomes
+					? joinArrayWithAnd(
+							formatSelectMulti(data.otherOutcomes)
+					  ).toLowerCase()
+					: "BLANK"
+			}}
+			to calculate treatement effect for other outcomes
+		</p>
+		<p>
 			{{
 				selectRandom([
 					"We undertook meta-analyses when "

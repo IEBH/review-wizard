@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
+import OutputHeterogeneity from "./OutputHeterogeneity.vue";
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
 //import InputSelectYesNo from "./InputSelectYesNo.vue";
@@ -53,7 +53,7 @@ export default {
 				"Other"
 			],
 			//publicationBiasOptions: ["Funnel plot", "Egger's test", "Other"],
-			outputComponent: OutputHeterogeneityPublicationBias
+			outputComponent: OutputHeterogeneity
 		};
 	}
 };
