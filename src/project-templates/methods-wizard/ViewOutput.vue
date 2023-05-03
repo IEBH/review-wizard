@@ -104,28 +104,34 @@
 					:data="missingData"
 					:key="monitorChange + 12"
 				/>
-				<h2>Assessment of heterogeneity and publication biases</h2>
-				<OutputHeterogeneityPublicationBias
+				<h2>Assessment of heterogeneity</h2>
+				<OutputHeterogeneity
 					v-if="outputOptions[13].include"
 					:data="heterogeneityPublicationBiases"
 					:key="monitorChange + 13"
 				/>
+				<h2>Assessment of publication biases</h2>
+				<OutputPublicationBias
+					v-if="outputOptions[14].include"
+					:data="heterogeneityPublicationBiases"
+					:key="monitorChange + 14"
+				/>
 				<h2>Subgroup and sensitivity analysis</h2>
 				<OutputSubgroupAndSensitivityAnalysis
-					v-if="outputOptions[14].include"
+					v-if="outputOptions[15].include"
 					:data="subgroupAndSensitivityAnalysis"
-					:key="monitorChange + 14"
+					:key="monitorChange + 15"
 				/>
 				<h1>Appendix</h1>
 				<OutputSearchDatabasesAppendix
 					v-if="outputOptions[3].include"
 					:data="search"
-					:key="monitorChange + 15"
+					:key="monitorChange + 16"
 				/>
 				<OutputSearchRegistriesAppendix
 					v-if="outputOptions[4].include"
 					:data="search"
-					:key="monitorChange + 16"
+					:key="monitorChange + 17"
 				/>
 			</div>
 			<template #footer>
@@ -151,7 +157,9 @@ import OutputAssessmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias.v
 import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect.vue";
 import OutputUnitOfAnalysis from "./OutputUnitOfAnalysis.vue";
 import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
-import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
+//import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
+import OutputHeterogeneity from "./OutputHeterogeneity.vue";
+import OutputPublicationBias from "./OutputPublicationBias";
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
 import OutputIntroduction from "./OutputIntroduction.vue";
 
@@ -198,7 +206,9 @@ export default {
 		OutputMeasurementOfEffect,
 		OutputUnitOfAnalysis,
 		OutputDealingWithMissingData,
-		OutputHeterogeneityPublicationBias,
+		//OutputHeterogeneityPublicationBias,
+		OutputHeterogeneity,
+		OutputPublicationBias,
 		OutputSubgroupAndSensitivityAnalysis
 	},
 	data() {
@@ -218,7 +228,8 @@ export default {
 				{ label: "Measurment of Effect", include: true },
 				{ label: "Unit of Analysis", include: true },
 				{ label: "Dealing with Missing Data", include: true },
-				{ label: "Heterogeneity/Publication Bias", include: true },
+				{ label: "Heterogeneity", include: true },
+				{ label: "Publication Bias", include: true },
 				{ label: "Subgroup and Sensitivity Analysis", include: true }
 			],
 			selectedOptions: [],

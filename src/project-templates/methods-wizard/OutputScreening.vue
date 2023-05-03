@@ -6,13 +6,15 @@
 				selectRandom([
 					capitalize(numberToWord(data.numberOfTitleAbstractScreeners)) +
 						" review authors (" +
-						formatSelectMulti(data.titleAbstractScreeners)
-							.map(el => nameToInitials(el))
-							.join(", ") +
+						titleAbstractScreenersInitials +
 						") independently screened the titles and abstracts against the inclusion criteria.",
+
 					"Screening by title and abstract was conducted by " +
 						numberToWord(data.numberOfTitleAbstractScreeners) +
-						" authors independently.",
+						" authors (" +
+						titleAbstractScreenersInitials +
+						") independently.",
+
 					"Screening by title and abstract was conducted by " +
 						joinArrayWithAnd(
 							formatSelectMulti(data.titleAbstractScreeners).map(el =>
@@ -20,12 +22,19 @@
 							)
 						) +
 						" independently.",
+
 					"Articles were screened by title and abstract, by " +
 						numberToWord(data.numberOfTitleAbstractScreeners) +
-						" authors independently.",
+						" authors (" +
+						titleAbstractScreenersInitials +
+						") independently.",
+
 					"Search results were screened for eligibility by " +
 						numberToWord(data.numberOfTitleAbstractScreeners) +
-						" authors independently.",
+						" authors (" +
+						titleAbstractScreenersInitials +
+						") independently.",
+
 					"References were screened independently against the eligibility criteria by " +
 						joinArrayWithAnd(
 							formatSelectMulti(data.titleAbstractScreeners).map(el =>
@@ -38,7 +47,9 @@
 			{{
 				selectRandom([
 					"One review author (" +
-						nameToInitials(data.fullTextRetrivalAuthor) +
+						formatSelectMulti(data.fullTextRetrivalAuthor)
+							.map(el => nameToInitials(el))
+							.join(", ") +
 						") retrieved full-text, and " +
 						numberToWord(data.numberOfFullTextScreeners) +
 						" authors (" +
@@ -47,7 +58,11 @@
 							.join(", ") +
 						") screened the full-texts for inclusion.",
 					"For articles eligible after screening, full texts were retrieved by " +
-						nameToInitials(data.fullTextRetrivalAuthor) +
+						joinArrayWithAnd(
+							formatSelectMulti(data.fullTextRetrivalAuthor).map(el =>
+								nameToInitials(el)
+							)
+						) +
 						", which were reviewed by " +
 						joinArrayWithAnd(
 							formatSelectMulti(data.fullTextScreeners).map(el =>
@@ -55,7 +70,13 @@
 							)
 						) +
 						".",
-					"After title and abstract screening, full texts were retrieved for the remaining articles. " +
+					"After title and abstract screening, full texts were retrieved by " +
+						joinArrayWithAnd(
+							formatSelectMulti(data.fullTextRetrivalAuthor).map(el =>
+								nameToInitials(el)
+							)
+						) +
+						" for the remaining articles. " +
 						capitalize(numberToWord(data.numberOfFullTextScreeners)) +
 						" authors (" +
 						formatSelectMulti(data.fullTextScreeners)
@@ -69,6 +90,40 @@
 							.map(el => nameToInitials(el))
 							.join(", ") +
 						") to determine if they should be included."
+				])
+			}}
+			<!--Citation search-->
+			{{
+				selectRandom([
+					" After retrieving and screening full texts stage, authors (" +
+						formatSelectMulti(data.screenCitationSearchPeople)
+							.map(el => nameToInitials(el))
+							.join(", ") +
+						") screened the citation search.",
+					"The citation search is screened by " +
+						joinArrayWithAnd(
+							formatSelectMulti(data.screenCitationSearchPeople).map(el =>
+								nameToInitials(el)
+							)
+						) +
+						"."
+				])
+			}}
+			<!--Trial registries-->
+			{{
+				selectRandom([
+					"All the trial registries are screened by " +
+						joinArrayWithAnd(
+							formatSelectMulti(data.screenTrialRegisPeople).map(el =>
+								nameToInitials(el)
+							)
+						) +
+						".",
+					"Authors (" +
+						formatSelectMulti(data.screenTrialRegisPeople)
+							.map(el => nameToInitials(el))
+							.join(", ") +
+						" ) screened trial registries."
 				])
 			}}
 			<!-- Discrepancies -->
@@ -134,6 +189,13 @@ export default {
 	mixins: [OutputMixin],
 	props: {
 		data: Object
+	},
+	computed: {
+		titleAbstractScreenersInitials() {
+			return this.formatSelectMulti(this.data.titleAbstractScreeners)
+				.map(el => this.nameToInitials(el))
+				.join(", ");
+		}
 	}
 };
 </script>
