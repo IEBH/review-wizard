@@ -45,7 +45,7 @@ export default {
 					el.tasks == "9. Screen abstracts" &&
 					this.screening.titleAbstractScreeners != null
 				) {
-					this.checkPeopleInvolved(
+					el.peopleInvolved = this.checkPeopleInvolved(
 						el.peopleInvolved,
 						this.screening.titleAbstractScreeners
 					);
@@ -54,7 +54,7 @@ export default {
 					el.tasks == "10. Obtain full text" &&
 					this.screening.fullTextRetrivalAuthor != null
 				) {
-					this.checkPeopleInvolved(
+					el.peopleInvolved = this.checkPeopleInvolved(
 						el.peopleInvolved,
 						this.screening.fullTextRetrivalAuthor
 					);
@@ -63,7 +63,7 @@ export default {
 					el.tasks == "11. Screen full text" &&
 					this.screening.fullTextScreeners != null
 				) {
-					this.checkPeopleInvolved(
+					el.peopleInvolved = this.checkPeopleInvolved(
 						el.peopleInvolved,
 						this.screening.fullTextScreeners
 					);
@@ -72,7 +72,7 @@ export default {
 					el.tasks == "12. Screen trial registries" &&
 					this.screening.screenTrialRegisPeople != null
 				) {
-					this.checkPeopleInvolved(
+					el.peopleInvolved = this.checkPeopleInvolved(
 						el.peopleInvolved,
 						this.screening.screenTrialRegisPeople
 					);
@@ -81,7 +81,7 @@ export default {
 					el.tasks == "13. Citation search" &&
 					this.screening.conductSSearchPeople != null
 				) {
-					this.checkPeopleInvolved(
+					el.peopleInvolved = this.checkPeopleInvolved(
 						el.peopleInvolved,
 						this.screening.conductSSearchPeople
 					);
@@ -90,7 +90,7 @@ export default {
 					el.tasks == "14. Screen citation analysis" &&
 					this.screening.screenCitationSearchPeople != null
 				) {
-					this.checkPeopleInvolved(
+					el.peopleInvolved = this.checkPeopleInvolved(
 						el.peopleInvolved,
 						this.screening.screenCitationSearchPeople
 					);
@@ -100,7 +100,7 @@ export default {
 					this.extraction.extractionAuthors != null
 				) {
 					//alert(JSON.stringify(this.extraction.extractionAuthors));
-					this.checkPeopleInvolved(
+					el.peopleInvolved = this.checkPeopleInvolved(
 						el.peopleInvolved,
 						this.extraction.extractionAuthors
 					);
@@ -109,7 +109,7 @@ export default {
 					el.tasks == "16. Risk of Bias assessment" &&
 					this.riskOfBias.assessedRobAuthors != null
 				) {
-					this.checkPeopleInvolved(
+					el.peopleInvolved = this.checkPeopleInvolved(
 						el.peopleInvolved,
 						this.riskOfBias.assessedRobAuthors
 					);
@@ -140,6 +140,7 @@ export default {
 			} else {
 				pInvolved = authors;
 			}
+			return pInvolved;
 		}
 	}
 };
