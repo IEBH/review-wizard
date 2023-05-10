@@ -66,14 +66,16 @@
 								>
 							</div>
 						</template>
-						<div class="field-checkbox" v-if="thead.name == 'progress'">
-							<Checkbox
-								v-model="row.progress.isComplete"
-								id="binary"
-								:binary="true"
-								@change="valuesChange(row)"
+						<div
+							class="field-checkbox"
+							v-if="thead.name == 'progress'"
+							style="margin: 10px;"
+						>
+							<SelectButton
+								v-model="row.progress.state"
+								:options="options"
+								@input="selectedValueChange(row)"
 							/>
-							<label for="binary">{{ row.progress.state }}</label>
 						</div>
 						<InputAutoComplete
 							v-if="thead.name == 'peopleInvolved'"
@@ -165,7 +167,7 @@
 <script>
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
-import Checkbox from "primevue/checkbox";
+import SelectButton from "primevue/selectbutton";
 //import AutoComplete from "primevue/autocomplete";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
@@ -178,8 +180,8 @@ export default {
 	components: {
 		Textarea,
 		Button,
-		Checkbox,
 		Dialog,
+		SelectButton,
 		InputText,
 		InputAutoComplete,
 		InputSrMenubar
@@ -200,7 +202,8 @@ export default {
 			newRow: {},
 
 			toolLinkName: "",
-			people: []
+			people: [],
+			options: ["Incomplete", "Completed"]
 		};
 	},
 	methods: {
@@ -257,12 +260,12 @@ export default {
 			}
 			this.isShowDialog = false;
 		},
-		valuesChange(row) {
-			if (row.progress.isComplete == true) {
-				row.progress.state = "Completed";
+		selectedValueChange(row) {
+			if (row.progress.state == "Incomplete") {
+				row.progress.isComplete = false;
 				this.$emit("input", this.value);
 			} else {
-				row.progress.state = "Incomplete";
+				row.progress.isComplete = true;
 				this.$emit("input", this.value);
 			}
 		}
