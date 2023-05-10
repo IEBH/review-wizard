@@ -51,7 +51,11 @@
 				<tr v-for="(row, index) in value.rows" :key="index">
 					<td v-for="thead of value.headers" :key="thead.name">
 						<template v-if="thead.name == 'toolLink'">
-							<div v-for="tl in row.toolLink" :key="tl.name">
+							<div
+								v-for="tl in row.toolLink"
+								:key="tl.name"
+								style="margin: 10px;"
+							>
 								<a
 									v-if="tl.name != '' && tl.link.includes('https://') == false"
 									:href="methodsUrl + tl.link"
