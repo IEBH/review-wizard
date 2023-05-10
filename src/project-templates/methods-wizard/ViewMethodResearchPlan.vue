@@ -14,6 +14,7 @@ import InputSrTableCustom from "@/components/InputSrTableCustom.vue";
 import deepstreamMixin from "@/mixins/DeepstreamMixin";
 export default {
 	mixins: [
+		deepstreamMixin("search"),
 		deepstreamMixin("riskOfBias"),
 		deepstreamMixin("screening"),
 		deepstreamMixin("extraction"),
@@ -41,6 +42,20 @@ export default {
 		},
 		Authors() {
 			this.researchplan.planTable?.rows.forEach(el => {
+				if (el.tasks == "6. Design systematic search strategy") {
+					if (this.search.designSearchStrategyAuthors != null) {
+						el.peopleInvolved = this.checkPeopleInvolved(
+							el.peopleInvolved,
+							this.search.designSearchStrategyAuthors
+						);
+					}
+					if (this.search.deduplicateResultsAuthors != null) {
+						el.peopleInvolved = this.checkPeopleInvolved(
+							el.peopleInvolved,
+							this.search.deduplicateResultsAuthors
+						);
+					}
+				}
 				if (
 					el.tasks == "9. Screen abstracts" &&
 					this.screening.titleAbstractScreeners != null

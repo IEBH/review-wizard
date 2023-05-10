@@ -68,6 +68,9 @@ export default {
 				}
 			}, 250);
 		}
+	},
+	mounted() {
+		this.checkChanges(this.row, this.tableValue.rows);
 	}
 };
 </script>
