@@ -167,7 +167,7 @@ const data = {
 					tasks: "a2. SR design meetings",
 					toolDescription:
 						"Time spent refining the idea, determining feasibility, assembling the team, planning timelines, deciding on roles (who's responsible for oversight, coordination and documentation) and provide information on SRA tools",
-					toolLink: [{ name: "Methods Wizard", link: "/titlepage" }],
+					toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 					peopleInvolved: "",
 					notes: ""
 				},
@@ -176,7 +176,7 @@ const data = {
 					tasks: "0. Daily administrative meetings",
 					toolDescription:
 						"Short daily meetings to review progress, discuss issues and document decisions",
-					toolLink: [{ name: "Research Plan", link: "/method/rs-plan" }],
+					toolLink: [{ name: "Research Plan", link: "/planning/rs-plan" }],
 					peopleInvolved: "",
 					notes: ""
 				},
@@ -205,7 +205,7 @@ const data = {
 					tasks: "3. Write the SR protocol",
 					toolDescription:
 						"Provide an objective, reproducible, sound methodology for the SR, then register the protocol",
-					toolLink: [{ name: "Methods Wizard", link: "/titlepage" }],
+					toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 					peopleInvolved: "",
 					notes: ""
 				},
@@ -446,7 +446,7 @@ const data = {
 					progress: { isComplete: "false", state: "Incomplete" },
 					tasks: "23. Write methods",
 					toolDescription: "Revise the methods section from the SR protocol",
-					toolLink: [{ name: "Methods Wizard", link: "/titlepage" }],
+					toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 					peopleInvolved: "",
 					notes: ""
 				},

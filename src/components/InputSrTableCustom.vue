@@ -299,7 +299,7 @@ table {
 .p-fluid-thead {
 	position: sticky;
 	top: 0px;
-	background-color: rgba(240, 240, 240, 0.73);
+	background-color: white;
 	border: 1px solid black;
 	z-index: 10;
 }
