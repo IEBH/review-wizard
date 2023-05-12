@@ -24,7 +24,7 @@
 
 		<!--Appendix X-->
 		<h3>Appendix X - Search Strategies</h3>
-		<p v-for="(database, index) of data.databases" :key="index">
+		<p v-for="database of data.databases" :key="database.label">
 			<b> {{ database.label }} - run {{ formatDate(data.dateOfSearch) }} </b>
 			<br />
 			<br />
@@ -64,7 +64,7 @@
 
 		<!--Appendix Y-->
 		<h3>Appendix Y - Search Strategies</h3>
-		<p v-for="(database, index) of data.registries" :key="index">
+		<p v-for="database of data.registries" :key="database.label">
 			<b>
 				{{ database.label }} - run
 				{{ formatDate(data.registryDateOfSearch) }}

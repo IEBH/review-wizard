@@ -23,9 +23,8 @@
 			@input="updateField('dateSearchedUntil', $event)"
 		/>
 
-		<template v-for="(database, index) of search.databases">
+		<div v-for="(database, index) of search.databases" :key="database.label">
 			<InputTextMultiSyntax
-				:key="index"
 				:question="
 					`Database ${index + 1} (e.g. ${
 						database.label
@@ -35,7 +34,7 @@
 				@input="updateDatabaseString(index, $event)"
 				:placeholder="placeholder2"
 			/>
-		</template>
+		</div>
 
 		<InputSelectMulti
 			question="Which registries did you search?"
@@ -64,9 +63,8 @@
 			@input="updateField('registryDateSearchedUntil', $event)"
 		/>
 
-		<template v-for="(registry, index) of search.registries">
+		<div v-for="(registry, index) of search.registries" :key="registry.label">
 			<InputTextMultiSyntax
-				:key="index"
 				:question="
 					`Registry ${index + 1} (e.g. ${
 						registry.label
@@ -76,7 +74,7 @@
 				@input="updateRegisteryString(index, $event)"
 				:placeholder="placeholder1"
 			/>
-		</template>
+		</div>
 
 		<PreviewOutput :component="outputComponent" :data="search" />
 	</div>
