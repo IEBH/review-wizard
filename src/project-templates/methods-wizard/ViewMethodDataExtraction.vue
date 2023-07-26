@@ -13,7 +13,7 @@
 			question="How many study authors extracted the following data from included studies?"
 			:value="extraction.numberOfExtractors"
 			@input="updateField('numberOfExtractors', $event)"
-			:options="numberOptions"
+			:options="extractorsOption"
 		/>
 
 		<InputSelectMulti
@@ -155,6 +155,21 @@ export default {
 		InputSelectYesNo
 	},
 	computed: {
+		extractorsOption() {
+			let option = [];
+			let authorsLength = this.extraction.extractionAuthors?.length;
+			if (authorsLength != 0) {
+				for (var i = 1; i <= authorsLength; i++) {
+					option.push(i);
+				}
+			} else {
+				authorsLength = this.titlepage.authors?.length;
+				for (i = 1; i <= authorsLength; i++) {
+					option.push(i);
+				}
+			}
+			return option;
+		},
 		pfDataExtractAuthors() {
 			let da = this.titlepage.authors?.map(el => {
 				return { label: el };

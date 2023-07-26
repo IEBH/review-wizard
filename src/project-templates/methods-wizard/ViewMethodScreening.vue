@@ -6,7 +6,7 @@
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
 			:value="screening.numberOfTitleAbstractScreeners"
 			@input="updateField('numberOfTitleAbstractScreeners', $event)"
-			:options="numberOptions"
+			:options="abstScreenerNumberOption"
 		/>
 
 		<InputSelectMulti
@@ -32,7 +32,7 @@
 			question="How many review authors independently screened the full-texts for inclusion?"
 			:value="screening.numberOfFullTextScreeners"
 			@input="updateField('numberOfFullTextScreeners', $event)"
-			:options="numberOptions"
+			:options="fullTextScreenerNumberOption"
 		/>
 
 		<InputSelectMulti
@@ -108,6 +108,36 @@ export default {
 		BasePreviewOutput
 	},
 	computed: {
+		abstScreenerNumberOption() {
+			let option = [];
+			let authorsLength = this.screening.titleAbstractScreeners?.length;
+			if (authorsLength != 0) {
+				for (var i = 1; i <= authorsLength; i++) {
+					option.push(i);
+				}
+			} else {
+				authorsLength = this.titlepage.authors?.length;
+				for (i = 1; i <= authorsLength; i++) {
+					option.push(i);
+				}
+			}
+			return option;
+		},
+		fullTextScreenerNumberOption() {
+			let option = [];
+			let authorsLength = this.screening.fullTextScreeners?.length;
+			if (authorsLength != 0) {
+				for (var i = 1; i <= authorsLength; i++) {
+					option.push(i);
+				}
+			} else {
+				authorsLength = this.titlepage.authors?.length;
+				for (i = 1; i <= authorsLength; i++) {
+					option.push(i);
+				}
+			}
+			return option;
+		},
 		scTrialRegisPeople() {
 			let da = this.titlepage.authors?.map(el => {
 				return { label: el };
