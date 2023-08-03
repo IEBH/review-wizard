@@ -28,7 +28,7 @@
 			<thead class="p-fluid-thead">
 				<tr>
 					<th v-for="(thead, index) in value.headers" :key="index">
-						<div class="header">
+						<div class="th_container">
 							<div class="name">
 								{{ thead.label }}
 							</div>
@@ -315,22 +315,28 @@ table {
 	border-style: none;
 }
 
-.header {
+.th_container {
 	/*display: inline-block;*/
 	display: flex;
+	position: relative;
 	height: 30px;
 	width: 200px;
 }
+
 .name {
 	/*float: left;*/
-	flex: 4;
+	/*flex: 4;*/
+	position: absolute;
+	left: 30%;
+	top: 20%;
 	font-size: 18px;
+	z-index: 10;
 }
 .menu {
 	/*float: right;*/
-	flex: 2;
-	height: 10px;
-	width: 10px;
+	position: absolute;
+	left: 68%;
+	top: 20%;
 }
 .btnArea {
 	position: sticky;
