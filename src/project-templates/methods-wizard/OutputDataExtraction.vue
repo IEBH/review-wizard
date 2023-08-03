@@ -34,12 +34,12 @@
 				{{
 					selectRandom([
 						""
-							.concat(data.numberOfExtractors ? capitalize(numberToWord(data.numberOfExtractors)) : "BLANK")
+							.concat(numberOfExtractors ? capitalize(numberToWord(numberOfExtractors)) : "BLANK")
 							.concat(
 								` study authors (${extractionAuthorInitials}) extracted the following data from included studies:`
 							),
 						"Data extraction was conducted by "
-							.concat(data.numberOfExtractors ? numberToWord(data.numberOfExtractors) : "BLANK")
+							.concat(numberOfExtractors ? numberToWord(numberOfExtractors) : "BLANK")
 							.concat(` authors (${extractionAuthorInitials}). `)
 							.concat(
 								"The following data for study characteristics and outcomes were extracted from each included study:"
@@ -77,6 +77,9 @@ export default {
 		data: Object
 	},
 	computed: {
+		numberOfExtractors(){
+			return this.data.extractionAuthors?.length;
+		},
 		randomNumber: function() {
 			return Math.random();
 		},

@@ -9,12 +9,17 @@
 			:options="numberOptions"
 		/>
 
-		<InputSelectDropdown
+		<InputTextNumber
+			question="How many study authors extracted the following data from included studies?"
+			:value="numberOfExtractors"
+		/>
+
+		<!--<InputSelectDropdown
 			question="How many study authors extracted the following data from included studies?"
 			:value="extraction.numberOfExtractors"
 			@input="updateField('numberOfExtractors', $event)"
 			:options="extractorsOption"
-		/>
+		/>-->
 
 		<InputSelectMulti
 			question="Which author/s performed data extraction?"
@@ -155,7 +160,7 @@ export default {
 		InputSelectYesNo
 	},
 	computed: {
-		extractorsOption() {
+		/*extractorsOption() {
 			let option = [];
 			let authorsLength = this.extraction.extractionAuthors?.length;
 			if (authorsLength != 0) {
@@ -169,6 +174,9 @@ export default {
 				}
 			}
 			return option;
+		},*/
+		numberOfExtractors() {
+			return this.extraction.extractionAuthors?.length;
 		},
 		pfDataExtractAuthors() {
 			let da = this.titlepage.authors?.map(el => {

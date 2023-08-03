@@ -81,6 +81,12 @@
 								@input="selectedValueChange(row)"
 							/>
 						</div>
+						<NotesContent
+							v-if="thead.name == 'notes'"
+							:thead="thead"
+							:row="row"
+							v-on:change="$emit('input', row[thead.name])"
+						/>
 						<InputAutoComplete
 							v-if="thead.name == 'peopleInvolved'"
 							:tableValue="value"
@@ -93,9 +99,9 @@
 							v-if="
 								thead.name != 'peopleInvolved' &&
 									thead.name != 'toolLink' &&
-									thead.name != 'progress'
+									thead.name != 'progress' &&
+									thead.name != 'notes'
 							"
-							class="t-content"
 							type="text"
 							v-model="row[thead.name]"
 							:ref="index"
@@ -179,6 +185,7 @@ import InputText from "primevue/inputtext";
 import * as XLSX from "xlsx";
 import InputAutoComplete from "@/components/InputAutoComplete.vue";
 import InputSrMenubar from "../components/InputSrMenubar.vue";
+import NotesContent from "./NotesContent.vue";
 export default {
 	name: "InputSrTable",
 	components: {
@@ -188,7 +195,8 @@ export default {
 		SelectButton,
 		InputText,
 		InputAutoComplete,
-		InputSrMenubar
+		InputSrMenubar,
+		NotesContent
 	},
 	props: {
 		question: String,
@@ -293,7 +301,7 @@ table {
 	display: block;
 	overflow: auto;
 	overflow-x: auto;
-	background-color: rgba(240, 240, 240, 0.73);
+	/*background-color: rgba(240, 240, 240, 0.73);*/
 }
 
 .p-fluid-thead {
@@ -302,6 +310,9 @@ table {
 	background-color: white;
 	border: 1px solid black;
 	z-index: 10;
+}
+.p-fluid .p-inputtextarea {
+	border-style: none;
 }
 
 .header {
@@ -326,12 +337,6 @@ table {
 	right: 0px;
 	top: 30px;
 	background-color: transparent;
-}
-
-.t-content {
-	height: 80px;
-	background-color: rgba(240, 240, 240, 0.73);
-	border-style: none;
 }
 .inline-input {
 	height: 40px;

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="author-div">
 		<AutoComplete
 			:multiple="true"
 			v-model="row[tableHeader.name]"
@@ -8,7 +8,6 @@
 			@complete="searchAuthors($event)"
 			@item-select="checkChanges(row, tableValue.rows)"
 			@item-unselect="checkChanges(row, tableValue.rows)"
-			style="height: 80px"
 		/>
 	</div>
 </template>
@@ -54,6 +53,7 @@ export default {
 					}
 				});
 			}
+			this.$emit("input", this.row.peopleInvolved);
 		},
 		searchAuthors(event) {
 			setTimeout(() => {
@@ -74,4 +74,21 @@ export default {
 	}
 };
 </script>
-<style></style>
+<style>
+.author-div {
+	position: relative;
+	width: 250px;
+	height: 250px;
+}
+.p-autocomplete-multiple-container {
+	/*border: none;*/
+	display: inline;
+}
+.p-fluid .p-autocomplete {
+	height: 100%;
+	width: 100%;
+}
+.p-input-filled .p-inputtext {
+	background-color: white;
+}
+</style>

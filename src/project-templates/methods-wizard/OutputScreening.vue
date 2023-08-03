@@ -4,13 +4,13 @@
 			<!-- Screeners -->
 			{{
 				selectRandom([
-					capitalize(numberToWord(data.numberOfTitleAbstractScreeners)) +
+					capitalize(numberToWord(numberOfTitleAbstractScreeners)) +
 						" review authors (" +
 						titleAbstractScreenersInitials +
 						") independently screened the titles and abstracts against the inclusion criteria.",
 
 					"Screening by title and abstract was conducted by " +
-						numberToWord(data.numberOfTitleAbstractScreeners) +
+						numberToWord(numberOfTitleAbstractScreeners) +
 						" authors (" +
 						titleAbstractScreenersInitials +
 						") independently.",
@@ -24,13 +24,13 @@
 						" independently.",
 
 					"Articles were screened by title and abstract, by " +
-						numberToWord(data.numberOfTitleAbstractScreeners) +
+						numberToWord(numberOfTitleAbstractScreeners) +
 						" authors (" +
 						titleAbstractScreenersInitials +
 						") independently.",
 
 					"Search results were screened for eligibility by " +
-						numberToWord(data.numberOfTitleAbstractScreeners) +
+						numberToWord(numberOfTitleAbstractScreeners) +
 						" authors (" +
 						titleAbstractScreenersInitials +
 						") independently.",
@@ -51,7 +51,7 @@
 							.map(el => nameToInitials(el))
 							.join(", ") +
 						") retrieved full-text, and " +
-						numberToWord(data.numberOfFullTextScreeners) +
+						numberToWord(numberOfFullTextScreeners) +
 						" authors (" +
 						formatSelectMulti(data.fullTextScreeners)
 							.map(el => nameToInitials(el))
@@ -77,14 +77,14 @@
 							)
 						) +
 						" for the remaining articles. " +
-						capitalize(numberToWord(data.numberOfFullTextScreeners)) +
+						capitalize(numberToWord(numberOfFullTextScreeners)) +
 						" authors (" +
 						formatSelectMulti(data.fullTextScreeners)
 							.map(el => nameToInitials(el))
 							.join(", ") +
 						") reviewed the full texts against the inclusion criteria.",
 					"Once the initial title/abstract screening was completed, the full texts of the included studies from that stage were reviewed by " +
-						numberToWord(data.numberOfFullTextScreeners) +
+						numberToWord(numberOfFullTextScreeners) +
 						" authors (" +
 						formatSelectMulti(data.fullTextScreeners)
 							.map(el => nameToInitials(el))
@@ -191,6 +191,12 @@ export default {
 		data: Object
 	},
 	computed: {
+		numberOfTitleAbstractScreeners() {
+			return this.data.titleAbstractScreeners?.length;
+		},
+		numberOfFullTextScreeners() {
+			return this.data.fullTextScreeners?.length;
+		},
 		titleAbstractScreenersInitials() {
 			return this.formatSelectMulti(this.data.titleAbstractScreeners)
 				.map(el => this.nameToInitials(el))

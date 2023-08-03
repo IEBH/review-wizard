@@ -2,11 +2,9 @@
 	<div>
 		<h1>Study Selection and Screening</h1>
 
-		<InputSelectDropdown
+		<InputTextNumber
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
-			:value="screening.numberOfTitleAbstractScreeners"
-			@input="updateField('numberOfTitleAbstractScreeners', $event)"
-			:options="abstScreenerNumberOption"
+			:value="numberOfTitleAbstractScreeners"
 		/>
 
 		<InputSelectMulti
@@ -28,11 +26,9 @@
 			:options="this.retrfulltextAuthors"
 		/>
 
-		<InputSelectDropdown
+		<InputTextNumber
 			question="How many review authors independently screened the full-texts for inclusion?"
-			:value="screening.numberOfFullTextScreeners"
-			@input="updateField('numberOfFullTextScreeners', $event)"
-			:options="fullTextScreenerNumberOption"
+			:value="numberOfFullTextScreeners"
 		/>
 
 		<InputSelectMulti
@@ -88,7 +84,6 @@
 <script>
 import OutputScreening from "./OutputScreening.vue";
 import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
-import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
@@ -102,41 +97,16 @@ export default {
 		deepstreamMixin("screening")
 	],
 	components: {
-		InputSelectDropdown,
 		InputSelectMulti,
 		InputSelectYesNo,
 		BasePreviewOutput
 	},
 	computed: {
-		abstScreenerNumberOption() {
-			let option = [];
-			let authorsLength = this.screening.titleAbstractScreeners?.length;
-			if (authorsLength != 0) {
-				for (var i = 1; i <= authorsLength; i++) {
-					option.push(i);
-				}
-			} else {
-				authorsLength = this.titlepage.authors?.length;
-				for (i = 1; i <= authorsLength; i++) {
-					option.push(i);
-				}
-			}
-			return option;
+		numberOfTitleAbstractScreeners() {
+			return this.screening.titleAbstractScreeners?.length;
 		},
-		fullTextScreenerNumberOption() {
-			let option = [];
-			let authorsLength = this.screening.fullTextScreeners?.length;
-			if (authorsLength != 0) {
-				for (var i = 1; i <= authorsLength; i++) {
-					option.push(i);
-				}
-			} else {
-				authorsLength = this.titlepage.authors?.length;
-				for (i = 1; i <= authorsLength; i++) {
-					option.push(i);
-				}
-			}
-			return option;
+		numberOfFullTextScreeners() {
+			return this.screening.fullTextScreeners?.length;
 		},
 		scTrialRegisPeople() {
 			let da = this.titlepage.authors?.map(el => {
