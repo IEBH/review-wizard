@@ -311,6 +311,7 @@ const data = {
 					toolDescription:
 						"Download full text studies, request copies from authors, interlibrary loan",
 					toolLink: [{ name: "", link: "" }],
+					notes: "",
 					peopleInvolved: ""
 					//notes: ""
 				},
