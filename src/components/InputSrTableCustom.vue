@@ -3,24 +3,16 @@
 		<p>
 			<b
 				>{{ question }}
-				<Button
-					icon="pi pi-user-edit"
-					@click="ifEdit = true"
-					class="p-button-rounded p-button-text"
-					style="height:10px;"
-				/>
-				<Button
-					label="Save"
-					icon="pi pi-check"
-					@click="update"
-					class="p-button-rounded p-button-text"
-					style="height:10px;color: green;"
+				<ToggleButton
+					v-model="ifEdit"
+					onIcon="pi pi-check"
+					offIcon="pi pi-user-edit"
+					offLabel="Save"
 				/>
 				<Button
 					icon="pi pi-cloud-download"
 					@click="isShowDialog = true"
-					class="p-button-rounded p-button-text"
-					style="height:10px; color:darkgray;"
+					class="p-button-secondary p-button-text"
 				/>
 			</b>
 		</p>
@@ -126,18 +118,21 @@
 										icon="pi pi-arrow-up"
 										@click="addRow(index, 0)"
 										style="background-color:white"
+										v-on:change="$emit('input', value.rows)"
 									/>
 									<Button
 										class="p-button-raised p-button-text"
 										icon="pi pi-trash"
 										@click="deleRow(index)"
 										style="background-color:white"
+										v-on:change="$emit('input', value.rows)"
 									/>
 									<Button
 										class="p-button-raised p-button-text"
 										icon="pi pi-arrow-down"
 										@click="addRow(index, 1)"
 										style="background-color:white"
+										v-on:change="$emit('input', value.rows)"
 									/>
 								</span>
 							</td>
@@ -181,6 +176,7 @@ import SelectButton from "primevue/selectbutton";
 //import AutoComplete from "primevue/autocomplete";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
+import ToggleButton from "primevue/togglebutton";
 
 import * as XLSX from "xlsx";
 import InputAutoComplete from "@/components/InputAutoComplete.vue";
@@ -196,7 +192,8 @@ export default {
 		InputText,
 		InputAutoComplete,
 		InputSrMenubar,
-		NotesContent
+		NotesContent,
+		ToggleButton
 	},
 	props: {
 		question: String,
@@ -229,16 +226,13 @@ export default {
 			} else {
 				this.value.rows.splice(index + 1, 0, this.newRow);
 			}
-			this.$emit("input", this.value);
 		},
 		deleRow(index) {
 			this.value.rows.splice(index, 1);
-			this.$emit("input", this.value);
 		},
 		deleCol(index) {
 			this.value.headers.splice(index, 1);
 			this.$delete(this.value.rows, this.value.headers[index].name);
-			this.$emit("input", this.value);
 		},
 		addCol(newC) {
 			let colName = newC.ColLabel.trim();
@@ -255,11 +249,6 @@ export default {
 			/*this.rsValue.forEach(i => {
 				this.$set(this.value.rows[i], colName, "");
 			});*/
-			this.$emit("input", this.value);
-		},
-		update() {
-			this.ifEdit = false;
-			this.$emit("input", this.value);
 		},
 		exportExcel(rows, fileName) {
 			let workbook = XLSX.utils.book_new();
@@ -302,6 +291,16 @@ table {
 	overflow: auto;
 	overflow-x: auto;
 	/*background-color: rgba(240, 240, 240, 0.73);*/
+}
+
+.p-togglebutton.p-button {
+	background: rgba(72, 90, 120, 0.824);
+	border: transparent;
+	height: 20px;
+}
+
+.p-button-text {
+	height: 20px;
 }
 
 .p-fluid-thead {
