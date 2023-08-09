@@ -208,7 +208,6 @@ export default {
 			isShowDialog: false,
 			fileName: "",
 			methodsUrl: "",
-			newRow: {},
 
 			toolLinkName: "",
 			people: [],
@@ -217,14 +216,22 @@ export default {
 	},
 	methods: {
 		addRow(index, optionNum) {
-			this.value.headers.forEach(theader => {
-				this.$set(this.newRow, theader.index, theader.name);
-				this.newRow[theader.name] = "";
-			});
+			let row = {};
+			for (var i = 0; i < this.value.headers.length; i++) {
+				if (this.value.headers[i].name == "progress") {
+					row[this.value.headers[i].name] = {
+						isComplete: "false",
+						state: "Incomplete"
+					};
+				} else {
+					row[this.value.headers[i].name] = "";
+				}
+				this.$set(row, row[this.value.headers[i].name]);
+			}
 			if (optionNum == 0) {
-				this.value.rows.splice(index, 0, this.newRow);
+				this.value.rows.splice(index, 0, row);
 			} else {
-				this.value.rows.splice(index + 1, 0, this.newRow);
+				this.value.rows.splice(index + 1, 0, row);
 			}
 		},
 		deleRow(index) {
@@ -264,10 +271,8 @@ export default {
 		selectedValueChange(row) {
 			if (row.progress.state == "Incomplete") {
 				row.progress.isComplete = false;
-				this.$emit("input", this.value);
 			} else {
 				row.progress.isComplete = true;
-				this.$emit("input", this.value);
 			}
 		}
 		/*search(query, cb) {
