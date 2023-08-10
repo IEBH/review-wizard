@@ -276,7 +276,7 @@ export default {
 					});
 				}
 				xlsxData.push({
-					progress: row.progress.state,
+					Complete: row.progress,
 					tasks: row.tasks,
 					toolDescription: row.toolDescription,
 					toolLink: row.toolLink.link,
