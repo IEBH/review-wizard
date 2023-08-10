@@ -65,13 +65,12 @@
 						<div
 							class="field-checkbox"
 							v-if="thead.name == 'progress'"
-							style="margin: 10px;"
+							style="margin: 20%;"
 						>
-							<SelectButton
-								v-model="row.progress.state"
-								:options="options"
-								@input="selectedValueChange(row)"
-							/>
+							<el-checkbox
+								v-model="row.progress"
+								label="Completed"
+							></el-checkbox>
 						</div>
 						<NotesContent
 							v-if="thead.name == 'notes'"
@@ -172,7 +171,6 @@
 <script>
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
-import SelectButton from "primevue/selectbutton";
 //import AutoComplete from "primevue/autocomplete";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
@@ -188,7 +186,6 @@ export default {
 		Textarea,
 		Button,
 		Dialog,
-		SelectButton,
 		InputText,
 		InputAutoComplete,
 		InputSrMenubar,
@@ -259,7 +256,8 @@ export default {
 		},
 		exportExcel(rows, fileName) {
 			let workbook = XLSX.utils.book_new();
-			let sheet1 = XLSX.utils.json_to_sheet(rows);
+			let xlsxData = this.convertJson(rows);
+			let sheet1 = XLSX.utils.json_to_sheet(xlsxData);
 			XLSX.utils.book_append_sheet(workbook, sheet1, "ResearchPlan1");
 			if (fileName != "") {
 				XLSX.writeFile(workbook, fileName + ".xlsx");
@@ -268,12 +266,25 @@ export default {
 			}
 			this.isShowDialog = false;
 		},
-		selectedValueChange(row) {
-			if (row.progress.state == "Incomplete") {
-				row.progress.isComplete = false;
-			} else {
-				row.progress.isComplete = true;
-			}
+		convertJson(rows) {
+			let xlsxData = [];
+			rows.forEach(row => {
+				let authors = "";
+				if (row.peopleInvolved.length > 0) {
+					row.peopleInvolved.forEach(per => {
+						authors += per.label + ",";
+					});
+				}
+				xlsxData.push({
+					progress: row.progress.state,
+					tasks: row.tasks,
+					toolDescription: row.toolDescription,
+					toolLink: row.toolLink.link,
+					notes: row.notes,
+					peopleInvolved: authors
+				});
+			});
+			return xlsxData;
 		}
 		/*search(query, cb) {
 			let results = query
@@ -324,7 +335,7 @@ table {
 	display: flex;
 	position: relative;
 	height: 30px;
-	width: 200px;
+	width: 250px;
 }
 
 .name {

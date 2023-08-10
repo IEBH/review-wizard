@@ -5,10 +5,8 @@
 			class="textarea-notes"
 			v-model="row[thead.name]"
 			:autoResize="true"
-			rows="10"
-			cols="30"
+			rows="8"
 		/>
-		<label style="color:lightgrey">{{ charNum }} characters</label>
 		<!--<el-button
 			class="button-notes"
 			icon="el-icon-edit"
@@ -41,14 +39,9 @@ export default {
 </script>
 <style>
 .container-notes {
-	position: relative;
-	width: 400px;
-	min-height: 250px;
+	width: 350px;
 }
-.textarea-notes {
-	width: 80%;
-	min-height: 100px;
-}
+
 /*.button-notes {
 	position: absolute;
 	top: 20%;

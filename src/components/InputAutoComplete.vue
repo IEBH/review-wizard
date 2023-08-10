@@ -78,7 +78,7 @@ export default {
 .author-div {
 	position: relative;
 	width: 250px;
-	height: 250px;
+	height: 200px;
 }
 .p-autocomplete-multiple-container {
 	/*border: none;*/
