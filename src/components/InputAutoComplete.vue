@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="author-div">
 		<AutoComplete
 			:multiple="true"
 			v-model="row[tableHeader.name]"
@@ -8,7 +8,6 @@
 			@complete="searchAuthors($event)"
 			@item-select="checkChanges(row, tableValue.rows)"
 			@item-unselect="checkChanges(row, tableValue.rows)"
-			style="height: 80px"
 		/>
 	</div>
 </template>
@@ -22,7 +21,6 @@ export default {
 		row: {},
 		tableValue: {},
 		tableHeader: {},
-		//people: [],
 		titlePageAuthors: Array
 	},
 	components: {
@@ -35,25 +33,23 @@ export default {
 	},
 	methods: {
 		checkChanges(row, rows) {
-			//alert("start");
 			if (
-				row.tasks.includes("6. Design systematic search strategy") ||
-				row.tasks.includes("7. Run systematic search strings") ||
-				row.tasks.includes("8. Deduplicate results")
+				row.tasks.includes("Design systematic search strategy") ||
+				row.tasks.includes("Run systematic search strings") ||
+				row.tasks.includes("Deduplicate results")
 			) {
-				//alert(row.tasks);
 				rows.forEach(el => {
 					if (
-						(el.tasks.includes("6. Design systematic search strategy") ||
-							el.tasks.includes("7. Run systematic search strings") ||
-							el.tasks.includes("8. Deduplicate results")) &&
+						(el.tasks.includes("Design systematic search strategy") ||
+							el.tasks.includes("Run systematic search strings") ||
+							el.tasks.includes("Deduplicate results")) &&
 						el.tasks != row.tasks
 					) {
 						el.peopleInvolved = row.peopleInvolved;
-						//alert(el.tasks + ": " + el.peopleInvolved);
 					}
 				});
 			}
+			this.$emit("input", this.row.peopleInvolved);
 		},
 		searchAuthors(event) {
 			setTimeout(() => {
@@ -74,4 +70,20 @@ export default {
 	}
 };
 </script>
-<style></style>
+<style>
+.author-div {
+	position: relative;
+	width: 250px;
+}
+.p-autocomplete-multiple-container {
+	display: inline;
+	min-height: 200px;
+}
+.p-fluid .p-autocomplete {
+	height: 100%;
+	width: 100%;
+}
+.p-input-filled .p-inputtext {
+	background-color: white;
+}
+</style>

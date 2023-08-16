@@ -9,11 +9,9 @@
 			:options="numberOptions"
 		/>
 
-		<InputSelectDropdown
+		<InputTextNumber
 			question="How many study authors extracted the following data from included studies?"
-			:value="extraction.numberOfExtractors"
-			@input="updateField('numberOfExtractors', $event)"
-			:options="numberOptions"
+			:value="numberOfExtractors"
 		/>
 
 		<InputSelectMulti
@@ -155,12 +153,15 @@ export default {
 		InputSelectYesNo
 	},
 	computed: {
+		numberOfExtractors() {
+			return this.extraction.extractionAuthors?.length;
+		},
 		pfDataExtractAuthors() {
 			let da = this.titlepage.authors?.map(el => {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "15. Extract data" && el.peopleInvolved != "") {
+				if (el.tasks == "Extract data" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});

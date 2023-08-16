@@ -3,24 +3,18 @@
 		<p>
 			<b
 				>{{ question }}
-				<Button
-					icon="pi pi-user-edit"
-					@click="ifEdit = true"
-					class="p-button-rounded p-button-text"
-					style="height:10px;"
+
+				<ToggleButton
+					v-model="ifEdit"
+					onIcon="pi pi-check"
+					offIcon="pi pi-user-edit"
+					offLabel="Save"
 				/>
-				<Button
-					label="Save"
-					icon="pi pi-check"
-					@click="update"
-					class="p-button-rounded p-button-text"
-					style="height:10px;color: green;"
-				/>
+
 				<Button
 					icon="pi pi-cloud-download"
 					@click="isShowDialog = true"
-					class="p-button-rounded p-button-text"
-					style="height:10px; color:darkgray;"
+					class="p-button-secondary p-button-text"
 				/>
 			</b>
 		</p>
@@ -28,7 +22,7 @@
 			<thead class="p-fluid-thead">
 				<tr>
 					<th v-for="(thead, index) in value.headers" :key="index">
-						<div class="header">
+						<div class="th_container">
 							<div class="name">
 								{{ thead.label }}
 							</div>
@@ -73,14 +67,19 @@
 						<div
 							class="field-checkbox"
 							v-if="thead.name == 'progress'"
-							style="margin: 10px;"
+							style="margin:20%"
 						>
-							<SelectButton
-								v-model="row.progress.state"
-								:options="options"
-								@input="selectedValueChange(row)"
-							/>
+							<el-checkbox
+								v-model="row.progress"
+								label="Completed"
+							></el-checkbox>
 						</div>
+						<NotesContent
+							v-if="thead.name == 'notes'"
+							:thead="thead"
+							:row="row"
+							v-on:change="$emit('input', row[thead.name])"
+						/>
 						<InputAutoComplete
 							v-if="thead.name == 'peopleInvolved'"
 							:tableValue="value"
@@ -89,13 +88,14 @@
 							:titlePageAuthors="titlePageAuthors"
 							:people="people"
 						/>
+
 						<Textarea
 							v-if="
 								thead.name != 'peopleInvolved' &&
 									thead.name != 'toolLink' &&
-									thead.name != 'progress'
+									thead.name != 'progress' &&
+									thead.name != 'notes'
 							"
-							class="t-content"
 							type="text"
 							v-model="row[thead.name]"
 							:ref="index"
@@ -120,18 +120,21 @@
 										icon="pi pi-arrow-up"
 										@click="addRow(index, 0)"
 										style="background-color:white"
+										v-on:change="$emit('input', value.rows)"
 									/>
 									<Button
 										class="p-button-raised p-button-text"
 										icon="pi pi-trash"
 										@click="deleRow(index)"
 										style="background-color:white"
+										v-on:change="$emit('input', value.rows)"
 									/>
 									<Button
 										class="p-button-raised p-button-text"
 										icon="pi pi-arrow-down"
 										@click="addRow(index, 1)"
 										style="background-color:white"
+										v-on:change="$emit('input', value.rows)"
 									/>
 								</span>
 							</td>
@@ -171,24 +174,26 @@
 <script>
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
-import SelectButton from "primevue/selectbutton";
-//import AutoComplete from "primevue/autocomplete";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
+import ToggleButton from "primevue/togglebutton";
 
 import * as XLSX from "xlsx";
 import InputAutoComplete from "@/components/InputAutoComplete.vue";
 import InputSrMenubar from "../components/InputSrMenubar.vue";
+import NotesContent from "./NotesContent.vue";
 export default {
 	name: "InputSrTable",
 	components: {
 		Textarea,
 		Button,
 		Dialog,
-		SelectButton,
+
 		InputText,
 		InputAutoComplete,
-		InputSrMenubar
+		InputSrMenubar,
+		NotesContent,
+		ToggleButton
 	},
 	props: {
 		question: String,
@@ -197,40 +202,41 @@ export default {
 	},
 	data() {
 		return {
-			//filteredPeople: null,
 			ifEdit: false,
 			show: false,
 			isShowDialog: false,
 			fileName: "",
 			methodsUrl: "",
-			newRow: {},
-
 			toolLinkName: "",
 			people: [],
-			options: ["Incomplete", "Completed"]
+			editshow: false
 		};
 	},
 	methods: {
 		addRow(index, optionNum) {
-			this.value.headers.forEach(theader => {
-				this.$set(this.newRow, theader.index, theader.name);
-				this.newRow[theader.name] = "";
-			});
-			if (optionNum == 0) {
-				this.value.rows.splice(index, 0, this.newRow);
-			} else {
-				this.value.rows.splice(index + 1, 0, this.newRow);
+			let row = {};
+			for (var i = 0; i < this.value.headers.length; i++) {
+				if (this.value.headers[i].name == "progress") {
+					row[this.value.headers[i].name] = false;
+				} else {
+					row[this.value.headers[i].name] = "";
+				}
+				this.$set(row, row[this.value.headers[i].name]);
 			}
-			this.$emit("input", this.value);
+			if (optionNum == 0) {
+				this.value.rows.splice(index, 0, row);
+			} else {
+				this.value.rows.splice(index + 1, 0, row);
+			}
+
+			//console.log("progress:" + JSON.stringify(row));
 		},
 		deleRow(index) {
 			this.value.rows.splice(index, 1);
-			this.$emit("input", this.value);
 		},
 		deleCol(index) {
 			this.value.headers.splice(index, 1);
 			this.$delete(this.value.rows, this.value.headers[index].name);
-			this.$emit("input", this.value);
 		},
 		addCol(newC) {
 			let colName = newC.ColLabel.trim();
@@ -244,18 +250,13 @@ export default {
 			} else {
 				this.value.headers.splice(newC.Index + 1, 0, thead);
 			}
-			/*this.rsValue.forEach(i => {
-				this.$set(this.value.rows[i], colName, "");
-			});*/
-			this.$emit("input", this.value);
 		},
-		update() {
-			this.ifEdit = false;
-			this.$emit("input", this.value);
-		},
+
 		exportExcel(rows, fileName) {
 			let workbook = XLSX.utils.book_new();
-			let sheet1 = XLSX.utils.json_to_sheet(rows);
+			let xlsxData = this.convertJson(rows);
+			//console.log(JSON.stringify(xlsxData));
+			let sheet1 = XLSX.utils.json_to_sheet(xlsxData);
 			XLSX.utils.book_append_sheet(workbook, sheet1, "ResearchPlan1");
 			if (fileName != "") {
 				XLSX.writeFile(workbook, fileName + ".xlsx");
@@ -264,23 +265,26 @@ export default {
 			}
 			this.isShowDialog = false;
 		},
-		selectedValueChange(row) {
-			if (row.progress.state == "Incomplete") {
-				row.progress.isComplete = false;
-				this.$emit("input", this.value);
-			} else {
-				row.progress.isComplete = true;
-				this.$emit("input", this.value);
-			}
+		convertJson(rows) {
+			let xlsxData = [];
+			rows.forEach(row => {
+				let authors = "";
+				if (row.peopleInvolved.length > 0) {
+					row.peopleInvolved.forEach(per => {
+						authors += per.label + ",";
+					});
+				}
+				xlsxData.push({
+					Complete: row.progress,
+					tasks: row.tasks,
+					toolDescription: row.toolDescription,
+					toolLink: row.toolLink.link,
+					notes: row.notes,
+					peopleInvolved: authors
+				});
+			});
+			return xlsxData;
 		}
-		/*search(query, cb) {
-			let results = query
-				? (results = this.titlePageAuthors.filter(people => {
-						return people.value.toLowerCase().startsWith(query.toLowerCase());
-				  }))
-				: (results = [...this.titlePageAuthors]);
-			cb(results);
-		}*/
 	},
 	mounted() {
 		this.methodsUrl = "/#/" + this.$store.state.projectId;
@@ -293,7 +297,16 @@ table {
 	display: block;
 	overflow: auto;
 	overflow-x: auto;
-	background-color: rgba(240, 240, 240, 0.73);
+}
+
+.p-togglebutton.p-button {
+	background: rgba(72, 90, 120, 0.824);
+	border: transparent;
+	height: 20px;
+}
+
+.p-button-text {
+	height: 20px;
 }
 
 .p-fluid-thead {
@@ -304,22 +317,28 @@ table {
 	z-index: 10;
 }
 
-.header {
-	/*display: inline-block;*/
-	display: flex;
-	height: 30px;
-	width: 200px;
+.p-fluid .p-inputtextarea {
+	border-style: none;
 }
+
+.th_container {
+	display: flex;
+	position: relative;
+	height: 30px;
+	width: 250px;
+}
+
 .name {
-	/*float: left;*/
-	flex: 4;
+	position: absolute;
+	left: 30%;
+	top: 20%;
 	font-size: 18px;
+	z-index: 10;
 }
 .menu {
-	/*float: right;*/
-	flex: 2;
-	height: 10px;
-	width: 10px;
+	position: absolute;
+	left: 68%;
+	top: 20%;
 }
 .btnArea {
 	position: sticky;
@@ -328,15 +347,9 @@ table {
 	background-color: transparent;
 }
 
-.t-content {
-	height: 80px;
-	background-color: rgba(240, 240, 240, 0.73);
-	border-style: none;
-}
 .inline-input {
 	height: 40px;
 }
-
 th,
 td {
 	border: 1px solid black;

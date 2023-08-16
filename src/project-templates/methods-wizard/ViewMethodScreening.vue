@@ -2,11 +2,9 @@
 	<div>
 		<h1>Study Selection and Screening</h1>
 
-		<InputSelectDropdown
+		<InputTextNumber
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
-			:value="screening.numberOfTitleAbstractScreeners"
-			@input="updateField('numberOfTitleAbstractScreeners', $event)"
-			:options="numberOptions"
+			:value="numberOfTitleAbstractScreeners"
 		/>
 
 		<InputSelectMulti
@@ -28,11 +26,9 @@
 			:options="this.retrfulltextAuthors"
 		/>
 
-		<InputSelectDropdown
+		<InputTextNumber
 			question="How many review authors independently screened the full-texts for inclusion?"
-			:value="screening.numberOfFullTextScreeners"
-			@input="updateField('numberOfFullTextScreeners', $event)"
-			:options="numberOptions"
+			:value="numberOfFullTextScreeners"
 		/>
 
 		<InputSelectMulti
@@ -88,7 +84,7 @@
 <script>
 import OutputScreening from "./OutputScreening.vue";
 import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
-import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
+//import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
@@ -102,21 +98,23 @@ export default {
 		deepstreamMixin("screening")
 	],
 	components: {
-		InputSelectDropdown,
 		InputSelectMulti,
 		InputSelectYesNo,
 		BasePreviewOutput
 	},
 	computed: {
+		numberOfTitleAbstractScreeners() {
+			return this.screening.titleAbstractScreeners?.length;
+		},
+		numberOfFullTextScreeners() {
+			return this.screening.fullTextScreeners?.length;
+		},
 		scTrialRegisPeople() {
 			let da = this.titlepage.authors?.map(el => {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (
-					el.tasks == "12. Screen trial registries" &&
-					el.peopleInvolved != ""
-				) {
+				if (el.tasks == "Screen trial registries" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});
@@ -127,10 +125,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (
-					el.tasks == "14. Screen citation analysis" &&
-					el.peopleInvolved != ""
-				) {
+				if (el.tasks == "Screen citation analysis" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});
@@ -141,7 +136,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "9. Screen abstracts" && el.peopleInvolved != "") {
+				if (el.tasks == "Screen abstracts" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});
@@ -152,7 +147,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "11. Screen full text" && el.peopleInvolved != "") {
+				if (el.tasks == "Screen full text" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});
@@ -163,7 +158,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "10. Obtain full text" && el.peopleInvolved != "") {
+				if (el.tasks == "Obtain full text" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});
@@ -178,7 +173,7 @@ export default {
 			//scTrialRegisPeople: [], //--screen trial registries
 			//scCitSearchPeople: [], //-- screen citation search
 			//csSearchPeople: [], //-- screec supplenmentry search
-			numberOptions: ["2", "3", "4", "5", "6"],
+			//numberOptions: ["2", "3", "4", "5", "6"],
 			disputeResolutionOptions: [
 				{ label: "By consensus" },
 				{ label: "By referring to a third author" }
