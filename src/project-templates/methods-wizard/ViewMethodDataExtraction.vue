@@ -183,7 +183,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "15. Extract data" && el.peopleInvolved != "") {
+				if (el.tasks == "Extract data" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});

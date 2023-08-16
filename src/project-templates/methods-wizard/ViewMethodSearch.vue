@@ -91,7 +91,7 @@ export default {
 		//--6,7,8 rows in rs-plan table share the same people involved
 		this.researchplan.planTable.rows.forEach(el => {
 			if (
-				el.tasks == "6. Design systematic search strategy" &&
+				el.tasks == "Design systematic search strategy" &&
 				el.peopleInvolved != ""
 			) {
 				this.dsSearchStrategyAuthors = el.peopleInvolved;

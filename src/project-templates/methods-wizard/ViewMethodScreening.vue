@@ -113,10 +113,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (
-					el.tasks == "12. Screen trial registries" &&
-					el.peopleInvolved != ""
-				) {
+				if (el.tasks == "Screen trial registries" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});
@@ -127,10 +124,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (
-					el.tasks == "14. Screen citation analysis" &&
-					el.peopleInvolved != ""
-				) {
+				if (el.tasks == "Screen citation analysis" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});
@@ -141,7 +135,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "9. Screen abstracts" && el.peopleInvolved != "") {
+				if (el.tasks == "Screen abstracts" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});
@@ -152,7 +146,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "11. Screen full text" && el.peopleInvolved != "") {
+				if (el.tasks == "Screen full text" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});
@@ -163,7 +157,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "10. Obtain full text" && el.peopleInvolved != "") {
+				if (el.tasks == "Obtain full text" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});

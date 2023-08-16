@@ -36,16 +36,16 @@ export default {
 		checkChanges(row, rows) {
 			//alert("start");
 			if (
-				row.tasks.includes("6. Design systematic search strategy") ||
-				row.tasks.includes("7. Run systematic search strings") ||
-				row.tasks.includes("8. Deduplicate results")
+				row.tasks.includes("Design systematic search strategy") ||
+				row.tasks.includes("Run systematic search strings") ||
+				row.tasks.includes("Deduplicate results")
 			) {
 				//alert(row.tasks);
 				rows.forEach(el => {
 					if (
-						(el.tasks.includes("6. Design systematic search strategy") ||
-							el.tasks.includes("7. Run systematic search strings") ||
-							el.tasks.includes("8. Deduplicate results")) &&
+						(el.tasks.includes("Design systematic search strategy") ||
+							el.tasks.includes("Run systematic search strings") ||
+							el.tasks.includes("Deduplicate results")) &&
 						el.tasks != row.tasks
 					) {
 						el.peopleInvolved = row.peopleInvolved;

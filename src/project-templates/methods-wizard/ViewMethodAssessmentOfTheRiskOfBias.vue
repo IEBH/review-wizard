@@ -57,10 +57,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (
-					el.tasks == "16. Risk of Bias assessment" &&
-					el.peopleInvolved != ""
-				) {
+				if (el.tasks == "Risk of Bias assessment" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});

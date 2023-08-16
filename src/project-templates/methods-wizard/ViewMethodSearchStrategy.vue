@@ -126,7 +126,7 @@ export default {
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
 				if (
-					el.tasks == "6. Design systematic search strategy" &&
+					el.tasks == "Design systematic search strategy" &&
 					el.peopleInvolved != ""
 				) {
 					da = el.peopleInvolved;
@@ -139,7 +139,7 @@ export default {
 				return { label: el };
 			});
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
+				if (el.tasks == "Citation search" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
 			});

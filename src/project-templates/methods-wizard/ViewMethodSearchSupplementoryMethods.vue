@@ -59,7 +59,7 @@ export default {
 			return { label: el };
 		});
 		this.researchplan.planTable.rows.forEach(el => {
-			if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
+			if (el.tasks == "Citation search" && el.peopleInvolved != "") {
 				this.csAuthors = el.peopleInvolved;
 			}
 		});
