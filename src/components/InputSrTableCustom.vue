@@ -165,7 +165,7 @@
 					label="Comfirm"
 					icon="pi pi-check"
 					class="p-button-text"
-					@click="exportExcel(value.rows, fileName)"
+					@click="exportExcel(value.rows, value.headers, fileName)"
 				/>
 			</template>
 		</Dialog>
@@ -252,9 +252,9 @@ export default {
 			}
 		},
 
-		exportExcel(rows, fileName) {
+		exportExcel(rows, headers, fileName) {
 			let workbook = XLSX.utils.book_new();
-			let xlsxData = this.convertJson(rows);
+			let xlsxData = this.convertJson(rows, headers);
 			//console.log(JSON.stringify(xlsxData));
 			let sheet1 = XLSX.utils.json_to_sheet(xlsxData);
 			XLSX.utils.book_append_sheet(workbook, sheet1, "ResearchPlan1");
@@ -265,23 +265,34 @@ export default {
 			}
 			this.isShowDialog = false;
 		},
-		convertJson(rows) {
+		convertJson(rows, headers) {
 			let xlsxData = [];
 			rows.forEach(row => {
-				let authors = "";
-				if (row.peopleInvolved.length > 0) {
-					row.peopleInvolved.forEach(per => {
-						authors += per.label + ",";
-					});
+				let da = {};
+				for (var i = 0; i < headers.length; i++) {
+					if (headers[i].name == "peopleInvolved") {
+						let authors = "";
+						if (row[headers[i].name].length > 0) {
+							row[headers[i].name].forEach(per => {
+								authors += per.label + ",";
+							});
+						}
+						this.$set(da, headers[i].label, authors);
+					} else if (headers[i].name == "toolLink") {
+						let link = "";
+						if (row[headers[i].name].length > 0) {
+							row[headers[i].name].forEach(tlink => {
+								if (tlink.name != "") {
+									link += tlink.name + ";";
+								}
+							});
+						}
+						this.$set(da, headers[i].label, link);
+					} else {
+						this.$set(da, headers[i].label, row[headers[i].name]);
+					}
 				}
-				xlsxData.push({
-					Complete: row.progress,
-					tasks: row.tasks,
-					toolDescription: row.toolDescription,
-					toolLink: row.toolLink.link,
-					notes: row.notes,
-					peopleInvolved: authors
-				});
+				xlsxData.push(da);
 			});
 			return xlsxData;
 		}
