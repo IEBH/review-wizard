@@ -42,7 +42,11 @@ export default {
 		},
 		Authors() {
 			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "Design systematic search strategy") {
+				if (
+					el.tasks == "Design systematic search strategy" ||
+					el.tasks == "Run systematic search strings" ||
+					el.tasks == "Deduplicate results"
+				) {
 					if (this.search.designSearchStrategyAuthors != null) {
 						el.peopleInvolved = this.checkPeopleInvolved(
 							el.peopleInvolved,
