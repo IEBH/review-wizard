@@ -6,8 +6,8 @@
 			:suggestions="filteredPeople"
 			field="label"
 			@complete="searchAuthors($event)"
-			@item-select="checkChanges(row, tableValue.rows)"
-			@item-unselect="checkChanges(row, tableValue.rows)"
+			@item-select="checkChanges(row, tableValue.rows, $event.value)"
+			@item-unselect="checkChanges(row, tableValue.rows, $event.value)"
 		/>
 	</div>
 </template>
@@ -32,7 +32,7 @@ export default {
 		};
 	},
 	methods: {
-		checkChanges(row, rows) {
+		checkChanges(row, rows, event) {
 			if (
 				row.tasks.includes("Design systematic search strategy") ||
 				row.tasks.includes("Run systematic search strings") ||
@@ -49,7 +49,7 @@ export default {
 					}
 				});
 			}
-			this.$emit("input", this.row.peopleInvolved);
+			this.$emit("input", event);
 		},
 		searchAuthors(event) {
 			setTimeout(() => {

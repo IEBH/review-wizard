@@ -72,13 +72,14 @@
 							<el-checkbox
 								v-model="row.progress"
 								label="Completed"
+								@change="changeHandler($event)"
 							></el-checkbox>
 						</div>
 						<NotesContent
 							v-if="thead.name == 'notes'"
 							:thead="thead"
 							:row="row"
-							v-on:change="$emit('input', row[thead.name])"
+							@input="changeHandler"
 						/>
 						<InputAutoComplete
 							v-if="thead.name == 'peopleInvolved'"
@@ -87,6 +88,7 @@
 							:tableHeader="thead"
 							:titlePageAuthors="titlePageAuthors"
 							:people="people"
+							@input="changeHandler"
 						/>
 
 						<Textarea
@@ -100,6 +102,7 @@
 							v-model="row[thead.name]"
 							:ref="index"
 							:autoResize="true"
+							@change="changeHandler($event.target.value)"
 						/>
 					</td>
 					<td class="btnArea" v-if="ifEdit">
@@ -120,21 +123,18 @@
 										icon="pi pi-arrow-up"
 										@click="addRow(index, 0)"
 										style="background-color:white"
-										v-on:change="$emit('input', value.rows)"
 									/>
 									<Button
 										class="p-button-raised p-button-text"
 										icon="pi pi-trash"
 										@click="deleRow(index)"
 										style="background-color:white"
-										v-on:change="$emit('input', value.rows)"
 									/>
 									<Button
 										class="p-button-raised p-button-text"
 										icon="pi pi-arrow-down"
 										@click="addRow(index, 1)"
 										style="background-color:white"
-										v-on:change="$emit('input', value.rows)"
 									/>
 								</span>
 							</td>
@@ -213,6 +213,11 @@ export default {
 		};
 	},
 	methods: {
+		changeHandler(event) {
+			if (event != undefined) {
+				this.$emit("input", this.value);
+			}
+		},
 		addRow(index, optionNum) {
 			let row = {};
 			for (var i = 0; i < this.value.headers.length; i++) {
@@ -228,15 +233,16 @@ export default {
 			} else {
 				this.value.rows.splice(index + 1, 0, row);
 			}
-
-			//console.log("progress:" + JSON.stringify(row));
+			this.$emit("input", this.value);
 		},
 		deleRow(index) {
 			this.value.rows.splice(index, 1);
+			this.$emit("input", this.value);
 		},
 		deleCol(index) {
 			this.value.headers.splice(index, 1);
 			this.$delete(this.value.rows, this.value.headers[index].name);
+			this.$emit("input", this.value);
 		},
 		addCol(newC) {
 			let colName = newC.ColLabel.trim();
@@ -250,6 +256,7 @@ export default {
 			} else {
 				this.value.headers.splice(newC.Index + 1, 0, thead);
 			}
+			this.$emit("input", this.value);
 		},
 
 		exportExcel(rows, headers, fileName) {

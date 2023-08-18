@@ -6,6 +6,7 @@
 			v-model="row[thead.name]"
 			:autoResize="true"
 			rows="8"
+			v-on:change="$emit('input', $event.target.value)"
 		/>
 	</div>
 </template>
