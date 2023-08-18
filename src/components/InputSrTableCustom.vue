@@ -70,13 +70,14 @@
 							<el-checkbox
 								v-model="row.progress"
 								label="Completed"
+								@change="changeHandler($event)"
 							></el-checkbox>
 						</div>
 						<NotesContent
 							v-if="thead.name == 'notes'"
 							:thead="thead"
 							:row="row"
-							@notes="save"
+							@change="changeHandler"
 						/>
 						<InputAutoComplete
 							v-if="thead.name == 'peopleInvolved'"
@@ -85,7 +86,7 @@
 							:tableHeader="thead"
 							:titlePageAuthors="titlePageAuthors"
 							:people="people"
-							@autocom="save"
+							@autocom="changeHandler"
 						/>
 						<Textarea
 							v-if="
@@ -98,6 +99,7 @@
 							v-model="row[thead.name]"
 							:ref="index"
 							:autoResize="true"
+							@change="changeHandler($event.target.value)"
 						/>
 					</td>
 					<td class="btnArea" v-if="ifEdit">
@@ -209,7 +211,7 @@ export default {
 		};
 	},
 	methods: {
-		save(event) {
+		changeHandler(event) {
 			if (event != undefined) {
 				this.$emit("input", this.value);
 			}
