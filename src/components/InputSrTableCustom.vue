@@ -77,7 +77,7 @@
 							v-if="thead.name == 'notes'"
 							:thead="thead"
 							:row="row"
-							@change="changeHandler"
+							@notes="changeHandler"
 						/>
 						<InputAutoComplete
 							v-if="thead.name == 'peopleInvolved'"
