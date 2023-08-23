@@ -4,18 +4,21 @@
 			<b
 				>{{ question }}
 
-				<ToggleButton
-					v-model="ifEdit"
-					onIcon="pi pi-check"
-					offIcon="pi pi-user-edit"
-					offLabel="Save"
-				/>
-
-				<Button
-					icon="pi pi-cloud-download"
-					@click="isShowDialog = true"
-					class="p-button-secondary p-button-text"
-				/>
+				<span class="p-buttonset">
+					<ToggleButton
+						v-model="ifEdit"
+						onLabel="Save"
+						offLabel="Edit"
+						onIcon="pi pi-check"
+						offIcon="pi pi-user-edit"
+					/>
+					<Button
+						class="button_download"
+						icon="pi pi-cloud-download"
+						label="Download"
+						@click="isShowDialog = true"
+					/>
+				</span>
 			</b>
 		</p>
 		<table class="p-fluid" style="width:100%;" v-if="value">
@@ -317,10 +320,20 @@ table {
 	overflow-x: auto;
 }
 
-.p-togglebutton.p-button {
-	background: rgba(72, 90, 120, 0.824);
+.button_download {
+	background: #b5cfe2;
 	border: transparent;
-	height: 20px;
+	height: 30px;
+	width: 120px;
+}
+.p-togglebutton.p-button {
+	background: #a1b9ca;
+	border: transparent;
+	height: 30px;
+	width: 80px;
+}
+.p-button:not(.p-disabled):not(.p-highlight):hover {
+	background: #8ba5b9;
 }
 
 .p-button-text {
