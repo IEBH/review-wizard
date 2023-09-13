@@ -28,7 +28,8 @@
     "vue-router": "^3.3.4",
     "vue-sidebar-menu": "^4.6.2",
     "vue2-ace-editor": "^0.0.15",
-    "vuex": "^3.5.1"
+    "vuex": "^3.5.1",
+    "xlsx-js-style": "^1.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",

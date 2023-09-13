@@ -1,19 +1,9 @@
 <template>
 	<div class="p-mb-6">
 		<p>
-			<b
-				>{{ question }}
-				<ToggleButton
-					v-model="ifEdit"
-					onIcon="pi pi-check"
-					offIcon="pi pi-user-edit"
-					offLabel="Save"
-				/>
-				<Button
-					icon="pi pi-cloud-download"
-					@click="isShowDialog = true"
-					class="p-button-secondary p-button-text"
-				/>
+			<b>{{ question }}
+				<ToggleButton v-model="ifEdit" onIcon="pi pi-check" offIcon="pi pi-user-edit" offLabel="Save" />
+				<Button icon="pi pi-cloud-download" @click="isShowDialog = true" class="p-button-secondary p-button-text" />
 			</b>
 		</p>
 		<table class="p-fluid" style="width:100%;" v-if="value">
@@ -25,12 +15,7 @@
 								{{ thead.label }}
 							</div>
 							<div class="menu">
-								<InputSrMenubar
-									v-if="ifEdit"
-									:colIndex="index"
-									@addCol="addCol"
-									@deleteCol="deleCol"
-								/>
+								<InputSrMenubar v-if="ifEdit" :colIndex="index" @addCol="addCol" @deleteCol="deleCol" />
 							</div>
 						</div>
 					</th>
@@ -43,127 +28,59 @@
 				<tr v-for="(row, index) in value.rows" :key="index">
 					<td v-for="thead of value.headers" :key="thead.name">
 						<template v-if="thead.name == 'toolLink'">
-							<div
-								v-for="tl in row.toolLink"
-								:key="tl.name"
-								style="margin: 10px;"
-							>
-								<a
-									v-if="tl.name != '' && tl.link.includes('https://') == false"
-									:href="methodsUrl + tl.link"
-									target="_blank"
-									>{{ tl.name }}</a
-								>
-								<a
-									v-if="tl.name != '' && tl.link.includes('https://') == true"
-									:href="tl.link"
-									target="_blank"
-									>{{ tl.name }}</a
-								>
+							<div v-for="tl in row.toolLink" :key="tl.name" style="margin: 10px;">
+								<a v-if="tl.name != '' && tl.link.includes('https://') == false"
+									:href="methodsUrl + tl.link" target="_blank">{{ tl.name }}</a>
+								<a v-if="tl.name != '' && tl.link.includes('https://') == true" :href="tl.link"
+									target="_blank">{{ tl.name }}</a>
 							</div>
 						</template>
-						<div
-							class="field-checkbox"
-							v-if="thead.name == 'progress'"
-							style="margin: 20%;"
-						>
-							<el-checkbox
-								v-model="row.progress"
-								label="Completed"
-								@change="changeHandler($event)"
-							></el-checkbox>
+						<div class="field-checkbox" v-if="thead.name == 'progress'" style="margin: 20%;">
+							<el-checkbox v-model="row.progress" label="Completed"
+								@change="changeHandler($event)"></el-checkbox>
 						</div>
-						<NotesContent
-							v-if="thead.name == 'notes'"
-							:thead="thead"
-							:row="row"
-							@notes="changeHandler"
-						/>
-						<InputAutoComplete
-							v-if="thead.name == 'peopleInvolved'"
-							:tableValue="value"
-							:row="row"
-							:tableHeader="thead"
-							:titlePageAuthors="titlePageAuthors"
-							:people="people"
-							@autocom="changeHandler"
-						/>
-						<Textarea
-							v-if="
-								thead.name != 'peopleInvolved' &&
-									thead.name != 'toolLink' &&
-									thead.name != 'progress' &&
-									thead.name != 'notes'
-							"
-							type="text"
-							v-model="row[thead.name]"
-							:ref="index"
-							:autoResize="true"
-							@change="changeHandler($event.target.value)"
-						/>
+						<NotesContent v-if="thead.name == 'notes'" :thead="thead" :row="row" @notes="changeHandler" />
+						<InputAutoComplete v-if="thead.name == 'peopleInvolved'" :tableValue="value" :row="row"
+							:tableHeader="thead" :titlePageAuthors="titlePageAuthors" :people="people"
+							@autocom="changeHandler" />
+						<Textarea v-if="thead.name != 'peopleInvolved' &&
+							thead.name != 'toolLink' &&
+							thead.name != 'progress' &&
+							thead.name != 'notes'
+							" type="text" v-model="row[thead.name]" :ref="index" :autoResize="true"
+							@change="changeHandler($event.target.value)" />
 					</td>
 					<td class="btnArea" v-if="ifEdit">
-						<tr>
-							<td style="border-style: none;">
-								<Button
-									v-if="ifEdit"
-									class="p-button-raised p-button-text"
-									icon="pi pi-ellipsis-h"
-									@click="show = !show"
-									style="background-color:white"
-								/>
-							</td>
-							<td style="border-style: none;">
-								<span class="p-buttonset" v-if="show && ifEdit">
-									<Button
-										class="p-button-raised p-button-text"
-										icon="pi pi-arrow-up"
-										@click="addRow(index, 0)"
-										style="background-color:white"
-									/>
-									<Button
-										class="p-button-raised p-button-text"
-										icon="pi pi-trash"
-										@click="deleRow(index)"
-										style="background-color:white"
-									/>
-									<Button
-										class="p-button-raised p-button-text"
-										icon="pi pi-arrow-down"
-										@click="addRow(index, 1)"
-										style="background-color:white"
-									/>
-								</span>
-							</td>
-						</tr>
+				<tr>
+					<td style="border-style: none;">
+						<Button v-if="ifEdit" class="p-button-raised p-button-text" icon="pi pi-ellipsis-h"
+							@click="show = !show" style="background-color:white" />
 					</td>
+					<td style="border-style: none;">
+						<span class="p-buttonset" v-if="show && ifEdit">
+							<Button class="p-button-raised p-button-text" icon="pi pi-arrow-up" @click="addRow(index, 0)"
+								style="background-color:white" />
+							<Button class="p-button-raised p-button-text" icon="pi pi-trash" @click="deleRow(index)"
+								style="background-color:white" />
+							<Button class="p-button-raised p-button-text" icon="pi pi-arrow-down" @click="addRow(index, 1)"
+								style="background-color:white" />
+						</span>
+					</td>
+				</tr>
+				</td>
 				</tr>
 			</tbody>
 		</table>
-		<Dialog
-			header="Export to Excel"
-			:visible.sync="isShowDialog"
-			:modal="true"
-			:style="{ width: '450px' }"
-		>
+		<Dialog header="Export to Excel" :visible.sync="isShowDialog" :modal="true" :style="{ width: '450px' }">
 			<div class="p-inputgroup">
 				<span class="p-inputgroup-addon">NewFile-Name:</span>
 				<InputText placeholder="e.g.ResearchPlan.xlsx" v-model="fileName" />
 			</div>
 
 			<template #footer>
-				<Button
-					label="Cancel"
-					icon="pi pi-times"
-					class="p-button-text"
-					@click="isShowDialog = false"
-				/>
-				<Button
-					label="Comfirm"
-					icon="pi pi-check"
-					class="p-button-text"
-					@click="exportExcel(value.rows, value.headers, fileName)"
-				/>
+				<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="isShowDialog = false" />
+				<Button label="Comfirm" icon="pi pi-check" class="p-button-text"
+					@click="exportExcel(value.rows, value.headers, fileName)" />
 			</template>
 		</Dialog>
 	</div>
@@ -266,6 +183,41 @@ export default {
 			let workbook = XLSX.utils.book_new();
 			let xlsxData = this.convertJson(rows, headers);
 			let sheet1 = XLSX.utils.json_to_sheet(xlsxData);
+			// Formating Cells on excel
+			const jsonKeys = headers ? headers : Object.keys(rows[0]);
+			let objectMaxLength = [];
+			let keysForPatch = [];
+			for (let i = 0; i < rows.length; i++) {
+				let value = rows[i];
+				for (let j = 0; j < jsonKeys.length; j++) {
+					keysForPatch.push(jsonKeys[j].name);
+					if (typeof value[jsonKeys[j].name] == "number") {
+						objectMaxLength[j] = 10;
+					}
+					else {
+						const l = value[jsonKeys[j].name] ? value[jsonKeys[j].name].length : 0;
+						if (l && l != 1) {
+							objectMaxLength[j] = objectMaxLength[j] >= l ? objectMaxLength[j] : l;
+						} else {
+							objectMaxLength[j] = j == 0 ? 10 : 40;
+						}
+
+					}
+				}
+				let key = keysForPatch;
+				for (let j = 0; j < key.length; j++) {
+					objectMaxLength[j] = objectMaxLength[j] >= key[j].length ? objectMaxLength[j] : key[j].length;
+				}
+			}
+			const wscols = objectMaxLength.map(w => { return { width: w } });
+			sheet1["!cols"] = wscols;
+			// sheet1['A1'].s = {
+			// 	fill: {
+			// 		patternType: "solid",
+			// 		fgColor: { rgb: "00dce6f1" },
+			// 		bgColor: { rgb: "00dce6f1" }
+			// 	}
+			// }
 			XLSX.utils.book_append_sheet(workbook, sheet1, "ResearchPlan1");
 			if (fileName != "") {
 				XLSX.writeFile(workbook, fileName + ".xlsx");
@@ -318,6 +270,7 @@ export default {
 		this.methodsUrl = "/#/" + this.$store.state.projectId;
 	}
 };
+
 </script>
 <style scoped>
 table {
@@ -345,6 +298,7 @@ table {
 	border: 1px solid black;
 	z-index: 10;
 }
+
 .p-fluid .p-inputtextarea {
 	border-style: none;
 }
@@ -366,18 +320,21 @@ table {
 	font-size: 18px;
 	z-index: 10;
 }
+
 .menu {
 	/*float: right;*/
 	position: absolute;
 	left: 68%;
 	top: 20%;
 }
+
 .btnArea {
 	position: sticky;
 	right: 0px;
 	top: 30px;
 	background-color: transparent;
 }
+
 .inline-input {
 	height: 40px;
 }
