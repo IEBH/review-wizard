@@ -124,7 +124,7 @@ export default {
 		update(index, original, field, event) {
 			var newObj = original;
 			newObj[field] = event;
-			this.$set(this.value, index, newObj);
+			this.value[index] = newObj;
 			this.$emit("input", this.value);
 		},
 		confirmDelete(row, index) {

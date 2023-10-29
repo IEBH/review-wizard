@@ -49,7 +49,7 @@ export default {
 	},
 	methods: {
 		update: function(index, item) {
-			this.$set(this.value, index, item);
+			this.value[index] = item;
 			this.$emit("input", this.value);
 		},
 		removeLastValue: function() {

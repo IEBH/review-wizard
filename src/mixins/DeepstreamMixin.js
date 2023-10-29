@@ -42,7 +42,7 @@ export default key => ({
 	},
 	methods: {
 		updateField(field, value) {
-			this.$set(this[key], field, value);
+			this[key][field] = value;
 			this.methodsRecord.set(key, this[key]);
 			this.projectRecord.set("metadata.dateModified", Date.now());
 		}

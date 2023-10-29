@@ -175,9 +175,6 @@ export default {
 				this.value.headers.splice(newC.Index + 1, 0, thead);
 			}
 			this.$emit("input", this.value);
-			/*this.rsValue.forEach(i => {
-				this.$set(this.value.rows[i], colName, "");
-			});*/
 		},
 		exportExcel(rows, headers, fileName) {
 			let workbook = XLSX.utils.book_new();
@@ -238,7 +235,7 @@ export default {
 								authors += per.label + ",";
 							});
 						}
-						this.$set(da, headers[i].label, authors);
+						da[headers[i].label] = authors;
 					} else if (headers[i].name == "toolLink") {
 						let link = "";
 						if (row[headers[i].name].length > 0) {
@@ -248,9 +245,9 @@ export default {
 								}
 							});
 						}
-						this.$set(da, headers[i].label, link);
+						da[headers[i].label] = link;
 					} else {
-						this.$set(da, headers[i].label, row[headers[i].name]);
+						da[headers[i].label] = row[headers[i].name];
 					}
 				}
 				xlsxData.push(da);
