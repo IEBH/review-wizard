@@ -60,7 +60,7 @@ import "primevue/resources/primevue.min.css";
 
 import TheArticleToolbar from "./components/TheArticleToolbar.vue";
 import ProjectEdit from "./components/ProjectEdit.vue";
-import projectTemplateImport from "@/helpers/projectTemplateImport.js";
+import projectTemplateImport from "./helpers/projectTemplateImport.js";
 
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";

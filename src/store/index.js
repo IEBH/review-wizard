@@ -1,7 +1,3 @@
-import Vue from "vue";
-import Vuex from "vuex";
-Vue.use(Vuex);
-
 import { DeepstreamClient } from "@deepstream/client";
 import projectTemplateImport from "@/helpers/projectTemplateImport.js";
 
@@ -130,6 +126,6 @@ const storeData = {
 };
 
 // initialise Vuex
-const store = new Vuex.Store(storeData);
+const store = createStore(storeData);
 
 export default store;
