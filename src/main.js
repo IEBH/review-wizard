@@ -7,6 +7,7 @@ let app = globalThis.app = createApp(App);
 
 // Import the store
 import store from "./store";
+app.use(store);
 
 // Primevue
 import PrimeVue from "primevue/config";
@@ -15,7 +16,7 @@ app.use(PrimeVue, { ripple: true  });
 // Setup the sidebar menu
 import VueSidebarMenu from "vue-sidebar-menu";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
-Vue.use(VueSidebarMenu);
+app.use(VueSidebarMenu);
 
 // $router
 import {createRouter, createWebHistory} from 'vue-router';
