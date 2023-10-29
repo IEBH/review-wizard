@@ -82,7 +82,7 @@ export default {
 				})
 				.then(newId => {
 					this.shareUrl =
-						"https://sr-accelerator.com/#/methods-wizard?id=" + newId;
+						"https://tera-tools.com/methods-wizard?id=" + newId;
 					this.displayWarn = true;
 				})
 				.catch(err => {
