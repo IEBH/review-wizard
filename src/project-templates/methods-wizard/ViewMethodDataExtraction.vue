@@ -123,8 +123,7 @@
 </template>
 
 <script>
-import isEqual from "lodash/isEqual";
-import sortBy from "lodash/sortBy";
+import {isEqual, sortBy} from "lodash-es";
 
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
