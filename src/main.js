@@ -11,7 +11,7 @@ app.use(store);
 
 // Primevue
 import PrimeVue from "primevue/config";
-app.use(PrimeVue, { ripple: true  });
+app.use(PrimeVue, { ripple: true });
 
 // Setup the sidebar menu
 import VueSidebarMenu from "vue-sidebar-menu";
@@ -20,9 +20,11 @@ app.use(VueSidebarMenu);
 
 // $router
 import {createRouter, createWebHistory} from 'vue-router';
+import Project from "./helpers/projectTemplateImport";
+let {routes} = await Project();
 const router = app.router = createRouter({
 	history: createWebHistory(),
-	routes: [], // Populated individually below
+	routes,
 });
 
 // Routes {{{
