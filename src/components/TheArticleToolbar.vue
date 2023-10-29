@@ -1,34 +1,20 @@
 <template>
 	<div>
-		<Toolbar>
+		<Toolbar style="background-image: linear-gradient(#6880b5, #465b8b,#5971a5);color: #dcdee5;">
 			<template #start>
 				<b>
 					{{ titlepage.title ? titlepage.title : "Untitled Methods Section" }}
 				</b>
-				<TheArticleCitation
-					:title="titlepage.title"
-					:authors="titlepage.authors"
-					:year="titlepage.year"
-				/>
+				<TheArticleCitation :title="titlepage.title" :authors="titlepage.authors" :year="titlepage.year" />
 			</template>
 			<template #end>
-				<Button
-					label="Share"
-					@click="openModal()"
-					icon="pi pi-share-alt"
-					class="p-mr-2"
-				/>
+				<Button label="Share" @click="openModal()" icon="pi pi-share-alt" class="p-mr-2" />
 				<Button label="Close" @click="close" class="p-button-danger" />
 			</template>
 		</Toolbar>
 
 		<!-- Modal to display sharing link -->
-		<Dialog
-			header="Share"
-			:visible.sync="displayModal"
-			:style="{ width: '50vw' }"
-			:modal="true"
-		>
+		<Dialog header="Share" :visible.sync="displayModal" :style="{ width: '50vw' }" :modal="true">
 			<p>Copy the link below to send to others:</p>
 			<Toolbar>
 				<template #start>{{ shareUrl }}</template>
@@ -40,13 +26,7 @@
 		</Dialog>
 
 		<!-- Modal to display warning -->
-		<Dialog
-			header="Warning"
-			:visible.sync="displayWarn"
-			:style="{ width: '50vw' }"
-			:modal="true"
-			@hide="closeArticle"
-		>
+		<Dialog header="Warning" :visible.sync="displayWarn" :style="{ width: '50vw' }" :modal="true" @hide="closeArticle">
 			<p>Warning: save the below link to ensure progress is not lost</p>
 			<Toolbar>
 				<template #start>{{ shareUrl }}</template>
