@@ -8,8 +8,8 @@
 				<TheArticleCitation :title="titlepage.title" :authors="titlepage.authors" :year="titlepage.year" />
 			</template>
 			<template #end>
-				<Button label="Share" @click="openModal()" icon="pi pi-share-alt" class="p-mr-2" />
-				<Button label="Close" @click="close" class="p-button-danger" />
+				<Button label="Share" @click="openModal()" icon="pi pi-share-alt" class="p-mr-2 btsyleblue" />
+				<Button label="Close" @click="close" class="btsylered" />
 			</template>
 		</Toolbar>
 
@@ -125,3 +125,53 @@ export default {
 	}
 };
 </script>
+<style>
+.btsyleblue {
+	margin: 10px;
+	/* width: 100px; */
+	background-color: #83bfed;
+	border-radius: 20px;
+	/* box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px; */
+	color: #05305f;
+	cursor: pointer;
+	display: inline-block;
+	font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+	padding: 7px 20px;
+	text-align: center;
+	text-decoration: none;
+	/* transition: all 250ms; */
+	border: 0;
+	font-size: 16px;
+
+	&:hover {
+		/* box-shadow: 0 0 10px 0 #28a745 inset, 0 0 10px 4px #28a745; */
+		/* background-color: #0069d9 !important; */
+		background-color: #437fbe !important;
+	
+		border: 2px solid #5679a2 !important;
+	}
+}
+.btsylered {
+	margin: 10px;
+	/* width: 100px; */
+	background-color: #f4a8a2;
+	border-radius: 20px;
+	/* box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px; */
+	color: #c03e34;
+	cursor: pointer;
+	display: inline-block;
+	font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+	padding: 7px 20px;
+	text-align: center;
+	text-decoration: none;
+	/* transition: all 250ms; */
+	border: 0;
+	font-size: 16px;
+
+	&:hover {
+		/* box-shadow: 0 0 10px 0 #28a745 inset, 0 0 10px 4px #28a745; */
+		background-color: #ba4a41 !important;
+		border: 2px solid #e49164 !important;
+	}
+}
+</style>
