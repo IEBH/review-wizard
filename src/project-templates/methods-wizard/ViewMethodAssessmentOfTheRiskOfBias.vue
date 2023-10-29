@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
+import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias.vue";
 import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";

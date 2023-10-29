@@ -12,7 +12,7 @@
 	</div>
 </template>
 <script>
-import AutoComplete from "primevue/autocomplete/AutoComplete";
+import AutoComplete from "primevue/autocomplete";
 import deepstreamMixin from "@/mixins/DeepstreamMixin";
 export default {
 	name: "InputAutoComplete",

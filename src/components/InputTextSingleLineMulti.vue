@@ -8,12 +8,11 @@
         v-bind:value="value"
         v-on:change="$emit('input', $event.target.value)"
       > -->
-		<template v-for="(item, index) in value">
+		<template v-for="(item, index) in value" :key="index">
 			<InputText
 				class="p-mb-2"
 				type="text"
 				:value="item"
-				:key="index"
 				:ref="index"
 				@input="update(index, $event)"
 				:placeholder="placeholder"

@@ -58,7 +58,7 @@
 	</div>
 </template>
 <script>
-import Menubar from "primevue/menubar/Menubar";
+import Menubar from "primevue/menubar";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";

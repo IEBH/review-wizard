@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect";
+import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect.vue";
 
 import deepstreamMixin from "@/mixins/DeepstreamMixin";
 

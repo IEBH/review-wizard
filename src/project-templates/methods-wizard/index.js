@@ -17,8 +17,7 @@ import ViewHome from "./ViewHome.vue";
 import ViewOutput from "./ViewOutput.vue";
 import ViewMethodIntroduction from "./ViewMethodIntroduction.vue";
 import ViewMethodResearchPlan from "./ViewMethodResearchPlan.vue";
-import ViewTitlePagePeople from "./ViewTitlePagePeople";
-//new add
+import ViewTitlePagePeople from "./ViewTitlePagePeople.vue";
 import ViewMethodSearchStrategy from "./ViewMethodSearchStrategy.vue";
 import ViewMethodSearchStrings from "./ViewMethodSearchStrings.vue";
 import ViewMethodHeterogeneity from "./ViewMethodHeterogeneity.vue";

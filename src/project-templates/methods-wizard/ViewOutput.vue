@@ -159,7 +159,7 @@ import OutputUnitOfAnalysis from "./OutputUnitOfAnalysis.vue";
 import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
 //import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
 import OutputHeterogeneity from "./OutputHeterogeneity.vue";
-import OutputPublicationBias from "./OutputPublicationBias";
+import OutputPublicationBias from "./OutputPublicationBias.vue";
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
 import OutputIntroduction from "./OutputIntroduction.vue";
 

@@ -85,7 +85,7 @@
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputDate from "@/components/InputDate.vue";
-import InputTextMultiSyntax from "@/components/InputTextMultiSyntax";
+import InputTextMultiSyntax from "@/components/InputTextMultiSyntax.vue";
 //Search Strings for Trial Registries
 
 import OutputSearchStrings from "./OutputSearchStrings.vue";

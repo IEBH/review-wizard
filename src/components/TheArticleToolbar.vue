@@ -105,7 +105,7 @@ export default {
 	},
 	methods: {
 		close() {
-			this.shareUrl = `https://sr-accelerator.com/#/${process.env.VUE_APP_PROJECT}?id=${this.projectId}`;
+			this.shareUrl = `https://sr-accelerator.com/#/${import.meta.env.VITE_APP_PROJECT}?id=${this.projectId}`;
 			this.displayWarn = true;
 		},
 		closeArticle() {
@@ -113,7 +113,7 @@ export default {
 			this.$router.push("/");
 		},
 		openModal() {
-			this.shareUrl = `https://sr-accelerator.com/#/${process.env.VUE_APP_PROJECT}?id=${this.projectId}`;
+			this.shareUrl = `https://sr-accelerator.com/#/${import.meta.env.VITE_APP_PROJECT}?id=${this.projectId}`;
 			this.displayModal = true;
 		},
 		copyLink() {

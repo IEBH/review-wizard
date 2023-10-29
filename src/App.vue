@@ -102,10 +102,10 @@ export default {
 			this.menu = getMenu(this.$store.state.projectId);
 		},
 		pascalCaseTitle() {
-			return upperFirst(camelCase(process.env.VUE_APP_PROJECT));
+			return upperFirst(camelCase(import.meta.env.VITE_APP_PROJECT));
 		},
 		getLogoPath() {
-			return require("./assets/" + process.env.VUE_APP_PROJECT + ".png");
+			return import("./assets/" + import.meta.env.VITE_APP_PROJECT + ".png" /* @vite-ignore */);
 		}
 	},
 	data() {
