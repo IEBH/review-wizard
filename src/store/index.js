@@ -1,5 +1,6 @@
-import { DeepstreamClient } from "@deepstream/client";
+import {DeepstreamClient} from "@deepstream/client/dist/bundle/ds.js";
 import projectTemplateImport from "@/helpers/projectTemplateImport.js";
+import {createStore} from 'vuex';
 
 const getDefaultState = () => ({
 	projectId: null,
