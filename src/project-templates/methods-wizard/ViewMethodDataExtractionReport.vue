@@ -51,37 +51,6 @@ export default {
 			},
 		},
 	},
-	computed: {
-
-		numberOfExtractors() {
-			return this.extraction.extractionAuthors?.length;
-		},
-		pfDataExtractAuthors() {
-			let da = this.titlepage.authors?.map(el => {
-				return { label: el };
-			});
-			this.researchplan.planTable?.rows.forEach(el => {
-				if (el.tasks == "Extract data" && el.peopleInvolved != "") {
-					da = el.peopleInvolved;
-				}
-			});
-			return da;
-		},
-		// formatData() {
-		// 	// extraction.methods
-		// 	if (this.extraction.outcomes.length > 0) {
-		// 		this.extraction.outcomes.forEach(data => {
-		// 			let row = { 'label': data.main }
-		// 			this.extraction.methods.push(row);
-		// 		});
-		// 	}
-		// 	this.extraction.outcomes.forEach(data => {
-		// 		data.custom = "";
-		// 	});
-		// 	console.log("hereeeeee", this.extraction, this.extraction.methods);
-		// 	return this.extraction.methods;
-		// }
-	},
 	methods: {
 		changeHandler(event) {
 			if (event != undefined) {
@@ -283,7 +252,6 @@ export default {
 	},
 	data() {
 		return {
-			//pfDataExtractAuthors: [], //--perform data extraction authors
 			numberOptions: ["1", "2", "3", "4", "5", "6"],
 			isShowDialog: false,
 			ifEdit: false,
