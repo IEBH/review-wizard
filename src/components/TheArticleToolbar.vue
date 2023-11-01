@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Toolbar style="background-image: linear-gradient(#6880b5, #465b8b,#5971a5);color: #dcdee5;">
+		<Toolbar>
 			<template #start>
 				<b>
 					{{ titlepage.title ? titlepage.title : "Untitled Methods Section" }}
@@ -126,6 +126,11 @@ export default {
 };
 </script>
 <style>
+.p-toolbar {
+	background-image: linear-gradient(#6880b5, #465b8b, #5971a5);
+	color: #dcdee5;
+}
+
 .btsyleblue {
 	margin: 10px;
 	/* width: 100px; */
@@ -147,10 +152,11 @@ export default {
 		/* box-shadow: 0 0 10px 0 #28a745 inset, 0 0 10px 4px #28a745; */
 		/* background-color: #0069d9 !important; */
 		background-color: #437fbe !important;
-	
+
 		border: 2px solid #5679a2 !important;
 	}
 }
+
 .btsylered {
 	margin: 10px;
 	/* width: 100px; */
@@ -173,5 +179,4 @@ export default {
 		background-color: #ba4a41 !important;
 		border: 2px solid #e49164 !important;
 	}
-}
-</style>
+}</style>
