@@ -20,9 +20,9 @@ import VTooltip from 'v-tooltip';
 export default {
 	name: "ViewMethodDataExtractionReport",
 	mixins: [
-		deepstreamMixin("researchplan"),
-		deepstreamMixin("titlepage"),
-		deepstreamMixin("picot"),
+		// deepstreamMixin("researchplan"),
+		// deepstreamMixin("titlepage"),
+		// deepstreamMixin("picot"),
 		deepstreamMixin("extraction")
 	],
 	directives: {
