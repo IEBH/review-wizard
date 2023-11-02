@@ -128,6 +128,8 @@ export default {
 <style>
 .p-toolbar {
 	background-image: linear-gradient(#6880b5, #465b8b, #5971a5);
+	/* background-image: linear-gradient(#7992c9, #5876b7, #547acd); */
+	/* background-image: linear-gradient(#7e94c6, #5970a1, #6b8cd5); */
 	color: #dcdee5;
 }
 
@@ -179,4 +181,5 @@ export default {
 		background-color: #ba4a41 !important;
 		border: 2px solid #e49164 !important;
 	}
-}</style>
+}
+</style>

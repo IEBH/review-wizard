@@ -117,7 +117,7 @@ export default {
 	},
 	data() {
 		return {
-			collapsed: false,
+			collapsed: true,
 			isOnMobile: false,
 			menu: []
 		};
