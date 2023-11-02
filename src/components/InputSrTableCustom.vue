@@ -6,6 +6,21 @@
 				<Button icon="pi pi-cloud-download" @click="isShowDialog = true" class="p-button-secondary p-button-text" />
 			</b>
 		</p>
+		<!-- <pre>
+		{{ value }}
+	  </pre> -->
+		<div>
+			<!-- :validate="validWholeRecord" -->
+			<!-- <vue-excel-editor v-if="value && value.rows" v-model="simplifiedJsondata">
+				<vue-excel-column v-for="(column, index) in value.headers" :key="index" :field="column.name"
+					:label="column.label">
+				</vue-excel-column>
+			</vue-excel-editor> -->
+			<!-- :type="column.name == 'DateandTime' ? column.type == 'datetime' : column.type == 'string'" -->
+			<!-- :width="dynamicColumnWidths[column.name]" -->
+			<!-- :width="column.width" -->
+			<!-- :options="column.type === 'select' ? column.options : null" -->
+		</div>
 		<table class="p-fluid" style="width:100%;" v-if="value">
 			<thead class="p-fluid-thead">
 				<tr>
@@ -35,10 +50,25 @@
 									target="_blank">{{ tl.name }}</a>
 							</div>
 						</template>
-						<div class="field-checkbox" v-if="thead.name == 'progress'" style="margin: 20%;">
+						<!-- <div class="checkbox-wrapper-29">
+							<label class="checkbox">
+								<input type="checkbox" v-model="row.progress" class="checkbox__input" @change="changeHandler($event)"></el-checkbox />
+								<span class="checkbox__label"></span>
+								Completed
+							</label>
+						</div> -->
+						<div class="checkbox-wrapper-29" v-if="thead.name == 'progress'" style="margin: 20%;">
+							<label class="checkbox">
+								<input type="checkbox" v-model="row.progress" class="checkbox__input"
+									@change="changeHandler($event)">
+								<span class="checkbox__label"></span>
+								Completed
+							</label>
+						</div>
+						<!-- <div class="field-checkbox" v-if="thead.name == 'progress'" style="margin: 20%;">
 							<el-checkbox v-model="row.progress" label="Completed"
 								@change="changeHandler($event)"></el-checkbox>
-						</div>
+						</div> -->
 						<NotesContent v-if="thead.name == 'notes'" :thead="thead" :row="row" @notes="changeHandler" />
 						<InputAutoComplete v-if="thead.name == 'peopleInvolved'" :tableValue="value" :row="row"
 							:tableHeader="thead" :titlePageAuthors="titlePageAuthors" :people="people"
@@ -97,6 +127,10 @@ import * as XLSX from "xlsx";
 import InputAutoComplete from "@/components/InputAutoComplete.vue";
 import InputSrMenubar from "../components/InputSrMenubar.vue";
 import NotesContent from "./NotesContent.vue";
+
+import Vue from 'vue'
+import VueExcelEditor from 'vue-excel-editor'
+Vue.use(VueExcelEditor)
 export default {
 	name: "InputSrTable",
 	components: {
@@ -122,7 +156,7 @@ export default {
 			isShowDialog: false,
 			fileName: "",
 			methodsUrl: "",
-
+			jsondata: [],
 			toolLinkName: "",
 			people: []
 		};
@@ -130,6 +164,7 @@ export default {
 	methods: {
 		changeHandler(event) {
 			if (event != undefined) {
+				console.log("input", this.value);
 				this.$emit("input", this.value);
 			}
 		},
@@ -256,7 +291,16 @@ export default {
 				xlsxData.push(da);
 			});
 			return xlsxData;
-		}
+		},
+		validWholeRecord(content, oldContent, record, field) {
+			console.log(content, oldContent, record, field);
+			if (record.age !== record.birth) {
+				return 'The age and birth do not match'
+			} else {
+				return '' // return empty string if there is no error
+			}
+		},
+
 		/*search(query, cb) {
 			let results = query
 				? (results = this.titlePageAuthors.filter(people => {
@@ -268,6 +312,41 @@ export default {
 	},
 	mounted() {
 		this.methodsUrl = "/#/" + this.$store.state.projectId;
+	},
+	computed: {
+		dynamicColumnWidths() {
+			const columnWidths = {};
+			for (const column of this.value) {
+				const fieldName = column.name;
+				const contentLength = this.value.rows.reduce((maxLength, row) => {
+					const content = row[fieldName] || '';
+					return Math.max(maxLength, content.length);
+				}, 0);
+				// Calculate the width based on content length
+				columnWidths[fieldName] = `${contentLength * 10 + 20}px`;
+			}
+			return columnWidths;
+		},
+		simplifiedJsondata() {
+			return this.value.rows.map((item) => ({
+				...item,
+				// toolLink: Array.isArray(item.toolLink) && item.toolLink.length > 0 ? item.toolLink[0].name : '',
+				peopleInvolved: Array.isArray(item.peopleInvolved) && item.peopleInvolved.length > 0 ? item.peopleInvolved[0].label : '',
+
+			}));
+			// return this.value.rows.map((item) => {
+			// 	const simplifiedUser = {
+			// 		toolLink: Array.isArray(item.toolLink) ? item.toolLink[0].name : ''
+			// 	};
+			// 	console.log(this.value, simplifiedUser)
+
+			// 	// Merge the simplified 'user' data with the rest of the item's data
+			// 	return {
+			// 		simplifiedUser,
+			// 		item
+			// 	};
+			// });
+		},
 	}
 };
 
@@ -342,5 +421,87 @@ table {
 th,
 td {
 	border: 1px solid black;
+}
+
+#systable {
+	width: 100% !important;
+}
+
+/* New style for checklist */
+
+.checkbox-wrapper-29 {
+	--size: 1rem;
+	--background: #fff;
+	font-size: var(--size);
+}
+
+.checkbox-wrapper-29 *,
+.checkbox-wrapper-29 *::after,
+.checkbox-wrapper-29 *::before {
+	box-sizing: border-box;
+}
+
+.checkbox-wrapper-29 input[type="checkbox"] {
+	visibility: hidden;
+	display: none;
+}
+
+.checkbox-wrapper-29 .checkbox__label {
+	width: var(--size);
+}
+
+.checkbox-wrapper-29 .checkbox__label:before {
+	content: ' ';
+	display: block;
+	height: var(--size);
+	width: var(--size);
+	position: absolute;
+	top: calc(var(--size) * 0.125);
+	left: 0;
+	background: var(--background);
+}
+
+.checkbox-wrapper-29 .checkbox__label:after {
+	content: ' ';
+	display: block;
+	height: var(--size);
+	width: var(--size);
+	border: calc(var(--size) * .14) solid #000;
+	transition: 200ms;
+	position: absolute;
+	top: calc(var(--size) * 0.125);
+	left: 0;
+	background: var(--background);
+}
+
+.checkbox-wrapper-29 .checkbox__label:after {
+	transition: 100ms ease-in-out;
+}
+
+.checkbox-wrapper-29 .checkbox__input:checked~.checkbox__label:after {
+	border-top-style: none;
+	border-right-style: none;
+	-ms-transform: rotate(-45deg);
+	/* IE9 */
+	transform: rotate(-45deg);
+	height: calc(var(--size) * .5);
+	border-color: green;
+}
+
+.checkbox-wrapper-29 .checkbox {
+	position: relative;
+	display: flex;
+	cursor: pointer;
+	/* Mobile Safari: */
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.checkbox-wrapper-29 .checkbox__label:after:hover,
+.checkbox-wrapper-29 .checkbox__label:after:active {
+	border-color: green;
+}
+
+.checkbox-wrapper-29 .checkbox__label {
+	margin-right: calc(var(--size) * 0.45);
 }
 </style>

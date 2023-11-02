@@ -7,6 +7,7 @@
 import ViewMethodPicot from "./ViewMethodPicot.vue";
 import ViewMethodScreening from "./ViewMethodScreening.vue";
 import ViewMethodDataExtraction from "./ViewMethodDataExtraction.vue";
+import ViewMethodDataExtractionReport from "./ViewMethodDataExtractionReport.vue";
 import ViewMethodAssessmentOfTheRiskOfBias from "./ViewMethodAssessmentOfTheRiskOfBias.vue";
 import ViewMethodMeasurementOfEffect from "./ViewMethodMeasurementOfEffect.vue";
 import ViewMethodUnitOfAnalysis from "./ViewMethodUnitOfAnalysis.vue";
@@ -113,6 +114,11 @@ const routes = [
 		name: "output",
 		path: "/:projectId/reports/output",
 		component: ViewOutput
+	},
+	{
+		name: "de-view",
+		path: "/:projectId/reports/de-view",
+		component: ViewMethodDataExtractionReport
 	}
 	/*{
 		path: "/:projectId/output",
@@ -779,6 +785,11 @@ const getMenu = projectId => [
 		title: "Methods Section",
 		icon: "pi pi-download",
 		href: `/${projectId}/reports/output`
+	},
+	{
+		title: "Data Extraction",
+		icon: "pi pi-upload",
+		href: `/${projectId}/reports/de-view`
 	}
 ];
 

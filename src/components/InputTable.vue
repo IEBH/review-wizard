@@ -21,104 +21,56 @@
 					<!-- Inclusion -->
 					<td v-if="inclusion">
 						<div style="margin: 10px;">
-							<SelectButton
-								optionLabel="name"
-								optionValue="value"
-								:options="includeOptions"
-								v-model="row.inclusion"
-								@input="update(index, row, 'inclusion', $event)"
-							/>
+							<SelectButton optionLabel="name" optionValue="value" :options="includeOptions"
+								v-model="row.inclusion" @input="update(index, row, 'inclusion', $event)" />
 						</div>
 					</td>
 					<!-- Type -->
 					<td v-if="type">
 						<div style="margin: 10px;">
-							<SelectButton
-								optionLabel="name"
-								optionValue="value"
-								:options="typeOptions"
-								v-model="row.type"
-								@input="update(index, row, 'type', $event)"
-							/>
+							<SelectButton optionLabel="name" optionValue="value" :options="typeOptions" v-model="row.type"
+								@input="update(index, row, 'type', $event)" />
 						</div>
 					</td>
 					<!-- Main -->
 					<td>
-						<Textarea
-							:placeholder="mainPlaceholder"
-							:value="row.main"
-							:autoResize="true"
-							:ref="index"
-							rows="2"
-							@input="update(index, row, 'main', $event)"
-						/>
+						<Textarea :placeholder="mainPlaceholder" :value="row.main" :autoResize="true" :ref="index" rows="2"
+							@input="update(index, row, 'main', $event)" />
 					</td>
 					<!-- Description -->
 					<td v-if="description">
-						<Textarea
-							:placeholder="descrtiptionPlaceholder"
-							:value="row.description"
-							:autoResize="true"
-							rows="2"
-							@input="update(index, row, 'description', $event)"
-						/>
+						<Textarea :placeholder="descrtiptionPlaceholder" :value="row.description" :autoResize="true"
+							rows="2" @input="update(index, row, 'description', $event)" />
 					</td>
 					<!-- Examples -->
 					<td v-if="examples">
-						<Textarea
-							:placeholder="examplePlaceholder"
-							:value="row.examples"
-							:autoResize="true"
-							rows="2"
-							@input="update(index, row, 'examples', $event)"
-						/>
+						<Textarea :placeholder="examplePlaceholder" :value="row.examples" :autoResize="true" rows="2"
+							@input="update(index, row, 'examples', $event)" />
 					</td>
 					<!-- Delete -->
 					<td style="width: 4rem; text-align: center;">
-						<Button
-							icon="pi pi-trash"
-							class="p-button-rounded p-button-warning"
-							@click="confirmDelete(row, index)"
-						/>
+						<Button icon="pi pi-trash" class="p-button-rounded p-button-warning"
+							@click="confirmDelete(row, index)" />
 					</td>
 				</tr>
 			</tbody>
 			<tfoot>
-				<Button
-					label="Add"
-					icon="pi pi-plus"
-					class="p-button-success p-mr-2"
-					@click="newRow"
-				/>
+				<tr>
+					<td colspan="6" style="text-align: center;">
+						<Button label="Add" icon="pi pi-plus" class="btsyle" @click="newRow" />
+					</td>
+				</tr>
 			</tfoot>
 		</table>
 
-		<Dialog
-			:visible.sync="deleteProductDialog"
-			:style="{ width: '450px' }"
-			header="Confirm"
-			:modal="true"
-		>
+		<Dialog :visible.sync="deleteProductDialog" :style="{ width: '450px' }" header="Confirm" :modal="true">
 			<div class="confirmation-content">
 				<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-				<span v-if="selectedRow"
-					>Are you sure you want to delete <b>{{ selectedRow.main }}</b
-					>?</span
-				>
+				<span v-if="selectedRow">Are you sure you want to delete <b>{{ selectedRow.main }}</b>?</span>
 			</div>
 			<template #footer>
-				<Button
-					label="No"
-					icon="pi pi-times"
-					class="p-button-text"
-					@click="deleteProductDialog = false"
-				/>
-				<Button
-					label="Yes"
-					icon="pi pi-check"
-					class="p-button-text"
-					@click="deleteProduct"
-				/>
+				<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false" />
+				<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteProduct" />
 			</template>
 		</Dialog>
 	</div>
@@ -217,4 +169,75 @@ th,
 td {
 	border: 1px solid black;
 }
+
+tfoot {
+	height: 60px
+}
+
+.btsyle1 {
+	margin: 10px;
+	border-radius: 20px;
+	background-color: white;
+	color: black;
+	border: 2px solid #4CAF50;
+
+	&:hover {
+		/* box-shadow: 0 0 10px 0 #28a745 inset, 0 0 10px 4px #28a745; */
+		background-color: #28a745;
+		border: 2px solid #4CAF50;
+	}
+}
+
+.btsyle {
+	margin: 10px;
+	width: 100px;
+	background-color: #c2fbd7;
+	border-radius: 20px;
+	/* box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px; */
+	color: rgb(24, 112, 24);
+	cursor: pointer;
+	display: inline-block;
+	font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+	padding: 7px 20px;
+	text-align: center;
+	text-decoration: none;
+	/* transition: all 250ms; */
+	border: 0;
+	font-size: 16px;
+
+	&:hover {
+		/* box-shadow: 0 0 10px 0 #28a745 inset, 0 0 10px 4px #28a745; */
+		background-color: #28a745;
+		border: 2px solid #4CAF50;
+	}
+}
+
+.buttonstyle {
+	background-color: #c2fbd7;
+	border-radius: 100px;
+	/* box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px; */
+	color: rgb(24, 112, 24);
+	cursor: pointer;
+	display: inline-block;
+	font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+	padding: 7px 20px;
+	text-align: center;
+	text-decoration: none;
+	transition: all 250ms;
+	border: 0;
+	font-size: 16px;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+}
+
+.buttonstyle:hover {
+	box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+	transform: scale(1.05) rotate(-1deg);
+	background-color: #28a745;
+	border: 2px solid #4CAF50;
+}
 </style>
+<!-- <Button label="Add" icon="pi pi-plus" :loading="loading" class="buttonstyle" @click="newRow" />
+				<button class="buttonstyle" style="margin: 10px;" role="button" @click="newRow"><i class="pi pi-plus" aria-hidden="true" /> Add</button> -->
+				<!-- <Button label="Add" icon="pi pi-plus" class="p-button-success p-mr-2" @click="newRow" /> -->
