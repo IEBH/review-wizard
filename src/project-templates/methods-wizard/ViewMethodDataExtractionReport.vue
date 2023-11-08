@@ -36,22 +36,22 @@ export default {
 		extraction: {
 			handler(newVal) {
 
-			
-				const xLabels = new Set(this.extraction.methods.map(item => item.label));
-				// console.log("83783749873847",xLabels);
-				// this.extraction.detable.headers = this.extraction.detable.headers.filter(header => xLabels.has(header.label));
-				this.extraction.detable.headers = this.extraction.methods;
-				this.extraction.detable.rows = this.extraction.detable.rows.map(row => {
-					const newRow = {};
-					for (const label of xLabels) {
-						newRow[label] = row[label] || '';
-					}
-					return newRow;
-				});
+				if (this.extraction.detable) {
+					const xLabels = new Set(this.extraction.methods.map(item => item.label));
+					this.extraction.detable.headers = this.extraction.methods;
+					this.extraction.detable.rows = this.extraction.detable.rows.map(row => {
+						const newRow = {};
+						for (const label of xLabels) {
+							newRow[label] = row[label] || '';
+						}
+						return newRow;
+					});
+				}
 
 				// This will be triggered when value changes
 				if (!this.extraction.detable) {
-					this.extraction.detable = this.extraction.methods;
+					this.extraction.detable={headers:[],rows:[]}
+					this.extraction.detable.headers = this.extraction.methods;
 				}
 
 				// const formattedObject = {
