@@ -211,6 +211,7 @@ export default {
 .vsm--toggle-btn {
 	background-color: #647bae !important;
 	color: #f2f2f2 !important;
+	display: none !important;
 }
 
 .pad-sidebar {
