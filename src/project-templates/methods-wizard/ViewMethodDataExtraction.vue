@@ -4,15 +4,10 @@
 
 		<InputSelectDropdown
 			question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-			:value="extraction.numberOfStudies"
-			@input="updateField('numberOfStudies', $event)"
-			:options="numberOptions"
-		/>
+			:value="extraction.numberOfStudies" @input="updateField('numberOfStudies', $event)" :options="numberOptions" />
 
-		<InputTextNumber
-			question="How many study authors extracted the following data from included studies?"
-			:value="numberOfExtractors"
-		/>
+		<InputTextNumber question="How many study authors extracted the following data from included studies?"
+			:value="numberOfExtractors" />
 
 		<!--<InputSelectDropdown
 			question="How many study authors extracted the following data from included studies?"
@@ -21,99 +16,47 @@
 			:options="extractorsOption"
 		/>-->
 
-		<InputSelectMulti
-			question="Which author/s performed data extraction?"
-			:value="extraction.extractionAuthors"
-			@input="updateField('extractionAuthors', $event)"
-			:options="
+		<InputSelectMulti question="Which author/s performed data extraction?" :value="extraction.extractionAuthors"
+			@input="updateField('extractionAuthors', $event)" :options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
 				})*/
 				this.pfDataExtractAuthors
-			"
-		/>
+				" />
 
-		<InputSelectYesNo
-			question="Do you wish to specify what data will be extracted (optional)"
-			:value="extraction.optionalDetail"
-			@input="updateField('optionalDetail', $event)"
-		/>
+		<InputSelectYesNo question="Do you wish to specify what data will be extracted (optional)"
+			:value="extraction.optionalDetail" @input="updateField('optionalDetail', $event)" />
 
 		<!-- New -->
-		<Accordion
-			v-if="extraction.optionalDetail"
-			style="margin-top: 50px; border: 1px solid black;"
-		>
+		<Accordion v-if="extraction.optionalDetail" style="margin-top: 50px; border: 1px solid black;">
 			<AccordionTab header="Optional Details" :active="false">
 				<h3>What data will be extracted:</h3>
-				<InputSelectMulti
-					question="Methods:"
-					:options="options.methods"
-					:value="extraction.methods"
-					@input="updateField('methods', $event)"
-				/>
-				<InputSelectMulti
-					question="Participants:"
-					:options="options.participants"
-					:value="extraction.participants"
-					@input="updateField('participants', $event)"
-				/>
-				<InputSelectMulti
-					question="Interventions:"
-					:options="options.interventions"
-					:value="extraction.interventions"
-					@input="updateField('interventions', $event)"
-				/>
-				<InputSelectMulti
-					question="Comparators:"
-					:options="options.comparators"
-					:value="extraction.comparators"
-					@input="updateField('comparators', $event)"
-				/>
-				<InputTable
-					question="Outcomes:"
-					:value="extraction.outcomes"
-					columnHeader="Outcome"
-					:inclusion="true"
-					:type="true"
-					:description="true"
-					:examples="true"
-					@input="updateField('outcomes', $event)"
-					mainPlaceholder="e.g. investigator-assessed change in acne severity"
-				/>
-				<Message
-					v-if="!arrayEquals(picot.outcomes, extraction.outcomes)"
-					severity="warn"
-					:closable="false"
-				>
+				<InputSelectMulti question="Methods:" :options="options.methods" :value="extraction.methods"
+					@input="updateField('methods', $event)" />
+				<InputSelectMulti question="Participants:" :options="options.participants" :value="extraction.participants"
+					@input="updateField('participants', $event)" />
+				<InputSelectMulti question="Interventions:" :options="options.interventions"
+					:value="extraction.interventions" @input="updateField('interventions', $event)" />
+				<InputSelectMulti question="Comparators:" :options="options.comparators" :value="extraction.comparators"
+					@input="updateField('comparators', $event)" />
+				<InputTable question="Outcomes:" :value="extraction.outcomes" columnHeader="Outcome" :inclusion="true"
+					:type="true" :description="true" :examples="true" @input="updateField('outcomes', $event)"
+					mainPlaceholder="e.g. investigator-assessed change in acne severity" />
+				<Message v-if="!arrayEquals(picot.outcomes, extraction.outcomes)" severity="warn" :closable="false">
 					<div class="message-inside-text">
 						Not the same as PICOST outcomes
 					</div>
-					<Button
-						label="Copy from PICOST section"
-						class="p-button-sm btsyleblue"
-						@click="updateField('outcomes', picot.outcomes)"
-					/>
+					<Button label="Copy from PICOST section" class="p-button-sm btsyleblue"
+						@click="updateField('outcomes', picot.outcomes)" />
 				</Message>
-				<InputSelectMulti
-					question="Types:"
-					:options="options.types"
-					:value="extraction.types"
-					@input="updateField('types', $event)"
-				/>
-				<Message
-					v-if="!arrayEquals(picot.types, extraction.types)"
-					severity="warn"
-					:closable="false"
-				>
+				<InputSelectMulti question="Types:" :options="options.types" :value="extraction.types"
+					@input="updateField('types', $event)" />
+				<Message v-if="!arrayEquals(picot.types, extraction.types)" severity="warn" :closable="false">
 					<div class="message-inside-text">
 						Not the same as PICOST types
 					</div>
-					<Button
-						label="Copy from PICOST section"
-						class="p-button-sm btsyleblue"
-						@click="updateField('types', picot.types)"
-					/>
+					<Button label="Copy from PICOST section" class="p-button-sm btsyleblue"
+						@click="updateField('types', picot.types)" />
 				</Message>
 			</AccordionTab>
 		</Accordion>
@@ -233,14 +176,20 @@ export default {
 		if (
 			!this.extraction.outcomes ||
 			JSON.stringify(this.extraction.outcomes) ==
-				'[{"inclusion":true,"type":true}]'
+			'[{"inclusion":true,"type":true}]'
 		) {
-			// Deep copy
-			this.extraction.outcomes = JSON.parse(
-				JSON.stringify(this.picot.outcomes)
-			);
+			// console.log("this.extraction.types",...this.picot.types);
+			if (this.picot.outcomes) {
+				// console.log("this.picot.outcomes", this.picot.outcomes, this.extraction.outcomes)
+				// Deep copy
+				this.extraction.outcomes = JSON.parse(
+					JSON.stringify(this.picot.outcomes)
+				);
+			}
+
 		}
-		if (this.extraction.types.length === 0) {
+		
+		if (this.extraction.types && this.extraction.types.length === 0) {
 			// Shallow copy
 			this.extraction.types = [...this.picot.types];
 		}
@@ -310,10 +259,12 @@ export default {
 	display: inline-flex;
 	width: 100%;
 }
+
 .message-inside-text {
 	/* Align text horizontal center with right float button */
 	margin: auto auto auto 0px;
 }
+
 .btsyleblue {
 	margin: 10px;
 	/* width: 100px; */
@@ -335,7 +286,7 @@ export default {
 		/* box-shadow: 0 0 10px 0 #28a745 inset, 0 0 10px 4px #28a745; */
 		/* background-color: #0069d9 !important; */
 		background-color: #437fbe !important;
-	
+
 		border: 2px solid #5679a2 !important;
 	}
 }
