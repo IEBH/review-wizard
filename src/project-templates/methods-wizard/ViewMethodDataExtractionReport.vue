@@ -2,7 +2,7 @@
 	<div class="p-mb-6">
 		<h1>Data Extraction</h1>
 		<InputDETableCustom question="What data will be extracted?" :value=extraction.detable
-			@input="updateField('detable', $event)"></InputDETableCustom>
+			@values="updateField('detable', $event)"></InputDETableCustom>
 	</div>
 </template>
 
@@ -35,19 +35,33 @@ export default {
 	watch: {
 		extraction: {
 			handler(newVal) {
+
+			
+				const xLabels = new Set(this.extraction.methods.map(item => item.label));
+				// console.log("83783749873847",xLabels);
+				// this.extraction.detable.headers = this.extraction.detable.headers.filter(header => xLabels.has(header.label));
+				this.extraction.detable.headers = this.extraction.methods;
+				this.extraction.detable.rows = this.extraction.detable.rows.map(row => {
+					const newRow = {};
+					for (const label of xLabels) {
+						newRow[label] = row[label] || '';
+					}
+					return newRow;
+				});
+
 				// This will be triggered when value changes
 				if (!this.extraction.detable) {
 					this.extraction.detable = this.extraction.methods;
 				}
-			
-				const formattedObject = {
-					headers: this.extraction.methods,
-					rows: []
-				};
-				if (this.extraction.detable && this.extraction.detable.length != 2) {
-					this.extraction.detable = formattedObject;
-				}
-				console.log("extraction newwwww", this.extraction.methods, formattedObject, newVal);
+
+				// const formattedObject = {
+				// 	headers: this.extraction.methods,
+				// 	rows: []
+				// };
+				// if (this.extraction.detable && this.extraction.detable.length != 2) {
+				// 	this.extraction.detable = formattedObject;
+				// }
+				console.log("extraction newwwww", this.extraction.methods, this.extraction.detable, newVal);
 			},
 		},
 	},

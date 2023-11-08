@@ -75,7 +75,7 @@
 				</tr> -->
 				<tr v-for="(row, index) in value.rows" :key="index">
 					<td v-for="thead of value.headers" :key="thead.label">
-						<Textarea type="text" v-model="row[thead.label]" :ref="index" :autoResize="true" />
+						<Textarea type="text" v-model="row[thead.label]" :ref="index" :autoResize="true" @change="changeHandler($event.target.value)" />
 						<!-- @change="changeHandler($event) -->
 						<!-- @input="updateRow(index, thead.label, $event)" /> -->
 					</td>
@@ -179,7 +179,7 @@ export default {
 	methods: {
 		changeHandler(event) {
 			if (event != undefined) {
-				this.$emit("input", this.value);
+				this.$emit("values", this.value);
 			}
 		},
 		addRow(index, optionNum) {
@@ -193,7 +193,7 @@ export default {
 			} else {
 				this.value.rows.splice(index + 1, 0, row);
 			}
-			// this.$emit("input", this.value);
+			this.$emit("values", this.value);
 		},
 		addNewRow() {
 			const newRow = {};
@@ -201,20 +201,21 @@ export default {
 				newRow[header.label] = ""; // Initialize new row with empty values
 			}
 			this.value.rows.push(newRow);
+			// console.log("New row added", this.value);
 			// debugger;
 			// Vue.set(this.value.rows, this.value.rows.length, newRow);
-			// this.$emit("input", this.value);
-			console.log("placed", this.value)
+			this.$emit("values", this.value);
+			// console.log("placed", this.value);
 		},
 		deleteRow(index) {
 			this.value.rows.splice(index, 1);
-			// this.$emit("input", this.value);
+			this.$emit("values", this.value);
 		},
 		moveRowUp(index) {
 			if (index > 0) {
 				const movedRow = this.value.rows.splice(index, 1)[0];
 				this.value.rows.splice(index - 1, 0, movedRow);
-				// this.$emit("input", this.value);
+				this.$emit("values", this.value);
 			}
 		},
 
@@ -222,7 +223,7 @@ export default {
 			if (index < this.value.rows.length - 1) {
 				const movedRow = this.value.rows.splice(index, 1)[0];
 				this.value.rows.splice(index + 1, 0, movedRow);
-				// this.$emit("input", this.value);
+				this.$emit("values", this.value);
 			}
 		},
 		exportExcel(rows, headers, fileName) {
