@@ -3,26 +3,17 @@
 		<p>
 			<b>{{ question }}</b>
 		</p>
-
+		<!-- editorStyle -->
 		<div>
-			<Editor
-				:value="value"
-				editorStyle="{Width:100%}"
-				@text-change="$emit('input', $event.htmlValue)"
-				><template v-slot:toolbar>
+			<Editor :placeholder="placeholder" :value="value" style="height: 500px !important;"
+				@text-change="$emit('input', $event.htmlValue)"><template v-slot:toolbar>
 					<span>
 						<button class="ql-bold" v-tooltip.bottom="'Bold'"></button>
 						<button class="ql-italic" v-tooltip.bottom="'Italic'"></button>
-					</span> </template
-			></Editor>
+					</span> </template></Editor>
 		</div>
 		<div class="p-mt-2">
-			<Button
-				v-if="value != ''"
-				label="Clear"
-				class="p-button-danger"
-				@click="clearInput()"
-			/>
+			<Button v-if="value != ''" label="Clear" class="p-button-danger" @click="clearInput()" />
 		</div>
 	</div>
 </template>
