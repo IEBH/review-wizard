@@ -36,9 +36,19 @@ export default {
 		extraction: {
 			handler(newVal) {
 
+				let concatedArray = [];
+
+				concatedArray = concatedArray.concat(this.extraction.methods, this.extraction.participants, this.extraction.interventions, this.extraction.comparators);
+				let filteredOutcome = this.extraction.outcomes.filter(item => item.main);
+				if (filteredOutcome && filteredOutcome.length > 0) {
+					filteredOutcome.forEach(item => {
+						concatedArray.push({ label: item.main });
+					});
+				}
+				concatedArray = concatedArray.concat(this.extraction.types);
 				if (this.extraction.detable) {
-					const xLabels = new Set(this.extraction.methods.map(item => item.label));
-					this.extraction.detable.headers = this.extraction.methods;
+					const xLabels = new Set(concatedArray.map(item => item.label));
+					this.extraction.detable.headers = concatedArray;
 					this.extraction.detable.rows = this.extraction.detable.rows.map(row => {
 						const newRow = {};
 						for (const label of xLabels) {
@@ -51,16 +61,9 @@ export default {
 				// This will be triggered when value changes
 				if (!this.extraction.detable) {
 					this.extraction.detable = { headers: [], rows: [] }
-					this.extraction.detable.headers = this.extraction.methods;
+					this.extraction.detable.headers = concatedArray;
 				}
 
-				// const formattedObject = {
-				// 	headers: this.extraction.methods,
-				// 	rows: []
-				// };
-				// if (this.extraction.detable && this.extraction.detable.length != 2) {
-				// 	this.extraction.detable = formattedObject;
-				// }
 				console.log("extraction newwwww", this.extraction.methods, this.extraction.detable, newVal);
 			},
 		},
