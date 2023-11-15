@@ -1,7 +1,7 @@
 <template>
 	<div class="p-mb-6">
 		<h1>Data Extraction</h1>
-		<InputDETableCustom question="What data will be extracted?" :value=extraction.detable
+		<InputDETableCustom question="What data will be extracted?" :value=extraction.detable :titleshort="titlepage.titleshort"
 			@values="updateField('detable', $event)"></InputDETableCustom>
 	</div>
 </template>
@@ -21,7 +21,7 @@ export default {
 	name: "ViewMethodDataExtractionReport",
 	mixins: [
 		// deepstreamMixin("researchplan"),
-		// deepstreamMixin("titlepage"),
+		deepstreamMixin("titlepage"),
 		// deepstreamMixin("picot"),
 		deepstreamMixin("extraction")
 	],
@@ -37,7 +37,6 @@ export default {
 			handler(newVal) {
 
 				let concatedArray = [];
-
 				concatedArray = concatedArray.concat(this.extraction.methods, this.extraction.participants, this.extraction.interventions, this.extraction.comparators);
 				let filteredOutcome = this.extraction.outcomes.filter(item => item.main);
 				if (filteredOutcome && filteredOutcome.length > 0) {
