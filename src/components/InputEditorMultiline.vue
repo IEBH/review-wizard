@@ -4,11 +4,12 @@
 			<b>{{ question }}</b>
 		</p>
 		<!-- editorStyle="{Width:100%}" -->
+		<!-- :placeholder="placeholder" 
+				style="height: 500px !important;" -->
 		<div>
 			<Editor
 				:value="value"
-				:placeholder="placeholder" 
-				style="height: 500px !important;"
+				
 				@text-change="$emit('input', $event.htmlValue)"
 				><template v-slot:toolbar>
 					<span>
