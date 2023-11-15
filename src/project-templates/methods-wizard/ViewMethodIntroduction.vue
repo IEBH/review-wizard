@@ -19,7 +19,7 @@ export default {
 	data() {
 		return {
 			outputComponent: OutputIntroduction,
-			question: `<p>Usually Two to Five paragraphs</p>
+			question: `<p>Usually two to five paragraphs</p>
 			<p>Rationale: Describe the rationale for the review.<p>
 			<p>Describe the problem being addressed and why it is important</p>
 			<ul>
@@ -33,7 +33,7 @@ export default {
 			TIP: Use the Population, Intervention, Comparator, Outcome (PICO) framework or one of its variants (PO, PECO, etc) to describe the questions that will be addressed.<p>`,
 			placeholder: `e.g. Blue-Light Therapy for Acne Vulgaris: A Systematic Review and Meta-Analysis
  
-			Approximately 50 million Americans have acne vulgaris; it is the eighth most prevalent disease globally2 and one of the most common reasons for clinical consultations, including among primary care physicians and general practitioners (GPs). Among respondents to the James Lind Alliance’s Acne Priority Setting Partnership survey, for example, 65% reported having sought help for acne from their GP or family doctor (higher than from a dermatologist, 45%; a pharmacist, 34%; or any other source).
+			Approximately 50 million Americans have acne vulgaris; it is the eighth most prevalent disease globally and one of the most common reasons for clinical consultations, including among primary care physicians and general practitioners (GPs). Among respondents to the James Lind Alliance’s Acne Priority Setting Partnership survey, for example, 65% reported having sought help for acne from their GP or family doctor (higher than from a dermatologist, 45%; a pharmacist, 34%; or any other source).
 			
 			Several effective pharmacological treatments for acne exist, such as topical benzyl peroxide and topical or oral retinoids and antibiotics. With antibiotics, however, there is increasing concern about the global development of resistance from the use of topical and oral antibiotics. The incidence of resistance in Proprionibacterium acnes has been increasing: more than 50% of P acnes strains are resistant to erythromycin in Egypt, France, Greece, Italy, Spain, and the United Kingdom and to clindamycin in Egypt, Greece, Hong Kong, Italy, and Spain. This resistance not only reduces the effectiveness of antibiotic treatment for acne but also can spread to untreated contacts and hence affect greater population antibiotic resistance patterns.
 			
