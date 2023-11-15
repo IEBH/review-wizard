@@ -157,7 +157,7 @@ export default {
 	},
 	props: {
 		question: String,
-		titlePageAuthors: Array,
+		titleshort: String,
 		value: {}
 	},
 	data() {
@@ -472,6 +472,12 @@ export default {
 	},
 	mounted() {
 		this.methodsUrl = "/#/" + this.$store.state.projectId;
+	},
+	watch: {
+		titleshort: function (newTitle) {
+			// React to changes in the title prop
+			this.fileName = newTitle;
+		},
 	}
 };
 
