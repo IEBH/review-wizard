@@ -9,11 +9,11 @@
 			placement: 'right',
 			allowHTML: true,
 			content: 'Toggle sidebar (<kbd>[</kbd>)',
-		}" class="sidebar-collapse" @click="collapsed = !collapsed;toggleSidebar(collapsed);">
+		}" class="sidebar-collapse" @click="collapsed = !collapsed; toggleSidebar(collapsed);">
 			<i :class="collapsed ? 'fas fa-chevron-right' : 'fas fa-chevron-left'" aria-hidden="true" />
 			<!-- <i v-if="collapsed" class="fas fa-chevron-right" />
 			<i v-if="collapsed=='false'" class="fas fa-chevron-left" /> -->
-			
+
 			<!-- {{ collapsed }} -->
 		</div>
 		<sidebar-menu v-if="methodsRecord" :menu="menu" :collapsed="collapsed" theme="white-theme"
@@ -144,9 +144,10 @@ export default {
 	background-color: #ffffff;
 } */
 /* Sidebar body.sidebar-full / body.sidebar-collapsed {{{ */
-	body {
-		background-color: #ffffff;
-		--sidebar-width: 300px;
+body {
+	background-color: #ffffff;
+	--sidebar-width: 300px;
+
 	&.sidebar-full {
 		--sidebar-width: 300px;
 	}
@@ -270,54 +271,52 @@ export default {
 	background: #536fab;
 }
 
-	&.collapsed {
-		
-		& .label {
-			display: none;
-		}
+&.collapsed {
 
-		& .sidebar-header-logo {
-			width: 40px !important;
-			height: 40px !important;
-			margin-left: -4px;
-		}
-	}
-	
-	& .sidebar-collapse {
-		position: fixed;
-		left: calc(var(--sidebar-width) - 30px);
-		bottom: 80px;
-		width: 50px;
-		height: 50px;
-		z-index: 1000;
-		transform: scale(0);
-		opacity: 0;
-
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		background: #5c7cc0 ;
-		border-radius: 50%;
-		box-shadow: 0 0 5px rgba(0, 0, 0, 0.3333333333);
-
-		color: #fff;
-		font-size: x-large;
-
-		cursor: pointer;
-
-		transition: all 0.3s ease;
-
-		&:hover {
-			background: var(--accent-highlight);
-		}
+	& .label {
+		display: none;
 	}
 
-	&:hover .sidebar-collapse {
-		transform: scale(1);
-		opacity: 1;
-		background: #5c7cc0 ;
-		/* background: #7f8daf ; */
+	& .sidebar-header-logo {
+		width: 40px !important;
+		height: 40px !important;
+		margin-left: -4px;
 	}
-	
+}
+
+& .sidebar-collapse {
+	position: fixed;
+	left: calc(var(--sidebar-width) - 30px);
+	bottom: 80px;
+	width: 50px;
+	height: 50px;
+	z-index: 1000;
+	transform: scale(0);
+	opacity: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background: #5c7cc0;
+	border-radius: 50%;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3333333333);
+
+	color: #fff;
+	font-size: x-large;
+
+	cursor: pointer;
+
+	transition: all 0.3s ease;
+
+	&:hover {
+		background: var(--accent-highlight);
+	}
+}
+
+.pad-sidebar:hover .sidebar-collapse {
+	transform: scale(1);
+	opacity: 1;
+	background: #5c7cc0;
+}
 </style>
