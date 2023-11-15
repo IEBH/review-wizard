@@ -1,19 +1,30 @@
 <template>
 	<div class="p-mb-6">
-		<p>
+		<!-- <p>
 			<b>{{ question }}</b>
-		</p>
-		<!-- editorStyle -->
+		</p> -->
+		<div v-html="question"></div>
+		<!-- editorStyle="{Width:100%}" -->
 		<div>
-			<Editor :placeholder="placeholder" :value="value" style="height: 500px !important;"
-				@text-change="$emit('input', $event.htmlValue)"><template v-slot:toolbar>
+			<Editor
+				:value="value"
+				:placeholder="placeholder" 
+				style="height: 800px !important;"
+				@text-change="$emit('input', $event.htmlValue)"
+				><template v-slot:toolbar>
 					<span>
 						<button class="ql-bold" v-tooltip.bottom="'Bold'"></button>
 						<button class="ql-italic" v-tooltip.bottom="'Italic'"></button>
-					</span> </template></Editor>
+					</span> </template
+			></Editor>
 		</div>
 		<div class="p-mt-2">
-			<Button v-if="value != ''" label="Clear" class="p-button-danger" @click="clearInput()" />
+			<Button
+				v-if="value != ''"
+				label="Clear"
+				class="p-button-danger"
+				@click="clearInput()"
+			/>
 		</div>
 	</div>
 </template>

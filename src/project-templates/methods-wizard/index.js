@@ -131,6 +131,7 @@ const data = {
 	titlepage: {
 		//title page
 		title: "",
+		titleshort: "",
 		year: 0,
 		//people
 		authors: [""],

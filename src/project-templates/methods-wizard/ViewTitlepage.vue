@@ -7,6 +7,12 @@
 			@input="updateField('title', $event)"
 			placeholder="e.g. Blue-light therapy for acne vulgaris: a systematic review and meta-analysis"
 		/>
+		<InputTextSingleLine
+			question="What is the short title for the study?"
+			:value="titlepage.titleshort"
+			@input="updateField('titleshort', $event)"
+			placeholder="e.g. Blue-light"
+		/>
 
 		<InputTextNumber
 			question="What year will study be published?"
