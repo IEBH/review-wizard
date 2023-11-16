@@ -279,7 +279,6 @@ body {
 		margin-left: -4px;
 	}
 }
-
 & .sidebar-collapse {
 	position: fixed;
 	left: calc(var(--sidebar-width) - 30px);
