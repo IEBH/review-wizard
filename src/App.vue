@@ -10,11 +10,7 @@
 			allowHTML: true,
 			content: 'Toggle sidebar (<kbd>[</kbd>)',
 		}" class="sidebar-collapse" @click="collapsed = !collapsed; toggleSidebar(collapsed);">
-			<i :class="collapsed ? 'fas fa-chevron-right' : 'fas fa-chevron-left'" aria-hidden="true" />
-			<!-- <i v-if="collapsed" class="fas fa-chevron-right" />
-			<i v-if="collapsed=='false'" class="fas fa-chevron-left" /> -->
-
-			<!-- {{ collapsed }} -->
+			<i style="font-size: xx-large;" :class="collapsed ? 'pi pi-angle-right' : 'pi pi-angle-left'" />
 		</div>
 		<sidebar-menu v-if="methodsRecord" :menu="menu" :collapsed="collapsed" theme="white-theme"
 			@toggle-collapse="onToggleCollapse" width="300px" class="sidebar" :showOneChild="true" />
@@ -58,8 +54,8 @@ import TheArticleToolbar from "./components/TheArticleToolbar.vue";
 import ProjectEdit from "./components/ProjectEdit.vue";
 import projectTemplateImport from "@/helpers/projectTemplateImport.js";
 
-import "@fortawesome/fontawesome-free/css/all.css";
-import "@fortawesome/fontawesome-free/js/all.js";
+// import "@fortawesome/fontawesome-free/css/all.css";
+// import "@fortawesome/fontawesome-free/js/all.js";
 import VTooltip from 'v-tooltip';
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
