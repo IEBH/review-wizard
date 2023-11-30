@@ -21,86 +21,88 @@
 			<!-- :width="column.width" -->
 			<!-- :options="column.type === 'select' ? column.options : null" -->
 		</div>
-		<table class="p-fluid" style="width:100%;" v-if="value">
-			<thead class="p-fluid-thead">
-				<tr>
-					<th v-for="(thead, index) in value.headers" :key="index">
-						<div class="th_container">
-							<div class="name">
-								{{ thead.label }}
+		<div class="table-container">
+			<table class="p-fluid" style="width:100%;" v-if="value">
+				<thead class="p-fluid-thead">
+					<tr>
+						<th v-for="(thead, index) in value.headers" :key="index">
+							<div class="th_container">
+								<div class="name">
+									{{ thead.label }}
+								</div>
+								<div class="menu">
+									<InputSrMenubar v-if="ifEdit" :colIndex="index" @addCol="addCol" @deleteCol="deleCol" />
+								</div>
 							</div>
-							<div class="menu">
-								<InputSrMenubar v-if="ifEdit" :colIndex="index" @addCol="addCol" @deleteCol="deleCol" />
+						</th>
+						<th v-if="ifEdit">
+							<div style="width: 160px"></div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, index) in value.rows" :key="index">
+						<td v-for="thead of value.headers" :key="thead.name">
+							<template v-if="thead.name == 'toolLink'">
+								<div v-for="tl in row.toolLink" :key="tl.name" style="margin: 10px;">
+									<a v-if="tl.name != '' && tl.link.includes('https://') == false"
+										:href="methodsUrl + tl.link" target="_blank">{{ tl.name }}</a>
+									<a v-if="tl.name != '' && tl.link.includes('https://') == true" :href="tl.link"
+										target="_blank">{{ tl.name }}</a>
+								</div>
+							</template>
+							<!-- <div class="checkbox-wrapper-29">
+								<label class="checkbox">
+									<input type="checkbox" v-model="row.progress" class="checkbox__input" @change="changeHandler($event)"></el-checkbox />
+									<span class="checkbox__label"></span>
+									Completed
+								</label>
+							</div> -->
+							<div class="checkbox-wrapper-29" v-if="thead.name == 'progress'" style="margin: 20%;">
+								<label class="checkbox">
+									<input type="checkbox" v-model="row.progress" class="checkbox__input"
+										@change="changeHandler($event)">
+									<span class="checkbox__label"></span>
+									Completed
+								</label>
 							</div>
-						</div>
-					</th>
-					<th v-if="ifEdit">
-						<div style="width: 160px"></div>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="(row, index) in value.rows" :key="index">
-					<td v-for="thead of value.headers" :key="thead.name">
-						<template v-if="thead.name == 'toolLink'">
-							<div v-for="tl in row.toolLink" :key="tl.name" style="margin: 10px;">
-								<a v-if="tl.name != '' && tl.link.includes('https://') == false"
-									:href="methodsUrl + tl.link" target="_blank">{{ tl.name }}</a>
-								<a v-if="tl.name != '' && tl.link.includes('https://') == true" :href="tl.link"
-									target="_blank">{{ tl.name }}</a>
-							</div>
-						</template>
-						<!-- <div class="checkbox-wrapper-29">
-							<label class="checkbox">
-								<input type="checkbox" v-model="row.progress" class="checkbox__input" @change="changeHandler($event)"></el-checkbox />
-								<span class="checkbox__label"></span>
-								Completed
-							</label>
-						</div> -->
-						<div class="checkbox-wrapper-29" v-if="thead.name == 'progress'" style="margin: 20%;">
-							<label class="checkbox">
-								<input type="checkbox" v-model="row.progress" class="checkbox__input"
-									@change="changeHandler($event)">
-								<span class="checkbox__label"></span>
-								Completed
-							</label>
-						</div>
-						<!-- <div class="field-checkbox" v-if="thead.name == 'progress'" style="margin: 20%;">
-							<el-checkbox v-model="row.progress" label="Completed"
-								@change="changeHandler($event)"></el-checkbox>
-						</div> -->
-						<NotesContent v-if="thead.name == 'notes'" :thead="thead" :row="row" @notes="changeHandler" />
-						<InputAutoComplete v-if="thead.name == 'peopleInvolved'" :tableValue="value" :row="row"
-							:tableHeader="thead" :titlePageAuthors="titlePageAuthors" :people="people"
-							@autocom="changeHandler" />
-						<Textarea v-if="thead.name != 'peopleInvolved' &&
-							thead.name != 'toolLink' &&
-							thead.name != 'progress' &&
-							thead.name != 'notes'
-							" type="text" v-model="row[thead.name]" :ref="index" :autoResize="true"
-							@change="changeHandler($event.target.value)" />
+							<!-- <div class="field-checkbox" v-if="thead.name == 'progress'" style="margin: 20%;">
+								<el-checkbox v-model="row.progress" label="Completed"
+									@change="changeHandler($event)"></el-checkbox>
+							</div> -->
+							<NotesContent v-if="thead.name == 'notes'" :thead="thead" :row="row" @notes="changeHandler" />
+							<InputAutoComplete v-if="thead.name == 'peopleInvolved'" :tableValue="value" :row="row"
+								:tableHeader="thead" :titlePageAuthors="titlePageAuthors" :people="people"
+								@autocom="changeHandler" />
+							<Textarea v-if="thead.name != 'peopleInvolved' &&
+								thead.name != 'toolLink' &&
+								thead.name != 'progress' &&
+								thead.name != 'notes'
+								" type="text" v-model="row[thead.name]" :ref="index" :autoResize="true"
+								@change="changeHandler($event.target.value)" />
+						</td>
+						<td class="btnArea" v-if="ifEdit">
+					<tr>
+						<td style="border-style: none;">
+							<Button v-if="ifEdit" class="p-button-raised p-button-text" icon="pi pi-ellipsis-h"
+								@click="show = !show" style="background-color:white" />
+						</td>
+						<td style="border-style: none;">
+							<span class="p-buttonset" v-if="show && ifEdit">
+								<Button class="p-button-raised p-button-text" icon="pi pi-arrow-up"
+									@click="addRow(index, 0)" style="background-color:white" />
+								<Button class="p-button-raised p-button-text" icon="pi pi-trash" @click="deleRow(index)"
+									style="background-color:white" />
+								<Button class="p-button-raised p-button-text" icon="pi pi-arrow-down"
+									@click="addRow(index, 1)" style="background-color:white" />
+							</span>
+						</td>
+					</tr>
 					</td>
-					<td class="btnArea" v-if="ifEdit">
-				<tr>
-					<td style="border-style: none;">
-						<Button v-if="ifEdit" class="p-button-raised p-button-text" icon="pi pi-ellipsis-h"
-							@click="show = !show" style="background-color:white" />
-					</td>
-					<td style="border-style: none;">
-						<span class="p-buttonset" v-if="show && ifEdit">
-							<Button class="p-button-raised p-button-text" icon="pi pi-arrow-up" @click="addRow(index, 0)"
-								style="background-color:white" />
-							<Button class="p-button-raised p-button-text" icon="pi pi-trash" @click="deleRow(index)"
-								style="background-color:white" />
-							<Button class="p-button-raised p-button-text" icon="pi pi-arrow-down" @click="addRow(index, 1)"
-								style="background-color:white" />
-						</span>
-					</td>
-				</tr>
-				</td>
-				</tr>
-			</tbody>
-		</table>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<Dialog header="Export to Excel" :visible.sync="isShowDialog" :modal="true" :style="{ width: '450px' }">
 			<div class="p-inputgroup">
 				<span class="p-inputgroup-addon">NewFile-Name:</span>
@@ -354,11 +356,21 @@ export default {
 <style scoped>
 table {
 	border-collapse: collapse;
-	display: block;
+	/* display: block; */
 	overflow: auto;
-	overflow-x: auto;
+	/* overflow-x: auto; */
 	/*background-color: rgba(240, 240, 240, 0.73);*/
 }
+
+.table-container {
+	overflow-x: scroll;
+	height: 60vh;
+}
+
+/* 
+.table-container::-webkit-scrollbar {
+  width: 5px;
+} */
 
 .p-togglebutton.p-button {
 	background: rgba(72, 90, 120, 0.824);
