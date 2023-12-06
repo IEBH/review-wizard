@@ -151,12 +151,12 @@ const data = {
 				},
 				{ name: "toolLink", label: "Tool" },
 				{
-					name: "notes",
-					label: "Notes"
-				},
-				{
 					name: "peopleInvolved",
 					label: "People"
+				},
+				{
+					name: "notes",
+					label: "Notes"
 				}
 			],
 			rows: [
