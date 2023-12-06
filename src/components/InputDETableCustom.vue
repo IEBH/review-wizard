@@ -518,6 +518,7 @@ table {
 	background-color: white;
 	border: 1px solid black;
 	z-index: 10;
+	height: 80px;
 }
 
 .p-fluid .p-inputtextarea {
