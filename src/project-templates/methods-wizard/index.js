@@ -24,6 +24,7 @@ import ViewMethodSearchStrategy from "./ViewMethodSearchStrategy.vue";
 import ViewMethodSearchStrings from "./ViewMethodSearchStrings.vue";
 import ViewMethodHeterogeneity from "./ViewMethodHeterogeneity.vue";
 import ViewMethodPublicationBiases from "./ViewMethodPublicationBiases.vue";
+import ViewAcknowledgement from "./ViewAcknowledgement";
 
 // The path for deepstream, where the bulk of the information is kept (e.g. `methods/${projectId}`)
 const deepstreamPath = "methods";
@@ -106,6 +107,11 @@ const routes = [
 		component: ViewMethodSubgroupAndSensitivityAnalysis
 	},
 	{
+		name: "ac-view",
+		path: "/:projectId/planning/ac-view",
+		component: ViewAcknowledgement
+	},
+	{
 		name: "rs-plan",
 		path: "/:projectId/reports/rs-plan",
 		component: ViewMethodResearchPlan
@@ -136,6 +142,11 @@ const data = {
 		//people
 		authors: [""],
 		acknowledgements: [""]
+	},
+	acknowledgement: {
+		designhelp: [],
+		statistical: [],
+		manuscript: []
 	},
 	introduction: {
 		intro: ""
@@ -771,6 +782,11 @@ const getMenu = projectId => [
 		title: "Subgroup Analysis",
 		icon: "pi pi-chart-line",
 		href: `/${projectId}/method/subgroup-sensitivity-analysis`
+	},
+	{
+		title: "Acknowledgement",
+		icon: "pi pi-file",
+		href: `/${projectId}/planning/ac-view`
 	},
 	{
 		header: true,

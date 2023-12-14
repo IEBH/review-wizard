@@ -6,37 +6,19 @@
 			</b>
 		</p>
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
-		<Listbox id="multihighlight" v-if="selectOptions.length > 0" v-bind:value="value"
-			v-on:change="$emit('input', $event.value)" :options="selectOptions" optionLabel="label" dataKey="label"
-			:multiple="true">
+		<Listbox id="multihighlight" v-if="selectOptions.length > 0" v-bind:value="value" v-on:change="$emit('input', $event.value)"
+			:options="selectOptions" optionLabel="label" dataKey="label" :multiple="true">
 			<template #option="slotProps">
 				<div>
 					<span class="p-ml-3">{{ slotProps.option.label }}</span>
 				</div>
 			</template>
 		</Listbox>
-		<!-- p-button-success -->
-		<div>
-			<Button label="Other" icon="pi pi-plus" class="btsyle" @click="openModal" />
-		</div>
-
-
-		<!-- Modal to display other option -->
-		<Dialog header="Add Option" :visible.sync="displayModal" :style="{ width: '50vw' }" :modal="true">
-			<div class="p-fluid p-jc-center">
-				<p>Enter value of new option below</p>
-				<InputText autofocus v-model="newOption" class="p-mb-3" /> <br />
-				<Button label="Add Value" icon="pi pi-plus" class="p-button-success" @click="closeModal" />
-			</div>
-		</Dialog>
 	</div>
 </template>
 
 <script>
 import Listbox from "primevue/listbox";
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
-import InputText from "primevue/inputtext";
 
 export default {
 	name: "InputSelectMulti",
@@ -46,14 +28,11 @@ export default {
 		value: Array
 	},
 	components: {
-		Listbox,
-		Button,
-		Dialog,
-		InputText
+		Listbox
 	},
 	data() {
 		return {
-			displayModal: false,
+			// displayModal: false,
 			newOption: null
 		};
 	},
@@ -68,18 +47,6 @@ export default {
 		}
 	},
 	methods: {
-		openModal() {
-			this.displayModal = true;
-		},
-		closeModal() {
-			// Update new value
-			if (this.newOption) {
-				this.value.push({ label: this.newOption });
-				this.$emit("input", this.value);
-			}
-			this.displayModal = false;
-			this.newOption = null;
-		},
 		arrayUnion(arr1, arr2, equalityFunc) {
 			var union = arr1.concat(arr2);
 
@@ -119,17 +86,15 @@ export default {
 	border: 1px solid #576da0 !important;
 
 }
-
-#multihighlight .p-highlight {
+#multihighlight .p-highlight{
 	font-weight: 800;
-	color: white !important;
-	font-family: sans-serif;
+    color: white !important;
+    font-family: sans-serif;
 	background: #83bfed !important;
 	/* background: #9abfe6 #83bfed !important; */
-	border: 1px dashed #8694b3 !important;
-	border-radius: 16px !important;
+    border: 1px dashed #8694b3 !important;
+    border-radius: 16px !important;
 }
-
 .btsyle {
 	margin: 10px;
 	/* width: 100px; */
@@ -152,4 +117,5 @@ export default {
 		background-color: #28a745 !important;
 		border: 2px solid #4CAF50 !important;
 	}
-}</style>
+}
+</style>
