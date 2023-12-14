@@ -15,46 +15,27 @@
 				</div>
 			</template>
 		</Listbox>
-		<!-- p-button-success -->
-		<div>
-			<Button label="Other" icon="pi pi-plus" class="btsyle" @click="openModal" />
-		</div>
 
-
-		<!-- Modal to display other option -->
-		<Dialog header="Add Option" :visible.sync="displayModal" :style="{ width: '50vw' }" :modal="true">
-			<div class="p-fluid p-jc-center">
-				<p>Enter value of new option below</p>
-				<InputText autofocus v-model="newOption" class="p-mb-3" /> <br />
-				<Button label="Add Value" icon="pi pi-plus" class="p-button-success" @click="closeModal" />
-			</div>
-		</Dialog>
 	</div>
 </template>
 
 <script>
 import Listbox from "primevue/listbox";
-import Button from "primevue/button";
-import Dialog from "primevue/dialog";
-import InputText from "primevue/inputtext";
 
 export default {
-	name: "InputSelectMulti",
+	name: "InputSelectMultiWithoutOthers",
 	props: {
 		question: String,
 		options: Array,
 		value: Array
 	},
 	components: {
-		Listbox,
-		Button,
-		Dialog,
-		InputText
+		Listbox
 	},
 	data() {
 		return {
-			displayModal: false,
-			newOption: null
+			// displayModal: false,
+			// newOption: null
 		};
 	},
 	computed: {
@@ -68,18 +49,6 @@ export default {
 		}
 	},
 	methods: {
-		openModal() {
-			this.displayModal = true;
-		},
-		closeModal() {
-			// Update new value
-			if (this.newOption) {
-				this.value.push({ label: this.newOption });
-				this.$emit("input", this.value);
-			}
-			this.displayModal = false;
-			this.newOption = null;
-		},
 		arrayUnion(arr1, arr2, equalityFunc) {
 			var union = arr1.concat(arr2);
 
@@ -152,4 +121,5 @@ export default {
 		background-color: #28a745 !important;
 		border: 2px solid #4CAF50 !important;
 	}
-}</style>
+}
+</style>

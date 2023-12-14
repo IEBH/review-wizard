@@ -11,7 +11,7 @@
 		<div class="p-mt-2">
 			<Button v-if="value == '' && placeholder" label="Keep Example" @click="fillWithPlaceholder()" />
 		</div>
-		<div style="text-align: center;">
+		<div>
 			<Button v-if="value != ''" label="Clear" class="btsyle" @click="clearInput()" />
 		</div>
 	</div>

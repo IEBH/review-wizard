@@ -56,7 +56,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="6" style="text-align: center;">
+					<td colspan="6">
 						<Button label="Add" icon="pi pi-plus" class="btsyle" @click="newRow" />
 					</td>
 				</tr>
