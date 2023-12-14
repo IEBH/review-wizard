@@ -58,9 +58,11 @@
 				<h2>Subgroup and sensitivity analysis</h2>
 				<OutputSubgroupAndSensitivityAnalysis v-if="outputOptions[15].include"
 					:data="subgroupAndSensitivityAnalysis" :key="monitorChange + 15" />
+				<h2 v-if="outputOptions[16].include">Acknowledgement</h2>
+				<OutputAcknowledgement v-if="outputOptions[16].include" :data="acknowledgement" :key="monitorChange + 16" />
 				<h1>Appendix</h1>
-				<OutputSearchDatabasesAppendix v-if="outputOptions[3].include" :data="search" :key="monitorChange + 16" />
-				<OutputSearchRegistriesAppendix v-if="outputOptions[4].include" :data="search" :key="monitorChange + 17" />
+				<OutputSearchDatabasesAppendix v-if="outputOptions[3].include" :data="search" :key="monitorChange + 17" />
+				<OutputSearchRegistriesAppendix v-if="outputOptions[4].include" :data="search" :key="monitorChange + 18" />
 			</div>
 			<template #footer>
 				<Button class="btsyleblue" label="Copy Methods to Clipboard" @click="copy" />
@@ -90,7 +92,7 @@ import OutputHeterogeneity from "./OutputHeterogeneity.vue";
 import OutputPublicationBias from "./OutputPublicationBias";
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
 import OutputIntroduction from "./OutputIntroduction.vue";
-
+import OutputAcknowledgement from "./OutputAcknowledgement.vue";
 import CopyMixin from "@/mixins/CopyMixin.js";
 
 import Button from "primevue/button";
@@ -113,7 +115,8 @@ export default {
 		deepstreamMixin("unitOfAnalysis"),
 		deepstreamMixin("missingData"),
 		deepstreamMixin("heterogeneityPublicationBiases"),
-		deepstreamMixin("subgroupAndSensitivityAnalysis")
+		deepstreamMixin("subgroupAndSensitivityAnalysis"),
+		deepstreamMixin("acknowledgement")
 	],
 	components: {
 		Button,
@@ -137,7 +140,8 @@ export default {
 		//OutputHeterogeneityPublicationBias,
 		OutputHeterogeneity,
 		OutputPublicationBias,
-		OutputSubgroupAndSensitivityAnalysis
+		OutputSubgroupAndSensitivityAnalysis,
+		OutputAcknowledgement
 	},
 	data() {
 		return {
@@ -158,7 +162,8 @@ export default {
 				{ label: "Dealing with Missing Data", include: true },
 				{ label: "Heterogeneity", include: true },
 				{ label: "Publication Bias", include: true },
-				{ label: "Subgroup and Sensitivity Analysis", include: true }
+				{ label: "Subgroup and Sensitivity Analysis", include: true },
+				{ label: "Acknowledgement", include: true }
 			],
 			selectedOptions: [],
 			displayModal: false
