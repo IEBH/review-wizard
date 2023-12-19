@@ -7,7 +7,7 @@
 			:value="numberOfRiskOfBiasAuthors"
 		/>
 
-		<InputSelectMulti
+		<InputSelectMultiWithoutOthers
 			question="Which authors assessed the risk of bias?"
 			:value="riskOfBias.assessedRobAuthors"
 			@input="updateField('assessedRobAuthors', $event)"
@@ -36,7 +36,7 @@ import OutputAssesmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias";
 import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
-
+import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
 import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
@@ -49,6 +49,7 @@ export default {
 	components: {
 		InputSelectYesNo,
 		InputSelectMulti,
+		InputSelectMultiWithoutOthers,
 		BasePreviewOutput
 	},
 	computed: {
