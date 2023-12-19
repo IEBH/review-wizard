@@ -39,11 +39,6 @@ export default {
 			let da = this.titlepage.acknowledgements?.map(el => {
 				return { label: el };
 			});
-			// this.researchplan.planTable?.rows.forEach(el => {
-			// 	if (el.tasks == "Extract data" && el.peopleInvolved != "") {
-			// 		da = el.peopleInvolved;
-			// 	}
-			// });
 			return da;
 		},
 	},
