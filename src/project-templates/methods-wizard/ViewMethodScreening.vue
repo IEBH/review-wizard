@@ -7,7 +7,7 @@
 			:value="numberOfTitleAbstractScreeners"
 		/>
 
-		<InputSelectMulti
+		<InputSelectMultiWithoutOthers
 			question="Which authors screened title/abstract?"
 			:value="screening.titleAbstractScreeners"
 			@input="updateField('titleAbstractScreeners', $event)"
@@ -19,7 +19,7 @@
 			"
 		/>
 
-		<InputSelectMulti
+		<InputSelectMultiWithoutOthers
 			question="Which author retrieved full-texts?"
 			:value="screening.fullTextRetrivalAuthor"
 			@input="updateField('fullTextRetrivalAuthor', $event)"
@@ -31,7 +31,7 @@
 			:value="numberOfFullTextScreeners"
 		/>
 
-		<InputSelectMulti
+		<InputSelectMultiWithoutOthers
 			question="Which authors screened full-texts?"
 			:value="screening.fullTextScreeners"
 			@input="updateField('fullTextScreeners', $event)"
@@ -43,14 +43,14 @@
 			"
 		/>
 
-		<InputSelectMulti
+		<InputSelectMultiWithoutOthers
 			question="Who screened the citation search?"
 			:value="screening.screenCitationSearchPeople"
 			@input="updateField('screenCitationSearchPeople', $event)"
 			:options="this.scCitSearchPeople"
 		/>
 
-		<InputSelectMulti
+		<InputSelectMultiWithoutOthers
 			question="Who screened trial registries?"
 			:value="screening.screenTrialRegisPeople"
 			@input="updateField('screenTrialRegisPeople', $event)"
@@ -85,6 +85,7 @@
 import OutputScreening from "./OutputScreening.vue";
 import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
+import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
 import deepstreamMixin from "@/mixins/DeepstreamMixin";
@@ -98,6 +99,7 @@ export default {
 	],
 	components: {
 		InputSelectMulti,
+		InputSelectMultiWithoutOthers,
 		InputSelectYesNo,
 		BasePreviewOutput
 	},

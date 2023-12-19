@@ -2,13 +2,13 @@
 	<div>
 		<h1>Search Strategy</h1>
 
-		<InputSelectMulti
+		<InputSelectMultiWithoutOthers
 			question="Who designed and ran the search strategy?"
 			:value="search.designSearchStrategyAuthors"
 			@input="updateField('designSearchStrategyAuthors', $event)"
 			:options="this.dsSearchStrategyAuthors"
 		/>
-		<InputSelectMulti
+		<InputSelectMultiWithoutOthers
 			question="Who deduplicated the results?"
 			:value="search.deduplicateResultsAuthors"
 			@input="updateField('deduplicateResultsAuthors', $event)"
@@ -71,7 +71,7 @@
 			@input="updateField('includedLanguages', $event)"
 		/>
 
-		<InputSelectMulti
+		<InputSelectMultiWithoutOthers
 			question="Who conducted the supplementary searches?"
 			:value="search.conductSSearchAuthors"
 			@input="updateField('conductSSearchAuthors', $event)"
@@ -94,6 +94,7 @@
 //import OutputSearch from "./OutputSearch.vue";
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
+import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
 //Restrictions on Publication Type
 //import OutputSearchPublicationType from "./OutputSearchPublicationType.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
@@ -114,6 +115,7 @@ export default {
 	components: {
 		//Search Strategy
 		InputSelectMulti,
+		InputSelectMultiWithoutOthers,
 		PreviewOutput,
 		//Restrictions on Publication Type
 		InputSelectYesNo

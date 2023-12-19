@@ -16,7 +16,7 @@
 			:options="extractorsOption"
 		/>-->
 
-		<InputSelectMulti question="Which author/s performed data extraction?" :value="extraction.extractionAuthors"
+		<InputSelectMultiWithoutOthers question="Which author/s performed data extraction?" :value="extraction.extractionAuthors"
 			@input="updateField('extractionAuthors', $event)" :options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -78,6 +78,7 @@ import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import OutputDataExtraction from "./OutputDataExtraction.vue";
 import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
+import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
 import InputTable from "@/components/InputTable.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
@@ -98,6 +99,7 @@ export default {
 		Button,
 		InputSelectDropdown,
 		InputSelectMulti,
+		InputSelectMultiWithoutOthers,
 		InputTable,
 		BasePreviewOutput,
 		InputSelectYesNo
