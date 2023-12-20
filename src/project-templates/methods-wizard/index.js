@@ -175,7 +175,7 @@ const data = {
 					progress: false,
 					tasks: "Lead in time",
 					toolDescription:
-						"Time spent completing other work to allow SR authors to focus on the 2 week SR",
+						"Time spent completing other work to allow authors to focus on the review",
 					toolLink: [{ name: "", link: "" }],
 					notes: "",
 					peopleInvolved: ""
@@ -185,7 +185,7 @@ const data = {
 					progress: false,
 					tasks: "SR design meetings",
 					toolDescription:
-						"Time spent refining the idea, determining feasibility, assembling the team, planning timelines, deciding on roles (who's responsible for oversight, coordination and documentation) and provide information on SRA tools",
+						"Time spent refining the idea, determining feasibility, assembling the team, planning timelines, deciding on roles",
 					toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 					notes: "",
 					peopleInvolved: ""
@@ -264,11 +264,13 @@ const data = {
 					toolLink: [
 						{
 							name: "Word Freq Analyzer",
-							link: "https://sr-accelerator.com/#/wordfreq"
+							//link: "https://sr-accelerator.com/#/wordfreq"
+							link:"https://tera-tools.com/word-freq"
 						},
 						{
 							name: "Search Refinery",
-							link: "https://sr-accelerator.com/#/searchrefinery"
+							//link: "https://sr-accelerator.com/#/searchrefinery"
+							link:"https://tera-tools.com/searchrefiner"
 						}
 					],
 					notes: "",
@@ -283,7 +285,8 @@ const data = {
 					toolLink: [
 						{
 							name: "Polyglot",
-							link: "https://sr-accelerator.com/#/polyglot"
+							//link: "https://sr-accelerator.com/#/polyglot"
+							link:"https://tera-tools.com/polyglot"
 						}
 					],
 					notes: "",
@@ -297,7 +300,8 @@ const data = {
 					toolLink: [
 						{
 							name: "Dedupe",
-							link: "https://sr-accelerator.com/#/deduplicator"
+							//link: "https://sr-accelerator.com/#/deduplicator"
+							link:"https://tera-tools.com/deduplicator"
 						}
 					],
 					notes: "",
@@ -312,11 +316,13 @@ const data = {
 					toolLink: [
 						{
 							name: "Screenatron",
-							link: "https://sr-accelerator.com/#/screenatron"
+							//link: "https://sr-accelerator.com/#/screenatron"
+							link:"https://tera-tools.com/screenatron"
 						},
 						{
 							name: "Disputatron",
-							link: "https://sr-accelerator.com/#/disputatron"
+							//link: "https://sr-accelerator.com/#/disputatron"
+							link:"https://tera-tools.com/disputatron"
 						}
 					],
 					notes: "",
@@ -341,11 +347,13 @@ const data = {
 					toolLink: [
 						{
 							name: "Screenatron",
-							link: "https://sr-accelerator.com/#/screenatron"
+							//link: "https://sr-accelerator.com/#/screenatron"
+							link:"https://tera-tools.com/screenatron"
 						},
 						{
 							name: "Disputatron",
-							link: "https://sr-accelerator.com/#/disputatron"
+							//link: "https://sr-accelerator.com/#/disputatron"
+							link: "https://tera-tools.com/disputatron"
 						}
 					],
 					notes: "",
@@ -360,11 +368,13 @@ const data = {
 					toolLink: [
 						{
 							name: "Screenatron",
-							link: "https://sr-accelerator.com/#/screenatron"
+							//link: "https://sr-accelerator.com/#/screenatron"
+							link:"https://tera-tools.com/screenatron"
 						},
 						{
 							name: "Disputatron",
-							link: "https://sr-accelerator.com/#/disputatron"
+							//link: "https://sr-accelerator.com/#/disputatron"
+							link: "https://tera-tools.com/disputatron"
 						}
 					],
 					notes: "",
@@ -379,7 +389,8 @@ const data = {
 					toolLink: [
 						{
 							name: "SpiderCite",
-							link: "https://sr-accelerator.com/#/spidercite"
+							//link: "https://sr-accelerator.com/#/spidercite"
+							link: "https://tera-tools.com/spidercite"
 						}
 					],
 					notes: "",
@@ -394,11 +405,13 @@ const data = {
 					toolLink: [
 						{
 							name: "Screenatron",
-							link: "https://sr-accelerator.com/#/screenatron"
+							//link: "https://sr-accelerator.com/#/screenatron"
+							link:"https://tera-tools.com/screenatron"
 						},
 						{
 							name: "Disputatron",
-							link: "https://sr-accelerator.com/#/disputatron"
+							//link: "https://sr-accelerator.com/#/disputatron"
+							link: "https://tera-tools.com/disputatron"
 						}
 					],
 					notes: "",
@@ -409,7 +422,7 @@ const data = {
 					progress: false,
 					tasks: "Extract data",
 					toolDescription:
-						"Extract study characteristics and relevant outcomes plan data presentation? - how will things be presented in the paper? Loai and I spent a while discussing and trying to work that out",
+						"Extract study characteristics and relevant outcomes, plan data presentation",
 					toolLink: [
 						{ name: "Data Extraction", link: "/method/data-extraction" }
 					],
@@ -481,7 +494,7 @@ const data = {
 					tasks: "Revise introduction",
 					toolDescription:
 						"Revise the introduction section from the SR protocol",
-					toolLink: [{ name: "Introduction", link: "/method/introduction" }],
+					toolLink: [{ name: "Introduction", link: "/introduction" }],
 					notes: "",
 					peopleInvolved: ""
 					//notes: ""
@@ -543,7 +556,7 @@ const data = {
 					progress: false,
 					tasks: "Reformat and resubmit manuscript",
 					toolDescription:
-						"If rejected, reformat manuscript to meet new journal requirements and standards, and submit (if accepted skip this task)",
+						"If rejected, reformat manuscript to meet new journal requirements and standards",
 					toolLink: [{ name: "", link: "" }],
 					notes: "",
 					peopleInvolved: ""
