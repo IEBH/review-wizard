@@ -58,12 +58,12 @@
 									Completed
 								</label>
 							</div> -->
-							<div class="checkbox-wrapper-29" v-if="thead.name == 'progress'" style="margin: 20%;">
+							<div class="checkbox-wrapper-29" v-if="thead.name == 'progress'" style="margin: 46%;">
 								<label class="checkbox">
 									<input type="checkbox" v-model="row.progress" class="checkbox__input"
 										@change="changeHandler($event)">
 									<span class="checkbox__label"></span>
-									Completed
+									<!-- Completed -->
 								</label>
 							</div>
 							<!-- <div class="field-checkbox" v-if="thead.name == 'progress'" style="margin: 20%;">
