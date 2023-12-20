@@ -1,16 +1,18 @@
 <template>
 	<div class="author-div">
-		<AutoComplete
-			:multiple="true"
-			v-model="row[tableHeader.name]"
-			:suggestions="filteredPeople"
-			field="label"
-			@complete="searchAuthors($event)"
-			@item-select="checkChanges(row, tableValue.rows, $event.value)"
-			@item-unselect="checkChanges(row, tableValue.rows, $event.value)"
-		/>
-	</div>
-</template>
+		<div :class="isEvenRow==false ? 'customblue' : 'customwhite'">
+			<AutoComplete 
+				:multiple="true" 
+				v-model="row[tableHeader.name]" 
+				:suggestions="filteredPeople" 
+				field="label"
+				class="auto"
+				@complete="searchAuthors($event)" 
+				@item-select="checkChanges(row, tableValue.rows, $event.value)"
+				@item-unselect="checkChanges(row, tableValue.rows, $event.value)" 
+			/>
+		</div>
+</div></template>
 <script>
 import AutoComplete from "primevue/autocomplete/AutoComplete";
 import deepstreamMixin from "@/mixins/DeepstreamMixin";
@@ -21,6 +23,7 @@ export default {
 		row: {},
 		tableValue: {},
 		tableHeader: {},
+		isEvenRow: Boolean,
 		//people: [],
 		titlePageAuthors: Array
 	},
@@ -79,16 +82,27 @@ export default {
 	position: relative;
 	width: 250px;
 }
+
 .p-autocomplete-multiple-container {
 	/*border: none;*/
 	display: inline;
 	min-height: 200px;
 }
+
 .p-fluid .p-autocomplete {
 	height: 100%;
 	width: 100%;
 }
+
 .p-input-filled .p-inputtext {
 	background-color: white;
+}
+
+.customblue .auto .p-inputtext {
+	background-color: #c6e2ff !important;
+}
+
+.customwhite .auto .p-inputtext {
+	background-color: white !important;
 }
 </style>

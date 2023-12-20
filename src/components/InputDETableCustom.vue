@@ -75,7 +75,8 @@
 				</tr> -->
 				<tr v-for="(row, index) in value.rows" :key="index">
 					<td v-for="thead of value.headers" :key="thead.label">
-						<Textarea type="text" v-model="row[thead.label]" :ref="index" :autoResize="true" @change="changeHandler($event.target.value)" />
+						<Textarea type="text" v-model="row[thead.label]" :ref="index" :autoResize="true"
+							@change="changeHandler($event.target.value)" />
 						<!-- @change="changeHandler($event) -->
 						<!-- @input="updateRow(index, thead.label, $event)" /> -->
 					</td>
@@ -117,8 +118,8 @@
 
 			<template #footer>
 				<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="isShowDialog = false" />
-				<Button label="Comfirm" icon="pi pi-check" class="p-button-text" 
-				@click="generateExcel(value.headers, value.rows, fileName)"/>
+				<Button label="Comfirm" icon="pi pi-check" class="p-button-text"
+					@click="generateExcel(value.headers, value.rows, fileName)" />
 				<!-- @click="exportAsExcel(fileName)" -->
 				<!-- @click="exportExcel(value.rows, value.headers, fileName)" /> -->
 			</template>
@@ -477,6 +478,14 @@ export default {
 		titleshort: function (newTitle) {
 			// React to changes in the title prop
 			this.fileName = newTitle;
+		},
+		value: function (val) {
+			console.log("magicccc value", val);
+			if (val && val.headers.length > 0 && val.rows.length == 0) {
+				for (let i = 0; i < 5; i++) {
+					this.addNewRow();
+				}
+			}
 		},
 	}
 };
