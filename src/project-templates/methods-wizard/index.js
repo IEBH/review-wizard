@@ -175,7 +175,7 @@ const data = {
 					progress: false,
 					tasks: "Lead in time",
 					toolDescription:
-						"Time spent completing other work to allow SR authors to focus on the 2 week SR",
+						"Time spent completing other work to allow authors to focus on the review",
 					toolLink: [{ name: "", link: "" }],
 					notes: "",
 					peopleInvolved: ""
@@ -185,7 +185,7 @@ const data = {
 					progress: false,
 					tasks: "SR design meetings",
 					toolDescription:
-						"Time spent refining the idea, determining feasibility, assembling the team, planning timelines, deciding on roles (who's responsible for oversight, coordination and documentation) and provide information on SRA tools",
+						"Time spent refining the idea, determining feasibility, assembling the team, planning timelines, deciding on roles",
 					toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 					notes: "",
 					peopleInvolved: ""
@@ -409,7 +409,7 @@ const data = {
 					progress: false,
 					tasks: "Extract data",
 					toolDescription:
-						"Extract study characteristics and relevant outcomes plan data presentation? - how will things be presented in the paper? Loai and I spent a while discussing and trying to work that out",
+						"Extract study characteristics and relevant outcomes, plan data presentation",
 					toolLink: [
 						{ name: "Data Extraction", link: "/method/data-extraction" }
 					],
@@ -543,7 +543,7 @@ const data = {
 					progress: false,
 					tasks: "Reformat and resubmit manuscript",
 					toolDescription:
-						"If rejected, reformat manuscript to meet new journal requirements and standards, and submit (if accepted skip this task)",
+						"If rejected, reformat manuscript to meet new journal requirements and standards",
 					toolLink: [{ name: "", link: "" }],
 					notes: "",
 					peopleInvolved: ""
