@@ -154,7 +154,7 @@ const data = {
 	researchplan: {
 		planTable: {
 			headers: [
-				{ name: "progress", label: "Complete" },
+				{ name: "progress", label: "Completed" },
 				{ name: "tasks", label: "Task" },
 				{
 					name: "toolDescription",
