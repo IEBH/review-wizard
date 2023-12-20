@@ -175,7 +175,7 @@ const data = {
 					progress: false,
 					tasks: "Lead in time",
 					toolDescription:
-						"TTime spent completing other work to allow authors to focus on the review",
+						"Time spent completing other work to allow authors to focus on the review",
 					toolLink: [{ name: "", link: "" }],
 					notes: "",
 					peopleInvolved: ""
