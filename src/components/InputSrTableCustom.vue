@@ -58,7 +58,7 @@
 									Completed
 								</label>
 							</div> -->
-							<div class="checkbox-wrapper-29" v-if="thead.name == 'progress'" style="margin: 46%;">
+							<div class="checkbox-wrapper-29" v-if="thead.name == 'progress'" style="margin-left: 46%;">
 								<label class="checkbox">
 									<input type="checkbox" v-model="row.progress" class="checkbox__input"
 										@change="changeHandler($event)">
@@ -71,9 +71,9 @@
 									@change="changeHandler($event)"></el-checkbox>
 							</div> -->
 							<NotesContent v-if="thead.name == 'notes'" :thead="thead" :row="row" @notes="changeHandler" />
-							<InputAutoComplete v-if="thead.name == 'peopleInvolved'" :tableValue="value" :row="row"
-								:tableHeader="thead" :titlePageAuthors="titlePageAuthors" :people="people"
-								@autocom="changeHandler" />
+							<InputAutoComplete :isEvenRow="isEvenRow(index)" v-if="thead.name == 'peopleInvolved'"
+								:tableValue="value" :row="row" :tableHeader="thead" :titlePageAuthors="titlePageAuthors"
+								:people="people" @autocom="changeHandler" />
 							<Textarea v-if="thead.name != 'peopleInvolved' &&
 								thead.name != 'toolLink' &&
 								thead.name != 'progress' &&
@@ -169,6 +169,9 @@ export default {
 				console.log("input", this.value);
 				this.$emit("input", this.value);
 			}
+		},
+		isEvenRow(index) {
+			return index % 2 === 0;
 		},
 		addRow(index, optionNum) {
 			let row = {};
@@ -353,8 +356,10 @@ export default {
 };
 
 </script>
-<style scoped>
+<style >
 table {
+	/* border: 1px solid black; */
+	border: 4px solid #5c73a6;
 	border-collapse: collapse;
 	/* display: block; */
 	overflow: auto;
@@ -432,7 +437,8 @@ table {
 
 th,
 td {
-	border: 1px solid black;
+	/* border: 1px dashed black; */
+	border: 1px dashed #bbc6de;
 }
 
 #systable {
@@ -443,7 +449,7 @@ td {
 
 .checkbox-wrapper-29 {
 	--size: 1rem;
-	--background: #fff;
+	/* --background: #fff; */
 	font-size: var(--size);
 }
 
@@ -515,5 +521,28 @@ td {
 
 .checkbox-wrapper-29 .checkbox__label {
 	margin-right: calc(var(--size) * 0.45);
+}
+
+/* For table Beautification */
+
+tr:nth-child(even) {
+	background-color: #c6e2ff;
+}
+
+th {
+	background-image: linear-gradient(#6880b5, #465b8b, #5971a5);
+	color: white !important;
+}
+
+tr:nth-child(even) textarea {
+	background-color: #c6e2ff !important;
+}
+
+.InputSrTable .container-notes {
+	background-color: #c6e2ff !important;
+}
+
+.InputSrTable .author-div {
+	background-color: #c6e2ff !important;
 }
 </style>

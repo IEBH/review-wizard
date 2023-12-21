@@ -30,7 +30,7 @@
 				</vue-excel-column> -->
 
 		</div>
-		<table class="p-fluid" style="width:100%;" v-if="value">
+		<table class="p-fluid" style="width:100%;" v-if="value.headers.length>0">
 			<thead class="p-fluid-thead">
 				<tr>
 					<th v-for="(thead, index) in value.headers" :key="index">
@@ -479,6 +479,14 @@ export default {
 			// React to changes in the title prop
 			this.fileName = newTitle;
 		},
+		value: function (val) {
+			console.log("magicccc value", val);
+			if (val && val.headers.length > 0 && val.rows.length == 0) {
+				for (let i = 0; i < 5; i++) {
+					this.addNewRow();
+				}
+			}
+		},
 	}
 };
 
@@ -497,6 +505,7 @@ export default {
 
 table {
 	border-collapse: collapse;
+	border: none !important;
 	display: block;
 	overflow: auto;
 	overflow-x: auto;
