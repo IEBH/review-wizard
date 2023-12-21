@@ -30,7 +30,7 @@
 				</vue-excel-column> -->
 
 		</div>
-		<table class="p-fluid" style="width:100%;" v-if="value">
+		<table class="p-fluid" style="width:100%;" v-if="value.headers.length>0">
 			<thead class="p-fluid-thead">
 				<tr>
 					<th v-for="(thead, index) in value.headers" :key="index">
@@ -508,6 +508,7 @@ table {
 	display: block;
 	overflow: auto;
 	overflow-x: auto;
+	border: none !important;
 	/*background-color: rgba(240, 240, 240, 0.73);*/
 }
 
