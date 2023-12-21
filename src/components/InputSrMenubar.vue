@@ -1,9 +1,15 @@
 <template>
 	<div>
-		<Menubar
-			:model="menuItems"
-			style="height:10px;width:10px;background-color:white;"
-		/>
+		<el-dropdown trigger="click">
+			<span class="el-dropdown-link">
+				<i class="el-icon-arrow-down el-icon--right"></i>
+			</span>
+			<el-dropdown-menu slot="dropdown">
+				<el-dropdown-item icon="el-icon-back" @click.native="showDialog(0)">AddColumnLeft</el-dropdown-item>
+				<el-dropdown-item icon="el-icon-delete" @click.native="showDeleteDialog()">DeleteCurrentCol</el-dropdown-item>
+				<el-dropdown-item icon="el-icon-right" @click.native="showDialog(1)">AddColumnRight</el-dropdown-item>
+			</el-dropdown-menu>
+		</el-dropdown>
 		<Dialog
 			header="New Column"
 			:visible.sync="isShowDialog"
@@ -58,14 +64,12 @@
 	</div>
 </template>
 <script>
-import Menubar from "primevue/menubar/Menubar";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 export default {
 	name: "InputSrMenubar",
 	components: {
-		Menubar,
 		Dialog,
 		InputText,
 		Button
@@ -80,36 +84,6 @@ export default {
 			isDeleteDialog: false,
 			colLabel: "",
 			newCol: { LorR: "", Index: "", ColLabel: "" },
-			menuItems: [
-				{
-					label: "",
-					items: [
-						{
-							label: "AddColumnLeft",
-							icon: "pi pi-arrow-left",
-							command: () => {
-								this.lor = 0;
-								this.isShowDialog = true;
-							}
-						},
-						{
-							label: "DeleteCurrentCol",
-							icon: "pi pi-trash",
-							command: () => {
-								this.isDeleteDialog = true;
-							}
-						},
-						{
-							label: "AddColumnRight",
-							icon: "pi pi-arrow-right",
-							command: () => {
-								this.lor = 1;
-								this.isShowDialog = true;
-							}
-						}
-					]
-				}
-			]
 		};
 	},
 	methods: {
@@ -123,8 +97,19 @@ export default {
 		deleteColumn() {
 			this.isDeleteDialog = false;
 			this.$emit("deleteCol", this.colIndex);
+		},
+		showDialog(lr){
+			this.lor=lr;
+			this.isShowDialog=true;
+		},
+		showDeleteDialog(){
+			this.isDeleteDialog=true;
 		}
 	}
 };
 </script>
-<style></style>
+<style>
+.el-dropdown{
+	color: azure;
+}
+</style>
