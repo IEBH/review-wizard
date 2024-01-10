@@ -359,7 +359,7 @@ export default {
 <style >
 table {
 	/* border: 1px solid black; */
-	border: 4px solid #5c73a6;
+	/* border: 4px solid #5c73a6; */
 	border-collapse: collapse;
 	/* display: block; */
 	overflow: auto;
