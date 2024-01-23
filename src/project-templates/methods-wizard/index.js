@@ -25,6 +25,7 @@ import ViewMethodSearchStrings from "./ViewMethodSearchStrings.vue";
 import ViewMethodHeterogeneity from "./ViewMethodHeterogeneity.vue";
 import ViewMethodPublicationBiases from "./ViewMethodPublicationBiases.vue";
 import ViewAcknowledgement from "./ViewAcknowledgement";
+import ViewMethodContributions from "./ViewMethodContributions";
 
 // The path for deepstream, where the bulk of the information is kept (e.g. `methods/${projectId}`)
 const deepstreamPath = "methods";
@@ -105,6 +106,10 @@ const routes = [
 	{
 		path: "/:projectId/method/subgroup-sensitivity-analysis",
 		component: ViewMethodSubgroupAndSensitivityAnalysis
+	},
+	{
+		path: "/:projectId/method/contributions",
+		component: ViewMethodContributions
 	},
 	{
 		name: "ac-view",
@@ -265,12 +270,12 @@ const data = {
 						{
 							name: "Word Freq Analyzer",
 							//link: "https://sr-accelerator.com/#/wordfreq"
-							link:"https://tera-tools.com/word-freq"
+							link: "https://tera-tools.com/word-freq"
 						},
 						{
 							name: "Search Refinery",
 							//link: "https://sr-accelerator.com/#/searchrefinery"
-							link:"https://tera-tools.com/searchrefiner"
+							link: "https://tera-tools.com/searchrefiner"
 						}
 					],
 					notes: "",
@@ -286,7 +291,7 @@ const data = {
 						{
 							name: "Polyglot",
 							//link: "https://sr-accelerator.com/#/polyglot"
-							link:"https://tera-tools.com/polyglot"
+							link: "https://tera-tools.com/polyglot"
 						}
 					],
 					notes: "",
@@ -301,7 +306,7 @@ const data = {
 						{
 							name: "Dedupe",
 							//link: "https://sr-accelerator.com/#/deduplicator"
-							link:"https://tera-tools.com/deduplicator"
+							link: "https://tera-tools.com/deduplicator"
 						}
 					],
 					notes: "",
@@ -317,12 +322,12 @@ const data = {
 						{
 							name: "Screenatron",
 							//link: "https://sr-accelerator.com/#/screenatron"
-							link:"https://tera-tools.com/screenatron"
+							link: "https://tera-tools.com/screenatron"
 						},
 						{
 							name: "Disputatron",
 							//link: "https://sr-accelerator.com/#/disputatron"
-							link:"https://tera-tools.com/disputatron"
+							link: "https://tera-tools.com/disputatron"
 						}
 					],
 					notes: "",
@@ -348,7 +353,7 @@ const data = {
 						{
 							name: "Screenatron",
 							//link: "https://sr-accelerator.com/#/screenatron"
-							link:"https://tera-tools.com/screenatron"
+							link: "https://tera-tools.com/screenatron"
 						},
 						{
 							name: "Disputatron",
@@ -369,7 +374,7 @@ const data = {
 						{
 							name: "Screenatron",
 							//link: "https://sr-accelerator.com/#/screenatron"
-							link:"https://tera-tools.com/screenatron"
+							link: "https://tera-tools.com/screenatron"
 						},
 						{
 							name: "Disputatron",
@@ -406,7 +411,7 @@ const data = {
 						{
 							name: "Screenatron",
 							//link: "https://sr-accelerator.com/#/screenatron"
-							link:"https://tera-tools.com/screenatron"
+							link: "https://tera-tools.com/screenatron"
 						},
 						{
 							name: "Disputatron",
@@ -696,6 +701,9 @@ const data = {
 		isSensitivityAnalysis: false,
 		sensitivityAnalysis: [""],
 		whyNotSensitivityAnalysis: "We did not perform sensitivity analysis"
+	},
+	contribution: {
+		conAuthors: []
 	}
 };
 
@@ -795,6 +803,11 @@ const getMenu = projectId => [
 		title: "Subgroup Analysis",
 		icon: "pi pi-chart-line",
 		href: `/${projectId}/method/subgroup-sensitivity-analysis`
+	},
+	{
+		title: "Contributions",
+		icon: "pi pi-chart-line",
+		href: `/${projectId}/method/contributions`
 	},
 	{
 		title: "Acknowledgement",
