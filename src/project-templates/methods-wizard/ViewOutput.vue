@@ -6,11 +6,23 @@
 			<b>Select sections to include in output</b>
 		</p>
 		<div style="text-align: center;">
-			<Button label="Select All" @click="selectAll()" class="p-mr-2 p-mb-2 btsyleblue" />
-			<Button label="Deselect All" @click="deselectAll()" class="p-mr-2 p-mb-2 btsyleblue" />
+			<Button
+				label="Select All"
+				@click="selectAll()"
+				class="p-mr-2 p-mb-2 btsyleblue"
+			/>
+			<Button
+				label="Deselect All"
+				@click="deselectAll()"
+				class="p-mr-2 p-mb-2 btsyleblue"
+			/>
 		</div>
 
-		<div v-for="(option, index) of outputOptions" :key="index" class="p-field-checkbox">
+		<div
+			v-for="(option, index) of outputOptions"
+			:key="index"
+			class="p-field-checkbox"
+		>
 			<Checkbox :id="index" :binary="true" v-model="option.include" />
 			<label :for="index">{{ option.label }}</label>
 		</div>
@@ -20,52 +32,137 @@
 		</div>
 
 		<!-- Modal to display output -->
-		<Dialog header="Methods Section" :visible.sync="displayModal" :style="{ width: '80vw' }" :modal="true">
+		<Dialog
+			header="Methods Section"
+			:visible.sync="displayModal"
+			:style="{ width: '80vw' }"
+			:modal="true"
+		>
 			<div id="output">
 				<h1>Methods</h1>
 				<h2>Introduction</h2>
-				<OutputIntroduction v-if="outputOptions[0].include" :data="introduction" :key="monitorChange" />
+				<OutputIntroduction
+					v-if="outputOptions[0].include"
+					:data="introduction"
+					:key="monitorChange"
+				/>
 				<h2>Eligibility Criteria</h2>
-				<OutputPicot v-if="outputOptions[1].include" :data="picot" :key="monitorChange + 1" />
+				<OutputPicot
+					v-if="outputOptions[1].include"
+					:data="picot"
+					:key="monitorChange + 1"
+				/>
 				<h2>Search strategy</h2>
-				<OutputSearch v-if="outputOptions[2].include" :data="search" :key="monitorChange + 2" />
-				<OutputSearchDatabases v-if="outputOptions[3].include" :data="search" :key="monitorChange + 3" />
-				<OutputSearchRegistries v-if="outputOptions[4].include" :data="search" :key="monitorChange + 4" />
-				<OutputSearchPublicationType v-if="outputOptions[5].include" :data="search" :key="monitorChange + 5" />
-				<OutputSearchSupplementoryMethods v-if="outputOptions[6].include" :data="search" :key="monitorChange + 6" />
+				<OutputSearch
+					v-if="outputOptions[2].include"
+					:data="search"
+					:key="monitorChange + 2"
+				/>
+				<OutputSearchDatabases
+					v-if="outputOptions[3].include"
+					:data="search"
+					:key="monitorChange + 3"
+				/>
+				<OutputSearchRegistries
+					v-if="outputOptions[4].include"
+					:data="search"
+					:key="monitorChange + 4"
+				/>
+				<OutputSearchPublicationType
+					v-if="outputOptions[5].include"
+					:data="search"
+					:key="monitorChange + 5"
+				/>
+				<OutputSearchSupplementoryMethods
+					v-if="outputOptions[6].include"
+					:data="search"
+					:key="monitorChange + 6"
+				/>
 				<h2>Study selection and screening</h2>
 				<h3>Screening</h3>
-				<OutputScreening v-if="outputOptions[7].include" :data="screening" :key="monitorChange + 7" />
+				<OutputScreening
+					v-if="outputOptions[7].include"
+					:data="screening"
+					:key="monitorChange + 7"
+				/>
 				<h3>Data extraction</h3>
-				<OutputDataExtraction v-if="outputOptions[8].include" :data="extraction" :key="monitorChange + 8" />
+				<OutputDataExtraction
+					v-if="outputOptions[8].include"
+					:data="extraction"
+					:key="monitorChange + 8"
+				/>
 				<h2>Assessment of the RoB</h2>
-				<OutputAssessmentOfTheRiskOfBias v-if="outputOptions[9].include" :data="riskOfBias"
-					:key="monitorChange + 9" />
+				<OutputAssessmentOfTheRiskOfBias
+					v-if="outputOptions[9].include"
+					:data="riskOfBias"
+					:key="monitorChange + 9"
+				/>
 				<h2>Measurement of effect</h2>
-				<OutputMeasurementOfEffect v-if="outputOptions[10].include" :data="measurementOfEffect"
-					:key="monitorChange + 10" />
+				<OutputMeasurementOfEffect
+					v-if="outputOptions[10].include"
+					:data="measurementOfEffect"
+					:key="monitorChange + 10"
+				/>
 				<h2>Unit of analysis</h2>
-				<OutputUnitOfAnalysis v-if="outputOptions[11].include" :data="unitOfAnalysis" :key="monitorChange + 11" />
+				<OutputUnitOfAnalysis
+					v-if="outputOptions[11].include"
+					:data="unitOfAnalysis"
+					:key="monitorChange + 11"
+				/>
 				<h2>Dealing with missing data</h2>
-				<OutputDealingWithMissingData v-if="outputOptions[12].include" :data="missingData"
-					:key="monitorChange + 12" />
+				<OutputDealingWithMissingData
+					v-if="outputOptions[12].include"
+					:data="missingData"
+					:key="monitorChange + 12"
+				/>
 				<h2>Assessment of heterogeneity</h2>
-				<OutputHeterogeneity v-if="outputOptions[13].include" :data="heterogeneityPublicationBiases"
-					:key="monitorChange + 13" />
+				<OutputHeterogeneity
+					v-if="outputOptions[13].include"
+					:data="heterogeneityPublicationBiases"
+					:key="monitorChange + 13"
+				/>
 				<h2>Assessment of publication biases</h2>
-				<OutputPublicationBias v-if="outputOptions[14].include" :data="heterogeneityPublicationBiases"
-					:key="monitorChange + 14" />
+				<OutputPublicationBias
+					v-if="outputOptions[14].include"
+					:data="heterogeneityPublicationBiases"
+					:key="monitorChange + 14"
+				/>
 				<h2>Subgroup and sensitivity analysis</h2>
-				<OutputSubgroupAndSensitivityAnalysis v-if="outputOptions[15].include"
-					:data="subgroupAndSensitivityAnalysis" :key="monitorChange + 15" />
-				<h2 v-if="outputOptions[16].include">Acknowledgement</h2>
-				<OutputAcknowledgement v-if="outputOptions[16].include" :data="acknowledgement" :key="monitorChange + 16" />
+				<OutputSubgroupAndSensitivityAnalysis
+					v-if="outputOptions[15].include"
+					:data="subgroupAndSensitivityAnalysis"
+					:key="monitorChange + 15"
+				/>
+				<h2>Contributions</h2>
+				<OutputContributions
+					v-if="outputOptions[16].include"
+					:data="contribution"
+					:key="monitorChange + 16"
+				/>
+				<h2>Acknowledgement</h2>
+				<OutputAcknowledgement
+					v-if="outputOptions[17].include"
+					:data="acknowledgement"
+					:key="monitorChange + 17"
+				/>
 				<h1>Appendix</h1>
-				<OutputSearchDatabasesAppendix v-if="outputOptions[3].include" :data="search" :key="monitorChange + 17" />
-				<OutputSearchRegistriesAppendix v-if="outputOptions[4].include" :data="search" :key="monitorChange + 18" />
+				<OutputSearchDatabasesAppendix
+					v-if="outputOptions[3].include"
+					:data="search"
+					:key="monitorChange + 18"
+				/>
+				<OutputSearchRegistriesAppendix
+					v-if="outputOptions[4].include"
+					:data="search"
+					:key="monitorChange + 19"
+				/>
 			</div>
 			<template #footer>
-				<Button class="btsyleblue" label="Copy Methods to Clipboard" @click="copy" />
+				<Button
+					class="btsyleblue"
+					label="Copy Methods to Clipboard"
+					@click="copy"
+				/>
 				<Button class="btsyleblue" label="Rewrite Methods" @click="reload" />
 			</template>
 		</Dialog>
@@ -93,6 +190,7 @@ import OutputPublicationBias from "./OutputPublicationBias";
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
 import OutputIntroduction from "./OutputIntroduction.vue";
 import OutputAcknowledgement from "./OutputAcknowledgement.vue";
+import OutputContributions from "./OutputContributions.vue";
 import CopyMixin from "@/mixins/CopyMixin.js";
 
 import Button from "primevue/button";
@@ -116,7 +214,8 @@ export default {
 		deepstreamMixin("missingData"),
 		deepstreamMixin("heterogeneityPublicationBiases"),
 		deepstreamMixin("subgroupAndSensitivityAnalysis"),
-		deepstreamMixin("acknowledgement")
+		deepstreamMixin("acknowledgement"),
+		deepstreamMixin("contribution")
 	],
 	components: {
 		Button,
@@ -141,7 +240,8 @@ export default {
 		OutputHeterogeneity,
 		OutputPublicationBias,
 		OutputSubgroupAndSensitivityAnalysis,
-		OutputAcknowledgement
+		OutputAcknowledgement,
+		OutputContributions
 	},
 	data() {
 		return {
@@ -163,6 +263,7 @@ export default {
 				{ label: "Heterogeneity", include: true },
 				{ label: "Publication Bias", include: true },
 				{ label: "Subgroup and Sensitivity Analysis", include: true },
+				{ label: "Contributions", include: true },
 				{ label: "Acknowledgement", include: true }
 			],
 			selectedOptions: [],
