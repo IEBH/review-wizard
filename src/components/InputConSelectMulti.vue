@@ -9,7 +9,7 @@
 		<Listbox
 			id="multihighlight"
 			v-if="selectOptions.length > 0"
-			v-model="authOpt"
+			v-bind:value="authOpt"
 			v-on:change="onChangeValue($event.value)"
 			:options="selectOptions"
 			optionLabel="label"
@@ -67,6 +67,7 @@ export default {
 		question: String,
 		options: Array,
 		value: Array,
+		contributors: Array,
 		author: String
 	},
 	components: {
@@ -96,16 +97,29 @@ export default {
 			}
 		}
 	},
+	mounted() {
+		this.initialize();
+	},
 	methods: {
+		initialize() {
+			if (this.value.length > 0) {
+				this.value.forEach(el => {
+					if (!this.contributors.includes(el.author)) {
+						//console.log("element:" +JSON.stringify(el.author) +"contributors:" +this.contributors);
+						//let index = this.value.indexOf(el);
+						this.value.splice(this.value.indexOf(el), 1);
+					}
+				});
+			}
+		},
 		optBuild() {
-			console.log(JSON.stringify(this.value));
+			console.log("initialized:" + JSON.stringify(this.value));
 			let ifContains = false;
 			if (this.value.length > 0) {
 				this.value.forEach(el => {
 					if (el.author == this.author) {
 						ifContains = true;
 						if (el.selectedOpt != []) {
-							console.log("selected:" + JSON.stringify(el.selectedOpt));
 							this.authOpt = el.selectedOpt;
 						}
 					}
@@ -120,22 +134,14 @@ export default {
 		},
 		onChangeValue(event) {
 			if (this.value.length > 0) {
-				this.value.forEach((el, index) => {
+				this.value.forEach(el => {
 					if (el.author == this.author) {
-						this.value.splice(index, 1, {
-							author: el.author,
-							selectedOpt: this.arrayUnion(
-								el.selectedOpt,
-								event,
-								this.areLabelsSame
-							)
-						});
+						el.selectedOpt = event;
 					}
 				});
 			} else {
 				console.log("fatal error: should be built already");
 			}
-			console.log("value:" + JSON.stringify(this.value));
 			this.$emit("input", this.value);
 		},
 		openModal() {

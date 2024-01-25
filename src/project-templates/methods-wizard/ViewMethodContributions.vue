@@ -6,25 +6,26 @@
 			:key="index"
 			:question="ackAuthor(author)"
 			:value="contribution.conAuthors"
+			:contributors="contributors"
 			:index="index"
 			:author="author"
 			:options="contributionOptions"
 			@input="updateField('conAuthors', $event)"
 		/>
-		<PreviewOutput :component="outputComponent" :data="contribution" />
+		<BasePreviewOutput :component="outputComponent" :data="contribution" />
 	</div>
 </template>
 <script>
 import InputConSelectMulti from "@/components/InputConSelectMulti";
 import deepstreamMixin from "@/mixins/DeepstreamMixin";
-import PreviewOutput from "@/components/BasePreviewOutput.vue";
+import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import OutputContributions from "./OutputContributions.vue";
 export default {
 	name: "ViewMethodContributions",
 	mixins: [deepstreamMixin("titlepage"), deepstreamMixin("contribution")],
 	components: {
 		InputConSelectMulti,
-		PreviewOutput
+		BasePreviewOutput
 	},
 	data() {
 		return {
@@ -40,6 +41,11 @@ export default {
 				{ label: "Revising the manuscript" }
 			]
 		};
+	},
+	computed: {
+		contributors() {
+			return this.titlepage.acknowledgements;
+		}
 	},
 	methods: {
 		ackAuthor(author) {
