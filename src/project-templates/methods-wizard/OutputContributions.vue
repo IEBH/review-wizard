@@ -18,7 +18,7 @@
 			<span v-if="(element = findElement('Designing the search strategy')) && Object.keys(element).length != 0">
 				{{ formatAuthors(element.authors) }} designed the search strategy.
 			</span>
-			<span v-if="(element = findElement('Assessed study eligibility')) && Object.keys(element).length != 0">
+			<span v-if="(element = findElement('Assessing study eligibility')) && Object.keys(element).length != 0">
 				<span
 					v-if="(anotherElement = findElement('Extracting the data')) && Object.keys(anotherElement).length != 0">
 					{{
@@ -44,7 +44,7 @@
 				</span>
 			</span>
 			<span v-if="(element = findElement('Extracting the data')) && Object.keys(element).length != 0">
-				<span v-if="Object.keys(findElement('Assessed study eligibility')).length == 0
+				<span v-if="Object.keys(findElement('Assessing study eligibility')).length == 0
 					">
 					{{ formatAuthors(element.authors) }}
 					{{ selectRandom(["extracted data.", "helped in extracting data"]) }}
@@ -125,7 +125,7 @@ export default {
 				{ label: "Study conceptualization" },
 				{ label: "Designing the study" },
 				{ label: "Designing the search strategy" },
-				{ label: "Assessed study eligibility" },
+				{ label: "Assessing study eligibility" },
 				{ label: "Extracting the data" },
 				{ label: "Analyzing the data" },
 				{ label: "Drafting the manuscript" },

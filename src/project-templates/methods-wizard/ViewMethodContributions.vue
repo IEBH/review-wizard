@@ -34,7 +34,7 @@ export default {
 				{ label: "Study conceptualization" },
 				{ label: "Designing the study" },
 				{ label: "Designing the search strategy" },
-				{ label: "Assessed study eligibility" },
+				{ label: "Assessing study eligibility" },
 				{ label: "Extracting the data" },
 				{ label: "Analyzing the data" },
 				{ label: "Drafting the manuscript" },
