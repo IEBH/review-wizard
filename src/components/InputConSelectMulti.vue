@@ -41,7 +41,7 @@
 		>
 			<div class="p-fluid p-jc-center">
 				<p>Enter value of new option below</p>
-				<InputText autofocus v-model="newOption" class="p-mb-3" /> <br />
+				<InputText autofocus placeholder="e.g. designed and tested the data extraction form" v-model="newOption" class="p-mb-3" /> <br />
 				<Button
 					label="Add Value"
 					icon="pi pi-plus"
