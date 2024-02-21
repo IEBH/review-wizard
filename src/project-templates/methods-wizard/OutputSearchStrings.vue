@@ -28,7 +28,9 @@
 			<b> {{ database.label }} - run {{ formatDate(data.dateOfSearch) }} </b>
 			<br />
 			<br />
-			<span style="white-space: pre-wrap;">{{ database.string }}</span>
+			<span style="white-space: pre-wrap;">{{
+				getSearchString(database)
+			}}</span>
 		</p>
 
 		<p>
@@ -83,6 +85,15 @@ export default {
 	mixins: [OutputMixin],
 	props: {
 		data: Object
+	},
+	methods: {
+		getSearchString(database) {
+			if (database.method == "muanualVersion") {
+				return database.muanualVersion;
+			} else {
+				return database.polyglotVersion;
+			}
+		}
 	}
 };
 </script>

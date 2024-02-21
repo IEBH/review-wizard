@@ -24,13 +24,9 @@
 		/>
 
 		<div v-for="(database, index) of search.databases" :key="database.label">
-			<InputTextMultiSyntax
-				:question="
-					`Database ${index + 1} (e.g. ${
-						database.label
-					}) copy and paste your full search string.`
-				"
-				:value="database.string"
+			<InputTabsMulti
+				:question="`Database ${index + 1} (e.g. ${database.label})`"
+				:value="database"
 				@input="updateDatabaseString(index, $event)"
 				:placeholder="placeholder2"
 			/>
@@ -86,6 +82,7 @@ import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputDate from "@/components/InputDate.vue";
 import InputTextMultiSyntax from "@/components/InputTextMultiSyntax";
+import InputTabsMulti from "@/components/InputTabsMulti";
 //Search Strings for Trial Registries
 
 import OutputSearchStrings from "./OutputSearchStrings.vue";
@@ -104,13 +101,14 @@ export default {
 		InputSelectMulti,
 		InputDate,
 		InputTextMultiSyntax,
+		InputTabsMulti,
 		PreviewOutput
 	},
 	methods: {
 		//Search Strings for Bibliographic Databases
 		updateDatabaseString(index, value) {
 			var newDatabase = this.search.databases;
-			newDatabase[index].string = value;
+			newDatabase[index] = value;
 			this.updateField("databases", newDatabase);
 		},
 		//Search Strings for Trial Registries
@@ -124,23 +122,85 @@ export default {
 		return {
 			//Search Strings for Bibliographic Databases
 			databaseOptions: [
-				{ label: "PubMed", string: "" },
-				{ label: "MEDLINE via Ovid", string: "" },
-				{ label: "MEDLINE via Ebsco", string: "" },
-				{ label: "The Cochrane Library for Cochrane Reviews", string: "" },
+				{
+					label: "PubMed",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
+				{
+					label: "MEDLINE via Ovid",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
+				{
+					label: "MEDLINE via Ebsco",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
+				{
+					label: "The Cochrane Library for Cochrane Reviews",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
 				// eslint-disable-next-line prettier/prettier
 				{
 					label: "The Cochrane Library for clinical trials in CENTRAL",
-					string: ""
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
 				},
-				{ label: "Embase via Elsevier", string: "" },
-				{ label: "Embase via Ovid", string: "" },
-				{ label: "CINAHL via Ebsco", string: "" },
-				{ label: "PsycINFO via Ovid", string: "" },
-				{ label: "PsycINFO via APA", string: "" },
-				{ label: "Web of Science", string: "" },
-				{ label: "Scopus", string: "" },
-				{ label: "LILACs", string: "" }
+				{
+					label: "Embase via Elsevier",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
+				{
+					label: "Embase via Ovid",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
+				{
+					label: "CINAHL via Ebsco",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
+				{
+					label: "PsycINFO via Ovid",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
+				{
+					label: "PsycINFO via APA",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
+				{
+					label: "Web of Science",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
+				{
+					label: "Scopus",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				},
+				{
+					label: "LILACs",
+					method: "polyglotVersion",
+					muanualVersion: "",
+					polyglotVersion: ""
+				}
 			],
 			//Search Strings for Trial Registries
 			registryOptions: [
