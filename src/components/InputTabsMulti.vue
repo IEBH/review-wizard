@@ -124,7 +124,9 @@ export default {
 					cancelButtonText: "Cancel",
 					type: "warning"
 				}
-			).then(() => {
+			)
+			/*.then(
+				() => {
 				let content = {
 					database: this.value.label,
 					syncContent: this.value.muanualVersion
@@ -133,8 +135,7 @@ export default {
 					JSON.stringify(content),
 					"https://polyglot.tera-tools.com"
 				);
-				//this.$axios.post("https://polyglot.tera-tools.com", content);
-			});
+			});*/
 		}
 	}
 };
