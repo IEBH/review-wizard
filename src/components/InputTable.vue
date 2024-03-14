@@ -20,7 +20,7 @@
 				<tr v-for="(row, index) in value" :key="index">
 					<!-- Inclusion -->
 					<td v-if="inclusion">
-						<!--<div style="margin: 10px;">
+						<div v-if="isSelectButton" style="margin: 10px;">
 							<SelectButton
 								optionLabel="name"
 								optionValue="value"
@@ -28,8 +28,8 @@
 								v-model="row.inclusion"
 								@input="update(index, row, 'inclusion', $event)"
 							/>
-						</div>-->
-						<div style="margin: 10px;">
+						</div>
+						<div v-else style="margin: 10px;">
 							<ToggleButton
 								onLabel="Include"
 								onIcon="pi pi-check"
@@ -158,7 +158,8 @@ export default {
 		examples: Boolean,
 		mainPlaceholder: String,
 		examplePlaceholder: String,
-		descrtiptionPlaceholder: String
+		descrtiptionPlaceholder: String,
+		isSelectButton: Boolean
 	},
 	components: {
 		Dialog,
@@ -175,10 +176,10 @@ export default {
 			selectedRow: {},
 			filters: {},
 			submitted: false,
-			/*includeOptions: [
+			includeOptions: [
 				{ name: "Include", value: true },
 				{ name: "Exclude", value: false }
-			],*/
+			],
 			typeOptions: [
 				{ name: "Primary", value: true },
 				{ name: "Secondary", value: false }
