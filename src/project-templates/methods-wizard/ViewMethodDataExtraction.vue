@@ -4,10 +4,14 @@
 
 		<InputSelectDropdown
 			question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-			:value="extraction.numberOfStudies" @input="updateField('numberOfStudies', $event)" :options="numberOptions" />
+			:value="$tera.state.numberOfStudies"
+			:options="numberOptions"
+		/>
 
-		<InputTextNumber question="How many study authors extracted the following data from included studies?"
-			:value="numberOfExtractors" />
+		<InputTextNumber
+			question="How many study authors extracted the following data from included studies?"
+			:value="numberOfExtractors"
+		/>
 
 		<!--<InputSelectDropdown
 			question="How many study authors extracted the following data from included studies?"
@@ -16,52 +20,96 @@
 			:options="extractorsOption"
 		/>-->
 
-		<InputSelectMultiWithoutOthers question="Which author/s performed data extraction?" :value="extraction.extractionAuthors"
-			@input="updateField('extractionAuthors', $event)" :options="
+		<InputSelectMultiWithoutOthers
+			question="Which author/s performed data extraction?"
+			:value="$tera.state.extractionAuthors"
+			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
 				})*/
 				this.pfDataExtractAuthors
-				" />
+			"
+		/>
 
-		<InputSelectYesNo question="Do you wish to specify what data will be extracted (optional)"
-			:value="extraction.optionalDetail" @input="updateField('optionalDetail', $event)" />
+		<InputSelectYesNo
+			question="Do you wish to specify what data will be extracted (optional)"
+			:value="$tera.state.optionalDetail"
+		/>
 
 		<!-- New -->
-		<Accordion v-if="extraction.optionalDetail" style="margin-top: 50px; border: 1px solid black;">
+		<Accordion
+			v-if="$tera.state.optionalDetail"
+			style="margin-top: 50px; border: 1px solid black;"
+		>
 			<AccordionTab header="Optional Details" :active="false">
 				<h3>What data will be extracted:</h3>
-				<InputSelectMulti question="Methods:" :options="options.methods" :value="extraction.methods"
-					@input="updateField('methods', $event)" />
-				<InputSelectMulti question="Participants:" :options="options.participants" :value="extraction.participants"
-					@input="updateField('participants', $event)" />
-				<InputSelectMulti question="Interventions:" :options="options.interventions"
-					:value="extraction.interventions" @input="updateField('interventions', $event)" />
-				<InputSelectMulti question="Comparators:" :options="options.comparators" :value="extraction.comparators"
-					@input="updateField('comparators', $event)" />
-				<InputTable question="Outcomes:" :value="extraction.outcomes" columnHeader="Outcome" :inclusion="true"
-					:type="true" :description="true" :examples="true" @input="updateField('outcomes', $event)"
-					mainPlaceholder="e.g. investigator-assessed change in acne severity" />
-				<Message v-if="!arrayEquals(picot.outcomes, extraction.outcomes)" severity="warn" :closable="false">
+				<InputSelectMulti
+					question="Methods:"
+					:options="options.methods"
+					:value="$tera.state.methods"
+				/>
+				<InputSelectMulti
+					question="Participants:"
+					:options="options.participants"
+					:value="$tera.state.participants"
+				/>
+				<InputSelectMulti
+					question="Interventions:"
+					:options="options.interventions"
+					:value="$tera.state.interventions"
+				/>
+				<InputSelectMulti
+					question="Comparators:"
+					:options="options.comparators"
+					:value="$tera.state.comparators"
+				/>
+				<InputTable
+					question="Outcomes:"
+					columnHeader="Outcome"
+					:inclusion="true"
+					:type="true"
+					:description="true"
+					:examples="true"
+					:value="$tera.state.outcomes"
+					mainPlaceholder="e.g. investigator-assessed change in acne severity"
+				/>
+				<Message
+					v-if="!arrayEquals(picot.outcomes, extraction.outcomes)"
+					severity="warn"
+					:closable="false"
+				>
 					<div class="message-inside-text">
 						Not the same as PICOST outcomes
 					</div>
-					<Button label="Copy from PICOST section" class="p-button-sm btsyleblue"
-						@click="updateField('outcomes', picot.outcomes)" />
+					<Button
+						label="Copy from PICOST section"
+						class="p-button-sm btsyleblue"
+						@click="updateField('outcomes', picot.outcomes)"
+					/>
 				</Message>
-				<InputSelectMulti question="Types:" :options="options.types" :value="extraction.types"
-					@input="updateField('types', $event)" />
-				<Message v-if="!arrayEquals(picot.types, extraction.types)" severity="warn" :closable="false">
+				<InputSelectMulti
+					question="Types:"
+					:options="options.types"
+					:value="$tera.state.types"
+				/>
+				<Message
+					v-if="!arrayEquals(picot.types, extraction.types)"
+					severity="warn"
+					:closable="false"
+				>
 					<div class="message-inside-text">
 						Not the same as PICOST types
 					</div>
-					<Button label="Copy from PICOST section" class="p-button-sm btsyleblue"
-						@click="updateField('types', picot.types)" />
+					<Button
+						label="Copy from PICOST section"
+						class="p-button-sm btsyleblue"
+						@click="updateField('types', picot.types)"
+					/>
 				</Message>
 			</AccordionTab>
 		</Accordion>
 
-		<BasePreviewOutput :component="outputComponent" :data="extraction" />
+		<BasePreviewOutput :component="outputComponent" />
 	</div>
 </template>
 
@@ -82,16 +130,10 @@ import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutO
 import InputTable from "@/components/InputTable.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodDataExtraction",
-	mixins: [
-		deepstreamMixin("researchplan"),
-		deepstreamMixin("titlepage"),
-		deepstreamMixin("picot"),
-		deepstreamMixin("extraction")
-	],
 	components: {
 		Accordion,
 		AccordionTab,
@@ -121,13 +163,13 @@ export default {
 			return option;
 		},*/
 		numberOfExtractors() {
-			return this.extraction.extractionAuthors?.length;
+			return this.$tera.state.extractionAuthors?.length;
 		},
 		pfDataExtractAuthors() {
-			let da = this.titlepage.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
-			this.researchplan.planTable?.rows.forEach(el => {
+			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Extract data" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
@@ -176,24 +218,23 @@ export default {
 	},
 	mounted() {
 		if (
-			!this.extraction.outcomes ||
-			JSON.stringify(this.extraction.outcomes) ==
-			'[{"inclusion":true,"type":true}]'
+			!this.$tera.state.outcomes ||
+			JSON.stringify(this.$tera.state.outcomes) ==
+				'[{"inclusion":true,"type":true}]'
 		) {
 			// console.log("this.extraction.types",...this.picot.types);
 			if (this.picot.outcomes) {
 				// console.log("this.picot.outcomes", this.picot.outcomes, this.extraction.outcomes)
 				// Deep copy
-				this.extraction.outcomes = JSON.parse(
+				this.$tera.state.outcomes = JSON.parse(
 					JSON.stringify(this.picot.outcomes)
 				);
 			}
-
 		}
-		
-		if (this.extraction.types && this.extraction.types.length === 0) {
+
+		if (this.$tera.state.types && this.$tera.state.types.length === 0) {
 			// Shallow copy
-			this.extraction.types = [...this.picot.types];
+			this.$tera.state.types = [...this.picot.types];
 		}
 	},
 	data() {

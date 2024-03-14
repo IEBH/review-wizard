@@ -1,35 +1,40 @@
 <template>
 	<div>
-		<p v-if="data">
+		<p>
 			<!-- We would like to thank,.toLowerCase() -->
-			{{ selectRandom(["We would like to thank,", "We wish to express our gratitude to ", "Our sincere thanks go to ",
-				"We appreciate the efforts of ", "We extend our thanks to ", " We would like to convey our gratitude towards ",
-				"Heartfelt thanks to "]) }}
-			<span v-if="data.designhelp && data.designhelp.length">
-				{{ joinArrayWithAnd(formatSelectMulti(data.designhelp)) }}
+			{{
+				selectRandom([
+					"We would like to thank,",
+					"We wish to express our gratitude to ",
+					"Our sincere thanks go to ",
+					"We appreciate the efforts of ",
+					"We extend our thanks to ",
+					" We would like to convey our gratitude towards ",
+					"Heartfelt thanks to "
+				])
+			}}
+			<span v-if="$tera.state.designhelp && $tera.state.designhelp.length">
+				{{ joinArrayWithAnd(formatSelectMulti($tera.state.designhelp)) }}
 				for help designing the search strategy
-				
 			</span>
-			<span v-if="data.statistical && data.statistical.length">
+			<span v-if="$tera.state.statistical && $tera.state.statistical.length">
 				,
 			</span>
-			<span v-if="data.statistical && data.statistical.length">
-				{{ joinArrayWithAnd(formatSelectMulti(data.statistical)) }}
+			<span v-if="$tera.state.statistical && $tera.state.statistical.length">
+				{{ joinArrayWithAnd(formatSelectMulti($tera.state.statistical)) }}
 				for help with the statistical analysis
 			</span>
-			<span v-if="data.manuscript && data.manuscript.length">
+			<span v-if="$tera.state.manuscript && $tera.state.manuscript.length">
 				,
 			</span>
-			<span v-if="data.manuscript && data.manuscript.length">
-				and {{ joinArrayWithAnd(formatSelectMulti(data.manuscript)) }}
+			<span v-if="$tera.state.manuscript && $tera.state.manuscript.length">
+				and {{ joinArrayWithAnd(formatSelectMulti($tera.state.manuscript)) }}
 				for providing feedback on the draft manuscript
 			</span>
 			<span>
 				.
 			</span>
 		</p>
-
-
 	</div>
 </template>
 
@@ -39,24 +44,7 @@ export default {
 	name: "OutputAcknowledgement",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
-	},
-	computed: {
-		designSearchStrategyAuthorsInitials: function () {
-			return this.formatSelectMulti(this.data.designSearchStrategyAuthors)
-				.map(el => this.nameToInitials(el))
-				.join(", ");
-		},
-		deduplicateResultsAuthorsInitials: function () {
-			return this.formatSelectMulti(this.data.deduplicateResultsAuthors)
-				.map(el => this.nameToInitials(el))
-				.join(", ");
-		},
-		conductSSearchAuthorsInitials: function () {
-			return this.formatSelectMulti(this.data.conductSSearchAuthors)
-				.map(el => this.nameToInitials(el))
-				.join(", ");
-		}
+		//data: Object
 	}
 };
 </script>

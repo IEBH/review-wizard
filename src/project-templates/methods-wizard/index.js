@@ -645,7 +645,7 @@ const data = {
 		//numberOfFullTextScreeners: null,
 		fullTextScreeners: [],
 		disputeResolution: [],
-		screenAutomationTools: [],
+		//screenAutomationTools: [],
 		isPrismaFlowDiagram: false,
 		isExcludedFullTextInAppendix: false
 	},

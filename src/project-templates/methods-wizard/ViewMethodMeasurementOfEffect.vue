@@ -4,73 +4,62 @@
 
 		<InputSelectYesNo
 			question="Were any meta-analysis performed?"
-			:value="measurementOfEffect.isMetaAnalysis"
-			@input="updateField('isMetaAnalysis', $event)"
+			:vlue="$tera.state.isMetaAnalysis"
 		/>
 
 		<InputSelectMulti
-			v-if="measurementOfEffect.isMetaAnalysis"
+			v-if="$tera.state.isMetaAnalysis"
 			question="What software was used to conduct the meta-analysis?"
-			:value="measurementOfEffect.toolUsed"
-			@input="updateField('toolUsed', $event)"
+			:value="$tera.state.toolUsed"
 			:options="toolUsedOptions"
 		/>
 
 		<InputSelectMulti
-			v-if="measurementOfEffect.isMetaAnalysis"
+			v-if="$tera.state.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for dichotomous outcomes?"
-			:value="measurementOfEffect.dichotomousOutcomes"
-			@input="updateField('dichotomousOutcomes', $event)"
+			:value="$tera.state.dichotomousOutcomes"
 			:options="dichotomousOutcomesOptions"
 		/>
 
 		<InputSelectMulti
-			v-if="measurementOfEffect.isMetaAnalysis"
+			v-if="$tera.state.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for continuous outcomes?"
-			:value="measurementOfEffect.continuousOutcomes"
-			@input="updateField('continuousOutcomes', $event)"
+			:value="$tera.state.continuousOutcomes"
 			:options="continuousOutcomesOptions"
 		/>
 
 		<InputSelectMulti
-			v-if="measurementOfEffect.isMetaAnalysis"
+			v-if="$tera.state.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for other outcomes?"
-			:value="measurementOfEffect.otherOutcomes"
-			@input="updateField('otherOutcomes', $event)"
+			:value="$tera.state.otherOutcomes"
 			:options="otherOutcomesOptions"
 		/>
 
 		<InputTextNumber
-			v-if="measurementOfEffect.isMetaAnalysis"
+			v-if="$tera.state.isMetaAnalysis"
 			question="How many studies reporting the same outcome triggered a meta-analysis"
-			:value="measurementOfEffect.metaAnalysisThreshold"
-			@input="updateField('metaAnalysisThreshold', $event)"
+			:value="$tera.state.metaAnalysisThreshold"
 			placeholder="e.g. 3"
 		/>
 
 		<InputSelectDropdown
-			v-if="measurementOfEffect.isMetaAnalysis"
+			v-if="$tera.state.isMetaAnalysis"
 			question="What model was used in meta-analysis?"
-			:value="measurementOfEffect.metaAnalysisModelUsed"
-			@input="updateField('metaAnalysisModelUsed', $event)"
+			:value="$tera.state.metaAnalysisModelUsed"
 			:options="metaAnalysisModelOptions"
 		/>
 
-		<BasePreviewOutput
-			:component="outputComponent"
-			:data="measurementOfEffect"
-		/>
+		<BasePreviewOutput :component="outputComponent" />
 	</div>
 </template>
 
 <script>
 import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodMeasuementOfEffect",
-	mixins: [deepstreamMixin("measurementOfEffect")],
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],

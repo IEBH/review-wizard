@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<p>
-			<span v-if="data.isMeasuredPublicationBias">
+			<span v-if="$tera.state.isMeasuredPublicationBias">
 				{{
 					selectRandom([
 						"We assessed publication bias / small studies effect using",
@@ -9,16 +9,16 @@
 					])
 				}}
 				{{
-					data.biasMeasurement == "Other"
-						? data.biasMeasurementOther
-						: data.biasMeasurement
-						? data.biasMeasurement
+					$tera.state.biasMeasurement == "Other"
+						? $tera.state.biasMeasurementOther
+						: $tera.state.biasMeasurement
+						? $tera.state.biasMeasurement
 						: "BLANK"
 				}}.
 			</span>
 			<span v-else>
 				We did not assess publication bias / small studies effect because
-				{{ data.didNotMeasure ? data.didNotMeasure : "BLANK" }}.
+				{{ $tera.state.didNotMeasure ? $tera.state.didNotMeasure : "BLANK" }}.
 			</span>
 		</p>
 	</div>
@@ -30,7 +30,7 @@ export default {
 	name: "OutputPublicationBias",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
+		//data: Object
 	}
 };
 </script>

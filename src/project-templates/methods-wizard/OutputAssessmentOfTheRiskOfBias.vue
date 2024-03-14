@@ -7,17 +7,17 @@
 						.concat(`${numberOfAuthors}`)
 						.concat(" review authors")
 						.concat(` (${assessedRobAuthorsInitials}) `)
-						.concat(data.isIndependent ? " independently " : " ")
+						.concat($tera.state.isIndependent ? " independently " : " ")
 						.concat("assessed the risk of bias for each study using the ")
-						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
+						.concat(joinArrayWithAnd(formatSelectMulti($tera.state.toolUsed)))
 						.concat("."),
 					"Risk of bias was assessed using the "
-						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
+						.concat(joinArrayWithAnd(formatSelectMulti($tera.state.toolUsed)))
 						.concat(". ")
 						.concat(`${numberOfAuthors}`)
 						.concat(" authors")
 						.concat(` (${assessedRobAuthorsInitials}) `)
-						.concat(data.isIndependent ? " independently " : " ")
+						.concat($tera.state.isIndependent ? " independently " : " ")
 						.concat("assessed risk of bias for each study.")
 				])
 			}}
@@ -35,12 +35,12 @@ export default {
 	},
 	computed: {
 		assessedRobAuthorsInitials: function() {
-			return this.formatSelectMulti(this.data.assessedRobAuthors)
+			return this.formatSelectMulti(this.$tera.state.assessedRobAuthors)
 				.map(el => this.nameToInitials(el))
 				.join(", ");
 		},
 		numberOfAuthors() {
-			return this.data.assessedRobAuthors?.length;
+			return this.$tera.state.assessedRobAuthors?.length;
 		}
 	}
 };

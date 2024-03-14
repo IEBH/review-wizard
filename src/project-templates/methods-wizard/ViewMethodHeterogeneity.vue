@@ -4,22 +4,17 @@
 
 		<InputSelectDropdown
 			question="What was used to measure heterogeneity?"
-			:value="heterogeneityPublicationBiases.heterogeneityMeasurement"
-			@input="updateField('heterogeneityMeasurement', $event)"
+			:value="$tera.state.heterogeneityMeasurement"
 			:options="heterogeneityMeasurementOptions"
 		/>
 
 		<InputTextSingleLine
-			v-if="heterogeneityPublicationBiases.heterogeneityMeasurement == 'Other'"
+			v-if="$tera.state.heterogeneityMeasurement == 'Other'"
 			question="Type heterogeneity measurement below..."
-			:value="heterogeneityPublicationBiases.heterogeneityMeasurementOther"
-			@input="updateField('heterogeneityMeasurementOther', $event)"
+			:value="$tera.state.heterogeneityMeasurementOther"
 		/>
 
-		<PreviewOutput
-			:component="outputComponent"
-			:data="heterogeneityPublicationBiases"
-		/>
+		<PreviewOutput :component="outputComponent" />
 	</div>
 </template>
 
@@ -31,11 +26,11 @@ import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
 //import InputTextMultiLine from "./InputTextMultiLine.vue";
 import InputTextSingleLine from "@/components/InputTextSingleLine.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodHeterogeneity",
-	mixins: [deepstreamMixin("heterogeneityPublicationBiases")],
+
 	components: {
 		InputSelectDropdown,
 		PreviewOutput,

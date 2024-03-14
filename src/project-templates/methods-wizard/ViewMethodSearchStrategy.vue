@@ -4,88 +4,76 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Who designed and ran the search strategy?"
-			:value="search.designSearchStrategyAuthors"
-			@input="updateField('designSearchStrategyAuthors', $event)"
+			:value="$tera.state.designSearchStrategyAuthors"
 			:options="this.dsSearchStrategyAuthors"
 		/>
 		<InputSelectMultiWithoutOthers
 			question="Who deduplicated the results?"
-			:value="search.deduplicateResultsAuthors"
-			@input="updateField('deduplicateResultsAuthors', $event)"
+			:value="$tera.state.deduplicateResultsAuthors"
 			:options="this.dsSearchStrategyAuthors"
 		/>
 
 		<InputSelectMulti
 			question="Which of the following components went into your search string"
 			:options="componentsOptions"
-			:value="search.components"
-			@input="updateField('components', $event)"
+			:value="$tera.state.components"
 		/>
 
 		<InputSelectMulti
 			question="Was the search designed by a search specialist, if so select which type"
 			:options="specialistOptions"
-			:value="search.specialist"
-			@input="updateField('specialist', $event)"
+			:value="$tera.state.specialist"
 		/>
 
 		<InputSelectMulti
 			question="Was help received during the designing of the search, if so who provided the help"
 			:options="specialistOptions"
-			:value="search.helper"
-			@input="updateField('helper', $event)"
+			:value="$tera.state.helper"
 		/>
 
 		<InputSelectMulti
 			question="Was the search strategy peer-reviewed (according to PRESS guidelines), if so who peer-reviewed"
 			:options="specialistOptions"
-			:value="search.peerReviewer"
-			@input="updateField('peerReviewer', $event)"
+			:value="$tera.state.peerReviewer"
 		/>
 
 		<InputSelectYesNo
 			question="Were the search results restricted by publication type?"
-			:value="search.isRestrictedByPublicationType"
-			@input="updateField('isRestrictedByPublicationType', $event)"
+			:value="$tera.state.isRestrictedByPublicationType"
 		/>
 
 		<InputSelectMulti
-			v-if="search.isRestrictedByPublicationType"
+			v-if="$tera.state.isRestrictedByPublicationType"
 			question="What publication types did you exclude?"
 			:options="publicationTypesOptions"
-			:value="search.excludedPublicationTypes"
-			@input="updateField('excludedPublicationTypes', $event)"
+			:value="$tera.state.excludedPublicationTypes"
 		/>
 
 		<InputSelectYesNo
 			question="Were the search results restricted by language?"
-			:value="search.isRestrictedByLanguage"
-			@input="updateField('isRestrictedByLanguage', $event)"
+			:value="$tera.state.isRestrictedByLanguage"
 		/>
 
 		<InputSelectMulti
-			v-if="search.isRestrictedByLanguage"
+			v-if="$tera.state.isRestrictedByLanguage"
 			question="What languages did you include?"
 			:options="languageOptions"
-			:value="search.includedLanguages"
-			@input="updateField('includedLanguages', $event)"
+			:value="$tera.state.includedLanguages"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Who conducted the supplementary searches?"
-			:value="search.conductSSearchAuthors"
-			@input="updateField('conductSSearchAuthors', $event)"
+			:value="$tera.state.conductSSearchAuthors"
 			:options="this.csAuthors"
 		/>
 
 		<InputSelectMulti
 			question="Did you conduct any of the following methods to supplement your search results?"
 			:options="supplementoryMethodsOptions"
-			:value="search.supplementoryMethods"
-			@input="updateField('supplementoryMethods', $event)"
+			:value="$tera.state.supplementoryMethods"
 		/>
 
-		<PreviewOutput :component="outputComponent" :data="search" />
+		<PreviewOutput :component="outputComponent" />
 	</div>
 </template>
 
@@ -103,15 +91,15 @@ import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
 import OutputSearchStrategy from "./OutputSearchStrategy.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchStrategy",
-	mixins: [
+	/*mixins: [
 		deepstreamMixin("researchplan"),
 		deepstreamMixin("titlepage"),
 		deepstreamMixin("search")
-	],
+	],*/
 	components: {
 		//Search Strategy
 		InputSelectMulti,

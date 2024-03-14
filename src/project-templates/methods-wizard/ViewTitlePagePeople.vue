@@ -4,15 +4,13 @@
 
 		<InputTextSingleLineMulti
 			question="Who are the authors in the study?"
-			:value="titlepage.authors"
-			@input="updateField('authors', $event)"
+			:value="$tera.state.author"
 			placeholder="e.g. Justin Clark"
 		/>
 
 		<InputTextSingleLineMulti
 			question="Who else helped with the study? (Acknowledgements)"
-			:value="titlepage.acknowledgements"
-			@input="updateField('acknowledgements', $event)"
+			:value="$tera.state.acknowledgements"
 			placeholder="e.g. Justin Clark"
 		/>
 	</div>
@@ -20,10 +18,10 @@
 <script>
 import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 export default {
 	name: "ViewTitlePagePeople",
-	mixins: [deepstreamMixin("titlepage")],
+	//mixins: [deepstreamMixin("titlepage")],
 	components: {
 		InputTextSingleLineMulti
 	}

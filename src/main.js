@@ -1,6 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue";
 
+// Disable Vue chattyness
+Vue.config.productionTip = false;
+
 // Setup vue router
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
@@ -23,7 +26,15 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
 
-Vue.config.productionTip = false;
+// Import $tera / @iebh/Tera-fy global service
+// NOTE: See bottom of file inside main async() init loop for when TeraFy actually boots
+import TeraFy from "@iebh/tera-fy/dist/terafy.es2019.js"; // FIX: Use annoyingly old and specific version as Babel struggles with ESNEXT class imports
+import TerafyVue from "@iebh/tera-fy/dist/plugin.vue2.es2019.js";
+
+let terafy = new TeraFy()
+	.set("devMode", process.env.VUE_APP_TERAFY_DEV == 1)
+	.setIfDev("siteUrl", process.env.VUE_APP_TERAFY_URL)
+	.use(TerafyVue); // Add the Vue plugin
 
 // Register all Input/Base Components Globally {{{
 import upperFirst from "lodash/upperFirst";
@@ -66,9 +77,17 @@ requireComponent.keys().forEach(fileName => {
 
 (async () => {
 	const router = await initializeRouter();
-	new Vue({
+	const app = new Vue({
 		router,
 		store,
 		render: h => h(App)
-	}).$mount("#app");
+	});
+
+	// Boot teraFy + require project + pull & subscribe to project data
+	await terafy.init({
+		app, // Provide app to bind against
+		Vue // Provide the vue version to use
+	});
+
+	app.$mount("#app");
 })();

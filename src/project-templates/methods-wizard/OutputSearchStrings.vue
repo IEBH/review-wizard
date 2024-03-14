@@ -4,7 +4,7 @@
 			{{
 				selectRandom(["We searched ", "Databases used for the search were "])
 			}}
-			{{ joinArrayWithAnd(formatSelectMulti(data.databases)) }}
+			{{ joinArrayWithAnd(formatSelectMulti($tera.state.databases)) }}
 			{{
 				selectRandom([
 					"from ",
@@ -13,19 +13,25 @@
 				])
 			}}
 			{{
-				data.dateSearchedUntil
-					? formatDateFull(data.dateSearchedUntil)
+				$tera.state.dateSearchedUntil
+					? formatDateFull($tera.state.dateSearchedUntil)
 					: "inception"
 			}}
 			{{ selectRandom(["to ", "until "]) }}
-			{{ data.dateOfSearch ? formatDateFull(data.dateOfSearch) : "BLANK" }}
+			{{
+				$tera.state.dateOfSearch
+					? formatDateFull($tera.state.dateOfSearch)
+					: "BLANK"
+			}}
 			(see Appendix X).
 		</p>
 
 		<!--Appendix X-->
 		<h3>Appendix X - Search Strategies</h3>
-		<p v-for="database of data.databases" :key="database.label">
-			<b> {{ database.label }} - run {{ formatDate(data.dateOfSearch) }} </b>
+		<p v-for="database of $tera.state.databases" :key="database.label">
+			<b>
+				{{ database.label }} - run {{ formatDate($tera.state.dateOfSearch) }}
+			</b>
 			<br />
 			<br />
 			<span style="white-space: pre-wrap;">{{
@@ -42,7 +48,7 @@
 					"To identify ongoing studies, we searched "
 				])
 			}}
-			{{ joinArrayWithAnd(formatSelectMulti(data.registries)) }}
+			{{ joinArrayWithAnd(formatSelectMulti($tera.state.registries)) }}
 			{{
 				selectRandom([
 					"from ",
@@ -51,14 +57,14 @@
 				])
 			}}
 			{{
-				data.registryDateSearchedUntil
-					? formatDateFull(data.registryDateSearchedUntil)
+				$tera.state.registryDateSearchedUntil
+					? formatDateFull($tera.state.registryDateSearchedUntil)
 					: "inception"
 			}}
 			{{ selectRandom(["to ", "until "]) }}
 			{{
-				data.registryDateOfSearch
-					? formatDateFull(data.registryDateOfSearch)
+				$tera.state.registryDateOfSearch
+					? formatDateFull($tera.state.registryDateOfSearch)
 					: "BLANK"
 			}}
 			(see Appendix Y).
@@ -66,10 +72,10 @@
 
 		<!--Appendix Y-->
 		<h3>Appendix Y - Search Strategies</h3>
-		<p v-for="database of data.registries" :key="database.label">
+		<p v-for="database of $tera.state.registries" :key="database.label">
 			<b>
 				{{ database.label }} - run
-				{{ formatDate(data.registryDateOfSearch) }}
+				{{ formatDate($tera.state.registryDateOfSearch) }}
 			</b>
 			<br />
 			<br />
@@ -84,7 +90,7 @@ export default {
 	name: "OutputSearchStrings",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
+		//data: Object
 	},
 	methods: {
 		getSearchString(database) {

@@ -2,17 +2,19 @@
 	<div>
 		<h1>Introduction</h1>
 		<!-- question="What is the Introduction?" -->
-		<InputEditorMultiline :question="question" :placeholder="placeholder" :value="introduction.intro"
-			@input="updateField('intro', $event)" />
+		<InputEditorMultiline
+			:question="question"
+			:placeholder="placeholder"
+			:value="$tera.state.intro"
+		/>
 	</div>
 </template>
 <script>
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 import OutputIntroduction from "./OutputIntroduction.vue";
 import InputEditorMultiline from "@/components/InputEditorMultiline.vue";
 
 export default {
-	mixins: [deepstreamMixin("introduction")],
 	components: {
 		InputEditorMultiline
 	},

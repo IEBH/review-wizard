@@ -1,24 +1,24 @@
 <template>
 	<div class="author-div">
-		<div :class="isEvenRow==false ? 'customblue' : 'customwhite'">
-			<AutoComplete 
-				:multiple="true" 
-				v-model="row[tableHeader.name]" 
-				:suggestions="filteredPeople" 
+		<div :class="isEvenRow == false ? 'customblue' : 'customwhite'">
+			<AutoComplete
+				:multiple="true"
+				v-model="row[tableHeader.name]"
+				:suggestions="filteredPeople"
 				field="label"
 				class="auto"
-				@complete="searchAuthors($event)" 
+				@complete="searchAuthors($event)"
 				@item-select="checkChanges(row, tableValue.rows, $event.value)"
-				@item-unselect="checkChanges(row, tableValue.rows, $event.value)" 
+				@item-unselect="checkChanges(row, tableValue.rows, $event.value)"
 			/>
-		</div>
-</div></template>
+		</div></div
+></template>
 <script>
 import AutoComplete from "primevue/autocomplete/AutoComplete";
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+
 export default {
 	name: "InputAutoComplete",
-	mixins: [deepstreamMixin("extraction")],
+
 	props: {
 		row: {},
 		tableValue: {},

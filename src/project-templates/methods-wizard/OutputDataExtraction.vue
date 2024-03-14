@@ -3,16 +3,16 @@
 	<div>
 		<p>
 			<!-- Generic output -->
-			<span v-if="!data.optionalDetail">
+			<span v-if="!$tera.state.optionalDetail">
 				{{
 					selectRandom([
 						"A standardised form (initially piloted on "
-							.concat(data.numberOfStudies ? numberToWord(data.numberOfStudies) : "BLANK")
+							.concat($tera.state.numberOfStudies ? numberToWord($tera.state.numberOfStudies) : "BLANK")
 							.concat(
 								" included studies) was used for data extraction of characteristics of studies, outcomes and risk of bias."
 							),
 						"Study characteristics and outcomes data from each study were recorded in a data extraction form, which was initially piloted on "
-							.concat(data.numberOfStudies ? numberToWord(data.numberOfStudies) : "BLANK")
+							.concat($tera.state.numberOfStudies ? numberToWord($tera.state.numberOfStudies) : "BLANK")
 							.concat(" studies.")
 					])
 				}}
@@ -22,10 +22,10 @@
 				{{
 					selectRandom([
 						"We used a data extraction form for study characteristics and outcome data, which was piloted on "
-							.concat(data.numberOfStudies ? capitalize(numberToWord(data.numberOfStudies)) : "BLANK")
+							.concat($tera.state.numberOfStudies ? capitalize(numberToWord($tera.state.numberOfStudies)) : "BLANK")
 							.concat(" studies in the review."),
 						"A standardised form (initially piloted on "
-							.concat(data.numberOfStudies ? numberToWord(data.numberOfStudies) : "BLANK")
+							.concat($tera.state.numberOfStudies ? numberToWord($tera.state.numberOfStudies) : "BLANK")
 							.concat(" included studies) was used for data extraction of characteristics of studies, outcomes and risk of bias.")
 					])
 				}}
@@ -49,7 +49,7 @@
 			</span>
 		</p>
 		<!-- Optional Details -->
-		<p v-if="data.optionalDetail">
+		<p v-if="$tera.state.optionalDetail">
 			<ul v-if="randomNumber < 0.5">
 				<li>types: {{types}}</li>
 				<li>methods: {{methods}}</li>
@@ -74,54 +74,54 @@ export default {
 	name: "OutputDataExtraction",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
+		//data: Object
 	},
 	computed: {
 		numberOfExtractors(){
-			return this.data.extractionAuthors?.length;
+			return this.$tera.state.extractionAuthors?.length;
 		},
 		randomNumber: function() {
 			return Math.random();
 		},
 		extractionAuthorInitials: function() {
-			return this.formatSelectMulti(this.data.extractionAuthors)
+			return this.formatSelectMulti(this.$tera.state.extractionAuthors)
 				.map(el => this.nameToInitials(el))
 				.join(", ");
 		},
 		methods: function() {
-			return this.formatSelectMulti(this.data.methods)
+			return this.formatSelectMulti(this.$tera.state.methods)
 				.join(", ")
 				.toLowerCase();
 		},
 		participants: function() {
-			return this.formatSelectMulti(this.data.participants)
+			return this.formatSelectMulti(this.$tera.state.participants)
 				.join(", ")
 				.toLowerCase();
 		},
 		interventions: function() {
-			return this.formatSelectMulti(this.data.interventions)
+			return this.formatSelectMulti(this.$tera.state.interventions)
 				.join(", ")
 				.toLowerCase();
 		},
 		comparators: function() {
-			return this.formatSelectMulti(this.data.comparators)
+			return this.formatSelectMulti(this.$tera.state.comparators)
 				.join(", ")
 				.toLowerCase();
 		},
 		primaryOutcomes: function() {
 			return this.listOutcomesWithExample(
-				this.data.outcomes,
+				this.$tera.state.outcomes,
 				true
 			);
 		},
 		secondaryOutcomes: function() {
 			return this.listOutcomesWithExample(
-				this.data.outcomes,
+				this.$tera.state.outcomes,
 				false
 			);
 		},
 		types: function() {
-			return this.formatSelectMulti(this.data.types)
+			return this.formatSelectMulti(this.$tera.state.types)
 				.join(", ")
 				.toLowerCase();
 		},

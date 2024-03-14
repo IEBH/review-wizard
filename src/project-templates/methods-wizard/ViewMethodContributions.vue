@@ -2,27 +2,28 @@
 	<div>
 		<h1>Contributions</h1>
 		<InputConSelectMulti
-			v-for="(author, index) in this.titlepage.acknowledgements"
+			v-for="(author, index) in this.$tera.state.acknowledgements"
 			:key="index"
 			:question="ackAuthor(author)"
-			:value="contribution.conAuthors"
+			:value="$tera.state.conAuthors"
 			:contributors="contributors"
 			:index="index"
 			:author="author"
 			:options="contributionOptions"
-			@input="updateField('conAuthors', $event)"
 		/>
-		<BasePreviewOutput :component="outputComponent" :data="contribution" />
+		<BasePreviewOutput
+			:component="outputComponent"
+			:contributionOptions="contributionOptions"
+		/>
 	</div>
 </template>
 <script>
 import InputConSelectMulti from "@/components/InputConSelectMulti";
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import OutputContributions from "./OutputContributions.vue";
 export default {
 	name: "ViewMethodContributions",
-	mixins: [deepstreamMixin("titlepage"), deepstreamMixin("contribution")],
 	components: {
 		InputConSelectMulti,
 		BasePreviewOutput
@@ -44,7 +45,7 @@ export default {
 	},
 	computed: {
 		contributors() {
-			return this.titlepage.acknowledgements;
+			return this.$tera.state.acknowledgements;
 		}
 	},
 	methods: {

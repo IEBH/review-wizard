@@ -4,53 +4,47 @@
 
 		<InputSelectYesNo
 			question="Was publication bias measured?"
-			:value="heterogeneityPublicationBiases.isMeasuredPublicationBias"
-			@input="updateField('isMeasuredPublicationBias', $event)"
+			:value="$tera.state.isMeasuredPublicationBias"
 		/>
 
 		<div v-if="heterogeneityPublicationBiases.isMeasuredPublicationBias">
 			<InputSelectDropdown
 				question="We measured publication bias / small studies effect using"
-				:value="heterogeneityPublicationBiases.biasMeasurement"
-				@input="updateField('biasMeasurement', $event)"
+				:value="$tera.state.biasMeasurement"
 				:options="publicationBiasOptions"
 			/>
 
 			<InputTextSingleLine
-				v-if="heterogeneityPublicationBiases.biasMeasurement == 'Other'"
+				v-if="$tera.state.biasMeasurement == 'Other'"
 				question="We measured publication bias / small studies effect using:"
-				:value="heterogeneityPublicationBiases.biasMeasurementOther"
-				@input="updateField('biasMeasurementOther', $event)"
+				:value="$tera.state.biasMeasurementOther"
 			/>
 		</div>
 
 		<InputTextMultiLine
 			v-else
 			question="We did not measure publication bias..."
-			v-bind:value="heterogeneityPublicationBiases.didNotMeasure"
-			@input="updateField('didNotMeasure', $event)"
+			:placeholder="placeholder"
+			:value="$tera.state.didNotMeasure"
 		/>
 
-		<PreviewOutput
-			:component="outputComponent"
-			:data="heterogeneityPublicationBiases"
-		/>
+		<PreviewOutput :component="outputComponent" />
 	</div>
 </template>
 
 <script>
-import OutputPublicationBias from "./OutputPublicationBias.vue";
+import OutputPublicationBias from ".OutputPublicationBias.vue";
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 import InputTextMultiLine from "@/components/InputTextMultiLine.vue";
 import InputTextSingleLine from "@/components/InputTextSingleLine.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodHeterogeneityPublicationBias",
-	mixins: [deepstreamMixin("heterogeneityPublicationBiases")],
+
 	components: {
 		InputSelectDropdown,
 		InputSelectYesNo,
@@ -61,6 +55,7 @@ export default {
 	data() {
 		return {
 			publicationBiasOptions: ["Funnel plot", "Egger's test", "Other"],
+			placeholder: "because fewer than 10 studies were included",
 			outputComponent: OutputPublicationBias
 		};
 	}

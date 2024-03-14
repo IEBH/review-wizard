@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<p>
-			<span v-if="data.isSubgroupAnalysis">
+			<span v-if="$tera.state.isSubgroupAnalysis">
 				{{
 					selectRandom([
 						"We conducted the following subgroup analyses:",
@@ -11,13 +11,13 @@
 					])
 				}}
 				{{
-					joinArrayWithAnd(data.subgroupAnalysis)
-						? joinArrayWithAnd(data.subgroupAnalysis).toLowerCase()
+					joinArrayWithAnd($tera.state.subgroupAnalysis)
+						? joinArrayWithAnd($tera.state.subgroupAnalysis).toLowerCase()
 						: "BLANK"
 				}}.
 			</span>
-			<span v-else> {{ data.whyNotSubgroupAnalysis }}. </span>
-			<span v-if="data.isSensitivityAnalysis">
+			<span v-else> {{ $tera.state.whyNotSubgroupAnalysis }}. </span>
+			<span v-if="$tera.state.isSensitivityAnalysis">
 				{{
 					selectRandom([
 						"We conducted the following sensitivity analyses:",
@@ -26,12 +26,12 @@
 					])
 				}}
 				{{
-					joinArrayWithAnd(data.sensitivityAnalysis)
-						? joinArrayWithAnd(data.sensitivityAnalysis).toLowerCase()
+					joinArrayWithAnd($tera.state.sensitivityAnalysis)
+						? joinArrayWithAnd($tera.state.sensitivityAnalysis).toLowerCase()
 						: "BLANK"
 				}}.
 			</span>
-			<span v-else> {{ data.whyNotSensitivityAnalysis }}. </span>
+			<span v-else> {{ $tera.state.whyNotSensitivityAnalysis }}. </span>
 		</p>
 	</div>
 </template>
@@ -42,7 +42,7 @@ export default {
 	name: "OutputSubgroupAndSensitivityAnalysis",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
+		//data: Object
 	}
 };
 </script>

@@ -259,31 +259,31 @@ export default {
 	name: "OutputPicot",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
+		//data: Object
 	},
 	computed: {
 		populationInclude: function() {
-			return this.listMainWithExample(this.data.population, true);
+			return this.listMainWithExample(this.$tera.state.population, true);
 		},
 		populationExclude: function() {
-			return this.listMainWithExample(this.data.population, false);
+			return this.listMainWithExample(this.$tera.state.population, false);
 		},
 		interventionInclude: function() {
-			return this.listMainWithExample(this.data.intervention, true);
+			return this.listMainWithExample(this.$tera.state.intervention, true);
 		},
 		interventionExclude: function() {
-			return this.listMainWithExample(this.data.intervention, false);
+			return this.listMainWithExample(this.$tera.state.intervention, false);
 		},
 		comparatorInclude: function() {
-			return this.listMainWithExample(this.data.comparator, true);
+			return this.listMainWithExample(this.$tera.state.comparator, true);
 		},
 		comparatorExclude: function() {
-			return this.listMainWithExample(this.data.comparator, false);
+			return this.listMainWithExample(this.$tera.state.comparator, false);
 		},
 		primaryOutcomesInclude: function() {
-			if (this.data.outcomes) {
+			if (this.$tera.state.outcomes) {
 				return this.listMainWithExample(
-					this.data.outcomes.filter(el => el.type),
+					this.$tera.state.outcomes.filter(el => el.type),
 					true
 				);
 			} else {
@@ -291,9 +291,9 @@ export default {
 			}
 		},
 		secondaryOutcomesInclude: function() {
-			if (this.data.outcomes) {
+			if (this.$tera.state.outcomes) {
 				return this.listMainWithExample(
-					this.data.outcomes.filter(el => !el.type),
+					this.$tera.state.outcomes.filter(el => !el.type),
 					true
 				);
 			} else {
@@ -301,17 +301,17 @@ export default {
 			}
 		},
 		outcomesExclude: function() {
-			return this.listMainWithExample(this.data.outcomes, false);
+			return this.listMainWithExample(this.$tera.state.outcomes, false);
 		},
 		settingInclude: function() {
-			return this.listMainWithExample(this.data.setting, true);
+			return this.listMainWithExample(this.$tera.state.setting, true);
 		},
 		settingExclude: function() {
-			return this.listMainWithExample(this.data.setting, false);
+			return this.listMainWithExample(this.$tera.state.setting, false);
 		},
 		typesInclude: function() {
 			return this.joinArrayWithOr(
-				this.formatSelectMulti(this.data.types)
+				this.formatSelectMulti(this.$tera.state.types)
 			).toLowerCase();
 		}
 	},

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p v-if="data.isContactedInvestigators">
+		<p v-if="$tera.state.isContactedInvestigators">
 			{{
 				selectRandom([
 					"We contacted investigators or study sponsors to provide missing data.",
@@ -24,7 +24,7 @@ export default {
 	name: "OutputDealingWithMissingData",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
+		//data: Object
 	}
 };
 </script>

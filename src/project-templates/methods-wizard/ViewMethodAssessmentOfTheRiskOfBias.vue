@@ -9,25 +9,22 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors assessed the risk of bias?"
-			:value="riskOfBias.assessedRobAuthors"
-			@input="updateField('assessedRobAuthors', $event)"
+			:value="$tera.state.assessedRobAuthors"
 			:options="this.asRobAuthors"
 		/>
 
 		<InputSelectYesNo
 			question="Did each author independently review the risk of bias?"
-			:value="riskOfBias.isIndependent"
-			@input="updateField('isIndependent', $event)"
+			:value="$tera.state.isIndependent"
 		/>
 
 		<InputSelectMulti
 			question="Risk of bias was determined using the:"
-			:value="riskOfBias.toolUsed"
 			:options="options.tools"
-			@input="updateField('toolUsed', $event)"
+			:value="$tera.state.toolUsed"
 		/>
 
-		<BasePreviewOutput :component="outputComponent" :data="riskOfBias" />
+		<BasePreviewOutput :component="outputComponent" />
 	</div>
 </template>
 
@@ -37,15 +34,11 @@ import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodAssessmentOfTheRiskOfBias",
-	mixins: [
-		deepstreamMixin("researchplan"),
-		deepstreamMixin("titlepage"),
-		deepstreamMixin("riskOfBias")
-	],
+
 	components: {
 		InputSelectYesNo,
 		InputSelectMulti,
@@ -54,10 +47,10 @@ export default {
 	},
 	computed: {
 		asRobAuthors() {
-			let da = this.titlepage.authors?.map(el => {
+			let da = this.$tera.state.authors?.map(el => {
 				return { label: el };
 			});
-			this.researchplan.planTable?.rows.forEach(el => {
+			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Risk of Bias assessment" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
@@ -65,7 +58,7 @@ export default {
 			return da;
 		},
 		numberOfRiskOfBiasAuthors() {
-			return this.riskOfBias.assessedRobAuthors?.length;
+			return this.$tera.state.assessedRobAuthors?.length;
 		}
 	},
 	data() {

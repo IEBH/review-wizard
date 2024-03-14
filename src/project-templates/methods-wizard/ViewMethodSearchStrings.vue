@@ -5,29 +5,32 @@
 		<InputSelectMulti
 			question="Which databases did you search for your systematic review?"
 			:options="databaseOptions"
-			:value="search.databases"
-			@input="updateField('databases', $event)"
+			:value="$tera.state.databases"
 		/>
 
 		<InputDate
 			question="What date did you run your search on?"
-			:value="search.dateOfSearch ? new Date(search.dateOfSearch) : null"
-			@input="updateField('dateOfSearch', $event)"
+			:value="
+				$tera.state.dateOfSearch ? new Date($tera.state.dateOfSearch) : null
+			"
 		/>
 
 		<InputDate
 			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
 			:value="
-				search.dateSearchedUntil ? new Date(search.dateSearchedUntil) : null
+				$tera.state.dateSearchedUntil
+					? new Date($tera.state.dateSearchedUntil)
+					: null
 			"
-			@input="updateField('dateSearchedUntil', $event)"
 		/>
 
-		<div v-for="(database, index) of search.databases" :key="database.label">
+		<div
+			v-for="(database, index) of $tera.state.databases"
+			:key="database.label"
+		>
 			<InputTabsMulti
 				:question="`Database ${index + 1} (e.g. ${database.label})`"
 				:value="database"
-				@input="updateDatabaseString(index, $event)"
 				:placeholder="placeholder2"
 			/>
 		</div>
@@ -35,31 +38,31 @@
 		<InputSelectMulti
 			question="Which registries did you search?"
 			:options="registryOptions"
-			:value="search.registries"
-			@input="updateField('registries', $event)"
+			:value="$tera.state.registries"
 		/>
 
 		<InputDate
 			question="What date did you run your search on?"
 			:value="
-				search.registryDateOfSearch
-					? new Date(search.registryDateOfSearch)
+				$tera.state.registryDateOfSearch
+					? new Date($tera.state.registryDateOfSearch)
 					: null
 			"
-			@input="updateField('registryDateOfSearch', $event)"
 		/>
 
 		<InputDate
 			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
 			:value="
-				search.registryDateSearchedUntil
-					? new Date(search.registryDateSearchedUntil)
+				$tera.state.registryDateSearchedUntil
+					? new Date($tera.state.registryDateSearchedUntil)
 					: null
 			"
-			@input="updateField('registryDateSearchedUntil', $event)"
 		/>
 
-		<div v-for="(registry, index) of search.registries" :key="registry.label">
+		<div
+			v-for="(registry, index) of $tera.state.registries"
+			:key="registry.label"
+		>
 			<InputTextMultiSyntax
 				:question="
 					`Registry ${index + 1} (e.g. ${
@@ -67,12 +70,11 @@
 					}) copy and paste your full search string.`
 				"
 				:value="registry.string"
-				@input="updateRegisteryString(index, $event)"
 				:placeholder="placeholder1"
 			/>
 		</div>
 
-		<PreviewOutput :component="outputComponent" :data="search" />
+		<PreviewOutput :component="outputComponent" />
 	</div>
 </template>
 
@@ -86,17 +88,11 @@ import InputTabsMulti from "@/components/InputTabsMulti";
 //Search Strings for Trial Registries
 
 import OutputSearchStrings from "./OutputSearchStrings.vue";
-//import OutputSearchStringsAppendix from "./OutputSearchStringsAppendix.vue";
-//import OutputSearchRegistries from "./OutputSearchRegistries.vue";
-//import OutputSearchRegistriesAppendix from "./OutputSearchRegistriesAppendix.vue";
-//import OutputSearchDatabases from "./OutputSearchDatabases.vue";
-//import OutputSearchDatabasesAppendix from "./OutputSearchDatabasesAppendix.vue";
-
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchStrings",
-	mixins: [deepstreamMixin("search")],
+
 	components: {
 		InputSelectMulti,
 		InputDate,
@@ -104,7 +100,7 @@ export default {
 		InputTabsMulti,
 		PreviewOutput
 	},
-	methods: {
+	/*methods: {
 		//Search Strings for Bibliographic Databases
 		updateDatabaseString(index, value) {
 			var newDatabase = this.search.databases;
@@ -117,7 +113,7 @@ export default {
 			newregistry[index].string = value;
 			this.updateField("registries", newregistry);
 		}
-	},
+	},*/
 	data() {
 		return {
 			//Search Strings for Bibliographic Databases

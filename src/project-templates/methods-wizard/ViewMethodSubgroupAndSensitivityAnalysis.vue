@@ -4,60 +4,51 @@
 
 		<InputSelectYesNo
 			question="Were subgroup analyses performed?"
-			:value="subgroupAndSensitivityAnalysis.isSubgroupAnalysis"
-			@input="updateField('isSubgroupAnalysis', $event)"
+			:value="$tera.state.isSubgroupAnalysis"
 		/>
 
 		<InputTextSingleLineMulti
-			v-if="subgroupAndSensitivityAnalysis.isSubgroupAnalysis"
+			v-if="$tera.state.isSubgroupAnalysis"
 			question="Which subgroup analyses were performed?"
-			:value="subgroupAndSensitivityAnalysis.subgroupAnalysis"
-			@input="updateField('subgroupAnalysis', $event)"
+			:value="$tera.state.subgroupAnalysis"
 			placeholder="e.g. children less than 5 years old and children greater than 5 years old"
 		/>
 
 		<InputTextMultiLine
 			v-else
 			question="Why was subgroup analysis not performed?"
-			:value="subgroupAndSensitivityAnalysis.whyNotSubgroupAnalysis"
-			@input="updateField('whyNotSubgroupAnalysis', $event)"
+			:value="$tera.state.whyNotSubgroupAnalysis"
 		/>
 
 		<InputSelectYesNo
 			question="Were sensitivity analyses performed?"
-			:value="subgroupAndSensitivityAnalysis.isSensitivityAnalysis"
-			@input="updateField('isSensitivityAnalysis', $event)"
+			:value="$tera.state.isSensitivityAnalysis"
 		/>
 
 		<InputTextSingleLineMulti
-			v-if="subgroupAndSensitivityAnalysis.isSensitivityAnalysis"
+			v-if="$tera.state.isSensitivityAnalysis"
 			question="Which sensitivity analyses were performed?"
-			:value="subgroupAndSensitivityAnalysis.sensitivityAnalysis"
-			@input="updateField('sensitivityAnalysis', $event)"
+			:value="$tera.state.sensitivityAnalysis"
 			placeholder="e.g. children who drank more than 8 litres a day"
 		/>
 
 		<InputTextMultiLine
 			v-else
 			question="Why was sensitivity analysis not performed?"
-			:value="subgroupAndSensitivityAnalysis.whyNotSensitivityAnalysis"
-			@input="updateField('whyNotSensitivityAnalysis', $event)"
+			:value="$tera.state.whyNotSensitivityAnalysis"
 		/>
 
-		<BasePreviewOutput
-			:component="outputComponent"
-			:data="subgroupAndSensitivityAnalysis"
-		/>
+		<BasePreviewOutput :component="outputComponent" />
 	</div>
 </template>
 
 <script>
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSubgroupAndSensitivityAnalysis",
-	mixins: [deepstreamMixin("subgroupAndSensitivityAnalysis")],
+	//mixins: [deepstreamMixin("subgroupAndSensitivityAnalysis")],
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],

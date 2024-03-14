@@ -9,8 +9,7 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors screened title/abstract?"
-			:value="screening.titleAbstractScreeners"
-			@input="updateField('titleAbstractScreeners', $event)"
+			:value="$tera.state.titleAbstractScreeners"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -21,8 +20,7 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which author retrieved full-texts?"
-			:value="screening.fullTextRetrivalAuthor"
-			@input="updateField('fullTextRetrivalAuthor', $event)"
+			:value="$tera.state.fullTextRetrivalAuthor"
 			:options="this.retrfulltextAuthors"
 		/>
 
@@ -33,8 +31,7 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors screened full-texts?"
-			:value="screening.fullTextScreeners"
-			@input="updateField('fullTextScreeners', $event)"
+			:value="$tera.state.fullTextScreeners"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -45,39 +42,34 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Who screened the citation search?"
-			:value="screening.screenCitationSearchPeople"
-			@input="updateField('screenCitationSearchPeople', $event)"
+			:value="$tera.state.screenCitationSearchPeople"
 			:options="this.scCitSearchPeople"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Who screened trial registries?"
-			:value="screening.screenTrialRegisPeople"
-			@input="updateField('screenTrialRegisPeople', $event)"
+			:value="$tera.state.screenTrialRegisPeople"
 			:options="this.scTrialRegisPeople"
 		/>
 
 		<InputSelectMulti
 			question="Any disagreements were resolved by:"
-			:value="screening.disputeResolution"
-			@input="updateField('disputeResolution', $event)"
+			:value="$tera.state.disputeResolution"
 			:options="disputeResolutionOptions"
 		/>
 
 		<InputSelectYesNo
 			question="This systematic review is reported following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) statement."
-			:value="screening.isPrismaFlowDiagram"
-			@input="updateField('isPrismaFlowDiagram', $event)"
+			:value="$tera.state.isPrismaFlowDiagram"
 		/>
 
 		<InputSelectYesNo
 			v-if="screening.isPrismaFlowDiagram"
 			question="The list of studies excluded at full-text is provided in Appendix"
-			:value="screening.isExcludedFullTextInAppendix"
-			@input="updateField('isExcludedFullTextInAppendix', $event)"
+			:value="$tera.state.isExcludedFullTextInAppendix"
 		/>
 
-		<BasePreviewOutput :component="outputComponent" :data="screening" />
+		<BasePreviewOutput :component="outputComponent" />
 	</div>
 </template>
 
@@ -88,15 +80,11 @@ import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodScreening",
-	mixins: [
-		deepstreamMixin("researchplan"),
-		deepstreamMixin("titlepage"),
-		deepstreamMixin("screening")
-	],
+
 	components: {
 		InputSelectMulti,
 		InputSelectMultiWithoutOthers,
@@ -105,16 +93,16 @@ export default {
 	},
 	computed: {
 		numberOfTitleAbstractScreeners() {
-			return this.screening.titleAbstractScreeners?.length;
+			return this.$tera.state.titleAbstractScreeners?.length;
 		},
 		numberOfFullTextScreeners() {
-			return this.screening.fullTextScreeners?.length;
+			return this.$tera.state.fullTextScreeners?.length;
 		},
 		scTrialRegisPeople() {
-			let da = this.titlepage.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
-			this.researchplan.planTable?.rows.forEach(el => {
+			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Screen trial registries" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
@@ -122,10 +110,10 @@ export default {
 			return da;
 		},
 		scCitSearchPeople() {
-			let da = this.titlepage.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
-			this.researchplan.planTable?.rows.forEach(el => {
+			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Screen citation analysis" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
@@ -133,10 +121,10 @@ export default {
 			return da;
 		},
 		scabstractAuthors() {
-			let da = this.titlepage.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
-			this.researchplan.planTable?.rows.forEach(el => {
+			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Screen abstracts" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
@@ -144,10 +132,10 @@ export default {
 			return da;
 		},
 		scfulltextAuthors() {
-			let da = this.titlepage.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
-			this.researchplan.planTable?.rows.forEach(el => {
+			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Screen full text" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
@@ -155,10 +143,10 @@ export default {
 			return da;
 		},
 		retrfulltextAuthors() {
-			let da = this.titlepage.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
-			this.researchplan.planTable?.rows.forEach(el => {
+			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Obtain full text" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}

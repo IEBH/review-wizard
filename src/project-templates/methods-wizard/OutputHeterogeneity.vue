@@ -24,28 +24,34 @@ export default {
 	name: "OutputHeterogeneity",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
+		//data: Object
 	},
 	methods: {
 		getHeterogeneityMeasurement() {
-			if (this.data.heterogeneityMeasurement == "Other") {
-				return this.data.heterogeneityMeasurementOther
-					? this.data.heterogeneityMeasurementOther
+			if (this.$tera.state.heterogeneityMeasurement == "Other") {
+				return this.$tera.state.heterogeneityMeasurementOther
+					? this.$tera.state.heterogeneityMeasurementOther
 					: "BLANK";
-			} else if (this.data.heterogeneityMeasurement == "I squared statistic") {
+			} else if (
+				this.$tera.state.heterogeneityMeasurement == "I squared statistic"
+			) {
 				return "I<sup>2</sup> statistic";
-			} else if (this.data.heterogeneityMeasurement == "H squared statistic") {
+			} else if (
+				this.$tera.state.heterogeneityMeasurement == "H squared statistic"
+			) {
 				return "H<sup>2</sup> statistic";
-			} else if (this.data.heterogeneityMeasurement == "R squared statistic") {
+			} else if (
+				this.$tera.state.heterogeneityMeasurement == "R squared statistic"
+			) {
 				return "R<sup>2</sup> statistic";
 			} else if (
-				this.data.heterogeneityMeasurement == "Tau squared statistic"
+				this.$tera.state.heterogeneityMeasurement == "Tau squared statistic"
 			) {
 				return "&tau;<sup>2</sup> statistic";
-			} else if (this.data.heterogeneityMeasurement == "HM2 statistic") {
+			} else if (this.$tera.state.heterogeneityMeasurement == "HM2 statistic") {
 				return "HM<sub>2</sub> statistic";
-			} else if (this.data.heterogeneityMeasurement) {
-				return this.data.heterogeneityMeasurement;
+			} else if (this.$tera.state.heterogeneityMeasurement) {
+				return this.$tera.state.heterogeneityMeasurement;
 			} else {
 				return "BLANK";
 			}

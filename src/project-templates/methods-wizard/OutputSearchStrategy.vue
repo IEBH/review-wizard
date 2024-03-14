@@ -1,25 +1,35 @@
 <template>
 	<div>
-		<p v-if="data.components">
-			<span v-if="data.components.length">
+		<p v-if="$tera.state.components">
+			<span v-if="$tera.state.components.length">
 				The following components were included in the search string:
-				{{ joinArrayWithAnd(formatSelectMulti(data.components)).toLowerCase() }}
+				{{
+					joinArrayWithAnd(
+						formatSelectMulti($tera.state.components)
+					).toLowerCase()
+				}}
 			</span>
-			<span v-if="data.specialist.length">
+			<span v-if="$tera.state.specialist.length">
 				This search string was constructed by [a/an]
 				{{
-					joinArrayWithAnd(formatSelectMulti(data.specialist)).toLowerCase()
+					joinArrayWithAnd(
+						formatSelectMulti($tera.state.specialist)
+					).toLowerCase()
 				}}.
 			</span>
-			<span v-if="data.helper.length">
+			<span v-if="$tera.state.helper.length">
 				[A/An]
-				{{ joinArrayWithAnd(formatSelectMulti(data.helper)).toLowerCase() }}
+				{{
+					joinArrayWithAnd(formatSelectMulti($tera.state.helper)).toLowerCase()
+				}}
 				helped in the design of the search.
 			</span>
-			<span v-if="data.peerReviewer.length">
+			<span v-if="$tera.state.peerReviewer.length">
 				The search strategy was peer-reviewed by [a/an]
 				{{
-					joinArrayWithAnd(formatSelectMulti(data.peerReviewer)).toLowerCase()
+					joinArrayWithAnd(
+						formatSelectMulti($tera.state.peerReviewer)
+					).toLowerCase()
 				}}
 				according to PRESS guidelines.
 			</span>
@@ -31,7 +41,10 @@
 		</p>
 
 		<p
-			v-if="!data.isRestrictedByPublicationType && !data.isRestrictedByLanguage"
+			v-if="
+				!$tera.state.isRestrictedByPublicationType &&
+					!$tera.state.isRestrictedByLanguage
+			"
 		>
 			{{
 				selectRandom([
@@ -42,12 +55,12 @@
 			}}
 		</p>
 		<p v-else>
-			<span v-if="data.isRestrictedByPublicationType">
+			<span v-if="$tera.state.isRestrictedByPublicationType">
 				Restrictions were applied to the publication types.
 				{{
 					capitalize(
 						joinArrayWithAnd(
-							formatSelectMulti(data.excludedPublicationTypes)
+							formatSelectMulti($tera.state.excludedPublicationTypes)
 						).toLowerCase()
 					)
 				}}
@@ -56,9 +69,11 @@
 			<span v-else>
 				No publication type restrictions were applied.
 			</span>
-			<span v-if="data.isRestrictedByLanguage">
+			<span v-if="$tera.state.isRestrictedByLanguage">
 				We included studies in the following languages:
-				{{ joinArrayWithAnd(formatSelectMulti(data.includedLanguages)) }}.
+				{{
+					joinArrayWithAnd(formatSelectMulti($tera.state.includedLanguages))
+				}}.
 			</span>
 			<span v-else>
 				No restrictions on language were applied.
@@ -74,7 +89,7 @@
 			{{ selectRandom(["We also ", "Additionaly, we"]) }}
 			{{
 				joinArrayWithAnd(
-					formatSelectMulti(data.supplementoryMethods)
+					formatSelectMulti($tera.state.supplementoryMethods)
 				).toLowerCase()
 			}}
 		</p>
@@ -92,21 +107,23 @@ export default {
 	name: "OutputSearchStrategy",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
+		//data: Object
 	},
 	computed: {
 		designSearchStrategyAuthorsInitials: function() {
-			return this.formatSelectMulti(this.data.designSearchStrategyAuthors)
+			return this.formatSelectMulti(
+				this.$tera.state.designSearchStrategyAuthors
+			)
 				.map(el => this.nameToInitials(el))
 				.join(", ");
 		},
 		deduplicateResultsAuthorsInitials: function() {
-			return this.formatSelectMulti(this.data.deduplicateResultsAuthors)
+			return this.formatSelectMulti(this.$tera.state.deduplicateResultsAuthors)
 				.map(el => this.nameToInitials(el))
 				.join(", ");
 		},
 		conductSSearchAuthorsInitials: function() {
-			return this.formatSelectMulti(this.data.conductSSearchAuthors)
+			return this.formatSelectMulti(this.$tera.state.conductSSearchAuthors)
 				.map(el => this.nameToInitials(el))
 				.join(", ");
 		}

@@ -1,11 +1,21 @@
 <template>
 	<div>
-		<div v-if="data.conAuthors && outputData.length > 0">
-			<span v-if="(element = findElement('Study conceptualization')) && Object.keys(element).length != 0">
+		<div v-if="$tera.state.conAuthors && outputData.length > 0">
+			<span
+				v-if="
+					(element = findElement('Study conceptualization')) &&
+						Object.keys(element).length != 0
+				"
+			>
 				{{ formatAuthors(element.authors) }}
 				{{ selectRandom(["conceived the idea.", "conceptualized the study."]) }}
 			</span>
-			<span v-if="(element = findElement('Designing the study')) && Object.keys(element).length != 0">
+			<span
+				v-if="
+					(element = findElement('Designing the study')) &&
+						Object.keys(element).length != 0
+				"
+			>
 				{{
 					selectRandom([
 						` Authors ${formatAuthors(
@@ -15,12 +25,26 @@
 					])
 				}}
 			</span>
-			<span v-if="(element = findElement('Designing the search strategy')) && Object.keys(element).length != 0">
+			<span
+				v-if="
+					(element = findElement('Designing the search strategy')) &&
+						Object.keys(element).length != 0
+				"
+			>
 				{{ formatAuthors(element.authors) }} designed the search strategy.
 			</span>
-			<span v-if="(element = findElement('Assessing study eligibility')) && Object.keys(element).length != 0">
+			<span
+				v-if="
+					(element = findElement('Assessing study eligibility')) &&
+						Object.keys(element).length != 0
+				"
+			>
 				<span
-					v-if="(anotherElement = findElement('Extracting the data')) && Object.keys(anotherElement).length != 0">
+					v-if="
+						(anotherElement = findElement('Extracting the data')) &&
+							Object.keys(anotherElement).length != 0
+					"
+				>
 					{{
 						selectRandom([
 							`Co-authors ${formatAuthors(
@@ -43,16 +67,33 @@
 					}}
 				</span>
 			</span>
-			<span v-if="(element = findElement('Extracting the data')) && Object.keys(element).length != 0">
-				<span v-if="Object.keys(findElement('Assessing study eligibility')).length == 0
-					">
+			<span
+				v-if="
+					(element = findElement('Extracting the data')) &&
+						Object.keys(element).length != 0
+				"
+			>
+				<span
+					v-if="
+						Object.keys(findElement('Assessing study eligibility')).length == 0
+					"
+				>
 					{{ formatAuthors(element.authors) }}
 					{{ selectRandom(["extracted data.", "helped in extracting data"]) }}
 				</span>
 			</span>
-			<span v-if="(element = findElement('Analyzing the data')) && Object.keys(element).length != 0">
+			<span
+				v-if="
+					(element = findElement('Analyzing the data')) &&
+						Object.keys(element).length != 0
+				"
+			>
 				<span
-					v-if="(anotherElement = findElement('Drafting the manuscript')) && Object.keys(anotherElement).length != 0">
+					v-if="
+						(anotherElement = findElement('Drafting the manuscript')) &&
+							Object.keys(anotherElement).length != 0
+					"
+				>
 					{{ formatAuthors(element.authors) }}
 					analyzed the data
 					{{
@@ -74,7 +115,12 @@
 					analyzed the data.
 				</span>
 			</span>
-			<span v-if="(element = findElement('Drafting the manuscript')) && Object.keys(element).length != 0">
+			<span
+				v-if="
+					(element = findElement('Drafting the manuscript')) &&
+						Object.keys(element).length != 0
+				"
+			>
 				<span v-if="Object.keys(findElement('Analyzing the data')).length == 0">
 					{{
 						selectRandom([
@@ -89,7 +135,12 @@
 					}}
 				</span>
 			</span>
-			<span v-if="(element = findElement('Revising the manuscript')) && Object.keys(element).length != 0">
+			<span
+				v-if="
+					(element = findElement('Revising the manuscript')) &&
+						Object.keys(element).length != 0
+				"
+			>
 				{{
 					selectRandom([
 						`${formatAuthors(element.authors)} revised the paper.`,
@@ -100,9 +151,19 @@
 				}}
 			</span>
 			<span v-for="(row, index) in newlyAddedContributions" :key="index">
-				<span v-if="(element = findElement(row)) && Object.keys(element).length != 0">
+				<span
+					v-if="
+						(element = findElement(row)) && Object.keys(element).length != 0
+					"
+				>
 					Also, {{ formatAuthors(element.authors) }}
-					{{ selectRandom(["contributed to ", "collabrated on ", "had an impact on "]) }}
+					{{
+						selectRandom([
+							"contributed to ",
+							"collabrated on ",
+							"had an impact on "
+						])
+					}}
 					{{ row }}.
 				</span>
 			</span>
@@ -115,29 +176,20 @@ export default {
 	name: "OutputContributions",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
+		//data: Object,
+		contributionOptions: Array
 	},
 	data() {
 		return {
 			extractUnion: false,
-			draftUnion: false,
-			contributionOptions: [
-				{ label: "Study conceptualization" },
-				{ label: "Designing the study" },
-				{ label: "Designing the search strategy" },
-				{ label: "Assessing study eligibility" },
-				{ label: "Extracting the data" },
-				{ label: "Analyzing the data" },
-				{ label: "Drafting the manuscript" },
-				{ label: "Revising the manuscript" }
-			]
+			draftUnion: false
 		};
 	},
 	computed: {
 		outputData() {
 			let da = [];
-			if (this.data.conAuthors.length > 0) {
-				this.data.conAuthors.forEach(el => {
+			if (this.$tera.state.conAuthors.length > 0) {
+				this.$tera.state.conAuthors.forEach(el => {
 					if (el.author != "" && el.selectedOpt.length > 0) {
 						da = this.dataBuild(da, el);
 					}
@@ -147,8 +199,15 @@ export default {
 			return da;
 		},
 		newlyAddedContributions() {
-			let allLabels = [].concat(...this.data.conAuthors.map(item => item.selectedOpt.map(opt => opt.label)));
-			let newlyAdded = allLabels.filter(labelA => !this.contributionOptions.some(itemB => itemB.label === labelA));
+			let allLabels = [].concat(
+				...this.$tera.state.conAuthors.map(item =>
+					item.selectedOpt.map(opt => opt.label)
+				)
+			);
+			let newlyAdded = allLabels.filter(
+				labelA =>
+					!this.contributionOptions.some(itemB => itemB.label === labelA)
+			);
 			return newlyAdded;
 		}
 	},

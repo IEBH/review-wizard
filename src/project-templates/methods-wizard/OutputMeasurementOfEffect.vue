@@ -4,16 +4,16 @@
 			{{
 				selectRandom([
 					""
-						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
+						.concat(joinArrayWithAnd(formatSelectMulti($tera.state.toolUsed)))
 						.concat(" was used to calculate the treatment effect."),
 					"Overall intervention effect was calculated using "
-						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
+						.concat(joinArrayWithAnd(formatSelectMulti($tera.state.toolUsed)))
 						.concat("."),
 					"Treatment/intervention effect was measured by "
-						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
+						.concat(joinArrayWithAnd(formatSelectMulti($tera.state.toolUsed)))
 						.concat("."),
 					"Treatment/intervention effect was measured in "
-						.concat(joinArrayWithAnd(formatSelectMulti(data.toolUsed)))
+						.concat(joinArrayWithAnd(formatSelectMulti($tera.state.toolUsed)))
 						.concat(".")
 				])
 			}}
@@ -23,27 +23,27 @@
 				selectRandom([
 					"We used "
 						.concat(
-							data.dichotomousOutcomes
+							$tera.state.dichotomousOutcomes
 								? joinArrayWithAnd(
-										formatSelectMulti(data.dichotomousOutcomes)
+										formatSelectMulti($tera.state.dichotomousOutcomes)
 								  ).toLowerCase()
 								: "BLANK"
 						)
 						.concat(" for dichotomous outcomes."),
 					"For dichotomous outcomes, treatment/intervention effect was calculated using "
 						.concat(
-							data.dichotomousOutcomes
+							$tera.state.dichotomousOutcomes
 								? joinArrayWithAnd(
-										formatSelectMulti(data.dichotomousOutcomes)
+										formatSelectMulti($tera.state.dichotomousOutcomes)
 								  ).toLowerCase()
 								: "BLANK"
 						)
 						.concat("."),
 					"Effect of the intervention on dichotomous outcomes was expressed as "
 						.concat(
-							data.dichotomousOutcomes
+							$tera.state.dichotomousOutcomes
 								? joinArrayWithAnd(
-										formatSelectMulti(data.dichotomousOutcomes)
+										formatSelectMulti($tera.state.dichotomousOutcomes)
 								  ).toLowerCase()
 								: "BLANK"
 						)
@@ -56,27 +56,27 @@
 				selectRandom([
 					"We used "
 						.concat(
-							data.continuousOutcomes
+							$tera.state.continuousOutcomes
 								? joinArrayWithAnd(
-										formatSelectMulti(data.continuousOutcomes)
+										formatSelectMulti($tera.state.continuousOutcomes)
 								  ).toLowerCase()
 								: "BLANK"
 						)
 						.concat(" for continuous outcomes."),
 					"For continuous outcomes, treatment/intervention effect was calculated using "
 						.concat(
-							data.continuousOutcomes
+							$tera.state.continuousOutcomes
 								? joinArrayWithAnd(
-										formatSelectMulti(data.continuousOutcomes)
+										formatSelectMulti($tera.state.continuousOutcomes)
 								  ).toLowerCase()
 								: "BLANK"
 						)
 						.concat("."),
 					"Effect of the intervention on continuous outcomes was expressed as "
 						.concat(
-							data.continuousOutcomes
+							$tera.state.continuousOutcomes
 								? joinArrayWithAnd(
-										formatSelectMulti(data.continuousOutcomes)
+										formatSelectMulti($tera.state.continuousOutcomes)
 								  ).toLowerCase()
 								: "BLANK"
 						)
@@ -87,9 +87,9 @@
 		<p>
 			We used
 			{{
-				data.otherOutcomes
+				$tera.state.otherOutcomes
 					? joinArrayWithAnd(
-							formatSelectMulti(data.otherOutcomes)
+							formatSelectMulti($tera.state.otherOutcomes)
 					  ).toLowerCase()
 					: "BLANK"
 			}}
@@ -100,26 +100,30 @@
 				selectRandom([
 					"We undertook meta-analyses when "
 						.concat(
-							data.metaAnalysisThreshold ? data.metaAnalysisThreshold : "BLANK"
+							$tera.state.metaAnalysisThreshold
+								? $tera.state.metaAnalysisThreshold
+								: "BLANK"
 						)
 						.concat(
 							" studies or comparisons reported the same outcome. We used a "
 						)
 						.concat(
-							data.metaAnalysisModelUsed
-								? data.metaAnalysisModelUsed.toLowerCase()
+							$tera.state.metaAnalysisModelUsed
+								? $tera.state.metaAnalysisModelUsed.toLowerCase()
 								: "BLANK"
 						)
 						.concat(" model."),
 					"We planned to do meta-analysis using a "
 						.concat(
-							data.metaAnalysisModelUsed
-								? data.metaAnalysisModelUsed.toLowerCase()
+							$tera.state.metaAnalysisModelUsed
+								? $tera.state.metaAnalysisModelUsed.toLowerCase()
 								: "BLANK"
 						)
 						.concat(" model if there were ")
 						.concat(
-							data.metaAnalysisThreshold ? data.metaAnalysisThreshold : "BLANK"
+							$tera.state.metaAnalysisThreshold
+								? $tera.state.metaAnalysisThreshold
+								: "BLANK"
 						)
 						.concat(" or more studies with the same outcome.")
 				])
@@ -134,7 +138,7 @@ export default {
 	name: "OutputMeasurementOfEffect",
 	mixins: [OutputMixin],
 	props: {
-		data: Object
+		//data: Object
 	}
 };
 </script>

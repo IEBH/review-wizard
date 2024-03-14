@@ -4,23 +4,22 @@
 
 		<InputSelectYesNo
 			question="We contacted investigators or study sponsors to provide missing data"
-			:value="missingData.isContactedInvestigators"
-			@input="updateField('isContactedInvestigators', $event)"
+			:value="$tera.state.isContactedInvestigators"
 			:options="numberOptions"
 		/>
 
-		<BasePreviewOutput :component="outputComponent" :data="missingData" />
+		<BasePreviewOutput :component="outputComponent" />
 	</div>
 </template>
 
 <script>
 import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodDealingWithMissingData",
-	mixins: [deepstreamMixin("missingData")],
+
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],
