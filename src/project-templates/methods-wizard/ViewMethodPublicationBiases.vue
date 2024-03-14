@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import OutputPublicationBias from ".OutputPublicationBias.vue";
+import OutputPublicationBias from "./OutputPublicationBias.vue";
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";

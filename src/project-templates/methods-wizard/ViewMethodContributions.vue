@@ -2,7 +2,7 @@
 	<div>
 		<h1>Contributions</h1>
 		<InputConSelectMulti
-			v-for="(author, index) in this.$tera.state.acknowledgements"
+			v-for="(author, index) in this.$tera.state.author"
 			:key="index"
 			:question="ackAuthor(author)"
 			:value="$tera.state.conAuthors"
@@ -45,7 +45,7 @@ export default {
 	},
 	computed: {
 		contributors() {
-			return this.$tera.state.acknowledgements;
+			return this.$tera.state.author;
 		}
 	},
 	methods: {
