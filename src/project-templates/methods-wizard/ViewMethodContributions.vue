@@ -2,7 +2,7 @@
 	<div>
 		<h1>Contributions</h1>
 		<InputConSelectMulti
-			v-for="(author, index) in this.titlepage.acknowledgements"
+			v-for="(author, index) in this.titlepage.authors"
 			:key="index"
 			:question="ackAuthor(author)"
 			:value="contribution.conAuthors"
