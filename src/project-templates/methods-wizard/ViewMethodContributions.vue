@@ -44,7 +44,7 @@ export default {
 	},
 	computed: {
 		contributors() {
-			return this.titlepage.acknowledgements;
+			return this.titlepage.authors;
 		}
 	},
 	methods: {
