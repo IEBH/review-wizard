@@ -204,7 +204,7 @@
 				"Included secondary outcomes were: " + secondaryOutcomesInclude + ". "
 			}}
 		</span>
-		<span v-if="outcomesExclude != 'BLANK'">
+		<!--<span v-if="outcomesExclude != 'BLANK'">
 			{{
 				selectRandom([
 					"We excluded: ",
@@ -214,7 +214,7 @@
 					outcomesExclude +
 					"."
 			}}
-		</span>
+		</span>-->
 
 		<h3>Setting</h3>
 		<span>
@@ -300,9 +300,9 @@ export default {
 				return "BLANK";
 			}
 		},
-		outcomesExclude: function() {
+		/*outcomesExclude: function() {
 			return this.listMainWithExample(this.data.outcomes, false);
-		},
+		},*/
 		settingInclude: function() {
 			return this.listMainWithExample(this.data.setting, true);
 		},
