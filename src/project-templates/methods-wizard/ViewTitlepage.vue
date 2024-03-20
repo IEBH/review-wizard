@@ -14,7 +14,7 @@
 
 		<InputTextNumber
 			question="What year will study be published?"
-			v-mode="$tera.state.year"
+			v-model="$tera.state.year"
 		/>
 		<pre>$TERA.state: {{ $tera.state }}</pre>
 	</div>
