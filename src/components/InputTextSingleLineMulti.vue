@@ -6,7 +6,7 @@
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
 		<!-- <input
         v-bind:value="value"
-        v-on:change="$emit('input', $event.target.value)"
+       
       > -->
 		<template v-for="(item, index) in value">
 			<InputText
@@ -15,6 +15,7 @@
 				:value="item"
 				:key="index"
 				:ref="index"
+				v-on:change="$emit('input', $event.target.value)"
 				@input="update(index, $event)"
 				:placeholder="placeholder"
 			/>
@@ -51,15 +52,15 @@ export default {
 	methods: {
 		update: function(index, item) {
 			this.$set(this.value, index, item);
-			//this.$emit("input", this.value);
+			this.$emit("input", this.value);
 		},
 		removeLastValue: function() {
 			this.value.pop();
-			//this.$emit("input", this.value);
+			this.$emit("input", this.value);
 		},
 		addNewValue: function() {
 			this.value.push("");
-			//this.$emit("input", this.value);
+			this.$emit("input", this.value);
 			const lastIndex = this.value.length - 1;
 			// Wait until next tick so component is rendered
 			this.$nextTick(() => {

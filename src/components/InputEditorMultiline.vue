@@ -4,13 +4,14 @@
 			<b>{{ question }}</b>
 		</p> -->
 		<div v-html="question"></div>
-		<!-- editorStyle="{Width:100%}" -->
+		<!-- editorStyle="{Width:100%}" 
+			 @text-change="$emit('input', $event.htmlValue)"
+		-->
 		<div>
 			<Editor
 				:value="value"
 				:placeholder="placeholder" 
 				style="height: 800px !important;"
-				@text-change="$emit('input', $event.htmlValue)"
 				><template v-slot:toolbar>
 					<span>
 						<button class="ql-bold" v-tooltip.bottom="'Bold'"></button>
@@ -46,7 +47,8 @@ export default {
 	},
 	methods: {
 		clearInput() {
-			this.$emit("input", "");
+			//this.$emit("input", "");
+			this.value="";
 		}
 	}
 };
