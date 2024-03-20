@@ -46,9 +46,9 @@ export default {
 		},
 		acknowledgements() {
 			return {
-				designhelp: $tera.state.designhelp,
-				statistical: $tera.state.statistical,
-				manuscript: $tera.state.manuscript
+				designhelp: this.$tera.state.designhelp,
+				statistical: this.$tera.state.statistical,
+				manuscript: this.$tera.state.manuscript
 			};
 		}
 	},

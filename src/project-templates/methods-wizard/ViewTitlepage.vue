@@ -16,6 +16,7 @@
 			question="What year will study be published?"
 			:value="$tera.state.year"
 		/>
+		<pre>$TERA.state: {{ $tera.state }}</pre>
 	</div>
 </template>
 
