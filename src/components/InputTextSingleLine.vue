@@ -9,12 +9,7 @@
         v-on:change="$emit('input', $event.target.value)"
       > -->
 		<div class="p-inputgroup">
-			<InputText
-				type="text"
-				:value="value"
-				:placeholder="placeholder"
-				@change="$emit('input', $event.target.value)"
-			/>
+			<InputText type="text" :value="value" :placeholder="placeholder" />
 			<Button
 				v-if="value == '' && placeholder"
 				label="Keep Example"
@@ -47,10 +42,12 @@ export default {
 	},
 	methods: {
 		fillWithPlaceholder() {
-			this.$emit("input", this.placeholder);
+			//this.$emit("input", this.placeholder);
+			this.value = this.placeholder;
 		},
 		clearInput() {
-			this.$emit("input", "");
+			//this.$emit("input", "");
+			this.value = "";
 		}
 	}
 };

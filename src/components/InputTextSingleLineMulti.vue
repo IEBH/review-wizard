@@ -51,15 +51,15 @@ export default {
 	methods: {
 		update: function(index, item) {
 			this.$set(this.value, index, item);
-			this.$emit("input", this.value);
+			//this.$emit("input", this.value);
 		},
 		removeLastValue: function() {
 			this.value.pop();
-			this.$emit("input", this.value);
+			//this.$emit("input", this.value);
 		},
 		addNewValue: function() {
 			this.value.push("");
-			this.$emit("input", this.value);
+			//this.$emit("input", this.value);
 			const lastIndex = this.value.length - 1;
 			// Wait until next tick so component is rendered
 			this.$nextTick(() => {
