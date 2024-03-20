@@ -8,7 +8,7 @@
 		/>
 		<InputTextSingleLine
 			question="What is the short title for the study?"
-			v-mode="$tera.state.titleshort"
+			v-model="$tera.state.titleshort"
 			placeholder="e.g. Blue-light"
 		/>
 
