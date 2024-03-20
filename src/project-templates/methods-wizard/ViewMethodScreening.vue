@@ -4,12 +4,12 @@
 
 		<InputTextNumber
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
-			:value="numberOfTitleAbstractScreeners"
+			v-model="numberOfTitleAbstractScreeners"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors screened title/abstract?"
-			:value="$tera.state.titleAbstractScreeners"
+			v-model="$tera.state.titleAbstractScreeners"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -20,18 +20,18 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which author retrieved full-texts?"
-			:value="$tera.state.fullTextRetrivalAuthor"
+			v-model="$tera.state.fullTextRetrivalAuthor"
 			:options="this.retrfulltextAuthors"
 		/>
 
 		<InputTextNumber
 			question="How many review authors independently screened the full-texts for inclusion?"
-			:value="numberOfFullTextScreeners"
+			v-model="numberOfFullTextScreeners"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors screened full-texts?"
-			:value="$tera.state.fullTextScreeners"
+			v-model="$tera.state.fullTextScreeners"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -42,31 +42,31 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Who screened the citation search?"
-			:value="$tera.state.screenCitationSearchPeople"
+			v-model="$tera.state.screenCitationSearchPeople"
 			:options="this.scCitSearchPeople"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Who screened trial registries?"
-			:value="$tera.state.screenTrialRegisPeople"
+			v-model="$tera.state.screenTrialRegisPeople"
 			:options="this.scTrialRegisPeople"
 		/>
 
 		<InputSelectMulti
 			question="Any disagreements were resolved by:"
-			:value="$tera.state.disputeResolution"
+			v-model="$tera.state.disputeResolution"
 			:options="disputeResolutionOptions"
 		/>
 
 		<InputSelectYesNo
 			question="This systematic review is reported following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) statement."
-			:value="$tera.state.isPrismaFlowDiagram"
+			v-model="$tera.state.isPrismaFlowDiagram"
 		/>
 
 		<InputSelectYesNo
 			v-if="screening.isPrismaFlowDiagram"
 			question="The list of studies excluded at full-text is provided in Appendix"
-			:value="$tera.state.isExcludedFullTextInAppendix"
+			v-model="$tera.state.isExcludedFullTextInAppendix"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />

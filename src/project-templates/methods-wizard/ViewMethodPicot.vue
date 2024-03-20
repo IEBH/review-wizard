@@ -4,7 +4,7 @@
 		<!-- P -->
 		<InputTable
 			question="What are the population/s, or problem/s (P), of your systematic review, (e.g. older people with diabetes)."
-			:value="$tera.state.population"
+			v-model="$tera.state.population"
 			columnHeader="Population"
 			:isSelectButton="true"
 			:inclusion="true"
@@ -17,7 +17,7 @@
 		<!-- I -->
 		<InputTable
 			question="What are the intervention/s (I) of your systematic review, (e.g. metformin)."
-			:value="$tera.state.intervention"
+			v-model="$tera.state.intervention"
 			columnHeader="Intervention"
 			:isSelectButton="true"
 			:inclusion="true"
@@ -30,7 +30,7 @@
 		<!-- C -->
 		<InputTable
 			question="What are the comparators (C) that the intervention will be compared against (e.g. no treatment)"
-			:value="$tera.state.comparator"
+			v-model="$tera.state.comparator"
 			columnHeader="Comparator"
 			:isSelectButton="true"
 			:inclusion="true"
@@ -44,7 +44,7 @@
 		<!-- O -->
 		<InputTable
 			question="What are the outcomes (O) you will be looking for (e.g. reduced hospitalization, improved quality of life, mortality)"
-			:value="$tera.state.outcomes"
+			v-model="$tera.state.outcomes"
 			columnHeader="Outcome"
 			:isSelectButton="false"
 			:inclusion="true"
@@ -57,7 +57,7 @@
 		<!-- S -->
 		<InputTable
 			question="What is the setting (S) you require the research to be conducted in (optional)"
-			:value="$tera.state.setting"
+			v-model="$tera.state.setting"
 			columnHeader="Setting"
 			:isSelectButton="true"
 			:inclusion="true"
@@ -71,7 +71,7 @@
 		<InputSelectMulti
 			question="What study types (T) will be included"
 			:options="typesOptions"
-			:value="$tera.state.types"
+			v-model="$tera.state.types"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />

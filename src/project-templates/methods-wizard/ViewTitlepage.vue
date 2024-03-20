@@ -3,18 +3,18 @@
 		<h1>Title Page</h1>
 		<InputTextSingleLine
 			question="What is the title of the study?"
-			:value="$tera.state.title"
+			v-model="$tera.state.title"
 			placeholder="e.g. Blue-light therapy for acne vulgaris: a systematic review and meta-analysis"
 		/>
 		<InputTextSingleLine
 			question="What is the short title for the study?"
-			:value="$tera.state.titleshort"
+			v-mode="$tera.state.titleshort"
 			placeholder="e.g. Blue-light"
 		/>
 
 		<InputTextNumber
 			question="What year will study be published?"
-			:value="$tera.state.year"
+			v-mode="$tera.state.year"
 		/>
 		<pre>$TERA.state: {{ $tera.state }}</pre>
 	</div>

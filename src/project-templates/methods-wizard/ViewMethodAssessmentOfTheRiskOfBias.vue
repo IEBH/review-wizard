@@ -4,24 +4,24 @@
 
 		<InputTextNumber
 			question="The number of authors reviewed the risk of bias?"
-			:value="numberOfRiskOfBiasAuthors"
+			v-model="numberOfRiskOfBiasAuthors"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors assessed the risk of bias?"
-			:value="$tera.state.assessedRobAuthors"
+			v-model="$tera.state.assessedRobAuthors"
 			:options="this.asRobAuthors"
 		/>
 
 		<InputSelectYesNo
 			question="Did each author independently review the risk of bias?"
-			:value="$tera.state.isIndependent"
+			v-model="$tera.state.isIndependent"
 		/>
 
 		<InputSelectMulti
 			question="Risk of bias was determined using the:"
 			:options="options.tools"
-			:value="$tera.state.toolUsed"
+			v-model="$tera.state.toolUsed"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />

@@ -4,48 +4,48 @@
 
 		<InputSelectYesNo
 			question="Were any meta-analysis performed?"
-			:vlue="$tera.state.isMetaAnalysis"
+			v-model="$tera.state.isMetaAnalysis"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isMetaAnalysis"
 			question="What software was used to conduct the meta-analysis?"
-			:value="$tera.state.toolUsed"
+			v-model="$tera.state.toolUsed"
 			:options="toolUsedOptions"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for dichotomous outcomes?"
-			:value="$tera.state.dichotomousOutcomes"
+			v-model="$tera.state.dichotomousOutcomes"
 			:options="dichotomousOutcomesOptions"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for continuous outcomes?"
-			:value="$tera.state.continuousOutcomes"
+			v-model="$tera.state.continuousOutcomes"
 			:options="continuousOutcomesOptions"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for other outcomes?"
-			:value="$tera.state.otherOutcomes"
+			v-model="$tera.state.otherOutcomes"
 			:options="otherOutcomesOptions"
 		/>
 
 		<InputTextNumber
 			v-if="$tera.state.isMetaAnalysis"
 			question="How many studies reporting the same outcome triggered a meta-analysis"
-			:value="$tera.state.metaAnalysisThreshold"
+			v-model="$tera.state.metaAnalysisThreshold"
 			placeholder="e.g. 3"
 		/>
 
 		<InputSelectDropdown
 			v-if="$tera.state.isMetaAnalysis"
 			question="What model was used in meta-analysis?"
-			:value="$tera.state.metaAnalysisModelUsed"
+			v-model="$tera.state.metaAnalysisModelUsed"
 			:options="metaAnalysisModelOptions"
 		/>
 

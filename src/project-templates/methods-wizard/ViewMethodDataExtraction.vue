@@ -4,13 +4,13 @@
 
 		<InputSelectDropdown
 			question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-			:value="$tera.state.numberOfStudies"
+			v-model="$tera.state.numberOfStudies"
 			:options="numberOptions"
 		/>
 
 		<InputTextNumber
 			question="How many study authors extracted the following data from included studies?"
-			:value="numberOfExtractors"
+			v-model="numberOfExtractors"
 		/>
 
 		<!--<InputSelectDropdown
@@ -22,7 +22,7 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which author/s performed data extraction?"
-			:value="$tera.state.extractionAuthors"
+			v-model="$tera.state.extractionAuthors"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -33,7 +33,7 @@
 
 		<InputSelectYesNo
 			question="Do you wish to specify what data will be extracted (optional)"
-			:value="$tera.state.optionalDetail"
+			v-model="$tera.state.optionalDetail"
 		/>
 
 		<!-- New -->
@@ -46,22 +46,22 @@
 				<InputSelectMulti
 					question="Methods:"
 					:options="options.methods"
-					:value="$tera.state.methods"
+					v-model="$tera.state.methods"
 				/>
 				<InputSelectMulti
 					question="Participants:"
 					:options="options.participants"
-					:value="$tera.state.participants"
+					v-model="$tera.state.participants"
 				/>
 				<InputSelectMulti
 					question="Interventions:"
 					:options="options.interventions"
-					:value="$tera.state.interventions"
+					v-model="$tera.state.interventions"
 				/>
 				<InputSelectMulti
 					question="Comparators:"
 					:options="options.comparators"
-					:value="$tera.state.comparators"
+					v-model="$tera.state.comparators"
 				/>
 				<InputTable
 					question="Outcomes:"
@@ -70,7 +70,7 @@
 					:type="true"
 					:description="true"
 					:examples="true"
-					:value="$tera.state.outcomes"
+					v-model="$tera.state.outcomes"
 					mainPlaceholder="e.g. investigator-assessed change in acne severity"
 				/>
 				<Message
@@ -90,7 +90,7 @@
 				<InputSelectMulti
 					question="Types:"
 					:options="options.types"
-					:value="$tera.state.types"
+					v-model="$tera.state.types"
 				/>
 				<Message
 					v-if="!arrayEquals(picot.types, extraction.types)"

@@ -4,20 +4,20 @@
 
 		<InputSelectYesNo
 			question="Was publication bias measured?"
-			:value="$tera.state.isMeasuredPublicationBias"
+			v-model="$tera.state.isMeasuredPublicationBias"
 		/>
 
 		<div v-if="heterogeneityPublicationBiases.isMeasuredPublicationBias">
 			<InputSelectDropdown
 				question="We measured publication bias / small studies effect using"
-				:value="$tera.state.biasMeasurement"
+				v-model="$tera.state.biasMeasurement"
 				:options="publicationBiasOptions"
 			/>
 
 			<InputTextSingleLine
 				v-if="$tera.state.biasMeasurement == 'Other'"
 				question="We measured publication bias / small studies effect using:"
-				:value="$tera.state.biasMeasurementOther"
+				v-model="$tera.state.biasMeasurementOther"
 			/>
 		</div>
 
@@ -25,7 +25,7 @@
 			v-else
 			question="We did not measure publication bias..."
 			:placeholder="placeholder"
-			:value="$tera.state.didNotMeasure"
+			v-model="$tera.state.didNotMeasure"
 		/>
 
 		<PreviewOutput :component="outputComponent" />

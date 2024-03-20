@@ -4,19 +4,19 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Was help provided to design the search?"
-			:value="$tera.state.designhelp"
+			v-model="$tera.state.designhelp"
 			:options="this.dsAcknowledgementAuthors"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Was help provided with the statistical analysis?"
-			:value="$tera.state.statistical"
+			v-model="$tera.state.statistical"
 			:options="this.dsAcknowledgementAuthors"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Was feedback provided on a draft of the manuscript?"
-			:value="$tera.state.manuscript"
+			v-model="$tera.state.manuscript"
 			:options="this.dsAcknowledgementAuthors"
 		/>
 

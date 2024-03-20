@@ -4,14 +4,14 @@
 
 		<InputSelectDropdown
 			question="What was used to measure heterogeneity?"
-			:value="$tera.state.heterogeneityMeasurement"
+			v-model="$tera.state.heterogeneityMeasurement"
 			:options="heterogeneityMeasurementOptions"
 		/>
 
 		<InputTextSingleLine
 			v-if="$tera.state.heterogeneityMeasurement == 'Other'"
 			question="Type heterogeneity measurement below..."
-			:value="$tera.state.heterogeneityMeasurementOther"
+			v-model="$tera.state.heterogeneityMeasurementOther"
 		/>
 
 		<PreviewOutput :component="outputComponent" />

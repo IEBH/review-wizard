@@ -4,7 +4,7 @@
 
 		<InputSelectYesNo
 			question="We contacted investigators or study sponsors to provide missing data"
-			:value="$tera.state.isContactedInvestigators"
+			v-model="$tera.state.isContactedInvestigators"
 			:options="numberOptions"
 		/>
 

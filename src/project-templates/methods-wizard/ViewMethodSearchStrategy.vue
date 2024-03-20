@@ -4,73 +4,73 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Who designed and ran the search strategy?"
-			:value="$tera.state.designSearchStrategyAuthors"
+			v-model="$tera.state.designSearchStrategyAuthors"
 			:options="this.dsSearchStrategyAuthors"
 		/>
 		<InputSelectMultiWithoutOthers
 			question="Who deduplicated the results?"
-			:value="$tera.state.deduplicateResultsAuthors"
+			v-model="$tera.state.deduplicateResultsAuthors"
 			:options="this.dsSearchStrategyAuthors"
 		/>
 
 		<InputSelectMulti
 			question="Which of the following components went into your search string"
 			:options="componentsOptions"
-			:value="$tera.state.components"
+			v-model="$tera.state.components"
 		/>
 
 		<InputSelectMulti
 			question="Was the search designed by a search specialist, if so select which type"
 			:options="specialistOptions"
-			:value="$tera.state.specialist"
+			v-model="$tera.state.specialist"
 		/>
 
 		<InputSelectMulti
 			question="Was help received during the designing of the search, if so who provided the help"
 			:options="specialistOptions"
-			:value="$tera.state.helper"
+			v-model="$tera.state.helper"
 		/>
 
 		<InputSelectMulti
 			question="Was the search strategy peer-reviewed (according to PRESS guidelines), if so who peer-reviewed"
 			:options="specialistOptions"
-			:value="$tera.state.peerReviewer"
+			v-model="$tera.state.peerReviewer"
 		/>
 
 		<InputSelectYesNo
 			question="Were the search results restricted by publication type?"
-			:value="$tera.state.isRestrictedByPublicationType"
+			v-model="$tera.state.isRestrictedByPublicationType"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isRestrictedByPublicationType"
 			question="What publication types did you exclude?"
 			:options="publicationTypesOptions"
-			:value="$tera.state.excludedPublicationTypes"
+			v-model="$tera.state.excludedPublicationTypes"
 		/>
 
 		<InputSelectYesNo
 			question="Were the search results restricted by language?"
-			:value="$tera.state.isRestrictedByLanguage"
+			v-model="$tera.state.isRestrictedByLanguage"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isRestrictedByLanguage"
 			question="What languages did you include?"
 			:options="languageOptions"
-			:value="$tera.state.includedLanguages"
+			v-model="$tera.state.includedLanguages"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Who conducted the supplementary searches?"
-			:value="$tera.state.conductSSearchAuthors"
+			v-model="$tera.state.conductSSearchAuthors"
 			:options="this.csAuthors"
 		/>
 
 		<InputSelectMulti
 			question="Did you conduct any of the following methods to supplement your search results?"
 			:options="supplementoryMethodsOptions"
-			:value="$tera.state.supplementoryMethods"
+			v-model="$tera.state.supplementoryMethods"
 		/>
 
 		<PreviewOutput :component="outputComponent" />

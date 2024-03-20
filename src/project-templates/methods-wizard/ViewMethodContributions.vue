@@ -5,7 +5,7 @@
 			v-for="(author, index) in this.$tera.state.author"
 			:key="index"
 			:question="ackAuthor(author)"
-			:value="$tera.state.conAuthors"
+			v-model="$tera.state.conAuthors"
 			:contributors="contributors"
 			:index="index"
 			:author="author"

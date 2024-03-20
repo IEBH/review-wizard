@@ -4,38 +4,38 @@
 
 		<InputSelectYesNo
 			question="Were subgroup analyses performed?"
-			:value="$tera.state.isSubgroupAnalysis"
+			v-model="$tera.state.isSubgroupAnalysis"
 		/>
 
 		<InputTextSingleLineMulti
 			v-if="$tera.state.isSubgroupAnalysis"
 			question="Which subgroup analyses were performed?"
-			:value="$tera.state.subgroupAnalysis"
+			v-model="$tera.state.subgroupAnalysis"
 			placeholder="e.g. children less than 5 years old and children greater than 5 years old"
 		/>
 
 		<InputTextMultiLine
 			v-else
 			question="Why was subgroup analysis not performed?"
-			:value="$tera.state.whyNotSubgroupAnalysis"
+			v-model="$tera.state.whyNotSubgroupAnalysis"
 		/>
 
 		<InputSelectYesNo
 			question="Were sensitivity analyses performed?"
-			:value="$tera.state.isSensitivityAnalysis"
+			v-model="$tera.state.isSensitivityAnalysis"
 		/>
 
 		<InputTextSingleLineMulti
 			v-if="$tera.state.isSensitivityAnalysis"
 			question="Which sensitivity analyses were performed?"
-			:value="$tera.state.sensitivityAnalysis"
+			v-model="$tera.state.sensitivityAnalysis"
 			placeholder="e.g. children who drank more than 8 litres a day"
 		/>
 
 		<InputTextMultiLine
 			v-else
 			question="Why was sensitivity analysis not performed?"
-			:value="$tera.state.whyNotSensitivityAnalysis"
+			v-model="$tera.state.whyNotSensitivityAnalysis"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />

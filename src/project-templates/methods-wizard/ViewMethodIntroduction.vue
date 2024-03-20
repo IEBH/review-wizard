@@ -5,7 +5,7 @@
 		<InputEditorMultiline
 			:question="question"
 			:placeholder="placeholder"
-			:value="$tera.state.intro"
+			v-model="$tera.state.intro"
 		/>
 	</div>
 </template>
