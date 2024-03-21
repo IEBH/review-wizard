@@ -4,13 +4,13 @@
 
 		<InputTextSingleLineMulti
 			question="Who are the authors in the study?"
-			v-model="$tera.state.author"
+			v-model="authors"
 			placeholder="e.g. Justin Clark"
 		/>
 
 		<InputTextSingleLineMulti
 			question="Who else helped with the study? (Acknowledgements)"
-			v-model="$tera.state.acknowledgements"
+			v-model="acknowledgements"
 			placeholder="e.g. Justin Clark"
 		/>
 	</div>
@@ -24,6 +24,18 @@ export default {
 	//mixins: [deepstreamMixin("titlepage")],
 	components: {
 		InputTextSingleLineMulti
+	},
+	computed: {
+		authors() {
+			this.$tera.setProjectStateDefaults(this.$tera.state.author, [""]);
+			return this.$tera.state.author;
+		},
+		acknowledgements() {
+			this.$tera.setProjectStateDefaults(this.$tera.state.acknowledgements, [
+				""
+			]);
+			return this.$tera.state.acknowledgements;
+		}
 	}
 };
 </script>
