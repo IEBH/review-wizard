@@ -27,13 +27,11 @@ export default {
 	},
 	computed: {
 		authors() {
-			this.$tera.setProjectStateDefaults(`this.$tera.state.author`, [""]);
+			this.$tera.setProjectStateDefaults(`author`, [""]);
 			return this.$tera.state.author;
 		},
 		acknowledgements() {
-			this.$tera.setProjectStateDefaults(`this.$tera.state.acknowledgements`, [
-				""
-			]);
+			this.$tera.setProjectStateDefaults(`acknowledgements`, [""]);
 			return this.$tera.state.acknowledgements;
 		}
 	}

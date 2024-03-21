@@ -223,18 +223,18 @@ export default {
 				'[{"inclusion":true,"type":true}]'
 		) {
 			// console.log("this.extraction.types",...this.picot.types);
-			if (this.picot.outcomes) {
+			if (this.$tera.state.outcomes) {
 				// console.log("this.picot.outcomes", this.picot.outcomes, this.extraction.outcomes)
 				// Deep copy
 				this.$tera.state.outcomes = JSON.parse(
-					JSON.stringify(this.picot.outcomes)
+					JSON.stringify(this.$tera.state.outcomes)
 				);
 			}
 		}
 
 		if (this.$tera.state.types && this.$tera.state.types.length === 0) {
 			// Shallow copy
-			this.$tera.state.types = [...this.picot.types];
+			this.$tera.state.types = [...this.$tera.state.types];
 		}
 	},
 	data() {
