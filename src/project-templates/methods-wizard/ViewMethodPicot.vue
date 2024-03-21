@@ -132,6 +132,10 @@ export default {
 		setting() {
 			this.$tera.setProjectStateDefaults(`setting`, DefaultValue.picot.setting);
 			return this.$tera.state.setting;
+		},
+		types() {
+			this.$tera.setProjectStateDefaults(`types`, DefaultValue.picot.types);
+			return this.$tera.state.types;
 		}
 	}
 };

@@ -144,6 +144,7 @@ import Dialog from "primevue/dialog";
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
 import SelectButton from "primevue/selectbutton";
+import ToggleButton from "primevue/togglebutton";
 
 export default {
 	name: "InputTable",
@@ -164,7 +165,8 @@ export default {
 		Dialog,
 		Textarea,
 		Button,
-		SelectButton
+		SelectButton,
+		ToggleButton
 	},
 	data() {
 		return {
