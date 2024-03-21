@@ -6,7 +6,7 @@
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
 		<!-- <input
         v-bind:value="value"
-       
+        v-on:change="$emit('input', $event.target.value)"
       > -->
 		<template v-for="(item, index) in value">
 			<InputText
@@ -15,7 +15,6 @@
 				:value="item"
 				:key="index"
 				:ref="index"
-				v-on:change="$emit('input', $event.target.value)"
 				@input="update(index, $event)"
 				:placeholder="placeholder"
 			/>

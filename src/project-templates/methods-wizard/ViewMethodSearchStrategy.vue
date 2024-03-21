@@ -111,10 +111,10 @@ export default {
 	},
 	computed: {
 		dsSearchStrategyAuthors() {
-			let da = this.titlepage.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
-			this.researchplan.planTable?.rows.forEach(el => {
+			this.$tera.state.planTable?.rows.forEach(el => {
 				if (
 					el.tasks == "Design systematic search strategy" &&
 					el.peopleInvolved != ""
@@ -125,10 +125,10 @@ export default {
 			return da;
 		},
 		csAuthors() {
-			let da = this.titlepage.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
-			this.researchplan.planTable?.rows.forEach(el => {
+			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Citation search" && el.peopleInvolved != "") {
 					da = el.peopleInvolved;
 				}
