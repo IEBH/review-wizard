@@ -4,7 +4,7 @@
 		<!-- P -->
 		<InputTable
 			question="What are the population/s, or problem/s (P), of your systematic review, (e.g. older people with diabetes)."
-			v-model="population"
+			v-model="$tera.state.population"
 			columnHeader="Population"
 			:isSelectButton="true"
 			:inclusion="true"
@@ -17,7 +17,7 @@
 		<!-- I -->
 		<InputTable
 			question="What are the intervention/s (I) of your systematic review, (e.g. metformin)."
-			v-model="intervention"
+			v-model="$tera.state.intervention"
 			columnHeader="Intervention"
 			:isSelectButton="true"
 			:inclusion="true"
@@ -30,7 +30,7 @@
 		<!-- C -->
 		<InputTable
 			question="What are the comparators (C) that the intervention will be compared against (e.g. no treatment)"
-			v-model="comparator"
+			v-model="$tera.state.comparator"
 			columnHeader="Comparator"
 			:isSelectButton="true"
 			:inclusion="true"
@@ -44,7 +44,7 @@
 		<!-- O -->
 		<InputTable
 			question="What are the outcomes (O) you will be looking for (e.g. reduced hospitalization, improved quality of life, mortality)"
-			v-model="outcomes"
+			v-model="$tera.state.outcomes"
 			columnHeader="Outcome"
 			:isSelectButton="false"
 			:inclusion="true"
@@ -57,7 +57,7 @@
 		<!-- S -->
 		<InputTable
 			question="What is the setting (S) you require the research to be conducted in (optional)"
-			v-model="setting"
+			v-model="$tera.state.setting"
 			columnHeader="Setting"
 			:isSelectButton="true"
 			:inclusion="true"
@@ -70,8 +70,8 @@
 		<!-- T -->
 		<InputSelectMulti
 			question="What study types (T) will be included"
-			:options="typesOptions"
 			v-model="$tera.state.types"
+			:options="typesOptions"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />
@@ -100,43 +100,22 @@ export default {
 			outputComponent: OutputPicot
 		};
 	},
-	computed: {
-		population() {
-			this.$tera.setProjectStateDefaults(
-				`population`,
-				DefaultValue.picot.population
-			);
-			return this.$tera.state.population;
-		},
-		intervention() {
-			this.$tera.setProjectStateDefaults(
-				`intervention`,
-				DefaultValue.picot.intervention
-			);
-			return this.$tera.state.intervention;
-		},
-		comparator() {
-			this.$tera.setProjectStateDefaults(
-				`comparator`,
-				DefaultValue.picot.comparator
-			);
-			return this.$tera.state.comparator;
-		},
-		outcomes() {
-			this.$tera.setProjectStateDefaults(
-				`outcomes`,
-				DefaultValue.picot.outcomes
-			);
-			return this.$tera.state.outcomes;
-		},
-		setting() {
-			this.$tera.setProjectStateDefaults(`setting`, DefaultValue.picot.setting);
-			return this.$tera.state.setting;
-		},
-		types() {
-			this.$tera.setProjectStateDefaults(`types`, DefaultValue.picot.types);
-			return this.$tera.state.types;
-		}
+	mounted() {
+		this.$tera.setProjectStateDefaults(
+			`population`,
+			DefaultValue.picot.population
+		);
+		this.$tera.setProjectStateDefaults(
+			`intervention`,
+			DefaultValue.picot.intervention
+		);
+		this.$tera.setProjectStateDefaults(
+			`comparator`,
+			DefaultValue.picot.comparator
+		);
+		this.$tera.setProjectStateDefaults(`outcomes`, DefaultValue.picot.outcomes);
+		this.$tera.setProjectStateDefaults(`setting`, DefaultValue.picot.setting);
+		this.$tera.setProjectStateDefaults(`types`, DefaultValue.picot.types);
 	}
 };
 </script>
