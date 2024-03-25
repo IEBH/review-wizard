@@ -4,54 +4,54 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Who designed and ran the search strategy?"
-			v-model="designSearchStrategyAuthors"
+			v-model="$tera.state.designSearchStrategyAuthors"
 			:options="this.dsSearchStrategyAuthors"
 		/>
 		<InputSelectMultiWithoutOthers
 			question="Who deduplicated the results?"
-			v-model="deduplicateResultsAuthors"
+			v-model="$tera.state.deduplicateResultsAuthors"
 			:options="this.dsSearchStrategyAuthors"
 		/>
 
 		<InputSelectMulti
 			question="Which of the following components went into your search string"
-			v-model="components"
+			v-model="$tera.state.components"
 			:options="componentsOptions"
 		/>
 
 		<InputSelectMulti
 			question="Was the search designed by a search specialist, if so select which type"
-			v-model="specialist"
+			v-model="$tera.state.specialist"
 			:options="specialistOptions"
 		/>
 
 		<InputSelectMulti
 			question="Was help received during the designing of the search, if so who provided the help"
-			v-model="helper"
+			v-model="$tera.state.helper"
 			:options="specialistOptions"
 		/>
 
 		<InputSelectMulti
 			question="Was the search strategy peer-reviewed (according to PRESS guidelines), if so who peer-reviewed"
-			v-model="peerReviewer"
+			v-model="$tera.state.peerReviewer"
 			:options="specialistOptions"
 		/>
 
 		<InputSelectYesNo
 			question="Were the search results restricted by publication type?"
-			v-model="isRestrictedByPublicationType"
+			v-model="$tera.state.isRestrictedByPublicationType"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isRestrictedByPublicationType"
 			question="What publication types did you exclude?"
-			v-model="excludedPublicationTypes"
+			v-model="$tera.state.excludedPublicationTypes"
 			:options="publicationTypesOptions"
 		/>
 
 		<InputSelectYesNo
 			question="Were the search results restricted by language?"
-			v-model="isRestrictedByLanguage"
+			v-model="$tera.state.isRestrictedByLanguage"
 		/>
 
 		<InputSelectMulti
@@ -63,13 +63,13 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Who conducted the supplementary searches?"
-			v-model="conductSSearchAuthors"
+			v-model="$tera.state.conductSSearchAuthors"
 			:options="this.csAuthors"
 		/>
 
 		<InputSelectMulti
 			question="Did you conduct any of the following methods to supplement your search results?"
-			v-model="supplementoryMethods"
+			v-model="$tera.state.supplementoryMethods"
 			:options="supplementoryMethodsOptions"
 		/>
 

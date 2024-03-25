@@ -1,20 +1,45 @@
 <template>
 	<!-- Collapsed and onMobile control the padding of content relative to sidebar -->
-	<div id="app" :class="[
-		{ 'pad-sidebar': methodsRecord },
-		{ collapsed: collapsed },
-		{ onmobile: isOnMobile }
-	]">
-		<div v-tooltip="{
-			placement: 'right',
-			allowHTML: true,
-			content: 'Toggle sidebar (<kbd>[</kbd>)',
-		}" class="sidebar-collapse" @click="collapsed = !collapsed; toggleSidebar(collapsed);">
-			<i style="font-size: xx-large;" :class="collapsed ? 'pi pi-angle-right' : 'pi pi-angle-left'" />
+	<div
+		id="app"
+		:class="[
+			{ 'pad-sidebar': methodsRecord },
+			{ collapsed: collapsed },
+			{ onmobile: isOnMobile }
+		]"
+	>
+		<div
+			v-tooltip="{
+				placement: 'right',
+				allowHTML: true,
+				content: 'Toggle sidebar (<kbd>[</kbd>)'
+			}"
+			class="sidebar-collapse"
+			@click="
+				collapsed = !collapsed;
+				toggleSidebar(collapsed);
+			"
+		>
+			<i
+				style="font-size: xx-large;"
+				:class="collapsed ? 'pi pi-angle-right' : 'pi pi-angle-left'"
+			/>
 		</div>
-		<sidebar-menu v-if="methodsRecord" :menu="menu" :collapsed="collapsed" theme="white-theme"
-			@toggle-collapse="onToggleCollapse" width="300px" class="sidebar" :showOneChild="true" />
-		<div v-if="isOnMobile && !collapsed" class="sidebar-overlay" @click="collapsed = true" />
+		<sidebar-menu
+			v-if="methodsRecord"
+			:menu="menu"
+			:collapsed="collapsed"
+			theme="white-theme"
+			@toggle-collapse="onToggleCollapse"
+			width="300px"
+			class="sidebar"
+			:showOneChild="true"
+		/>
+		<div
+			v-if="isOnMobile && !collapsed"
+			class="sidebar-overlay"
+			@click="collapsed = true"
+		/>
 
 		<!-- If methodsRecord exists render small logo and toolbar -->
 		<div v-if="methodsRecord" class="p-grid p-ai-center">
@@ -56,7 +81,7 @@ import projectTemplateImport from "@/helpers/projectTemplateImport.js";
 
 // import "@fortawesome/fontawesome-free/css/all.css";
 // import "@fortawesome/fontawesome-free/js/all.js";
-import VTooltip from 'v-tooltip';
+import VTooltip from "v-tooltip";
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
 
@@ -67,7 +92,7 @@ export default {
 		ProjectEdit
 	},
 	directives: {
-		tooltip: VTooltip,
+		tooltip: VTooltip
 	},
 	async mounted() {
 		this.onResize();
@@ -86,8 +111,8 @@ export default {
 		},
 		toggleSidebar(collapsed) {
 			this.collapsed = collapsed !== undefined ? collapsed : !this.collapsed;
-			document.body.classList.toggle('sidebar-collapsed', this.collapsed);
-			document.body.classList.toggle('sidebar-full', !this.collapsed);
+			document.body.classList.toggle("sidebar-collapsed", this.collapsed);
+			document.body.classList.toggle("sidebar-full", !this.collapsed);
 
 			// globalThis.localStorage.setItem('sidebarCollapsed', this.collapsed ? 1 : 0)
 		},
@@ -102,7 +127,7 @@ export default {
 		},
 		async updateMenu() {
 			const { getMenu } = await projectTemplateImport();
-			this.menu = getMenu(this.$store.state.projectId);
+			this.menu = getMenu(this.$tera.state.id);
 		},
 		pascalCaseTitle() {
 			return upperFirst(camelCase(process.env.VUE_APP_PROJECT));
@@ -119,17 +144,19 @@ export default {
 		};
 	},
 	watch: {
-		projectId: async function () {
+		projectId: async function() {
 			// Update menu
 			this.updateMenu();
 		}
 	},
 	computed: {
 		projectId() {
-			return this.$store.state.projectId;
+			//return this.$store.state.projectId;
+			return this.$tera.state.id;
 		},
 		methodsRecord() {
-			return this.$store.state.methodsRecord;
+			//return this.$store.state.methodsRecord;
+			return this.$tera.state.methodsRecord;
 		}
 	}
 };
@@ -188,7 +215,7 @@ body {
 }
 
 .vsm--link_active {
-	background-color: rgba(255, 255, 255, .3) !important;
+	background-color: rgba(255, 255, 255, 0.3) !important;
 }
 
 .vsm--link {
@@ -199,7 +226,6 @@ body {
 	background-color: rgba(255, 255, 255, .3) !important;
 	color: #fd3411 !important;
 } */
-
 
 .vsm--icon {
 	background-color: transparent !important;
@@ -268,7 +294,6 @@ body {
 }
 
 &.collapsed {
-
 	& .label {
 		display: none;
 	}

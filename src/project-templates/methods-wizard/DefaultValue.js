@@ -471,7 +471,7 @@ export default {
 	search: {
 		// Search Strategy
 		components: [],
-		specialist: [""],
+		specialist: [],
 		helper: [],
 		peerReviewer: [],
 		searchAutomationTools: [],
