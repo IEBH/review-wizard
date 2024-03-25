@@ -98,81 +98,50 @@ export default {
 		InputSelectYesNo
 		//Supplementary Searches
 	},
+	mounted() {
+		this.$tera.setProjectStateDefaults(
+			"designSearchStrategyAuthors",
+			DefaultValue.search.designSearchStrategyAuthors
+		);
+		this.$tera.setProjectStateDefaults(
+			"deduplicateResultsAuthors",
+			DefaultValue.search.deduplicateResultsAuthors
+		);
+		this.$tera.setProjectStateDefaults(
+			"components",
+			DefaultValue.search.components
+		);
+		this.$tera.setProjectStateDefaults(
+			"specialist",
+			DefaultValue.search.specialist
+		);
+		this.$tera.setProjectStateDefaults("helper", DefaultValue.search.helper);
+		this.$tera.setProjectStateDefaults(
+			"peerReviewer",
+			DefaultValue.search.peerReviewer
+		);
+		this.$tera.setProjectStateDefaults(
+			"isRestrictedByPublicationType",
+			DefaultValue.search.isRestrictedByPublicationType
+		);
+		this.$tera.setProjectStateDefaults(
+			"excludedPublicationTypes",
+			DefaultValue.search.excludedPublicationTypes
+		);
+		this.$tera.setProjectStateDefaults(
+			"isRestrictedByLanguage",
+			DefaultValue.search.isRestrictedByLanguage
+		);
+		this.$tera.setProjectStateDefaults(
+			"conductSSearchAuthors",
+			DefaultValue.search.conductSSearchAuthors
+		);
+		this.$tera.setProjectStateDefaults(
+			"supplementoryMethods",
+			DefaultValue.search.supplementoryMethods
+		);
+	},
 	computed: {
-		designSearchStrategyAuthors() {
-			this.$tera.setProjectStateDefaults(
-				"designSearchStrategyAuthors",
-				DefaultValue.search.designSearchStrategyAuthors
-			);
-			return this.$tera.state.designSearchStrategyAuthors;
-		},
-		deduplicateResultsAuthors() {
-			this.$tera.setProjectStateDefaults(
-				"deduplicateResultsAuthors",
-				DefaultValue.search.deduplicateResultsAuthors
-			);
-			return this.$tera.state.deduplicateResultsAuthors;
-		},
-		components() {
-			this.$tera.setProjectStateDefaults(
-				"components",
-				DefaultValue.search.components
-			);
-			return this.$tera.state.components;
-		},
-		specialist() {
-			this.$tera.setProjectStateDefaults(
-				"specialist",
-				DefaultValue.search.specialist
-			);
-			return this.$tera.state.specialist;
-		},
-		helper() {
-			this.$tera.setProjectStateDefaults("helper", DefaultValue.search.helper);
-			return this.$tera.state.helper;
-		},
-		peerReviewer() {
-			this.$tera.setProjectStateDefaults(
-				"peerReviewer",
-				DefaultValue.search.peerReviewer
-			);
-			return this.$tera.state.peerReviewer;
-		},
-		isRestrictedByPublicationType() {
-			this.$tera.setProjectStateDefaults(
-				"isRestrictedByPublicationType",
-				DefaultValue.search.isRestrictedByPublicationType
-			);
-			return this.$tera.state.isRestrictedByPublicationType;
-		},
-		excludedPublicationTypes() {
-			this.$tera.setProjectStateDefaults(
-				"excludedPublicationTypes",
-				DefaultValue.search.excludedPublicationTypes
-			);
-			return this.$tera.state.excludedPublicationTypes;
-		},
-		isRestrictedByLanguage() {
-			this.$tera.setProjectStateDefaults(
-				"isRestrictedByLanguage",
-				DefaultValue.search.isRestrictedByLanguage
-			);
-			return this.$tera.state.isRestrictedByLanguage;
-		},
-		conductSSearchAuthors() {
-			this.$tera.setProjectStateDefaults(
-				"conductSSearchAuthors",
-				DefaultValue.search.conductSSearchAuthors
-			);
-			return this.$tera.state.conductSSearchAuthors;
-		},
-		supplementoryMethods() {
-			this.$tera.setProjectStateDefaults(
-				"supplementoryMethods",
-				DefaultValue.search.supplementoryMethods
-			);
-			return this.$tera.state.supplementoryMethods;
-		},
 		dsSearchStrategyAuthors() {
 			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
