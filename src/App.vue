@@ -127,7 +127,7 @@ export default {
 		},
 		async updateMenu() {
 			const { getMenu } = await projectTemplateImport();
-			this.menu = getMenu(this.$tera.state.id);
+			this.menu = getMenu(this.$store.state.projectId);
 		},
 		pascalCaseTitle() {
 			return upperFirst(camelCase(process.env.VUE_APP_PROJECT));
