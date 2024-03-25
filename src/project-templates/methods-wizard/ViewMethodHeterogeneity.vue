@@ -4,7 +4,7 @@
 
 		<InputSelectDropdown
 			question="What was used to measure heterogeneity?"
-			v-model="$tera.state.heterogeneityMeasurement"
+			v-model="heterogeneityMeasurement"
 			:options="heterogeneityMeasurementOptions"
 		/>
 
@@ -22,11 +22,9 @@
 import OutputHeterogeneity from "./OutputHeterogeneity.vue";
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectDropdown from "@/components/InputSelectDropdown.vue";
-//import InputSelectYesNo from "./InputSelectYesNo.vue";
-//import InputTextMultiLine from "./InputTextMultiLine.vue";
 import InputTextSingleLine from "@/components/InputTextSingleLine.vue";
 
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
+import DefaultValue from "./DefaultValue";
 
 export default {
 	name: "ViewMethodHeterogeneity",
@@ -35,6 +33,15 @@ export default {
 		InputSelectDropdown,
 		PreviewOutput,
 		InputTextSingleLine
+	},
+	computed: {
+		heterogeneityMeasurement() {
+			this.$tera.setProjectStateDefaults(
+				"heterogeneityMeasurement",
+				DefaultValue.heterogeneityPublicationBiases.heterogeneityMeasurement
+			);
+			return this.$tera.state.heterogeneityMeasurement;
+		}
 	},
 	data() {
 		return {

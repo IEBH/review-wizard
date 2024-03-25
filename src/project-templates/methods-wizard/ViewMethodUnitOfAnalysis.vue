@@ -4,7 +4,7 @@
 		<!-- INDIVIDUAL -->
 		<InputSelectDropdown
 			question="What was the unit of analysis?"
-			v-model="$tera.state.type"
+			v-model="type"
 			:options="unitOfAnalysisOptions"
 		/>
 
@@ -36,12 +36,20 @@
 
 <script>
 import OutputUnitOfAnalysis from "./OutputUnitOfAnalysis.vue";
-
+import DefaultValue from "./DefaultValue";
 //import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodUnitOfAnalysis",
-	//mixins: [deepstreamMixin("unitOfAnalysis")],
+	computed: {
+		type() {
+			this.$tera.setProjectStateDefaults(
+				"type",
+				DefaultValue.unitOfAnalysis.type
+			);
+			return this.$tera.state.type;
+		}
+	},
 	data() {
 		return {
 			unitOfAnalysisOptions: ["Individual", "Individual and other", "Other"],

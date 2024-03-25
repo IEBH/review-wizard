@@ -4,34 +4,34 @@
 
 		<InputSelectYesNo
 			question="Were any meta-analysis performed?"
-			v-model="$tera.state.isMetaAnalysis"
+			v-model="isMetaAnalysis"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isMetaAnalysis"
 			question="What software was used to conduct the meta-analysis?"
-			v-model="$tera.state.toolUsed"
+			v-model="measurementOfEffectToolUsed"
 			:options="toolUsedOptions"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for dichotomous outcomes?"
-			v-model="$tera.state.dichotomousOutcomes"
+			v-model="dichotomousOutcomes"
 			:options="dichotomousOutcomesOptions"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for continuous outcomes?"
-			v-model="$tera.state.continuousOutcomes"
+			v-model="continuousOutcomes"
 			:options="continuousOutcomesOptions"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isMetaAnalysis"
 			question="What measure was used to calculate the treatment effect for other outcomes?"
-			v-model="$tera.state.otherOutcomes"
+			v-model="otherOutcomes"
 			:options="otherOutcomesOptions"
 		/>
 
@@ -45,7 +45,7 @@
 		<InputSelectDropdown
 			v-if="$tera.state.isMetaAnalysis"
 			question="What model was used in meta-analysis?"
-			v-model="$tera.state.metaAnalysisModelUsed"
+			v-model="metaAnalysisModelUsed"
 			:options="metaAnalysisModelOptions"
 		/>
 
@@ -55,11 +55,56 @@
 
 <script>
 import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect";
+import DefaultValue from "./DefaultValue";
 
 //import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodMeasuementOfEffect",
+	computed: {
+		isMetaAnalysis() {
+			this.$tera.setProjectStateDefaults(
+				"isMetaAnalysis",
+				DefaultValue.measurementOfEffect.isMetaAnalysis
+			);
+			return this.$tera.state.isMetaAnalysis;
+		},
+		measurementOfEffectToolUsed() {
+			this.$tera.setProjectStateDefaults(
+				"measurementOfEffectToolUsed",
+				DefaultValue.measurementOfEffect.toolUsed
+			);
+			return this.$tera.state.measurementOfEffectToolUsed;
+		},
+		dichotomousOutcomes() {
+			this.$tera.setProjectStateDefaults(
+				"dichotomousOutcomes",
+				DefaultValue.measurementOfEffect.dichotomousOutcomes
+			);
+			return this.$tera.state.dichotomousOutcomes;
+		},
+		continuousOutcomes() {
+			this.$tera.setProjectStateDefaults(
+				"continuousOutcomes",
+				DefaultValue.measurementOfEffect.continuousOutcomes
+			);
+			return this.$tera.state.continuousOutcomes;
+		},
+		otherOutcomes() {
+			this.$tera.setProjectStateDefaults(
+				"otherOutcomes",
+				DefaultValue.measurementOfEffect.otherOutcomes
+			);
+			return this.$tera.state.otherOutcomes;
+		},
+		metaAnalysisModelUsed() {
+			this.$tera.setProjectStateDefaults(
+				"metaAnalysisModelUsed",
+				DefaultValue.measurementOfEffect.metaAnalysisModelUsed
+			);
+			return this.$tera.state.metaAnalysisModelUsed;
+		}
+	},
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],

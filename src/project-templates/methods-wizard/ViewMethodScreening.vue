@@ -4,7 +4,7 @@
 
 		<InputTextNumber
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
-			v-model="$tera.state.titleAbstractScreeners.length"
+			v-model="numberOfTitleAbstractScreeners"
 		/>
 
 		<InputSelectMultiWithoutOthers
@@ -149,9 +149,9 @@ export default {
 			);
 			return this.$tera.state.isExcludedFullTextInAppendix;
 		},
-		/*numberOfTitleAbstractScreeners() {
+		numberOfTitleAbstractScreeners() {
 			return this.$tera.state.titleAbstractScreeners?.length;
-		},*/
+		},
 		numberOfFullTextScreeners() {
 			return this.$tera.state.fullTextScreeners?.length;
 		},
