@@ -4,54 +4,54 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Who designed and ran the search strategy?"
-			v-model="$tera.state.designSearchStrategyAuthors"
+			v-model="designSearchStrategyAuthors"
 			:options="this.dsSearchStrategyAuthors"
 		/>
 		<InputSelectMultiWithoutOthers
 			question="Who deduplicated the results?"
-			v-model="$tera.state.deduplicateResultsAuthors"
+			v-model="deduplicateResultsAuthors"
 			:options="this.dsSearchStrategyAuthors"
 		/>
 
 		<InputSelectMulti
 			question="Which of the following components went into your search string"
+			v-model="components"
 			:options="componentsOptions"
-			v-model="$tera.state.components"
 		/>
 
 		<InputSelectMulti
 			question="Was the search designed by a search specialist, if so select which type"
+			v-model="specialist"
 			:options="specialistOptions"
-			v-model="$tera.state.specialist"
 		/>
 
 		<InputSelectMulti
 			question="Was help received during the designing of the search, if so who provided the help"
+			v-model="helper"
 			:options="specialistOptions"
-			v-model="$tera.state.helper"
 		/>
 
 		<InputSelectMulti
 			question="Was the search strategy peer-reviewed (according to PRESS guidelines), if so who peer-reviewed"
+			v-model="peerReviewer"
 			:options="specialistOptions"
-			v-model="$tera.state.peerReviewer"
 		/>
 
 		<InputSelectYesNo
 			question="Were the search results restricted by publication type?"
-			v-model="$tera.state.isRestrictedByPublicationType"
+			v-model="isRestrictedByPublicationType"
 		/>
 
 		<InputSelectMulti
 			v-if="$tera.state.isRestrictedByPublicationType"
 			question="What publication types did you exclude?"
+			v-model="excludedPublicationTypes"
 			:options="publicationTypesOptions"
-			v-model="$tera.state.excludedPublicationTypes"
 		/>
 
 		<InputSelectYesNo
 			question="Were the search results restricted by language?"
-			v-model="$tera.state.isRestrictedByLanguage"
+			v-model="isRestrictedByLanguage"
 		/>
 
 		<InputSelectMulti
@@ -63,14 +63,14 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Who conducted the supplementary searches?"
-			v-model="$tera.state.conductSSearchAuthors"
+			v-model="conductSSearchAuthors"
 			:options="this.csAuthors"
 		/>
 
 		<InputSelectMulti
 			question="Did you conduct any of the following methods to supplement your search results?"
+			v-model="supplementoryMethods"
 			:options="supplementoryMethodsOptions"
-			v-model="$tera.state.supplementoryMethods"
 		/>
 
 		<PreviewOutput :component="outputComponent" />
@@ -79,27 +79,16 @@
 
 <script>
 //Search Strategy
-//import OutputSearch from "./OutputSearch.vue";
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
-//Restrictions on Publication Type
-//import OutputSearchPublicationType from "./OutputSearchPublicationType.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
-//Supplementary Searches
-//import OutputSearchSupplementoryMethods from "./OutputSearchSupplementoryMethods.vue";
-
+import DefaultValue from "./DefaultValue";
 import OutputSearchStrategy from "./OutputSearchStrategy.vue";
-
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchStrategy",
-	/*mixins: [
-		deepstreamMixin("researchplan"),
-		deepstreamMixin("titlepage"),
-		deepstreamMixin("search")
-	],*/
+
 	components: {
 		//Search Strategy
 		InputSelectMulti,
@@ -110,8 +99,82 @@ export default {
 		//Supplementary Searches
 	},
 	computed: {
+		designSearchStrategyAuthors() {
+			this.$tera.setProjectStateDefaults(
+				"designSearchStrategyAuthors",
+				DefaultValue.search.designSearchStrategyAuthors
+			);
+			return this.$tera.state.designSearchStrategyAuthors;
+		},
+		deduplicateResultsAuthors() {
+			this.$tera.setProjectStateDefaults(
+				"deduplicateResultsAuthors",
+				DefaultValue.search.deduplicateResultsAuthors
+			);
+			return this.$tera.state.deduplicateResultsAuthors;
+		},
+		components() {
+			this.$tera.setProjectStateDefaults(
+				"components",
+				DefaultValue.search.components
+			);
+			return this.$tera.state.components;
+		},
+		specialist() {
+			this.$tera.setProjectStateDefaults(
+				"specialist",
+				DefaultValue.search.specialist
+			);
+			return this.$tera.state.specialist;
+		},
+		helper() {
+			this.$tera.setProjectStateDefaults("helper", DefaultValue.search.helper);
+			return this.$tera.state.helper;
+		},
+		peerReviewer() {
+			this.$tera.setProjectStateDefaults(
+				"peerReviewer",
+				DefaultValue.search.peerReviewer
+			);
+			return this.$tera.state.peerReviewer;
+		},
+		isRestrictedByPublicationType() {
+			this.$tera.setProjectStateDefaults(
+				"isRestrictedByPublicationType",
+				DefaultValue.search.isRestrictedByPublicationType
+			);
+			return this.$tera.state.isRestrictedByPublicationType;
+		},
+		excludedPublicationTypes() {
+			this.$tera.setProjectStateDefaults(
+				"excludedPublicationTypes",
+				DefaultValue.search.excludedPublicationTypes
+			);
+			return this.$tera.state.excludedPublicationTypes;
+		},
+		isRestrictedByLanguage() {
+			this.$tera.setProjectStateDefaults(
+				"isRestrictedByLanguage",
+				DefaultValue.search.isRestrictedByLanguage
+			);
+			return this.$tera.state.isRestrictedByLanguage;
+		},
+		conductSSearchAuthors() {
+			this.$tera.setProjectStateDefaults(
+				"conductSSearchAuthors",
+				DefaultValue.search.conductSSearchAuthors
+			);
+			return this.$tera.state.conductSSearchAuthors;
+		},
+		supplementoryMethods() {
+			this.$tera.setProjectStateDefaults(
+				"supplementoryMethods",
+				DefaultValue.search.supplementoryMethods
+			);
+			return this.$tera.state.supplementoryMethods;
+		},
 		dsSearchStrategyAuthors() {
-			let da = this.$tera.state.author?.map(el => {
+			let da = this.$tera.state.authors?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -125,7 +188,7 @@ export default {
 			return da;
 		},
 		csAuthors() {
-			let da = this.$tera.state.author?.map(el => {
+			let da = this.$tera.state.authors?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -175,7 +238,6 @@ export default {
 				{ label: "Swedish" }
 			],
 			//Supplementary Searches
-			//csAuthors: [], //--conduct supplementary searches
 			supplementoryMethodsOptions: [
 				// eslint-disable-next-line prettier/prettier
 				{
@@ -190,27 +252,6 @@ export default {
 			outputComponent: OutputSearchStrategy
 		};
 	}
-	/*async mounted() {
-		await this.dataReady;
-		//Search Strategy
-		this.researchplan.planTable.rows.forEach(el => {
-			if (
-				el.tasks == "6. Design systematic search strategy" &&
-				el.peopleInvolved != ""
-			) {
-				this.dsSearchStrategyAuthors = el.peopleInvolved;
-			}
-		});
-		//Supplementary Searches
-		this.csAuthors = this.titlepage.authors.map(el => {
-			return { label: el };
-		});
-		this.researchplan.planTable.rows.forEach(el => {
-			if (el.tasks == "13. Citation search" && el.peopleInvolved != "") {
-				this.csAuthors = el.peopleInvolved;
-			}
-		});
-	}*/
 };
 </script>
 

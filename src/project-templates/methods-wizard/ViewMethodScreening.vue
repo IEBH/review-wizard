@@ -4,12 +4,12 @@
 
 		<InputTextNumber
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
-			v-model="numberOfTitleAbstractScreeners"
+			v-model="$tera.state.titleAbstractScreeners.length"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors screened title/abstract?"
-			v-model="$tera.state.titleAbstractScreeners"
+			v-model="titleAbstractScreeners"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -20,7 +20,7 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which author retrieved full-texts?"
-			v-model="$tera.state.fullTextRetrivalAuthor"
+			v-model="fullTextRetrivalAuthor"
 			:options="this.retrfulltextAuthors"
 		/>
 
@@ -31,7 +31,7 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors screened full-texts?"
-			v-model="$tera.state.fullTextScreeners"
+			v-model="fullTextScreeners"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -42,31 +42,31 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Who screened the citation search?"
-			v-model="$tera.state.screenCitationSearchPeople"
+			v-model="screenCitationSearchPeople"
 			:options="this.scCitSearchPeople"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Who screened trial registries?"
-			v-model="$tera.state.screenTrialRegisPeople"
+			v-model="screenTrialRegisPeople"
 			:options="this.scTrialRegisPeople"
 		/>
 
 		<InputSelectMulti
 			question="Any disagreements were resolved by:"
-			v-model="$tera.state.disputeResolution"
+			v-model="disputeResolution"
 			:options="disputeResolutionOptions"
 		/>
 
 		<InputSelectYesNo
 			question="This systematic review is reported following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) statement."
-			v-model="$tera.state.isPrismaFlowDiagram"
+			v-model="isPrismaFlowDiagram"
 		/>
 
 		<InputSelectYesNo
-			v-if="screening.isPrismaFlowDiagram"
+			v-if="$tera.state.isPrismaFlowDiagram"
 			question="The list of studies excluded at full-text is provided in Appendix"
-			v-model="$tera.state.isExcludedFullTextInAppendix"
+			v-model="isExcludedFullTextInAppendix"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />
@@ -79,6 +79,7 @@ import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
+import DefaultValue from "./DefaultValue";
 
 //import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
@@ -92,14 +93,70 @@ export default {
 		BasePreviewOutput
 	},
 	computed: {
-		numberOfTitleAbstractScreeners() {
-			return this.$tera.state.titleAbstractScreeners?.length;
+		titleAbstractScreeners() {
+			this.$tera.setProjectStateDefaults(
+				"titleAbstractScreeners",
+				DefaultValue.screening.titleAbstractScreeners
+			);
+			return this.$tera.state.titleAbstractScreeners;
 		},
+		fullTextRetrivalAuthor() {
+			this.$tera.setProjectStateDefaults(
+				"fullTextRetrivalAuthor",
+				DefaultValue.screening.fullTextRetrivalAuthor
+			);
+			return this.$tera.state.fullTextRetrivalAuthor;
+		},
+		fullTextScreeners() {
+			this.$tera.setProjectStateDefaults(
+				"fullTextScreeners",
+				DefaultValue.screening.fullTextScreeners
+			);
+			return this.$tera.state.fullTextScreeners;
+		},
+		screenCitationSearchPeople() {
+			this.$tera.setProjectStateDefaults(
+				"screenCitationSearchPeople",
+				DefaultValue.screening.screenCitationSearchPeople
+			);
+			return this.$tera.state.screenCitationSearchPeople;
+		},
+		screenTrialRegisPeople() {
+			this.$tera.setProjectStateDefaults(
+				"screenTrialRegisPeople",
+				DefaultValue.screening.screenTrialRegisPeople
+			);
+			return this.$tera.state.screenTrialRegisPeople;
+		},
+		disputeResolution() {
+			this.$tera.setProjectStateDefaults(
+				"disputeResolution",
+				DefaultValue.screening.disputeResolution
+			);
+			return this.$tera.state.disputeResolution;
+		},
+		isPrismaFlowDiagram() {
+			this.$tera.setProjectStateDefaults(
+				"isPrismaFlowDiagram",
+				DefaultValue.screening.isPrismaFlowDiagram
+			);
+			return this.$tera.state.isPrismaFlowDiagram;
+		},
+		isExcludedFullTextInAppendix() {
+			this.$tera.setProjectStateDefaults(
+				"isExcludedFullTextInAppendix",
+				DefaultValue.screening.isExcludedFullTextInAppendix
+			);
+			return this.$tera.state.isExcludedFullTextInAppendix;
+		},
+		/*numberOfTitleAbstractScreeners() {
+			return this.$tera.state.titleAbstractScreeners?.length;
+		},*/
 		numberOfFullTextScreeners() {
 			return this.$tera.state.fullTextScreeners?.length;
 		},
 		scTrialRegisPeople() {
-			let da = this.$tera.state.author?.map(el => {
+			let da = this.$tera.state.authors?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -110,7 +167,7 @@ export default {
 			return da;
 		},
 		scCitSearchPeople() {
-			let da = this.$tera.state.author?.map(el => {
+			let da = this.$tera.state.authors?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -121,7 +178,7 @@ export default {
 			return da;
 		},
 		scabstractAuthors() {
-			let da = this.$tera.state.author?.map(el => {
+			let da = this.$tera.state.authors?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -132,7 +189,7 @@ export default {
 			return da;
 		},
 		scfulltextAuthors() {
-			let da = this.$tera.state.author?.map(el => {
+			let da = this.$tera.state.authors?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -143,7 +200,7 @@ export default {
 			return da;
 		},
 		retrfulltextAuthors() {
-			let da = this.$tera.state.author?.map(el => {
+			let da = this.$tera.state.authors?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {

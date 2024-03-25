@@ -17,7 +17,7 @@
 </template>
 <script>
 import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
-
+import DefaultValue from "./DefaultValue";
 //import deepstreamMixin from "@/mixins/DeepstreamMixin";
 export default {
 	name: "ViewTitlePagePeople",
@@ -27,11 +27,17 @@ export default {
 	},
 	computed: {
 		authors() {
-			this.$tera.setProjectStateDefaults(`author`, [""]);
-			return this.$tera.state.author;
+			this.$tera.setProjectStateDefaults(
+				`authors`,
+				DefaultValue.titlepage.authors
+			);
+			return this.$tera.state.authors;
 		},
 		acknowledgements() {
-			this.$tera.setProjectStateDefaults(`acknowledgements`, [""]);
+			this.$tera.setProjectStateDefaults(
+				`acknowledgements`,
+				DefaultValue.titlepage.acknowledgements
+			);
 			return this.$tera.state.acknowledgements;
 		}
 	}
