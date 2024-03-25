@@ -151,12 +151,12 @@ export default {
 	},
 	computed: {
 		projectId() {
-			//return this.$store.state.projectId;
-			return this.$tera.state.id;
+			return this.$store.state.projectId;
+			//return this.$tera.state.id;
 		},
 		methodsRecord() {
-			//return this.$store.state.methodsRecord;
-			return this.$tera.state.methodsRecord;
+			return this.$store.state.methodsRecord;
+			//return this.$tera.state.methodsRecord;
 		}
 	}
 };
