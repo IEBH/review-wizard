@@ -9,19 +9,19 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors assessed the risk of bias?"
-			v-model="$tera.state.assessedRobAuthors"
+			v-model="assessedRobAuthors"
 			:options="this.asRobAuthors"
 		/>
 
 		<InputSelectYesNo
 			question="Did each author independently review the risk of bias?"
-			v-model="$tera.state.isIndependent"
+			v-model="isIndependent"
 		/>
 
 		<InputSelectMulti
 			question="Risk of bias was determined using the:"
 			:options="options.tools"
-			v-model="$tera.state.toolUsed"
+			v-model="riskOfBiasToolUsed"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />
@@ -34,6 +34,8 @@ import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
+
+import DefaultValue from "./DefaultValue";
 //import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
@@ -46,8 +48,29 @@ export default {
 		BasePreviewOutput
 	},
 	computed: {
+		assessedRobAuthors() {
+			this.$tera.setProjectStateDefaults(
+				"assessedRobAuthors",
+				DefaultValue.riskOfBias.assessedRobAuthors
+			);
+			return this.$tera.state.assessedRobAuthors;
+		},
+		isIndependent() {
+			this.$tera.setProjectStateDefaults(
+				"isIndependent",
+				DefaultValue.riskOfBias.isIndependent
+			);
+			return this.$tera.state.isIndependent;
+		},
+		riskOfBiasToolUsed() {
+			this.$tera.setProjectStateDefaults(
+				"riskOfBiasToolUsed",
+				DefaultValue.riskOfBias.toolUsed
+			);
+			return this.$tera.state.riskOfBiasToolUsed;
+		},
 		asRobAuthors() {
-			let da = this.$tera.state.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {

@@ -156,7 +156,7 @@ export default {
 			return this.$tera.state.fullTextScreeners?.length;
 		},
 		scTrialRegisPeople() {
-			let da = this.$tera.state.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -167,7 +167,7 @@ export default {
 			return da;
 		},
 		scCitSearchPeople() {
-			let da = this.$tera.state.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -178,7 +178,7 @@ export default {
 			return da;
 		},
 		scabstractAuthors() {
-			let da = this.$tera.state.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -189,7 +189,7 @@ export default {
 			return da;
 		},
 		scfulltextAuthors() {
-			let da = this.$tera.state.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -200,7 +200,7 @@ export default {
 			return da;
 		},
 		retrfulltextAuthors() {
-			let da = this.$tera.state.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {

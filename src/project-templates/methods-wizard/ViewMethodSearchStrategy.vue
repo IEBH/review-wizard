@@ -174,7 +174,7 @@ export default {
 			return this.$tera.state.supplementoryMethods;
 		},
 		dsSearchStrategyAuthors() {
-			let da = this.$tera.state.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
@@ -188,7 +188,7 @@ export default {
 			return da;
 		},
 		csAuthors() {
-			let da = this.$tera.state.authors?.map(el => {
+			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {

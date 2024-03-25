@@ -4,7 +4,7 @@
 
 		<InputSelectDropdown
 			question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-			v-model="$tera.state.numberOfStudies"
+			v-model="numberOfStudies"
 			:options="numberOptions"
 		/>
 
@@ -22,7 +22,7 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which author/s performed data extraction?"
-			v-model="$tera.state.extractionAuthors"
+			v-model="extractionAuthors"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -33,7 +33,7 @@
 
 		<InputSelectYesNo
 			question="Do you wish to specify what data will be extracted (optional)"
-			v-model="$tera.state.optionalDetail"
+			v-model="optionalDetail"
 		/>
 
 		<!-- New -->
@@ -46,22 +46,22 @@
 				<InputSelectMulti
 					question="Methods:"
 					:options="options.methods"
-					v-model="$tera.state.methods"
+					v-model="methods"
 				/>
 				<InputSelectMulti
 					question="Participants:"
 					:options="options.participants"
-					v-model="$tera.state.participants"
+					v-model="participants"
 				/>
 				<InputSelectMulti
 					question="Interventions:"
 					:options="options.interventions"
-					v-model="$tera.state.interventions"
+					v-model="interventions"
 				/>
 				<InputSelectMulti
 					question="Comparators:"
 					:options="options.comparators"
-					v-model="$tera.state.comparators"
+					v-model="comparators"
 				/>
 				<InputTable
 					question="Outcomes:"
@@ -70,40 +70,44 @@
 					:type="true"
 					:description="true"
 					:examples="true"
-					v-model="$tera.state.outcomes"
+					v-model="extractionOutcomes"
 					mainPlaceholder="e.g. investigator-assessed change in acne severity"
 				/>
 				<Message
-					v-if="!arrayEquals(picot.outcomes, extraction.outcomes)"
+					v-if="
+						!arrayEquals($tera.state.outcomes, $tera.state.extractionOutcomes)
+					"
 					severity="warn"
 					:closable="false"
 				>
 					<div class="message-inside-text">
 						Not the same as PICOST outcomes
 					</div>
+					<!--@click="updateField('outcomes', picot.outcomes)"-->
 					<Button
 						label="Copy from PICOST section"
 						class="p-button-sm btsyleblue"
-						@click="updateField('outcomes', picot.outcomes)"
+						@click="$tera.state.outcomes"
 					/>
 				</Message>
 				<InputSelectMulti
 					question="Types:"
 					:options="options.types"
-					v-model="$tera.state.types"
+					v-model="extractionTypes"
 				/>
 				<Message
-					v-if="!arrayEquals(picot.types, extraction.types)"
+					v-if="!arrayEquals($tera.state.types, $tera.state.extractionTypes)"
 					severity="warn"
 					:closable="false"
 				>
 					<div class="message-inside-text">
 						Not the same as PICOST types
 					</div>
+					<!--@click="updateField('types', picot.types)"-->
 					<Button
 						label="Copy from PICOST section"
 						class="p-button-sm btsyleblue"
-						@click="updateField('types', picot.types)"
+						@click="$tera.state.types"
 					/>
 				</Message>
 			</AccordionTab>
@@ -130,6 +134,7 @@ import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutO
 import InputTable from "@/components/InputTable.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
+import DefaultValue from "./DefaultValue";
 //import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
@@ -147,23 +152,29 @@ export default {
 		InputSelectYesNo
 	},
 	computed: {
-		/*extractorsOption() {
-			let option = [];
-			let authorsLength = this.extraction.extractionAuthors?.length;
-			if (authorsLength != 0) {
-				for (var i = 1; i <= authorsLength; i++) {
-					option.push(i);
-				}
-			} else {
-				authorsLength = this.titlepage.authors?.length;
-				for (i = 1; i <= authorsLength; i++) {
-					option.push(i);
-				}
-			}
-			return option;
-		},*/
+		numberOfStudies() {
+			this.$tera.setProjectStateDefaults(
+				"numberOfStudies",
+				DefaultValue.extraction.numberOfStudies
+			);
+			return this.$tera.state.numberOfStudies;
+		},
 		numberOfExtractors() {
 			return this.$tera.state.extractionAuthors?.length;
+		},
+		extractionAuthors() {
+			this.$tera.setProjectStateDefaults(
+				"extractionAuthors",
+				DefaultValue.extraction.extractionAuthors
+			);
+			return this.$tera.state.extractionAuthors;
+		},
+		optionalDetail() {
+			this.$tera.setProjectStateDefaults(
+				"optionalDetail",
+				DefaultValue.extraction.optionalDetail
+			);
+			return this.$tera.state.optionalDetail;
 		},
 		pfDataExtractAuthors() {
 			let da = this.$tera.state.author?.map(el => {
@@ -175,6 +186,49 @@ export default {
 				}
 			});
 			return da;
+		},
+		//New
+		methods() {
+			this.$tera.setProjectStateDefaults(
+				"methods",
+				DefaultValue.extraction.methods
+			);
+			return this.$tera.state.methods;
+		},
+		participants() {
+			this.$tera.setProjectStateDefaults(
+				"participants",
+				DefaultValue.extraction.participants
+			);
+			return this.$tera.state.participants;
+		},
+		interventions() {
+			this.$tera.setProjectStateDefaults(
+				"interventions",
+				DefaultValue.extraction.interventions
+			);
+			return this.$tera.state.interventions;
+		},
+		comparators() {
+			this.$tera.setProjectStateDefaults(
+				"comparators",
+				DefaultValue.extraction.comparators
+			);
+			return this.$tera.state.comparators;
+		},
+		extractionOutcomes() {
+			this.$tera.setProjectStateDefaults(
+				"extractionOutcomes",
+				DefaultValue.extraction.outcomes
+			);
+			return this.$tera.state.extractionOutcomes;
+		},
+		extractionTypes() {
+			this.$tera.setProjectStateDefaults(
+				"extractionTypes",
+				DefaultValue.extraction.types
+			);
+			return this.$tera.state.extractionTypes;
 		}
 	},
 	methods: {
@@ -218,23 +272,26 @@ export default {
 	},
 	mounted() {
 		if (
-			!this.$tera.state.outcomes ||
-			JSON.stringify(this.$tera.state.outcomes) ==
+			!this.$tera.state.extractionOutcomes ||
+			JSON.stringify(this.$tera.state.extractionOutcomes) ==
 				'[{"inclusion":true,"type":true}]'
 		) {
 			// console.log("this.extraction.types",...this.picot.types);
 			if (this.$tera.state.outcomes) {
 				// console.log("this.picot.outcomes", this.picot.outcomes, this.extraction.outcomes)
 				// Deep copy
-				this.$tera.state.outcomes = JSON.parse(
+				this.$tera.state.extractionOutcomes = JSON.parse(
 					JSON.stringify(this.$tera.state.outcomes)
 				);
 			}
 		}
 
-		if (this.$tera.state.types && this.$tera.state.types.length === 0) {
-			// Shallow copy
-			this.$tera.state.types = [...this.$tera.state.types];
+		if (
+			this.$tera.state.extractionTypes &&
+			this.$tera.state.extractionTypes.length === 0
+		) {
+			// Shallow copy : extraction types= picot types
+			this.$tera.state.extractionTypes = [...this.$tera.state.types];
 		}
 	},
 	data() {

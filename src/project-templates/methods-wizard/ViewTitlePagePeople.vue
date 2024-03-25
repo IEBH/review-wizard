@@ -28,10 +28,10 @@ export default {
 	computed: {
 		authors() {
 			this.$tera.setProjectStateDefaults(
-				`authors`,
+				`author`,
 				DefaultValue.titlepage.authors
 			);
-			return this.$tera.state.authors;
+			return this.$tera.state.author;
 		},
 		acknowledgements() {
 			this.$tera.setProjectStateDefaults(
