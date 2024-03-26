@@ -15,13 +15,13 @@
 
 		<InputSelectYesNo
 			question="Did each author independently review the risk of bias?"
-			v-model="isIndependent"
+			v-model="$tera.state.isIndependent"
 		/>
 
 		<InputSelectMulti
 			question="Risk of bias was determined using the:"
 			:options="options.tools"
-			v-model="riskOfBiasToolUsed"
+			v-model="$tera.state.riskOfBiasToolUsed"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />
@@ -48,27 +48,6 @@ export default {
 		BasePreviewOutput
 	},
 	computed: {
-		assessedRobAuthors() {
-			this.$tera.setProjectStateDefaults(
-				"assessedRobAuthors",
-				DefaultValue.riskOfBias.assessedRobAuthors
-			);
-			return this.$tera.state.assessedRobAuthors;
-		},
-		isIndependent() {
-			this.$tera.setProjectStateDefaults(
-				"isIndependent",
-				DefaultValue.riskOfBias.isIndependent
-			);
-			return this.$tera.state.isIndependent;
-		},
-		riskOfBiasToolUsed() {
-			this.$tera.setProjectStateDefaults(
-				"riskOfBiasToolUsed",
-				DefaultValue.riskOfBias.toolUsed
-			);
-			return this.$tera.state.riskOfBiasToolUsed;
-		},
 		asRobAuthors() {
 			let da = this.$tera.state.author?.map(el => {
 				return { label: el };
@@ -82,7 +61,26 @@ export default {
 		},
 		numberOfRiskOfBiasAuthors() {
 			return this.$tera.state.assessedRobAuthors?.length;
+		},
+		assessedRobAuthors() {
+			if (this.$tera.state.assessedRobAuthors == undefined) {
+				this.$tera.setProjectStateDefaults(
+					"assessedRobAuthors",
+					DefaultValue.riskOfBias.assessedRobAuthors
+				);
+			}
+			return this.$tera.state.assessedRobAuthors;
 		}
+	},
+	mounted() {
+		this.$tera.setProjectStateDefaults(
+			"isIndependent",
+			DefaultValue.riskOfBias.isIndependent
+		);
+		this.$tera.setProjectStateDefaults(
+			"riskOfBiasToolUsed",
+			DefaultValue.riskOfBias.toolUsed
+		);
 	},
 	data() {
 		return {

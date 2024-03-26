@@ -4,7 +4,7 @@
 
 		<InputSelectDropdown
 			question="How many studies was the data extraction form piloted on? (for study characteristics and outcome data)"
-			v-model="numberOfStudies"
+			v-model="$tera.state.numberOfStudies"
 			:options="numberOptions"
 		/>
 
@@ -22,7 +22,7 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which author/s performed data extraction?"
-			v-model="extractionAuthors"
+			v-model="$tera.state.extractionAuthors"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -33,7 +33,7 @@
 
 		<InputSelectYesNo
 			question="Do you wish to specify what data will be extracted (optional)"
-			v-model="optionalDetail"
+			v-model="$tera.state.optionalDetail"
 		/>
 
 		<!-- New -->
@@ -46,22 +46,22 @@
 				<InputSelectMulti
 					question="Methods:"
 					:options="options.methods"
-					v-model="methods"
+					v-model="$tera.state.methods"
 				/>
 				<InputSelectMulti
 					question="Participants:"
 					:options="options.participants"
-					v-model="participants"
+					v-model="$tera.state.participants"
 				/>
 				<InputSelectMulti
 					question="Interventions:"
 					:options="options.interventions"
-					v-model="interventions"
+					v-model="$tera.state.interventions"
 				/>
 				<InputSelectMulti
 					question="Comparators:"
 					:options="options.comparators"
-					v-model="comparators"
+					v-model="$tera.state.comparators"
 				/>
 				<InputTable
 					question="Outcomes:"
@@ -70,7 +70,7 @@
 					:type="true"
 					:description="true"
 					:examples="true"
-					v-model="extractionOutcomes"
+					v-model="$tera.state.extractionOutcomes"
 					mainPlaceholder="e.g. investigator-assessed change in acne severity"
 				/>
 				<Message
@@ -93,7 +93,7 @@
 				<InputSelectMulti
 					question="Types:"
 					:options="options.types"
-					v-model="extractionTypes"
+					v-model="$tera.state.extractionTypes"
 				/>
 				<Message
 					v-if="!arrayEquals($tera.state.types, $tera.state.extractionTypes)"
@@ -152,29 +152,8 @@ export default {
 		InputSelectYesNo
 	},
 	computed: {
-		numberOfStudies() {
-			this.$tera.setProjectStateDefaults(
-				"numberOfStudies",
-				DefaultValue.extraction.numberOfStudies
-			);
-			return this.$tera.state.numberOfStudies;
-		},
 		numberOfExtractors() {
 			return this.$tera.state.extractionAuthors?.length;
-		},
-		extractionAuthors() {
-			this.$tera.setProjectStateDefaults(
-				"extractionAuthors",
-				DefaultValue.extraction.extractionAuthors
-			);
-			return this.$tera.state.extractionAuthors;
-		},
-		optionalDetail() {
-			this.$tera.setProjectStateDefaults(
-				"optionalDetail",
-				DefaultValue.extraction.optionalDetail
-			);
-			return this.$tera.state.optionalDetail;
 		},
 		pfDataExtractAuthors() {
 			let da = this.$tera.state.author?.map(el => {
@@ -186,49 +165,6 @@ export default {
 				}
 			});
 			return da;
-		},
-		//New
-		methods() {
-			this.$tera.setProjectStateDefaults(
-				"methods",
-				DefaultValue.extraction.methods
-			);
-			return this.$tera.state.methods;
-		},
-		participants() {
-			this.$tera.setProjectStateDefaults(
-				"participants",
-				DefaultValue.extraction.participants
-			);
-			return this.$tera.state.participants;
-		},
-		interventions() {
-			this.$tera.setProjectStateDefaults(
-				"interventions",
-				DefaultValue.extraction.interventions
-			);
-			return this.$tera.state.interventions;
-		},
-		comparators() {
-			this.$tera.setProjectStateDefaults(
-				"comparators",
-				DefaultValue.extraction.comparators
-			);
-			return this.$tera.state.comparators;
-		},
-		extractionOutcomes() {
-			this.$tera.setProjectStateDefaults(
-				"extractionOutcomes",
-				DefaultValue.extraction.outcomes
-			);
-			return this.$tera.state.extractionOutcomes;
-		},
-		extractionTypes() {
-			this.$tera.setProjectStateDefaults(
-				"extractionTypes",
-				DefaultValue.extraction.types
-			);
-			return this.$tera.state.extractionTypes;
 		}
 	},
 	methods: {
@@ -271,6 +207,46 @@ export default {
 		}
 	},
 	mounted() {
+		//set default values
+		this.$tera.setProjectStateDefaults(
+			"numberOfStudies",
+			DefaultValue.extraction.numberOfStudies
+		);
+		this.$tera.setProjectStateDefaults(
+			"extractionAuthors",
+			DefaultValue.extraction.extractionAuthors
+		);
+		this.$tera.setProjectStateDefaults(
+			"optionalDetail",
+			DefaultValue.extraction.optionalDetail
+		);
+		//New added
+		this.$tera.setProjectStateDefaults(
+			"methods",
+			DefaultValue.extraction.methods
+		);
+		this.$tera.setProjectStateDefaults(
+			"participants",
+			DefaultValue.extraction.participants
+		);
+		this.$tera.setProjectStateDefaults(
+			"interventions",
+			DefaultValue.extraction.interventions
+		);
+		this.$tera.setProjectStateDefaults(
+			"comparators",
+			DefaultValue.extraction.comparators
+		);
+		this.$tera.setProjectStateDefaults(
+			"extractionOutcomes",
+			DefaultValue.extraction.outcomes
+		);
+		this.$tera.setProjectStateDefaults(
+			"extractionTypes",
+			DefaultValue.extraction.types
+		);
+
+		//extraction Outcomes & Types
 		if (
 			!this.$tera.state.extractionOutcomes ||
 			JSON.stringify(this.$tera.state.extractionOutcomes) ==

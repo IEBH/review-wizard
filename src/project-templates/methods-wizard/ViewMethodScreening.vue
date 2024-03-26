@@ -93,62 +93,6 @@ export default {
 		BasePreviewOutput
 	},
 	computed: {
-		titleAbstractScreeners() {
-			this.$tera.setProjectStateDefaults(
-				"titleAbstractScreeners",
-				DefaultValue.screening.titleAbstractScreeners
-			);
-			return this.$tera.state.titleAbstractScreeners;
-		},
-		fullTextRetrivalAuthor() {
-			this.$tera.setProjectStateDefaults(
-				"fullTextRetrivalAuthor",
-				DefaultValue.screening.fullTextRetrivalAuthor
-			);
-			return this.$tera.state.fullTextRetrivalAuthor;
-		},
-		fullTextScreeners() {
-			this.$tera.setProjectStateDefaults(
-				"fullTextScreeners",
-				DefaultValue.screening.fullTextScreeners
-			);
-			return this.$tera.state.fullTextScreeners;
-		},
-		screenCitationSearchPeople() {
-			this.$tera.setProjectStateDefaults(
-				"screenCitationSearchPeople",
-				DefaultValue.screening.screenCitationSearchPeople
-			);
-			return this.$tera.state.screenCitationSearchPeople;
-		},
-		screenTrialRegisPeople() {
-			this.$tera.setProjectStateDefaults(
-				"screenTrialRegisPeople",
-				DefaultValue.screening.screenTrialRegisPeople
-			);
-			return this.$tera.state.screenTrialRegisPeople;
-		},
-		disputeResolution() {
-			this.$tera.setProjectStateDefaults(
-				"disputeResolution",
-				DefaultValue.screening.disputeResolution
-			);
-			return this.$tera.state.disputeResolution;
-		},
-		isPrismaFlowDiagram() {
-			this.$tera.setProjectStateDefaults(
-				"isPrismaFlowDiagram",
-				DefaultValue.screening.isPrismaFlowDiagram
-			);
-			return this.$tera.state.isPrismaFlowDiagram;
-		},
-		isExcludedFullTextInAppendix() {
-			this.$tera.setProjectStateDefaults(
-				"isExcludedFullTextInAppendix",
-				DefaultValue.screening.isExcludedFullTextInAppendix
-			);
-			return this.$tera.state.isExcludedFullTextInAppendix;
-		},
 		numberOfTitleAbstractScreeners() {
 			return this.$tera.state.titleAbstractScreeners?.length;
 		},
@@ -210,6 +154,40 @@ export default {
 			});
 			return da;
 		}
+	},
+	mounted() {
+		this.$tera.setProjectStateDefaults(
+			"titleAbstractScreeners",
+			DefaultValue.screening.titleAbstractScreeners
+		);
+		this.$tera.setProjectStateDefaults(
+			"fullTextRetrivalAuthor",
+			DefaultValue.screening.fullTextRetrivalAuthor
+		);
+		this.$tera.setProjectStateDefaults(
+			"fullTextScreeners",
+			DefaultValue.screening.fullTextScreeners
+		);
+		this.$tera.setProjectStateDefaults(
+			"screenCitationSearchPeople",
+			DefaultValue.screening.screenCitationSearchPeople
+		);
+		this.$tera.setProjectStateDefaults(
+			"screenTrialRegisPeople",
+			DefaultValue.screening.screenTrialRegisPeople
+		);
+		this.$tera.setProjectStateDefaults(
+			"disputeResolution",
+			DefaultValue.screening.disputeResolution
+		);
+		this.$tera.setProjectStateDefaults(
+			"isPrismaFlowDiagram",
+			DefaultValue.screening.isPrismaFlowDiagram
+		);
+		this.$tera.setProjectStateDefaults(
+			"isExcludedFullTextInAppendix",
+			DefaultValue.screening.isExcludedFullTextInAppendix
+		);
 	},
 	data() {
 		return {

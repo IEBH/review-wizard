@@ -107,7 +107,10 @@ export default {
 			"deduplicateResultsAuthors",
 			DefaultValue.search.deduplicateResultsAuthors
 		);
-		this.$tera.state.components = [];
+		this.$tera.setProjectStateDefaults(
+			"components",
+			DefaultValue.search.components
+		);
 		this.$tera.setProjectStateDefaults(
 			"specialist",
 			DefaultValue.search.specialist
