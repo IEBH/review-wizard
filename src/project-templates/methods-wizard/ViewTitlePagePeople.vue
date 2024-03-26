@@ -4,13 +4,13 @@
 
 		<InputTextSingleLineMulti
 			question="Who are the authors in the study?"
-			v-model="$tera.state.author"
+			v-model="authors"
 			placeholder="e.g. Justin Clark"
 		/>
 
 		<InputTextSingleLineMulti
 			question="Who else helped with the study? (Acknowledgements)"
-			v-model="$tera.state.acknowledgements"
+			v-model="acknowledgements"
 			placeholder="e.g. Justin Clark"
 		/>
 	</div>
@@ -25,32 +25,27 @@ export default {
 	components: {
 		InputTextSingleLineMulti
 	},
-	beforeCreate() {
-		this.$tera.setProjectStateDefaults(
-			`author`,
-			DefaultValue.titlepage.authors
-		);
-		this.$tera.setProjectStateDefaults(
-			`acknowledgements`,
-			DefaultValue.titlepage.acknowledgements
-		);
-	}
-	/*computed: {
+	computed: {
 		authors() {
-			this.$tera.setProjectStateDefaults(
-				`author`,
-				DefaultValue.titlepage.authors
-			);
+			if (this.$tera.state.author === undefined) {
+				this.$tera.setProjectStateDefaults(
+					`author`,
+					DefaultValue.titlepage.authors
+				);
+				console.log("authors:" + this.$tera.state.author);
+			}
 			return this.$tera.state.author;
 		},
 		acknowledgements() {
-			this.$tera.setProjectStateDefaults(
-				`acknowledgements`,
-				DefaultValue.titlepage.acknowledgements
-			);
+			if (this.$tera.state.acknowledgements === undefined) {
+				this.$tera.setProjectStateDefaults(
+					`acknowledgements`,
+					DefaultValue.titlepage.acknowledgements
+				);
+			}
 			return this.$tera.state.acknowledgements;
 		}
-	}*/
+	}
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
