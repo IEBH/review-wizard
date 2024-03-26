@@ -4,7 +4,7 @@
 
 		<InputTextSingleLineMulti
 			question="Who are the authors in the study?"
-			v-model="$tera.state.author"
+			v-model="authors"
 			placeholder="e.g. Justin Clark"
 		/>
 
@@ -24,6 +24,12 @@ export default {
 	//mixins: [deepstreamMixin("titlepage")],
 	components: {
 		InputTextSingleLineMulti
+	},
+	computed: {
+		authors() {
+			console.log("authors:" + this.$tera.state.author);
+			return this.$tera.state.author;
+		}
 	},
 	mounted() {
 		this.$tera.setProjectStateDefaults(
