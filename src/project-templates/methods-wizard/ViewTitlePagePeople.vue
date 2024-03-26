@@ -4,13 +4,13 @@
 
 		<InputTextSingleLineMulti
 			question="Who are the authors in the study?"
-			v-model="$tera.state.author"
+			v-model="$tera.state.people.authors"
 			placeholder="e.g. Justin Clark"
 		/>
 
 		<InputTextSingleLineMulti
 			question="Who else helped with the study? (Acknowledgements)"
-			v-model="$tera.state.acknowledgements"
+			v-model="$tera.state.people.acknowledgements"
 			placeholder="e.g. Justin Clark"
 		/>
 	</div>
@@ -26,14 +26,15 @@ export default {
 		InputTextSingleLineMulti
 	},
 	mounted() {
-		this.$tera.setProjectStateDefaults(
+		/*this.$tera.setProjectStateDefaults(
 			`author`,
 			DefaultValue.titlepage.authors
 		);
 		this.$tera.setProjectStateDefaults(
 			`acknowledgements`,
 			DefaultValue.titlepage.acknowledgements
-		);
+		);*/
+		this.$tera.setProjectStateDefaults("people", DefaultValue.people);
 	}
 	/*computed: {
 		authors() {

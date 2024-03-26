@@ -1,9 +1,9 @@
 export default {
-	titlepage: {
-		//title page
+	people: {
+		/*title page
 		title: "",
 		titleshort: "",
-		year: 0,
+		year: 0,*/
 		//people
 		authors: [""],
 		acknowledgements: [""]
