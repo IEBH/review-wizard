@@ -25,7 +25,7 @@ export default {
 	components: {
 		InputTextSingleLineMulti
 	},
-	created() {
+	beforeCreate() {
 		this.$tera.setProjectStateDefaults(
 			`author`,
 			DefaultValue.titlepage.authors
