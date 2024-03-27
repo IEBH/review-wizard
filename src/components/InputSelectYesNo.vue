@@ -7,7 +7,7 @@
 		</p>
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
 		<SelectButton
-			:value="value"
+			v-model="value"
 			@input="$emit('input', $event)"
 			:options="options"
 			optionLabel="label"
