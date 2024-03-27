@@ -18,28 +18,13 @@
 <script>
 import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
 //import DefaultValue from "./DefaultValue";
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
+
 export default {
 	name: "ViewTitlePagePeople",
-	//mixins: [deepstreamMixin("titlepage")],
+
 	components: {
 		InputTextSingleLineMulti
 	}
-	/*mounted() {
-		if (this.$tera.state.author === undefined) {
-			this.$tera.setProjectStateDefaults(
-				`author`,
-				DefaultValue.titlepage.authors
-			);
-			console.log("authors:" + this.$tera.state.author);
-		}
-		if (this.$tera.state.acknowledgements === undefined) {
-			this.$tera.setProjectStateDefaults(
-				`acknowledgements`,
-				DefaultValue.titlepage.acknowledgements
-			);
-		}
-	}*/
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

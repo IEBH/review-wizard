@@ -49,6 +49,7 @@ export default {
 		Button
 	},
 	mounted() {
+		//initialized with [""]
 		if (this.value == undefined) {
 			this.value = [""];
 		}

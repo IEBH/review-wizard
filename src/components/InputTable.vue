@@ -186,6 +186,18 @@ export default {
 			]
 		};
 	},
+	mounted() {
+		if (this.value == undefined) {
+			//Outcomes
+			if (this.type) {
+				this.value = [{ inclusion: true, type: true }];
+			}
+			//population,intervention,comparator,setting
+			else {
+				this.value = [{ inclusion: true }];
+			}
+		}
+	},
 	methods: {
 		newRow() {
 			if (this.inclusion && this.type) {

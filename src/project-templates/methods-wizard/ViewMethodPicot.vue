@@ -80,7 +80,6 @@
 
 <script>
 import OutputPicot from "./OutputPicot.vue";
-import DefaultValue from "./DefaultValue";
 
 export default {
 	name: "ViewMethodPicot",
@@ -99,23 +98,6 @@ export default {
 			],
 			outputComponent: OutputPicot
 		};
-	},
-	mounted() {
-		this.$tera.setProjectStateDefaults(
-			`population`,
-			DefaultValue.picot.population
-		);
-		this.$tera.setProjectStateDefaults(
-			`intervention`,
-			DefaultValue.picot.intervention
-		);
-		this.$tera.setProjectStateDefaults(
-			`comparator`,
-			DefaultValue.picot.comparator
-		);
-		this.$tera.setProjectStateDefaults(`outcomes`, DefaultValue.picot.outcomes);
-		this.$tera.setProjectStateDefaults(`setting`, DefaultValue.picot.setting);
-		this.$tera.setProjectStateDefaults(`types`, DefaultValue.picot.types);
 	}
 };
 </script>
