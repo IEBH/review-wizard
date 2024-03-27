@@ -4,13 +4,13 @@
 
 		<InputTextSingleLineMulti
 			question="Who are the authors in the study?"
-			v-model="authors"
+			v-model="$tera.state.author"
 			placeholder="e.g. Justin Clark"
 		/>
 
 		<InputTextSingleLineMulti
 			question="Who else helped with the study? (Acknowledgements)"
-			v-model="acknowledgements"
+			v-model="$tera.state.acknowledgements"
 			placeholder="e.g. Justin Clark"
 		/>
 	</div>
@@ -25,27 +25,19 @@ export default {
 	components: {
 		InputTextSingleLineMulti
 	},
-	computed: {
-		authors() {
-			if (this.$tera.state.author === undefined) {
-				this.$tera.setProjectStateDefaults(
-					`author`,
-					DefaultValue.titlepage.authors,
-					{ sync: false, save: true }
-				);
-				console.log("authors:" + this.$tera.state.author);
-			}
-			return this.$tera.state.author;
-		},
-		acknowledgements() {
-			if (this.$tera.state.acknowledgements === undefined) {
-				this.$tera.setProjectStateDefaults(
-					`acknowledgements`,
-					DefaultValue.titlepage.acknowledgements,
-					{ sync: false, save: true }
-				);
-			}
-			return this.$tera.state.acknowledgements;
+	updated() {
+		if (this.$tera.state.author === undefined) {
+			this.$tera.setProjectStateDefaults(
+				`author`,
+				DefaultValue.titlepage.authors
+			);
+			console.log("authors:" + this.$tera.state.author);
+		}
+		if (this.$tera.state.acknowledgements === undefined) {
+			this.$tera.setProjectStateDefaults(
+				`acknowledgements`,
+				DefaultValue.titlepage.acknowledgements
+			);
 		}
 	}
 };
