@@ -30,7 +30,8 @@ export default {
 			if (this.$tera.state.author === undefined) {
 				this.$tera.setProjectStateDefaults(
 					`author`,
-					DefaultValue.titlepage.authors
+					DefaultValue.titlepage.authors,
+					{ sync: false, save: true }
 				);
 				console.log("authors:" + this.$tera.state.author);
 			}
@@ -40,7 +41,8 @@ export default {
 			if (this.$tera.state.acknowledgements === undefined) {
 				this.$tera.setProjectStateDefaults(
 					`acknowledgements`,
-					DefaultValue.titlepage.acknowledgements
+					DefaultValue.titlepage.acknowledgements,
+					{ sync: false, save: true }
 				);
 			}
 			return this.$tera.state.acknowledgements;
