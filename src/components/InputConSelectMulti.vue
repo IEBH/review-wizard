@@ -41,7 +41,13 @@
 		>
 			<div class="p-fluid p-jc-center">
 				<p>Enter value of new option below</p>
-				<InputText autofocus placeholder="e.g. designed and tested the data extraction form" v-model="newOption" class="p-mb-3" /> <br />
+				<InputText
+					autofocus
+					placeholder="e.g. designed and tested the data extraction form"
+					v-model="newOption"
+					class="p-mb-3"
+				/>
+				<br />
 				<Button
 					label="Add Value"
 					icon="pi pi-plus"
@@ -102,6 +108,9 @@ export default {
 	},
 	methods: {
 		initialize() {
+			if (this.value == undefined) {
+				this.value = [];
+			}
 			if (this.value.length > 0) {
 				this.value.forEach(el => {
 					if (!this.contributors.includes(el.author)) {

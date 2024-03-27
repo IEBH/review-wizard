@@ -35,13 +35,13 @@ export default {
 				{ label: "Yes", value: true }
 			]
 		};
-	},
-	mounted() {
+	}
+	/*mounted() {
 		//initialize the Boolean value
 		if (this.value == undefined) {
 			this.value = false;
 		}
-	}
+	}*/
 };
 </script>
 
