@@ -24,8 +24,8 @@ export default {
 	//mixins: [deepstreamMixin("titlepage")],
 	components: {
 		InputTextSingleLineMulti
-	},
-	updated() {
+	}
+	/*mounted() {
 		if (this.$tera.state.author === undefined) {
 			this.$tera.setProjectStateDefaults(
 				`author`,
@@ -39,7 +39,7 @@ export default {
 				DefaultValue.titlepage.acknowledgements
 			);
 		}
-	}
+	}*/
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
