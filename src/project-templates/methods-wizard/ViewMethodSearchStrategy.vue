@@ -83,7 +83,6 @@ import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
-import DefaultValue from "./DefaultValue";
 import OutputSearchStrategy from "./OutputSearchStrategy.vue";
 
 export default {
@@ -97,49 +96,6 @@ export default {
 		//Restrictions on Publication Type
 		InputSelectYesNo
 		//Supplementary Searches
-	},
-	mounted() {
-		this.$tera.setProjectStateDefaults(
-			"designSearchStrategyAuthors",
-			DefaultValue.search.designSearchStrategyAuthors
-		);
-		this.$tera.setProjectStateDefaults(
-			"deduplicateResultsAuthors",
-			DefaultValue.search.deduplicateResultsAuthors
-		);
-		this.$tera.setProjectStateDefaults(
-			"components",
-			DefaultValue.search.components
-		);
-		this.$tera.setProjectStateDefaults(
-			"specialist",
-			DefaultValue.search.specialist
-		);
-		this.$tera.setProjectStateDefaults("helper", DefaultValue.search.helper);
-		this.$tera.setProjectStateDefaults(
-			"peerReviewer",
-			DefaultValue.search.peerReviewer
-		);
-		this.$tera.setProjectStateDefaults(
-			"isRestrictedByPublicationType",
-			DefaultValue.search.isRestrictedByPublicationType
-		);
-		this.$tera.setProjectStateDefaults(
-			"excludedPublicationTypes",
-			DefaultValue.search.excludedPublicationTypes
-		);
-		this.$tera.setProjectStateDefaults(
-			"isRestrictedByLanguage",
-			DefaultValue.search.isRestrictedByLanguage
-		);
-		this.$tera.setProjectStateDefaults(
-			"conductSSearchAuthors",
-			DefaultValue.search.conductSSearchAuthors
-		);
-		this.$tera.setProjectStateDefaults(
-			"supplementoryMethods",
-			DefaultValue.search.supplementoryMethods
-		);
 	},
 	computed: {
 		dsSearchStrategyAuthors() {

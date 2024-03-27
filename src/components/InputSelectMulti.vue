@@ -6,9 +6,16 @@
 			</b>
 		</p>
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
-		<Listbox id="multihighlight" v-if="selectOptions.length > 0" v-bind:value="value"
-			v-on:change="$emit('input', $event.value)" :options="selectOptions" optionLabel="label" dataKey="label"
-			:multiple="true">
+		<Listbox
+			id="multihighlight"
+			v-if="selectOptions.length > 0"
+			v-bind:value="value"
+			v-on:change="$emit('input', $event.value)"
+			:options="selectOptions"
+			optionLabel="label"
+			dataKey="label"
+			:multiple="true"
+		>
 			<template #option="slotProps">
 				<div>
 					<span class="p-ml-3">{{ slotProps.option.label }}</span>
@@ -17,16 +24,30 @@
 		</Listbox>
 		<!-- p-button-success -->
 		<div>
-			<Button label="Other" icon="pi pi-plus" class="btsyle" @click="openModal" />
+			<Button
+				label="Other"
+				icon="pi pi-plus"
+				class="btsyle"
+				@click="openModal"
+			/>
 		</div>
 
-
 		<!-- Modal to display other option -->
-		<Dialog header="Add Option" :visible.sync="displayModal" :style="{ width: '50vw' }" :modal="true">
+		<Dialog
+			header="Add Option"
+			:visible.sync="displayModal"
+			:style="{ width: '50vw' }"
+			:modal="true"
+		>
 			<div class="p-fluid p-jc-center">
 				<p>Enter value of new option below</p>
 				<InputText autofocus v-model="newOption" class="p-mb-3" /> <br />
-				<Button label="Add Value" icon="pi pi-plus" class="p-button-success" @click="closeModal" />
+				<Button
+					label="Add Value"
+					icon="pi pi-plus"
+					class="p-button-success"
+					@click="closeModal"
+				/>
 			</div>
 		</Dialog>
 	</div>
@@ -58,13 +79,18 @@ export default {
 		};
 	},
 	computed: {
-		selectOptions: function () {
+		selectOptions: function() {
 			// Find filter out any options that are blank
 			const options = this.options ? this.options.filter(el => el.label) : [];
 			// Find the union of value and options to account for other options which are user defined
 			if (this.value) {
 				return this.arrayUnion(this.value, options, this.areLabelsSame);
 			} else return options;
+		}
+	},
+	mounted() {
+		if (this.value == undefined) {
+			this.value = [];
 		}
 	},
 	methods: {
@@ -117,7 +143,6 @@ export default {
 .p-highlight {
 	background: #5a83ae !important;
 	border: 1px solid #576da0 !important;
-
 }
 
 #multihighlight .p-highlight {
@@ -150,6 +175,7 @@ export default {
 	&:hover {
 		/* box-shadow: 0 0 10px 0 #28a745 inset, 0 0 10px 4px #28a745; */
 		background-color: #28a745 !important;
-		border: 2px solid #4CAF50 !important;
+		border: 2px solid #4caf50 !important;
 	}
-}</style>
+}
+</style>

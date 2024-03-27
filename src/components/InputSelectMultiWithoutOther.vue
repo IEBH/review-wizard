@@ -6,16 +6,22 @@
 			</b>
 		</p>
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
-		<Listbox id="multihighlight" v-if="selectOptions.length > 0" v-bind:value="value"
-			v-on:change="$emit('input', $event.value)" :options="selectOptions" optionLabel="label" dataKey="label"
-			:multiple="true">
+		<Listbox
+			id="multihighlight"
+			v-if="selectOptions.length > 0"
+			v-bind:value="value"
+			v-on:change="$emit('input', $event.value)"
+			:options="selectOptions"
+			optionLabel="label"
+			dataKey="label"
+			:multiple="true"
+		>
 			<template #option="slotProps">
 				<div>
 					<span class="p-ml-3">{{ slotProps.option.label }}</span>
 				</div>
 			</template>
 		</Listbox>
-
 	</div>
 </template>
 
@@ -39,13 +45,19 @@ export default {
 		};
 	},
 	computed: {
-		selectOptions: function () {
+		selectOptions: function() {
 			// Find filter out any options that are blank
 			const options = this.options ? this.options.filter(el => el.label) : [];
 			// Find the union of value and options to account for other options which are user defined
 			if (this.value) {
 				return this.arrayUnion(this.value, options, this.areLabelsSame);
 			} else return options;
+		}
+	},
+	mounted() {
+		//initialize choosed authors
+		if (this.value == undefined) {
+			this.value = [];
 		}
 	},
 	methods: {
@@ -86,7 +98,6 @@ export default {
 .p-highlight {
 	background: #5a83ae !important;
 	border: 1px solid #576da0 !important;
-
 }
 
 #multihighlight .p-highlight {
@@ -119,7 +130,7 @@ export default {
 	&:hover {
 		/* box-shadow: 0 0 10px 0 #28a745 inset, 0 0 10px 4px #28a745; */
 		background-color: #28a745 !important;
-		border: 2px solid #4CAF50 !important;
+		border: 2px solid #4caf50 !important;
 	}
 }
 </style>
