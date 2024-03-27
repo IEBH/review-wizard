@@ -17,7 +17,7 @@
 </template>
 <script>
 import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
-import DefaultValue from "./DefaultValue";
+//import DefaultValue from "./DefaultValue";
 //import deepstreamMixin from "@/mixins/DeepstreamMixin";
 export default {
 	name: "ViewTitlePagePeople",
