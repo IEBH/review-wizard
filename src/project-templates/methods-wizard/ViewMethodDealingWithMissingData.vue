@@ -4,7 +4,7 @@
 		<!--:options="numberOptions"-->
 		<InputSelectYesNo
 			question="We contacted investigators or study sponsors to provide missing data"
-			v-model="isContactedInvestigators"
+			v-model="$tera.state.isContactedInvestigators"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />
@@ -13,19 +13,9 @@
 
 <script>
 import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
-import DefaultValue from "./DefaultValue";
 
 export default {
 	name: "ViewMethodDealingWithMissingData",
-	computed: {
-		isContactedInvestigators() {
-			this.$tera.setProjectStateDefaults(
-				"isContactedInvestigators",
-				DefaultValue.missingData.isContactedInvestigators
-			);
-			return this.$tera.state.isContactedInvestigators;
-		}
-	},
 	data() {
 		return {
 			//numberOptions: ["1", "2", "3", "4", "5", "6"],

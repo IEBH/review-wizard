@@ -520,7 +520,7 @@ export default {
 		interventions: [],
 		comparators: [],
 		outcomes: [{ inclusion: true, type: true }],
-		types: []
+		extractionTypes: []
 	},
 	riskOfBias: {
 		//numberOfAuthors: null,
@@ -538,7 +538,7 @@ export default {
 		metaAnalysisModelUsed: null
 	},
 	unitOfAnalysis: {
-		type: null,
+		unitOfAnalysisType: null,
 		otherType: null,
 		example: null,
 		example2: null

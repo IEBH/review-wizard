@@ -4,13 +4,13 @@
 
 		<InputSelectYesNo
 			question="Was publication bias measured?"
-			v-model="isMeasuredPublicationBias"
+			v-model="$tera.state.isMeasuredPublicationBias"
 		/>
 
 		<div v-if="$tera.state.isMeasuredPublicationBias">
 			<InputSelectDropdown
 				question="We measured publication bias / small studies effect using"
-				v-model="biasMeasurement"
+				v-model="$tera.state.biasMeasurement"
 				:options="publicationBiasOptions"
 			/>
 
@@ -40,8 +40,6 @@ import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 import InputTextMultiLine from "@/components/InputTextMultiLine.vue";
 import InputTextSingleLine from "@/components/InputTextSingleLine.vue";
 
-import DefaultValue from "./DefaultValue";
-
 export default {
 	name: "ViewMethodHeterogeneityPublicationBias",
 
@@ -51,22 +49,6 @@ export default {
 		InputTextMultiLine,
 		PreviewOutput,
 		InputTextSingleLine
-	},
-	computed: {
-		isMeasuredPublicationBias() {
-			this.$tera.setProjectStateDefaults(
-				"isMeasuredPublicationBias",
-				DefaultValue.heterogeneityPublicationBiases.isMeasuredPublicationBias
-			);
-			return this.$tera.state.isMeasuredPublicationBias;
-		},
-		biasMeasurement() {
-			this.$tera.setProjectStateDefaults(
-				"biasMeasurement",
-				DefaultValue.heterogeneityPublicationBiases.biasMeasurement
-			);
-			return this.$tera.state.biasMeasurement;
-		}
 	},
 	data() {
 		return {

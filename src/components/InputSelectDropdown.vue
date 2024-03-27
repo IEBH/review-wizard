@@ -28,7 +28,7 @@ export default {
 	},
 	mounted() {
 		if (this.value == undefined) {
-			this.value = null;
+			this.value = "";
 		}
 	}
 };

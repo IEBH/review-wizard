@@ -4,12 +4,12 @@
 
 		<InputTextNumber
 			question="The number of authors reviewed the risk of bias?"
-			v-model="numberOfRiskOfBiasAuthors"
+			v-model="$tera.state.numberOfRiskOfBiasAuthors"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors assessed the risk of bias?"
-			v-model="assessedRobAuthors"
+			v-model="$tera.state.assessedRobAuthors"
 			:options="this.asRobAuthors"
 		/>
 
@@ -35,9 +35,6 @@ import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
 
-import DefaultValue from "./DefaultValue";
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
-
 export default {
 	name: "ViewMethodAssessmentOfTheRiskOfBias",
 
@@ -61,26 +58,7 @@ export default {
 		},
 		numberOfRiskOfBiasAuthors() {
 			return this.$tera.state.assessedRobAuthors?.length;
-		},
-		assessedRobAuthors() {
-			if (this.$tera.state.assessedRobAuthors == undefined) {
-				this.$tera.setProjectStateDefaults(
-					"assessedRobAuthors",
-					DefaultValue.riskOfBias.assessedRobAuthors
-				);
-			}
-			return this.$tera.state.assessedRobAuthors;
 		}
-	},
-	mounted() {
-		this.$tera.setProjectStateDefaults(
-			"isIndependent",
-			DefaultValue.riskOfBias.isIndependent
-		);
-		this.$tera.setProjectStateDefaults(
-			"riskOfBiasToolUsed",
-			DefaultValue.riskOfBias.toolUsed
-		);
 	},
 	data() {
 		return {
