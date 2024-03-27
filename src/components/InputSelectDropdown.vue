@@ -25,6 +25,11 @@ export default {
 	},
 	components: {
 		Dropdown
+	},
+	mounted() {
+		if (this.value == undefined) {
+			this.value = null;
+		}
 	}
 };
 </script>

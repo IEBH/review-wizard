@@ -10,7 +10,7 @@
 
 		<InputTextNumber
 			question="How many study authors extracted the following data from included studies?"
-			v-model="numberOfExtractors"
+			v-model="$tera.state.numberOfExtractors"
 		/>
 
 		<!--<InputSelectDropdown
@@ -134,9 +134,6 @@ import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutO
 import InputTable from "@/components/InputTable.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
 
-import DefaultValue from "./DefaultValue";
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
-
 export default {
 	name: "ViewMethodDataExtraction",
 	components: {
@@ -207,45 +204,6 @@ export default {
 		}
 	},
 	mounted() {
-		//set default values
-		this.$tera.setProjectStateDefaults(
-			"numberOfStudies",
-			DefaultValue.extraction.numberOfStudies
-		);
-		this.$tera.setProjectStateDefaults(
-			"extractionAuthors",
-			DefaultValue.extraction.extractionAuthors
-		);
-		this.$tera.setProjectStateDefaults(
-			"optionalDetail",
-			DefaultValue.extraction.optionalDetail
-		);
-		//New added
-		this.$tera.setProjectStateDefaults(
-			"methods",
-			DefaultValue.extraction.methods
-		);
-		this.$tera.setProjectStateDefaults(
-			"participants",
-			DefaultValue.extraction.participants
-		);
-		this.$tera.setProjectStateDefaults(
-			"interventions",
-			DefaultValue.extraction.interventions
-		);
-		this.$tera.setProjectStateDefaults(
-			"comparators",
-			DefaultValue.extraction.comparators
-		);
-		this.$tera.setProjectStateDefaults(
-			"extractionOutcomes",
-			DefaultValue.extraction.outcomes
-		);
-		this.$tera.setProjectStateDefaults(
-			"extractionTypes",
-			DefaultValue.extraction.types
-		);
-
 		//extraction Outcomes & Types
 		if (
 			!this.$tera.state.extractionOutcomes ||
