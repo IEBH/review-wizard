@@ -48,12 +48,12 @@ export default {
 		InputText,
 		Button
 	},
-	/*mounted() {
+	mounted() {
 		//initialized with [""]
 		if (this.value == undefined) {
 			this.value = [""];
 		}
-	},*/
+	},
 	methods: {
 		update: function(index, item) {
 			this.$set(this.value, index, item);
