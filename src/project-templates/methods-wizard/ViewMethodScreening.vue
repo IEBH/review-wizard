@@ -4,12 +4,12 @@
 
 		<InputTextNumber
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
-			v-model="numberOfTitleAbstractScreeners"
+			v-model="$tera.state.numberOfTitleAbstractScreeners"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors screened title/abstract?"
-			v-model="titleAbstractScreeners"
+			v-model="$tera.state.titleAbstractScreeners"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -20,18 +20,18 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Which author retrieved full-texts?"
-			v-model="fullTextRetrivalAuthor"
+			v-model="$tera.state.fullTextRetrivalAuthor"
 			:options="this.retrfulltextAuthors"
 		/>
 
 		<InputTextNumber
 			question="How many review authors independently screened the full-texts for inclusion?"
-			v-model="numberOfFullTextScreeners"
+			v-model="$tera.state.numberOfFullTextScreeners"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Which authors screened full-texts?"
-			v-model="fullTextScreeners"
+			v-model="$tera.state.fullTextScreeners"
 			:options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
@@ -42,31 +42,31 @@
 
 		<InputSelectMultiWithoutOthers
 			question="Who screened the citation search?"
-			v-model="screenCitationSearchPeople"
+			v-model="$tera.state.screenCitationSearchPeople"
 			:options="this.scCitSearchPeople"
 		/>
 
 		<InputSelectMultiWithoutOthers
 			question="Who screened trial registries?"
-			v-model="screenTrialRegisPeople"
+			v-model="$tera.state.screenTrialRegisPeople"
 			:options="this.scTrialRegisPeople"
 		/>
 
 		<InputSelectMulti
 			question="Any disagreements were resolved by:"
-			v-model="disputeResolution"
+			v-model="$tera.state.disputeResolution"
 			:options="disputeResolutionOptions"
 		/>
 
 		<InputSelectYesNo
 			question="This systematic review is reported following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) statement."
-			v-model="isPrismaFlowDiagram"
+			v-model="$tera.state.isPrismaFlowDiagram"
 		/>
 
 		<InputSelectYesNo
 			v-if="$tera.state.isPrismaFlowDiagram"
 			question="The list of studies excluded at full-text is provided in Appendix"
-			v-model="isExcludedFullTextInAppendix"
+			v-model="$tera.state.isExcludedFullTextInAppendix"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />
@@ -79,9 +79,6 @@ import BasePreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputSelectMultiWithoutOthers from "@/components/InputSelectMultiWithoutOther.vue";
 import InputSelectYesNo from "@/components/InputSelectYesNo.vue";
-import DefaultValue from "./DefaultValue";
-
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodScreening",
@@ -154,40 +151,6 @@ export default {
 			});
 			return da;
 		}
-	},
-	mounted() {
-		this.$tera.setProjectStateDefaults(
-			"titleAbstractScreeners",
-			DefaultValue.screening.titleAbstractScreeners
-		);
-		this.$tera.setProjectStateDefaults(
-			"fullTextRetrivalAuthor",
-			DefaultValue.screening.fullTextRetrivalAuthor
-		);
-		this.$tera.setProjectStateDefaults(
-			"fullTextScreeners",
-			DefaultValue.screening.fullTextScreeners
-		);
-		this.$tera.setProjectStateDefaults(
-			"screenCitationSearchPeople",
-			DefaultValue.screening.screenCitationSearchPeople
-		);
-		this.$tera.setProjectStateDefaults(
-			"screenTrialRegisPeople",
-			DefaultValue.screening.screenTrialRegisPeople
-		);
-		this.$tera.setProjectStateDefaults(
-			"disputeResolution",
-			DefaultValue.screening.disputeResolution
-		);
-		this.$tera.setProjectStateDefaults(
-			"isPrismaFlowDiagram",
-			DefaultValue.screening.isPrismaFlowDiagram
-		);
-		this.$tera.setProjectStateDefaults(
-			"isExcludedFullTextInAppendix",
-			DefaultValue.screening.isExcludedFullTextInAppendix
-		);
 	},
 	data() {
 		return {

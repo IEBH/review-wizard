@@ -4,7 +4,7 @@
 		<!--:options="numberOptions"-->
 		<InputSelectYesNo
 			question="We contacted investigators or study sponsors to provide missing data"
-			v-model="isContactedInvestigators"
+			v-model="$tera.state.isContactedInvestigators"
 		/>
 
 		<BasePreviewOutput :component="outputComponent" />
@@ -21,14 +21,6 @@ export default {
 			//numberOptions: ["1", "2", "3", "4", "5", "6"],
 			outputComponent: OutputDealingWithMissingData
 		};
-	},
-	computed: {
-		isContactedInvestigators() {
-			if (this.$tera.state.isContactedInvestigators == undefined) {
-				this.$tera.setProjectStateDefaults("isContactedInvestigators", false);
-			}
-			return this.$tera.state.isContactedInvestigators;
-		}
 	}
 };
 </script>
