@@ -567,19 +567,4 @@ let defaults = {
 	}
 };
 
-/**
- *
- * @param {String} path sub-path within the project state to set
- * @param {*} fullpath full path of the project state (ex: $tera.state.title)
- * @param {*} value the initial value set to this state
- * @returns
- */
-function initValue(path, fullpath, value) {
-	console.log("$tera.state:" + fullpath);
-	if (fullpath == undefined) {
-		this.$tera.setProjectStateDefaults(path, value);
-	}
-	return fullpath;
-}
-
-export { defaults, initValue };
+export { defaults };

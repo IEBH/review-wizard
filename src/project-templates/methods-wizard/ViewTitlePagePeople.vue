@@ -17,7 +17,7 @@
 </template>
 <script>
 import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
-import { defaults, initValue } from "./settingdefaults";
+import { defaults } from "./settingdefaults";
 
 export default {
 	name: "ViewTitlePagePeople",
@@ -25,19 +25,25 @@ export default {
 	components: {
 		InputTextSingleLineMulti
 	},
-	data() {
-		return {
-			authors: initValue(
-				"author",
-				this.$tera.state.author,
-				defaults.titlepage.authors
-			),
-			acknowledgements: initValue(
-				"acknowledgements",
-				this.$tera.state.acknowledgements,
-				defaults.titlepage.acknowledgements
-			)
-		};
+	computed: {
+		authors() {
+			if (this.$tera.state.author == undefined) {
+				this.$tera.setProjectStateDefaults(
+					"author",
+					defaults.titlepage.authors
+				);
+			}
+			return this.$tera.state.author;
+		},
+		acknowledgements() {
+			if (this.$tera.state.acknowledgements == undefined) {
+				this.$tera.setProjectStateDefaults(
+					"acknowledgements",
+					defaults.titlepage.acknowledgements
+				);
+			}
+			return this.$tera.state.acknowledgements;
+		}
 	}
 };
 </script>
