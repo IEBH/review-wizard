@@ -94,7 +94,11 @@ export default {
 			// Find filter out any options that are blank
 			const options = this.options ? this.options.filter(el => el.label) : [];
 			// Find the union of value and options to account for other options which are user defined
-			this.optBuild();
+			//this.optBuild();
+			//Terafy:init undefined
+			if (this.value != undefined) {
+				this.optBuild();
+			}
 			if (this.authOpt) {
 				let da = this.arrayUnion(this.authOpt, options, this.areLabelsSame);
 				return da;
@@ -108,6 +112,7 @@ export default {
 	},
 	methods: {
 		initialize() {
+			//Terafy: init undefined
 			if (this.value == undefined) {
 				this.value = [];
 			} else {
