@@ -7,7 +7,11 @@
 						Object.keys(element).length != 0
 				"
 			>
-				{{ formatAuthors(element.authors) }}
+				{{
+					formatSelectMulti(element.authors)
+						.map(el => nameToInitials(el))
+						.join(", ")
+				}}
 				{{ selectRandom(["conceived the idea.", "conceptualized the study."]) }}
 			</span>
 			<span
@@ -18,10 +22,12 @@
 			>
 				{{
 					selectRandom([
-						` Authors ${formatAuthors(
-							element.authors
-						)} helped in study design.`,
-						`${formatAuthors(element.authors)} designed the study.`
+						` Authors ( ${formatSelectMulti(element.authors)
+							.map(el => nameToInitials(el))
+							.join(", ")}) helped in study design.`,
+						`${formatSelectMulti(element.authors)
+							.map(el => nameToInitials(el))
+							.join(", ")} designed the study.`
 					])
 				}}
 			</span>
@@ -31,7 +37,12 @@
 						Object.keys(element).length != 0
 				"
 			>
-				{{ formatAuthors(element.authors) }} designed the search strategy.
+				{{
+					joinArrayWithAnd(
+						formatSelectMulti(element.authors).map(el => nameToInitials(el))
+					)
+				}}
+				designed the search strategy.
 			</span>
 			<span
 				v-if="
@@ -47,22 +58,31 @@
 				>
 					{{
 						selectRandom([
-							`Co-authors ${formatAuthors(
-								element.authors
-							)} assessed study eligibility`,
-							`${formatAuthors(element.authors)} assessed study eligibility.`
+							`Co-authors ${formatSelectMulti(element.authors)
+								.map(el => nameToInitials(el))
+								.join(", ")} assessed study eligibility`,
+							`${joinArrayWithAnd(
+								formatSelectMulti(element.authors).map(el => nameToInitials(el))
+							)} assessed study eligibility.`
 						])
 					}}
 					{{ selectRandom([", ", " and "]) }}
-					{{ formatAuthors(anotherElement.authors) }} extracted data.
+					{{
+						formatSelectMulti(anotherElement.authors)
+							.map(el => nameToInitials(el))
+							.join(", ")
+					}}
+					extracted data.
 				</span>
 				<span v-else>
 					{{
 						selectRandom([
-							`Co-authors ${formatAuthors(
-								element.authors
-							)} assessed study eligibility.`,
-							`${formatAuthors(element.authors)} assessed study eligibility.`
+							`Co-authors (${formatSelectMulti(element.authors)
+								.map(el => nameToInitials(el))
+								.join(", ")}) assessed study eligibility.`,
+							`${formatSelectMulti(element.authors)
+								.map(el => nameToInitials(el))
+								.join(", ")} assessed study eligibility.`
 						])
 					}}
 				</span>
@@ -78,7 +98,11 @@
 						Object.keys(findElement('Assessing study eligibility')).length == 0
 					"
 				>
-					{{ formatAuthors(element.authors) }}
+					{{
+						formatSelectMulti(element.authors)
+							.map(el => nameToInitials(el))
+							.join(", ")
+					}}
 					{{ selectRandom(["extracted data.", "helped in extracting data"]) }}
 				</span>
 			</span>
@@ -94,24 +118,28 @@
 							Object.keys(anotherElement).length != 0
 					"
 				>
-					{{ formatAuthors(element.authors) }}
+					{{ formatSelectMulti(element.authors) }}
 					analyzed the data
 					{{
 						selectRandom([
-							` and authors ${formatAuthors(
-								anotherElement.authors
-							)} wrote the first draft of the manuscript.`,
-							` and ${formatAuthors(
-								anotherElement.authors
-							)} drafted the manuscript.`,
-							` and ${formatAuthors(
-								anotherElement.authors
-							)} drafted the original manuscript.`
+							` and authors ${formatSelectMulti(anotherElement.authors)
+								.map(el => nameToInitials(el))
+								.join(", ")} wrote the first draft of the manuscript.`,
+							` and ${formatSelectMulti(anotherElement.authors)
+								.map(el => nameToInitials(el))
+								.join(", ")} drafted the manuscript.`,
+							` and ${formatSelectMulti(anotherElement.authors)
+								.map(el => nameToInitials(el))
+								.join(", ")} drafted the original manuscript.`
 						])
 					}}
 				</span>
 				<span v-else>
-					{{ formatAuthors(element.authors) }}
+					{{
+						formatSelectMulti(element.authors)
+							.map(el => nameToInitials(el))
+							.join(", ")
+					}}
 					analyzed the data.
 				</span>
 			</span>
@@ -124,13 +152,15 @@
 				<span v-if="Object.keys(findElement('Analyzing the data')).length == 0">
 					{{
 						selectRandom([
-							` Authors ${formatAuthors(
-								element.authors
-							)} wrote the first draft of the manuscript.`,
-							` ${formatAuthors(element.authors)} drafted the manuscript.`,
-							` ${formatAuthors(
-								element.authors
-							)} drafted the original manuscript.`
+							` Authors (${formatSelectMulti(element.authors)
+								.map(el => nameToInitials(el))
+								.join(", ")}) wrote the first draft of the manuscript.`,
+							` ${formatSelectMulti(element.authors)
+								.map(el => nameToInitials(el))
+								.join(", ")} drafted the manuscript.`,
+							` ${formatSelectMulti(element.authors)
+								.map(el => nameToInitials(el))
+								.join(", ")} drafted the original manuscript.`
 						])
 					}}
 				</span>
@@ -143,9 +173,11 @@
 			>
 				{{
 					selectRandom([
-						`${formatAuthors(element.authors)} revised the paper.`,
-						`${formatAuthors(
-							element.authors
+						`${formatSelectMulti(element.authors)
+							.map(el => nameToInitials(el))
+							.join(", ")} revised the paper.`,
+						`${joinArrayWithAnd(
+							formatSelectMulti(element.authors).map(el => nameToInitials(el))
 						)} contributed to the interpretation and subsequent edits of the manuscript.`
 					])
 				}}
@@ -156,7 +188,12 @@
 						(element = findElement(row)) && Object.keys(element).length != 0
 					"
 				>
-					Also, {{ formatAuthors(element.authors) }}
+					Also,
+					{{
+						joinArrayWithAnd(
+							formatSelectMulti(element.authors).map(el => nameToInitials(el))
+						)
+					}}
 					{{
 						selectRandom([
 							"contributed to ",
@@ -233,9 +270,6 @@ export default {
 				}
 			});
 			return output;
-		},
-		formatAuthors(authors) {
-			return authors.map(el => this.nameToInitials(el)).join(", ");
 		},
 		findElement(option) {
 			let element = {};
