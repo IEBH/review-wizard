@@ -110,15 +110,16 @@ export default {
 		initialize() {
 			if (this.value == undefined) {
 				this.value = [];
-			}
-			if (this.value.length > 0) {
-				this.value.forEach(el => {
-					if (!this.contributors.includes(el.author)) {
-						//console.log("element:" +JSON.stringify(el.author) +"contributors:" +this.contributors);
-						//let index = this.value.indexOf(el);
-						this.value.splice(this.value.indexOf(el), 1);
-					}
-				});
+			} else {
+				if (this.value.length > 0) {
+					this.value.forEach(el => {
+						if (!this.contributors.includes(el.author)) {
+							//console.log("element:" +JSON.stringify(el.author) +"contributors:" +this.contributors);
+							//let index = this.value.indexOf(el);
+							this.value.splice(this.value.indexOf(el), 1);
+						}
+					});
+				}
 			}
 		},
 		optBuild() {
