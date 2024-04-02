@@ -3,14 +3,12 @@
 		<Toolbar>
 			<template #start>
 				<b>
-					{{
-						$tera.state.title ? $tera.state.title : "Untitled Methods Section"
-					}}
+					{{ titlepage.title ? titlepage.title : "Untitled Methods Section" }}
 				</b>
 				<TheArticleCitation
-					:title="$tera.state.title"
-					:authors="$tera.state.authors"
-					:year="$tera.state.year"
+					:title="titlepage.title"
+					:authors="titlepage.authors"
+					:year="titlepage.year"
 				/>
 			</template>
 			<template #end>
@@ -75,10 +73,11 @@ import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
 
 import TheArticleCitation from "./TheArticleCitation.vue";
+import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "TheArticleToolbar",
-	//mixins: [deepstreamMixin("titlepage")],
+	mixins: [deepstreamMixin("titlepage")],
 	components: {
 		Toolbar,
 		Button,
@@ -100,7 +99,7 @@ export default {
 	async mounted() {
 		// If title does not exist, use the one from the store
 		await this.methodsRecord.whenReady();
-		if (!this.$tera.state.title) {
+		if (!this.titlepage.title) {
 			await this.projectRecord.whenReady();
 			this.updateField("title", this.projectRecord.get("metadata.name"));
 		}
