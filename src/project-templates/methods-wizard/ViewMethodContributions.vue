@@ -6,7 +6,7 @@
 			:key="index"
 			:question="ackAuthor(author)"
 			v-model="$tera.state.conAuthors"
-			:contributors="contributors"
+			:contributors="$tera.state.author"
 			:index="index"
 			:author="author"
 			:options="contributionOptions"
@@ -41,11 +41,6 @@ export default {
 				{ label: "Revising the manuscript" }
 			]
 		};
-	},
-	computed: {
-		contributors() {
-			return this.$tera.state.author;
-		}
 	},
 	methods: {
 		ackAuthor(author) {

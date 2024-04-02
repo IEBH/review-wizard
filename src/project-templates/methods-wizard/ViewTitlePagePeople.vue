@@ -25,7 +25,25 @@ export default {
 	components: {
 		InputTextSingleLineMulti
 	},
-	computed: {
+	data() {
+		return {
+			authors:
+				this.$tera.state.author == undefined
+					? this.$tera.setProjectStateDefaults(
+							"author",
+							defaults.titlepage.authors
+					  )
+					: this.$tera.state.author,
+			acknowledgements:
+				this.$tera.state.acknowledgements == undefined
+					? this.$tera.setProjectStateDefaults(
+							"acknowledgements",
+							defaults.titlepage.acknowledgements
+					  )
+					: this.$tera.state.acknowledgements
+		};
+	}
+	/*computed: {
 		authors() {
 			if (this.$tera.state.author == undefined) {
 				this.$tera.setProjectStateDefaults(
@@ -44,7 +62,7 @@ export default {
 			}
 			return this.$tera.state.acknowledgements;
 		}
-	}
+	}*/
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
