@@ -27,7 +27,19 @@ export default {
 	},
 	mounted() {
 		console.log(
-			"authors:" +
+			"b: authors:" +
+				this.$tera.state.author +
+				", acknowledgements:" +
+				this.$tera.state.acknowledgements
+		);
+		if (this.$tera.state.author == undefined) {
+			this.$tera.setProjectStateDefaults("author", [""]);
+		}
+		if (this.$tera.state.acknowledgements == undefined) {
+			this.$tera.setProjectStateDefaults("acknowledgements", [""]);
+		}
+		console.log(
+			"a: authors:" +
 				this.$tera.state.author +
 				", acknowledgements:" +
 				this.$tera.state.acknowledgements
