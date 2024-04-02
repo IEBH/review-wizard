@@ -17,7 +17,7 @@
 </template>
 <script>
 import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
-import { defaults } from "./settingdefaults";
+//import { defaults } from "./settingdefaults";
 
 export default {
 	name: "ViewTitlePagePeople",
@@ -26,6 +26,14 @@ export default {
 		InputTextSingleLineMulti
 	},
 	mounted() {
+		console.log(
+			"authors:" +
+				this.$tera.state.author +
+				", acknowledgements:" +
+				this.$tera.state.acknowledgements
+		);
+	}
+	/*mounted() {
 		if (this.$tera.state.author == undefined) {
 			this.$tera.setProjectStateDefaults("author", defaults.titlepage.authors);
 		}
@@ -35,7 +43,7 @@ export default {
 				defaults.titlepage.acknowledgements
 			);
 		}
-	}
+	}*/
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
