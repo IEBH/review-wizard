@@ -95,10 +95,7 @@ export default {
 			const options = this.options ? this.options.filter(el => el.label) : [];
 			// Find the union of value and options to account for other options which are user defined
 			//this.optBuild();
-			//Terafy:init undefined
-			if (this.value != undefined) {
-				this.optBuild();
-			}
+			this.optBuild();
 			if (this.authOpt) {
 				let da = this.arrayUnion(this.authOpt, options, this.areLabelsSame);
 				return da;
@@ -112,19 +109,14 @@ export default {
 	},
 	methods: {
 		initialize() {
-			//Terafy: init undefined
-			if (this.value == undefined) {
-				this.value = [];
-			} else {
-				if (this.value.length > 0) {
-					this.value.forEach(el => {
-						if (!this.contributors.includes(el.author)) {
-							//console.log("element:" +JSON.stringify(el.author) +"contributors:" +this.contributors);
-							//let index = this.value.indexOf(el);
-							this.value.splice(this.value.indexOf(el), 1);
-						}
-					});
-				}
+			if (this.value.length > 0) {
+				this.value.forEach(el => {
+					if (!this.contributors.includes(el.author)) {
+						//console.log("element:" +JSON.stringify(el.author) +"contributors:" +this.contributors);
+						//let index = this.value.indexOf(el);
+						this.value.splice(this.value.indexOf(el), 1);
+					}
+				});
 			}
 		},
 		optBuild() {
