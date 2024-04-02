@@ -3,18 +3,34 @@
 		<Toolbar>
 			<template #start>
 				<b>
-					{{ titlepage.title ? titlepage.title : "Untitled Methods Section" }}
+					{{
+						$tera.state.title ? $tera.state.title : "Untitled Methods Section"
+					}}
 				</b>
-				<TheArticleCitation :title="titlepage.title" :authors="titlepage.authors" :year="titlepage.year" />
+				<TheArticleCitation
+					:title="$tera.state.title"
+					:authors="$tera.state.authors"
+					:year="$tera.state.year"
+				/>
 			</template>
 			<template #end>
-				<Button label="Share" @click="openModal()" icon="pi pi-share-alt" class="p-mr-2 btsyleblue" />
+				<Button
+					label="Share"
+					@click="openModal()"
+					icon="pi pi-share-alt"
+					class="p-mr-2 btsyleblue"
+				/>
 				<Button label="Close" @click="close" class="btsylered" />
 			</template>
 		</Toolbar>
 
 		<!-- Modal to display sharing link -->
-		<Dialog header="Share" :visible.sync="displayModal" :style="{ width: '50vw' }" :modal="true">
+		<Dialog
+			header="Share"
+			:visible.sync="displayModal"
+			:style="{ width: '50vw' }"
+			:modal="true"
+		>
 			<p>Copy the link below to send to others:</p>
 			<Toolbar>
 				<template #start>{{ shareUrl }}</template>
@@ -26,7 +42,13 @@
 		</Dialog>
 
 		<!-- Modal to display warning -->
-		<Dialog header="Warning" :visible.sync="displayWarn" :style="{ width: '50vw' }" :modal="true" @hide="closeArticle">
+		<Dialog
+			header="Warning"
+			:visible.sync="displayWarn"
+			:style="{ width: '50vw' }"
+			:modal="true"
+			@hide="closeArticle"
+		>
 			<p>Warning: save the below link to ensure progress is not lost</p>
 			<Toolbar>
 				<template #start>{{ shareUrl }}</template>
@@ -43,7 +65,7 @@
 </template>
 
 <script>
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
+//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 import { mapState } from "vuex";
 
@@ -56,7 +78,7 @@ import TheArticleCitation from "./TheArticleCitation.vue";
 
 export default {
 	name: "TheArticleToolbar",
-	mixins: [deepstreamMixin("titlepage")],
+	//mixins: [deepstreamMixin("titlepage")],
 	components: {
 		Toolbar,
 		Button,
@@ -78,7 +100,7 @@ export default {
 	async mounted() {
 		// If title does not exist, use the one from the store
 		await this.methodsRecord.whenReady();
-		if (!this.titlepage.title) {
+		if (!this.$tera.state.title) {
 			await this.projectRecord.whenReady();
 			this.updateField("title", this.projectRecord.get("metadata.name"));
 		}

@@ -54,12 +54,6 @@ export default {
 			} else return options;
 		}
 	},
-	mounted() {
-		//initialize choosed authors
-		if (this.value == undefined) {
-			this.value = [];
-		}
-	},
 	methods: {
 		arrayUnion(arr1, arr2, equalityFunc) {
 			var union = arr1.concat(arr2);

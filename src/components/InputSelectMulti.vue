@@ -88,11 +88,6 @@ export default {
 			} else return options;
 		}
 	},
-	mounted() {
-		if (this.value == undefined) {
-			this.value = [];
-		}
-	},
 	methods: {
 		openModal() {
 			this.displayModal = true;

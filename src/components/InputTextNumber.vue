@@ -29,12 +29,6 @@ export default {
 	components: {
 		InputNumber
 	}
-	/*mounted() {
-		//initialize number with 0
-		if (this.value == undefined) {
-			this.value = 0;
-		}
-	}*/
 };
 </script>
 

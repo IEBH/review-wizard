@@ -186,7 +186,7 @@ export default {
 			]
 		};
 	},
-	mounted() {
+	/*mounted() {
 		if (this.value == undefined) {
 			//Outcomes
 			if (this.type) {
@@ -197,7 +197,7 @@ export default {
 				this.value = [{ inclusion: true }];
 			}
 		}
-	},
+	},*/
 	methods: {
 		newRow() {
 			if (this.inclusion && this.type) {
