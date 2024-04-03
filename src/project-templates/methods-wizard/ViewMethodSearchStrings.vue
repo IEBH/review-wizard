@@ -13,9 +13,9 @@
 				$tera.state.dateOfSearch ? new Date($tera.state.dateOfSearch) : null
 			"
 		-->
-		<InputDate
+		<InputDateTable
 			question="What date did you run your search on?"
-			:value="dateFormat($tera.state.dateOfSearch)"
+			:value="dateOfSearch"
 		/>
 
 		<!--
@@ -25,9 +25,9 @@
 					: null
 			"
 		-->
-		<InputDate
+		<InputDateTable
 			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
-			:value="dateFormat($tera.state.dateSearchedUntil)"
+			:value="$tera.state.dateSearchedUntil"
 		/>
 
 		<div
@@ -54,9 +54,9 @@
 					: null
 			"
 		-->
-		<InputDate
+		<InputDateTable
 			question="What date did you run your search on?"
-			:value="dateFormat($tera.state.registryDateOfSearch)"
+			:value="$tera.state.registryDateOfSearch"
 		/>
 
 		<!--
@@ -66,9 +66,9 @@
 					: null
 			"
 		-->
-		<InputDate
+		<InputDateTable
 			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
-			:value="dateFormat($tera.state.registryDateSearchedUntil)"
+			:value="$tera.state.registryDateSearchedUntil"
 		/>
 
 		<div
@@ -94,7 +94,7 @@
 //Search Strings for Bibliographic Databases
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
-import InputDate from "@/components/InputDate.vue";
+import InputDateTable from "@/components/InputDateTable.vue";
 import InputTextMultiSyntax from "@/components/InputTextMultiSyntax";
 import InputTabsMulti from "@/components/InputTabsMulti";
 //Search Strings for Trial Registries
@@ -107,17 +107,18 @@ export default {
 
 	components: {
 		InputSelectMulti,
-		InputDate,
+		InputDateTable,
 		InputTextMultiSyntax,
 		InputTabsMulti,
 		PreviewOutput
 	},
-	methods: {
-		dateFormat(value) {
-			if (value == undefined) {
-				value = null;
+	computed: {
+		dateOfSearch() {
+			if (this.$tera.state.dateOfSearch == undefined) {
+				return "";
+			} else {
+				return this.$tera.state.dateOfSearch;
 			}
-			return value;
 		}
 	},
 	/*methods: {
