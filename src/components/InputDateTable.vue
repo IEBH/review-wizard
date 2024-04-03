@@ -8,7 +8,7 @@
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
 		<el-date-picker
 			v-model="value"
-			@change="$emit('input', $event)"
+			@change="changeDate($event.value)"
 			type="date"
 			placeholder="Please select a date"
 		/>
@@ -20,6 +20,16 @@ export default {
 	props: {
 		question: String,
 		value: Date
+	},
+	methods: {
+		changeDate(event) {
+			console.log("date:" + event);
+			if (!event) {
+				this.$emit("input", null);
+			} else {
+				this.$emit("input", event);
+			}
+		}
 	}
 };
 </script>
