@@ -17,13 +17,24 @@
 </template>
 <script>
 import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
-//import { defaults } from "./settingdefaults";
+import { defaults } from "./settingdefaults";
 
 export default {
 	name: "ViewTitlePagePeople",
 
 	components: {
 		InputTextSingleLineMulti
+	},
+	mounted() {
+		if (this.$tera.state.author == undefined) {
+			this.$tera.setProjectStateDefaults("author", defaults.titlepage.authors);
+		}
+		if (this.$tera.state.acknowledgements == undefined) {
+			this.$tera.setProjectStateDefaults(
+				"acknowledgements",
+				defaults.titlepage.acknowledgements
+			);
+		}
 	}
 };
 </script>

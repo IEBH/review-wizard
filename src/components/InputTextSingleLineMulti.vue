@@ -7,7 +7,6 @@
 		<!-- <input
         v-bind:value="value"
         v-on:change="$emit('input', $event.target.value)"
-		update(index, $event)
       > -->
 		<template v-for="(item, index) in value">
 			<InputText
@@ -16,7 +15,7 @@
 				:value="item"
 				:key="index"
 				:ref="index"
-				@change="$emit('input', $event.target.value)"
+				@input="update(index, $event)"
 				:placeholder="placeholder"
 			/>
 		</template>
@@ -50,10 +49,10 @@ export default {
 		Button
 	},
 	methods: {
-		/*update: function(index, item) {
+		update: function(index, item) {
 			this.$set(this.value, index, item);
 			this.$emit("input", this.value);
-		},*/
+		},
 		removeLastValue: function() {
 			this.value.pop();
 			this.$emit("input", this.value);
