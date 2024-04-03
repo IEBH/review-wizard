@@ -8,7 +8,7 @@
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
 		<el-date-picker
 			v-model="value"
-			@change="changeDate($event.value)"
+			@change="changeDate($event)"
 			type="date"
 			placeholder="Please select a date"
 		/>
