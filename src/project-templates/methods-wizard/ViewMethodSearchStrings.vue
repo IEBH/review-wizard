@@ -8,9 +8,9 @@
 			:value="$tera.state.databases"
 		/>
 
-		<InputDateTable
+		<InputDate
 			question="What date did you run your search on?"
-			:value="$tera.state.dateOfSearch"
+			:value="dateOfSearch"
 		/>
 
 		<!--
@@ -90,7 +90,7 @@
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputDateTable from "@/components/InputDateTable.vue";
-//import InputDate from "@/components/InputDate";
+import InputDate from "@/components/InputDate";
 import InputTextMultiSyntax from "@/components/InputTextMultiSyntax";
 import InputTabsMulti from "@/components/InputTabsMulti";
 //Search Strings for Trial Registries
@@ -106,8 +106,18 @@ export default {
 		InputDateTable,
 		InputTextMultiSyntax,
 		InputTabsMulti,
-		PreviewOutput
-		//InputDate
+		PreviewOutput,
+		InputDate
+	},
+	computed: {
+		dateOfSearch() {
+			if (
+				this.$tera.state.dateOfSearch &&
+				this.$tera.state.dateOfSearch != undefined
+			) {
+				return new Date(this.$tera.state.dateOfSearch);
+			} else return null;
+		}
 	},
 	/*methods: {
 		//Search Strings for Bibliographic Databases

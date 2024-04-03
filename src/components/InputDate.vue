@@ -28,7 +28,8 @@ export default {
 	name: "InputDate",
 	props: {
 		question: String,
-		value: [Date, Object]
+		//value: [Date, Object]
+		value: Date
 	},
 	components: {
 		Calendar,
