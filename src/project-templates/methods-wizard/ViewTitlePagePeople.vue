@@ -5,7 +5,6 @@
 		<InputTextSingleLineMulti
 			question="Who are the authors in the study?"
 			v-model="$tera.state.author"
-			:setDefaults="setDefaults"
 			placeholder="e.g. Justin Clark"
 		/>
 
@@ -25,21 +24,6 @@ export default {
 
 	components: {
 		InputTextSingleLineMulti
-	},
-	data() {
-		return {
-			setDefaults: false
-		};
-	},
-	mounted() {
-		if (this.$tera.state.author == undefined) {
-			//this.$tera.setProjectStateDefaults("author", defaults.titlepage.authors);
-			this.setDefaults = true;
-		}
-		if (this.$tera.state.acknowledgements == undefined) {
-			//this.$tera.setProjectStateDefaults("acknowledgements",defaults.titlepage.acknowledgements);
-			this.setDefaults = true;
-		}
 	}
 };
 </script>

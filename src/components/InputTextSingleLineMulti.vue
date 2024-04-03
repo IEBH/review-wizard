@@ -15,7 +15,7 @@
 				:value="item"
 				:key="index"
 				:ref="index"
-				@input="update(index, $event)"
+				@change="update(index, $event)"
 				:placeholder="placeholder"
 			/>
 		</template>
@@ -42,17 +42,11 @@ export default {
 	props: {
 		question: String,
 		value: Array,
-		placeholder: String,
-		setDefaults: Boolean
+		placeholder: String
 	},
 	components: {
 		InputText,
 		Button
-	},
-	mounted() {
-		if (this.setDefaults) {
-			this.value = [""];
-		}
 	},
 	methods: {
 		update: function(index, item) {
