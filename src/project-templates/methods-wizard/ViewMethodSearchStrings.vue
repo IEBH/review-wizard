@@ -90,7 +90,7 @@
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
 import InputDateTable from "@/components/InputDateTable.vue";
-import InputDate from "@/components/InputDate";
+//import InputDate from "@/components/InputDate";
 import InputTextMultiSyntax from "@/components/InputTextMultiSyntax";
 import InputTabsMulti from "@/components/InputTabsMulti";
 //Search Strings for Trial Registries
@@ -106,8 +106,8 @@ export default {
 		InputDateTable,
 		InputTextMultiSyntax,
 		InputTabsMulti,
-		PreviewOutput,
-		InputDate
+		PreviewOutput
+		//InputDate
 	},
 	/*methods: {
 		//Search Strings for Bibliographic Databases
