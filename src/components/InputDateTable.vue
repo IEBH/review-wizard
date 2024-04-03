@@ -19,7 +19,7 @@ export default {
 	name: "InputDateTable",
 	props: {
 		question: String,
-		value: String
+		value: Date
 	}
 };
 </script>
