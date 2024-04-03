@@ -10,6 +10,7 @@
 			v-model="value"
 			@change="changeDate($event)"
 			type="date"
+			format="yyyy/MM/dd"
 			placeholder="Please select a date"
 		/>
 	</div>
@@ -24,11 +25,7 @@ export default {
 	methods: {
 		changeDate(event) {
 			console.log("date:" + event);
-			if (!event) {
-				this.$emit("input", null);
-			} else {
-				this.$emit("input", event);
-			}
+			this.$emit("input", event);
 		}
 	}
 };
