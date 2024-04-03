@@ -112,8 +112,8 @@ export default {
 		InputTabsMulti,
 		PreviewOutput
 	},
-	computed: {
-		dateFormat: function(value) {
+	methods: {
+		dateFormat(value) {
 			if (value && value != undefined) {
 				return new Date(this.$tera.state.registryDateOfSearch);
 			} else {
