@@ -42,11 +42,17 @@ export default {
 	props: {
 		question: String,
 		value: Array,
-		placeholder: String
+		placeholder: String,
+		setDefaults: Boolean
 	},
 	components: {
 		InputText,
 		Button
+	},
+	mounted() {
+		if (this.setDefaults) {
+			this.value = [""];
+		}
 	},
 	methods: {
 		update: function(index, item) {
