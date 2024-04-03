@@ -112,11 +112,12 @@ export default {
 	computed: {
 		dateOfSearch() {
 			if (
-				this.$tera.state.dateOfSearch &&
-				this.$tera.state.dateOfSearch != undefined
+				this.$tera.state.dateOfSearch == undefined ||
+				!this.$tera.state.dateOfSearch
 			) {
-				return new Date(this.$tera.state.dateOfSearch);
-			} else return null;
+				console.log("Date:" + this.$tera.state.dateOfSearch);
+				return null;
+			} else return new Date(this.$tera.state.dateOfSearch);
 		}
 	},
 	/*methods: {
