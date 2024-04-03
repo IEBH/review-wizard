@@ -10,9 +10,7 @@
 
 		<InputDateTable
 			question="What date did you run your search on?"
-			:value="
-				$tera.state.dateOfSearch == undefined ? null : $tera.state.dateOfSearch
-			"
+			:value="$tera.state.dateOfSearch"
 		/>
 
 		<!--
