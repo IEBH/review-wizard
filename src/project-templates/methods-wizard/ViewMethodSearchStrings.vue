@@ -49,14 +49,9 @@
 					: null
 			"
 		-->
-		<InputDate
+		<InputDateTable
 			question="What date did you run your search on?"
-			:value="
-				$tera.state.registryDateOfSearch &&
-				$tera.state.registryDateOfSearch != undefined
-					? new Date($tera.state.registryDateOfSearch)
-					: null
-			"
+			:value="$tera.state.registryDateOfSearch"
 		/>
 
 		<!--
