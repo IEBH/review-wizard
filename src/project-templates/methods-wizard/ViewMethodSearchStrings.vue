@@ -8,14 +8,11 @@
 			:value="$tera.state.databases"
 		/>
 
-		<!--
-			:value="
-				$tera.state.dateOfSearch ? new Date($tera.state.dateOfSearch) : null
-			"
-		-->
 		<InputDateTable
 			question="What date did you run your search on?"
-			:value="dateOfSearch"
+			:value="
+				$tera.state.dateOfSearch == undefined ? null : $tera.state.dateOfSearch
+			"
 		/>
 
 		<!--
