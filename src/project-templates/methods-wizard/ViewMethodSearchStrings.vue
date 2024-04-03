@@ -114,11 +114,10 @@ export default {
 	},
 	methods: {
 		dateFormat(value) {
-			if (value && value != undefined) {
-				return new Date(this.$tera.state.registryDateOfSearch);
-			} else {
-				return null;
+			if (value == undefined) {
+				value = null;
 			}
+			return value;
 		}
 	},
 	/*methods: {
