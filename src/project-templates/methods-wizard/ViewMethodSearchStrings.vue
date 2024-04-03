@@ -8,20 +8,26 @@
 			:value="$tera.state.databases"
 		/>
 
-		<InputDate
-			question="What date did you run your search on?"
+		<!--
 			:value="
 				$tera.state.dateOfSearch ? new Date($tera.state.dateOfSearch) : null
 			"
+		-->
+		<InputDate
+			question="What date did you run your search on?"
+			:value="dateFormat($tera.state.dateOfSearch)"
 		/>
 
-		<InputDate
-			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
+		<!--
 			:value="
 				$tera.state.dateSearchedUntil
 					? new Date($tera.state.dateSearchedUntil)
 					: null
 			"
+		-->
+		<InputDate
+			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
+			:value="dateFormat($tera.state.dateSearchedUntil)"
 		/>
 
 		<div
@@ -41,22 +47,28 @@
 			:value="$tera.state.registries"
 		/>
 
-		<InputDate
-			question="What date did you run your search on?"
+		<!--
 			:value="
 				$tera.state.registryDateOfSearch
 					? new Date($tera.state.registryDateOfSearch)
 					: null
 			"
+		-->
+		<InputDate
+			question="What date did you run your search on?"
+			:value="dateFormat($tera.state.registryDateOfSearch)"
 		/>
 
-		<InputDate
-			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
+		<!--
 			:value="
 				$tera.state.registryDateSearchedUntil
 					? new Date($tera.state.registryDateSearchedUntil)
 					: null
 			"
+		-->
+		<InputDate
+			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
+			:value="dateFormat($tera.state.registryDateSearchedUntil)"
 		/>
 
 		<div
@@ -99,6 +111,15 @@ export default {
 		InputTextMultiSyntax,
 		InputTabsMulti,
 		PreviewOutput
+	},
+	computed: {
+		dateFormat: function(value) {
+			if (value && value != undefined) {
+				return new Date($tera.state.registryDateOfSearch);
+			} else {
+				return null;
+			}
+		}
 	},
 	/*methods: {
 		//Search Strings for Bibliographic Databases
