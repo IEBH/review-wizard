@@ -115,7 +115,7 @@ export default {
 	computed: {
 		dateFormat: function(value) {
 			if (value && value != undefined) {
-				return new Date($tera.state.registryDateOfSearch);
+				return new Date(this.$tera.state.registryDateOfSearch);
 			} else {
 				return null;
 			}
