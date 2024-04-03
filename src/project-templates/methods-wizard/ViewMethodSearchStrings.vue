@@ -107,15 +107,6 @@ export default {
 		InputTabsMulti,
 		PreviewOutput
 	},
-	computed: {
-		dateOfSearch() {
-			if (this.$tera.state.dateOfSearch == undefined) {
-				return "";
-			} else {
-				return this.$tera.state.dateOfSearch;
-			}
-		}
-	},
 	/*methods: {
 		//Search Strings for Bibliographic Databases
 		updateDatabaseString(index, value) {
