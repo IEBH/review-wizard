@@ -11,20 +11,17 @@
 		<InputDate
 			question="What date did you run your search on?"
 			:value="
-				$tera.state.dateOfSearch == undefined ? null : $tera.state.dateOfSearch
+				$tera.state.dateOfSearch ? new Date($tera.state.dateOfSearch) : null
 			"
 		/>
 
-		<!--
+		<InputDate
+			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
 			:value="
 				$tera.state.dateSearchedUntil
 					? new Date($tera.state.dateSearchedUntil)
 					: null
 			"
-		-->
-		<InputDateTable
-			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
-			:value="$tera.state.dateSearchedUntil"
 		/>
 
 		<div
@@ -44,28 +41,22 @@
 			:value="$tera.state.registries"
 		/>
 
-		<!--
+		<InputDate
+			question="What date did you run your search on?"
 			:value="
 				$tera.state.registryDateOfSearch
 					? new Date($tera.state.registryDateOfSearch)
 					: null
 			"
-		-->
-		<InputDateTable
-			question="What date did you run your search on?"
-			:value="$tera.state.registryDateOfSearch"
 		/>
 
-		<!--
+		<InputDate
+			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
 			:value="
 				$tera.state.registryDateSearchedUntil
 					? new Date($tera.state.registryDateSearchedUntil)
 					: null
 			"
-		-->
-		<InputDateTable
-			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
-			:value="$tera.state.registryDateSearchedUntil"
 		/>
 
 		<div
@@ -91,7 +82,6 @@
 //Search Strings for Bibliographic Databases
 import PreviewOutput from "@/components/BasePreviewOutput.vue";
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
-import InputDateTable from "@/components/InputDateTable.vue";
 import InputDate from "@/components/InputDate";
 import InputTextMultiSyntax from "@/components/InputTextMultiSyntax";
 import InputTabsMulti from "@/components/InputTabsMulti";
@@ -105,7 +95,6 @@ export default {
 
 	components: {
 		InputSelectMulti,
-		InputDateTable,
 		InputTextMultiSyntax,
 		InputTabsMulti,
 		PreviewOutput,
