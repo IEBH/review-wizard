@@ -11,7 +11,9 @@
 		<InputDate
 			question="What date did you run your search on?"
 			:value="
-				$tera.state.dateOfSearch ? new Date($tera.state.dateOfSearch) : null
+				$tera.state.dateOfSearch && $tera.state.dateOfSearch != undefined
+					? new Date($tera.state.dateOfSearch)
+					: null
 			"
 		/>
 
