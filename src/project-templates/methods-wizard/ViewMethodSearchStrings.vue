@@ -10,7 +10,9 @@
 
 		<InputDate
 			question="What date did you run your search on?"
-			:value="dateOfSearch"
+			:value="
+				$tera.state.dateOfSearch == undefined ? null : $tera.state.dateOfSearch
+			"
 		/>
 
 		<!--
@@ -108,17 +110,6 @@ export default {
 		InputTabsMulti,
 		PreviewOutput,
 		InputDate
-	},
-	computed: {
-		dateOfSearch() {
-			if (
-				this.$tera.state.dateOfSearch == undefined ||
-				!this.$tera.state.dateOfSearch
-			) {
-				console.log("Date:" + this.$tera.state.dateOfSearch);
-				return null;
-			} else return new Date(this.$tera.state.dateOfSearch);
-		}
 	},
 	/*methods: {
 		//Search Strings for Bibliographic Databases

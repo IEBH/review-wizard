@@ -21,6 +21,10 @@ Vue.use(VueSidebarMenu);
 import ToastService from "primevue/toastservice";
 Vue.use(ToastService);
 
+//primevue
+import PrimeVue from "primevue/config";
+Vue.use(PrimeVue);
+
 //import element-ui
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
