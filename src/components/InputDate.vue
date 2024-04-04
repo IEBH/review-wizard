@@ -9,7 +9,7 @@
 		<!--:value="date"-->
 		<Calendar
 			v-model="date"
-			@input="$emit('input', $event)"
+			@date-select="$emit('input', $event)"
 			dateFormat="dd/mm/yy"
 		/>
 		<Button
