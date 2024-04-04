@@ -39,6 +39,7 @@ export default {
 		date() {
 			// Try to convert date if timestamp, if not return value
 			try {
+				console.log("date:" + this.value);
 				return this.value?.toDate();
 			} catch {
 				return this.value;
