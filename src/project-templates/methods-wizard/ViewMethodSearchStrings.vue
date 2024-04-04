@@ -20,13 +20,16 @@
 			v-model="$tera.state.dateOfSearch"
 		/>
 
-		<InputDate
-			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
+		<!--
 			:value="
 				$tera.state.dateSearchedUntil
 					? new Date($tera.state.dateSearchedUntil)
 					: null
 			"
+		-->
+		<InputDate
+			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
+			v-model="$tera.state.dateSearchedUntil"
 		/>
 
 		<div
@@ -46,22 +49,28 @@
 			v-model="$tera.state.registries"
 		/>
 
-		<InputDate
-			question="What date did you run your search on?"
+		<!--
 			:value="
 				$tera.state.registryDateOfSearch
 					? new Date($tera.state.registryDateOfSearch)
 					: null
 			"
+		-->
+		<InputDate
+			question="What date did you run your search on?"
+			v-model="$tera.state.registryDateOfSearch"
 		/>
 
-		<InputDate
-			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
+		<!--
 			:value="
 				$tera.state.registryDateSearchedUntil
 					? new Date($tera.state.registryDateSearchedUntil)
 					: null
 			"
+		-->
+		<InputDate
+			question="Did you have a date you ran the search back to, or did you run the search from the inception of the database? (leave blank if from inception)"
+			v-model="$tera.state.registryDateSearchedUntil"
 		/>
 
 		<div
