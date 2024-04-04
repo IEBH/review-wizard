@@ -6,9 +6,12 @@
 			</b>
 		</p>
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
-		<!--:value="date"-->
+		<!--
+			:value="date"
+			@input="$emit('input', $event)"
+		-->
 		<Calendar
-			v-model="date"
+			v-model="value"
 			@date-select="$emit('input', $event)"
 			dateFormat="dd/mm/yy"
 		/>
