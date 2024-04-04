@@ -107,8 +107,8 @@ export default {
 	},
 	computed: {
 		dateOfSearch() {
-			return $tera.state.dateOfSearch
-				? new Date($tera.state.dateOfSearch)
+			return this.$tera.state.dateOfSearch
+				? new Date(this.$tera.state.dateOfSearch)
 				: null;
 		}
 	},
