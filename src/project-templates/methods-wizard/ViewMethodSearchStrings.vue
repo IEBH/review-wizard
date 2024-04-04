@@ -107,9 +107,12 @@ export default {
 	},
 	computed: {
 		dateOfSearch() {
-			return this.$tera.state.dateOfSearch
+			if (this.$tera.state.dateOfSearch) {
+				return new Date(this.$tera.state.dateOfSearch);
+			} else return null;
+			/*return this.$tera.state.dateOfSearch
 				? new Date(this.$tera.state.dateOfSearch)
-				: null;
+				: null;*/
 		}
 	},
 	/*methods: {
