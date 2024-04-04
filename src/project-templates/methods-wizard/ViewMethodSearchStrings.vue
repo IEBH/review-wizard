@@ -8,13 +8,16 @@
 			v-model="$tera.state.databases"
 		/>
 
-		<InputDate
-			question="What date did you run your search on?"
+		<!--
 			:value="
-				$tera.state.dateOfSearch && $tera.state.dateOfSearch != undefined
+				$tera.state.dateOfSearch 
 					? new Date($tera.state.dateOfSearch)
 					: null
 			"
+		-->
+		<InputDate
+			question="What date did you run your search on?"
+			v-model="dateOfSearch"
 		/>
 
 		<InputDate
@@ -101,6 +104,13 @@ export default {
 		InputTabsMulti,
 		PreviewOutput,
 		InputDate
+	},
+	computed: {
+		dateOfSearch() {
+			return $tera.state.dateOfSearch
+				? new Date($tera.state.dateOfSearch)
+				: null;
+		}
 	},
 	/*methods: {
 		//Search Strings for Bibliographic Databases
