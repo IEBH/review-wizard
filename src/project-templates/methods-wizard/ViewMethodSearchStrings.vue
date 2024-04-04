@@ -5,7 +5,7 @@
 		<InputSelectMulti
 			question="Which databases did you search for your systematic review?"
 			:options="databaseOptions"
-			:value="$tera.state.databases"
+			v-model="$tera.state.databases"
 		/>
 
 		<InputDate
@@ -38,7 +38,7 @@
 		<InputSelectMulti
 			question="Which registries did you search?"
 			:options="registryOptions"
-			:value="$tera.state.registries"
+			v-model="$tera.state.registries"
 		/>
 
 		<InputDate
