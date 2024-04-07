@@ -20,7 +20,7 @@
 			label="Clear"
 			v-if="value"
 			class="p-button-rounded p-button-danger p-ml-3"
-			@clear-click="clear"
+			@click="clear"
 		/>
 	</div>
 </template>
