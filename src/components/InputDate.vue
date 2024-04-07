@@ -9,6 +9,7 @@
 		<!--
 			:value="date"
 			@input="$emit('input', $event)"
+			@click="clear"
 		-->
 		<Calendar
 			v-model="value"
