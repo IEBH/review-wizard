@@ -79,6 +79,7 @@ export default {
 			}
 		},
 		checkAuthorSelection(table) {
+			console.log("defaults:" + table);
 			return table.rows.forEach(el => {
 				if (
 					el.tasks == "Design systematic search strategy" ||
