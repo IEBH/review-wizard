@@ -10,7 +10,7 @@
 </template>
 <script>
 import InputSrTableCustom from "@/components/InputSrTableCustom.vue";
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
+import { defaults } from "./settingdefaults";
 export default {
 	components: {
 		InputSrTableCustom
@@ -31,6 +31,13 @@ export default {
 			});
 		},*/
 		table() {
+			//set defaults
+			if (this.$tera.state.planTable == undefined) {
+				this.$tera.setProjectStateDefaults(
+					"planTable",
+					defaults.researchplan.planTable
+				);
+			}
 			return this.$tera.state.planTable?.rows.forEach(el => {
 				if (
 					el.tasks == "Design systematic search strategy" ||
