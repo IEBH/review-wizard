@@ -42,10 +42,14 @@ export default {
 			}
 		},
 		Authors() {
-			let da = [
-				...this.$tera.state.author,
-				...this.$tera.state.acknowledgements
-			];
+			let da = [];
+			if (
+				//check if authors are initialized
+				this.$tera.state.author != undefined &&
+				this.$tera.state.acknowledgements != undefined
+			) {
+				da = [...this.$tera.state.author, ...this.$tera.state.acknowledgements];
+			}
 			this.checkUnion(da);
 			/**
 			 * return this.authorsArr?.map(el => {
