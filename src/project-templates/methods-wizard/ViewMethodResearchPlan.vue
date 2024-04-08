@@ -33,12 +33,43 @@ export default {
 		table() {
 			//set defaults
 			if (this.$tera.state.planTable == undefined) {
-				this.$tera.setProjectStateDefaults(
-					"planTable",
-					defaults.researchplan.planTable
-				);
+				let table = this.checkAuthorSelection(defaults.researchplan.planTable);
+				return this.$tera.setProjectStateDefaults("planTable", table);
+			} else {
+				return this.checkAuthorSelection(this.$tera.state.planTable);
 			}
-			return this.$tera.state.planTable?.rows.forEach(el => {
+		},
+		Authors() {
+			let da = [
+				...this.$tera.state.author,
+				...this.$tera.state.acknowledgements
+			];
+			this.checkUnion(da);
+			/**
+			 * return this.authorsArr?.map(el => {
+				return { label: el };
+			});
+			 */
+			return da?.map(el => {
+				return { label: el };
+			});
+		}
+	},
+	methods: {
+		checkUnion(U) {
+			if (U.length > 0) {
+				for (var i = 0; i < U.length; i++) {
+					for (var j = i + 1; j < U.length; j++) {
+						if (U[i].label == U[j].label) {
+							U.splice(j, 1);
+							j--;
+						}
+					}
+				}
+			}
+		},
+		checkAuthorSelection(table) {
+			return table.rows.forEach(el => {
 				if (
 					el.tasks == "Design systematic search strategy" ||
 					el.tasks == "Run systematic search strings" ||
@@ -140,35 +171,6 @@ export default {
 					this.checkUnion(el.peopleInvolved);
 				}
 			});
-		},
-		Authors() {
-			let da = [
-				...this.$tera.state.author,
-				...this.$tera.state.acknowledgements
-			];
-			this.checkUnion(da);
-			/**
-			 * return this.authorsArr?.map(el => {
-				return { label: el };
-			});
-			 */
-			return da?.map(el => {
-				return { label: el };
-			});
-		}
-	},
-	methods: {
-		checkUnion(U) {
-			if (U.length > 0) {
-				for (var i = 0; i < U.length; i++) {
-					for (var j = i + 1; j < U.length; j++) {
-						if (U[i].label == U[j].label) {
-							U.splice(j, 1);
-							j--;
-						}
-					}
-				}
-			}
 		}
 		/*checkPeopleInvolved(pInvolved, authors) {
 			if (pInvolved != "") {
