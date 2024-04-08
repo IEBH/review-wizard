@@ -32,7 +32,11 @@
 			<!-- :options="column.type === 'select' ? column.options : null" -->
 		</div>
 		<div class="table-container">
-			<table class="p-fluid" style="width:100%;" v-if="value">
+			<table
+				class="p-fluid"
+				style="width:100%;"
+				v-if="value && value != undefined"
+			>
 				<thead class="p-fluid-thead">
 					<tr>
 						<th v-for="(thead, index) in value.headers" :key="index">
@@ -410,7 +414,6 @@ export default {
 	},
 	mounted() {
 		this.methodsUrl = "/#/" + this.$store.state.projectId;
-		console.log("table:" + this.value);
 	},
 	computed: {
 		dynamicColumnWidths() {
