@@ -1,9 +1,19 @@
 <template>
 	<div class="p-mb-6">
 		<p>
-			<b>{{ question }}
-				<ToggleButton v-model="ifEdit" onIcon="pi pi-check" offIcon="pi pi-user-edit" offLabel="Save" />
-				<Button icon="pi pi-cloud-download" @click="isShowDialog = true" class="p-button-secondary p-button-text" />
+			<b
+				>{{ question }}
+				<ToggleButton
+					v-model="ifEdit"
+					onIcon="pi pi-check"
+					offIcon="pi pi-user-edit"
+					offLabel="Save"
+				/>
+				<Button
+					icon="pi pi-cloud-download"
+					@click="isShowDialog = true"
+					class="p-button-secondary p-button-text"
+				/>
 			</b>
 		</p>
 		<!-- <pre>
@@ -31,7 +41,12 @@
 									{{ thead.label }}
 								</div>
 								<div class="menu">
-									<InputSrMenubar v-if="ifEdit" :colIndex="index" @addCol="addCol" @deleteCol="deleCol" />
+									<InputSrMenubar
+										v-if="ifEdit"
+										:colIndex="index"
+										@addCol="addCol"
+										@deleteCol="deleCol"
+									/>
 								</div>
 							</div>
 						</th>
@@ -44,11 +59,25 @@
 					<tr v-for="(row, index) in value.rows" :key="index">
 						<td v-for="thead of value.headers" :key="thead.name">
 							<template v-if="thead.name == 'toolLink'">
-								<div v-for="tl in row.toolLink" :key="tl.name" style="margin: 10px;">
-									<a v-if="tl.name != '' && tl.link.includes('https://') == false"
-										:href="methodsUrl + tl.link" target="_blank">{{ tl.name }}</a>
-									<a v-if="tl.name != '' && tl.link.includes('https://') == true" :href="tl.link"
-										target="_blank">{{ tl.name }}</a>
+								<div
+									v-for="tl in row.toolLink"
+									:key="tl.name"
+									style="margin: 10px;"
+								>
+									<a
+										v-if="
+											tl.name != '' && tl.link.includes('https://') == false
+										"
+										:href="methodsUrl + tl.link"
+										target="_blank"
+										>{{ tl.name }}</a
+									>
+									<a
+										v-if="tl.name != '' && tl.link.includes('https://') == true"
+										:href="tl.link"
+										target="_blank"
+										>{{ tl.name }}</a
+									>
 								</div>
 							</template>
 							<!-- <div class="checkbox-wrapper-29">
@@ -58,10 +87,18 @@
 									Completed
 								</label>
 							</div> -->
-							<div class="checkbox-wrapper-29" v-if="thead.name == 'progress'" style="margin-left: 46%;">
+							<div
+								class="checkbox-wrapper-29"
+								v-if="thead.name == 'progress'"
+								style="margin-left: 46%;"
+							>
 								<label class="checkbox">
-									<input type="checkbox" v-model="row.progress" class="checkbox__input"
-										@change="changeHandler($event)">
+									<input
+										type="checkbox"
+										v-model="row.progress"
+										class="checkbox__input"
+										@change="changeHandler($event)"
+									/>
 									<span class="checkbox__label"></span>
 									<!-- Completed -->
 								</label>
@@ -70,49 +107,99 @@
 								<el-checkbox v-model="row.progress" label="Completed"
 									@change="changeHandler($event)"></el-checkbox>
 							</div> -->
-							<NotesContent v-if="thead.name == 'notes'" :thead="thead" :row="row" @notes="changeHandler" />
-							<InputAutoComplete :isEvenRow="isEvenRow(index)" v-if="thead.name == 'peopleInvolved'"
-								:tableValue="value" :row="row" :tableHeader="thead" :titlePageAuthors="titlePageAuthors"
-								:people="people" @autocom="changeHandler" />
-							<Textarea v-if="thead.name != 'peopleInvolved' &&
-								thead.name != 'toolLink' &&
-								thead.name != 'progress' &&
-								thead.name != 'notes'
-								" type="text" v-model="row[thead.name]" :ref="index" :autoResize="true"
-								@change="changeHandler($event.target.value)" />
+							<NotesContent
+								v-if="thead.name == 'notes'"
+								:thead="thead"
+								:row="row"
+								@notes="changeHandler"
+							/>
+							<InputAutoComplete
+								:isEvenRow="isEvenRow(index)"
+								v-if="thead.name == 'peopleInvolved'"
+								:tableValue="value"
+								:row="row"
+								:tableHeader="thead"
+								:titlePageAuthors="titlePageAuthors"
+								:people="people"
+								@autocom="changeHandler"
+							/>
+							<Textarea
+								v-if="
+									thead.name != 'peopleInvolved' &&
+										thead.name != 'toolLink' &&
+										thead.name != 'progress' &&
+										thead.name != 'notes'
+								"
+								type="text"
+								v-model="row[thead.name]"
+								:ref="index"
+								:autoResize="true"
+								@change="changeHandler($event.target.value)"
+							/>
 						</td>
 						<td class="btnArea" v-if="ifEdit">
-					<tr>
-						<td style="border-style: none;">
-							<Button v-if="ifEdit" class="p-button-raised p-button-text" icon="pi pi-ellipsis-h"
-								@click="show = !show" style="background-color:white" />
+							<tr>
+								<td style="border-style: none;">
+									<Button
+										v-if="ifEdit"
+										class="p-button-raised p-button-text"
+										icon="pi pi-ellipsis-h"
+										@click="show = !show"
+										style="background-color:white"
+									/>
+								</td>
+								<td style="border-style: none;">
+									<span class="p-buttonset" v-if="show && ifEdit">
+										<Button
+											class="p-button-raised p-button-text"
+											icon="pi pi-arrow-up"
+											@click="addRow(index, 0)"
+											style="background-color:white"
+										/>
+										<Button
+											class="p-button-raised p-button-text"
+											icon="pi pi-trash"
+											@click="deleRow(index)"
+											style="background-color:white"
+										/>
+										<Button
+											class="p-button-raised p-button-text"
+											icon="pi pi-arrow-down"
+											@click="addRow(index, 1)"
+											style="background-color:white"
+										/>
+									</span>
+								</td>
+							</tr>
 						</td>
-						<td style="border-style: none;">
-							<span class="p-buttonset" v-if="show && ifEdit">
-								<Button class="p-button-raised p-button-text" icon="pi pi-arrow-up"
-									@click="addRow(index, 0)" style="background-color:white" />
-								<Button class="p-button-raised p-button-text" icon="pi pi-trash" @click="deleRow(index)"
-									style="background-color:white" />
-								<Button class="p-button-raised p-button-text" icon="pi pi-arrow-down"
-									@click="addRow(index, 1)" style="background-color:white" />
-							</span>
-						</td>
-					</tr>
-					</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<Dialog header="Export to Excel" :visible.sync="isShowDialog" :modal="true" :style="{ width: '450px' }">
+		<Dialog
+			header="Export to Excel"
+			:visible.sync="isShowDialog"
+			:modal="true"
+			:style="{ width: '450px' }"
+		>
 			<div class="p-inputgroup">
 				<span class="p-inputgroup-addon">NewFile-Name:</span>
 				<InputText placeholder="e.g.ResearchPlan.xlsx" v-model="fileName" />
 			</div>
 
 			<template #footer>
-				<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="isShowDialog = false" />
-				<Button label="Comfirm" icon="pi pi-check" class="p-button-text"
-					@click="exportExcel(value.rows, value.headers, fileName)" />
+				<Button
+					label="Cancel"
+					icon="pi pi-times"
+					class="p-button-text"
+					@click="isShowDialog = false"
+				/>
+				<Button
+					label="Comfirm"
+					icon="pi pi-check"
+					class="p-button-text"
+					@click="exportExcel(value.rows, value.headers, fileName)"
+				/>
 			</template>
 		</Dialog>
 	</div>
@@ -130,9 +217,9 @@ import InputAutoComplete from "@/components/InputAutoComplete.vue";
 import InputSrMenubar from "../components/InputSrMenubar.vue";
 import NotesContent from "./NotesContent.vue";
 
-import Vue from 'vue'
-import VueExcelEditor from 'vue-excel-editor'
-Vue.use(VueExcelEditor)
+import Vue from "vue";
+import VueExcelEditor from "vue-excel-editor";
+Vue.use(VueExcelEditor);
 export default {
 	name: "InputSrTable",
 	components: {
@@ -233,23 +320,29 @@ export default {
 					keysForPatch.push(jsonKeys[j].name);
 					if (typeof value[jsonKeys[j].name] == "number") {
 						objectMaxLength[j] = 10;
-					}
-					else {
-						const l = value[jsonKeys[j].name] ? value[jsonKeys[j].name].length : 0;
+					} else {
+						const l = value[jsonKeys[j].name]
+							? value[jsonKeys[j].name].length
+							: 0;
 						if (l && l != 1) {
-							objectMaxLength[j] = objectMaxLength[j] >= l ? objectMaxLength[j] : l;
+							objectMaxLength[j] =
+								objectMaxLength[j] >= l ? objectMaxLength[j] : l;
 						} else {
 							objectMaxLength[j] = j == 0 ? 10 : 40;
 						}
-
 					}
 				}
 				let key = keysForPatch;
 				for (let j = 0; j < key.length; j++) {
-					objectMaxLength[j] = objectMaxLength[j] >= key[j].length ? objectMaxLength[j] : key[j].length;
+					objectMaxLength[j] =
+						objectMaxLength[j] >= key[j].length
+							? objectMaxLength[j]
+							: key[j].length;
 				}
 			}
-			const wscols = objectMaxLength.map(w => { return { width: w } });
+			const wscols = objectMaxLength.map(w => {
+				return { width: w };
+			});
 			sheet1["!cols"] = wscols;
 			// sheet1['A1'].s = {
 			// 	fill: {
@@ -300,11 +393,11 @@ export default {
 		validWholeRecord(content, oldContent, record, field) {
 			console.log(content, oldContent, record, field);
 			if (record.age !== record.birth) {
-				return 'The age and birth do not match'
+				return "The age and birth do not match";
 			} else {
-				return '' // return empty string if there is no error
+				return ""; // return empty string if there is no error
 			}
-		},
+		}
 
 		/*search(query, cb) {
 			let results = query
@@ -317,6 +410,7 @@ export default {
 	},
 	mounted() {
 		this.methodsUrl = "/#/" + this.$store.state.projectId;
+		console.log("table:" + this.value);
 	},
 	computed: {
 		dynamicColumnWidths() {
@@ -324,7 +418,7 @@ export default {
 			for (const column of this.value) {
 				const fieldName = column.name;
 				const contentLength = this.value.rows.reduce((maxLength, row) => {
-					const content = row[fieldName] || '';
+					const content = row[fieldName] || "";
 					return Math.max(maxLength, content.length);
 				}, 0);
 				// Calculate the width based on content length
@@ -333,11 +427,13 @@ export default {
 			return columnWidths;
 		},
 		simplifiedJsondata() {
-			return this.value.rows.map((item) => ({
+			return this.value.rows.map(item => ({
 				...item,
 				// toolLink: Array.isArray(item.toolLink) && item.toolLink.length > 0 ? item.toolLink[0].name : '',
-				peopleInvolved: Array.isArray(item.peopleInvolved) && item.peopleInvolved.length > 0 ? item.peopleInvolved[0].label : '',
-
+				peopleInvolved:
+					Array.isArray(item.peopleInvolved) && item.peopleInvolved.length > 0
+						? item.peopleInvolved[0].label
+						: ""
 			}));
 			// return this.value.rows.map((item) => {
 			// 	const simplifiedUser = {
@@ -351,12 +447,11 @@ export default {
 			// 		item
 			// 	};
 			// });
-		},
+		}
 	}
 };
-
 </script>
-<style >
+<style>
 table {
 	/* border: 1px solid black; */
 	/* border: 4px solid #5c73a6; */
@@ -469,7 +564,7 @@ td {
 }
 
 .checkbox-wrapper-29 .checkbox__label:before {
-	content: ' ';
+	content: " ";
 	display: block;
 	height: var(--size);
 	width: var(--size);
@@ -480,11 +575,11 @@ td {
 }
 
 .checkbox-wrapper-29 .checkbox__label:after {
-	content: ' ';
+	content: " ";
 	display: block;
 	height: var(--size);
 	width: var(--size);
-	border: calc(var(--size) * .14) solid #000;
+	border: calc(var(--size) * 0.14) solid #000;
 	transition: 200ms;
 	position: absolute;
 	top: calc(var(--size) * 0.125);
@@ -496,13 +591,13 @@ td {
 	transition: 100ms ease-in-out;
 }
 
-.checkbox-wrapper-29 .checkbox__input:checked~.checkbox__label:after {
+.checkbox-wrapper-29 .checkbox__input:checked ~ .checkbox__label:after {
 	border-top-style: none;
 	border-right-style: none;
 	-ms-transform: rotate(-45deg);
 	/* IE9 */
 	transform: rotate(-45deg);
-	height: calc(var(--size) * .5);
+	height: calc(var(--size) * 0.5);
 	border-color: green;
 }
 
