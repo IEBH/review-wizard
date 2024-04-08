@@ -79,8 +79,8 @@ export default {
 			}
 		},
 		checkAuthorSelection(table) {
-			console.log("defaults:" + table);
-			return table.rows.forEach(el => {
+			console.log("defaults:" + JSON.stringify(table));
+			table.rows.forEach(el => {
 				if (
 					el.tasks == "Design systematic search strategy" ||
 					el.tasks == "Run systematic search strings" ||
@@ -182,6 +182,7 @@ export default {
 					this.checkUnion(el.peopleInvolved);
 				}
 			});
+			return table;
 		}
 		/*checkPeopleInvolved(pInvolved, authors) {
 			if (pInvolved != "") {
