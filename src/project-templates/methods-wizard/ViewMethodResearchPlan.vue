@@ -120,7 +120,7 @@ export default {
 				}
 				if (
 					el.tasks == "Extract data" &&
-					this.extraction.extractionAuthors != null
+					this.$tera.state.extractionAuthors != null
 				) {
 					//alert(JSON.stringify(this.extraction.extractionAuthors));
 					el.peopleInvolved = [
@@ -131,7 +131,7 @@ export default {
 				}
 				if (
 					el.tasks == "Risk of Bias assessment" &&
-					this.riskOfBias.assessedRobAuthors != null
+					this.$tera.state.assessedRobAuthors != null
 				) {
 					el.peopleInvolved = [
 						...this.$tera.state.assessedRobAuthors,
