@@ -3,7 +3,7 @@
 		<h1>Research Plan</h1>
 		<InputSrTableCustom
 			question="What is your Research Plan?"
-			v-model="$tera.state.planTable"
+			v-model="table"
 			:titlePageAuthors="Authors"
 		></InputSrTableCustom>
 	</div>
@@ -30,15 +30,17 @@ export default {
 				}
 			});
 		},*/
-		/*table() {
+		table() {
 			//set defaults
 			if (this.$tera.state.planTable == undefined) {
 				let table = this.checkAuthorSelection(defaults.researchplan.planTable);
-				return this.$tera.setProjectStateDefaults("planTable", table);
+				console.log("undefined: table:" + JSON.stringify(table));
+				this.$tera.setProjectStateDefaults("planTable", table);
+				return table;
 			} else {
 				return this.checkAuthorSelection(this.$tera.state.planTable);
 			}
-		},*/
+		},
 		Authors() {
 			let da = [
 				...this.$tera.state.author,
@@ -55,14 +57,14 @@ export default {
 			});
 		}
 	},
-	mounted() {
+	/*mounted() {
 		if (this.$tera.state.planTable == undefined) {
 			let table = this.checkAuthorSelection(defaults.researchplan.planTable);
 			this.$tera.setProjectStateDefaults("planTable", table);
 		} else {
 			this.checkAuthorSelection(this.$tera.state.planTable);
 		}
-	},
+	},*/
 	methods: {
 		checkUnion(U) {
 			if (U.length > 0) {
