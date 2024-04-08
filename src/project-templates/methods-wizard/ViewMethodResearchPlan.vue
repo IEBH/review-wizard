@@ -34,7 +34,6 @@ export default {
 			//set defaults
 			if (this.$tera.state.planTable == undefined) {
 				let table = this.checkAuthorSelection(defaults.researchplan.planTable);
-				console.log("undefined: table:" + JSON.stringify(table));
 				this.$tera.setProjectStateDefaults("planTable", table);
 				return table;
 			} else {
@@ -83,7 +82,7 @@ export default {
 			}
 		},
 		checkAuthorSelection(table) {
-			console.log("defaults:" + JSON.stringify(table));
+			//console.log("defaults:" + JSON.stringify(table));
 			table.rows.forEach(el => {
 				if (
 					el.tasks == "Design systematic search strategy" ||
