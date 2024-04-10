@@ -35,8 +35,12 @@ export default {
 			if (this.$tera.state.planTable == undefined) {
 				let table = this.checkAuthorSelection(defaults.researchplan.planTable);
 				this.$tera.setProjectStateDefaults("planTable", table);
-				return table;
+				console.log(
+					"undefined: table:" + JSON.stringify(this.$tera.state.planTable)
+				);
+				return this.$tera.state.planTable;
 			} else {
+				console.log("table:" + JSON.stringify(this.$tera.state.planTable));
 				return this.checkAuthorSelection(this.$tera.state.planTable);
 			}
 		},
