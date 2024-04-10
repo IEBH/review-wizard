@@ -38,7 +38,8 @@ export default {
 				console.log(
 					"undefined: table:" + JSON.stringify(this.$tera.state.planTable)
 				);
-				return this.$tera.state.planTable;
+				//return this.$tera.state.planTable;
+				return table;
 			} else {
 				console.log("table:" + JSON.stringify(this.$tera.state.planTable));
 				return this.checkAuthorSelection(this.$tera.state.planTable);
