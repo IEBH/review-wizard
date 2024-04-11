@@ -1,6 +1,11 @@
 <template>
 	<div>
-		<p v-if="$tera.state.isContactedInvestigators">
+		<p
+			v-if="
+				$tera.state.isContactedInvestigators &&
+					$tera.state.isContactedInvestigators != undefined
+			"
+		>
 			{{
 				selectRandom([
 					"We contacted investigators or study sponsors to provide missing data.",

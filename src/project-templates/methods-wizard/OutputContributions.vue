@@ -1,6 +1,12 @@
 <template>
 	<div>
-		<div v-if="$tera.state.conAuthors && outputData.length > 0">
+		<div
+			v-if="
+				$tera.state.conAuthors &&
+					$tera.state.conAuthors != undefined &&
+					outputData.length > 0
+			"
+		>
 			<span
 				v-if="
 					(element = findElement('Study conceptualization')) &&

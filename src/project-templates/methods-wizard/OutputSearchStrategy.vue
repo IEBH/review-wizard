@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p v-if="$tera.state.components">
+		<p v-if="$tera.state.components && $tera.state.components != undefined">
 			<span v-if="$tera.state.components.length">
 				The following components were included in the search string:
 				{{

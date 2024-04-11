@@ -30,9 +30,6 @@ import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputAssessmentOfTheRiskOfBias",
 	mixins: [OutputMixin],
-	props: {
-		data: Object
-	},
 	computed: {
 		assessedRobAuthorsInitials: function() {
 			return this.formatSelectMulti(this.$tera.state.assessedRobAuthors)
