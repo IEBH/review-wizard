@@ -28,10 +28,9 @@ export default {
 	computed: {
 		authors() {
 			if (this.$tera.state.author == undefined) {
-				return this.$tera.setProjectStateDefaults(
-					"author",
-					defaults.titlepage.authors
-				);
+				let da = this.setAuthorDefaults();
+				console.log("author:" + JSON.stringify(da));
+				return da;
 			}
 			return this.$tera.state.author;
 		},
@@ -43,6 +42,14 @@ export default {
 				);
 			}
 			return this.$tera.state.acknowledgements;
+		}
+	},
+	methods: {
+		async setAuthorDefaults() {
+			return await this.$tera.setProjectStateDefaults(
+				"author",
+				defaults.titlepage.authors
+			);
 		}
 	}
 	/*mounted() {
