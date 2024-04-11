@@ -28,7 +28,7 @@ export default {
 	computed: {
 		authors() {
 			if (this.$tera.state.author == undefined) {
-				this.$tera.setProjectStateDefaults(
+				return this.$tera.setProjectStateDefaults(
 					"author",
 					defaults.titlepage.authors
 				);
