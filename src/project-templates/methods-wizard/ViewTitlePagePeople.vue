@@ -4,13 +4,13 @@
 
 		<InputTextSingleLineMulti
 			question="Who are the authors in the study?"
-			v-model="$tera.state.author"
+			v-model="authors"
 			placeholder="e.g. Justin Clark"
 		/>
 
 		<InputTextSingleLineMulti
 			question="Who else helped with the study? (Acknowledgements)"
-			v-model="$tera.state.acknowledgements"
+			v-model="acknowledgements"
 			placeholder="e.g. Justin Clark"
 		/>
 	</div>
@@ -25,7 +25,27 @@ export default {
 	components: {
 		InputTextSingleLineMulti
 	},
-	mounted() {
+	computed: {
+		authors() {
+			if (this.$tera.state.author == undefined) {
+				this.$tera.setProjectStateDefaults(
+					"author",
+					defaults.titlepage.authors
+				);
+			}
+			return this.$tera.state.author;
+		},
+		acknowledgements() {
+			if (this.$tera.state.acknowledgements == undefined) {
+				this.$tera.setProjectStateDefaults(
+					"acknowledgements",
+					defaults.titlepage.acknowledgements
+				);
+			}
+			return this.$tera.state.acknowledgements;
+		}
+	}
+	/*mounted() {
 		if (this.$tera.state.author == undefined) {
 			this.$tera.setProjectStateDefaults("author", defaults.titlepage.authors);
 		}
@@ -35,7 +55,7 @@ export default {
 				defaults.titlepage.acknowledgements
 			);
 		}
-	}
+	}*/
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
