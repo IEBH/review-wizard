@@ -32,7 +32,6 @@ export default {
 					"author",
 					defaults.titlepage.authors
 				);
-				this.$forceUpdate();
 			}
 			return this.$tera.state.author;
 		},
@@ -42,7 +41,6 @@ export default {
 					"acknowledgements",
 					defaults.titlepage.acknowledgements
 				);
-				this.$forceUpdate();
 			}
 			return this.$tera.state.acknowledgements;
 		}
