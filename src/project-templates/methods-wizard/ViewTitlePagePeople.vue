@@ -29,7 +29,7 @@ export default {
 	},
 	created() {
 		if (this.$tera.state.author == undefined) {
-			this.setAuthorDefaults.then(re => {
+			this.setAuthorDefaults().then(re => {
 				console.log("setdefaultsResponse:" + re);
 				console.log("this.$tera.state.author:" + this.$tera.state.author);
 			});
