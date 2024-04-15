@@ -3,14 +3,14 @@
 		<h1>People</h1>
 
 		<InputTextSingleLineMulti
-			v-if="this.authors != undefined"
+			v-if="$tera.state.author != undefined"
 			question="Who are the authors in the study?"
-			v-model="authors"
+			v-model="$tera.state.author"
 			placeholder="e.g. Justin Clark"
 		/>
 
 		<InputTextSingleLineMulti
-			v-if="(this.acknowledgements = undefined)"
+			v-if="($tera.state.acknowledgements = undefined)"
 			question="Who else helped with the study? (Acknowledgements)"
 			v-model="acknowledgements"
 			placeholder="e.g. Justin Clark"
@@ -27,15 +27,23 @@ export default {
 	components: {
 		InputTextSingleLineMulti
 	},
+	created() {
+		if (this.$tera.state.author == undefined) {
+			this.setAuthorDefaults.then(re => {
+				console.log("setdefaultsResponse:" + re);
+				console.log("this.$tera.state.author:" + this.$tera.state.author);
+			});
+		}
+	},
 	computed: {
-		authors() {
+		/*authors() {
 			if (this.$tera.state.author == undefined) {
 				let da = this.setAuthorDefaults();
 				console.log("author:" + JSON.stringify(da));
 				return da;
 			}
 			return this.$tera.state.author;
-		},
+		},*/
 		acknowledgements() {
 			if (this.$tera.state.acknowledgements == undefined) {
 				this.$tera.setProjectStateDefaults(
