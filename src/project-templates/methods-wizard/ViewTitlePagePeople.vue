@@ -3,12 +3,14 @@
 		<h1>People</h1>
 
 		<InputTextSingleLineMulti
+			v-if="this.authors != undefined"
 			question="Who are the authors in the study?"
 			v-model="authors"
 			placeholder="e.g. Justin Clark"
 		/>
 
 		<InputTextSingleLineMulti
+			v-if="(this.acknowledgements = undefined)"
 			question="Who else helped with the study? (Acknowledgements)"
 			v-model="acknowledgements"
 			placeholder="e.g. Justin Clark"
