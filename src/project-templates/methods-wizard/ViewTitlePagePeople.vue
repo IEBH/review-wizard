@@ -3,14 +3,14 @@
 		<h1>People</h1>
 
 		<InputTextSingleLineMulti
-			v-if="$tera.state.author != undefined"
+			v-if="authors"
 			question="Who are the authors in the study?"
-			v-model="$tera.state.author"
+			v-model="authors"
 			placeholder="e.g. Justin Clark"
 		/>
 
 		<InputTextSingleLineMulti
-			v-if="($tera.state.acknowledgements = undefined)"
+			v-if="acknowledgements"
 			question="Who else helped with the study? (Acknowledgements)"
 			v-model="acknowledgements"
 			placeholder="e.g. Justin Clark"
@@ -27,46 +27,33 @@ export default {
 	components: {
 		InputTextSingleLineMulti
 	},
-	created() {
-		if (this.$tera.state.author == undefined) {
-			this.$tera
-				.setProjectStateDefaults("author", defaults.titlepage.authors)
-				.then(response => {
-					console.log("setdefaultsResponse:" + response);
-					console.log("this.$tera.state.author:" + this.$tera.state.author);
-				});
+	watch: {
+		authors: () => {
+			console.log("author:" + this.authors);
+		},
+		acknowledgements: () => {
+			console.log("acknowledgements:" + this.acknowledgements);
 		}
 	},
-	computed: {
-		/*authors() {
-			if (this.$tera.state.author == undefined) {
-				let da = this.setAuthorDefaults();
-				console.log("author:" + JSON.stringify(da));
-				return da;
-			}
-			return this.$tera.state.author;
-		},*/
-		acknowledgements() {
-			if (this.$tera.state.acknowledgements == undefined) {
-				this.$tera.setProjectStateDefaults(
-					"acknowledgements",
-					defaults.titlepage.acknowledgements
-				);
-			}
-			return this.$tera.state.acknowledgements;
-		}
-	}
-	/*mounted() {
+	async mounted() {
 		if (this.$tera.state.author == undefined) {
-			this.$tera.setProjectStateDefaults("author", defaults.titlepage.authors);
+			this.authors = await this.$tera.setProjectStateDefaults(
+				"author",
+				defaults.titlepage.authors
+			);
+		} else {
+			this.authors = this.$tera.state.author;
 		}
+
 		if (this.$tera.state.acknowledgements == undefined) {
-			this.$tera.setProjectStateDefaults(
+			this.acknowledgements = await this.$tera.setProjectStateDefaults(
 				"acknowledgements",
 				defaults.titlepage.acknowledgements
 			);
+		} else {
+			this.acknowledgements = this.$tera.state.acknowledgements;
 		}
-	}*/
+	}
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
