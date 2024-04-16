@@ -27,19 +27,20 @@ export default {
 	components: {
 		InputTextSingleLineMulti
 	},
-	watch: {
-		authors: () => {
-			console.log("author:" + this.authors);
-		},
-		acknowledgements: () => {
-			console.log("acknowledgements:" + this.acknowledgements);
-		}
+	data() {
+		return {
+			authors: Array,
+			acknowledgements: Array
+		};
 	},
 	async mounted() {
 		if (this.$tera.state.author == undefined) {
 			await this.$tera
 				.setProjectStateDefaults("author", defaults.titlepage.authors)
-				.then(response => (this.authors = response));
+				.then(response => {
+					this.authors = response;
+					console.log("author response:" + response);
+				});
 		} else {
 			this.authors = this.$tera.state.author;
 		}
@@ -50,7 +51,10 @@ export default {
 					"acknowledgements",
 					defaults.titlepage.acknowledgements
 				)
-				.then(response => (this.acknowledgements = response));
+				.then(response => {
+					this.acknowledgements = response;
+					console.log("acknowledgements response:" + response);
+				});
 		} else {
 			this.acknowledgements = this.$tera.state.acknowledgements;
 		}
