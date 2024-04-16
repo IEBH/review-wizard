@@ -53,11 +53,9 @@ export default {
 					"acknowledgements",
 					defaults.titlepage.acknowledgements
 				)
-				.then(response => {
-					if (response) {
-						this.acknowledgements = response;
-						console.log("acknowledgements response:" + response);
-					}
+				.then(() => {
+					console.log("$tera.state.ack:" + this.$tera.state.acknowledgements);
+					this.acknowledgements = this.$tera.state.acknowledgements;
 				});
 		} else {
 			this.acknowledgements = this.$tera.state.acknowledgements;
