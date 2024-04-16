@@ -5,7 +5,7 @@ let defaults = {
 		titleshort: "",
 		year: 0,
 		//people
-		authors: [""],
+		authors: ["Tian Liang"],
 		acknowledgements: [""]
 	},
 	acknowledgement: {
