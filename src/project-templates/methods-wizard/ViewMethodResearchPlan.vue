@@ -15,6 +15,11 @@ export default {
 	components: {
 		InputSrTableCustom
 	},
+	data() {
+		return {
+			table: Object
+		};
+	},
 	computed: {
 		/*authorsArr() {
 			let da = this.$tera.state?.author;
@@ -29,7 +34,7 @@ export default {
 					}
 				}
 			});
-		},*/
+		},
 		table() {
 			//set defaults
 			if (this.$tera.state.planTable == undefined) {
@@ -40,7 +45,7 @@ export default {
 			} else {
 				return this.checkAuthorSelection(this.$tera.state.planTable);
 			}
-		},
+		},*/
 		Authors() {
 			let da = [];
 			if (
@@ -59,6 +64,18 @@ export default {
 			return da?.map(el => {
 				return { label: el };
 			});
+		}
+	},
+	async mounted() {
+		if (this.$tera.state.planTable == undefined) {
+			let table = this.checkAuthorSelection(defaults.researchplan.planTable);
+			await this.$tera
+				.setProjectStateDefaults("planTable", table)
+				.then(response => {
+					this.table = response;
+				});
+		} else {
+			this.table = this.checkAuthorSelection(this.$tera.state.planTable);
 		}
 	},
 	/*mounted() {
