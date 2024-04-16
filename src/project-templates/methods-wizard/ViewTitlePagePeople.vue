@@ -37,19 +37,20 @@ export default {
 	},
 	async mounted() {
 		if (this.$tera.state.author == undefined) {
-			this.authors = await this.$tera.setProjectStateDefaults(
-				"author",
-				defaults.titlepage.authors
-			);
+			await this.$tera
+				.setProjectStateDefaults("author", defaults.titlepage.authors)
+				.then(response => (this.authors = response));
 		} else {
 			this.authors = this.$tera.state.author;
 		}
 
 		if (this.$tera.state.acknowledgements == undefined) {
-			this.acknowledgements = await this.$tera.setProjectStateDefaults(
-				"acknowledgements",
-				defaults.titlepage.acknowledgements
-			);
+			await this.$tera
+				.setProjectStateDefaults(
+					"acknowledgements",
+					defaults.titlepage.acknowledgements
+				)
+				.then(response => (this.acknowledgements = response));
 		} else {
 			this.acknowledgements = this.$tera.state.acknowledgements;
 		}
