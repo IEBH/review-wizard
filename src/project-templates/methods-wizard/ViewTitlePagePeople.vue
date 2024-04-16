@@ -38,8 +38,10 @@ export default {
 			await this.$tera
 				.setProjectStateDefaults("author", defaults.titlepage.authors)
 				.then(response => {
-					this.authors = response;
-					console.log("author response:" + response);
+					if (response) {
+						this.authors = response;
+						console.log("author response:" + response);
+					}
 				});
 		} else {
 			this.authors = this.$tera.state.author;
@@ -52,8 +54,10 @@ export default {
 					defaults.titlepage.acknowledgements
 				)
 				.then(response => {
-					this.acknowledgements = response;
-					console.log("acknowledgements response:" + response);
+					if (response) {
+						this.acknowledgements = response;
+						console.log("acknowledgements response:" + response);
+					}
 				});
 		} else {
 			this.acknowledgements = this.$tera.state.acknowledgements;
