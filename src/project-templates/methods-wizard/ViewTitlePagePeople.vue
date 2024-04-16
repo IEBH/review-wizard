@@ -29,10 +29,12 @@ export default {
 	},
 	created() {
 		if (this.$tera.state.author == undefined) {
-			this.setAuthorDefaults().then(re => {
-				console.log("setdefaultsResponse:" + re);
-				console.log("this.$tera.state.author:" + this.$tera.state.author);
-			});
+			this.$tera
+				.setProjectStateDefaults("author", defaults.titlepage.authors)
+				.then(response => {
+					console.log("setdefaultsResponse:" + response);
+					console.log("this.$tera.state.author:" + this.$tera.state.author);
+				});
 		}
 	},
 	computed: {
@@ -52,14 +54,6 @@ export default {
 				);
 			}
 			return this.$tera.state.acknowledgements;
-		}
-	},
-	methods: {
-		async setAuthorDefaults() {
-			return await this.$tera.setProjectStateDefaults(
-				"author",
-				defaults.titlepage.authors
-			);
 		}
 	}
 	/*mounted() {
