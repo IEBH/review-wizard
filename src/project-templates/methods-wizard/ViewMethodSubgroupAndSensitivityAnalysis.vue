@@ -44,11 +44,9 @@
 
 <script>
 import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSubgroupAndSensitivityAnalysis",
-	//mixins: [deepstreamMixin("subgroupAndSensitivityAnalysis")],
 	data() {
 		return {
 			numberOptions: ["1", "2", "3", "4", "5", "6"],

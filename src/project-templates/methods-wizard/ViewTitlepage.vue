@@ -25,8 +25,6 @@ import InputTextNumber from "@/components/InputTextNumber.vue";
 import InputTextSingleLine from "@/components/InputTextSingleLine.vue";
 //import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
 
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
-
 export default {
 	name: "ViewMethodPicot",
 	components: {

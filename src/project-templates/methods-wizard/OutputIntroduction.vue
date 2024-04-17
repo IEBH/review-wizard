@@ -4,11 +4,7 @@
 	</div>
 </template>
 <script>
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 export default {
-	name: "OutputIntroduction",
-	props: {
-		//data: Object
-	}
+	name: "OutputIntroduction"
 };
 </script>

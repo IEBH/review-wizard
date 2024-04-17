@@ -23,9 +23,6 @@ import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputHeterogeneity",
 	mixins: [OutputMixin],
-	props: {
-		//data: Object
-	},
 	methods: {
 		getHeterogeneityMeasurement() {
 			if (this.$tera.state.heterogeneityMeasurement == "Other") {

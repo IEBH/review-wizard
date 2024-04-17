@@ -28,10 +28,7 @@
 import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputPublicationBias",
-	mixins: [OutputMixin],
-	props: {
-		//data: Object
-	}
+	mixins: [OutputMixin]
 };
 </script>
 

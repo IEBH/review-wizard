@@ -187,9 +187,6 @@ import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputScreening",
 	mixins: [OutputMixin],
-	props: {
-		//data: Object
-	},
 	computed: {
 		numberOfTitleAbstractScreeners() {
 			return this.$tera.state.titleAbstractScreeners?.length;

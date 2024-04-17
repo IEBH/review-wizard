@@ -102,7 +102,6 @@ import InputTabsMulti from "@/components/InputTabsMulti";
 //Search Strings for Trial Registries
 
 import OutputSearchStrings from "./OutputSearchStrings.vue";
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "ViewMethodSearchStrings",

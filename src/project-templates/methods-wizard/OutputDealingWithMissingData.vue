@@ -1,11 +1,6 @@
 <template>
 	<div>
-		<p
-			v-if="
-				$tera.state.isContactedInvestigators &&
-					$tera.state.isContactedInvestigators != undefined
-			"
-		>
+		<p v-if="$tera.state.isContactedInvestigators">
 			{{
 				selectRandom([
 					"We contacted investigators or study sponsors to provide missing data.",
@@ -27,10 +22,7 @@
 import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputDealingWithMissingData",
-	mixins: [OutputMixin],
-	props: {
-		//data: Object
-	}
+	mixins: [OutputMixin]
 };
 </script>
 

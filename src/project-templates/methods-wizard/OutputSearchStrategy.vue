@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p v-if="$tera.state.components && $tera.state.components != undefined">
+		<p v-if="$tera.state.components">
 			<span v-if="$tera.state.components.length">
 				The following components were included in the search string:
 				{{
@@ -106,9 +106,6 @@ import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputSearchStrategy",
 	mixins: [OutputMixin],
-	props: {
-		//data: Object
-	},
 	computed: {
 		designSearchStrategyAuthorsInitials: function() {
 			return this.formatSelectMulti(

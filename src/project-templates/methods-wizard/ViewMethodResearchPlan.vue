@@ -10,15 +10,9 @@
 </template>
 <script>
 import InputSrTableCustom from "@/components/InputSrTableCustom.vue";
-import { defaults } from "./settingdefaults";
 export default {
 	components: {
 		InputSrTableCustom
-	},
-	data() {
-		return {
-			table: Object
-		};
 	},
 	computed: {
 		/*authorsArr() {
@@ -34,18 +28,10 @@ export default {
 					}
 				}
 			});
-		},
-		table() {
-			//set defaults
-			if (this.$tera.state.planTable == undefined) {
-				let table = this.checkAuthorSelection(defaults.researchplan.planTable);
-				this.$tera.setProjectStateDefaults("planTable", table);
-				//return this.$tera.state.planTable;
-				return table;
-			} else {
-				return this.checkAuthorSelection(this.$tera.state.planTable);
-			}
 		},*/
+		table() {
+			return this.checkAuthorSelection(this.$tera.state.planTable);
+		},
 		Authors() {
 			let da = [];
 			if (
@@ -66,7 +52,7 @@ export default {
 			});
 		}
 	},
-	async mounted() {
+	/*async mounted() {
 		if (this.$tera.state.planTable == undefined) {
 			let table = this.checkAuthorSelection(defaults.researchplan.planTable);
 			await this.$tera
@@ -76,14 +62,6 @@ export default {
 				});
 		} else {
 			this.table = this.checkAuthorSelection(this.$tera.state.planTable);
-		}
-	},
-	/*mounted() {
-		if (this.$tera.state.planTable == undefined) {
-			let table = this.checkAuthorSelection(defaults.researchplan.planTable);
-			this.$tera.setProjectStateDefaults("planTable", table);
-		} else {
-			this.checkAuthorSelection(this.$tera.state.planTable);
 		}
 	},*/
 	methods: {

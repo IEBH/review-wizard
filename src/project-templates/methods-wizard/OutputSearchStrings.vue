@@ -89,9 +89,6 @@ import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputSearchStrings",
 	mixins: [OutputMixin],
-	props: {
-		//data: Object
-	},
 	methods: {
 		getSearchString(database) {
 			if (database.method == "muanualVersion") {
