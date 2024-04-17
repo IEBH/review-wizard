@@ -3,31 +3,29 @@
 		<h1>People</h1>
 
 		<InputTextSingleLineMulti
-			v-if="authors"
 			question="Who are the authors in the study?"
-			v-model="authors"
+			v-model="$tera.state.author"
 			placeholder="e.g. Justin Clark"
 		/>
 
 		<InputTextSingleLineMulti
-			v-if="acknowledgements"
 			question="Who else helped with the study? (Acknowledgements)"
-			v-model="acknowledgements"
+			v-model="$tera.state.acknowledgements"
 			placeholder="e.g. Justin Clark"
 		/>
 	</div>
 </template>
 <script>
 import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
-import { defaults } from "./settingdefaults";
+//import { defaults } from "./settingdefaults";
 
 export default {
 	name: "ViewTitlePagePeople",
 
 	components: {
 		InputTextSingleLineMulti
-	},
-	data() {
+	}
+	/*data() {
 		return {
 			authors: Array,
 			acknowledgements: Array
@@ -61,7 +59,7 @@ export default {
 		} else {
 			this.acknowledgements = this.$tera.state.acknowledgements;
 		}
-	}
+	}*/
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

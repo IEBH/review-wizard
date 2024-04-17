@@ -40,6 +40,9 @@ let terafy = new TeraFy()
 	.setIfDev("siteUrl", process.env.VUE_APP_TERAFY_URL)
 	.use(TerafyVue); // Add the Vue plugin
 
+import { defaultProjectState } from "./defaultProjectState";
+terafy.setProjectStateDefaults(defaultProjectState);
+
 // Register all Input/Base Components Globally {{{
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
@@ -92,6 +95,5 @@ requireComponent.keys().forEach(fileName => {
 		app, // Provide app to bind against
 		Vue // Provide the vue version to use
 	});
-
 	app.$mount("#app");
 })();
