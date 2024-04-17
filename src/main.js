@@ -34,14 +34,13 @@ Vue.use(ElementUI);
 // NOTE: See bottom of file inside main async() init loop for when TeraFy actually boots
 import TeraFy from "@iebh/tera-fy/dist/terafy.es2019.js"; // FIX: Use annoyingly old and specific version as Babel struggles with ESNEXT class imports
 import TerafyVue from "@iebh/tera-fy/dist/plugin.vue2.es2019.js";
+import { defaultProjectState } from "./defaultProjectState";
 
 let terafy = new TeraFy()
 	.set("devMode", process.env.VUE_APP_TERAFY_DEV == 1)
 	.setIfDev("siteUrl", process.env.VUE_APP_TERAFY_URL)
+	.setProjectStateDefaults(defaultProjectState)
 	.use(TerafyVue); // Add the Vue plugin
-
-import { defaultProjectState } from "./defaultProjectState";
-terafy.setProjectStateDefaults(defaultProjectState);
 
 // Register all Input/Base Components Globally {{{
 import upperFirst from "lodash/upperFirst";
