@@ -520,6 +520,8 @@ let defaultProjectState = {
 	comparators: [],
 	extractionOutcomes: [{ inclusion: true, type: true }],
 	extractionTypes: [],
+	//extraction report
+	detable: { headers: [], rows: [] },
 
 	//riskOfBias:
 	//numberOfAuthors: null,

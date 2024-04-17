@@ -1,19 +1,32 @@
 <template>
 	<div class="p-mb-6">
 		<p>
-			<b>{{ question }}
-				<ToggleButton v-model="ifEdit" onIcon="pi pi-check" offIcon="pi pi-user-edit" offLabel="Save" />
-				<Button icon="pi pi-cloud-download" @click="isShowDialog = true" class="p-button-secondary p-button-text" />
-				<Button v-if="ifEdit" class="p-button-raised p-button-text" icon="pi pi-arrow-down" @click="addNewRow()"
-					style="background-color:white" />
+			<b
+				>{{ question }}
+				<ToggleButton
+					v-model="ifEdit"
+					onIcon="pi pi-check"
+					offIcon="pi pi-user-edit"
+					offLabel="Save"
+				/>
+				<Button
+					icon="pi pi-cloud-download"
+					@click="isShowDialog = true"
+					class="p-button-secondary p-button-text"
+				/>
+				<Button
+					v-if="ifEdit"
+					class="p-button-raised p-button-text"
+					icon="pi pi-arrow-down"
+					@click="addNewRow()"
+					style="background-color:white"
+				/>
 			</b>
-
 		</p>
 		<!-- <pre>
 		{{ value }}
 	  </pre> -->
 		<div>
-
 			<!-- @cell-click="handleCellClick" -->
 			<!-- <vue-excel-editor ref="grid" @delete="delRecord" :no-header-edit="true" v-if="value && value.rows"
 				v-model="value.rows">
@@ -28,9 +41,8 @@
 			<!-- :type="column.label == 'Year' ? column.type == 'number' : column.type == 'string'" -->
 			<!-- <vue-excel-column @delete="delRecord" label="Actions" :field="null" >
 				</vue-excel-column> -->
-
 		</div>
-		<table class="p-fluid" style="width:100%;" v-if="value.headers.length>0">
+		<table class="p-fluid" style="width:100%;" v-if="value.headers.length > 0">
 			<thead class="p-fluid-thead">
 				<tr>
 					<th v-for="(thead, index) in value.headers" :key="index">
@@ -42,8 +54,12 @@
 					</th>
 					<th v-if="ifEdit">
 						<div style="width: 160px">
-							<Button class="p-button-raised p-button-text" icon="pi pi-arrow-down" @click="addNewRow()"
-								style="background-color:white" />
+							<Button
+								class="p-button-raised p-button-text"
+								icon="pi pi-arrow-down"
+								@click="addNewRow()"
+								style="background-color:white"
+							/>
 						</div>
 					</th>
 				</tr>
@@ -75,51 +91,86 @@
 				</tr> -->
 				<tr v-for="(row, index) in value.rows" :key="index">
 					<td v-for="thead of value.headers" :key="thead.label">
-						<Textarea type="text" v-model="row[thead.label]" :ref="index" :autoResize="true"
-							@change="changeHandler($event.target.value)" />
+						<Textarea
+							type="text"
+							v-model="row[thead.label]"
+							:ref="index"
+							:autoResize="true"
+							@change="changeHandler($event.target.value)"
+						/>
 						<!-- @change="changeHandler($event) -->
 						<!-- @input="updateRow(index, thead.label, $event)" /> -->
 					</td>
 					<td class="btnArea" v-if="ifEdit">
-				<tr>
-					<td style="border-style: none;">
-						<Button v-if="ifEdit" class="p-button-raised p-button-text" icon="pi pi-ellipsis-h"
-							@click="show = !show" style="background-color:white" />
-					</td>
-					<td style="border-style: none;">
-						<span class="p-buttonset" v-if="show && ifEdit">
-							<!-- <Button class="p-button-raised p-button-text" icon="pi pi-arrow-up" @click="addRow(index, 0)"
+						<tr>
+							<td style="border-style: none;">
+								<Button
+									v-if="ifEdit"
+									class="p-button-raised p-button-text"
+									icon="pi pi-ellipsis-h"
+									@click="show = !show"
+									style="background-color:white"
+								/>
+							</td>
+							<td style="border-style: none;">
+								<span class="p-buttonset" v-if="show && ifEdit">
+									<!-- <Button class="p-button-raised p-button-text" icon="pi pi-arrow-up" @click="addRow(index, 0)"
 								style="background-color:white" /> -->
-							<Button class="p-button-raised p-button-text" icon="pi pi-arrow-up" @click="moveRowUp(index)"
-								style="background-color:white; color: blue; border: 1px solid blue;" />
-							<Button class="p-button-raised p-button-text" icon="pi pi-trash" @click="deleteRow(index)"
-								style="background-color:white" />
-							<Button class="p-button-raised p-button-text" icon="pi pi-arrow-down"
-								@click="moveRowDown(index)"
-								style="background-color:white; color: red; border: 1px solid red;" />
-							<!-- <Button class="p-button-raised p-button-text" icon="pi pi-arrow-down" @click="addRow(index, 1)"
+									<Button
+										class="p-button-raised p-button-text"
+										icon="pi pi-arrow-up"
+										@click="moveRowUp(index)"
+										style="background-color:white; color: blue; border: 1px solid blue;"
+									/>
+									<Button
+										class="p-button-raised p-button-text"
+										icon="pi pi-trash"
+										@click="deleteRow(index)"
+										style="background-color:white"
+									/>
+									<Button
+										class="p-button-raised p-button-text"
+										icon="pi pi-arrow-down"
+										@click="moveRowDown(index)"
+										style="background-color:white; color: red; border: 1px solid red;"
+									/>
+									<!-- <Button class="p-button-raised p-button-text" icon="pi pi-arrow-down" @click="addRow(index, 1)"
 								style="background-color:white" /> -->
-						</span>
-						<!-- <Button class="p-button-raised p-button-text" icon="pi pi-arrow-up" @click="moveRowUp(index)"
+								</span>
+								<!-- <Button class="p-button-raised p-button-text" icon="pi pi-arrow-up" @click="moveRowUp(index)"
 							style="background-color:white; color: blue; border: 1px solid blue;" />
 						<Button class="p-button-raised p-button-text" icon="pi pi-arrow-down" @click="moveRowDown(index)"
 							style="background-color:white; color: red; border: 1px solid red;" /> -->
+							</td>
+						</tr>
 					</td>
-				</tr>
-				</td>
 				</tr>
 			</tbody>
 		</table>
-		<Dialog header="Export to Excel" :visible.sync="isShowDialog" :modal="true" :style="{ width: '450px' }">
+		<Dialog
+			header="Export to Excel"
+			:visible.sync="isShowDialog"
+			:modal="true"
+			:style="{ width: '450px' }"
+		>
 			<div class="p-inputgroup">
 				<span class="p-inputgroup-addon">NewFile-Name:</span>
 				<InputText placeholder="e.g.DataExtraction.xlsx" v-model="fileName" />
 			</div>
 
 			<template #footer>
-				<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="isShowDialog = false" />
-				<Button label="Comfirm" icon="pi pi-check" class="p-button-text"
-					@click="generateExcel(value.headers, value.rows, fileName)" />
+				<Button
+					label="Cancel"
+					icon="pi pi-times"
+					class="p-button-text"
+					@click="isShowDialog = false"
+				/>
+				<Button
+					label="Comfirm"
+					icon="pi pi-check"
+					class="p-button-text"
+					@click="generateExcel(value.headers, value.rows, fileName)"
+				/>
 				<!-- @click="exportAsExcel(fileName)" -->
 				<!-- @click="exportExcel(value.rows, value.headers, fileName)" /> -->
 			</template>
@@ -131,13 +182,13 @@ import Textarea from "primevue/textarea";
 import Button from "primevue/button";
 // import Vue from "vue"; // Import Vue
 //import AutoComplete from "primevue/autocomplete";
-import ExcelJS from 'exceljs';
+import ExcelJS from "exceljs";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
 import ToggleButton from "primevue/togglebutton";
-import Vue from 'vue'
-import VueExcelEditor from 'vue-excel-editor'
-Vue.use(VueExcelEditor)
+import Vue from "vue";
+import VueExcelEditor from "vue-excel-editor";
+Vue.use(VueExcelEditor);
 import * as XLSX from "xlsx";
 // import RichTextEditor from "@/components/RichTextEditor.vue";
 // import InputAutoComplete from "@/components/InputAutoComplete.vue";
@@ -153,7 +204,7 @@ export default {
 		// InputAutoComplete,
 		// InputSrMenubar,
 		// NotesContent,
-		ToggleButton,
+		ToggleButton
 		// RichTextEditor
 	},
 	props: {
@@ -174,7 +225,7 @@ export default {
 			// selectedTextColor: 'black',
 			// isBold: false,
 			selectedRowIndex: -1, // Initialize with -1 (no selection)
-			selectedColumnIndex: -1, // Initialize with -1 (no selection)
+			selectedColumnIndex: -1 // Initialize with -1 (no selection)
 		};
 	},
 	methods: {
@@ -241,23 +292,29 @@ export default {
 					keysForPatch.push(jsonKeys[j].name);
 					if (typeof value[jsonKeys[j].name] == "number") {
 						objectMaxLength[j] = 10;
-					}
-					else {
-						const l = value[jsonKeys[j].name] ? value[jsonKeys[j].name].length : 0;
+					} else {
+						const l = value[jsonKeys[j].name]
+							? value[jsonKeys[j].name].length
+							: 0;
 						if (l && l != 1) {
-							objectMaxLength[j] = objectMaxLength[j] >= l ? objectMaxLength[j] : l;
+							objectMaxLength[j] =
+								objectMaxLength[j] >= l ? objectMaxLength[j] : l;
 						} else {
 							objectMaxLength[j] = j == 0 ? 10 : 40;
 						}
-
 					}
 				}
 				let key = keysForPatch;
 				for (let j = 0; j < key.length; j++) {
-					objectMaxLength[j] = objectMaxLength[j] >= key[j].length ? objectMaxLength[j] : key[j].length;
+					objectMaxLength[j] =
+						objectMaxLength[j] >= key[j].length
+							? objectMaxLength[j]
+							: key[j].length;
 				}
 			}
-			const wscols = objectMaxLength.map(w => { return { width: w } });
+			const wscols = objectMaxLength.map(w => {
+				return { width: w };
+			});
 			sheet1["!cols"] = wscols;
 			// sheet1['A1'].s = {
 			// 	fill: {
@@ -337,7 +394,7 @@ export default {
 		// },
 		generateExcel(samples, rows, filename) {
 			const workbook = new ExcelJS.Workbook();
-			const worksheet = workbook.addWorksheet('Sheet 1');
+			const worksheet = workbook.addWorksheet("Sheet 1");
 
 			// Create headers
 			const headers = samples.map(header => header.label);
@@ -348,7 +405,7 @@ export default {
 
 			// Add data rows and update column widths
 			rows.forEach(row => {
-				const rowData = samples.map(header => row[header.label] || '');
+				const rowData = samples.map(header => row[header.label] || "");
 				worksheet.addRow(rowData);
 
 				// Update column widths based on the length of data in each cell
@@ -362,7 +419,10 @@ export default {
 
 			// Set column widths
 			headers.forEach((_, index) => {
-				worksheet.getColumn(index + 1).width = Math.max(10, columnWidths[index] + 2);
+				worksheet.getColumn(index + 1).width = Math.max(
+					10,
+					columnWidths[index] + 2
+				);
 			});
 
 			// Apply alternating colors to header row
@@ -371,22 +431,25 @@ export default {
 				const cell = worksheet.getCell(1, index + 1);
 				if (isEvenColumn) {
 					cell.fill = {
-						type: 'pattern',
-						pattern: 'solid',
-						fgColor: { argb: 'fceddd' },
+						type: "pattern",
+						pattern: "solid",
+						fgColor: { argb: "fceddd" }
 					};
 				} else {
 					cell.fill = {
-						type: 'pattern',
-						pattern: 'solid',
-						fgColor: { argb: 'f6c897' },
+						type: "pattern",
+						pattern: "solid",
+						fgColor: { argb: "f6c897" }
 					};
 				}
 			});
 
 			// Generate Excel file
 			workbook.xlsx.writeBuffer().then(buffer => {
-				const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+				const blob = new Blob([buffer], {
+					type:
+						"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+				});
 
 				// Create a download link and trigger the download
 				const link = document.createElement("a");
@@ -394,7 +457,7 @@ export default {
 				if (filename != "") {
 					link.download = filename + ".xlsx";
 				} else {
-					link.download = "DataExtraction.xlsx"
+					link.download = "DataExtraction.xlsx";
 				}
 				link.click();
 			});
@@ -432,19 +495,18 @@ export default {
 			return xlsxData;
 		},
 		exportAsExcel(filenamesaved) {
-			const format = 'xlsx'
+			const format = "xlsx";
 			const exportSelectedOnly = false;
 			let filename = filenamesaved == "" ? "DataExtraction" : filenamesaved;
-			this.$refs.grid.exportTable(format, exportSelectedOnly, filename)
+			this.$refs.grid.exportTable(format, exportSelectedOnly, filename);
 		},
 		applyRichTextEditorContent() {
 			const richTextEditorContent = this.$refs.richTextEditor.getEditorContent();
 			for (var i = 0; i < this.value.headers.length; i++) {
-				this.value.rows.forEach((row) => {
+				this.value.rows.forEach(row => {
 					row[this.value.headers[i].label] = richTextEditorContent;
 				});
 			}
-
 		},
 
 		handleCellClick(row, columnIndex) {
@@ -452,44 +514,43 @@ export default {
 			console.log("cell clicked", row, columnIndex);
 			this.selectedRowIndex = row.rowPos;
 			this.selectedColumnIndex = row.colPos;
-			const cells = document.querySelectorAll('.bold-cell, .italic-cell');
-			cells.forEach((cell) => {
-				cell.classList.remove('bold-cell', 'italic-cell');
+			const cells = document.querySelectorAll(".bold-cell, .italic-cell");
+			cells.forEach(cell => {
+				cell.classList.remove("bold-cell", "italic-cell");
 			});
 
 			// Apply the custom class to the clicked cell
-			const clickedCell = document.querySelector(`[data-row="${this.selectedRowIndex}"][data-col="${this.selectedColumnIndex}"]`);
+			const clickedCell = document.querySelector(
+				`[data-row="${this.selectedRowIndex}"][data-col="${this.selectedColumnIndex}"]`
+			);
 
 			if (clickedCell) {
-				clickedCell.classList.add('bold-cell');
+				clickedCell.classList.add("bold-cell");
 			}
 		},
 		delRecord(array) {
 			console.log("Dete row information", array);
 			// this.$refs.grid.deleteRecord(0) // delete the 1st record
-		},
-
-
+		}
 	},
 	mounted() {
 		this.methodsUrl = "/#/" + this.$store.state.projectId;
 	},
 	watch: {
-		titleshort: function (newTitle) {
+		titleshort: function(newTitle) {
 			// React to changes in the title prop
 			this.fileName = newTitle;
 		},
-		value: function (val) {
+		value: function(val) {
 			console.log("magicccc value", val);
 			if (val && val.headers.length > 0 && val.rows.length == 0) {
 				for (let i = 0; i < 5; i++) {
 					this.addNewRow();
 				}
 			}
-		},
+		}
 	}
 };
-
 </script>
 <style scoped>
 /* .bold-header {
