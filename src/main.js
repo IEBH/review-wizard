@@ -39,7 +39,6 @@ import { defaultProjectState } from "./defaultProjectState";
 let terafy = new TeraFy()
 	.set("devMode", process.env.VUE_APP_TERAFY_DEV == 1)
 	.setIfDev("siteUrl", process.env.VUE_APP_TERAFY_URL)
-	.setProjectStateDefaults(defaultProjectState)
 	.use(TerafyVue); // Add the Vue plugin
 
 // Register all Input/Base Components Globally {{{
@@ -94,5 +93,6 @@ requireComponent.keys().forEach(fileName => {
 		app, // Provide app to bind against
 		Vue // Provide the vue version to use
 	});
+	await terafy.setProjectStateDefaults(defaultProjectState);
 	app.$mount("#app");
 })();
