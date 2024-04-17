@@ -100,6 +100,7 @@ export default {
 					type: "warning"
 				}
 			).then(() => {
+				//TODO get this.$tera.state.polyglot content to here
 				this.$message({
 					type: "success",
 					message: "Override successfully!"
@@ -124,7 +125,9 @@ export default {
 					cancelButtonText: "Cancel",
 					type: "warning"
 				}
-			)
+			).then(() => {
+				//TODO save this content to $tera.state.polyglot
+			});
 			/*.then(
 				() => {
 				let content = {
