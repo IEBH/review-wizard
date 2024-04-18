@@ -65,12 +65,13 @@
 				/>
 				<InputTable
 					question="Outcomes:"
+					v-model="$tera.state.extractionOutcomes"
 					columnHeader="Outcome"
+					:isSelectButton="false"
 					:inclusion="true"
 					:type="true"
 					:description="true"
 					:examples="true"
-					v-model="$tera.state.extractionOutcomes"
 					mainPlaceholder="e.g. investigator-assessed change in acne severity"
 				/>
 				<Message

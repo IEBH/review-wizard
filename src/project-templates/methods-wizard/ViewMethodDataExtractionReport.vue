@@ -32,14 +32,16 @@ export default {
 				this.$tera.state.interventions,
 				this.$tera.state.comparators
 			);
-			//[Extraction] extractionOutcomes
-			let filteredOutcome = this.$tera.state.extractionOutcomes.filter(
-				item => item.main
-			);
-			if (filteredOutcome && filteredOutcome.length > 0) {
-				filteredOutcome.forEach(item => {
-					concatedArray.push({ label: item.main });
-				});
+			//[Extraction] extractionOutcomes (if included)
+			if (this.$tera.state.extractionOutcomes.inclusion == true) {
+				let filteredOutcome = this.$tera.state.extractionOutcomes.filter(
+					item => item.main
+				);
+				if (filteredOutcome && filteredOutcome.length > 0) {
+					filteredOutcome.forEach(item => {
+						concatedArray.push({ label: item.main });
+					});
+				}
 			}
 			//[Extraction] extractionTypes
 			concatedArray = concatedArray.concat(this.$tera.state.extractionTypes);
