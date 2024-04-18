@@ -67,14 +67,6 @@ export default {
 					return newRow;
 				});
 			}
-			/*table.rows.map(row => {
-				const newRow = {};
-				for (const label of xLabels) {
-					newRow[label] = row[label] || "";
-				}
-				return newRow;
-			});*/
-
 			return table;
 		}
 	}

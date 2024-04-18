@@ -87,7 +87,7 @@
 					<Button
 						label="Copy from PICOST section"
 						class="p-button-sm btsyleblue"
-						@click="$tera.state.outcomes"
+						@click="$tera.state.extractionOutcomes = $tera.state.outcomes"
 					/>
 				</Message>
 				<InputSelectMulti
@@ -107,7 +107,7 @@
 					<Button
 						label="Copy from PICOST section"
 						class="p-button-sm btsyleblue"
-						@click="$tera.state.types"
+						@click="$tera.state.extractionTypes = $tera.state.types"
 					/>
 				</Message>
 			</AccordionTab>
