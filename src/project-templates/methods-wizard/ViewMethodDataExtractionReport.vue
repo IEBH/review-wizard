@@ -45,6 +45,7 @@ export default {
 			}
 			//[Extraction] extractionTypes
 			concatedArray = concatedArray.concat(this.$tera.state.extractionTypes);
+			console.log("concatedArray:" + concatedArray);
 			//Add Headers in detable
 			return this.addHeaders(this.$tera.state.detable, concatedArray);
 		}
@@ -52,14 +53,14 @@ export default {
 	methods: {
 		addHeaders(table, concatArray) {
 			const xLabels = new Set(concatArray.map(item => item.label));
-			table.headers = concatArray;
+			table.headers.splice(0, table.headers.length);
+			table.headers = table.headers.concat(concatArray);
 			if (table.rows.length == 0) {
 				const newRow = {};
 				for (const label of xLabels) {
 					newRow[label] = "";
 				}
 				table.rows = table.rows.concat(newRow);
-				console.log("rows:" + table.rows);
 			} else {
 				table.rows.map(row => {
 					const newRow = {};
