@@ -56,7 +56,8 @@ export default {
 				for (const label of xLabels) {
 					newRow[label] = "";
 				}
-				table.rows.concat(newRow);
+				table.rows = table.rows.concat(newRow);
+				console.log("rows:" + table.rows);
 			} else {
 				table.rows.map(row => {
 					const newRow = {};
