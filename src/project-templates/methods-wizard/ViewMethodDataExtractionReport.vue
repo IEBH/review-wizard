@@ -4,7 +4,7 @@
 		<InputDETableCustom
 			question="What data will be extracted?"
 			:titleshort="$tera.state.titleshort"
-			v-model="$tera.state.detable"
+			v-model="table"
 		></InputDETableCustom>
 	</div>
 </template>
