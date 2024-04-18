@@ -23,25 +23,6 @@
 				/>
 			</b>
 		</p>
-		<!-- <pre>
-		{{ value }}
-	  </pre> -->
-		<div>
-			<!-- @cell-click="handleCellClick" -->
-			<!-- <vue-excel-editor ref="grid" @delete="delRecord" :no-header-edit="true" v-if="value && value.rows"
-				v-model="value.rows">
-				<vue-excel-column v-for="(column, index) in value.headers" 
-				:key="index" 
-				:field="column.label"
-				:label="column.label"
-				
-				>
-				</vue-excel-column>	
-			</vue-excel-editor> -->
-			<!-- :type="column.label == 'Year' ? column.type == 'number' : column.type == 'string'" -->
-			<!-- <vue-excel-column @delete="delRecord" label="Actions" :field="null" >
-				</vue-excel-column> -->
-		</div>
 		<table class="p-fluid" style="width:100%;" v-if="value.headers.length > 0">
 			<thead class="p-fluid-thead">
 				<tr>

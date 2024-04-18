@@ -22,7 +22,46 @@ export default {
 	components: {
 		InputDETableCustom
 	},
-	watch: {
+	computed: {
+		table() {
+			let concatedArray = [];
+			//[Extraction] methods + participants + interventions + comparators
+			concatedArray = concatedArray.concat(
+				this.$tera.state.methods,
+				this.$tera.state.participants,
+				this.$tera.state.interventions,
+				this.$tera.state.comparators
+			);
+			//[Extraction] extractionOutcomes
+			let filteredOutcome = this.$tera.state.extractionOutcomes.filter(
+				item => item.main
+			);
+			if (filteredOutcome && filteredOutcome.length > 0) {
+				filteredOutcome.forEach(item => {
+					concatedArray.push({ label: item.main });
+				});
+			}
+			//[Extraction] extractionTypes
+			concatedArray = concatedArray.concat(this.$tera.state.extractionTypes);
+			//Add Headers in detable
+			return this.addHeaders(this.$tera.state.detable, concatedArray);
+		}
+	},
+	methods: {
+		addHeaders(table, concatArray) {
+			const xLabels = new Set(concatArray.map(item => item.label));
+			table.headers.push(concatArray);
+			table.rows.map(row => {
+				const newRow = {};
+				for (const label of xLabels) {
+					newRow[label] = row[label] || "";
+				}
+				return newRow;
+			});
+			return table;
+		}
+	}
+	/*watch: {
 		extraction: {
 			handler(newVal) {
 				let concatedArray = [];
@@ -61,7 +100,7 @@ export default {
 				/*if (!this.extraction.detable) {
 					this.extraction.detable = { headers: [], rows: [] };
 					this.extraction.detable.headers = concatedArray;
-				}*/
+				}
 
 				// const formattedObject = {
 				// 	headers: this.extraction.methods,
@@ -78,7 +117,7 @@ export default {
 				);
 			}
 		}
-	}
+	}*/
 };
 </script>
 
