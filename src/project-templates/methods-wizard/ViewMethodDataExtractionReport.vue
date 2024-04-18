@@ -50,13 +50,21 @@ export default {
 	methods: {
 		addHeaders(table, concatArray) {
 			const xLabels = new Set(concatArray.map(item => item.label));
-			table.headers.push(concatArray);
+			table.headers = concatArray;
 			if (table.rows.length == 0) {
 				const newRow = {};
 				for (const label of xLabels) {
 					newRow[label] = "";
 				}
-				table.rows.push(newRow);
+				table.rows.concat(newRow);
+			} else {
+				table.rows.map(row => {
+					const newRow = {};
+					for (const label of xLabels) {
+						newRow[label] = row[label] || "";
+					}
+					return newRow;
+				});
 			}
 			/*table.rows.map(row => {
 				const newRow = {};
