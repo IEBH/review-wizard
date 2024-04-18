@@ -46,30 +46,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- <tr v-for="(row, index) in value.rows" :key="index">
-					<td v-for="thead of value.headers" :key="thead.label">
-						<Textarea type="text" v-model="row[thead.label]" :ref="index" :autoResize="true"
-							@change="changeHandler($event.target.value)" />
-					</td>
-					<td class="btnArea" v-if="ifEdit">
-				<tr>
-					<td style="border-style: none;">
-						<Button v-if="ifEdit" class="p-button-raised p-button-text" icon="pi pi-ellipsis-h"
-							@click="show = !show" style="background-color:white" />
-					</td>
-					<td style="border-style: none;">
-						<span class="p-buttonset" v-if="show && ifEdit">
-							<Button class="p-button-raised p-button-text" icon="pi pi-arrow-up" @click="addRow(index, 0)"
-								style="background-color:white" />
-							<Button class="p-button-raised p-button-text" icon="pi pi-trash" @click="deleRow(index)"
-								style="background-color:white" />
-							<Button class="p-button-raised p-button-text" icon="pi pi-arrow-down" @click="addRow(index, 1)"
-								style="background-color:white" />
-						</span>
-					</td>
-				</tr>
-				</td>
-				</tr> -->
 				<tr v-for="(row, index) in value.rows" :key="index">
 					<td v-for="thead of value.headers" :key="thead.label">
 						<Textarea

@@ -49,15 +49,21 @@ export default {
 	},
 	methods: {
 		addHeaders(table, concatArray) {
-			const xLabels = new Set(concatArray.map(item => item.label));
-			table.headers.push(concatArray);
-			table.rows.map(row => {
-				const newRow = {};
-				for (const label of xLabels) {
-					newRow[label] = row[label] || "";
-				}
-				return newRow;
-			});
+			if (table) {
+				const xLabels = new Set(concatArray.map(item => item.label));
+				table.headers.push(concatArray);
+				table.rows.map(row => {
+					const newRow = {};
+					for (const label of xLabels) {
+						newRow[label] = row[label] || "";
+					}
+					return newRow;
+				});
+			} else {
+				table = { headers: [], rows: [] };
+				table.headers.push(concatArray);
+			}
+
 			return table;
 		}
 	}
