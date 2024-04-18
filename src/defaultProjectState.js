@@ -521,7 +521,7 @@ let defaultProjectState = {
 	extractionOutcomes: [{ inclusion: true, type: true }],
 	extractionTypes: [],
 	//extraction report
-	detable: {},
+	detable: { headers: [], rows: [] },
 
 	//riskOfBias:
 	//numberOfAuthors: null,

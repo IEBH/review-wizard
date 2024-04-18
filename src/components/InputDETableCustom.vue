@@ -147,10 +147,6 @@ import Vue from "vue";
 import VueExcelEditor from "vue-excel-editor";
 Vue.use(VueExcelEditor);
 import * as XLSX from "xlsx";
-// import RichTextEditor from "@/components/RichTextEditor.vue";
-// import InputAutoComplete from "@/components/InputAutoComplete.vue";
-// import InputSrMenubar from "../components/InputSrMenubar.vue";
-// import NotesContent from "./NotesContent.vue";
 export default {
 	name: "InputDETable",
 	components: {
