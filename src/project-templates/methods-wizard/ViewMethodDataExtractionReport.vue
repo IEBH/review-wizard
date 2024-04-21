@@ -33,15 +33,15 @@ export default {
 				this.$tera.state.comparators
 			);
 			//[Extraction] extractionOutcomes (if included)
-			if (this.$tera.state.extractionOutcomes.inclusion == true) {
-				let filteredOutcome = this.$tera.state.extractionOutcomes.filter(
-					item => item.main
-				);
-				if (filteredOutcome && filteredOutcome.length > 0) {
-					filteredOutcome.forEach(item => {
+			let filteredOutcome = this.$tera.state.extractionOutcomes.filter(
+				item => item.main
+			);
+			if (filteredOutcome && filteredOutcome.length > 0) {
+				filteredOutcome.forEach(item => {
+					if (item.inclusion == true) {
 						concatedArray.push({ label: item.main });
-					});
-				}
+					}
+				});
 			}
 			//[Extraction] extractionTypes
 			concatedArray = concatedArray.concat(this.$tera.state.extractionTypes);
