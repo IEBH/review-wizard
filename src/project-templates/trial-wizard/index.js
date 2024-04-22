@@ -134,7 +134,9 @@ const data = {
 		levelOfSignificanceOther: "",
 		sampleSize: "",
 		effectSize: "",
-		participantDropOuts: ""
+		participantDropOuts: "",
+		//new added
+		trialDesign: ""
 	},
 	recruitment: {
 		recruitment: []
@@ -145,7 +147,10 @@ const data = {
 		concealment: "",
 		blindedPeople: [],
 		blindedMethod: "",
-		unblinding: []
+		unblinding: [],
+		//new added
+		mechanism: "",
+		concealSteps: ""
 	},
 	dataCollection: {
 		dataManagement: "",
@@ -188,7 +193,12 @@ const data = {
 		declaration: "",
 		access: "",
 		care: "",
-		dissemination: ""
+		dissemination: "",
+		//new added
+		responsiblePerson: "",
+		relatedDoc: "",
+		guidelines: "",
+		plans: ""
 	}
 };
 

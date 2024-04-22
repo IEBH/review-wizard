@@ -32,11 +32,26 @@
 		>
 		<InputTextSingleLine
 			question="How was the allocation of participants concealed?"
-			placeholder="centralised randomisation via a telephone by an independent consultant"
+			placeholder="e.g. centralised randomisation via a telephone by an independent consultant"
 			:value="assignmentOfInterventions.concealment"
 			@input="updateField('concealment', $event)"
 		/>
 
+		<!--New added-->
+		<i>Mechanism of implementing the allocation sequence</i>
+		<InputSelectDropdown
+			question="What was the mechanism of implementing the allocation sequence?"
+			:options="mechanismOptions"
+			:value="assignmentOfInterventions.mechanism"
+			@input="updateField('mechanism', $event)"
+		/>
+
+		<InputTextSingleLine
+			question="Describe any steps to conceal the sequence until interventions are assigned"
+			placeholder="e.g. The laboratory technician performing the assay was blinded to all personal and medical characteristics of the patient"
+			:value="assignmentOfInterventions.concealSteps"
+			@input="updateField('concealSteps', $event)"
+		/>
 		<!-- <i
 			>Blinding: Who will be blinded after assignment to interventions (eg,
 			trial participants, care providers, outcome assessors, data analysts), and
@@ -84,7 +99,7 @@
 
 		<InputTextSingleLine
 			question="People were blinded using the following method"
-			placeholder="the placebo being identical in shape and color to the intervention pill"
+			placeholder="e.g. the placebo being identical in shape and color to the intervention pill"
 			:value="assignmentOfInterventions.blindedMethod"
 			@input="updateField('blindedMethod', $event)"
 		/>
@@ -127,6 +142,14 @@ export default {
 			unblindingOptions: [
 				{ label: "serious adverse event" },
 				{ label: "physician request" }
+			],
+			//new added
+			mechanismOptions: [
+				"central telephone",
+				"sequentially numbered",
+				"opaque",
+				"sealed envelopes",
+				"other"
 			]
 		};
 	}

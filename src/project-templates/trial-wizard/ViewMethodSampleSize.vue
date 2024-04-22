@@ -39,6 +39,14 @@
 			@input="updateField('trialTypeOther', $event)"
 		/>
 
+		<!--New added-->
+		<InputSelectDropdown
+			question="Description of trial design including type of trial"
+			:options="trialDesignOptions"
+			:value="sampleSize.trialDesign"
+			@input="updateField('trialDesign', $event)"
+		/>
+
 		<InputSelectDropdown
 			question="What is the study power of the trial?"
 			:options="studyPowerOptions"
@@ -71,21 +79,21 @@
 
 		<InputTextSingleLine
 			question="What was the sample size?"
-			placeholder="1000"
+			placeholder="e.g.1000"
 			:value="sampleSize.sampleSize"
 			@input="updateField('sampleSize', $event)"
 		/>
 
 		<InputTextSingleLine
 			question="What effect size is the study powered for?"
-			placeholder="medium effect size"
+			placeholder="e.g. medium effect size"
 			:value="sampleSize.effectSize"
 			@input="updateField('effectSize', $event)"
 		/>
 
 		<InputTextSingleLine
 			question="What proportion of participant drop-outs are you expecting?"
-			placeholder="10%"
+			placeholder="e.g. 10%"
 			:value="sampleSize.participantDropOuts"
 			@input="updateField('participantDropOuts', $event)"
 		/>
@@ -103,9 +111,24 @@ export default {
 	data() {
 		return {
 			outputComponent: OutputSampleSize,
-			trialTypeOptions: ["non-inferiority", "superiority", "other"],
+			trialTypeOptions: [
+				"non-inferiority",
+				"equivalence",
+				"superiority",
+				"other"
+			],
 			studyPowerOptions: ["80%", "90%", "other"],
-			levelOfSignificanceOptions: ["5%", "1%", "other"]
+			levelOfSignificanceOptions: ["5%", "1%", "other"],
+			//new added
+			trialDesignOptions: [
+				"parallel group",
+				"crossover",
+				"factorial",
+				"single group",
+				"allocation ratio",
+				"framework",
+				"other"
+			]
 		};
 	}
 };
