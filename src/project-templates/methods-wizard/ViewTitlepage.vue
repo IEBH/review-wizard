@@ -11,12 +11,10 @@
 			v-model="$tera.state.nameShort"
 			placeholder="e.g. Blue-light"
 		/>
-
 		<InputTextNumber
 			question="What year will study be published?"
 			v-model="$tera.state.year"
 		/>
-		<pre>$TERA.state: {{ $tera.state }}</pre>
 	</div>
 </template>
 
