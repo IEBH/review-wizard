@@ -3,15 +3,18 @@
 		<h1>Title Page</h1>
 		<InputTextSingleLine
 			question="What is the title of the study?"
-			:value="titlepage.title"
-			@input="updateField('title', $event)"
+			:value="$tera.state.name"
+			@input="$tera.state.name = $event"
 			placeholder="e.g. Blue-light therapy for acne vulgaris: a systematic review and meta-analysis"
 		/>
-		<InputTextSingleLineMulti
-			question="Who are the authors in the study?"
-			:value="titlepage.authors"
-			@input="updateField('authors', $event)"
-			placeholder="e.g. Justin Clark"
+		<InputTextSingleLine
+			question="What is the short title for the study?"
+			v-model="$tera.state.nameShort"
+			placeholder="e.g. Blue-light"
+		/>
+		<InputTextNumber
+			question="What year will study be published?"
+			v-model="$tera.state.year"
 		/>
 	</div>
 </template>

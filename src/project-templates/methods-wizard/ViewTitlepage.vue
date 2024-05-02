@@ -3,12 +3,12 @@
 		<h1>Title Page</h1>
 		<InputTextSingleLine
 			question="What is the title of the study?"
-			v-model="$tera.state.title"
+			v-model="$tera.state.name"
 			placeholder="e.g. Blue-light therapy for acne vulgaris: a systematic review and meta-analysis"
 		/>
 		<InputTextSingleLine
 			question="What is the short title for the study?"
-			v-model="$tera.state.titleshort"
+			v-model="$tera.state.nameShort"
 			placeholder="e.g. Blue-light"
 		/>
 

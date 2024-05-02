@@ -1,8 +1,8 @@
 let defaultProjectState = {
 	//titlepage:
 	//title page
-	title: "",
-	titleshort: "",
+	name: "",
+	nameShort: "",
 	year: 0,
 	//people
 	author: [""],

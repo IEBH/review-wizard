@@ -2,12 +2,12 @@
 	<div>
 		<Toolbar>
 			<template #start>
-				<b>
-					{{ titlepage.title ? titlepage.title : "Untitled Methods Section" }}
-				</b>
+				<strong>
+					{{ $tera.state.name ? $tera.state.name : "Untitled Methods Section" }}
+				</strong>
 				<TheArticleCitation
-					:title="titlepage.title"
-					:authors="titlepage.authors"
+					:title="$tera.state.name"
+					:authors="$tera.state.authors"
 					:year="titlepage.year"
 				/>
 			</template>
@@ -99,7 +99,7 @@ export default {
 	async mounted() {
 		// If title does not exist, use the one from the store
 		await this.methodsRecord.whenReady();
-		if (!this.titlepage.title) {
+		if (!this.$tera.name) {
 			await this.projectRecord.whenReady();
 			this.updateField("title", this.projectRecord.get("metadata.name"));
 		}
