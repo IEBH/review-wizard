@@ -46,11 +46,7 @@ const storeData = {
 		}
 	},
 	actions: {
-		createProject: async function(
-			{ commit, state },
-			{ name, owner, dateCreated }
-		) {
-			console.log("Adding project:", name);
+		createProject: async function({ commit, state }) {
 			// Reset store
 			commit("reset");
 			// Login to deepstream
@@ -63,10 +59,10 @@ const storeData = {
 			const deepstreamPath = await getDeepstreamPath();
 			// Local metadata
 			var projectMetadata = {
-				name,
-				owner,
-				dateCreated,
-				dateModified: dateCreated,
+				name: "",
+				owner: undefined,
+				dateCreated: new Date(),
+				dateModified: new Date(),
 				[deepstreamPath]: methodsId
 			};
 			// Add new project to records and set metadata remotely
