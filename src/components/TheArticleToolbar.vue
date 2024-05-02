@@ -16,8 +16,6 @@
 </template>
 
 <script>
-//import deepstreamMixin from "@/mixins/DeepstreamMixin";
-
 import { mapState } from "vuex";
 
 import Toolbar from "primevue/toolbar";
@@ -42,10 +40,6 @@ export default {
 			displayWarn: false,
 			shareUrl: ""
 		};
-	},
-	async mounted() {
-		// If title does not exist, use the one from the store
-		await this.methodsRecord.whenReady();
 	}
 }
 </script>
