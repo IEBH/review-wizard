@@ -14,75 +14,75 @@ import ViewMethodDataCollection from "./ViewMethodDataCollection.vue";
 import ViewMethodMonitoring from "./ViewMethodMonitoring.vue";
 import ViewMethodEthicsAndDissemination from "./ViewMethodEthicsAndDissemination.vue";
 
-// The path for deepstream, where the bulk of the information is kept (e.g. `methods/${projectId}`)
+// The path for deepstream, where the bulk of the information is kept (e.g. `methods`)
 const deepstreamPath = "trial";
 
 // The routes array for the router
 const routes = [
 	{ name: "home", path: "", component: ViewHome },
-	{ path: "/:projectId", component: ViewHome },
+	{ path: "/", component: ViewHome },
 	{
 		name: "titlepage",
-		path: "/:projectId/titlepage",
+		path: "/titlepage",
 		component: ViewTitlepage
 	},
 	{
 		name: "study-setting",
-		path: "/:projectId/method/study-setting",
+		path: "/method/study-setting",
 		component: ViewMethodStudySetting
 	},
 	{
 		name: "eligibility-criteria",
-		path: "/:projectId/method/eligibility-criteria",
+		path: "/method/eligibility-criteria",
 		component: ViewMethodEligibilityCriteria
 	},
 	{
 		name: "interventions",
-		path: "/:projectId/method/interventions",
+		path: "/method/interventions",
 		component: ViewMethodInterventions
 	},
 	{
 		name: "outcomes",
-		path: "/:projectId/method/outcomes",
+		path: "/method/outcomes",
 		component: ViewMethodOutcomes
 	},
 	{
 		name: "participant-timeline",
-		path: "/:projectId/method/participantTimeline",
+		path: "/method/participantTimeline",
 		component: ViewMethodParticipantTimeline
 	},
 	{
 		name: "sample-size",
-		path: "/:projectId/method/sampleSize",
+		path: "/method/sampleSize",
 		component: ViewMethodSampleSize
 	},
 	{
 		name: "recruitment",
-		path: "/:projectId/method/recruitment",
+		path: "/method/recruitment",
 		component: ViewMethodRecruitment
 	},
 	{
 		name: "assignment-of-interventions",
-		path: "/:projectId/method/assignmentOfInterventions",
+		path: "/method/assignmentOfInterventions",
 		component: ViewMethodAssignmentOfInterventions
 	},
 	{
 		name: "data-collection",
-		path: "/:projectId/method/dataCollection",
+		path: "/method/dataCollection",
 		component: ViewMethodDataCollection
 	},
 	{
 		name: "monitoring",
-		path: "/:projectId/method/monitoring",
+		path: "/method/monitoring",
 		component: ViewMethodMonitoring
 	},
 	{
 		name: "ethics-and-dissemination",
-		path: "/:projectId/method/ethicsAndDissemination",
+		path: "/method/ethicsAndDissemination",
 		component: ViewMethodEthicsAndDissemination
 	},
 	{
-		path: "/:projectId/output",
+		path: "/output",
 		component: ViewOutput
 	}
 ];
@@ -203,7 +203,7 @@ const data = {
 };
 
 // The menu array which is used for the sidebar
-const getMenu = projectId => [
+const getMenu = ()=> [
 	{
 		header: true,
 		title: "Trial-Wizard",
@@ -212,7 +212,7 @@ const getMenu = projectId => [
 	{
 		title: "Title Page",
 		icon: "pi pi-file",
-		href: `/${projectId}/titlepage`
+		href: `/titlepage`
 	},
 	{
 		header: true,
@@ -222,57 +222,57 @@ const getMenu = projectId => [
 	{
 		title: "Study Setting",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/study-setting`
+		href: `/method/study-setting`
 	},
 	{
 		title: "Eligibility Criteria",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/eligibility-criteria`
+		href: `/method/eligibility-criteria`
 	},
 	{
 		title: "Interventions",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/interventions`
+		href: `/method/interventions`
 	},
 	{
 		title: "Outcomes",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/outcomes`
+		href: `/method/outcomes`
 	},
 	{
 		title: "Participant Timeline",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/participantTimeline`
+		href: `/method/participantTimeline`
 	},
 	{
 		title: "Sample Size",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/sampleSize`
+		href: `/method/sampleSize`
 	},
 	{
 		title: "Recruitment",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/recruitment`
+		href: `/method/recruitment`
 	},
 	{
 		title: "Assignment of Interventions",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/assignmentOfInterventions`
+		href: `/method/assignmentOfInterventions`
 	},
 	{
 		title: "Data Collection, Management and Analysis",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/dataCollection`
+		href: `/method/dataCollection`
 	},
 	{
 		title: "Monitoring",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/monitoring`
+		href: `/method/monitoring`
 	},
 	{
 		title: "Ethics and Dissemination",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/ethicsAndDissemination`
+		href: `/method/ethicsAndDissemination`
 	},
 	{
 		header: true,
@@ -282,7 +282,7 @@ const getMenu = projectId => [
 	{
 		title: "Output",
 		icon: "pi pi-download",
-		href: `/${projectId}/output`
+		href: `/output`
 	}
 ];
 

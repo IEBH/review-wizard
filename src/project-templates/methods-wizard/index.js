@@ -27,112 +27,112 @@ import ViewMethodPublicationBiases from "./ViewMethodPublicationBiases.vue";
 import ViewAcknowledgement from "./ViewAcknowledgement";
 import ViewMethodContributions from "./ViewMethodContributions";
 
-// The path for deepstream, where the bulk of the information is kept (e.g. `methods/${projectId}`)
+// The path for deepstream, where the bulk of the information is kept (e.g. `methods`)
 const deepstreamPath = "methods";
 
 // The routes array for the router
 const routes = [
 	{ name: "home", path: "", component: ViewHome },
-	{ path: "/:projectId", component: ViewHome },
+	{ path: "/", component: ViewHome },
 	{
 		name: "titlepage",
-		path: "/:projectId/planning/titlepage",
+		path: "/planning/titlepage",
 		component: ViewTitlepage
 	},
 	{
 		name: "people",
-		path: "/:projectId/planning/people",
+		path: "/planning/people",
 		component: ViewTitlePagePeople
 	},
 	{
 		name: "rs-plan",
-		path: "/:projectId/planning/rs-plan",
+		path: "/planning/rs-plan",
 		component: ViewMethodResearchPlan
 	},
 	{
 		name: "introduction",
-		path: "/:projectId/introduction",
+		path: "/introduction",
 		component: ViewMethodIntroduction
 	},
 	{
 		name: "picot",
-		path: "/:projectId/method/picot",
+		path: "/method/picot",
 		component: ViewMethodPicot
 	},
 	//Integrate page: Search Strategy - Search Strategy + Restrictions... + Supplementary...
 	{
 		name: "search-strategy",
-		path: "/:projectId/method/search-strategy",
+		path: "/method/search-strategy",
 		component: ViewMethodSearchStrategy
 	},
 	//Integrate page: Search Strings - Search Strings + Search Databases
 	{
 		name: "search-str",
-		path: "/:projectId/method/search-str",
+		path: "/method/search-str",
 		component: ViewMethodSearchStrings
 	},
-	{ path: "/:projectId/method/screening", component: ViewMethodScreening },
+	{ path: "/method/screening", component: ViewMethodScreening },
 	{
-		path: "/:projectId/method/data-extraction",
+		path: "/method/data-extraction",
 		component: ViewMethodDataExtraction
 	},
 	{
-		path: "/:projectId/method/risk-of-bias",
+		path: "/method/risk-of-bias",
 		component: ViewMethodAssessmentOfTheRiskOfBias
 	},
 	{
-		path: "/:projectId/method/measurement-of-effect",
+		path: "/method/measurement-of-effect",
 		component: ViewMethodMeasurementOfEffect
 	},
 	{
-		path: "/:projectId/method/unit-of-analysis",
+		path: "/method/unit-of-analysis",
 		component: ViewMethodUnitOfAnalysis
 	},
 	{
-		path: "/:projectId/method/missing-data",
+		path: "/method/missing-data",
 		component: ViewMethodDealingWithMissingData
 	},
 	//Split from Heterogeneity + Publication Bias
 	{
 		name: "Heterogeneity",
-		path: "/:projectId/method/heterogeneity",
+		path: "/method/heterogeneity",
 		component: ViewMethodHeterogeneity
 	},
 	{
 		name: "Publication Bias",
-		path: "/:projectId/method/publication-biases",
+		path: "/method/publication-biases",
 		component: ViewMethodPublicationBiases
 	},
 	{
-		path: "/:projectId/method/subgroup-sensitivity-analysis",
+		path: "/method/subgroup-sensitivity-analysis",
 		component: ViewMethodSubgroupAndSensitivityAnalysis
 	},
 	{
-		path: "/:projectId/method/contributions",
+		path: "/method/contributions",
 		component: ViewMethodContributions
 	},
 	{
 		name: "ac-view",
-		path: "/:projectId/planning/ac-view",
+		path: "/planning/ac-view",
 		component: ViewAcknowledgement
 	},
 	{
 		name: "rs-plan",
-		path: "/:projectId/reports/rs-plan",
+		path: "/reports/rs-plan",
 		component: ViewMethodResearchPlan
 	},
 	{
 		name: "output",
-		path: "/:projectId/reports/output",
+		path: "/reports/output",
 		component: ViewOutput
 	},
 	{
 		name: "de-view",
-		path: "/:projectId/reports/de-view",
+		path: "/reports/de-view",
 		component: ViewMethodDataExtractionReport
 	}
 	/*{
-		path: "/:projectId/output",
+		path: "/output",
 		component: ViewOutput
 	}*/
 ];
@@ -708,7 +708,7 @@ const data = {
 };
 
 // The menu array which is used for the sidebar
-const getMenu = projectId => [
+const getMenu = ()=> [
 	{
 		header: true,
 		title: "PLANNING",
@@ -717,17 +717,17 @@ const getMenu = projectId => [
 	{
 		title: "Title Page",
 		icon: "pi pi-file",
-		href: `/${projectId}/planning/titlepage`
+		href: `/planning/titlepage`
 	},
 	{
 		title: "People",
 		icon: "pi pi-file",
-		href: `/${projectId}/planning/people`
+		href: `/planning/people`
 	},
 	{
 		title: "Research Plan",
 		icon: "pi pi-list",
-		href: `/${projectId}/planning/rs-plan`
+		href: `/planning/rs-plan`
 	},
 	{
 		header: true,
@@ -737,7 +737,7 @@ const getMenu = projectId => [
 	{
 		title: "Introduction",
 		icon: "pi pi-pencil",
-		href: `/${projectId}/introduction`
+		href: `/introduction`
 	},
 	{
 		header: true,
@@ -747,72 +747,72 @@ const getMenu = projectId => [
 	{
 		title: "Eligibility Criteria (PICOST)",
 		icon: "pi pi-file",
-		href: `/${projectId}/method/picot`
+		href: `/method/picot`
 	},
 	{
 		title: "Search Strategy",
 		icon: "pi pi-search",
-		href: `/${projectId}/method/search-strategy`
+		href: `/method/search-strategy`
 	},
 	{
 		title: "Search Strings",
 		icon: "pi pi-search",
-		href: `/${projectId}/method/search-str`
+		href: `/method/search-str`
 	},
 	{
 		title: "Study Screening",
 		icon: "pi pi-check",
-		href: `/${projectId}/method/screening`
+		href: `/method/screening`
 	},
 	{
 		title: "Data Extraction",
 		icon: "pi pi-upload",
-		href: `/${projectId}/method/data-extraction`
+		href: `/method/data-extraction`
 	},
 	{
 		title: "Assessment of the RoB",
 		icon: "pi pi-exclamation-circle",
-		href: `/${projectId}/method/risk-of-bias`
+		href: `/method/risk-of-bias`
 	},
 	{
 		title: "Measurement of Effect",
 		icon: "pi pi-sliders-v",
-		href: `/${projectId}/method/measurement-of-effect`
+		href: `/method/measurement-of-effect`
 	},
 	{
 		title: "Unit of Analysis",
 		icon: "pi pi-chart-bar",
-		href: `/${projectId}/method/unit-of-analysis`
+		href: `/method/unit-of-analysis`
 	},
 	{
 		title: "Missing Data Strategy",
 		icon: "pi pi-question",
-		href: `/${projectId}/method/missing-data`
+		href: `/method/missing-data`
 	},
 	{
 		title: "Heterogeneity",
 		icon: "pi pi-users",
-		href: `/${projectId}/method/heterogeneity`
+		href: `/method/heterogeneity`
 	},
 	{
 		title: "Publication Bias",
 		icon: "pi pi-users",
-		href: `/${projectId}/method/publication-biases`
+		href: `/method/publication-biases`
 	},
 	{
 		title: "Subgroup Analysis",
 		icon: "pi pi-chart-line",
-		href: `/${projectId}/method/subgroup-sensitivity-analysis`
+		href: `/method/subgroup-sensitivity-analysis`
 	},
 	{
 		title: "Contributions",
 		icon: "pi pi-chart-line",
-		href: `/${projectId}/method/contributions`
+		href: `/method/contributions`
 	},
 	{
 		title: "Acknowledgement",
 		icon: "pi pi-file",
-		href: `/${projectId}/planning/ac-view`
+		href: `/planning/ac-view`
 	},
 	{
 		header: true,
@@ -822,17 +822,17 @@ const getMenu = projectId => [
 	{
 		title: "Research Plan",
 		icon: "pi pi-list",
-		href: `/${projectId}/reports/rs-plan`
+		href: `/reports/rs-plan`
 	},
 	{
 		title: "Methods Section",
 		icon: "pi pi-download",
-		href: `/${projectId}/reports/output`
+		href: `/reports/output`
 	},
 	{
 		title: "Data Extraction",
 		icon: "pi pi-upload",
-		href: `/${projectId}/reports/de-view`
+		href: `/reports/de-view`
 	}
 ];
 
