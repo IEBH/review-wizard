@@ -97,11 +97,6 @@ export default {
 	async mounted() {
 		this.onResize();
 		window.addEventListener("resize", this.onResize);
-		// Initialize localStorage
-		const storageProjectId = localStorage.getItem("projectId");
-		if (storageProjectId && !this.projectId) {
-			this.$store.dispatch("initializeFromProjectId", storageProjectId);
-		}
 		// Initialize menu
 		this.updateMenu();
 	},

@@ -90,41 +90,6 @@ const storeData = {
 			} else {
 				throw new Error("Invalid project-id");
 			}
-		},
-		initializeFromProjectId: async function({ commit, state }, projectId) {
-			if (projectId) {
-				console.log("Loading Project:", `project/${projectId}`);
-				// Reset store
-				commit("reset");
-				// Login to deepstream
-				await state.client.login();
-				// Set project record
-				commit(
-					"setProjectRecord",
-					state.client.record.getRecord(`project/${projectId}`)
-				);
-				// Get the project metadata
-				await state.projectRecord.whenReady();
-				var projectMetadata = state.projectRecord.get("metadata");
-				// Deepstream path (varies based on project)
-				const deepstreamPath = await getDeepstreamPath();
-				// Fetch methods project based on id
-				if (projectMetadata && projectMetadata[deepstreamPath]) {
-					// Update store with project ID
-					commit("setProjectId", projectId);
-					// Set methods record
-					commit(
-						"setMethodsRecord",
-						state.client.record.getRecord(
-							`${deepstreamPath}/${projectMetadata[deepstreamPath]}`
-						)
-					);
-				} else {
-					throw new Error("Invalid project-id");
-				}
-			} else {
-				throw new Error("No project id specified");
-			}
 		}
 	}
 };
