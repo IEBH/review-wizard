@@ -2,8 +2,8 @@
 	<!-- Collapsed and onMobile control the padding of content relative to sidebar -->
 	<div
 		id="app"
+		class="pad-sidebar"
 		:class="[
-			{ 'pad-sidebar': methodsRecord },
 			{ collapsed: collapsed },
 			{ onmobile: isOnMobile }
 		]"
@@ -26,7 +26,6 @@
 			/>
 		</div>
 		<sidebar-menu
-			v-if="methodsRecord"
 			:menu="menu"
 			:collapsed="collapsed"
 			theme="white-theme"
@@ -42,24 +41,12 @@
 		/>
 
 		<!-- If methodsRecord exists render small logo and toolbar -->
-		<div v-if="methodsRecord" class="p-grid p-ai-center">
+		<div class="p-grid p-ai-center">
 			<div class="p-col-12 p-md-2 p-lg-1">
 				<img class="logo" alt="Logo" :src="getLogoPath()" height="50px" />
 			</div>
 			<div class="p-col-12 p-md-10 p-lg-11">
 				<TheArticleToolbar />
-			</div>
-		</div>
-
-		<!-- Else render a larger logo -->
-		<div v-else class="p-grid p-ai-center">
-			<div class="p-col-12 p-md-3 p-lg-2">
-				<img class="logo" alt="Logo" :src="getLogoPath()" height="150px" />
-			</div>
-			<div class="p-col-12 p-md-9 p-lg-9">
-				<h1 class="logo-text-large">
-					{{ pascalCaseTitle() }}
-				</h1>
 			</div>
 		</div>
 
@@ -97,11 +84,6 @@ export default {
 	async mounted() {
 		this.onResize();
 		window.addEventListener("resize", this.onResize);
-		// Initialize localStorage
-		const storageProjectId = localStorage.getItem("projectId");
-		if (storageProjectId && !this.projectId) {
-			this.$store.dispatch("initializeFromProjectId", storageProjectId);
-		}
 		// Initialize menu
 		this.updateMenu();
 	},
@@ -138,7 +120,7 @@ export default {
 	},
 	data() {
 		return {
-			collapsed: true,
+			collapsed: false,
 			isOnMobile: false,
 			menu: []
 		};

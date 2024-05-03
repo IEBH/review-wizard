@@ -3,7 +3,7 @@
 		<h1>Data Extraction</h1>
 		<InputDETableCustom
 			question="What data will be extracted?"
-			:titleshort="$tera.state.titleshort"
+			:titleshort="$tera.state.nameShort"
 			v-model="table"
 		></InputDETableCustom>
 	</div>
