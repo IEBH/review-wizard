@@ -49,7 +49,6 @@ export default {
 	name: "ViewMethodSubgroupAndSensitivityAnalysis",
 	data() {
 		return {
-			numberOptions: ["1", "2", "3", "4", "5", "6"],
 			outputComponent: OutputSubgroupAndSensitivityAnalysis
 		};
 	}

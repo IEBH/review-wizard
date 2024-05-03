@@ -43,16 +43,8 @@ export default {
 				return { label: el };
 			});
 			return da;
-		},
-		acknowledgements() {
-			return {
-				designhelp: this.$tera.state.designhelp,
-				statistical: this.$tera.state.statistical,
-				manuscript: this.$tera.state.manuscript
-			};
 		}
 	},
-	methods: {},
 	data() {
 		return {
 			outputComponent: OutputAcknowledgement

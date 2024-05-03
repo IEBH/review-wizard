@@ -53,7 +53,7 @@ export default {
 	data() {
 		return {
 			publicationBiasOptions: ["Funnel plot", "Egger's test", "Other"],
-			placeholder: "because fewer than 10 studies were included",
+			placeholder: "e.g. because fewer than 10 studies were included",
 			outputComponent: OutputPublicationBias
 		};
 	}
