@@ -43,118 +43,74 @@
 				<h2>Introduction</h2>
 				<OutputIntroduction
 					v-if="outputOptions[0].include"
-					:data="introduction"
 					:key="monitorChange"
 				/>
 				<h2>Eligibility Criteria</h2>
-				<OutputPicot
-					v-if="outputOptions[1].include"
-					:data="picot"
-					:key="monitorChange + 1"
-				/>
+				<OutputPicot v-if="outputOptions[1].include" :key="monitorChange + 1" />
 				<h2>Search strategy</h2>
-				<OutputSearch
+				<OutputSearchStrategy
 					v-if="outputOptions[2].include"
-					:data="search"
 					:key="monitorChange + 2"
 				/>
-				<OutputSearchDatabases
+				<h2>Search Strings</h2>
+				<OutputSearchStrings
 					v-if="outputOptions[3].include"
-					:data="search"
 					:key="monitorChange + 3"
 				/>
-				<OutputSearchRegistries
-					v-if="outputOptions[4].include"
-					:data="search"
-					:key="monitorChange + 4"
-				/>
-				<OutputSearchPublicationType
-					v-if="outputOptions[5].include"
-					:data="search"
-					:key="monitorChange + 5"
-				/>
-				<OutputSearchSupplementoryMethods
-					v-if="outputOptions[6].include"
-					:data="search"
-					:key="monitorChange + 6"
-				/>
-				<h2>Study selection and screening</h2>
 				<h3>Screening</h3>
 				<OutputScreening
-					v-if="outputOptions[7].include"
-					:data="screening"
-					:key="monitorChange + 7"
+					v-if="outputOptions[4].include"
+					:key="monitorChange + 4"
 				/>
 				<h3>Data extraction</h3>
 				<OutputDataExtraction
-					v-if="outputOptions[8].include"
-					:data="extraction"
-					:key="monitorChange + 8"
+					v-if="outputOptions[5].include"
+					:key="monitorChange + 5"
 				/>
 				<h2>Assessment of the RoB</h2>
 				<OutputAssessmentOfTheRiskOfBias
-					v-if="outputOptions[9].include"
-					:data="riskOfBias"
-					:key="monitorChange + 9"
+					v-if="outputOptions[6].include"
+					:key="monitorChange + 6"
 				/>
 				<h2>Measurement of effect</h2>
 				<OutputMeasurementOfEffect
-					v-if="outputOptions[10].include"
-					:data="measurementOfEffect"
-					:key="monitorChange + 10"
+					v-if="outputOptions[7].include"
+					:key="monitorChange + 7"
 				/>
 				<h2>Unit of analysis</h2>
 				<OutputUnitOfAnalysis
-					v-if="outputOptions[11].include"
-					:data="unitOfAnalysis"
-					:key="monitorChange + 11"
+					v-if="outputOptions[8].include"
+					:key="monitorChange + 8"
 				/>
 				<h2>Dealing with missing data</h2>
 				<OutputDealingWithMissingData
-					v-if="outputOptions[12].include"
-					:data="missingData"
-					:key="monitorChange + 12"
+					v-if="outputOptions[9].include"
+					:key="monitorChange + 9"
 				/>
 				<h2>Assessment of heterogeneity</h2>
 				<OutputHeterogeneity
-					v-if="outputOptions[13].include"
-					:data="heterogeneityPublicationBiases"
-					:key="monitorChange + 13"
+					v-if="outputOptions[10].include"
+					:key="monitorChange + 10"
 				/>
 				<h2>Assessment of publication biases</h2>
 				<OutputPublicationBias
-					v-if="outputOptions[14].include"
-					:data="heterogeneityPublicationBiases"
-					:key="monitorChange + 14"
+					v-if="outputOptions[11].include"
+					:key="monitorChange + 11"
 				/>
 				<h2>Subgroup and sensitivity analysis</h2>
 				<OutputSubgroupAndSensitivityAnalysis
-					v-if="outputOptions[15].include"
-					:data="subgroupAndSensitivityAnalysis"
-					:key="monitorChange + 15"
+					v-if="outputOptions[12].include"
+					:key="monitorChange + 12"
 				/>
 				<h2>Contributions</h2>
 				<OutputContributions
-					v-if="outputOptions[16].include"
-					:data="contribution"
-					:key="monitorChange + 16"
+					v-if="outputOptions[13].include"
+					:key="monitorChange + 13"
 				/>
 				<h2>Acknowledgement</h2>
 				<OutputAcknowledgement
-					v-if="outputOptions[17].include"
-					:data="acknowledgement"
-					:key="monitorChange + 17"
-				/>
-				<h1>Appendix</h1>
-				<OutputSearchDatabasesAppendix
-					v-if="outputOptions[3].include"
-					:data="search"
-					:key="monitorChange + 18"
-				/>
-				<OutputSearchRegistriesAppendix
-					v-if="outputOptions[4].include"
-					:data="search"
-					:key="monitorChange + 19"
+					v-if="outputOptions[14].include"
+					:key="monitorChange + 14"
 				/>
 			</div>
 			<template #footer>
@@ -170,78 +126,50 @@
 </template>
 
 <script>
-import OutputPicot from "./OutputPicot.vue";
-import OutputSearch from "./OutputSearch.vue";
-import OutputSearchDatabases from "./OutputSearchDatabases.vue";
-import OutputSearchDatabasesAppendix from "./OutputSearchDatabasesAppendix.vue";
-import OutputSearchRegistries from "./OutputSearchRegistries.vue";
-import OutputSearchRegistriesAppendix from "./OutputSearchRegistriesAppendix.vue";
-import OutputSearchPublicationType from "./OutputSearchPublicationType.vue";
-import OutputSearchSupplementoryMethods from "./OutputSearchSupplementoryMethods.vue";
-import OutputScreening from "./OutputScreening.vue";
-import OutputDataExtraction from "./OutputDataExtraction.vue";
-import OutputAssessmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias.vue";
-import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect.vue";
-import OutputUnitOfAnalysis from "./OutputUnitOfAnalysis.vue";
-import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
-//import OutputHeterogeneityPublicationBias from "./OutputHeterogeneityPublicationBias.vue";
-import OutputHeterogeneity from "./OutputHeterogeneity.vue";
-import OutputPublicationBias from "./OutputPublicationBias";
-import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
-import OutputIntroduction from "./OutputIntroduction.vue";
 import OutputAcknowledgement from "./OutputAcknowledgement.vue";
+import OutputAssessmentOfTheRiskOfBias from "./OutputAssessmentOfTheRiskOfBias.vue";
 import OutputContributions from "./OutputContributions.vue";
+import OutputDataExtraction from "./OutputDataExtraction.vue";
+import OutputDealingWithMissingData from "./OutputDealingWithMissingData.vue";
+import OutputHeterogeneity from "./OutputHeterogeneity.vue";
+import OutputIntroduction from "./OutputIntroduction.vue";
+import OutputMeasurementOfEffect from "./OutputMeasurementOfEffect.vue";
+import OutputPicot from "./OutputPicot.vue";
+import OutputPublicationBias from "./OutputPublicationBias";
+import OutputScreening from "./OutputScreening.vue";
+import OutputSearchStrategy from "./OutputSearchStrategy.vue";
+import OutputSearchStrings from "./OutputSearchStrings.vue";
+import OutputSubgroupAndSensitivityAnalysis from "./OutputSubgroupAndSensitivityAnalysis.vue";
+import OutputUnitOfAnalysis from "./OutputUnitOfAnalysis.vue";
+
 import CopyMixin from "@/mixins/CopyMixin.js";
 
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Checkbox from "primevue/checkbox";
 
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
-
 export default {
 	name: "ViewMethodSearch",
-	mixins: [
-		CopyMixin,
-		deepstreamMixin("introduction"),
-		deepstreamMixin("picot"),
-		deepstreamMixin("search"),
-		deepstreamMixin("screening"),
-		deepstreamMixin("extraction"),
-		deepstreamMixin("riskOfBias"),
-		deepstreamMixin("measurementOfEffect"),
-		deepstreamMixin("unitOfAnalysis"),
-		deepstreamMixin("missingData"),
-		deepstreamMixin("heterogeneityPublicationBiases"),
-		deepstreamMixin("subgroupAndSensitivityAnalysis"),
-		deepstreamMixin("acknowledgement"),
-		deepstreamMixin("contribution")
-	],
+	mixins: [CopyMixin],
 	components: {
 		Button,
 		Dialog,
 		Checkbox,
 		OutputPicot,
 		OutputIntroduction,
-		OutputSearch,
-		OutputSearchDatabases,
-		OutputSearchDatabasesAppendix,
-		OutputSearchRegistries,
-		OutputSearchRegistriesAppendix,
-		OutputSearchPublicationType,
-		OutputSearchSupplementoryMethods,
 		OutputScreening,
 		OutputDataExtraction,
 		OutputAssessmentOfTheRiskOfBias,
 		OutputMeasurementOfEffect,
 		OutputUnitOfAnalysis,
 		OutputDealingWithMissingData,
-		//OutputHeterogeneityPublicationBias,
 		OutputHeterogeneity,
-		OutputPublicationBias,
 		OutputSubgroupAndSensitivityAnalysis,
 		OutputAcknowledgement,
-		OutputContributions
+		OutputContributions,
+		OutputPublicationBias,
+		OutputSearchStrategy,
+		OutputSearchStrings
 	},
 	data() {
 		return {
@@ -250,10 +178,7 @@ export default {
 				{ label: "Introduction", include: true },
 				{ label: "PICOT", include: true },
 				{ label: "Search Strategy", include: true },
-				{ label: "Search Strings for Bibliographic Databases", include: true },
-				{ label: "Search Strings for Trial Registries", include: true },
-				{ label: "Restrictions on Publication Type", include: true },
-				{ label: "Supplementary Methods", include: true },
+				{ label: "Search Strings", include: true },
 				{ label: "Study Selection and Screening", include: true },
 				{ label: "Data Extraction", include: true },
 				{ label: "Assessment of the Risk of Bias", include: true },
