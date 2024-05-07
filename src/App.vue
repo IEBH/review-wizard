@@ -129,6 +129,10 @@ export default {
 		projectId: async function() {
 			// Update menu
 			this.updateMenu();
+		},
+		"$route.path"() {
+			// Tell TERA-fy to restore to this page on refresh (only applies when this site is an embed within tera-tools.com)
+			this.$tera.setPageUrl(this.$route.path);
 		}
 	},
 	computed: {
