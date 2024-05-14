@@ -41,7 +41,7 @@ export default defineConfig(({mode}) => {
 				'primevue/button': 'node_modules/primevue/button/Button.vue',
 				'primevue/Button.vue/style': 'node_modules/primevue/button/button.esm.js',
 				'primevue/dialog': 'node_modules/primevue/dialog/Dialog.vue',
-				'primevue/toast': 'node_modules/primevue/toast/Toast.vue',
+				'primevue/toast': 'node_modules/erimevue/toast/Toast.vue',
 				'primevue/toolbar': 'node_modules/primevue/toolbar/Toolbar.vue',
 				*/
 			},
