@@ -16,21 +16,6 @@
 				/>
 			</b>
 		</p>
-		<!-- <pre>
-		{{ value }}
-	  </pre> -->
-		<div>
-			<!-- :validate="validWholeRecord" -->
-			<!-- <vue-excel-editor v-if="value && value.rows" v-model="simplifiedJsondata">
-				<vue-excel-column v-for="(column, index) in value.headers" :key="index" :field="column.name"
-					:label="column.label">
-				</vue-excel-column>
-			</vue-excel-editor> -->
-			<!-- :type="column.name == 'DateandTime' ? column.type == 'datetime' : column.type == 'string'" -->
-			<!-- :width="dynamicColumnWidths[column.name]" -->
-			<!-- :width="column.width" -->
-			<!-- :options="column.type === 'select' ? column.options : null" -->
-		</div>
 		<div class="table-container">
 			<table
 				class="p-fluid"
@@ -53,9 +38,6 @@
 									/>
 								</div>
 							</div>
-						</th>
-						<th v-if="ifEdit">
-							<div style="width: 160px"></div>
 						</th>
 					</tr>
 				</thead>
@@ -84,13 +66,6 @@
 									>
 								</div>
 							</template>
-							<!-- <div class="checkbox-wrapper-29">
-								<label class="checkbox">
-									<input type="checkbox" v-model="row.progress" class="checkbox__input" @change="changeHandler($event)"></el-checkbox />
-									<span class="checkbox__label"></span>
-									Completed
-								</label>
-							</div> -->
 							<div
 								class="checkbox-wrapper-29"
 								v-if="thead.name == 'progress'"
@@ -107,10 +82,6 @@
 									<!-- Completed -->
 								</label>
 							</div>
-							<!-- <div class="field-checkbox" v-if="thead.name == 'progress'" style="margin: 20%;">
-								<el-checkbox v-model="row.progress" label="Completed"
-									@change="changeHandler($event)"></el-checkbox>
-							</div> -->
 							<NotesContent
 								v-if="thead.name == 'notes'"
 								:thead="thead"
