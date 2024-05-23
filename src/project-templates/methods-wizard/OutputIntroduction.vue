@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<p v-html="$tera.state.introprotocol"></p>
 		<p v-html="$tera.state.intro"></p>
 	</div>
 </template>

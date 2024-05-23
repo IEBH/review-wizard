@@ -154,7 +154,8 @@ const data = {
 		manuscript: []
 	},
 	introduction: {
-		intro: ""
+		intro: "",
+		introprotocol:""
 	},
 	researchplan: {
 		planTable: {

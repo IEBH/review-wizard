@@ -2,6 +2,11 @@
 	<div>
 		<h1>Introduction</h1>
 		<!-- question="What is the Introduction?" -->
+		<InputTextSingleLine
+			question="Where is the protocol registered OR where do you intend to register it?"
+			v-model="$tera.state.introprotocol"
+			placeholder="e.g. https://www.crd.york.ac.uk/prospero/, https://osf.io/"
+		/>
 		<InputEditorMultiline
 			:question="question"
 			:placeholder="placeholder"
@@ -13,10 +18,12 @@
 //import deepstreamMixin from "@/mixins/DeepstreamMixin";
 import OutputIntroduction from "./OutputIntroduction.vue";
 import InputEditorMultiline from "@/components/InputEditorMultiline.vue";
+import InputTextSingleLine from "@/components/InputTextSingleLine.vue";
 
 export default {
 	components: {
-		InputEditorMultiline
+		InputEditorMultiline,
+		InputTextSingleLine
 	},
 	data() {
 		return {

@@ -15,6 +15,8 @@ let defaultProjectState = {
 
 	//introduction:
 	intro: "",
+	introprotocol: "",
+
 
 	//researchplan:
 	planTable: {
