@@ -25,12 +25,16 @@
 				helped in the design of the search.
 			</span>
 			<span v-if="$tera.state.tools.length">
-				{{
-				selectRandom([
-					`We used ${joinArrayWithAnd(formatSelectMulti($tera.state.tools))} to help design and run the search.`,
-					`The following were used ${joinArrayWithAnd(formatSelectMulti($tera.state.tools))} to help with the search.`
-				])
-			}}
+				<p>
+					{{
+						selectRandom([
+							`We used ${joinArrayWithAnd(formatSelectMulti($tera.state.tools))} to help design and run the
+					search.`,
+							`The following were used ${joinArrayWithAnd(formatSelectMulti($tera.state.tools))} to help with the
+					search.`
+						])
+					}}
+				</p>
 			</span>
 			<span v-if="$tera.state.peerReviewer.length">
 				The search strategy was peer-reviewed by [a/an]
@@ -99,6 +103,18 @@
 				).toLowerCase()
 			}}
 		</p>
+		<span v-if="$tera.state.databaseTools.length">
+			<p>
+				{{
+					selectRandom([
+						`We used ${joinArrayWithAnd(formatSelectMulti($tera.state.databaseTools))} to help run the supplementary
+				search.`,
+						`The supplemnentary searches were done in
+				${joinArrayWithAnd(formatSelectMulti($tera.state.databaseTools))}.`
+					])
+				}}
+			</p>
+		</span>
 
 		<p>
 			{{ ` Authors (${conductSSearchAuthorsInitials}) ` }}

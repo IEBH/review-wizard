@@ -42,6 +42,9 @@
 		<InputSelectMulti question="Did you conduct any of the following methods to supplement your search results?"
 			v-model="$tera.state.supplementoryMethods" :options="supplementoryMethodsOptions" />
 
+		<InputSelectMulti question="Which tool/s or databases were used the supplementary search."
+			v-model="$tera.state.databaseTools" :options="databaselistOptions" />
+
 		<PreviewOutput :component="outputComponent" />
 	</div>
 </template>
@@ -109,6 +112,14 @@ export default {
 			],
 			// Tools help in Search
 			toollistOptions: [
+				{ label: "MeshMate" },
+				{ label: "Word Freq" },
+				{ label: "SearchRefiner" },
+				{ label: "Polyglot Search Translator" },
+				{ label: "Systematic Review Accelerator" }
+			],
+			// Database helped in Suplementary Search
+			databaselistOptions: [
 				{ label: "MeshMate" },
 				{ label: "Word Freq" },
 				{ label: "SearchRefiner" },

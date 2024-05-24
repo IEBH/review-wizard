@@ -615,6 +615,7 @@ const data = {
 		specialist: [],
 		helper: [],
 		tools: [],
+		databaseTools: [],
 		peerReviewer: [],
 		searchAutomationTools: [],
 		designSearchStrategyAuthors: [],
