@@ -14,18 +14,14 @@
 	</div>
 </template>
 <script>
-
+import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputIntroduction",
+	mixins: [OutputMixin],
 	data() {
 		return {
 			forProtocol: "The protocol is registed at: "
 		}
 	},
-	methods:{
-		selectRandom(arr) {
-			return arr[Math.floor(Math.random() * arr.length)];
-		},
-	}
 };
 </script>
