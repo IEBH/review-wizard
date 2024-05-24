@@ -508,6 +508,7 @@ let defaultProjectState = {
 	//numberOfFullTextScreeners: null,
 	fullTextScreeners: [],
 	disputeResolution: [],
+	screeningToolsSelected:[],
 	//screenAutomationTools: [],
 	isPrismaFlowDiagram: false,
 	isExcludedFullTextInAppendix: false,

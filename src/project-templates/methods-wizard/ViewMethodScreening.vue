@@ -4,70 +4,49 @@
 
 		<InputTextNumber
 			question="How many review authors independently screened the titles and abstracts for inclusion against the inclusion criteria?"
-			v-model="$tera.state.numberOfTitleAbstractScreeners"
-		/>
+			v-model="$tera.state.numberOfTitleAbstractScreeners" />
 
-		<InputSelectMultiWithoutOthers
-			question="Which authors screened title/abstract?"
-			v-model="$tera.state.titleAbstractScreeners"
-			:options="
+		<InputSelectMultiWithoutOthers question="Which authors screened title/abstract?"
+			v-model="$tera.state.titleAbstractScreeners" :options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
 				})*/
 				this.scabstractAuthors
-			"
-		/>
+				" />
 
-		<InputSelectMultiWithoutOthers
-			question="Which author retrieved full-texts?"
-			v-model="$tera.state.fullTextRetrivalAuthor"
-			:options="this.retrfulltextAuthors"
-		/>
+		<InputSelectMultiWithoutOthers question="Which author retrieved full-texts?"
+			v-model="$tera.state.fullTextRetrivalAuthor" :options="this.retrfulltextAuthors" />
 
-		<InputTextNumber
-			question="How many review authors independently screened the full-texts for inclusion?"
-			v-model="$tera.state.numberOfFullTextScreeners"
-		/>
+		<InputTextNumber question="How many review authors independently screened the full-texts for inclusion?"
+			v-model="$tera.state.numberOfFullTextScreeners" />
 
-		<InputSelectMultiWithoutOthers
-			question="Which authors screened full-texts?"
-			v-model="$tera.state.fullTextScreeners"
-			:options="
+		<InputSelectMultiWithoutOthers question="Which authors screened full-texts?"
+			v-model="$tera.state.fullTextScreeners" :options="
 				/*titlepage.authors.map(el => {
 					return { label: el };
 				})*/
 				this.scfulltextAuthors
-			"
-		/>
+				" />
 
-		<InputSelectMultiWithoutOthers
-			question="Who screened the citation search?"
-			v-model="$tera.state.screenCitationSearchPeople"
-			:options="this.scCitSearchPeople"
-		/>
+		<InputSelectMultiWithoutOthers question="Who screened the citation search?"
+			v-model="$tera.state.screenCitationSearchPeople" :options="this.scCitSearchPeople" />
 
-		<InputSelectMultiWithoutOthers
-			question="Who screened trial registries?"
-			v-model="$tera.state.screenTrialRegisPeople"
-			:options="this.scTrialRegisPeople"
-		/>
+		<InputSelectMultiWithoutOthers question="Who screened trial registries?"
+			v-model="$tera.state.screenTrialRegisPeople" :options="this.scTrialRegisPeople" />
 
-		<InputSelectMulti
-			question="Any disagreements were resolved by:"
-			v-model="$tera.state.disputeResolution"
-			:options="disputeResolutionOptions"
-		/>
+		<InputSelectMulti question="Any disagreements were resolved by:" v-model="$tera.state.disputeResolution"
+			:options="disputeResolutionOptions" />
+
+		<InputSelectMulti question="Which tool/s, if any, were used to help with screening?" v-model="$tera.state.screeningToolsSelected"
+			:options="screeningTools" />
 
 		<InputSelectYesNo
 			question="This systematic review is reported following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) statement."
-			v-model="$tera.state.isPrismaFlowDiagram"
-		/>
+			v-model="$tera.state.isPrismaFlowDiagram" />
 
-		<InputSelectYesNo
-			v-if="$tera.state.isPrismaFlowDiagram"
+		<InputSelectYesNo v-if="$tera.state.isPrismaFlowDiagram"
 			question="The list of studies excluded at full-text is provided in Appendix"
-			v-model="$tera.state.isExcludedFullTextInAppendix"
-		/>
+			v-model="$tera.state.isExcludedFullTextInAppendix" />
 
 		<BasePreviewOutput :component="outputComponent" />
 	</div>
@@ -164,6 +143,12 @@ export default {
 			disputeResolutionOptions: [
 				{ label: "By consensus" },
 				{ label: "By referring to a third author" }
+			],
+			screeningTools: [
+				{ label: "Screenatron" },
+				{ label: "Covidence" },
+				{ label: "Rayyan" },
+				{ label: "EPPI-Reviewer" }
 			],
 			outputComponent: OutputScreening
 		};
