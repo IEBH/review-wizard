@@ -155,7 +155,7 @@ const data = {
 	},
 	introduction: {
 		intro: "",
-		introprotocol:""
+		introprotocol: ""
 	},
 	researchplan: {
 		planTable: {
@@ -614,6 +614,7 @@ const data = {
 		components: [],
 		specialist: [],
 		helper: [],
+		tools: [],
 		peerReviewer: [],
 		searchAutomationTools: [],
 		designSearchStrategyAuthors: [],
@@ -709,7 +710,7 @@ const data = {
 };
 
 // The menu array which is used for the sidebar
-const getMenu = ()=> [
+const getMenu = () => [
 	{
 		header: true,
 		title: "PLANNING",

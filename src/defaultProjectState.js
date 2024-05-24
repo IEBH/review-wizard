@@ -474,6 +474,7 @@ let defaultProjectState = {
 	components: [],
 	specialist: [],
 	helper: [],
+	tools:[],
 	peerReviewer: [],
 	searchAutomationTools: [],
 	designSearchStrategyAuthors: [],

@@ -24,6 +24,14 @@
 				}}
 				helped in the design of the search.
 			</span>
+			<span v-if="$tera.state.tools.length">
+				{{
+				selectRandom([
+					`We used ${joinArrayWithAnd(formatSelectMulti($tera.state.tools))} to help design and run the search.`,
+					`The following were used ${joinArrayWithAnd(formatSelectMulti($tera.state.tools))} to help with the search.`
+				])
+			}}
+			</span>
 			<span v-if="$tera.state.peerReviewer.length">
 				The search strategy was peer-reviewed by [a/an]
 				{{
@@ -40,12 +48,10 @@
 			designed and ran the statergy.
 		</p>
 
-		<p
-			v-if="
-				!$tera.state.isRestrictedByPublicationType &&
-					!$tera.state.isRestrictedByLanguage
-			"
-		>
+		<p v-if="
+			!$tera.state.isRestrictedByPublicationType &&
+			!$tera.state.isRestrictedByLanguage
+		">
 			{{
 				selectRandom([
 					"No publication type or language restrictions were applied.",
@@ -107,19 +113,19 @@ export default {
 	name: "OutputSearchStrategy",
 	mixins: [OutputMixin],
 	computed: {
-		designSearchStrategyAuthorsInitials: function() {
+		designSearchStrategyAuthorsInitials: function () {
 			return this.formatSelectMulti(
 				this.$tera.state.designSearchStrategyAuthors
 			)
 				.map(el => this.nameToInitials(el))
 				.join(", ");
 		},
-		deduplicateResultsAuthorsInitials: function() {
+		deduplicateResultsAuthorsInitials: function () {
 			return this.formatSelectMulti(this.$tera.state.deduplicateResultsAuthors)
 				.map(el => this.nameToInitials(el))
 				.join(", ");
 		},
-		conductSSearchAuthorsInitials: function() {
+		conductSSearchAuthorsInitials: function () {
 			return this.formatSelectMulti(this.$tera.state.conductSSearchAuthors)
 				.map(el => this.nameToInitials(el))
 				.join(", ");
