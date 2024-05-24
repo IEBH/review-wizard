@@ -109,7 +109,7 @@
 					selectRandom([
 						`We used ${joinArrayWithAnd(formatSelectMulti($tera.state.databaseTools))} to help run the supplementary
 				search.`,
-						`The supplemnentary searches were done in
+						`The supplementary searches were done in
 				${joinArrayWithAnd(formatSelectMulti($tera.state.databaseTools))}.`
 					])
 				}}
