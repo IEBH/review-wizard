@@ -120,11 +120,11 @@ export default {
 			],
 			// Database helped in Suplementary Search
 			databaselistOptions: [
-				{ label: "MeshMate" },
-				{ label: "Word Freq" },
-				{ label: "SearchRefiner" },
-				{ label: "Polyglot Search Translator" },
-				{ label: "Systematic Review Accelerator" }
+				{ label: "SpiderCite" },
+				{ label: "CitationChaser" },
+				{ label: "Web of Science" },
+				{ label: "Scopus" },
+				{ label: "Google Scholar" }
 			],
 			//Restrictions on Publication Type
 			publicationTypesOptions: [
