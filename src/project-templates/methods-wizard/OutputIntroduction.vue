@@ -14,12 +14,18 @@
 	</div>
 </template>
 <script>
+
 export default {
 	name: "OutputIntroduction",
 	data() {
 		return {
 			forProtocol: "The protocol is registed at: "
 		}
+	},
+	methods:{
+		selectRandom(arr) {
+			return arr[Math.floor(Math.random() * arr.length)];
+		},
 	}
 };
 </script>
