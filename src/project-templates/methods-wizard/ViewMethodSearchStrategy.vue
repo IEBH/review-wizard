@@ -2,76 +2,48 @@
 	<div>
 		<h1>Search Strategy</h1>
 
-		<InputSelectMultiWithoutOthers
-			question="Who designed and ran the search strategy?"
-			v-model="$tera.state.designSearchStrategyAuthors"
-			:options="this.dsSearchStrategyAuthors"
-		/>
-		<InputSelectMultiWithoutOthers
-			question="Who deduplicated the results?"
-			v-model="$tera.state.deduplicateResultsAuthors"
-			:options="this.dsSearchStrategyAuthors"
-		/>
+		<InputSelectMultiWithoutOthers question="Who designed and ran the search strategy?"
+			v-model="$tera.state.designSearchStrategyAuthors" :options="this.dsSearchStrategyAuthors" />
+		<InputSelectMultiWithoutOthers question="Who deduplicated the results?"
+			v-model="$tera.state.deduplicateResultsAuthors" :options="this.dsSearchStrategyAuthors" />
 
-		<InputSelectMulti
-			question="Which of the following components went into your search string"
-			v-model="$tera.state.components"
-			:options="componentsOptions"
-		/>
+		<InputSelectMulti question="Which of the following components went into your search string"
+			v-model="$tera.state.components" :options="componentsOptions" />
 
-		<InputSelectMulti
-			question="Was the search designed by a search specialist, if so select which type"
-			v-model="$tera.state.specialist"
-			:options="specialistOptions"
-		/>
+		<InputSelectMulti question="Was the search designed by a search specialist, if so select which type"
+			v-model="$tera.state.specialist" :options="specialistOptions" />
 
-		<InputSelectMulti
-			question="Was help received during the designing of the search, if so who provided the help"
-			v-model="$tera.state.helper"
-			:options="specialistOptions"
-		/>
+		<InputSelectMulti question="Was help received during the designing of the search, if so who provided the help"
+			v-model="$tera.state.helper" :options="specialistOptions" />
+
+		<InputSelectMulti question="Which tool/s, if any, were used to help with the search."
+			v-model="$tera.state.tools" :options="toollistOptions" />
 
 		<InputSelectMulti
 			question="Was the search strategy peer-reviewed (according to PRESS guidelines), if so who peer-reviewed"
-			v-model="$tera.state.peerReviewer"
-			:options="specialistOptions"
-		/>
+			v-model="$tera.state.peerReviewer" :options="specialistOptions" />
 
-		<InputSelectYesNo
-			question="Were the search results restricted by publication type?"
-			v-model="$tera.state.isRestrictedByPublicationType"
-		/>
+		<InputSelectYesNo question="Were the search results restricted by publication type?"
+			v-model="$tera.state.isRestrictedByPublicationType" />
 
-		<InputSelectMulti
-			v-if="$tera.state.isRestrictedByPublicationType"
-			question="What publication types did you exclude?"
-			v-model="$tera.state.excludedPublicationTypes"
-			:options="publicationTypesOptions"
-		/>
+		<InputSelectMulti v-if="$tera.state.isRestrictedByPublicationType"
+			question="What publication types did you exclude?" v-model="$tera.state.excludedPublicationTypes"
+			:options="publicationTypesOptions" />
 
-		<InputSelectYesNo
-			question="Were the search results restricted by language?"
-			v-model="$tera.state.isRestrictedByLanguage"
-		/>
+		<InputSelectYesNo question="Were the search results restricted by language?"
+			v-model="$tera.state.isRestrictedByLanguage" />
 
-		<InputSelectMulti
-			v-if="$tera.state.isRestrictedByLanguage"
-			question="What languages did you include?"
-			:options="languageOptions"
-			v-model="$tera.state.includedLanguages"
-		/>
+		<InputSelectMulti v-if="$tera.state.isRestrictedByLanguage" question="What languages did you include?"
+			:options="languageOptions" v-model="$tera.state.includedLanguages" />
 
-		<InputSelectMultiWithoutOthers
-			question="Who conducted the supplementary searches?"
-			v-model="$tera.state.conductSSearchAuthors"
-			:options="this.csAuthors"
-		/>
+		<InputSelectMultiWithoutOthers question="Who conducted the supplementary searches?"
+			v-model="$tera.state.conductSSearchAuthors" :options="this.csAuthors" />
 
-		<InputSelectMulti
-			question="Did you conduct any of the following methods to supplement your search results?"
-			v-model="$tera.state.supplementoryMethods"
-			:options="supplementoryMethodsOptions"
-		/>
+		<InputSelectMulti question="Did you conduct any of the following methods to supplement your search results?"
+			v-model="$tera.state.supplementoryMethods" :options="supplementoryMethodsOptions" />
+
+		<InputSelectMulti question="Which tool/s or databases were used the supplementary search."
+			v-model="$tera.state.databaseTools" :options="databaselistOptions" />
 
 		<PreviewOutput :component="outputComponent" />
 	</div>
@@ -137,6 +109,22 @@ export default {
 				{ label: "Health Librarian" },
 				{ label: "Information Specialist" },
 				{ label: "Cochrane Information Specialist" }
+			],
+			// Tools help in Search
+			toollistOptions: [
+				{ label: "MeshMate" },
+				{ label: "Word Freq" },
+				{ label: "SearchRefiner" },
+				{ label: "Polyglot Search Translator" },
+				{ label: "Systematic Review Accelerator" }
+			],
+			// Database helped in Suplementary Search
+			databaselistOptions: [
+				{ label: "SpiderCite" },
+				{ label: "CitationChaser" },
+				{ label: "Web of Science" },
+				{ label: "Scopus" },
+				{ label: "Google Scholar" }
 			],
 			//Restrictions on Publication Type
 			publicationTypesOptions: [

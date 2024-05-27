@@ -135,6 +135,15 @@
 					  ).toLowerCase()
 					: "BLANK"
 			}}.
+			<!-- Screening Tools -->
+			<span v-if="$tera.state.screeningToolsSelected.length">
+					{{
+						selectRandom([
+							`We used ${joinArrayWithAnd(formatSelectMulti($tera.state.screeningToolsSelected))} to help screen the studies.`,
+							`${joinArrayWithAnd(formatSelectMulti($tera.state.screeningToolsSelected))} was used to help assess study eligibity.`
+						])
+					}}
+			</span>
 			<!-- Automation -->
 			<span
 				v-if="

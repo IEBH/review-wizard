@@ -154,7 +154,8 @@ const data = {
 		manuscript: []
 	},
 	introduction: {
-		intro: ""
+		intro: "",
+		introprotocol: ""
 	},
 	researchplan: {
 		planTable: {
@@ -613,6 +614,8 @@ const data = {
 		components: [],
 		specialist: [],
 		helper: [],
+		tools: [],
+		databaseTools: [],
 		peerReviewer: [],
 		searchAutomationTools: [],
 		designSearchStrategyAuthors: [],
@@ -645,6 +648,7 @@ const data = {
 		//numberOfFullTextScreeners: null,
 		fullTextScreeners: [],
 		disputeResolution: [],
+		screeningToolsSelected: [],
 		//screenAutomationTools: [],
 		isPrismaFlowDiagram: false,
 		isExcludedFullTextInAppendix: false
@@ -708,7 +712,7 @@ const data = {
 };
 
 // The menu array which is used for the sidebar
-const getMenu = ()=> [
+const getMenu = () => [
 	{
 		header: true,
 		title: "PLANNING",

@@ -2,6 +2,11 @@
 	<div>
 		<h1>Introduction</h1>
 		<!-- question="What is the Introduction?" -->
+		<InputTextSingleLine
+			question="Where is the protocol registered OR Where do you intend to register it?"
+			v-model="$tera.state.introprotocol"
+			placeholder="e.g. https://www.crd.york.ac.uk/prospero/, https://osf.io/"
+		/>
 		<InputEditorMultiline
 			:question="question"
 			:placeholder="placeholder"

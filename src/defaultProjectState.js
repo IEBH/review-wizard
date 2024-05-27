@@ -15,6 +15,7 @@ let defaultProjectState = {
 
 	//introduction:
 	intro: "",
+	introprotocol: "",
 
 	//researchplan:
 	planTable: {
@@ -472,6 +473,8 @@ let defaultProjectState = {
 	components: [],
 	specialist: [],
 	helper: [],
+	tools: [],
+	databaseTools: [],
 	peerReviewer: [],
 	searchAutomationTools: [],
 	designSearchStrategyAuthors: [],
@@ -504,6 +507,7 @@ let defaultProjectState = {
 	//numberOfFullTextScreeners: null,
 	fullTextScreeners: [],
 	disputeResolution: [],
+	screeningToolsSelected: [],
 	//screenAutomationTools: [],
 	isPrismaFlowDiagram: false,
 	isExcludedFullTextInAppendix: false,
