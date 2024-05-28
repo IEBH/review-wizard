@@ -465,7 +465,20 @@ const data = {
 					tasks: "Meta-analysis",
 					toolDescription:
 						"Statistically combine the results using meta-analysis or other statistical synthesis",
-					toolLink: [{ name: "", link: "" }],
+					toolLink: [
+						{
+							name: "MetaPairwise",
+							link: "https://tera-tools.com/metapairwise"
+						},
+						{
+							name: "MetaInsight",
+							link: "https://tera-tools.com/metainsight"
+						},
+						{
+							name: "MetaDTA",
+							link: "https://tera-tools.com/metadta"
+						}
+					],
 					notes: "",
 					peopleInvolved: ""
 					//notes: ""
