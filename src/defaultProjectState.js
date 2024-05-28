@@ -138,6 +138,11 @@ let defaultProjectState = {
 						name: "Search Refinery",
 						//link: "https://sr-accelerator.com/#/searchrefinery"
 						link: "https://tera-tools.com/searchrefiner"
+					},
+					{
+						name: "MeshMate",
+						//link: "https://sr-accelerator.com/#/searchrefinery"
+						link: "https://tera-tools.com/meshmate"
 					}
 				],
 				notes: "",
