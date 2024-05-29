@@ -537,10 +537,10 @@ const data = {
 					tasks: "Write results",
 					toolDescription: "Write the results section of the SR",
 					toolLink: [
-						// {
-						// 	name: "Refman Replicant",
-						// 	link: "https://sr-accelerator.com/#/replicant"
-						// }
+						{
+							name: "",
+							link: ""
+						}
 					],
 					notes: "",
 					peopleInvolved: ""
