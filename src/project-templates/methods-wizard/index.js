@@ -462,7 +462,7 @@ const data = {
 				},
 				{
 					progress: false,
-					tasks: "Meta-analysises",
+					tasks: "Meta-analysis",
 					toolDescription:
 						"Statistically combine the results using meta-analysis or other statistical synthesis",
 					toolLink: [
