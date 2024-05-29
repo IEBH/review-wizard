@@ -323,7 +323,7 @@ let defaultProjectState = {
 			},
 			{
 				progress: false,
-				tasks: "Meta-analysis",
+				tasks: "Meta-analysises",
 				toolDescription:
 					"Statistically combine the results using meta-analysis or other statistical synthesis",
 				toolLink: [
