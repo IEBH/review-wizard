@@ -29,15 +29,15 @@ export default {
 			) {
 				da = [...this.$tera.state.author, ...this.$tera.state.acknowledgements];
 			}
-			
+			this.checkUnion(da?.map(el => {
+				return { label: el };
+			}));
 			/**
 			 * return this.authorsArr?.map(el => {
 				return { label: el };
 			});
 			 */
-			return this.checkUnion(da?.map(el => {
-				return { label: el };
-			}));;
+			return da;
 		}
 	},
 	methods: {
