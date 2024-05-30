@@ -66,7 +66,7 @@ export default {
 		},
 		searchAuthors(event) {
 			console.log("searchAuthors:"+event);
-			console.log("titlePageAuthors:"+JSON.stringify(titlePageAuthors));
+			console.log("titlePageAuthors:"+JSON.stringify(this.titlePageAuthors));
 			setTimeout(() => {
 				if (!event.query.trim().length) {
 					this.filteredPeople = [...this.titlePageAuthors];
