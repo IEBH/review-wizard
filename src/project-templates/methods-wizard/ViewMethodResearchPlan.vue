@@ -28,16 +28,10 @@ export default {
 				this.$tera.state.acknowledgements != undefined
 			) {
 				da = [...this.$tera.state.author, ...this.$tera.state.acknowledgements];
-			}
-			da.map(el => {
-				return { label: el };
-			});
-			this.checkUnion(da);
-			/**
-			 * return this.authorsArr?.map(el => {
-				return { label: el };
-			});
-			 */
+				da=this.checkUnion(da.map(el => {
+				    return { label: el };
+			    }));
+			};
 			console.log("daaa:"+JSON.stringify(da));
 			return da;
 		}
@@ -64,6 +58,7 @@ export default {
 					}
 				}
 			}
+			return U;
 		},
 		checkAuthorSelection(table) {
 			//console.log("defaults:" + JSON.stringify(table));
