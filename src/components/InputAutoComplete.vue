@@ -2,14 +2,14 @@
 	<div class="author-div">
 		<div :class="isEvenRow == false ? 'customblue' : 'customwhite'">
 			<AutoComplete
+			    class="auto"
 				:multiple="true"
-				v-model="row[tableHeader.name]"
+				v-model="row.peopleInvolved"
 				:suggestions="filteredPeople"
 				field="label"
-				class="auto"
 				@complete="searchAuthors($event)"
-				@item-select="checkChanges(row, tableValue.rows, $event.value)"
-				@item-unselect="checkChanges(row, tableValue.rows, $event.value)"
+				@item-select="selectChanges(row, $event.value)"
+				@item-unselect="unselectChanges(row, $event.value)"
 			/>
 		</div></div
 ></template>
@@ -21,10 +21,7 @@ export default {
 
 	props: {
 		row: {},
-		tableValue: {},
-		tableHeader: {},
 		isEvenRow: Boolean,
-		//people: [],
 		titlePageAuthors: Array
 	},
 	components: {
@@ -36,29 +33,14 @@ export default {
 		};
 	},
 	methods: {
-		checkChanges(row, rows, event) {
-			//alert("start");
-			if (
-				row.tasks.includes("Design systematic search strategy") ||
-				row.tasks.includes("Run systematic search strings") ||
-				row.tasks.includes("Deduplicate results")
-			) {
-				//alert(row.tasks);
-				rows.forEach(el => {
-					if (
-						(el.tasks.includes("Design systematic search strategy") ||
-							el.tasks.includes("Run systematic search strings") ||
-							el.tasks.includes("Deduplicate results")) &&
-						el.tasks != row.tasks
-					) {
-						el.peopleInvolved = row.peopleInvolved;
-						//alert(el.tasks + ": " + el.peopleInvolved);
-					}
-				});
-			}
-			this.$emit("autocom", event);
+		selectChanges(row, event) {
+			this.$emit("autocom", 1, row, event);
+		},
+		unselectChanges(row, event) {
+			this.$emit("autocom", 0, row, event);
 		},
 		searchAuthors(event) {
+			//console.log("titlePageAuthors:"+JSON.stringify(this.titlePageAuthors));
 			setTimeout(() => {
 				if (!event.query.trim().length) {
 					this.filteredPeople = [...this.titlePageAuthors];
@@ -71,9 +53,6 @@ export default {
 				}
 			}, 250);
 		}
-	},
-	mounted() {
-		this.checkChanges(this.row, this.tableValue.rows);
 	}
 };
 </script>

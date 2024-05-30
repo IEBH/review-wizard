@@ -37,8 +37,8 @@
 		<InputSelectMulti question="Any disagreements were resolved by:" v-model="$tera.state.disputeResolution"
 			:options="disputeResolutionOptions" />
 
-		<InputSelectMulti question="Which tool/s, if any, were used to help with screening?"
-			v-model="$tera.state.screeningToolsSelected" :options="screeningTools" />
+		<InputSelectMulti question="Which tool/s, if any, were used to help with screening?" v-model="$tera.state.screeningToolsSelected"
+			:options="screeningTools" />
 
 		<InputSelectYesNo
 			question="This systematic review is reported following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) statement."
@@ -81,7 +81,9 @@ export default {
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Screen trial registries" && el.peopleInvolved != "") {
-					da = el.peopleInvolved;
+					//da = el.peopleInvolved;
+					da = [...el.peopleInvolved, ...da];
+					this.checkUnion(da);
 				}
 			});
 			return da;
@@ -92,7 +94,9 @@ export default {
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Screen citation analysis" && el.peopleInvolved != "") {
-					da = el.peopleInvolved;
+					//da = el.peopleInvolved;
+					da = [...el.peopleInvolved, ...da];
+					this.checkUnion(da);
 				}
 			});
 			return da;
@@ -103,7 +107,9 @@ export default {
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Screen abstracts" && el.peopleInvolved != "") {
-					da = el.peopleInvolved;
+					//da = el.peopleInvolved;
+					da = [...el.peopleInvolved, ...da];
+					this.checkUnion(da);
 				}
 			});
 			return da;
@@ -114,7 +120,9 @@ export default {
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Screen full text" && el.peopleInvolved != "") {
-					da = el.peopleInvolved;
+					//da = el.peopleInvolved;
+					da = [...el.peopleInvolved, ...da];
+					this.checkUnion(da);
 				}
 			});
 			return da;
@@ -125,20 +133,28 @@ export default {
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Obtain full text" && el.peopleInvolved != "") {
-					da = el.peopleInvolved;
+					//da = el.peopleInvolved;
+					da = [...el.peopleInvolved, ...da];
+					this.checkUnion(da);
 				}
 			});
 			return da;
 		}
 	},
+	methods: {
+		checkUnion(U) {
+			for (var i = 0; i < U.length; i++) {
+				for (var j = i + 1; j < U.length; j++) {
+					if (U[i].label == U[j].label) {
+						U.splice(j, 1);
+						j--;
+					}
+				}
+			}
+		}
+	},
 	data() {
 		return {
-			//scabstractAuthors: [], //--screen abstract authors
-			//retrfulltextAuthors: [], //--retrieved full-text authors
-			//scfulltextAuthors: [], //--screen full-text authors
-			//scTrialRegisPeople: [], //--screen trial registries
-			//scCitSearchPeople: [], //-- screen citation search
-			//csSearchPeople: [], //-- screec supplenmentry search
 			numberOptions: ["2", "3", "4", "5", "6"],
 			disputeResolutionOptions: [
 				{ label: "By consensus" },

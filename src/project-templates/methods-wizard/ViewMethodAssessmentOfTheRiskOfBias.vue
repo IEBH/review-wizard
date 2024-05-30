@@ -51,13 +51,27 @@ export default {
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Risk of Bias assessment" && el.peopleInvolved != "") {
-					da = el.peopleInvolved;
+					//da = el.peopleInvolved;
+					da = [...el.peopleInvolved, ...da];
+					this.checkUnion(da);
 				}
 			});
 			return da;
 		},
 		numberOfRiskOfBiasAuthors() {
 			return this.$tera.state.assessedRobAuthors?.length;
+		}
+	},
+	methods: {
+		checkUnion(U) {
+			for (var i = 0; i < U.length; i++) {
+				for (var j = i + 1; j < U.length; j++) {
+					if (U[i].label == U[j].label) {
+						U.splice(j, 1);
+						j--;
+					}
+				}
+			}
 		}
 	},
 	data() {

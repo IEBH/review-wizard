@@ -5,6 +5,7 @@
 			question="What is your Research Plan?"
 			v-model="table"
 			:titlePageAuthors="Authors"
+			@authChangeHandler="authorHandler"
 		></InputSrTableCustom>
 	</div>
 </template>
@@ -15,22 +16,9 @@ export default {
 		InputSrTableCustom
 	},
 	computed: {
-		/*authorsArr() {
-			let da = this.$tera.state?.author;
-			this.titlepage.authors?.forEach(el => {
-				for (var i = 0; i <  this.$tera.state.acknowledgements.length; i++) {
-					if (
-						el != this.titlepage.acknowledgements[i] &&
-						!da.includes(this.titlepage.acknowledgements[i])
-					) {
-						//alert(this.titlepage.acknowledgements[i]);
-						da.push(this.titlepage.acknowledgements[i]);
-					}
-				}
-			});
-		},*/
 		table() {
-			return this.checkAuthorSelection(this.$tera.state.planTable);
+			//return this.checkAuthorSelection(this.$tera.state.planTable);
+			return this.authorHandler(-1, null, this.$tera.state.planTable);
 		},
 		Authors() {
 			let da = [];
@@ -40,31 +28,25 @@ export default {
 				this.$tera.state.acknowledgements != undefined
 			) {
 				da = [...this.$tera.state.author, ...this.$tera.state.acknowledgements];
-			}
-			this.checkUnion(da);
-			/**
-			 * return this.authorsArr?.map(el => {
-				return { label: el };
-			});
-			 */
-			return da?.map(el => {
-				return { label: el };
-			});
+				da=this.checkUnion(da.map(el => {
+				    return { label: el };
+			    }));
+			};
+			console.log("daaa:"+JSON.stringify(da));
+			return da;
 		}
 	},
-	/*async mounted() {
-		if (this.$tera.state.planTable == undefined) {
-			let table = this.checkAuthorSelection(defaults.researchplan.planTable);
-			await this.$tera
-				.setProjectStateDefaults("planTable", table)
-				.then(response => {
-					this.table = response;
-				});
-		} else {
-			this.table = this.checkAuthorSelection(this.$tera.state.planTable);
-		}
-	},*/
 	methods: {
+		authorHandler(ifadd,row,event){
+			if(row!=null){
+				this.authorModify(ifadd,row,event);
+			}else{
+				if(event!=undefined){
+					return this.checkAuthorSelection(event);
+				}
+			}
+			return this.$tera.state.planTable;
+		},
 		checkUnion(U) {
 			if (U.length > 0) {
 				for (var i = 0; i < U.length; i++) {
@@ -76,6 +58,7 @@ export default {
 					}
 				}
 			}
+			return U;
 		},
 		checkAuthorSelection(table) {
 			//console.log("defaults:" + JSON.stringify(table));
@@ -85,115 +68,167 @@ export default {
 					el.tasks == "Run systematic search strings" ||
 					el.tasks == "Deduplicate results"
 				) {
-					if (this.$tera.state.designSearchStrategyAuthors != null) {
-						el.peopleInvolved = [
-							...this.$tera.state.designSearchStrategyAuthors,
-							...el.peopleInvolved
-						];
+					if (this.$tera.state.searchStrategyAuthors != null) {
+						el.peopleInvolved=this.$tera.state.searchStrategyAuthors;
 					}
-					if (this.$tera.state.deduplicateResultsAuthors != null) {
-						el.peopleInvolved = [
-							...this.$tera.state.deduplicateResultsAuthors,
-							...el.peopleInvolved
-						];
-					}
-					this.checkUnion(el.peopleInvolved);
-				}
-				if (
-					el.tasks == "Screen abstracts" &&
-					this.$tera.state.titleAbstractScreeners != null
-				) {
-					el.peopleInvolved = [
-						...this.$tera.state.titleAbstractScreeners,
-						...el.peopleInvolved
-					];
-					this.checkUnion(el.peopleInvolved);
-				}
-				if (
-					el.tasks == "Obtain full text" &&
-					this.$tera.state.fullTextRetrivalAuthor != null
-				) {
-					el.peopleInvolved = [
-						...this.$tera.state.fullTextRetrivalAuthor,
-						...el.peopleInvolved
-					];
-					this.checkUnion(el.peopleInvolved);
-				}
-				if (
-					el.tasks == "Screen full text" &&
-					this.$tera.state.fullTextScreeners != null
-				) {
-					el.peopleInvolved = [
-						...this.$tera.state.fullTextScreeners,
-						...el.peopleInvolved
-					];
-					this.checkUnion(el.peopleInvolved);
-				}
-				if (
-					el.tasks == "Screen trial registries" &&
-					this.$tera.state.screenTrialRegisPeople != null
-				) {
-					el.peopleInvolved = [
-						...this.$tera.state.screenTrialRegisPeople,
-						...el.peopleInvolved
-					];
-					this.checkUnion(el.peopleInvolved);
 				}
 				if (
 					el.tasks == "Citation search" &&
 					this.$tera.state.conductSSearchAuthors != null
 				) {
-					el.peopleInvolved = [
+					/*el.peopleInvolved = [
 						...this.$tera.state.conductSSearchAuthors,
 						...el.peopleInvolved
 					];
-					this.checkUnion(el.peopleInvolved);
+					this.checkUnion(el.peopleInvolved);*/
+					el.peopleInvolved=this.$tera.state.conductSSearchAuthors;
 				}
+				if (
+					el.tasks == "Screen abstracts" &&
+					this.$tera.state.titleAbstractScreeners != null
+				) {
+					el.peopleInvolved=this.$tera.state.titleAbstractScreeners;
+				}
+				if (
+					el.tasks == "Obtain full text" &&
+					this.$tera.state.fullTextRetrivalAuthor != null
+				) {
+					el.peopleInvolved=this.$tera.state.fullTextRetrivalAuthor;
+				}
+				if (
+					el.tasks == "Screen full text" &&
+					this.$tera.state.fullTextScreeners != null
+				) {
+					el.peopleInvolved=this.$tera.state.fullTextScreeners;
+				}
+				if (
+					el.tasks == "Screen trial registries" &&
+					this.$tera.state.screenTrialRegisPeople != null
+				) {
+					el.peopleInvolved=this.$tera.state.screenTrialRegisPeople;
+				}
+				
 				if (
 					el.tasks == "Screen citation analysis" &&
 					this.$tera.state.screenCitationSearchPeople != null
 				) {
-					el.peopleInvolved = [
-						...this.$tera.state.screenCitationSearchPeople,
-						...el.peopleInvolved
-					];
-					this.checkUnion(el.peopleInvolved);
+					el.peopleInvolved=this.$tera.state.screenCitationSearchPeople;
 				}
 				if (
 					el.tasks == "Extract data" &&
 					this.$tera.state.extractionAuthors != null
 				) {
-					//alert(JSON.stringify(this.extraction.extractionAuthors));
-					el.peopleInvolved = [
-						...this.$tera.state.extractionAuthors,
-						...el.peopleInvolved
-					];
-					this.checkUnion(el.peopleInvolved);
+					el.peopleInvolved=this.$tera.state.extractionAuthors;
 				}
 				if (
 					el.tasks == "Risk of Bias assessment" &&
 					this.$tera.state.assessedRobAuthors != null
 				) {
-					el.peopleInvolved = [
-						...this.$tera.state.assessedRobAuthors,
-						...el.peopleInvolved
-					];
-					this.checkUnion(el.peopleInvolved);
+					el.peopleInvolved=this.$tera.state.assessedRobAuthors;
 				}
 			});
 			return table;
-		}
-		/*checkPeopleInvolved(pInvolved, authors) {
-			if (pInvolved != "") {
-				for (var i = 0; i < authors.length; i++) {
-					pInvolved.push(authors[i]);
+		},
+		authorModify(ifadd, row, event) {
+			if (
+				row.tasks.includes("Design systematic search strategy") ||
+				row.tasks.includes("Run systematic search strings") ||
+				row.tasks.includes("Deduplicate results")
+			) {
+				if (ifadd == 1) {
+					this.$tera.state.searchStrategyAuthors.splice(
+						this.$tera.state.searchStrategyAuthors.length,
+						0,
+						event
+					);
+				} else {
+					this.$tera.state.searchStrategyAuthors.splice(
+						this.$tera.state.searchStrategyAuthors.indexOf(event),
+						event
+					);
 				}
-				this.checkUnion(pInvolved);
-			} else {
-				pInvolved = authors;
 			}
-			return pInvolved;
-		}*/
+			if (row.tasks.includes("Citation search")) {
+				if (ifadd == 1) {
+					this.$tera.state.conductSSearchAuthors.push(event);
+				} else {
+					this.$tera.state.conductSSearchAuthors.splice(
+						this.$tera.state.conductSSearchAuthors.indexOf(event),
+						event
+					);
+				}
+			}
+			if (row.tasks.includes("Screen abstracts")) {
+				if (ifadd == 1) {
+					this.$tera.state.titleAbstractScreeners.push(event);
+				} else {
+					this.$tera.state.titleAbstractScreeners.splice(
+						this.$tera.state.titleAbstractScreeners.indexOf(event),
+						event
+					);
+				}
+			}
+			if (row.tasks.includes("Obtain full text")) {
+				if (ifadd == 1) {
+					this.$tera.state.fullTextRetrivalAuthor.push(event);
+				} else {
+					this.$tera.state.fullTextRetrivalAuthor.splice(
+						this.$tera.state.fullTextRetrivalAuthor.indexOf(event),
+						event
+					);
+				}
+			}
+			if (row.tasks.includes("Screen full text")) {
+				if (ifadd == 1) {
+					this.$tera.state.fullTextScreeners.push(event);
+				} else {
+					this.$tera.state.fullTextScreeners.splice(
+						this.$tera.state.fullTextScreeners.indexOf(event),
+						event
+					);
+				}
+			}
+			if (row.tasks.includes("Screen trial registries")) {
+				if (ifadd == 1) {
+					this.$tera.state.screenTrialRegisPeople.push(event);
+				} else {
+					this.$tera.state.screenTrialRegisPeople.splice(
+						this.$tera.state.screenTrialRegisPeople.indexOf(event),
+						event
+					);
+				}
+			}
+			if (row.tasks.includes("Screen citation analysis")) {
+				if (ifadd == 1) {
+					this.$tera.state.screenCitationSearchPeople.push(event);
+				} else {
+					this.$tera.state.screenCitationSearchPeople.splice(
+						this.$tera.state.screenCitationSearchPeople.indexOf(event),
+						event
+					);
+				}
+			}
+			if (row.tasks.includes("Extract data")) {
+				if (ifadd == 1) {
+					this.$tera.state.extractionAuthors.push(event);
+				} else {
+					this.$tera.state.extractionAuthors.splice(
+						this.$tera.state.extractionAuthors.indexOf(event),
+						event
+					);
+				}
+			}
+			if (row.tasks.includes("Risk of Bias assessment")) {
+				if (ifadd == 1) {
+					this.$tera.state.assessedRobAuthors.push(event);
+				} else {
+					this.$tera.state.assessedRobAuthors.splice(
+						this.$tera.state.assessedRobAuthors.indexOf(event),
+						event
+					);
+				}
+			}
+		},
 	}
 };
 </script>

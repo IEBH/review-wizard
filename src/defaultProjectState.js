@@ -17,6 +17,7 @@ let defaultProjectState = {
 	intro: "",
 	introprotocol: "",
 
+
 	//researchplan:
 	planTable: {
 		headers: [
@@ -495,8 +496,7 @@ let defaultProjectState = {
 	databaseTools: [],
 	peerReviewer: [],
 	searchAutomationTools: [],
-	designSearchStrategyAuthors: [],
-	deduplicateResultsAuthors: [],
+	searchStrategyAuthors: [],
 	// Search Strings for Bibliographic Databases
 	databases: [],
 	dateOfSearch: null,
