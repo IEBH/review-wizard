@@ -374,15 +374,6 @@ export default {
 				return ""; // return empty string if there is no error
 			}
 		}
-
-		/*search(query, cb) {
-			let results = query
-				? (results = this.titlePageAuthors.filter(people => {
-						return people.value.toLowerCase().startsWith(query.toLowerCase());
-				  }))
-				: (results = [...this.titlePageAuthors]);
-			cb(results);
-		}*/
 	},
 	mounted() {
 		this.methodsUrl = "/#/" + this.$store.state.projectId;
