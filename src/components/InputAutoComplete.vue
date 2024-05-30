@@ -3,10 +3,10 @@
 		<div :class="isEvenRow == false ? 'customblue' : 'customwhite'">
 			<AutoComplete
 			    class="auto"
-			    field="label"
 				:multiple="true"
 				v-model="row.peopleInvolved"
 				:suggestions="filteredPeople"
+				field="label"
 				@complete="searchAuthors($event)"
 				@item-select="selectChanges(row, $event.value)"
 				@item-unselect="unselectChanges(row, $event.value)"
