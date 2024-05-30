@@ -21,10 +21,7 @@ export default {
 
 	props: {
 		row: {},
-		//tableValue: {},
-		//tableHeader: {},
 		isEvenRow: Boolean,
-		//people: [],
 		titlePageAuthors: Array
 	},
 	components: {
@@ -36,28 +33,6 @@ export default {
 		};
 	},
 	methods: {
-		/*checkChanges(row, rows, event) {
-			//alert("start");
-			if (
-				row.tasks.includes("Design systematic search strategy") ||
-				row.tasks.includes("Run systematic search strings") ||
-				row.tasks.includes("Deduplicate results")
-			) {
-				//alert(row.tasks);
-				rows.forEach(el => {
-					if (
-						(el.tasks.includes("Design systematic search strategy") ||
-							el.tasks.includes("Run systematic search strings") ||
-							el.tasks.includes("Deduplicate results")) &&
-						el.tasks != row.tasks
-					) {
-						el.peopleInvolved = row.peopleInvolved;
-						//alert(el.tasks + ": " + el.peopleInvolved);
-					}
-				});
-			}
-			this.$emit("autocom", event);
-		},*/
 		selectChanges(row, event) {
 			this.$emit("autocom", 1, row, event);
 		},
@@ -65,8 +40,7 @@ export default {
 			this.$emit("autocom", 0, row, event);
 		},
 		searchAuthors(event) {
-			console.log("searchAuthors:"+event);
-			console.log("titlePageAuthors:"+JSON.stringify(this.titlePageAuthors));
+			//console.log("titlePageAuthors:"+JSON.stringify(this.titlePageAuthors));
 			setTimeout(() => {
 				if (!event.query.trim().length) {
 					this.filteredPeople = [...this.titlePageAuthors];
@@ -80,9 +54,6 @@ export default {
 			}, 250);
 		}
 	}
-	/*mounted() {
-		this.checkChanges(this.row, this.tableValue.rows);
-	}*/
 };
 </script>
 <style>
