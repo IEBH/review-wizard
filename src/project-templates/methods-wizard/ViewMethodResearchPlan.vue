@@ -29,7 +29,7 @@ export default {
 			) {
 				da = [...this.$tera.state.author, ...this.$tera.state.acknowledgements];
 			}
-			da?.map(el => {
+			da.map(el => {
 				return { label: el };
 			});
 			this.checkUnion(da);
@@ -38,6 +38,7 @@ export default {
 				return { label: el };
 			});
 			 */
+			console.log("daaa:"+JSON.stringify(da));
 			return da;
 		}
 	},
