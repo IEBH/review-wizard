@@ -29,9 +29,10 @@ export default {
 			) {
 				da = [...this.$tera.state.author, ...this.$tera.state.acknowledgements];
 			}
-			this.checkUnion(da?.map(el => {
+			da?.map(el => {
 				return { label: el };
-			}));
+			});
+			this.checkUnion(da);
 			/**
 			 * return this.authorsArr?.map(el => {
 				return { label: el };
