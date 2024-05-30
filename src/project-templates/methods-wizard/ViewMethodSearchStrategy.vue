@@ -3,9 +3,9 @@
 		<h1>Search Strategy</h1>
 
 		<InputSelectMultiWithoutOthers question="Who designed and ran the search strategy?"
-			v-model="$tera.state.designSearchStrategyAuthors" :options="this.dsSearchStrategyAuthors" />
+			v-model="$tera.state.searchStrategyAuthors" :options="this.dsSearchStrategyAuthors" />
 		<InputSelectMultiWithoutOthers question="Who deduplicated the results?"
-			v-model="$tera.state.deduplicateResultsAuthors" :options="this.dsSearchStrategyAuthors" />
+			v-model="$tera.state.searchStrategyAuthors" :options="this.dsSearchStrategyAuthors" />
 
 		<InputSelectMulti question="Which of the following components went into your search string"
 			v-model="$tera.state.components" :options="componentsOptions" />
@@ -79,7 +79,9 @@ export default {
 					el.tasks == "Design systematic search strategy" &&
 					el.peopleInvolved != ""
 				) {
-					da = el.peopleInvolved;
+					//da = el.peopleInvolved;
+					da = [...el.peopleInvolved, ...da];
+					this.checkUnion(da);
 				}
 			});
 			return da;
@@ -90,10 +92,24 @@ export default {
 			});
 			this.$tera.state.planTable?.rows.forEach(el => {
 				if (el.tasks == "Citation search" && el.peopleInvolved != "") {
-					da = el.peopleInvolved;
+					//da = el.peopleInvolved;
+					da = [...el.peopleInvolved, ...da];
+					this.checkUnion(da);
 				}
 			});
 			return da;
+		}
+	},
+	methods: {
+		checkUnion(U) {
+			for (var i = 0; i < U.length; i++) {
+				for (var j = i + 1; j < U.length; j++) {
+					if (U[i].label == U[j].label) {
+						U.splice(j, 1);
+						j--;
+					}
+				}
+			}
 		}
 	},
 	data() {

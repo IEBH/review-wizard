@@ -91,12 +91,9 @@
 							<InputAutoComplete
 								:isEvenRow="isEvenRow(index)"
 								v-if="thead.name == 'peopleInvolved'"
-								:tableValue="value"
 								:row="row"
-								:tableHeader="thead"
 								:titlePageAuthors="titlePageAuthors"
-								:people="people"
-								@autocom="changeHandler"
+								@autocom="authChangeHandler"
 							/>
 							<Textarea
 								v-if="
@@ -226,6 +223,10 @@ export default {
 		};
 	},
 	methods: {
+		authChangeHandler(ifadd,row,event){
+			console.log("ifadd:"+ifadd+", row:"+JSON.stringify(row)+", event:"+JSON.stringify(event));
+			this.$emit("authChangeHandler", ifadd, row, event);
+		},
 		changeHandler(event) {
 			if (event != undefined) {
 				console.log("input", this.value);
