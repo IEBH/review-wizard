@@ -65,6 +65,8 @@ export default {
 			this.$emit("autocom", 0, row, event);
 		},
 		searchAuthors(event) {
+			console.log("searchAuthors:"+event);
+			console.log("titlePageAuthors:"+JSON.stringify(titlePageAuthors));
 			setTimeout(() => {
 				if (!event.query.trim().length) {
 					this.filteredPeople = [...this.titlePageAuthors];
