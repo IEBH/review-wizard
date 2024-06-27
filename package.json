@@ -39,6 +39,7 @@
 		"xlsx-js-style": "^1.2.0"
 	},
 	"devDependencies": {
+		"@iebh/vue-cli-plugin-tera": "^1.0.2",
 		"@vue/cli-plugin-babel": "~4.4.0",
 		"@vue/cli-plugin-eslint": "~4.4.0",
 		"@vue/cli-service": "~4.4.0",
