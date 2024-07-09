@@ -242,7 +242,7 @@ export default {
 					}
 				});
 			}
-			console,log("output:",this.da);
+			console.log("output:",this.da);
 			return da;
 		},
 		newlyAddedContributions() {
