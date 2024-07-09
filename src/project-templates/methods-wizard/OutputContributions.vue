@@ -243,7 +243,8 @@ export default {
 			);
 			let newlyAdded = allLabels.filter(
 				labelA =>
-					!this.contributionOptions.some(itemB => itemB.label === labelA)
+					//!this.contributionOptions.some(itemB => itemB.label === labelA)
+					!this.checkOptions(labelA)
 			);
 			return newlyAdded;
 		}
@@ -279,6 +280,10 @@ export default {
 				}
 			});
 			return element;
+		},
+		checkOptions(labelA){
+			console.log("this.contributionOptions:"+this.contributionOptions);
+			return this.contributionOptions.some(itemB => itemB.label === labelA);
 		}
 	}
 };
