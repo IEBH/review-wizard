@@ -212,14 +212,24 @@ import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputContributions",
 	mixins: [OutputMixin],
-	props: {
+	/*props: {
 		//data: Object,
 		contributionOptions: Array
-	},
+	},*/
 	data() {
 		return {
 			extractUnion: false,
-			draftUnion: false
+			draftUnion: false,
+			contributionOptions: [
+				{ label: "Study conceptualization" },
+				{ label: "Designing the study" },
+				{ label: "Designing the search strategy" },
+				{ label: "Assessing study eligibility" },
+				{ label: "Extracting the data" },
+				{ label: "Analyzing the data" },
+				{ label: "Drafting the manuscript" },
+				{ label: "Revising the manuscript" }
+			]
 		};
 	},
 	computed: {
@@ -243,8 +253,8 @@ export default {
 			);
 			let newlyAdded = allLabels.filter(
 				labelA =>
-					//!this.contributionOptions.some(itemB => itemB.label === labelA)
-					!this.checkOptions(labelA)
+					!this.contributionOptions.some(itemB => itemB.label === labelA)
+					//!this.checkOptions(labelA)
 			);
 			return newlyAdded;
 		}
@@ -280,10 +290,6 @@ export default {
 				}
 			});
 			return element;
-		},
-		checkOptions(labelA){
-			console.log("this.contributionOptions:"+this.contributionOptions);
-			return this.contributionOptions.some(itemB => itemB.label === labelA);
 		}
 	}
 };
