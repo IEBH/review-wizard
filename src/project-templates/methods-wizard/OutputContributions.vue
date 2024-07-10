@@ -8,9 +8,7 @@
 				"
 			>
 				{{
-					formatSelectMulti(element.authors)
-						.map(el => nameToInitials(el))
-						.join(", ")
+					joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))
 				}}
 				{{ selectRandom(["conceived the idea.", "conceptualized the study."]) }}
 			</span>
@@ -22,12 +20,8 @@
 			>
 				{{
 					selectRandom([
-						` Authors ( ${formatSelectMulti(element.authors)
-							.map(el => nameToInitials(el))
-							.join(", ")}) helped in study design.`,
-						`${formatSelectMulti(element.authors)
-							.map(el => nameToInitials(el))
-							.join(", ")} designed the study.`
+						` Authors ( ${joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))}) helped in study design.`,
+						`${joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))} designed the study.`
 					])
 				}}
 			</span>
@@ -38,9 +32,7 @@
 				"
 			>
 				{{
-					joinArrayWithAnd(
-						formatSelectMulti(element.authors).map(el => nameToInitials(el))
-					)
+					joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))
 				}}
 				designed the search strategy.
 			</span>
@@ -58,31 +50,23 @@
 				>
 					{{
 						selectRandom([
-							`Co-authors ${formatSelectMulti(element.authors)
-								.map(el => nameToInitials(el))
-								.join(", ")} assessed study eligibility`,
+							`Co-authors (${joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))}) assessed study eligibility`,
 							`${joinArrayWithAnd(
-								formatSelectMulti(element.authors).map(el => nameToInitials(el))
+								element.authors.map(el => nameToInitials(el))
 							)} assessed study eligibility.`
 						])
 					}}
 					{{ selectRandom([", ", " and "]) }}
 					{{
-						formatSelectMulti(anotherElement.authors)
-							.map(el => nameToInitials(el))
-							.join(", ")
+						joinArrayWithAnd(anotherElement.authors.map(el => nameToInitials(el)))
 					}}
 					extracted data.
 				</span>
 				<span v-else>
 					{{
 						selectRandom([
-							`Co-authors (${formatSelectMulti(element.authors)
-								.map(el => nameToInitials(el))
-								.join(", ")}) assessed study eligibility.`,
-							`${formatSelectMulti(element.authors)
-								.map(el => nameToInitials(el))
-								.join(", ")} assessed study eligibility.`
+							`Co-authors (${joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))}) assessed study eligibility.`,
+							`${joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))} assessed study eligibility.`
 						])
 					}}
 				</span>
@@ -99,9 +83,7 @@
 					"
 				>
 					{{
-						formatSelectMulti(element.authors)
-							.map(el => nameToInitials(el))
-							.join(", ")
+						joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))
 					}}
 					{{ selectRandom(["extracted data.", "helped in extracting data"]) }}
 				</span>
@@ -118,27 +100,19 @@
 							Object.keys(anotherElement).length != 0
 					"
 				>
-					{{ formatSelectMulti(element.authors) }}
+					{{ joinArrayWithAnd(element.authors.map(el => nameToInitials(el))) }}
 					analyzed the data
 					{{
 						selectRandom([
-							` and authors ${formatSelectMulti(anotherElement.authors)
-								.map(el => nameToInitials(el))
-								.join(", ")} wrote the first draft of the manuscript.`,
-							` and ${formatSelectMulti(anotherElement.authors)
-								.map(el => nameToInitials(el))
-								.join(", ")} drafted the manuscript.`,
-							` and ${formatSelectMulti(anotherElement.authors)
-								.map(el => nameToInitials(el))
-								.join(", ")} drafted the original manuscript.`
+							` and authors ${joinArrayWithAnd(anotherElement.authors.map(el => nameToInitials(el)))} wrote the first draft of the manuscript.`,
+							` and ${joinArrayWithAnd(anotherElement.authors.map(el => nameToInitials(el)))} drafted the manuscript.`,
+							` and ${joinArrayWithAnd(anotherElement.authors.map(el => nameToInitials(el)))} drafted the original manuscript.`
 						])
 					}}
 				</span>
 				<span v-else>
 					{{
-						formatSelectMulti(element.authors)
-							.map(el => nameToInitials(el))
-							.join(", ")
+						joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))
 					}}
 					analyzed the data.
 				</span>
@@ -152,15 +126,9 @@
 				<span v-if="Object.keys(findElement('Analyzing the data')).length == 0">
 					{{
 						selectRandom([
-							` Authors (${formatSelectMulti(element.authors)
-								.map(el => nameToInitials(el))
-								.join(", ")}) wrote the first draft of the manuscript.`,
-							` ${formatSelectMulti(element.authors)
-								.map(el => nameToInitials(el))
-								.join(", ")} drafted the manuscript.`,
-							` ${formatSelectMulti(element.authors)
-								.map(el => nameToInitials(el))
-								.join(", ")} drafted the original manuscript.`
+							` Authors (${joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))}) wrote the first draft of the manuscript.`,
+							` ${joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))} drafted the manuscript.`,
+							` ${joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))} drafted the original manuscript.`
 						])
 					}}
 				</span>
@@ -173,11 +141,9 @@
 			>
 				{{
 					selectRandom([
-						`${formatSelectMulti(element.authors)
-							.map(el => nameToInitials(el))
-							.join(", ")} revised the paper.`,
+						`${joinArrayWithAnd(element.authors.map(el => nameToInitials(el)))} revised the paper.`,
 						`${joinArrayWithAnd(
-							formatSelectMulti(element.authors).map(el => nameToInitials(el))
+							element.authors.map(el => nameToInitials(el))
 						)} contributed to the interpretation and subsequent edits of the manuscript.`
 					])
 				}}
@@ -191,7 +157,7 @@
 					Also,
 					{{
 						joinArrayWithAnd(
-							formatSelectMulti(element.authors).map(el => nameToInitials(el))
+							element.authors.map(el => nameToInitials(el))
 						)
 					}}
 					{{
@@ -212,14 +178,24 @@ import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
 	name: "OutputContributions",
 	mixins: [OutputMixin],
-	props: {
+	/*props: {
 		//data: Object,
 		contributionOptions: Array
-	},
+	},*/
 	data() {
 		return {
 			extractUnion: false,
-			draftUnion: false
+			draftUnion: false,
+			contributionOptions: [
+				{ label: "Study conceptualization" },
+				{ label: "Designing the study" },
+				{ label: "Designing the search strategy" },
+				{ label: "Assessing study eligibility" },
+				{ label: "Extracting the data" },
+				{ label: "Analyzing the data" },
+				{ label: "Drafting the manuscript" },
+				{ label: "Revising the manuscript" }
+			]
 		};
 	},
 	computed: {
@@ -232,7 +208,6 @@ export default {
 					}
 				});
 			}
-
 			return da;
 		},
 		newlyAddedContributions() {
@@ -244,6 +219,7 @@ export default {
 			let newlyAdded = allLabels.filter(
 				labelA =>
 					!this.contributionOptions.some(itemB => itemB.label === labelA)
+					//!this.checkOptions(labelA)
 			);
 			return newlyAdded;
 		}
