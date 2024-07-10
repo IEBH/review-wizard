@@ -4,7 +4,7 @@
 
 		<InputSelectMulti
 			question="Which databases did you search for your systematic review?"
-			:options="databaseOptions"
+			:options="engineOptions"
 			v-model="$tera.state.databases"
 		/>
 
@@ -130,7 +130,7 @@ export default {
 	data() {
 		return {
 			//Search Strings for Bibliographic Databases
-			databaseOptions: [
+			/*databaseOptions: [
 				{
 					label: "PubMed",
 					method: "polyglotVersion",
@@ -210,7 +210,7 @@ export default {
 					muanualVersion: "",
 					polyglotVersion: ""
 				}
-			],
+			],*/
 			//Search Strings for Trial Registries
 			registryOptions: [
 				// eslint-disable-next-line prettier/prettier
@@ -232,7 +232,7 @@ export default {
 					string: ""
 				},
 				{ label: "Chinese Clinical Trial Registry", string: "" },
-				{ label: "Clinical Trials Registry – India", string: "" },
+				{ label: "Clinical Trials Registry - India", string: "" },
 				{ label: "Cochrane CENTRAL", string: "" }
 			],
 			outputComponent: OutputSearchStrings,
@@ -240,6 +240,11 @@ export default {
 			placeholder1: "e.g. Acne AND Phototherapy OR Acne AND Light",
 			placeholder2: `e.g.("Acne Vulgaris"[Mesh] OR Acne[tiab] OR Blackheads[tiab] OR Whiteheads[tiab] OR Pimples[tiab]) AND ("Phototherapy"[Mesh] OR "Blue light"[tiab] OR Phototherapy[tiab] OR Phototherapies[tiab] OR "Photoradiation therapy"[tiab] OR "Photoradiation Therapies"[tiab] OR "Light Therapy"[tiab] OR "Light Therapies"[tiab]) AND (Randomized controlled trial[pt] OR controlled clinical trial[pt] OR randomized[tiab] OR randomised[tiab] OR placebo[tiab] OR "drug therapy"[sh] OR randomly[tiab] OR trial[tiab] OR groups[tiab]) NOT (Animals[Mesh] not (Animals[Mesh] and Humans[Mesh]))`
 		};
+	},
+	computed:{
+		engineOptions(){
+			return this.$tera.state.polyglot.engines;
+		}
 	}
 };
 </script>

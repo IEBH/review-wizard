@@ -60,16 +60,16 @@ export default {
 	props: {
 		question: String,
 		placeholder: String,
-		value: Object
+		value: Object,
 	},
 	data() {
 		return {
 			muanualVersion: "muanualVersion",
-			polyglotVersion: "polyglotVersion"
-			//switchValue: true
+			polyglotVersion: "polyglotVersion",
+			switchValue: true
 		};
 	},
-	computed: {
+	/*computed: {
 		switchValue: function() {
 			if (this.value.method == "muanualVersion") {
 				return false;
@@ -77,7 +77,7 @@ export default {
 				return true;
 			}
 		}
-	},
+	}，*/
 	methods: {
 		getEditorValue(version, data) {
 			if (version == "muanualVersion") {

@@ -9,7 +9,7 @@
 		<Listbox
 			id="multihighlight"
 			v-if="selectOptions.length > 0"
-			v-model="value"
+			:value="value"
 			v-on:change="$emit('input', $event.value)"
 			:options="selectOptions"
 			optionLabel="label"
