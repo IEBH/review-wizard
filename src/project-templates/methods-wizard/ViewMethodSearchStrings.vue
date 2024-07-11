@@ -87,7 +87,6 @@
 				:placeholder="placeholder1"
 			/>
 		</div>
-
 		<PreviewOutput :component="outputComponent" />
 	</div>
 </template>
@@ -129,88 +128,6 @@ export default {
 	},*/
 	data() {
 		return {
-			//Search Strings for Bibliographic Databases
-			/*databaseOptions: [
-				{
-					label: "PubMed",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "MEDLINE via Ovid",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "MEDLINE via Ebsco",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "The Cochrane Library for Cochrane Reviews",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				// eslint-disable-next-line prettier/prettier
-				{
-					label: "The Cochrane Library for clinical trials in CENTRAL",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "Embase via Elsevier",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "Embase via Ovid",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "CINAHL via Ebsco",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "PsycINFO via Ovid",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "PsycINFO via APA",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "Web of Science",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "Scopus",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "LILACs",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				}
-			],*/
 			//Search Strings for Trial Registries
 			registryOptions: [
 				// eslint-disable-next-line prettier/prettier
