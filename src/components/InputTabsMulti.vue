@@ -134,6 +134,23 @@ export default {
 				}
 			).then(() => {
 				//TODO save this content to $tera.state.polyglot
+				if(this.value.muanualVersion!=""){
+					if(this.$tera.state.polyglot!=undefined){
+						this.$set(this.$tera.state.polyglot.searchString, "Query", this.value.muanualVersion)
+						console.log("polyglot", this.$tera.state.polyglot);
+					}else{
+						this.$message({
+							type:"warning",
+							message:"Please check Polyglot project!"
+						})
+					}
+				}else{
+					this.$$message({
+						type:"warning",
+						message:"Current content is empty!"
+					})
+				}
+				
 			});
 			/*.then(
 				() => {
