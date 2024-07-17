@@ -83,9 +83,6 @@ export default {
 			if (version == "muanualVersion") {
 				this.value.muanualVersion = data;
 			}
-			if (version == "polyglotVersion") {
-				this.this.value.polyglotVersion = data;
-			}
 			//console.log("value:" + JSON.stringify(this.value));
 			this.$emit("input", this.value);
 		},
@@ -107,7 +104,7 @@ export default {
 				});
 			});
 		},
-		handleSwich(event) {
+		/*handleSwich(event) {
 			if (event == false) {
 				this.value.method = this.muanualVersion;
 			} else {
@@ -115,7 +112,7 @@ export default {
 			}
 			this.$emit("input", this.value);
 			//console.log("switch:" + JSON.stringify(this.value));
-		},
+		},*/
 		syncPolyglot() {
 			this.$confirm(
 				"Are you sure to Synchronize this content to Polyglot?",
