@@ -82,9 +82,9 @@ export default {
 		getEditorValue(version, data) {
 			if (version == "muanualVersion") {
 				this.value.muanualVersion = data;
+				//this.$set(this.value,"muanualVersion",data);
 			}
-			//console.log("value:" + JSON.stringify(this.value));
-			this.$emit("input", this.value);
+			
 		},
 		//Override Manual version from Polyglot
 		openWarning() {
@@ -98,10 +98,20 @@ export default {
 				}
 			).then(() => {
 				//TODO get this.$tera.state.polyglot content to here
-				this.$message({
+				if(this.value.polyglotVersion!=""){
+					this.value.muanualVersion=this.value.polyglotVersion;
+					//this.$emit("input", this.value);
+					this.$message({
 					type: "success",
 					message: "Override successfully!"
 				});
+				}else{
+					 this.$message({
+						type:"warning",
+						message:"Empty polyglot version, please check in Polyglot!"
+					 });
+				}
+				
 			});
 		},
 		/*handleSwich(event) {
