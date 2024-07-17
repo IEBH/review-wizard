@@ -4,7 +4,7 @@
 
 		<InputSelectMulti
 			question="Which databases did you search for your systematic review?"
-			:options="engineOptions"
+			:options="polyglotEngines"
 			v-model="$tera.state.databases"
 		/>
 
@@ -152,17 +152,25 @@ export default {
 				{ label: "Clinical Trials Registry - India", string: "" },
 				{ label: "Cochrane CENTRAL", string: "" }
 			],
+			polyglotEngines:[],
 			outputComponent: OutputSearchStrings,
 			//outputComponentAppendix: OutputSearchStringsAppendix,
 			placeholder1: "e.g. Acne AND Phototherapy OR Acne AND Light",
 			placeholder2: `e.g.("Acne Vulgaris"[Mesh] OR Acne[tiab] OR Blackheads[tiab] OR Whiteheads[tiab] OR Pimples[tiab]) AND ("Phototherapy"[Mesh] OR "Blue light"[tiab] OR Phototherapy[tiab] OR Phototherapies[tiab] OR "Photoradiation therapy"[tiab] OR "Photoradiation Therapies"[tiab] OR "Light Therapy"[tiab] OR "Light Therapies"[tiab]) AND (Randomized controlled trial[pt] OR controlled clinical trial[pt] OR randomized[tiab] OR randomised[tiab] OR placebo[tiab] OR "drug therapy"[sh] OR randomly[tiab] OR trial[tiab] OR groups[tiab]) NOT (Animals[Mesh] not (Animals[Mesh] and Humans[Mesh]))`
 		};
 	},
-	computed:{
+	async mounted(){
+		this.polyglotEngines=await this.$tera.state.polyglot.engines;
+		console.log("engines",this.polyglotEngines);
+	},
+	/*computed:{
 		engineOptions(){
+			if(this.$tera.state.polyglot==undefined){
+				return this.defalutEngines;
+			}
 			return this.$tera.state.polyglot.engines;
 		}
-	}
+	}*/
 };
 </script>
 
