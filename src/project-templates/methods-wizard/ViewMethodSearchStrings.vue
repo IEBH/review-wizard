@@ -4,7 +4,7 @@
 
 		<InputSelectMulti
 			question="Which databases did you search for your systematic review?"
-			:options="polyglotEngines"
+			:options="engineOptions"
 			v-model="$tera.state.databases"
 		/>
 
