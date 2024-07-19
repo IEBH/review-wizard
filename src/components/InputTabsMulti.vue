@@ -60,16 +60,16 @@ export default {
 	props: {
 		question: String,
 		placeholder: String,
-		value: Object
+		value: Object,
 	},
 	data() {
 		return {
 			muanualVersion: "muanualVersion",
-			polyglotVersion: "polyglotVersion"
-			//switchValue: true
+			polyglotVersion: "polyglotVersion",
+			switchValue: true
 		};
 	},
-	computed: {
+	/*computed: {
 		switchValue: function() {
 			if (this.value.method == "muanualVersion") {
 				return false;
@@ -77,17 +77,14 @@ export default {
 				return true;
 			}
 		}
-	},
+	}，*/
 	methods: {
 		getEditorValue(version, data) {
 			if (version == "muanualVersion") {
 				this.value.muanualVersion = data;
+				//this.$set(this.value,"muanualVersion",data);
 			}
-			if (version == "polyglotVersion") {
-				this.this.value.polyglotVersion = data;
-			}
-			//console.log("value:" + JSON.stringify(this.value));
-			this.$emit("input", this.value);
+			
 		},
 		//Override Manual version from Polyglot
 		openWarning() {
@@ -101,13 +98,23 @@ export default {
 				}
 			).then(() => {
 				//TODO get this.$tera.state.polyglot content to here
-				this.$message({
+				if(this.value.polyglotVersion!=""){
+					this.value.muanualVersion=this.value.polyglotVersion;
+					//this.$emit("input", this.value);
+					this.$message({
 					type: "success",
 					message: "Override successfully!"
 				});
+				}else{
+					 this.$message({
+						type:"warning",
+						message:"Empty polyglot version, please check in Polyglot!"
+					 });
+				}
+				
 			});
 		},
-		handleSwich(event) {
+		/*handleSwich(event) {
 			if (event == false) {
 				this.value.method = this.muanualVersion;
 			} else {
@@ -115,7 +122,7 @@ export default {
 			}
 			this.$emit("input", this.value);
 			//console.log("switch:" + JSON.stringify(this.value));
-		},
+		},*/
 		syncPolyglot() {
 			this.$confirm(
 				"Are you sure to Synchronize this content to Polyglot?",
@@ -127,6 +134,23 @@ export default {
 				}
 			).then(() => {
 				//TODO save this content to $tera.state.polyglot
+				if(this.value.muanualVersion!=""){
+					if(this.$tera.state.polyglot!=undefined){
+						this.$set(this.$tera.state.polyglot.searchString, "Query", this.value.muanualVersion)
+						console.log("polyglot", this.$tera.state.polyglot);
+					}else{
+						this.$message({
+							type:"warning",
+							message:"Please check Polyglot project!"
+						})
+					}
+				}else{
+					this.$$message({
+						type:"warning",
+						message:"Current content is empty!"
+					})
+				}
+				
 			});
 			/*.then(
 				() => {

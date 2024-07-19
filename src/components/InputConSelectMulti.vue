@@ -64,11 +64,9 @@ import Listbox from "primevue/listbox";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
-import deepstreamMixin from "@/mixins/DeepstreamMixin";
 
 export default {
 	name: "InputSelectMulti",
-	mixins: [deepstreamMixin("contribution")],
 	props: {
 		question: String,
 		options: Array,
@@ -227,11 +225,5 @@ export default {
 	/* transition: all 250ms; */
 	border: 0;
 	font-size: 16px;
-
-	&:hover {
-		/* box-shadow: 0 0 10px 0 #28a745 inset, 0 0 10px 4px #28a745; */
-		background-color: #28a745 !important;
-		border: 2px solid #4caf50 !important;
-	}
 }
 </style>
