@@ -2,15 +2,6 @@
 	<div>
 		<p>
 			{{ question }}
-			<el-switch
-				v-model="switchValue"
-				active-text="PolyglotVersion"
-				inactive-text="FinalVersion"
-				active-color="#5F9EA0"
-				inactive-color="#BDB76B"
-				@change="handleSwich($event)"
-			>
-			</el-switch>
 		</p>
 		<!-- Listen to on change event instead of v-on:input to achieve same result as v-model.lazy -->
 		<el-tabs type="border-card">
@@ -29,11 +20,11 @@
 					</el-tooltip>
 				</span>
 				<InputPolyglotEditor
-					:value="value.muanualVersion"
+					:value="value.manualVersion"
 					:placeholder="placeholder"
-					:version="muanualVersion"
+					:version="manualVersion"
 					:readOnly="false"
-					@editor="getEditorValue(muanualVersion, $event)"
+					@editor="getEditorValue(manualVersion, $event)"
 				/>
 			</el-tab-pane>
 			<el-tab-pane label="PolyglotVersion (ReadOnly)">
@@ -60,29 +51,19 @@ export default {
 	props: {
 		question: String,
 		placeholder: String,
-		value: Object,
+		value: Object
 	},
 	data() {
 		return {
-			muanualVersion: "muanualVersion",
-			polyglotVersion: "polyglotVersion",
-			switchValue: true
+			manualVersion: "manualVersion",
+			polyglotVersion: "polyglotVersion"
 		};
 	},
-	/*computed: {
-		switchValue: function() {
-			if (this.value.method == "muanualVersion") {
-				return false;
-			} else {
-				return true;
-			}
-		}
-	}，*/
 	methods: {
 		getEditorValue(version, data) {
-			if (version == "muanualVersion") {
-				this.value.muanualVersion = data;
-				//this.$set(this.value,"muanualVersion",data);
+			if (version == "manualVersion") {
+				this.value.manualVersion = data;
+				//this.$set(this.value,"manualVersion",data);
 			}
 			
 		},
@@ -99,8 +80,7 @@ export default {
 			).then(() => {
 				//TODO get this.$tera.state.polyglot content to here
 				if(this.value.polyglotVersion!=""){
-					this.value.muanualVersion=this.value.polyglotVersion;
-					//this.$emit("input", this.value);
+					this.value.manualVersion=this.value.polyglotVersion;
 					this.$message({
 					type: "success",
 					message: "Override successfully!"
@@ -114,15 +94,6 @@ export default {
 				
 			});
 		},
-		/*handleSwich(event) {
-			if (event == false) {
-				this.value.method = this.muanualVersion;
-			} else {
-				this.value.method = this.polyglotVersion;
-			}
-			this.$emit("input", this.value);
-			//console.log("switch:" + JSON.stringify(this.value));
-		},*/
 		syncPolyglot() {
 			this.$confirm(
 				"Are you sure to Synchronize this content to Polyglot?",
@@ -134,9 +105,9 @@ export default {
 				}
 			).then(() => {
 				//TODO save this content to $tera.state.polyglot
-				if(this.value.muanualVersion!=""){
+				if(this.value.manualVersion!=""){
 					if(this.$tera.state.polyglot!=undefined){
-						this.$set(this.$tera.state.polyglot.searchString, "Query", this.value.muanualVersion)
+						this.$set(this.$tera.state.polyglot.searchString, "Query", this.value.manualVersion)
 						console.log("polyglot", this.$tera.state.polyglot);
 					}else{
 						this.$message({
@@ -145,24 +116,13 @@ export default {
 						})
 					}
 				}else{
-					this.$$message({
+					this.$message({
 						type:"warning",
 						message:"Current content is empty!"
 					})
 				}
 				
 			});
-			/*.then(
-				() => {
-				let content = {
-					database: this.value.label,
-					syncContent: this.value.muanualVersion
-				};
-				window.postMessage(
-					JSON.stringify(content),
-					"https://polyglot.tera-tools.com"
-				);
-			});*/
 		}
 	}
 };
@@ -176,8 +136,5 @@ export default {
 
 .el-icon-refresh {
 	color: darkseagreen;
-}
-.el-switch {
-	margin-left: 80%;
 }
 </style>

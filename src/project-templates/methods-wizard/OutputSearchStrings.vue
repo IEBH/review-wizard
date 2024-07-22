@@ -91,11 +91,8 @@ export default {
 	mixins: [OutputMixin],
 	methods: {
 		getSearchString(database) {
-			if (database.method == "muanualVersion") {
-				return database.muanualVersion;
-			} else {
-				return database.polyglotVersion;
-			}
+			console.log("output:",this.$tera.state.outputVersions);
+			return database.manualVersion; //return final Version
 		}
 	}
 };
