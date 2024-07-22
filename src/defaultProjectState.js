@@ -501,6 +501,7 @@ let defaultProjectState = {
 	databases: [],
 	dateOfSearch: null,
 	dateSearchedUntil: null,
+	outputVersions:{},
 	// Search Strings for Trial Registries
 	registries: [],
 	registryDateOfSearch: null,

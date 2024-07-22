@@ -91,11 +91,7 @@ export default {
 	mixins: [OutputMixin],
 	methods: {
 		getSearchString(database) {
-			if (database.method == "muanualVersion") {
-				return database.muanualVersion;
-			} else {
-				return database.polyglotVersion;
-			}
+			return database.manualVersion; //return final Version
 		}
 	}
 };

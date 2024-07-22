@@ -4,7 +4,7 @@
 
 		<InputSelectMulti
 			question="Which databases did you search for your systematic review?"
-			:options="databaseOptions"
+			:options="engineOptions"
 			v-model="$tera.state.databases"
 		/>
 
@@ -37,7 +37,7 @@
 			:key="database.label"
 		>
 			<InputTabsMulti
-				:question="`Database ${index + 1} (e.g. ${database.label})`"
+				:question="`(${database.label}) Database ${index + 1}`"
 				:value="database"
 				:placeholder="placeholder2"
 			/>
@@ -87,7 +87,6 @@
 				:placeholder="placeholder1"
 			/>
 		</div>
-
 		<PreviewOutput :component="outputComponent" />
 	</div>
 </template>
@@ -129,88 +128,7 @@ export default {
 	},*/
 	data() {
 		return {
-			//Search Strings for Bibliographic Databases
-			databaseOptions: [
-				{
-					label: "PubMed",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "MEDLINE via Ovid",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "MEDLINE via Ebsco",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "The Cochrane Library for Cochrane Reviews",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				// eslint-disable-next-line prettier/prettier
-				{
-					label: "The Cochrane Library for clinical trials in CENTRAL",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "Embase via Elsevier",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "Embase via Ovid",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "CINAHL via Ebsco",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "PsycINFO via Ovid",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "PsycINFO via APA",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "Web of Science",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "Scopus",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				},
-				{
-					label: "LILACs",
-					method: "polyglotVersion",
-					muanualVersion: "",
-					polyglotVersion: ""
-				}
-			],
+			//outputVersions:{},
 			//Search Strings for Trial Registries
 			registryOptions: [
 				// eslint-disable-next-line prettier/prettier
@@ -232,14 +150,127 @@ export default {
 					string: ""
 				},
 				{ label: "Chinese Clinical Trial Registry", string: "" },
-				{ label: "Clinical Trials Registry – India", string: "" },
+				{ label: "Clinical Trials Registry - India", string: "" },
 				{ label: "Cochrane CENTRAL", string: "" }
+			],
+			defalutEngines:[
+				{
+				key: "PubMed abbreviation",
+				label: "PubMed",
+                manualVersion: "", //manual SearchString version
+				polyglotVersion: ""
+			},
+			{
+				key: "Ovid MEDLINE",
+				label: "Ovid MEDLINE",
+                manualVersion: "",
+				polyglotVersion: ""
+			},
+			{
+				key: "Cochrane Library",
+				label: "Cochrane Library",
+                manualVersion: "",
+				polyglotVersion: ""
+			},
+			{
+				key: "Embase (Elsevier)",
+				label: "Embase (Elsevier)",
+                manualVersion: "",
+				polyglotVersion: ""
+			},
+			{
+				key: "Ovid MEDLINE",
+				label: "Embase (Ovid)",
+                manualVersion: "",
+				polyglotVersion: ""
+			},
+			{
+				key: "CINAHL (Ebsco)",
+				label: "CINAHL (Ebsco)",
+                manualVersion: "",
+				polyglotVersion: ""
+			},
+			{
+				key: "Web of Science",
+				label: "Web of Science",
+                manualVersion: "",
+				polyglotVersion: ""
+			},
+			{
+				key: "WoS Advanced",
+				label: "WoS Advanced",
+                manualVersion: "",
+				polyglotVersion: ""
+			},
+			{
+				key: "Scopus (basic search)",
+				label: "Scopus (basic search)",
+                manualVersion: "",
+				polyglotVersion: ""
+			},
+			{
+				key: "Scopus (advanced search)",
+				label: "Scopus (advanced search)",
+                manualVersion: "",
+				polyglotVersion: ""
+			},
+			{
+				key: "PsycInfo (Ovid)",
+				label: "PsycInfo (Ovid)",
+                manualVersion: "",
+				polyglotVersion: ""
+			},
+			{
+				key: "PsycInfo (Ebsco)",
+				label: "PsycInfo (Ebsco)",
+                manualVersion: "",
+				polyglotVersion: ""
+			}
 			],
 			outputComponent: OutputSearchStrings,
 			//outputComponentAppendix: OutputSearchStringsAppendix,
 			placeholder1: "e.g. Acne AND Phototherapy OR Acne AND Light",
 			placeholder2: `e.g.("Acne Vulgaris"[Mesh] OR Acne[tiab] OR Blackheads[tiab] OR Whiteheads[tiab] OR Pimples[tiab]) AND ("Phototherapy"[Mesh] OR "Blue light"[tiab] OR Phototherapy[tiab] OR Phototherapies[tiab] OR "Photoradiation therapy"[tiab] OR "Photoradiation Therapies"[tiab] OR "Light Therapy"[tiab] OR "Light Therapies"[tiab]) AND (Randomized controlled trial[pt] OR controlled clinical trial[pt] OR randomized[tiab] OR randomised[tiab] OR placebo[tiab] OR "drug therapy"[sh] OR randomly[tiab] OR trial[tiab] OR groups[tiab]) NOT (Animals[Mesh] not (Animals[Mesh] and Humans[Mesh]))`
 		};
+	},
+	computed:{
+		engineOptions(){
+			//never visit polyglot project before, load the default
+			if(this.$tera.state.polyglot==undefined){
+				this.genOutputVersions(this.defalutEngines);
+				return this.defalutEngines;
+			}else{
+				this.genOutputVersions(this.$tera.state.polyglot.engines);
+				return this.$tera.state.polyglot.engines;
+			}	
+		}
+	},
+	methods:{
+		genOutputVersions(engines){
+			if(this.$tera.state.outputVersions!={}){
+				engines.forEach(el => {
+					if(!this.checkUnion(el,Object.keys(this.$tera.state.outputVersions))){
+						//add a new key's output version => manualVersion
+					    this.$set(this.$tera.state.outputVersions,el.label,"manualVersion");
+				    }
+			    });
+			}else{
+				engines.forEach(el => {
+					//add a default output version => manualVersion
+					this.$set(this.$tera.state.outputVersions,el.label,"manualVersion");
+			    });
+			}
+			//console.log("outputlist:",Object.keys(this.$tera.state.outputVersions));
+		},
+		checkUnion(engine,outputEngines){
+			outputEngines.forEach(el=>{
+				if(engine.label==el){
+					//console.log("engine:"+engine.label+", output:"+el);
+					return true;
+				}
+			})
+			return false;
+		}
 	}
 };
 </script>
