@@ -27,7 +27,15 @@
 					@editor="getEditorValue(manualVersion, $event)"
 				/>
 			</el-tab-pane>
-			<el-tab-pane label="PolyglotVersion (ReadOnly)">
+			<el-tab-pane>
+				<span slot="label">
+					PolyglotVersion (ReadOnly)
+					<el-tooltip content="Refresh Polyglot Version" placement="top">
+						<el-button type="text" @click="refreshPolyglot"
+							><i class="el-icon-refresh-left"></i
+						></el-button>
+					</el-tooltip>
+				</span>
 				<InputPolyglotEditor
 					:value="value.polyglotVersion"
 					:placeholder="placeholder"
@@ -123,6 +131,13 @@ export default {
 				}
 				
 			});
+		},
+		refreshPolyglot(){
+			this.$tera.state.polyglot.engines.forEach(el=>{
+				if(el.label==this.value.label){
+					this.value.polyglotVersion=el.polyglotVersion;
+				}
+			})
 		}
 	}
 };
@@ -136,5 +151,9 @@ export default {
 
 .el-icon-refresh {
 	color: darkseagreen;
+}
+
+.el-icon-refresh-left {
+	color: #5F9EA0;
 }
 </style>
