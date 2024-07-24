@@ -15,10 +15,6 @@
 			question="What year will study be published?"
 			v-model="$tera.state.year"
 		/>
-
-		<div>
-			<pre>{{this.$tera.state.polyglot.engines}}</pre>
-		</div>
 	</div>
 </template>
 
