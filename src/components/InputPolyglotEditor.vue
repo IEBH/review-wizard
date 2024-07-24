@@ -41,7 +41,7 @@ export default {
 	},
 	computed: {
 		setStyle: function() {
-			if (this.version == "muanualVersion") {
+			if (this.version == "manualVersion") {
 				return {
 					"background-color": "white"
 				};

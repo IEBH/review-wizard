@@ -37,7 +37,7 @@
 			:key="database.label"
 		>
 			<InputTabsMulti
-				:question="`Database ${index + 1} (e.g. ${database.label})`"
+				:question="`(${database.label}) Database ${index + 1}`"
 				:value="database"
 				:placeholder="placeholder2"
 			/>
@@ -128,6 +128,7 @@ export default {
 	},*/
 	data() {
 		return {
+			//outputVersions:{},
 			//Search Strings for Trial Registries
 			registryOptions: [
 				// eslint-disable-next-line prettier/prettier
@@ -156,73 +157,73 @@ export default {
 				{
 				key: "PubMed abbreviation",
 				label: "PubMed",
-                muanualVersion: "", //manual SearchString version
+                manualVersion: "", //manual SearchString version
 				polyglotVersion: ""
 			},
 			{
 				key: "Ovid MEDLINE",
 				label: "Ovid MEDLINE",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			},
 			{
 				key: "Cochrane Library",
 				label: "Cochrane Library",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			},
 			{
 				key: "Embase (Elsevier)",
 				label: "Embase (Elsevier)",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			},
 			{
 				key: "Ovid MEDLINE",
 				label: "Embase (Ovid)",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			},
 			{
 				key: "CINAHL (Ebsco)",
 				label: "CINAHL (Ebsco)",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			},
 			{
 				key: "Web of Science",
 				label: "Web of Science",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			},
 			{
 				key: "WoS Advanced",
 				label: "WoS Advanced",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			},
 			{
 				key: "Scopus (basic search)",
 				label: "Scopus (basic search)",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			},
 			{
 				key: "Scopus (advanced search)",
 				label: "Scopus (advanced search)",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			},
 			{
 				key: "PsycInfo (Ovid)",
 				label: "PsycInfo (Ovid)",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			},
 			{
 				key: "PsycInfo (Ebsco)",
 				label: "PsycInfo (Ebsco)",
-                muanualVersion: "",
+                manualVersion: "",
 				polyglotVersion: ""
 			}
 			],
@@ -234,10 +235,41 @@ export default {
 	},
 	computed:{
 		engineOptions(){
+			//never visit polyglot project before, load the default
 			if(this.$tera.state.polyglot==undefined){
+				this.genOutputVersions(this.defalutEngines);
 				return this.defalutEngines;
+			}else{
+				this.genOutputVersions(this.$tera.state.polyglot.engines);
+				return this.$tera.state.polyglot.engines;
+			}	
+		}
+	},
+	methods:{
+		genOutputVersions(engines){
+			if(this.$tera.state.outputVersions!={}){
+				engines.forEach(el => {
+					if(!this.checkUnion(el,Object.keys(this.$tera.state.outputVersions))){
+						//add a new key's output version => manualVersion
+					    this.$set(this.$tera.state.outputVersions,el.label,"manualVersion");
+				    }
+			    });
+			}else{
+				engines.forEach(el => {
+					//add a default output version => manualVersion
+					this.$set(this.$tera.state.outputVersions,el.label,"manualVersion");
+			    });
 			}
-			return this.$tera.state.polyglot.engines;
+			//console.log("outputlist:",Object.keys(this.$tera.state.outputVersions));
+		},
+		checkUnion(engine,outputEngines){
+			outputEngines.forEach(el=>{
+				if(engine.label==el){
+					//console.log("engine:"+engine.label+", output:"+el);
+					return true;
+				}
+			})
+			return false;
 		}
 	}
 };
