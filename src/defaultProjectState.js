@@ -53,7 +53,7 @@ let defaultProjectState = {
 				tasks: "SR design meetings",
 				toolDescription:
 					"Time spent refining the idea, determining feasibility, assembling the team, planning timelines, deciding on roles",
-				toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
+				toolLink: [{ name: "Review Wizard", link: "/planning/titlepage" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -95,7 +95,7 @@ let defaultProjectState = {
 				tasks: "Write the SR protocol",
 				toolDescription:
 					"Provide an objective, reproducible, sound methodology for the SR, then register the protocol",
-				toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
+				toolLink: [{ name: "Review Wizard", link: "/planning/titlepage" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -387,7 +387,7 @@ let defaultProjectState = {
 				progress: false,
 				tasks: "Revise methods",
 				toolDescription: "Revise the methods section from the SR protocol",
-				toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
+				toolLink: [{ name: "Review Wizard", link: "/planning/titlepage" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""

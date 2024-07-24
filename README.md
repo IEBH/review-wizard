@@ -1,4 +1,4 @@
-# @iebh/methods-wizard
+# @iebh/review-wizard
 
 ## Project setup
 ```

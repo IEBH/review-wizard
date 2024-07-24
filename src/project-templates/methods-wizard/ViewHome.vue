@@ -1,7 +1,7 @@
 <template>
 	<div class="p-m-5">
 		<div v-if="projectId">
-			<h1>Welcome to the Methods Wizard!</h1>
+			<h1>Welcome to the Review Wizard!</h1>
 			<p>To start making changes, simply select a section from the left hand side and begin filling it in</p>
 		</div>
 		<div v-else>
