@@ -295,7 +295,8 @@ export default {
 			)
 				.then(() => {
 					this.$tera.state.databases.forEach(database => {
-						database.manualVersion = database.polyglotVersion;
+						this.$set(database, "manualVersion", database.polyglotVersion);
+						//database.manualVersion = database.polyglotVersion;
 					});
 					this.$message({
 						type: "success",
@@ -321,7 +322,8 @@ export default {
 					this.$tera.state.polyglot.engines.forEach(el => {
 						if (el.label == database.label) {
 							ifContains = true;
-							database.polyglotVersion = el.polyglotVersion;
+							this.$set(database, "polyglotVersion", el.polyglotVersion);
+							//database.polyglotVersion = el.polyglotVersion;
 						}
 					});
 					if (ifContains == false) {
