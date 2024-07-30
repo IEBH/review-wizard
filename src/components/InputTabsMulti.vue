@@ -8,12 +8,12 @@
 			<el-tab-pane>
 				<span slot="label">
 					FinalVersion (Manual)
-					<el-tooltip content="Synchronize to Polyglot" placement="top">
+					<!--<el-tooltip content="Synchronize to Polyglot" placement="top">
 						<el-button type="text" @click="syncPolyglot"
 							><i class="el-icon-refresh"></i
 						></el-button>
-					</el-tooltip>
-					<el-tooltip content="Override from Polyglot" placement="top">
+					</el-tooltip>-->
+					<el-tooltip content="Override with Polyglot Version" placement="top">
 						<el-button type="text" @click="openWarning"
 							><i class="el-icon-document-copy"></i
 						></el-button>
@@ -30,7 +30,7 @@
 			<el-tab-pane>
 				<span slot="label">
 					PolyglotVersion (ReadOnly)
-					<el-tooltip content="Refresh Polyglot Version" placement="top">
+					<el-tooltip content="Copy from Polyglot" placement="top">
 						<el-button type="text" @click="refreshPolyglot"
 							><i class="el-icon-refresh-left"></i
 						></el-button>
@@ -54,17 +54,17 @@ import InputPolyglotEditor from "./InputPolyglotEditor.vue";
 export default {
 	name: "InputTabsMulti",
 	component: {
-		InputPolyglotEditor
+		InputPolyglotEditor,
 	},
 	props: {
 		question: String,
 		placeholder: String,
-		value: Object
+		value: Object,
 	},
 	data() {
 		return {
 			manualVersion: "manualVersion",
-			polyglotVersion: "polyglotVersion"
+			polyglotVersion: "polyglotVersion",
 		};
 	},
 	methods: {
@@ -73,7 +73,6 @@ export default {
 				this.value.manualVersion = data;
 				//this.$set(this.value,"manualVersion",data);
 			}
-			
 		},
 		//Override Manual version from Polyglot
 		openWarning() {
@@ -83,26 +82,25 @@ export default {
 				{
 					confirmButtonText: "OK",
 					cancelButtonText: "Cancel",
-					type: "warning"
+					type: "warning",
 				}
 			).then(() => {
-				//TODO get this.$tera.state.polyglot content to here
-				if(this.value.polyglotVersion!=""){
-					this.value.manualVersion=this.value.polyglotVersion;
+				//get this.$tera.state.polyglot content to here
+				if (this.value.polyglotVersion != "") {
+					this.value.manualVersion = this.value.polyglotVersion;
 					this.$message({
-					type: "success",
-					message: "Override successfully!"
-				});
-				}else{
-					 this.$message({
-						type:"warning",
-						message:"Empty polyglot version, please check in Polyglot!"
-					 });
+						type: "success",
+						message: "Override successfully!",
+					});
+				} else {
+					this.$message({
+						type: "warning",
+						message: "Empty polyglot version, please check in Polyglot!",
+					});
 				}
-				
 			});
 		},
-		syncPolyglot() {
+		/*syncPolyglot() {
 			this.$confirm(
 				"Are you sure to Synchronize this content to Polyglot?",
 				"Warning",
@@ -131,15 +129,23 @@ export default {
 				}
 				
 			});
-		},
-		refreshPolyglot(){
-			this.$tera.state.polyglot.engines.forEach(el=>{
-				if(el.label==this.value.label){
-					this.value.polyglotVersion=el.polyglotVersion;
+		},*/
+		refreshPolyglot() {
+			let ifContains = false;
+			this.$tera.state.polyglot.engines.forEach((el) => {
+				if (el.label == this.value.label) {
+					ifContains = true;
+					this.value.polyglotVersion = el.polyglotVersion;
 				}
-			})
-		}
-	}
+			});
+			if (ifContains == false) {
+				this.$message({
+					type: "warning",
+					message: "Couldn't find this database from Polyglot, please check!",
+				});
+			}
+		},
+	},
 };
 </script>
 
@@ -154,6 +160,6 @@ export default {
 }
 
 .el-icon-refresh-left {
-	color: #5F9EA0;
+	color: #5f9ea0;
 }
 </style>
