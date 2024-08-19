@@ -1,11 +1,11 @@
 <template>
-	<HomePage title="Review"/>
+	<HomePage title="Scoping"/>
 </template>
 
 <script>
 import HomePage from '../../components/HomePage.vue';
 export default {
-	name : "ReviewWizardHomePage",
+	name : "ScopingWizardHomePage",
 	components: {
 		HomePage
 	}

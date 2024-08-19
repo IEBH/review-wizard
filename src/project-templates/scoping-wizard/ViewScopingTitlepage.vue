@@ -4,12 +4,12 @@
 		<InputTextSingleLine
 			question="What is the title of the study?"
 			v-model="$tera.state.name"
-			placeholder="e.g. Blue-light therapy for acne vulgaris: a systematic review and meta-analysis"
+			placeholder="Overdiagnosis and Overuse of diagnostic and screening tests in Low-Middle Income Countries (LMICs): A protocol for a scoping review"
 		/>
 		<InputTextSingleLine
 			question="What is the short title for the study?"
 			v-model="$tera.state.nameShort"
-			placeholder="e.g. Blue-light"
+			placeholder="Overdiagnosis and Overuse"
 		/>
 		<InputTextNumber
 			question="What year will study be published?"
@@ -21,10 +21,9 @@
 <script>
 import InputTextNumber from "@/components/InputTextNumber.vue";
 import InputTextSingleLine from "@/components/InputTextSingleLine.vue";
-//import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
 
 export default {
-	name: "ViewTitlepage",
+	name: "ViewScopingTitlePage",
 	components: {
 		InputTextSingleLine,
 		InputTextNumber
@@ -32,5 +31,4 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style></style>
