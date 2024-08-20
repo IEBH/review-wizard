@@ -13,7 +13,7 @@
 					"Heartfelt thanks to "
 				])
 			}}
-			<span v-if="$tera.state.designhelp.length">
+			<span v-if="$tera.state.designhelp && $tera.state.designhelp.length">
 				{{ joinArrayWithAnd(formatSelectMulti($tera.state.designhelp)) }}
 				for help designing the search strategy
 			</span>
@@ -41,7 +41,7 @@
 <script>
 import OutputMixin from "@/mixins/OutputMixin.js";
 export default {
-	name: "OutputAcknowledgement",
+	name: "OutputScopingAcknowledgement",
 	mixins: [OutputMixin]
 };
 </script>
