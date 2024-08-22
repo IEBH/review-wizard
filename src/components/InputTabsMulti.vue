@@ -64,7 +64,7 @@ export default {
 	data() {
 		return {
 			manualVersion: "manualVersion",
-			polyglotVersion: "polyglotVersion",
+			polyglotVersion: "polyglotVersion"
 		};
 	},
 	methods: {
@@ -90,12 +90,12 @@ export default {
 					this.value.manualVersion = this.value.polyglotVersion;
 					this.$message({
 						type: "success",
-						message: "Override successfully!",
+						message: "Override successfully!"
 					});
 				} else {
 					this.$message({
 						type: "warning",
-						message: "Empty polyglot version, please check in Polyglot!",
+						message: "Empty polyglot version, please check in Polyglot!"
 					});
 				}
 			});
@@ -132,7 +132,7 @@ export default {
 		},*/
 		refreshPolyglot() {
 			let ifContains = false;
-			this.$tera.state.polyglot.engines.forEach((el) => {
+			this.$tera.state.polyglot.engines.forEach(el => {
 				if (el.label == this.value.label) {
 					ifContains = true;
 					this.value.polyglotVersion = el.polyglotVersion;
@@ -141,11 +141,11 @@ export default {
 			if (ifContains == false) {
 				this.$message({
 					type: "warning",
-					message: "Couldn't find this database from Polyglot, please check!",
+					message: "Couldn't find this database from Polyglot, please check!"
 				});
 			}
-		},
-	},
+		}
+	}
 };
 </script>
 

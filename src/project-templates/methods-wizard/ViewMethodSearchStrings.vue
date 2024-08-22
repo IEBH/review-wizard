@@ -155,81 +155,81 @@ export default {
 				},
 				{ label: "Chinese Clinical Trial Registry", string: "" },
 				{ label: "Clinical Trials Registry - India", string: "" },
-				{ label: "Cochrane CENTRAL", string: "" },
+				{ label: "Cochrane CENTRAL", string: "" }
 			],
 			defalutEngines: [
 				{
 					key: "PubMed abbreviation",
 					label: "PubMed",
 					manualVersion: "", //manual SearchString version
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Ovid MEDLINE",
 					label: "Ovid MEDLINE",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Cochrane Library",
 					label: "Cochrane Library",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Embase (Elsevier)",
 					label: "Embase (Elsevier)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Ovid MEDLINE",
 					label: "Embase (Ovid)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "CINAHL (Ebsco)",
 					label: "CINAHL (Ebsco)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Web of Science",
 					label: "Web of Science",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "WoS Advanced",
 					label: "WoS Advanced",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Scopus (basic search)",
 					label: "Scopus (basic search)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Scopus (advanced search)",
 					label: "Scopus (advanced search)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "PsycInfo (Ovid)",
 					label: "PsycInfo (Ovid)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "PsycInfo (Ebsco)",
 					label: "PsycInfo (Ebsco)",
 					manualVersion: "",
-					polyglotVersion: "",
-				},
+					polyglotVersion: ""
+				}
 			],
 			outputComponent: OutputSearchStrings,
 			//outputComponentAppendix: OutputSearchStringsAppendix,
@@ -247,12 +247,12 @@ export default {
 				this.genOutputVersions(this.$tera.state.polyglot.engines);
 				return this.$tera.state.polyglot.engines;
 			}
-		},
+		}
 	},
 	methods: {
 		genOutputVersions(engines) {
 			if (this.$tera.state.outputVersions != {}) {
-				engines.forEach((el) => {
+				engines.forEach(el => {
 					if (
 						!this.checkUnion(el, Object.keys(this.$tera.state.outputVersions))
 					) {
@@ -265,7 +265,7 @@ export default {
 					}
 				});
 			} else {
-				engines.forEach((el) => {
+				engines.forEach(el => {
 					//add a default output version => manualVersion
 					this.$set(this.$tera.state.outputVersions, el.label, "manualVersion");
 				});
@@ -273,7 +273,7 @@ export default {
 			//console.log("outputlist:",Object.keys(this.$tera.state.outputVersions));
 		},
 		checkUnion(engine, outputEngines) {
-			outputEngines.forEach((el) => {
+			outputEngines.forEach(el => {
 				if (engine.label == el) {
 					//console.log("engine:"+engine.label+", output:"+el);
 					return true;
@@ -288,22 +288,23 @@ export default {
 				{
 					confirmButtonText: "Yes",
 					cancelButtonText: "Cancel",
-					type: "warning",
+					type: "warning"
 				}
 			)
 				.then(() => {
-					this.$tera.state.databases.forEach((database) => {
-						database.manualVersion = database.polyglotVersion;
+					this.$tera.state.databases.forEach(database => {
+						this.$set(database, "manualVersion", database.polyglotVersion);
+						//database.manualVersion = database.polyglotVersion;
 					});
 					this.$message({
 						type: "success",
-						message: "Override all successfully!",
+						message: "Override all successfully!"
 					});
 				})
 				.catch(() => {
 					this.$message({
 						type: "info",
-						message: "Cancel override!",
+						message: "Cancel override!"
 					});
 				});
 		},
@@ -311,15 +312,16 @@ export default {
 			this.$confirm("Are you sure to copy all from polyglot?", "Warning", {
 				confirmButtonText: "Yes",
 				cancelButtonText: "Cancel",
-				type: "warning",
+				type: "warning"
 			}).then(() => {
 				let noEngineList = [];
-				this.$tera.state.databases.forEach((database) => {
+				this.$tera.state.databases.forEach(database => {
 					let ifContains = false;
-					this.$tera.state.polyglot.engines.forEach((el) => {
+					this.$tera.state.polyglot.engines.forEach(el => {
 						if (el.label == database.label) {
 							ifContains = true;
-							database.polyglotVersion = el.polyglotVersion;
+							this.$set(database, "polyglotVersion", el.polyglotVersion);
+							//database.polyglotVersion = el.polyglotVersion;
 						}
 					});
 					if (ifContains == false) {
@@ -329,17 +331,17 @@ export default {
 				if (noEngineList.length > 0) {
 					this.$message({
 						type: "warning",
-						message: `Couldn't find database ${noEngineList} in Polyglot, please check!`,
+						message: `Couldn't find database ${noEngineList} in Polyglot, please check!`
 					});
 				} else {
 					this.$message({
 						type: "success",
-						message: "Copy all successfully!",
+						message: "Copy all successfully!"
 					});
 				}
 			});
-		},
-	},
+		}
+	}
 };
 </script>
 

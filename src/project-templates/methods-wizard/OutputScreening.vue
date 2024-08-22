@@ -136,7 +136,6 @@
 					: "BLANK"
 			}}.
 			<!-- Screening Tools -->
-			<!-- Screening Tools -->
 			<span v-if="$tera.state.screeningToolsSelected.length">
 					{{
 						selectRandom([
