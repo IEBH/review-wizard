@@ -24,7 +24,7 @@ import InputTextSingleLine from "@/components/InputTextSingleLine.vue";
 //import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
 
 export default {
-	name: "ViewTitlepage",
+	name: "ViewMethodPicot",
 	components: {
 		InputTextSingleLine,
 		InputTextNumber

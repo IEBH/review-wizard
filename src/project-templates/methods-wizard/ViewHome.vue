@@ -1,14 +1,26 @@
 <template>
-	<HomePage title="Review"/>
+	<div class="p-m-5">
+		<div v-if="projectId">
+			<h1>Welcome to the Methods Wizard!</h1>
+			<p>To start making changes, simply select a section from the left hand side and begin filling it in</p>
+		</div>
+		<div v-else>
+			<h1>Loading project...</h1>
+		</div>
+	</div>
 </template>
 
 <script>
-import HomePage from '../../components/HomePage.vue';
 export default {
-	name : "ReviewWizardHomePage",
-	components: {
-		HomePage
+	name: "ViewHome",
+	computed: {
+		projectId() {
+			return this.$store.state.projectId;
+	    }
+	},
+	created() {
+		// FIXME: We can bypass needing to handle new projects as TERA-fy does this all for us now
+		return this.$store.dispatch("createProject");
 	}
-};
+}
 </script>
- 

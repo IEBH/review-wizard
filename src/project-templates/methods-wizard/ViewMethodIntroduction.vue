@@ -18,12 +18,10 @@
 //import deepstreamMixin from "@/mixins/DeepstreamMixin";
 import OutputIntroduction from "./OutputIntroduction.vue";
 import InputEditorMultiline from "@/components/InputEditorMultiline.vue";
-import InputTextSingleLine from "@/components/InputTextSingleLine.vue";
 
 export default {
 	components: {
-		InputEditorMultiline,
-		InputTextSingleLine
+		InputEditorMultiline
 	},
 	data() {
 		return {

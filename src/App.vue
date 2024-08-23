@@ -130,13 +130,11 @@ export default {
 			// Update menu
 			this.updateMenu();
 		},
-		$route() {
+		"$route"() {
 			// Tell TERA-fy to restore to this page on refresh (only applies when this site is an embed within tera-tools.com)
-			this.$tera.setPage({
-				url: this.$route.path,
-				title: this.$route.name,
-			});
-		}
+			this.$tera.setPageUrl(this.$route.path);
+			this.$tera.setPageTitle(this.$route.name);
+		},
 	},
 	computed: {
 		projectId() {

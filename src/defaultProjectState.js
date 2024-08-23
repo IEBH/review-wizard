@@ -53,7 +53,7 @@ let defaultProjectState = {
 				tasks: "SR design meetings",
 				toolDescription:
 					"Time spent refining the idea, determining feasibility, assembling the team, planning timelines, deciding on roles",
-				toolLink: [{ name: "Review Wizard", link: "/planning/titlepage" }],
+				toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -95,7 +95,7 @@ let defaultProjectState = {
 				tasks: "Write the SR protocol",
 				toolDescription:
 					"Provide an objective, reproducible, sound methodology for the SR, then register the protocol",
-				toolLink: [{ name: "Review Wizard", link: "/planning/titlepage" }],
+				toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -387,7 +387,7 @@ let defaultProjectState = {
 				progress: false,
 				tasks: "Revise methods",
 				toolDescription: "Revise the methods section from the SR protocol",
-				toolLink: [{ name: "Review Wizard", link: "/planning/titlepage" }],
+				toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -480,17 +480,12 @@ let defaultProjectState = {
 	},
 
 	//picot:
-	concept: [{ inclusion: true }],
-	context: [{ inclusion: true }],
-	theme: [{ inclusion: true, type: true }],
-	greyLiteraturesSelected : [],
 	population: [{ inclusion: true }],
 	intervention: [{ inclusion: true }],
 	comparator: [{ inclusion: true }],
 	outcomes: [{ inclusion: true, type: true }],
 	setting: [{ inclusion: true }],
 	types: [],
-	
 
 	//search:
 	// Search Strategy
@@ -544,14 +539,10 @@ let defaultProjectState = {
 	optionalDetail: false,
 	methods: [],
 	participants: [],
-	concepts: [],
-	contexts: [],
-	extractionThemes: [{ inclusion: true, type: true }],
 	interventions: [],
 	comparators: [],
 	extractionOutcomes: [{ inclusion: true, type: true }],
 	extractionTypes: [],
-	extractionGreyLitTypes: [],
 	//extraction report
 	detable: { headers: [], rows: [] },
 
@@ -560,7 +551,6 @@ let defaultProjectState = {
 	assessedRobAuthors: [],
 	isIndependent: false,
 	riskOfBiasToolUsed: [],
-	riskOfBiasOptional: false,
 
 	//measurementOfEffect:
 	isMetaAnalysis: true,
@@ -577,13 +567,6 @@ let defaultProjectState = {
 	example: null,
 	example2: null,
 
-	//Analysis of data
-	dataAnalysis: [],
-
-	//Analysis Approach
-	dataDescription: [],
-	resultsPresentation: [],
-	
 	//missingData:
 	isContactedInvestigators: false,
 

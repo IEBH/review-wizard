@@ -1,9 +1,6 @@
-# @iebh/review-wizard
+# @iebh/methods-wizard
 
 ## Project setup
-
-Note that you will need a valid [TERA-tools](https://tera-tools.com) account and project selected before starting.
-
 ```
 npm install
 ```

@@ -192,7 +192,7 @@ const data = {
 					tasks: "SR design meetings",
 					toolDescription:
 						"Time spent refining the idea, determining feasibility, assembling the team, planning timelines, deciding on roles",
-					toolLink: [{ name: "Review Wizard", link: "/planning/titlepage" }],
+					toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 					notes: "",
 					peopleInvolved: ""
 					//notes: ""
@@ -234,7 +234,7 @@ const data = {
 					tasks: "Write the SR protocol",
 					toolDescription:
 						"Provide an objective, reproducible, sound methodology for the SR, then register the protocol",
-					toolLink: [{ name: "Review Wizard", link: "/planning/titlepage" }],
+					toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 					notes: "",
 					peopleInvolved: ""
 					//notes: ""
@@ -527,7 +527,7 @@ const data = {
 					progress: false,
 					tasks: "Revise methods",
 					toolDescription: "Revise the methods section from the SR protocol",
-					toolLink: [{ name: "Review Wizard", link: "/planning/titlepage" }],
+					toolLink: [{ name: "Methods Wizard", link: "/planning/titlepage" }],
 					notes: "",
 					peopleInvolved: ""
 					//notes: ""

@@ -1,5 +1,5 @@
 {
-	"name": "@iebh/review-wizard",
+	"name": "@iebh/methods-wizard",
 	"version": "0.5.0",
 	"private": true,
 	"scripts": {
@@ -18,7 +18,7 @@
 	"dependencies": {
 		"@deepstream/client": "^5.2.4",
 		"@fortawesome/fontawesome-free": "^5.14.0",
-		"@iebh/tera-fy": "^1.13.3",
+		"@iebh/tera-fy": "^1.12.0",
 		"core-js": "^3.6.5",
 		"dhx-spreadsheet": "^4.0.0",
 		"element-ui": "^2.15.12",
@@ -39,7 +39,6 @@
 		"xlsx-js-style": "^1.2.0"
 	},
 	"devDependencies": {
-		"@iebh/vue-cli-plugin-tera": "^1.0.2",
 		"@vue/cli-plugin-babel": "~4.4.0",
 		"@vue/cli-plugin-eslint": "~4.4.0",
 		"@vue/cli-service": "~4.4.0",

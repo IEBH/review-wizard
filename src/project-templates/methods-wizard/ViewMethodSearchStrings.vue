@@ -84,9 +84,11 @@
 			:key="registry.label"
 		>
 			<InputTextMultiSyntax
-				:question="`Registry ${index + 1} (e.g. ${
-					registry.label
-				}) copy and paste your full search string.`"
+				:question="
+					`Registry ${index + 1} (e.g. ${
+						registry.label
+					}) copy and paste your full search string.`
+				"
 				:value="registry.string"
 				:placeholder="placeholder1"
 			/>
@@ -114,7 +116,7 @@ export default {
 		InputTextMultiSyntax,
 		InputTabsMulti,
 		PreviewOutput,
-		InputDate,
+		InputDate
 	},
 	/*methods: {
 		//Search Strings for Bibliographic Databases
@@ -139,7 +141,7 @@ export default {
 				{
 					label:
 						"World Health Organization – International Clinical Trials Registry Platform (ICTRP)",
-					string: "",
+					string: ""
 				},
 				{ label: "ClinicalTrials.gov", string: "" },
 				{ label: "Health Canada Clinical Trial Database", string: "" },
@@ -151,90 +153,90 @@ export default {
 				// eslint-disable-next-line prettier/prettier
 				{
 					label: "Australian New Zealand Clinical Trials Registry",
-					string: "",
+					string: ""
 				},
 				{ label: "Chinese Clinical Trial Registry", string: "" },
 				{ label: "Clinical Trials Registry - India", string: "" },
-				{ label: "Cochrane CENTRAL", string: "" },
+				{ label: "Cochrane CENTRAL", string: "" }
 			],
 			defalutEngines: [
 				{
 					key: "PubMed abbreviation",
 					label: "PubMed",
 					manualVersion: "", //manual SearchString version
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Ovid MEDLINE",
 					label: "Ovid MEDLINE",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Cochrane Library",
 					label: "Cochrane Library",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Embase (Elsevier)",
 					label: "Embase (Elsevier)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Ovid MEDLINE",
 					label: "Embase (Ovid)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "CINAHL (Ebsco)",
 					label: "CINAHL (Ebsco)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Web of Science",
 					label: "Web of Science",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "WoS Advanced",
 					label: "WoS Advanced",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Scopus (basic search)",
 					label: "Scopus (basic search)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "Scopus (advanced search)",
 					label: "Scopus (advanced search)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "PsycInfo (Ovid)",
 					label: "PsycInfo (Ovid)",
 					manualVersion: "",
-					polyglotVersion: "",
+					polyglotVersion: ""
 				},
 				{
 					key: "PsycInfo (Ebsco)",
 					label: "PsycInfo (Ebsco)",
 					manualVersion: "",
-					polyglotVersion: "",
-				},
+					polyglotVersion: ""
+				}
 			],
 			outputComponent: OutputSearchStrings,
 			//outputComponentAppendix: OutputSearchStringsAppendix,
 			placeholder1: "e.g. Acne AND Phototherapy OR Acne AND Light",
-			placeholder2: `e.g.("Acne Vulgaris"[Mesh] OR Acne[tiab] OR Blackheads[tiab] OR Whiteheads[tiab] OR Pimples[tiab]) AND ("Phototherapy"[Mesh] OR "Blue light"[tiab] OR Phototherapy[tiab] OR Phototherapies[tiab] OR "Photoradiation therapy"[tiab] OR "Photoradiation Therapies"[tiab] OR "Light Therapy"[tiab] OR "Light Therapies"[tiab]) AND (Randomized controlled trial[pt] OR controlled clinical trial[pt] OR randomized[tiab] OR randomised[tiab] OR placebo[tiab] OR "drug therapy"[sh] OR randomly[tiab] OR trial[tiab] OR groups[tiab]) NOT (Animals[Mesh] not (Animals[Mesh] and Humans[Mesh]))`,
+			placeholder2: `e.g.("Acne Vulgaris"[Mesh] OR Acne[tiab] OR Blackheads[tiab] OR Whiteheads[tiab] OR Pimples[tiab]) AND ("Phototherapy"[Mesh] OR "Blue light"[tiab] OR Phototherapy[tiab] OR Phototherapies[tiab] OR "Photoradiation therapy"[tiab] OR "Photoradiation Therapies"[tiab] OR "Light Therapy"[tiab] OR "Light Therapies"[tiab]) AND (Randomized controlled trial[pt] OR controlled clinical trial[pt] OR randomized[tiab] OR randomised[tiab] OR placebo[tiab] OR "drug therapy"[sh] OR randomly[tiab] OR trial[tiab] OR groups[tiab]) NOT (Animals[Mesh] not (Animals[Mesh] and Humans[Mesh]))`
 		};
 	},
 	computed: {
@@ -247,12 +249,12 @@ export default {
 				this.genOutputVersions(this.$tera.state.polyglot.engines);
 				return this.$tera.state.polyglot.engines;
 			}
-		},
+		}
 	},
 	methods: {
 		genOutputVersions(engines) {
 			if (this.$tera.state.outputVersions != {}) {
-				engines.forEach((el) => {
+				engines.forEach(el => {
 					if (
 						!this.checkUnion(el, Object.keys(this.$tera.state.outputVersions))
 					) {
@@ -265,7 +267,7 @@ export default {
 					}
 				});
 			} else {
-				engines.forEach((el) => {
+				engines.forEach(el => {
 					//add a default output version => manualVersion
 					this.$set(this.$tera.state.outputVersions, el.label, "manualVersion");
 				});
@@ -273,7 +275,7 @@ export default {
 			//console.log("outputlist:",Object.keys(this.$tera.state.outputVersions));
 		},
 		checkUnion(engine, outputEngines) {
-			outputEngines.forEach((el) => {
+			outputEngines.forEach(el => {
 				if (engine.label == el) {
 					//console.log("engine:"+engine.label+", output:"+el);
 					return true;
@@ -288,22 +290,23 @@ export default {
 				{
 					confirmButtonText: "Yes",
 					cancelButtonText: "Cancel",
-					type: "warning",
+					type: "warning"
 				}
 			)
 				.then(() => {
-					this.$tera.state.databases.forEach((database) => {
-						database.manualVersion = database.polyglotVersion;
+					this.$tera.state.databases.forEach(database => {
+						this.$set(database, "manualVersion", database.polyglotVersion);
+						//database.manualVersion = database.polyglotVersion;
 					});
 					this.$message({
 						type: "success",
-						message: "Override all successfully!",
+						message: "Override all successfully!"
 					});
 				})
 				.catch(() => {
 					this.$message({
 						type: "info",
-						message: "Cancel override!",
+						message: "Cancel override!"
 					});
 				});
 		},
@@ -311,15 +314,16 @@ export default {
 			this.$confirm("Are you sure to copy all from polyglot?", "Warning", {
 				confirmButtonText: "Yes",
 				cancelButtonText: "Cancel",
-				type: "warning",
+				type: "warning"
 			}).then(() => {
 				let noEngineList = [];
-				this.$tera.state.databases.forEach((database) => {
+				this.$tera.state.databases.forEach(database => {
 					let ifContains = false;
-					this.$tera.state.polyglot.engines.forEach((el) => {
+					this.$tera.state.polyglot.engines.forEach(el => {
 						if (el.label == database.label) {
 							ifContains = true;
-							database.polyglotVersion = el.polyglotVersion;
+							this.$set(database, "polyglotVersion", el.polyglotVersion);
+							//database.polyglotVersion = el.polyglotVersion;
 						}
 					});
 					if (ifContains == false) {
@@ -329,17 +333,17 @@ export default {
 				if (noEngineList.length > 0) {
 					this.$message({
 						type: "warning",
-						message: `Couldn't find database ${noEngineList} in Polyglot, please check!`,
+						message: `Couldn't find database ${noEngineList} in Polyglot, please check!`
 					});
 				} else {
 					this.$message({
 						type: "success",
-						message: "Copy all successfully!",
+						message: "Copy all successfully!"
 					});
 				}
 			});
-		},
-	},
+		}
+	}
 };
 </script>
 

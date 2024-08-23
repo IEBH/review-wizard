@@ -13,6 +13,7 @@
 		/>
 		<BasePreviewOutput
 			:component="outputComponent"
+			:contributionOptions="contributionOptions"
 		/>
 	</div>
 </template>

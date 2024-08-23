@@ -91,7 +91,6 @@ export default {
 	mixins: [OutputMixin],
 	methods: {
 		getSearchString(database) {
-			console.log("output:",this.$tera.state.outputVersions);
 			return database.manualVersion; //return final Version
 		}
 	}
