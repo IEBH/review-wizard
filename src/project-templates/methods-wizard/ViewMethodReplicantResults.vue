@@ -1,11 +1,13 @@
 <template>
 	<div>
 		<h1>Results</h1>
-		<InputEditorMultiline
-			question=""
-			:placeholder="placeholder"
-			v-model="$tera.state.metaReplicant.file"
-		/>
+		<div v-if="$tera.state.metaReplicant && $tera.state.metaReplicant.file">
+			<InputEditorMultiline 
+			question="" 
+			:placeholder="placeholder" 
+			v-model="$tera.state.metaReplicant.file" />
+		</div>
+
 	</div>
 </template>
 <script>
@@ -17,7 +19,7 @@ export default {
 	},
 	data() {
 		return {
-			placeholder:'Replicant Results'
+			placeholder: 'Replicant Results'
 		};
 	}
 };
