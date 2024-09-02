@@ -838,7 +838,7 @@ const getMenu = () => [
 		href: `/method/contributions`
 	},
 	{
-		title: "Acknowledgement",
+		title: "Acknowledgementttt",
 		icon: "pi pi-file",
 		href: `/planning/ac-view`
 	},
