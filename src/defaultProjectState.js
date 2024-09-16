@@ -8,6 +8,19 @@ let defaultProjectState = {
 	author: [""],
 	acknowledgements: [""],
 
+	//study information
+	trialRegistered: "",
+	protocolVersion: "",
+	dateOfProtocolRegistration: null,
+	source: "",
+	stakeholder: [""],
+	stakeholderConsultation: "",
+	supervisor: "",
+	auditQuestionDescription: "",
+	auditObjective: "",
+	dataCollectionMethod: "",
+	participantsRecruitedFrom: [],
+	healthServicesParticipantsRecruited: [],
 	//acknowledgement:
 	designhelp: [],
 	statistical: [],
@@ -18,6 +31,63 @@ let defaultProjectState = {
 	introprotocol: "",
 
 
+	auditInterventionsTable: {
+		headers: [
+			{ name: "intervention", label: "Intervention" },
+			{ name: "materials", label: "Materials" },
+			{
+				name: "instructions",
+				label: "Instructions"
+			}
+		],
+		rows: [
+			{ intervention: "antibiotic", materials: "125mg of Augmentin", instructions: "wear a mask when outside of home"}
+		]
+	},
+	controlArmsTable: {
+		headers: [
+			{ name: "intervention", label: "Intervention" },
+			{ name: "materials", label: "Materials" },
+			{
+				name: "instructions",
+				label: "Instructions"
+			}
+		],
+		rows: [
+			{ intervention: "placebo", materials: "a pill of identical size and shape to intervention", instructions: "wear a mask when outside of home"}
+		]
+	},
+
+	primaryOutcomesTable: {
+		headers: [
+			{ name: "outcome", label: "Outcome"},
+			{ name: "evaluation", label: "Evaluation" },
+			{ name: "timing", label: "Timing" }
+		],
+		rows: [
+			{ outcome: "Mortality rates", evaluation: "Hospital reports", timing: "After 2 weeks"}
+		]
+	},
+	secondaryOutcomesTable: {
+		headers: [
+			{ name: "outcome", label: "Outcome"},
+			{ name: "evaluation", label: "Evaluation" },
+			{ name: "timing", label: "Timing" }
+		],
+		rows: [
+			{ outcome: "Mortality rates", evaluation: "Hospital reports", timing: "After 2 weeks"}
+		]
+	},
+	adverseEventsOfInterestsTable: {
+		headers: [
+			{ name: "outcome", label: "Outcome"},
+			{ name: "evaluation", label: "Evaluation" },
+			{ name: "timing", label: "Timing" }
+		],
+		rows: [
+			{ outcome: "Mortality rates", evaluation: "Hospital reports", timing: "After 2 weeks"}
+		]
+	},
 	//researchplan:
 	planTable: {
 		headers: [
@@ -478,6 +548,78 @@ let defaultProjectState = {
 			}
 		]
 	},
+	//Participant Timeline
+	isSchematicDiagramFilled: false,
+
+	//Sample Size
+	trialType: null,
+	trialTypeOther: null,
+	trialStudyPower: null,
+	trialStudyPowerOther: null,
+	levelOfSignificance: null,
+	levelOfSignificanceOther: null,
+	plannedSampleSize: null,
+	effectSize: null,
+	participantDropout: null,
+
+	//Recruitment
+	strategies: [],
+
+	//Assignment of Interventions
+	ratio: [],
+	participantAllocation: [],
+	allocationOfParticipants: null,
+	allocationSequenceMechanisms: [],
+	concealSequence: null,
+	blindedPeople: [],
+	methodBlindedPeople: null,
+	circumstancesUnblinding: [],
+
+	//Data Collection, Management and Analysis
+	plansForDataManagement: null,
+	processesForDataQuality: null,
+	furtherDetails: [],
+	statisticalEstimate: null,
+	adverseEventsAnalysis: null,
+	subgroupsCategorization: null,
+	subgroupAnalysisPerformed: null,
+	adjustedAnalysis: null,
+	efficacyComparisons: [],
+	populationEfficacyComparison: null,
+	safetyPopulation: null,
+	missingDataStates: [],
+	missingDataApproachReason: null,
+	plannedSensitivityAnalyses: null,
+
+	//Monitoring
+	isDataMonitoringCommittee: false,
+	roleDetails: null,
+	reportingStructureDetails: null,
+	compositionDetails: null,
+	committeeDetailsLink: null,
+	reasonCommitteeNotSetUp: null,
+	isInterimAnalysis: false,
+	interimAnalysisTimePoints: null,
+	conditionStoppingStudy: null,
+	interimAnalysisResults: [],
+	studyTerminationFinalDecision: [],
+	interimAnalysisNotPlannedReason: null,
+	adverseEffectsMonitoring: null,
+	proceduresAuditingTrial: null,
+
+	//Ethics and Dissemination
+	researchEthicsApproval: null,
+	plansUsed: null,
+	consentResponsibility: [],
+	consentOrAscent: null,
+	confidentialityAndStudyBinding: null,
+	declarationOfInterests: null,
+	dataStorage: null,
+	consentForm: null,
+	ancillaryAndPostTrial: null,
+	presentationPlans: null,
+	authorshipEligibilityGuidelines: null,
+	presentationPublicationDisseminationPlans: null,
 
 	//picot:
 	population: [{ inclusion: true }],
@@ -486,7 +628,20 @@ let defaultProjectState = {
 	outcomes: [{ inclusion: true, type: true }],
 	setting: [{ inclusion: true }],
 	types: [],
+	sexes: [],
+	conditions: [],
+	severity: [],
+	inclusionFactors: [],
+	excludedFactors: [],
+	measurements: [],
+	auditPopulation: "",
 
+	//Interventions
+	conditionsTreatment: [],
+	adherenceEmployees: [],
+	adherenceMonitoringFactors: [],
+	treatment: "",
+	interventionsNotAllowed: "",
 	//search:
 	// Search Strategy
 	components: [],
