@@ -64,7 +64,8 @@ export default {
 				{
 					field: "toolLink",
 					headerName: "Tool",
-					cellRenderer: "tableLink"
+					cellRenderer: "tableLink",
+					width: 220
 				},
 				{
 					field: "peopleInvolved",
