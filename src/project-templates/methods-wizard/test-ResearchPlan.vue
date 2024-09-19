@@ -8,6 +8,7 @@
 			:rowData="rowData"
 			:gridOptions="gridOptions"
 			:singleRow="singleRow"
+			@api="getApi"
 		/>
 	</div>
 </template>
@@ -28,6 +29,7 @@ export default {
 	},
 	data() {
 		return {
+			gridApi: null,
 			gridOptions: {
 				rowHeight: 180,
 				defaultColDef: {
@@ -148,6 +150,11 @@ export default {
 			}
 			return row;
 		});
+	},
+	methods: {
+		getApi(api) {
+			this.gridApi = api;
+		}
 	}
 };
 </script>

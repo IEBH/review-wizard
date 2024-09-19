@@ -5,8 +5,8 @@
 		field="label"
 		:multiple="true"
 		@complete="searchAuthors($event)"
-		@item-select="selectChanges($event.value)"
-		@item-unselect="unselectChanges($event.value)"
+		@item-select="selectChanges($event)"
+		@item-unselect="unselectChanges($event)"
 	/>
 </template>
 
@@ -29,7 +29,17 @@ export default {
 				this.params.data.tasks == "Run systematic search strings" ||
 				this.params.data.tasks == "Deduplicate results"
 			) {
-				//TODO pass this.params.data.peopleInvolved to parent table
+				//console.log("this.params.data.peopleInvolved:",this.params.data.peopleInvolved);
+				this.params.api.getRenderedNodes().forEach(node => {
+					if (
+						node.data.tasks == "Deduplicate results" ||
+						node.data.tasks == "Run systematic search strings" ||
+						node.data.tasks == "Deduplicate results"
+					) {
+						node.data.peopleInvolved = this.params.data.peopleInvolved;
+					}
+				});
+				this.$tera.state.searchStrategyAuthors = this.params.data.peopleInvolved;
 			}
 		},
 		unselectChanges() {
@@ -38,7 +48,17 @@ export default {
 				this.params.data.tasks == "Run systematic search strings" ||
 				this.params.data.tasks == "Deduplicate results"
 			) {
-				//TODO pass this.params.data.peopleInvolved to parent table
+				//console.log("this.params.data.peopleInvolved:",this.params.data.peopleInvolved);
+				this.params.api.getRenderedNodes().forEach(node => {
+					if (
+						node.data.tasks == "Deduplicate results" ||
+						node.data.tasks == "Run systematic search strings" ||
+						node.data.tasks == "Deduplicate results"
+					) {
+						node.data.peopleInvolved = this.params.data.peopleInvolved;
+					}
+				});
+				this.$tera.state.searchStrategyAuthors = this.params.data.peopleInvolved;
 			}
 		},
 		searchAuthors(event) {
