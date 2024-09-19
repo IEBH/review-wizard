@@ -32,7 +32,7 @@ export default {
 				//console.log("this.params.data.peopleInvolved:",this.params.data.peopleInvolved);
 				this.params.api.getRenderedNodes().forEach(node => {
 					if (
-						node.data.tasks == "Deduplicate results" ||
+						node.data.tasks == "Design systematic search strategy" ||
 						node.data.tasks == "Run systematic search strings" ||
 						node.data.tasks == "Deduplicate results"
 					) {
@@ -51,7 +51,7 @@ export default {
 				//console.log("this.params.data.peopleInvolved:",this.params.data.peopleInvolved);
 				this.params.api.getRenderedNodes().forEach(node => {
 					if (
-						node.data.tasks == "Deduplicate results" ||
+						node.data.tasks == "Design systematic search strategy" ||
 						node.data.tasks == "Run systematic search strings" ||
 						node.data.tasks == "Deduplicate results"
 					) {
