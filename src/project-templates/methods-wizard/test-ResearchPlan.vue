@@ -2,8 +2,7 @@
 	<div>
 		<!--ResearchPlan TestPage-->
 		<GenericTable
-			title="Research Plan"
-			question="What is your Research Plan?"
+			title="Review Plan"
 			:columnDefs="columnDefs"
 			:rowData="rowData"
 			:gridOptions="gridOptions"

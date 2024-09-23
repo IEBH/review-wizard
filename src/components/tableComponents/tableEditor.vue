@@ -24,7 +24,7 @@ export default {
 		this.updateDisplay(this.params);
 	},
 	methods:{
-		updateDisplay(params){
+		updateDisplay(params) {
 			this.value = params.value;
 		},
 		handler(event){

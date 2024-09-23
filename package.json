@@ -26,7 +26,7 @@
 		"element-ui": "^2.15.14",
 		"exceljs": "^4.3.0",
 		"firebase": "^7.16.0",
-		"generictable-v2": "^0.1.2",
+		"generictable-v2": "^0.1.5",
 		"lodash": "^4.17.21",
 		"primeflex": "^2.0.0-rc.1",
 		"primeicons": "^5.0.0",
