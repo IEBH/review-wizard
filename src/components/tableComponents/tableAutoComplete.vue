@@ -1,4 +1,4 @@
-<template style="display: inline">
+<template>
 	<AutoComplete
 		v-model="params.data.peopleInvolved"
 		:suggestions="filteredPeople"
@@ -79,14 +79,15 @@ export default {
 };
 </script>
 <style>
-.p-component {
+.p-autocomplete {
 	width: 100%;
-	min-height: 70%;
 }
 .p-autocomplete-multiple-container {
 	background-color: transparent !important;
 	border: 0px !important;
-	
+	width: 100%;
+	min-height: 70%;
+
 	line-height: normal; /** setting input element not too large */
 	overflow: auto;
 }
