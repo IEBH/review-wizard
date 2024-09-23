@@ -1,8 +1,9 @@
 <template>
 	<ElInput
 		type="textarea"
-		v-model="params.data[params.column.colId]"
+		v-model="value"
 		:autoResize="true"
+		v-on:change="handler($event)"
 	/>
 </template>
 
@@ -13,6 +14,23 @@ export default {
 	name: "tableEditor",
 	components: {
 		ElInput
+	},
+	data() {
+		return {
+			value: String
+		};
+	},
+	beforeMount(){
+		this.updateDisplay(this.params);
+	},
+	methods:{
+		updateDisplay(params){
+			this.value = params.value;
+		},
+		handler(event){
+			console.log("Entering:", event);
+			this.params.setValue(event);
+		}
 	}
 };
 </script>
