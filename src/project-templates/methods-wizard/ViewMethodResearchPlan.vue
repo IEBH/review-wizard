@@ -2,7 +2,6 @@
 	<div>
 		<h1>Research Plan</h1>
 		<InputSrTableCustom
-			question="What is your Research Plan?"
 			v-model="table"
 			:titlePageAuthors="Authors"
 			@authChangeHandler="authorHandler"

@@ -63,7 +63,7 @@ let defaultProjectState = {
 				tasks: "Daily administrative meetings",
 				toolDescription:
 					"Short daily meetings to review progress, discuss issues and document decisions",
-				toolLink: [{ name: "Research Plan", link: "/planning/rs-plan" }],
+				toolLink: [{ name: "Review Plan", link: "/planning/rs-plan" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""

@@ -753,7 +753,7 @@ const getMenu = () => [
 		href: `/planning/people`
 	},
 	{
-		title: "Research Plan",
+		title: "Review Plan",
 		icon: "pi pi-list",
 		href: `/planning/rs-plan`
 	},
@@ -858,7 +858,7 @@ const getMenu = () => [
 		hiddenOnCollapse: true
 	},
 	{
-		title: "Research Plan",
+		title: "Review Plan",
 		icon: "pi pi-list",
 		href: `/reports/rs-plan`
 	},
