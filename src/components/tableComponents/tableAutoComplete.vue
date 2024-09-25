@@ -81,14 +81,16 @@ export default {
 <style>
 .p-autocomplete {
 	width: 100%;
+	height: 100%;
 }
+
 .p-autocomplete-multiple-container {
 	background-color: transparent !important;
 	border: 0px !important;
-	width: 100%;
-	min-height: 70%;
-
 	line-height: normal; /** setting input element not too large */
+	min-height: 100px;
+	height: 70%;
+	width: 100%;
 	overflow: auto;
 }
 .p-autocomplete-token {
