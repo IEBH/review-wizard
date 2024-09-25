@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!--ResearchPlan TestPage-->
+		<!--New Research/Review Plan-->
 		<GenericTable
 			title="Review Plan"
 			:columnDefs="columnDefs"

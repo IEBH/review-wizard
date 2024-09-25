@@ -20,10 +20,10 @@ export default {
 			value: String
 		};
 	},
-	beforeMount(){
+	beforeMount() {
 		this.updateDisplay(this.params);
 	},
-	methods:{
+	methods: {
 		updateDisplay(params) {
 			this.value = params.value;
 		},
