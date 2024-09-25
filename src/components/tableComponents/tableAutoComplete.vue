@@ -98,5 +98,6 @@ export default {
 }
 .p-autocomplete-panel {
 	line-height: normal;
+	height: 30%;
 }
 </style>
