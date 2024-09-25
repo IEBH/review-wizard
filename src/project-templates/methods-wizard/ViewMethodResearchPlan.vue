@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Research Plan</h1>
+		<h1>Review Plan</h1>
 		<InputSrTableCustom
 			v-model="table"
 			:titlePageAuthors="Authors"
