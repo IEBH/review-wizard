@@ -32,65 +32,7 @@ let defaultProjectState = {
 	//introduction:
 	intro: "",
 	introprotocol: "",
-
-
-	auditInterventionsTable: {
-		headers: [
-			{ name: "intervention", label: "Intervention" },
-			{ name: "materials", label: "Materials" },
-			{
-				name: "instructions",
-				label: "Instructions"
-			}
-		],
-		rows: [
-			{ intervention: "antibiotic", materials: "125mg of Augmentin", instructions: "wear a mask when outside of home"}
-		]
-	},
-	controlArmsTable: {
-		headers: [
-			{ name: "intervention", label: "Intervention" },
-			{ name: "materials", label: "Materials" },
-			{
-				name: "instructions",
-				label: "Instructions"
-			}
-		],
-		rows: [
-			{ intervention: "placebo", materials: "a pill of identical size and shape to intervention", instructions: "wear a mask when outside of home"}
-		]
-	},
-
-	primaryOutcomesTable: {
-		headers: [
-			{ name: "outcome", label: "Outcome"},
-			{ name: "evaluation", label: "Evaluation" },
-			{ name: "timing", label: "Timing" }
-		],
-		rows: [
-			{ outcome: "Mortality rates", evaluation: "Hospital reports", timing: "After 2 weeks"}
-		]
-	},
-	secondaryOutcomesTable: {
-		headers: [
-			{ name: "outcome", label: "Outcome"},
-			{ name: "evaluation", label: "Evaluation" },
-			{ name: "timing", label: "Timing" }
-		],
-		rows: [
-			{ outcome: "Mortality rates", evaluation: "Hospital reports", timing: "After 2 weeks"}
-		]
-	},
-	adverseEventsOfInterestsTable: {
-		headers: [
-			{ name: "outcome", label: "Outcome"},
-			{ name: "evaluation", label: "Evaluation" },
-			{ name: "timing", label: "Timing" }
-		],
-		rows: [
-			{ outcome: "Mortality rates", evaluation: "Hospital reports", timing: "After 2 weeks"}
-		]
-	},
+	
 	//researchplan:
 	planTable: {
 		headers: [
