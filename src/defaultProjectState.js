@@ -19,8 +19,11 @@ let defaultProjectState = {
 	auditQuestionDescription: "",
 	auditObjective: "",
 	dataCollectionMethod: "",
+
+	//Study Setting
 	participantsRecruitedFrom: [],
 	healthServicesParticipantsRecruited: [],
+	noStudySetting: "Study setting is not defined.",
 	//acknowledgement:
 	designhelp: [],
 	statistical: [],
@@ -550,7 +553,6 @@ let defaultProjectState = {
 	},
 	//Participant Timeline
 	isSchematicDiagramFilled: false,
-
 	//Sample Size
 	trialType: null,
 	trialTypeOther: null,
@@ -564,7 +566,7 @@ let defaultProjectState = {
 
 	//Recruitment
 	strategies: [],
-
+	noRecruitment: "No strategies were implemented to achieve adequate participant enrolment.",
 	//Assignment of Interventions
 	ratio: [],
 	participantAllocation: [],
@@ -609,17 +611,8 @@ let defaultProjectState = {
 
 	//Ethics and Dissemination
 	researchEthicsApproval: null,
-	plansUsed: null,
-	consentResponsibility: [],
-	consentOrAscent: null,
-	confidentialityAndStudyBinding: null,
-	declarationOfInterests: null,
 	dataStorage: null,
-	consentForm: null,
-	ancillaryAndPostTrial: null,
 	presentationPlans: null,
-	authorshipEligibilityGuidelines: null,
-	presentationPublicationDisseminationPlans: null,
 
 	//picot:
 	population: [{ inclusion: true }],

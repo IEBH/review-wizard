@@ -1,6 +1,9 @@
 <template>
     <div>
         <h1>Study Setting</h1>
+        <i
+			>Description of study settings (eg, community clinic, academic hospital) and list of countries where data will be collected.</i
+		>
         <InputSelectMulti
                 question="Where will participants be recruited from?"
                 :options="options.participants"
@@ -11,10 +14,12 @@
                 :options="options.healthServices"
                 v-model="$tera.state.healthServicesParticipantsRecruited"
         />
+        <BasePreviewOutput :component="outputComponent" />
     </div>
 </template>
 <script>
 import InputSelectMulti from "@/components/InputSelectMulti.vue";
+import OutputAuditStudySetting from "./OutputAuditStudySetting.vue";
 export default {
     name: "ViewAuditStudySetting",
     components: {
@@ -36,7 +41,8 @@ export default {
 					{ label: "Other QLD" },
 					{ label: "NSW" }
             ]
-            }
+            },
+            outputComponent: OutputAuditStudySetting
 		};
 	}
 }
