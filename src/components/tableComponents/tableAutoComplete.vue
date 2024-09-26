@@ -80,17 +80,16 @@ export default {
 </script>
 <style>
 .p-autocomplete {
+	display: grid;
+	line-height: normal; /** setting input element not too large */
 	width: 100%;
-	height: 100%;
+	height: 70%;
 }
 
 .p-autocomplete-multiple-container {
 	background-color: transparent !important;
-	border: 0px !important;
-	line-height: normal; /** setting input element not too large */
-	min-height: 100px;
-	height: 70%;
-	width: 100%;
+	display: inline !important;
+	border: none;
 	overflow: auto;
 }
 .p-autocomplete-token {
@@ -98,6 +97,6 @@ export default {
 }
 .p-autocomplete-panel {
 	line-height: normal;
-	height: 30%;
+	height: 40%;
 }
 </style>
