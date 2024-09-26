@@ -1,30 +1,9 @@
 <template>
 	<div>
 		<h1>Study Information</h1>
-		<InputTextSingleLine
-			question="Where was the trial registered OR where do you intend to register it?"
-			v-model="$tera.state.trialRegistered"
-			placeholder="https://clinicaltrials.gov, https://www.who.int/clinical-trials-registry-platform"
-		/>
-		<InputTextSingleLine
-			question="What is the trial registration number?"
-			v-model="$tera.state.trialRegistrationNumber"
-			placeholder="NCT05555953"
-		/>
-		<InputTextSingleLine
-			question="What is the version of the protocol?"
-			v-model="$tera.state.protocolVersion"
-			placeholder="1, 2"
-		/>
-		<InputDate
-			question="What date was / will be the protocol registered?"
-			v-model="$tera.state.dateOfProtocolRegistration"
-		/>
-		<InputTextMultiLine
-			question="Identify the sources and types of financial, material, and other support."
-			placeholder="The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper."
-			v-model="$tera.state.source"
-		/>
+		<i
+			>General Information of the trial</i
+		>
 		<InputTextSingleLineMulti
 			question="Who are the relevant stakeholders?"
 			v-model="$tera.state.stakeholder"
@@ -64,20 +43,25 @@ Other
 Specify (for all above)"
 			v-model="$tera.state.dataCollectionMethod"
 		/>
+
+		<BasePreviewOutput :component="outputComponent" />
 	</div>
 </template>
 <script>
-import InputTextSingleLine from "@/components/InputTextSingleLine.vue";
-import InputDate from "@/components/InputDate";
 import InputTextMultiLine from "@/components/InputTextMultiLine.vue";
 import InputTextSingleLineMulti from "@/components/InputTextSingleLineMulti.vue";
+import OutputAuditStudyInformation from "./OutputAuditStudyInformation.vue";
+
 export default {
 	name: "ViewAuditStudyInformation",
 	components: {
-		InputTextSingleLine,
-		InputDate,
 		InputTextMultiLine,
 		InputTextSingleLineMulti
+	},
+	data() {
+		return {
+            outputComponent: OutputAuditStudyInformation
+		};
 	}
 	
 };
