@@ -8,22 +8,6 @@ let defaultProjectState = {
 	author: [""],
 	acknowledgements: [""],
 
-	//study information
-	trialRegistered: "",
-	protocolVersion: "",
-	dateOfProtocolRegistration: null,
-	source: "",
-	stakeholder: [""],
-	stakeholderConsultation: "",
-	supervisor: "",
-	auditQuestionDescription: "",
-	auditObjective: "",
-	dataCollectionMethod: "",
-
-	//Study Setting
-	participantsRecruitedFrom: [],
-	healthServicesParticipantsRecruited: [],
-	noStudySetting: "Study setting is not defined.",
 	//acknowledgement:
 	designhelp: [],
 	statistical: [],
@@ -494,68 +478,6 @@ let defaultProjectState = {
 			}
 		]
 	},
-	//Participant Timeline
-	isSchematicDiagramFilled: false,
-	//Sample Size
-	trialType: null,
-	trialTypeOther: null,
-	trialStudyPower: null,
-	trialStudyPowerOther: null,
-	levelOfSignificance: null,
-	levelOfSignificanceOther: null,
-	plannedSampleSize: null,
-	effectSize: null,
-	participantDropout: null,
-
-	//Recruitment
-	strategies: [],
-	noRecruitment: "No strategies were implemented to achieve adequate participant enrolment.",
-	//Assignment of Interventions
-	ratio: [],
-	participantAllocation: [],
-	allocationOfParticipants: null,
-	allocationSequenceMechanisms: [],
-	concealSequence: null,
-	blindedPeople: [],
-	methodBlindedPeople: null,
-	circumstancesUnblinding: [],
-
-	//Data Collection, Management and Analysis
-	plansForDataManagement: null,
-	processesForDataQuality: null,
-	furtherDetails: [],
-	statisticalEstimate: null,
-	adverseEventsAnalysis: null,
-	subgroupsCategorization: null,
-	subgroupAnalysisPerformed: null,
-	adjustedAnalysis: null,
-	efficacyComparisons: [],
-	populationEfficacyComparison: null,
-	safetyPopulation: null,
-	missingDataStates: [],
-	missingDataApproachReason: null,
-	plannedSensitivityAnalyses: null,
-
-	//Monitoring
-	isDataMonitoringCommittee: false,
-	roleDetails: null,
-	reportingStructureDetails: null,
-	compositionDetails: null,
-	committeeDetailsLink: null,
-	reasonCommitteeNotSetUp: null,
-	isInterimAnalysis: false,
-	interimAnalysisTimePoints: null,
-	conditionStoppingStudy: null,
-	interimAnalysisResults: [],
-	studyTerminationFinalDecision: [],
-	interimAnalysisNotPlannedReason: null,
-	adverseEffectsMonitoring: null,
-	proceduresAuditingTrial: null,
-
-	//Ethics and Dissemination
-	researchEthicsApproval: null,
-	dataStorage: null,
-	presentationPlans: null,
 
 	//picot:
 	population: [{ inclusion: true }],
@@ -564,20 +486,7 @@ let defaultProjectState = {
 	outcomes: [{ inclusion: true, type: true }],
 	setting: [{ inclusion: true }],
 	types: [],
-	sexes: [],
-	conditions: [],
-	severity: [],
-	inclusionFactors: [],
-	excludedFactors: [],
-	measurements: [],
-	auditPopulation: "",
 
-	//Interventions
-	conditionsTreatment: [],
-	adherenceEmployees: [],
-	adherenceMonitoringFactors: [],
-	treatment: "",
-	interventionsNotAllowed: "",
 	//search:
 	// Search Strategy
 	components: [],
