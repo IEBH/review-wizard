@@ -1,17 +1,16 @@
 <template>
 	<div>
 		<h1>Results</h1>
-		<div v-if="$tera.state.metaReplicant && $tera.state.metaReplicant.file">
-			<InputEditorMultiline 
-			question="" 
-			:placeholder="placeholder" 
-			v-model="$tera.state.metaReplicant.file" />
+		<div v-if="($tera.state.metaReplicant && $tera.state.metaReplicant.file)">
+			<InputEditorMultiline question="" :placeholder="placeholder" v-model="combinedContent" />
 		</div>
-
+		<!-- <button @click="buttonClick">Click Here</button> -->
 	</div>
 </template>
+
 <script>
 import InputEditorMultiline from "@/components/InputEditorMultiline.vue";
+import translations from '@/lang/en.json';
 
 export default {
 	components: {
@@ -19,8 +18,331 @@ export default {
 	},
 	data() {
 		return {
-			placeholder: 'Replicant Results'
+			placeholder: 'Replicant Results',
+			translations
 		};
+	},
+	computed: {
+		combinedContent() {
+			const fileContent = this.$tera.state.metaReplicant.file || '';
+			const rows = this.$tera.state.detable?.rows || [];
+			const groupedData = this.groupByHeaders(rows);
+
+			const dynamicContent = this.generateDynamicContent(groupedData);
+
+			const studyCharacteristicsSection = dynamicContent
+				? `\n\n<h3>Study Characteristics</h3>\n${dynamicContent}`
+				: '';
+
+			return fileContent + studyCharacteristicsSection;
+		}
+	},
+	methods: {
+		buttonClick() {
+			console.log(JSON.stringify(this.$tera.state.detable));
+		},
+		groupByHeaders(rows) {
+			const grouped = {};
+			rows.forEach(row => {
+				Object.keys(row).forEach(key => {
+					if (!grouped[key]) grouped[key] = [];
+					grouped[key].push(row[key]);
+				});
+			});
+			return grouped;
+		},
+		generateDynamicContent(groupedData) {
+			const templates = this.translations.templates;
+			//normalize values (e.g. : '900Ml', '900 ml' -> '900 ml')
+			function normalizeValue(value) {
+				if (!value) return '';
+				const match = value.match(/^(\d+\.?\d*)\s*(\w*)$/i);
+				if (match) {
+					const numberPart = match[1];
+					const unitPart = match[2].toLowerCase();
+					return `${numberPart} ${unitPart}`;
+				}
+				return value;
+			}
+			// function handling Other keys-user added using Other button
+			function handleDynamicKey(key, values) {
+				const normalizedValues = values.map(normalizeValue);
+				const valueCounts = {};
+				normalizedValues.forEach(value => valueCounts[value] = (valueCounts[value] || 0) + 1);
+				const entries = Object.entries(valueCounts);
+
+				return entries.map(([value, count]) => {
+					if (value) {
+						if (count > 1) {
+							return `In ${count} studies the ${key} was ${value}.`;
+						} else {
+							return `In 1 study the ${key} was ${value}.`;
+						}
+					}
+
+				}).join(' ');
+			}
+
+			// Handling 'Placebo', 'Sham device', 'Usual care', 'No treatment'
+			function handleComparisons(groupedData) {
+				const comparisonKeys = ['Placebo', 'Sham device', 'Usual care', 'No treatment'];
+				const filteredValues = comparisonKeys
+					.filter(key => groupedData[key] && groupedData[key].some(value => value))
+					.map(key => key);
+
+				if (filteredValues.length === 0) return '';
+				if (filteredValues.length === 1) {
+					return `The comparison was ${filteredValues[0]}.`;
+				}
+				const allButLast = filteredValues.slice(0, -1).join(', ');
+				const lastItem = filteredValues[filteredValues.length - 1];
+				return `The comparisons were ${allButLast} or ${lastItem}.`;
+			}
+
+			let content = Object.keys(groupedData).map(key => {
+				const values = groupedData[key];
+				if (templates[key] === "NA" || values.length === 0) {
+					return '';
+				}
+
+				switch (key) {
+					case 'Year': {
+						const uniqueValues = [...new Set(values)].filter(Boolean);
+						if (uniqueValues.length === 1) {
+							return templates[key][1].replace('{{year}}', uniqueValues[0]);
+						}
+						const startYear = Math.min(...uniqueValues.map(Number));
+						const endYear = Math.max(...uniqueValues.map(Number));
+						return templates[key][0].replace('{{startYear}}', startYear).replace('{{endYear}}', endYear);
+					}
+
+					case 'Education level':
+					case 'Duration of follow-up': {
+						const minDuration = Math.min(...values.filter(x => x != '').map(Number));
+						const maxDuration = Math.max(...values.map(Number));
+						return templates[key][0]
+							.replace('{{minDuration}}', minDuration)
+							.replace('{{maxDuration}}', maxDuration)
+							.replace('{{studyCount}}', values.length);
+					}
+
+					case 'Age': {
+						const minAge = Math.min(...values.filter(x => x != '').map(Number));
+						const maxAge = Math.max(...values.map(Number));
+						return templates[key][0]
+							.replace('{{minAge}}', minAge)
+							.replace('{{maxAge}}', maxAge)
+							.replace('{{studyCount}}', values.length);
+					}
+
+					case 'Number of participants': {
+						const minParticipants = Math.min(...values.filter(x => x != '').map(Number));
+						const maxParticipants = Math.max(...values.map(Number));
+						return templates[key][0]
+							.replace('{{minParticipants}}', minParticipants)
+							.replace('{{maxParticipants}}', maxParticipants)
+							.replace('{{studyCount}}', values.length);
+					}
+
+					case 'Country':
+					case 'Study design':
+					case 'Setting': {
+						const Counts = {};
+						values.forEach(value => Counts[value] = (Counts[value] || 0) + 1);
+						const sentences = Object.entries(Counts).map(([list, count]) => {
+							if (list) {
+								if (count > 1) {
+									return templates[key][0]
+										.replace('{{count}}', count)
+										.replace('{{list}}', list);
+								} else {
+									return templates[key][1]
+										.replace('{{list}}', list);
+								}
+							}
+						}).filter(Boolean);
+
+						if (sentences.length > 1) {
+							const lastSentence = sentences.pop();
+							return sentences.join(', ') + ' and ' + lastSentence + '.';
+						}
+						if (sentences.length == 0) {
+							break;
+						}
+						return sentences[0] + '.';
+					}
+
+					case 'Type of intervention': {
+						const interventionCounts = {};
+						values.forEach(value => interventionCounts[value] = (interventionCounts[value] || 0) + 1);
+						return Object.entries(interventionCounts).map(([intervention, count]) => {
+							if (intervention) {
+								if (count > 1) {
+									return `${count} studies looked at ${intervention}`;
+								} else {
+									return `1 study looked at ${intervention}`;
+								}
+							}
+
+						}).join(', ') + '.';
+					}
+
+					case 'Whether currently pregnant':
+					case 'Smoker': {
+						const valueCounts = { yes: 0, no: 0 };
+						values.forEach(value => {
+							if (value.toLowerCase() === 'yes') {
+								valueCounts.yes += 1;
+							} else if (value.toLowerCase() === 'no') {
+								valueCounts.no += 1;
+							}
+						});
+						const sentences = [];
+						if (valueCounts['yes'] > 0) {
+							if (valueCounts['yes'] === 1) {
+								sentences.push(templates[key][0]
+									.replace('{{count}}', valueCounts['yes']))
+							} else {
+								sentences.push(templates[key][1]
+									.replace('{{count}}', valueCounts['yes']))
+							}
+						}
+						if (valueCounts['no'] > 0) {
+							if (valueCounts['no'] === 1) {
+								sentences.push(templates[key][2]
+									.replace('{{count}}', valueCounts['no']))
+							} else {
+								sentences.push(templates[key][3]
+									.replace('{{count}}', valueCounts['no']))
+							}
+						}
+						if (sentences.length == 0) {
+							break;
+						}
+						return sentences.join('. ');
+					}
+					case 'Countryq': {
+						console.log("check for value", values);
+						break;
+					}
+					case 'Dose':
+					case 'Dose(I)':
+					case 'Frequency':
+					case 'Frequency(I)':
+					case 'Method of delivery':
+					case 'Method of delivery(I)':
+					case 'Who provided the intervention':
+					case 'Who provided the intervention(I)':
+					case 'How the intervention was provided':
+					case 'How the intervention was provided(I)': {
+						const normalizedValues = values.map(normalizeValue);
+						const valueCounts = {};
+						normalizedValues.forEach(value => valueCounts[value] = (valueCounts[value] || 0) + 1);
+						const entries = Object.entries(valueCounts);
+
+						const sentences = entries.map(([list, count]) => {
+							if (list) {
+								if (count > 1) {
+									return templates[key][0]
+										.replace('{{count}}', count)
+										.replace('{{list}}', list);
+								} else {
+									return templates[key][1]
+										.replace('{{count}}', count)
+										.replace('{{list}}', list);
+								}
+							}
+						}).filter(Boolean);
+						// console.log("Doseeee", sentences);
+						if (sentences.length == 0) {
+							break;
+						}
+						if (sentences.length > 1) {
+							const lastSentence = sentences.pop();
+							return sentences.join(', ') + ' and ' + lastSentence + '.';
+						}
+						// key + "---" + 
+						return sentences[0] + '.';
+					}
+					// {
+					// 	return handleDynamicKey(key, values);
+					// }
+
+					case 'Placebo':
+					case 'Sham device':
+					case 'Usual care':
+					case 'No treatment': {
+						// return handleComparisons(groupedData);
+						break;
+					}
+					case 'Gender': {
+						const genderCounts = {
+							male: 0,
+							female: 0,
+							both: 0,
+							percentages: {}
+						};
+
+						values.forEach(value => {
+							const lowerCaseValue = value.toLowerCase();
+							if (lowerCaseValue.includes('%')) {
+								if (!genderCounts.percentages[value]) {
+									genderCounts.percentages[value] = 0;
+								}
+								genderCounts.percentages[value] += 1;
+							} else if (lowerCaseValue === 'male/female' || lowerCaseValue === 'male and female' || lowerCaseValue=='both') {
+								// console.log("allllllllll",value,lowerCaseValue)
+								genderCounts.both += 1;
+							} else if (lowerCaseValue=='male') {
+								genderCounts.male += 1;
+							} else if (lowerCaseValue=='female') {
+								genderCounts.female += 1;
+							}
+						});
+
+						const sentences = [];
+
+						const percentageSentences = Object.entries(genderCounts.percentages).map(([percent, count]) => {
+							return `${count} stud${count > 1 ? 'ies' : 'y'} had ${percent}`;
+						});
+						if (percentageSentences.length > 0) {
+							sentences.push(percentageSentences.join(', '));
+						}
+
+						if (genderCounts.male > 0) {
+							sentences.push(`${genderCounts.male} stud${genderCounts.male > 1 ? 'ies' : 'y'} included males`);
+						}
+
+						if (genderCounts.female > 0) {
+							sentences.push(`${genderCounts.female} stud${genderCounts.female > 1 ? 'ies' : 'y'} included females`);
+						}
+
+						if (genderCounts.both > 0) {
+							sentences.push(`${genderCounts.both} stud${genderCounts.both > 1 ? 'ies' : 'y'} included both males and females`);
+						}
+
+						return sentences.join(', ') + '.';
+					}
+					default: {
+						return handleDynamicKey(key, values);
+					}
+				}
+			}).filter(Boolean).join('. ') + '.';
+			const comparisonSentence = handleComparisons(groupedData);
+			// console.log('hereeeeeeeeeee', comparisonSentence + content)
+			if (comparisonSentence) {
+				content = content + ' ' + comparisonSentence;
+			}
+			// return content;
+			return content
+				.replace(/ \./g, '.')
+				.replace(/\.\./g, '.')
+				.replace(/,\./g, '.')
+				.replace(/ ,/g, ',');
+		}
+
+
+
 	}
 };
 </script>

@@ -501,7 +501,7 @@ let defaultProjectState = {
 	databases: [],
 	dateOfSearch: null,
 	dateSearchedUntil: null,
-	outputVersions:{},
+	outputVersions: {},
 	// Search Strings for Trial Registries
 	registries: [],
 	registryDateOfSearch: null,
@@ -536,7 +536,7 @@ let defaultProjectState = {
 	//numberOfExtractors: null,
 	extractionAuthors: [],
 	//New
-	optionalDetail: false,
+	optionalDetail: true,
 	methods: [],
 	participants: [],
 	interventions: [],
@@ -587,7 +587,11 @@ let defaultProjectState = {
 	whyNotSensitivityAnalysis: "We did not perform sensitivity analysis",
 
 	//contribution:
-	conAuthors: []
+	conAuthors: [],
+
+	// Meta-Replicant Result
+	metaReplicant: { file: '', detable: {}, combinedContent: '', fileContent: '', detableContent: '', userContent: '' }
+
 };
 
 export { defaultProjectState };

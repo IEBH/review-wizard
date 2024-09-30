@@ -1,0 +1,98 @@
+{
+  "templates": {
+    "Study authors": "NA",
+    "Year": [
+      "The studies were published between {{startYear}} and {{endYear}}",
+      "The only included study was published in {{year}}"
+    ],
+    "Country": [
+      "{{count}} studies were conducted in {{list}}",
+      "1 study was conducted in {{list}}"
+    ],
+    "Study design": [
+      "{{count}} studies were {{list}}",
+      "1 study was {{list}}"
+    ],
+    "Duration of follow-up": [
+      "The duration of follow-up ranged from {{minDuration}} to {{maxDuration}}",
+      "The only included study had {{minDuration}} follow-up duration"
+    ],
+    "Setting_old": "{{count}} studies were conducted in {{settingList}}",
+    "Setting": [
+      "{{count}} studies were conducted in a {{list}}",
+      "1 study was conducted in a {{list}}"
+    ],
+    "Number of participants": [
+      "The number of participants ranged from {{minParticipants}} to {{maxParticipants}}",
+      "The only included study had {{minParticipants}} participants"
+    ],
+    "Age": [
+      "The ages of participants ranged from {{minAge}} to {{maxAge}}",
+      "The only included study had participants aged {{minAge}}"
+    ],
+    "Gender": "The studies included {{gender}}",
+    "Whether currently pregnant": [
+      "Only {{count}} study involved pregnant participants",
+      "{{count}} studies included participants who were pregnant.",
+      "Only {{count}} study did not involve pregnant participants.",
+      "{{count}} studies included participants who were not pregnant."
+    ],
+    "Smoker": [
+      "Only {{count}} study involved smoking participants.",
+      "{{count}} studies included participants who do smoke.",
+      "Only {{count}} study did not involve smoking participants.",
+      "{{count}} studies included participants who do not smoke."
+    ],
+    "Any co-comorbidity": "The following co-morbidities were included: {{comorbidities}}",
+    "Education level_old": "The education level of participants ranged from {{minEducation}} to {{maxEducation}}",
+    "Education level": [
+      "The education level of participants ranged from {{minDuration}} to {{minDuration}}",
+      "The only included study participants had {{minDuration}} education level"
+    ],
+    "Type of intervention": "{{count}} studies looked at {{interventionList}}",
+    "Dose": [
+      "In {{count}} studies the dose was {{list}}",
+      "Only 1 study used a dose of {{list}}"
+    ],
+    "Frequency": [
+      "In {{count}} studies the intervention was given {{list}}",
+      "The only included study was given {{list}}"
+    ],
+    "Method of delivery": [
+      "In {{count}} studies the intervention was given {{list}}",
+      "The only included study was given {{list}}"
+    ],
+    "Who provided the intervention": [
+      "In {{count}} studies {{list}} provided the intervention",
+      "The only included study provided the intervention with {{list}}"
+    ],
+    "How the intervention was provided": [
+      "In {{count}} studies the intervention was given {{list}}",
+      "The only included study provided the intervention {{list}}"
+    ],
+    "Dose(I)": [
+      "In {{count}} studies the dose was {{list}}",
+      "Only 1 study used a dose of {{list}}"
+    ],
+    "Frequency(I)": [
+      "In {{count}} studies the intervention was given {{list}}",
+      "The only included study was given {{list}}"
+    ],
+    "Method of delivery(I)": [
+      "In {{count}} studies the intervention was given {{list}}",
+      "The only included study was given {{list}}"
+    ],
+    "Who provided the intervention(I)": [
+      "In {{count}} studies {{list}} provided the intervention",
+      "The only included study provided the intervention with {{list}}"
+    ],
+    "How the intervention was provided(I)": [
+      "In {{count}} studies the intervention was given {{list}}",
+      "The only included study provided the intervention {{list}}"
+    ],
+    "Placebo": "The comparisons were {{comparisonList}}",
+    "Usual care": "The comparisons were {{comparisonList}}",
+    "Sham device": "The comparisons were {{comparisonList}}",
+    "No treatment": "The comparisons were {{comparisonList}}"
+  }
+}
