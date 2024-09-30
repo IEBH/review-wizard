@@ -20,6 +20,7 @@ import ViewMethodHeterogeneity from "./ViewMethodHeterogeneity.vue";
 import ViewMethodPublicationBiases from "./ViewMethodPublicationBiases.vue";
 import ViewAcknowledgement from "./ViewAcknowledgement";
 import ViewMethodContributions from "./ViewMethodContributions";
+import ViewMethodReplicantResults from "./ViewMethodReplicantResults.vue";
 
 //New ReviewPlan Table
 import ViewMethodReviewPlan from "./ViewMethodReviewPlan";
@@ -112,6 +113,11 @@ const routes = [
 		name: "ac-view",
 		path: "/planning/ac-view",
 		component: ViewAcknowledgement
+	},
+	{
+		name: "replicant-result",
+		path: "/replicant-result",
+		component: ViewMethodReplicantResults
 	},
 	{
 		name: "rs-plan",
@@ -832,6 +838,16 @@ const getMenu = () => [
 		title: "Acknowledgement",
 		icon: "pi pi-file",
 		href: `/planning/ac-view`
+	},
+	{
+		header: true,
+		title: "RESULTS",
+		hiddenOnCollapse: true
+	},
+	{
+		title: "Results",
+		icon: "pi pi-file",
+		href: `/replicant-result`
 	},
 	{
 		header: true,
