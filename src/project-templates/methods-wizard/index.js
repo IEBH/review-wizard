@@ -1,9 +1,3 @@
-//import ViewMethodSearch from "./ViewMethodSearch.vue";
-//import ViewMethodSearchDatabses from "./ViewMethodSearchDatabases.vue";
-//import ViewMethodSearchRegistries from "./ViewMethodSearchRegistries.vue";
-//import ViewMethodSearchPublicationType from "./ViewMethodSearchPublicationType.vue";
-//import ViewMethodSearchSupplementoryMethods from "./ViewMethodSearchSupplementoryMethods.vue";
-//import ViewMethodHeterogeneityPublicationBias from "./ViewMethodHeterogeneityPublicationBias.vue";
 import ViewMethodPicot from "./ViewMethodPicot.vue";
 import ViewMethodScreening from "./ViewMethodScreening.vue";
 import ViewMethodDataExtraction from "./ViewMethodDataExtraction.vue";
@@ -17,7 +11,7 @@ import ViewTitlepage from "./ViewTitlepage.vue";
 import ViewHome from "./ViewHome.vue";
 import ViewOutput from "./ViewOutput.vue";
 import ViewMethodIntroduction from "./ViewMethodIntroduction.vue";
-import ViewMethodResearchPlan from "./ViewMethodResearchPlan.vue";
+//import ViewMethodResearchPlan from "./ViewMethodResearchPlan.vue";
 import ViewTitlePagePeople from "./ViewTitlePagePeople";
 //new add
 import ViewMethodSearchStrategy from "./ViewMethodSearchStrategy.vue";
@@ -26,7 +20,9 @@ import ViewMethodHeterogeneity from "./ViewMethodHeterogeneity.vue";
 import ViewMethodPublicationBiases from "./ViewMethodPublicationBiases.vue";
 import ViewAcknowledgement from "./ViewAcknowledgement";
 import ViewMethodContributions from "./ViewMethodContributions";
-import ViewMethodReplicantResults from "./ViewMethodReplicantResults.vue";
+
+//New ReviewPlan Table
+import ViewMethodReviewPlan from "./ViewMethodReviewPlan";
 
 // The path for deepstream, where the bulk of the information is kept (e.g. `methods`)
 const deepstreamPath = "methods";
@@ -48,7 +44,7 @@ const routes = [
 	{
 		name: "rs-plan",
 		path: "/planning/rs-plan",
-		component: ViewMethodResearchPlan
+		component: ViewMethodReviewPlan
 	},
 	{
 		name: "introduction",
@@ -118,14 +114,9 @@ const routes = [
 		component: ViewAcknowledgement
 	},
 	{
-		name: "replicant-result",
-		path: "/replicant-result",
-		component: ViewMethodReplicantResults
-	},
-	{
 		name: "rs-plan",
 		path: "/reports/rs-plan",
-		component: ViewMethodResearchPlan
+		component: ViewMethodReviewPlan
 	},
 	{
 		name: "output",
@@ -136,7 +127,7 @@ const routes = [
 		name: "de-view",
 		path: "/reports/de-view",
 		component: ViewMethodDataExtractionReport
-	}
+	},
 	/*{
 		path: "/output",
 		component: ViewOutput
@@ -208,7 +199,7 @@ const data = {
 					tasks: "Daily administrative meetings",
 					toolDescription:
 						"Short daily meetings to review progress, discuss issues and document decisions",
-					toolLink: [{ name: "Research Plan", link: "/planning/rs-plan" }],
+					toolLink: [{ name: "Review Plan", link: "/planning/rs-plan" }],
 					notes: "",
 					peopleInvolved: ""
 					//notes: ""
@@ -753,7 +744,7 @@ const getMenu = () => [
 		href: `/planning/people`
 	},
 	{
-		title: "Research Plan",
+		title: "Review Plan",
 		icon: "pi pi-list",
 		href: `/planning/rs-plan`
 	},
@@ -844,21 +835,11 @@ const getMenu = () => [
 	},
 	{
 		header: true,
-		title: "RESULTS",
-		hiddenOnCollapse: true
-	},
-	{
-		title: "Results",
-		icon: "pi pi-file",
-		href: `/replicant-result`
-	},
-	{
-		header: true,
 		title: "REPORTS",
 		hiddenOnCollapse: true
 	},
 	{
-		title: "Research Plan",
+		title: "Review Plan",
 		icon: "pi pi-list",
 		href: `/reports/rs-plan`
 	},

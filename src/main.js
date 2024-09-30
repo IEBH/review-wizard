@@ -21,6 +21,8 @@ Vue.use(VueSidebarMenu);
 import ToastService from "primevue/toastservice";
 Vue.use(ToastService);
 
+import "primevue/resources/primevue.min.css";
+import "primeicons/primeicons.css";
 //primevue
 import PrimeVue from "primevue/config";
 Vue.use(PrimeVue);
@@ -29,6 +31,12 @@ Vue.use(PrimeVue);
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
+
+import GenericTable from "generictable-v2";
+Vue.use(GenericTable);
+
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-quartz.css";
 
 // Import $tera / @iebh/Tera-fy global service
 // NOTE: See bottom of file inside main async() init loop for when TeraFy actually boots
