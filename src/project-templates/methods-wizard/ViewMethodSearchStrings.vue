@@ -32,7 +32,11 @@
 			v-model="$tera.state.dateSearchedUntil"
 		/>
 
-		<div class="link_b" v-if="$tera.state.databases.length > 0">
+		<div
+			class="link_b"
+			style="position:relative; margin-left: 85%;"
+			v-if="$tera.state.databases.length > 0"
+		>
 			<el-link type="primary" @click="overrideAll">Override All</el-link>
 			|
 			<el-link type="primary" @click="copyAll">Copy All</el-link>
