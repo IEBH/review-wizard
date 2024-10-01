@@ -36,20 +36,35 @@ let defaultProjectState = {
 	//researchplan:
 	planTable: {
 		headers: [
-			{ name: "progress", label: "Completed" },
-			{ name: "tasks", label: "Task" },
 			{
-				name: "toolDescription",
-				label: "Description"
-			},
-			{ name: "toolLink", label: "Tool" },
-			{
-				name: "peopleInvolved",
-				label: "People"
+				headerName: "Completed",
+				field: "progress",
+				editable: true,
+				width: 150
 			},
 			{
-				name: "notes",
-				label: "Notes"
+				field: "tasks",
+				headerName: "Task",
+				cellEditor: "agTextCellEditor",
+				editable: true,
+				width: 220
+			},
+			{
+				field: "toolDescription",
+				headerName: "Description"
+			},
+			{
+				field: "toolLink",
+				headerName: "Tool",
+				width: 220
+			},
+			{
+				field: "peopleInvolved",
+				headerName: "People"
+			},
+			{
+				field: "notes",
+				headerName: "Notes"
 			}
 		],
 		rows: [

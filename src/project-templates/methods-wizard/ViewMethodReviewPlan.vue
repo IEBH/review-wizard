@@ -8,6 +8,7 @@
 			:gridOptions="gridOptions"
 			:singleRow="singleRow"
 			@api="getApi"
+			@updateTable="updateTable"
 		/>
 	</div>
 </template>
@@ -43,7 +44,7 @@ export default {
 				notes: "",
 				peopleInvolved: ""
 			},
-			columnDefs: [
+			/*columnDefs: [
 				{
 					headerName: "Completed",
 					field: "progress",
@@ -58,7 +59,7 @@ export default {
 					width: 220
 				},
 				{
-					field: "toolDescription",
+					field: "toolDescription", 
 					headerName: "Description",
 					cellRenderer: "tableEditor"
 				},
@@ -71,7 +72,7 @@ export default {
 				{
 					field: "peopleInvolved",
 					headerName: "People",
-					cellRenderer: "tableAutoComplete",
+					cellRenderer: "tableAutoComplete", //
 					cellRendererParams: {
 						titlePageAuthors: this.$tera.state.author.map(el => {
 							return { label: el };
@@ -83,9 +84,36 @@ export default {
 					headerName: "Notes",
 					cellRenderer: "tableEditor"
 				}
-			],
-			rowData: this.$tera.state.planTable.rows
+			],*/
+			rowData: this.$tera.state.planTable.rows,
+			columnDefs: this.$tera.state.planTable.headers
 		};
+	},
+	beforeMount() {
+		this.columnDefs.forEach(col => {
+			if (col.field == "toolDescription") {
+				//col.cellRenderer = "tableEditor";
+				this.$set(col, "cellRenderer", "tableEditor");
+			}
+			if (col.field == "toolLink") {
+				//col.cellRenderer = "tableLink";
+				this.$set(col, "cellRenderer", "tableLink");
+			}
+			if (col.field == "peopleInvolved") {
+				//col.cellRenderer = "tableAutoComplete";
+				this.$set(col, "cellRenderer", "tableAutoComplete");
+				let cellRendererParams = {
+					titlePageAuthors: this.$tera.state.author.map(el => {
+						return { label: el };
+					})
+				};
+				this.$set(col, "cellRendererParams", cellRendererParams);
+			}
+			if (col.field == "notes") {
+				//col.cellRenderer = "tableEditor";
+				this.$set(col, "cellRenderer", "tableEditor");
+			}
+		});
 	},
 	mounted() {
 		this.rowData.map(row => {
@@ -153,6 +181,43 @@ export default {
 	methods: {
 		getApi(api) {
 			this.gridApi = api;
+		},
+		//Push column & row changes from ag-grid to $terafy
+		//FIXME: currently this trigger to save is muanual even has binded $tera.state
+		updateTable(event) {
+			//Row $tera.state change
+			if (event.changeEvent == "Row") {
+				event.Dir == 0
+					? this.$tera.state.planTable.rows.splice(
+							event.RowInfo.selectedIndex,
+							1
+					  )
+					: this.$tera.state.planTable.rows.splice(
+							event.RowInfo.selectedIndex - event.Dir,
+							0,
+							event.RowInfo.row
+					  );
+			}
+			//Column $tera.state change
+			if (event.changeEvent == "Column") {
+				console.log("col:", event);
+				event.Dir == 0
+					? this.$tera.state.planTable.headers.splice(
+							event.ColInfo.selectedIndex,
+							1
+					  )
+					: event.Dir > 0
+					? this.$tera.state.planTable.headers.splice(
+							event.ColInfo.selectedIndex,
+							0,
+							event.ColInfo.col
+					  )
+					: this.$tera.state.planTable.headers.splice(
+							event.ColInfo.selectedIndex + 1,
+							0,
+							event.ColInfo.col
+					  );
+			}
 		}
 	}
 };
