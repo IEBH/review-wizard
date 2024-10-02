@@ -33,7 +33,7 @@ export default {
 			gridOptions: {
 				rowHeight: 180,
 				defaultColDef: {
-					width: 300 //default width of each column
+					width: 280 //default width of each column
 				}
 			},
 			singleRow: {

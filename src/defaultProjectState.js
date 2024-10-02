@@ -51,7 +51,8 @@ let defaultProjectState = {
 			},
 			{
 				field: "toolDescription",
-				headerName: "Description"
+				headerName: "Description",
+				width: 280
 			},
 			{
 				field: "toolLink",
@@ -60,11 +61,13 @@ let defaultProjectState = {
 			},
 			{
 				field: "peopleInvolved",
-				headerName: "People"
+				headerName: "People",
+				width: 280
 			},
 			{
 				field: "notes",
-				headerName: "Notes"
+				headerName: "Notes",
+				width: 300
 			}
 		],
 		rows: [
