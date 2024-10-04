@@ -1,29 +1,73 @@
 <template>
 	<div>
 		<h1>Results</h1>
-		<div v-if="($tera.state.metaReplicant && $tera.state.metaReplicant.file)">
-			<InputEditorMultiline question="" :placeholder="placeholder" v-model="combinedContent" />
+		<!-- <div v-if="($tera.state.metaReplicant && $tera.state.metaReplicant.file)"> -->
+		<div v-if="($tera.state.metaResult && $tera.state.metaResult.userChange)">
+			<div style="float: right;">
+				<i v-if="$tera.state.metaResult.locked" class="pi pi-check"
+					style="margin-right: 0.5rem;margin-bottom: 0.6rem;color: green;font-weight: 700;"
+					aria-hidden="true">
+				</i>
+				<span v-if="$tera.state.metaResult.locked"
+					style="margin-right: 1rem;margin-bottom: 0.6rem;color: green;font-weight: 700;">
+					Locked
+				</span>
+				<Button :label="$tera.state.metaResult.locked ? 'Unlock' : 'Lock'"
+					:icon="$tera.state.metaResult.locked ? 'pi pi-lock-open' : 'pi pi-lock'" class="p-button-info"
+					@click="onLockChange()" />
+			</div>
+
+			<InputEditorMultiline question="" :placeholder="placeholder" v-model="$tera.state.metaResult.userChange" />
 		</div>
 		<!-- <button @click="buttonClick">Click Here</button> -->
+		<!-- PrimeVue Dialog -->
+		<Dialog :visible="confirmDialogVisible" modal header="Caution" :style="{ width: '32rem' }">
+			<div class="flex">
+				<Button icon="pi pi-exclamation-triangle" class="p-button-danger btnStyles" />
+				<span icon="pi pi-exclamation-triangle" class="text-surface-500 dark:text-surface-400 block mb-8">This
+					will override your changes. Do you wish
+					to proceed?</span>
+			</div>
+			<div class="divStyle">
+				<Button type="button" label="Cancel" class="p-button-info"
+					@click="confirmDialogVisible = false"></Button>
+				<Button type="button" label="Yes, Proceed" class="p-button-danger"
+					@click="lockChangeConfirmed()"></Button>
+			</div>
+		</Dialog>
 	</div>
 </template>
 
 <script>
 import InputEditorMultiline from "@/components/InputEditorMultiline.vue";
 import translations from '@/lang/en.json';
+import Button from "primevue/button";
+import Dialog from 'primevue/dialog';
 
 export default {
 	components: {
-		InputEditorMultiline
+		InputEditorMultiline,
+		Button,
+		Dialog
 	},
 	data() {
 		return {
 			placeholder: 'Replicant Results',
-			translations
+			translations,
+			confirmDialogVisible: false,
+			regeneratedValue: ''
 		};
 	},
+	mounted() {
+		if (this.$tera.state.metaResult.locked == false || (this.$tera.state.metaResult.locked && this.$tera.state.metaResult.userChange == "")) {
+			this.$tera.state.metaResult.userChange = "";
+			console.log("Here", this.$tera.state.metaResult.locked, this.$tera.state.metaResult.userChange)
+		}
+		this.combinedContent();
+
+	},
 	computed: {
-		combinedContent() {
+		combinedContent_cal() {
 			const fileContent = this.$tera.state.metaReplicant.file || '';
 			const rows = this.$tera.state.detable?.rows || [];
 			const groupedData = this.groupByHeaders(rows);
@@ -38,6 +82,24 @@ export default {
 		}
 	},
 	methods: {
+		combinedContent() {
+			const fileContent = this.$tera.state.metaReplicant.file || '';
+			const rows = this.$tera.state.detable?.rows || [];
+			const groupedData = this.groupByHeaders(rows);
+
+			const dynamicContent = this.generateDynamicContent(groupedData);
+
+			const studyCharacteristicsSection = dynamicContent
+				? `\n\n<h3>Study Characteristics</h3>\n${dynamicContent}`
+				: '';
+			this.regeneratedValue = "";
+			this.regeneratedValue = fileContent + studyCharacteristicsSection;
+			if (!this.$tera.state.metaResult.locked) {
+				this.$tera.state.metaResult.userChange = this.regeneratedValue;
+			} else if (this.$tera.state.metaResult.locked && this.$tera.state.metaResult.userChange == "") {
+				this.$tera.state.metaResult.userChange = this.regeneratedValue;
+			}
+		},
 		buttonClick() {
 			console.log(JSON.stringify(this.$tera.state.detable));
 		},
@@ -118,30 +180,70 @@ export default {
 
 					case 'Education level':
 					case 'Duration of follow-up': {
-						const minDuration = Math.min(...values.filter(x => x != '').map(Number));
-						const maxDuration = Math.max(...values.map(Number));
+						const filteredValues = values
+							.filter(x => x != '' && !isNaN(Number(x)))
+							.map(Number);
+
+						if (filteredValues.length === 0) {
+							break;
+						}
+						const minDuration = Math.min(...filteredValues);
+						const maxDuration = Math.max(...filteredValues);
 						return templates[key][0]
 							.replace('{{minDuration}}', minDuration)
 							.replace('{{maxDuration}}', maxDuration)
-							.replace('{{studyCount}}', values.length);
+							.replace('{{studyCount}}', filteredValues.length);
+						// const minDuration = Math.min(...values.filter(x => x != '').map(Number));
+						// const maxDuration = Math.max(...values.map(Number));
+						// console.log("Education", minDuration, maxDuration)
+						// return templates[key][0]
+						// 	.replace('{{minDuration}}', minDuration)
+						// 	.replace('{{maxDuration}}', maxDuration)
+						// 	.replace('{{studyCount}}', values.length);
 					}
 
 					case 'Age': {
-						const minAge = Math.min(...values.filter(x => x != '').map(Number));
-						const maxAge = Math.max(...values.map(Number));
+						const filteredValues = values
+							.filter(x => x != '' && !isNaN(Number(x)))
+							.map(Number);
+
+						if (filteredValues.length === 0) {
+							break;
+						}
+						const minAge = Math.min(...filteredValues);
+						const maxAge = Math.max(...filteredValues);
 						return templates[key][0]
 							.replace('{{minAge}}', minAge)
 							.replace('{{maxAge}}', maxAge)
-							.replace('{{studyCount}}', values.length);
+							.replace('{{studyCount}}', filteredValues.length);
+						// const minAge = Math.min(...values.filter(x => x != '').map(Number));
+						// const maxAge = Math.max(...values.map(Number));
+						// return templates[key][0]
+						// 	.replace('{{minAge}}', minAge)
+						// 	.replace('{{maxAge}}', maxAge)
+						// 	.replace('{{studyCount}}', values.length);
 					}
 
 					case 'Number of participants': {
-						const minParticipants = Math.min(...values.filter(x => x != '').map(Number));
-						const maxParticipants = Math.max(...values.map(Number));
+						const filteredValues = values
+							.filter(x => x != '' && !isNaN(Number(x)))
+							.map(Number);
+
+						if (filteredValues.length === 0) {
+							break;
+						}
+						const minParticipants = Math.min(...filteredValues);
+						const maxParticipants = Math.max(...filteredValues);
 						return templates[key][0]
 							.replace('{{minParticipants}}', minParticipants)
 							.replace('{{maxParticipants}}', maxParticipants)
-							.replace('{{studyCount}}', values.length);
+							.replace('{{studyCount}}', filteredValues.length);
+						// const minParticipants = Math.min(...values.filter(x => x != '').map(Number));
+						// const maxParticipants = Math.max(...values.map(Number));
+						// return templates[key][0]
+						// 	.replace('{{minParticipants}}', minParticipants)
+						// 	.replace('{{maxParticipants}}', maxParticipants)
+						// 	.replace('{{studyCount}}', values.length);
 					}
 
 					case 'Country':
@@ -290,12 +392,12 @@ export default {
 									genderCounts.percentages[value] = 0;
 								}
 								genderCounts.percentages[value] += 1;
-							} else if (lowerCaseValue === 'male/female' || lowerCaseValue === 'male and female' || lowerCaseValue=='both') {
+							} else if (lowerCaseValue === 'male/female' || lowerCaseValue === 'male and female' || lowerCaseValue == 'both') {
 								// console.log("allllllllll",value,lowerCaseValue)
 								genderCounts.both += 1;
-							} else if (lowerCaseValue=='male') {
+							} else if (lowerCaseValue == 'male') {
 								genderCounts.male += 1;
-							} else if (lowerCaseValue=='female') {
+							} else if (lowerCaseValue == 'female') {
 								genderCounts.female += 1;
 							}
 						});
@@ -338,11 +440,49 @@ export default {
 				.replace(/ \./g, '.')
 				.replace(/\.\./g, '.')
 				.replace(/,\./g, '.')
-				.replace(/ ,/g, ',');
-		}
+				.replace(/ ,/g, ',')
+				.replace(/\.\./g, '.');
+		},
+		onLockChange() {
+			// console.log('Clicked Lock',this.$tera.state.metaResult.locked)
+			if (this.$tera.state.metaResult.locked) {
+				this.confirmDialogVisible = true;
+			} else {
+				this.$tera.state.metaResult.locked = !this.$tera.state.metaResult.locked
+			}
+		},
+		lockChangeConfirmed() {
+			console.log(this.$tera.state.metaResult.locked)
+			this.$tera.state.metaResult.locked = !this.$tera.state.metaResult.locked;
+			this.combinedContent();
+			this.confirmDialogVisible = false;
+		},
+		lockChangeCancelled() {
+			this.confirmDialogVisible = false;
+		},
 
 
 
 	}
 };
 </script>
+<style>
+.btnStyles {
+	cursor: inherit !important;
+	background: transparent !important;
+	color: red !important;
+	width: 43px !important;
+	height: 20px !important;
+	border-color: transparent !important;
+}
+
+.p-dialog-header-icon {
+	display: none !important;
+}
+
+.divStyle {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 15px;
+}
+</style>

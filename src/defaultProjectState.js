@@ -32,7 +32,7 @@ let defaultProjectState = {
 	//introduction:
 	intro: "",
 	introprotocol: "",
-	
+
 	//researchplan:
 	planTable: {
 		headers: [
@@ -698,7 +698,8 @@ let defaultProjectState = {
 	conAuthors: [],
 
 	// Meta-Replicant Result
-	metaReplicant: { file: '', detable: {}, combinedContent: '', fileContent: '', detableContent: '', userContent: '' }
+	metaReplicantResult: { file: '', detable: {}, combinedContent: '', fileContent: '', detableContent: '', userContent: '' },
+	metaResult: { locked: true, userChange: "" }
 
 };
 

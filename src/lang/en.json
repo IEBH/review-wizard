@@ -46,7 +46,7 @@
     "Any co-comorbidity": "The following co-morbidities were included: {{comorbidities}}",
     "Education level_old": "The education level of participants ranged from {{minEducation}} to {{maxEducation}}",
     "Education level": [
-      "The education level of participants ranged from {{minDuration}} to {{minDuration}}",
+      "The education level of participants ranged from {{minDuration}} to {{maxDuration}}",
       "The only included study participants had {{minDuration}} education level"
     ],
     "Type of intervention": "{{count}} studies looked at {{interventionList}}",
