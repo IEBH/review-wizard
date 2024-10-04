@@ -1,0 +1,70 @@
+{
+  "templates": {
+    "Study authors": "NA",
+    "Year": [
+      "The studies were published between {{startYear}} and {{endYear}}",
+      "The only included study was published in {{year}}"
+    ],
+    "Country": [
+      "{{count}} studies were conducted in {{list}}",
+      "1 study was conducted in {{list}}"
+    ],
+    "Study design": [
+      "{{count}} studies were {{list}}",
+      "1 study was {{list}}"
+    ],
+    "Duration of follow-up": [
+      "The duration of follow-up ranged from {{minDuration}} to {{maxDuration}}",
+      "The only included study had {{minDuration}} follow-up duration"
+    ],
+    "Setting_old": "{{count}} studies were conducted in {{settingList}}",
+    "Setting":[
+      "{{count}} studies were conducted in a {{list}}",
+      "1 study was conducted in a {{list}}"
+    ],
+    "Number of participants": [
+      "The number of participants ranged from {{minParticipants}} to {{maxParticipants}}",
+      "The only included study had {{minParticipants}} participants"
+    ],
+    "Age": [
+      "The ages of participants ranged from {{minAge}} to {{maxAge}}",
+      "The only included study had participants aged {{minAge}}"
+    ],
+    "Gender": "The studies included {{gender}}",
+    "Whether currently pregnant": "The study {{pregnancyStatus}}",
+    "Smoker": "The study included {{smokingStatus}}",
+    "Any co-comorbidity": "The following co-morbidities were included: {{comorbidities}}",
+    "Education level_old": "The education level of participants ranged from {{minEducation}} to {{maxEducation}}",
+    "Education level": [
+      "The education level of participants ranged from {{minDuration}} to {{minDuration}}",
+      "The only included study participants had {{minDuration}} education level"
+    ],
+    "Type of intervention": "{{count}} studies looked at {{interventionList}}",
+    "Dose": [
+      "In {{count}} studies the dose was {{list}}",
+      "The only included study used a dose of {{list}}"
+    ],
+    "Frequency": "In {{count}} studies the intervention was given {{frequencyList}}",
+    "Method of delivery": "In {{count}} studies the intervention was given {{deliveryList}}",
+    "Who provided the intervention": "In {{count}} studies {{providerList}} provided the intervention",
+    "How the intervention was provided": [
+      "In {{count}} studies the intervention was given {{methodList}}",
+      "The only included study provided the intervention {{methodList}}"
+    ],
+    "Dose(I)": [
+      "In {{count}} studies the dose was {{list}}",
+      "The only included study used a dose of {{list}}"
+    ],
+    "Frequency(I)": "In {{count}} studies the intervention was given {{frequencyList}}",
+    "Method of delivery(I)": "In {{count}} studies the intervention was given {{deliveryList}}",
+    "Who provided the intervention(I)": "In {{count}} studies {{providerList}} provided the intervention",
+    "How the intervention was provided(I)": [
+      "In {{count}} studies the intervention was given {{methodList}}",
+      "The only included study provided the intervention {{methodList}}"
+    ],
+    "Placebo": "The comparisons were {{comparisonList}}",
+    "Usual care": "The comparisons were {{comparisonList}}",
+    "Sham device": "The comparisons were {{comparisonList}}",
+    "No treatment": "The comparisons were {{comparisonList}}"
+  }
+}

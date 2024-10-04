@@ -587,7 +587,11 @@ let defaultProjectState = {
 	whyNotSensitivityAnalysis: "We did not perform sensitivity analysis",
 
 	//contribution:
-	conAuthors: []
+	conAuthors: [],
+	
+	// Meta-Replicant Result
+	metaReplicantResult: { file: '', detable: {}, combinedContent: '', fileContent: '', detableContent: '', userContent: '' },
+	metaResult: { locked: true, userChange: "" }
 };
 
 export { defaultProjectState };

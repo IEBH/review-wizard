@@ -19,6 +19,7 @@
 		"@deepstream/client": "^5.2.4",
 		"@fortawesome/fontawesome-free": "^5.14.0",
 		"@iebh/tera-fy": "^1.12.0",
+		"bootstrap": "^5.3.3",
 		"core-js": "^3.6.5",
 		"dhx-spreadsheet": "^4.0.0",
 		"element-ui": "^2.15.12",

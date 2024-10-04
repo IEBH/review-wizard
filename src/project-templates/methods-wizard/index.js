@@ -842,16 +842,16 @@ const getMenu = () => [
 		icon: "pi pi-file",
 		href: `/planning/ac-view`
 	},
-	// {
-	// 	header: true,
-	// 	title: "RESULTS",
-	// 	hiddenOnCollapse: true
-	// },
-	// {
-	// 	title: "Results",
-	// 	icon: "pi pi-file",
-	// 	href: `/replicant-result`
-	// },
+	{
+		header: true,
+		title: "RESULTS",
+		hiddenOnCollapse: true
+	},
+	{
+		title: "Results",
+		icon: "pi pi-file",
+		href: `/replicant-result`
+	},
 	{
 		header: true,
 		title: "REPORTS",
