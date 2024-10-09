@@ -259,7 +259,7 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-	width: 15px;
+	width: 7px;
 }
 
 /* Track */

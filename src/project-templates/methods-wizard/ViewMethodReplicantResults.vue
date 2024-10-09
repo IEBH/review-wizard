@@ -17,7 +17,7 @@
 					@click="onLockChange()" />
 			</div>
 
-			<InputEditorMultiline question="" :placeholder="placeholder" v-model="$tera.state.metaResult.userChange" />
+			<InputEditorMultiline question="result" :placeholder="placeholder" v-model="$tera.state.metaResult.userChange" />
 		</div>
 		<!-- <button @click="buttonClick">Click Here</button> -->
 		<!-- PrimeVue Dialog -->
