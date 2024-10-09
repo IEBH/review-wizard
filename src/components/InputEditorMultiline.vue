@@ -3,7 +3,7 @@
 		<!-- <p>
 			<b>{{ question }}</b>
 		</p> -->
-		<div v-html="question"></div>
+		<div v-if="question !='result'" v-html="question"></div>
 		<!-- editorStyle="{Width:100%}" -->
 		<div>
 			<Editor
@@ -20,7 +20,7 @@
 		</div>
 		<div class="p-mt-2">
 			<Button
-				v-if="value != ''"
+				v-if="value != '' && question !='result'"
 				label="Clear"
 				class="p-button-danger"
 				@click="clearInput()"
