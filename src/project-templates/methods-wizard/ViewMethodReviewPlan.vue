@@ -46,7 +46,7 @@ export default {
 				progress: false,
 				tasks: "",
 				toolDescription: "",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 			},
