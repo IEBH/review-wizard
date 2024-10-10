@@ -1,8 +1,14 @@
 <template>
 	<div>
 		<!--New Research/Review Plan-->
+		<div style="display: inline-flex;">
+			<h1>Review Plan</h1>
+			<el-tooltip effect="dark" content="Download CSV File" placement="right">
+				<el-button type="text" icon="el-icon-document" @click="downloadCSV" />
+			</el-tooltip>
+		</div>
+		<!--title="Review Plan"-->
 		<GenericTable
-			title="Review Plan"
 			:columnDefs="columnDefs"
 			:rowData="rowData"
 			:gridOptions="gridOptions"
@@ -182,6 +188,44 @@ export default {
 		getApi(api) {
 			this.gridApi = api;
 		},
+		downloadCSV() {
+			this.$prompt("New File Name:", "Download CSV File", {
+				confirmButtonText: "Download",
+				cancelButtonText: "Cancel"
+			})
+				.then(filename => {
+					//download as a CSV File
+					this.gridApi.csvCreator.exportDataAsCsv({
+						processCellCallback: params => {
+							if (params.column.colId == "toolLink") {
+								return params.value.map(el => {
+									return el.name;
+								});
+							}
+							if (params.column.colId == "peopleInvolved") {
+								if (params.value != "") {
+									return params.value.map(el => {
+										return el.label;
+									});
+								}
+							}
+							return params.value;
+						},
+						fileName: filename.value
+					});
+
+					this.$message({
+						type: "success",
+						message: "Download Successfully!"
+					});
+				})
+				.catch(() => {
+					this.$message({
+						type: "info",
+						message: "Cancel downloading file"
+					});
+				});
+		},
 		//Push column & row changes from ag-grid to $terafy
 		//FIXME: currently this trigger to save is muanual even has binded $tera.state
 		updateTable(event) {
@@ -222,3 +266,9 @@ export default {
 	}
 };
 </script>
+<style scoped>
+.el-button--text {
+	padding-top: 12%;
+	font-size: 20px;
+}
+</style>
