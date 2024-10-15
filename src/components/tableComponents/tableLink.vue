@@ -1,5 +1,5 @@
-<template v-if="params.data.toolLink.length > 0">
-	<div class="linkbox">
+<template>
+	<div class="linkbox" v-if="params.data.toolLink.length > 0">
 		<ElLink
 			v-for="(tlink, index) in params.data.toolLink"
 			:key="index"

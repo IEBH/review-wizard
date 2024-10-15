@@ -76,7 +76,7 @@ let defaultProjectState = {
 				tasks: "Lead in time",
 				toolDescription:
 					"Time spent completing other work to allow authors to focus on the review",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -138,7 +138,7 @@ let defaultProjectState = {
 				tasks: "Obtain set of relevant studies",
 				toolDescription:
 					"Identify a small sample of studies relevant to the review, to aid with designing the search and data extraction form.",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -239,7 +239,7 @@ let defaultProjectState = {
 				tasks: "Obtain full text",
 				toolDescription:
 					"Download full text studies, request copies from authors, interlibrary loan",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -339,7 +339,7 @@ let defaultProjectState = {
 				progress: false,
 				tasks: "Risk of Bias assessment",
 				toolDescription: "Assess the potential biases in included studies",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -349,7 +349,7 @@ let defaultProjectState = {
 				tasks: "Synthesise data",
 				toolDescription:
 					"Convert extracted outcome data to common representation (usually mean and SD)",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -392,7 +392,7 @@ let defaultProjectState = {
 				tasks: "Summary of findings",
 				toolDescription:
 					"Optional: summarise the main findings of the SR in a table",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -402,7 +402,7 @@ let defaultProjectState = {
 				tasks: "Update systematic search strategy",
 				toolDescription:
 					"Optional: repeat the search to find new studies published since the initial search, especially if search more than a year old",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -444,7 +444,7 @@ let defaultProjectState = {
 				tasks: "Write discussion",
 				toolDescription:
 					"Write the discussion and conclusion sections of the SR",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -454,7 +454,7 @@ let defaultProjectState = {
 				tasks: "Obtain external feedback",
 				toolDescription:
 					"Circulate to colleagues for external feedback, also take a break from the SR to allow thinking time about the manuscript",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -464,7 +464,7 @@ let defaultProjectState = {
 				tasks: "Submit manuscript",
 				toolDescription:
 					"Format manuscript to meet journal requirements, complete online forms and submit manuscript",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -474,7 +474,7 @@ let defaultProjectState = {
 				tasks: "Reformat and resubmit manuscript",
 				toolDescription:
 					"If rejected, reformat manuscript to meet new journal requirements and standards",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -484,7 +484,7 @@ let defaultProjectState = {
 				tasks: "Manuscript revisions",
 				toolDescription:
 					"Revise manuscript due to comments from peer reviewers, and resubmit it",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -494,7 +494,7 @@ let defaultProjectState = {
 				tasks: "Manuscript accepted",
 				toolDescription:
 					"Review manuscript, and copy edit any errors or issues",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -504,7 +504,7 @@ let defaultProjectState = {
 				tasks: "Manuscript published",
 				toolDescription:
 					"Send the details around to everyone you know, and enjoy the kudos",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -700,7 +700,6 @@ let defaultProjectState = {
 	// Meta-Replicant Result
 	metaReplicantResult: { file: '', detable: {}, combinedContent: '', fileContent: '', detableContent: '', userContent: '' },
 	metaResult: { locked: true, userChange: "" }
-
 };
 
 export { defaultProjectState };
