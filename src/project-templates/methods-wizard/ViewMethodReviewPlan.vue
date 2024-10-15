@@ -46,51 +46,10 @@ export default {
 				progress: false,
 				tasks: "",
 				toolDescription: "",
-				toolLink: [{ name: "", link: "" }],
+				toolLink: [],
 				notes: "",
 				peopleInvolved: ""
 			},
-			/*columnDefs: [
-				{
-					headerName: "Completed",
-					field: "progress",
-					editable: true,
-					width: 150
-				},
-				{
-					field: "tasks",
-					headerName: "Task",
-					cellEditor: "agTextCellEditor",
-					editable: true,
-					width: 220
-				},
-				{
-					field: "toolDescription", 
-					headerName: "Description",
-					cellRenderer: "tableEditor"
-				},
-				{
-					field: "toolLink",
-					headerName: "Tool",
-					cellRenderer: "tableLink",
-					width: 220
-				},
-				{
-					field: "peopleInvolved",
-					headerName: "People",
-					cellRenderer: "tableAutoComplete", //
-					cellRendererParams: {
-						titlePageAuthors: this.$tera.state.author.map(el => {
-							return { label: el };
-						})
-					}
-				},
-				{
-					field: "notes",
-					headerName: "Notes",
-					cellRenderer: "tableEditor"
-				}
-			],*/
 			rowData: this.$tera.state.planTable.rows,
 			columnDefs: this.$tera.state.planTable.headers
 		};
