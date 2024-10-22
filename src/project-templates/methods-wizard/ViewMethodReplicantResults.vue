@@ -17,9 +17,10 @@
 					@click="onLockChange()" />
 			</div>
 
-			<InputEditorMultiline question="result" :placeholder="placeholder" v-model="$tera.state.metaResult.userChange" />
+			<InputEditorMultiline question="result" :placeholder="placeholder"
+				v-model="$tera.state.metaResult.userChange" />
 		</div>
-		<!-- <button @click="buttonClick">Click Here</button> -->
+		<!-- <button @click="refresh">Click Here</button> -->
 		<!-- PrimeVue Dialog -->
 		<Dialog :visible="confirmDialogVisible" modal header="Caution" :style="{ width: '32rem' }">
 			<div class="flex">
@@ -64,7 +65,16 @@ export default {
 			console.log("Here", this.$tera.state.metaResult.locked, this.$tera.state.metaResult.userChange)
 		}
 		this.combinedContent();
-
+	},
+	watch: {
+		'this.$tera.state.detable': {
+			handler(newVal, oldVal) {
+				console.log('Detable changed:', newVal, oldVal);
+				this.combinedContent();
+			},
+			deep: true,
+			immediate: true
+		}
 	},
 	computed: {
 		combinedContent_cal() {
@@ -93,15 +103,22 @@ export default {
 				? `\n\n<h3>Study Characteristics</h3>\n${dynamicContent}`
 				: '';
 			this.regeneratedValue = "";
-			this.regeneratedValue = fileContent + studyCharacteristicsSection;
+			this.regeneratedValue = fileContent + '' + studyCharacteristicsSection;
 			if (!this.$tera.state.metaResult.locked) {
 				this.$tera.state.metaResult.userChange = this.regeneratedValue;
 			} else if (this.$tera.state.metaResult.locked && this.$tera.state.metaResult.userChange == "") {
 				this.$tera.state.metaResult.userChange = this.regeneratedValue;
 			}
+			const updateChangeStyle = this.$tera.state.metaResult.userChange;
+			this.$tera.state.metaResult.userChange = updateChangeStyle.replace(/(\.)(\s*<h3>)/g, '$1<br><br>$2');
+			// console.log(this.$tera.state.metaResult.userChange)
 		},
 		buttonClick() {
 			console.log(JSON.stringify(this.$tera.state.detable));
+		},
+		refresh() {
+			// window.location.reload();
+			this.combinedContent();
 		},
 		groupByHeaders(rows) {
 			const grouped = {};
