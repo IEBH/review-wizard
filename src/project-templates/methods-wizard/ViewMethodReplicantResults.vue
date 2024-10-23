@@ -20,7 +20,7 @@
 			<InputEditorMultiline question="result" :placeholder="placeholder"
 				v-model="$tera.state.metaResult.userChange" />
 		</div>
-		<!-- <button @click="refresh">Click Here</button> -->
+		<button @click="refresh">Click Here</button>
 		<!-- PrimeVue Dialog -->
 		<Dialog :visible="confirmDialogVisible" modal header="Caution" :style="{ width: '32rem' }">
 			<div class="flex">
@@ -105,12 +105,22 @@ export default {
 			this.regeneratedValue = "";
 			this.regeneratedValue = fileContent + '' + studyCharacteristicsSection;
 			if (!this.$tera.state.metaResult.locked) {
-				this.$tera.state.metaResult.userChange = this.regeneratedValue;
+				this.$tera.state.metaResult.userChange = this.regeneratedValue.replace(/(\.)(\s*)<h3>/g, '$1<br><br><h3>');
+					console.log("One one")
 			} else if (this.$tera.state.metaResult.locked && this.$tera.state.metaResult.userChange == "") {
 				this.$tera.state.metaResult.userChange = this.regeneratedValue;
+				console.log("This one")
+			}else{
+				const updateChangeStyle = this.$tera.state.metaResult.userChange;
+				this.$tera.state.metaResult.userChange = updateChangeStyle.replace(/(\.)(\s*)<h3>/g, '$1<br><br><h3>').replace(/<p><br><\/p>(\s*)<h3>/g, '<br><h3>');
+				// this.$tera.state.metaResult.userChange = this.regeneratedValue.replace(/<p><br><\/p>(\s*)<h3>/g, '<br><br><h3>');
+				console.log("No one")
 			}
-			const updateChangeStyle = this.$tera.state.metaResult.userChange;
-			this.$tera.state.metaResult.userChange = updateChangeStyle.replace(/(\.)(\s*<h3>)/g, '$1<br><br>$2');
+			
+			// const updateChangeStyle = this.$tera.state.metaResult.userChange;
+			// this.$tera.state.metaResult.userChange = updateChangeStyle.replace(/(\.)(\s*<h3>)/g, '$1<br><br>$2');
+			// this.$tera.state.metaResult.userChange = updateChangeStyle.replace(/(\.)(\s*)<h3>/g, '$1<br><br><h3>');
+			// this.$tera.state.metaResult.userChange = updateChangeStyle.replace(/<br><br>(\s*)<h3>/g, '<br><h3>');
 			// console.log(this.$tera.state.metaResult.userChange)
 		},
 		buttonClick() {
@@ -118,7 +128,9 @@ export default {
 		},
 		refresh() {
 			// window.location.reload();
-			this.combinedContent();
+			// this.combinedContent();
+			console.log(this.$tera.state.metaResult.userChange)
+
 		},
 		groupByHeaders(rows) {
 			const grouped = {};
