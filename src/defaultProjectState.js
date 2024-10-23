@@ -8,22 +8,6 @@ let defaultProjectState = {
 	author: [""],
 	acknowledgements: [""],
 
-	//study information
-	trialRegistered: "",
-	protocolVersion: "",
-	dateOfProtocolRegistration: null,
-	source: "",
-	stakeholder: [""],
-	stakeholderConsultation: "",
-	supervisor: "",
-	auditQuestionDescription: "",
-	auditObjective: "",
-	dataCollectionMethod: "",
-
-	//Study Setting
-	participantsRecruitedFrom: [],
-	healthServicesParticipantsRecruited: [],
-	noStudySetting: "Study setting is not defined.",
 	//acknowledgement:
 	designhelp: [],
 	statistical: [],
@@ -33,41 +17,24 @@ let defaultProjectState = {
 	intro: "",
 	introprotocol: "",
 
+
 	//researchplan:
 	planTable: {
 		headers: [
+			{ name: "progress", label: "Completed" },
+			{ name: "tasks", label: "Task" },
 			{
-				headerName: "Completed",
-				field: "progress",
-				editable: true,
-				width: 150
+				name: "toolDescription",
+				label: "Description"
+			},
+			{ name: "toolLink", label: "Tool" },
+			{
+				name: "peopleInvolved",
+				label: "People"
 			},
 			{
-				field: "tasks",
-				headerName: "Task",
-				cellEditor: "agTextCellEditor",
-				editable: true,
-				width: 220
-			},
-			{
-				field: "toolDescription",
-				headerName: "Description",
-				width: 280
-			},
-			{
-				field: "toolLink",
-				headerName: "Tool",
-				width: 220
-			},
-			{
-				field: "peopleInvolved",
-				headerName: "People",
-				width: 280
-			},
-			{
-				field: "notes",
-				headerName: "Notes",
-				width: 300
+				name: "notes",
+				label: "Notes"
 			}
 		],
 		rows: [
@@ -76,7 +43,7 @@ let defaultProjectState = {
 				tasks: "Lead in time",
 				toolDescription:
 					"Time spent completing other work to allow authors to focus on the review",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -138,7 +105,7 @@ let defaultProjectState = {
 				tasks: "Obtain set of relevant studies",
 				toolDescription:
 					"Identify a small sample of studies relevant to the review, to aid with designing the search and data extraction form.",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -239,7 +206,7 @@ let defaultProjectState = {
 				tasks: "Obtain full text",
 				toolDescription:
 					"Download full text studies, request copies from authors, interlibrary loan",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -339,7 +306,7 @@ let defaultProjectState = {
 				progress: false,
 				tasks: "Risk of Bias assessment",
 				toolDescription: "Assess the potential biases in included studies",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -349,7 +316,7 @@ let defaultProjectState = {
 				tasks: "Synthesise data",
 				toolDescription:
 					"Convert extracted outcome data to common representation (usually mean and SD)",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -392,7 +359,7 @@ let defaultProjectState = {
 				tasks: "Summary of findings",
 				toolDescription:
 					"Optional: summarise the main findings of the SR in a table",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -402,7 +369,7 @@ let defaultProjectState = {
 				tasks: "Update systematic search strategy",
 				toolDescription:
 					"Optional: repeat the search to find new studies published since the initial search, especially if search more than a year old",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -444,7 +411,7 @@ let defaultProjectState = {
 				tasks: "Write discussion",
 				toolDescription:
 					"Write the discussion and conclusion sections of the SR",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -454,7 +421,7 @@ let defaultProjectState = {
 				tasks: "Obtain external feedback",
 				toolDescription:
 					"Circulate to colleagues for external feedback, also take a break from the SR to allow thinking time about the manuscript",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -464,7 +431,7 @@ let defaultProjectState = {
 				tasks: "Submit manuscript",
 				toolDescription:
 					"Format manuscript to meet journal requirements, complete online forms and submit manuscript",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -474,7 +441,7 @@ let defaultProjectState = {
 				tasks: "Reformat and resubmit manuscript",
 				toolDescription:
 					"If rejected, reformat manuscript to meet new journal requirements and standards",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -484,7 +451,7 @@ let defaultProjectState = {
 				tasks: "Manuscript revisions",
 				toolDescription:
 					"Revise manuscript due to comments from peer reviewers, and resubmit it",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -494,7 +461,7 @@ let defaultProjectState = {
 				tasks: "Manuscript accepted",
 				toolDescription:
 					"Review manuscript, and copy edit any errors or issues",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
@@ -504,75 +471,13 @@ let defaultProjectState = {
 				tasks: "Manuscript published",
 				toolDescription:
 					"Send the details around to everyone you know, and enjoy the kudos",
-				toolLink: [],
+				toolLink: [{ name: "", link: "" }],
 				notes: "",
 				peopleInvolved: ""
 				//notes: ""
 			}
 		]
 	},
-	//Participant Timeline
-	isSchematicDiagramFilled: false,
-	//Sample Size
-	trialType: null,
-	trialTypeOther: null,
-	trialStudyPower: null,
-	trialStudyPowerOther: null,
-	levelOfSignificance: null,
-	levelOfSignificanceOther: null,
-	plannedSampleSize: null,
-	effectSize: null,
-	participantDropout: null,
-
-	//Recruitment
-	strategies: [],
-	noRecruitment: "No strategies were implemented to achieve adequate participant enrolment.",
-	//Assignment of Interventions
-	ratio: [],
-	participantAllocation: [],
-	allocationOfParticipants: null,
-	allocationSequenceMechanisms: [],
-	concealSequence: null,
-	blindedPeople: [],
-	methodBlindedPeople: null,
-	circumstancesUnblinding: [],
-
-	//Data Collection, Management and Analysis
-	plansForDataManagement: null,
-	processesForDataQuality: null,
-	furtherDetails: [],
-	statisticalEstimate: null,
-	adverseEventsAnalysis: null,
-	subgroupsCategorization: null,
-	subgroupAnalysisPerformed: null,
-	adjustedAnalysis: null,
-	efficacyComparisons: [],
-	populationEfficacyComparison: null,
-	safetyPopulation: null,
-	missingDataStates: [],
-	missingDataApproachReason: null,
-	plannedSensitivityAnalyses: null,
-
-	//Monitoring
-	isDataMonitoringCommittee: false,
-	roleDetails: null,
-	reportingStructureDetails: null,
-	compositionDetails: null,
-	committeeDetailsLink: null,
-	reasonCommitteeNotSetUp: null,
-	isInterimAnalysis: false,
-	interimAnalysisTimePoints: null,
-	conditionStoppingStudy: null,
-	interimAnalysisResults: [],
-	studyTerminationFinalDecision: [],
-	interimAnalysisNotPlannedReason: null,
-	adverseEffectsMonitoring: null,
-	proceduresAuditingTrial: null,
-
-	//Ethics and Dissemination
-	researchEthicsApproval: null,
-	dataStorage: null,
-	presentationPlans: null,
 
 	//picot:
 	population: [{ inclusion: true }],
@@ -581,20 +486,7 @@ let defaultProjectState = {
 	outcomes: [{ inclusion: true, type: true }],
 	setting: [{ inclusion: true }],
 	types: [],
-	sexes: [],
-	conditions: [],
-	severity: [],
-	inclusionFactors: [],
-	excludedFactors: [],
-	measurements: [],
-	auditPopulation: "",
 
-	//Interventions
-	conditionsTreatment: [],
-	adherenceEmployees: [],
-	adherenceMonitoringFactors: [],
-	treatment: "",
-	interventionsNotAllowed: "",
 	//search:
 	// Search Strategy
 	components: [],
@@ -609,7 +501,7 @@ let defaultProjectState = {
 	databases: [],
 	dateOfSearch: null,
 	dateSearchedUntil: null,
-	outputVersions: {},
+	outputVersions:{},
 	// Search Strings for Trial Registries
 	registries: [],
 	registryDateOfSearch: null,
@@ -644,7 +536,7 @@ let defaultProjectState = {
 	//numberOfExtractors: null,
 	extractionAuthors: [],
 	//New
-	optionalDetail: true,
+	optionalDetail: false,
 	methods: [],
 	participants: [],
 	interventions: [],
@@ -696,7 +588,7 @@ let defaultProjectState = {
 
 	//contribution:
 	conAuthors: [],
-
+	
 	// Meta-Replicant Result
 	metaReplicantResult: { file: '', detable: {}, combinedContent: '', fileContent: '', detableContent: '', userContent: '' },
 	metaResult: { locked: true, userChange: "" }

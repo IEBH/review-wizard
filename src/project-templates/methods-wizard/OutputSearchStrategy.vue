@@ -130,13 +130,13 @@ export default {
 	computed: {
 		designSearchStrategyAuthorsInitials: function () {
 			return this.formatSelectMulti(
-				this.$tera.state.searchStrategyAuthors
+				this.$tera.state.designSearchStrategyAuthors
 			)
 				.map(el => this.nameToInitials(el))
 				.join(", ");
 		},
 		deduplicateResultsAuthorsInitials: function () {
-			return this.formatSelectMulti(this.$tera.state.searchStrategyAuthors)
+			return this.formatSelectMulti(this.$tera.state.deduplicateResultsAuthors)
 				.map(el => this.nameToInitials(el))
 				.join(", ");
 		},

@@ -1,8 +1,7 @@
 <template>
 	<div>
-		<h1>Scoping Plan</h1>
+		<h1>Review Plan</h1>
 		<InputSrTableCustom
-			question="What is your scoping review plan?"
 			v-model="table"
 			:titlePageAuthors="Authors"
 			@authChangeHandler="authorHandler"
@@ -12,17 +11,18 @@
 <script>
 import InputSrTableCustom from "@/components/InputSrTableCustom.vue";
 export default {
-	name: "ViewScopingResearchPlan",
 	components: {
 		InputSrTableCustom
 	},
 	computed: {
 		table() {
+			//return this.checkAuthorSelection(this.$tera.state.planTable);
 			return this.authorHandler(-1, null, this.$tera.state.planTable);
 		},
 		Authors() {
 			let da = [];
 			if (
+				//check if authors are initialized
 				this.$tera.state.author != undefined &&
 				this.$tera.state.acknowledgements != undefined
 			) {
@@ -60,6 +60,7 @@ export default {
 			return U;
 		},
 		checkAuthorSelection(table) {
+			//console.log("defaults:" + JSON.stringify(table));
 			table.rows.forEach(el => {
 				if (
 					el.tasks == "Design systematic search strategy" ||
@@ -74,6 +75,11 @@ export default {
 					el.tasks == "Citation search" &&
 					this.$tera.state.conductSSearchAuthors != null
 				) {
+					/*el.peopleInvolved = [
+						...this.$tera.state.conductSSearchAuthors,
+						...el.peopleInvolved
+					];
+					this.checkUnion(el.peopleInvolved);*/
 					el.peopleInvolved=this.$tera.state.conductSSearchAuthors;
 				}
 				if (

@@ -37,11 +37,11 @@
 		/>
 
 		<!-- New -->
-		<Accordion :activeIndex="0"
+		<Accordion
 			v-if="$tera.state.optionalDetail"
 			style="margin-top: 50px; border: 1px solid black;"
 		>
-			<AccordionTab header="Optional Details" >
+			<AccordionTab header="Optional Details" :active="false">
 				<h3>What data will be extracted:</h3>
 				<InputSelectMulti
 					question="Methods:"
@@ -266,11 +266,11 @@ export default {
 				],
 				interventions: [
 					{ label: "Type of intervention" },
-					{ label: "Dose(I)" },
-					{ label: "Frequency(I)" },
-					{ label: "Method of delivery(I)" },
-					{ label: "Who provided the intervention(I)" },
-					{ label: "How the intervention was provided(I)" }
+					{ label: "Dose" },
+					{ label: "Frequency" },
+					{ label: "Method of delivery" },
+					{ label: "Who provided the intervention" },
+					{ label: "How the intervention was provided" }
 				],
 				comparators: [
 					{ label: "Placebo" },
