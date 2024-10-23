@@ -117,11 +117,6 @@ export default {
 				console.log("No one")
 			}
 			
-			// const updateChangeStyle = this.$tera.state.metaResult.userChange;
-			// this.$tera.state.metaResult.userChange = updateChangeStyle.replace(/(\.)(\s*<h3>)/g, '$1<br><br>$2');
-			// this.$tera.state.metaResult.userChange = updateChangeStyle.replace(/(\.)(\s*)<h3>/g, '$1<br><br><h3>');
-			// this.$tera.state.metaResult.userChange = updateChangeStyle.replace(/<br><br>(\s*)<h3>/g, '<br><h3>');
-			// console.log(this.$tera.state.metaResult.userChange)
 		},
 		buttonClick() {
 			console.log(JSON.stringify(this.$tera.state.detable));
