@@ -20,7 +20,7 @@
 			<InputEditorMultiline question="result" :placeholder="placeholder"
 				v-model="$tera.state.metaResult.userChange" />
 		</div>
-		<button @click="refresh">Click Here</button>
+		<!-- <button @click="refresh">Click Here</button> -->
 		<!-- PrimeVue Dialog -->
 		<Dialog :visible="confirmDialogVisible" modal header="Caution" :style="{ width: '32rem' }">
 			<div class="flex">
