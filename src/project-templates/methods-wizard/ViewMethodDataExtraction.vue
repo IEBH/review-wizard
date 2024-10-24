@@ -38,10 +38,10 @@
 
 		<!-- New -->
 		<Accordion
-			v-if="$tera.state.optionalDetail"
+			v-if="$tera.state.optionalDetail" :activeIndex="0"
 			style="margin-top: 50px; border: 1px solid black;"
 		>
-			<AccordionTab header="Optional Details" :active="false">
+			<AccordionTab header="Optional Details" :active="0">
 				<h3>What data will be extracted:</h3>
 				<InputSelectMulti
 					question="Methods:"
